@@ -195,6 +195,15 @@
               watch: true
               bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/science-core
 
+          # 组学技能（15）：蛋白组/代谢组/单细胞/微生物组/区间与变异/通路富集/空间病理
+          - id: omics-skills
+            name: '@deepseek-ai/dsh-skill-filesystem'
+            config:
+              providerName: biomedical-omics
+              includeDefaultRoots: false
+              watch: true
+              bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/omics
+
           - id: tool-skill
             name: '@deepseek-ai/dsh-tool-skill'
 

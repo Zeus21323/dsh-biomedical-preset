@@ -1,9 +1,9 @@
 # 生物医学模式 · dsh-biomedical-preset
 
-DeepSeek Harness 的 agent 预设（bundle）。它不是"给通用助手加个提示词"，而是一套**自持**的生物医学研究装配：身份与纪律、执行工具、63 个流程技能、51 个数据源 MCP 工具、并发闸、交付通道，全部装在这一个包里，不引用任何外部插件目录。
+DeepSeek Harness 的 agent 预设（bundle）。它不是"给通用助手加个提示词"，而是一套**自持**的生物医学研究装配：身份与纪律、执行工具、78 个流程技能、51 个数据源 MCP 工具、并发闸、交付通道，全部装在这一个包里，不引用任何外部插件目录。
 
 - 心智模型：**MCP 负责取数据，Skill 负责选方法与执行流程**，persona 负责纪律与判断。
-- 已验证：市场索引通过官方 `@deepseek-ai/dsh-plugin-market-index` 校验；`npm pack` 产物 289 文件 / 0.60 MB（packed）/ 2.05 MB（unpacked）；本机预设 `fiberPhase: active`。
+- 已验证：市场索引通过官方 `@deepseek-ai/dsh-plugin-market-index` 校验；`npm pack` 产物 370 文件 / 0.87 MB（packed）/ 3.05 MB（unpacked）；本机预设 `fiberPhase: active`。
 
 ---
 
@@ -11,7 +11,7 @@ DeepSeek Harness 的 agent 预设（bundle）。它不是"给通用助手加个�
 
 - [安装](#安装)
 - [装配结构](#装配结构)
-- [技能清单（63）](#技能清单63)
+- [技能清单（78）](#技能清单78)
 - [MCP 工具清单（51）](#mcp-工具清单51)
 - [并发与资源约束](#并发与资源约束)
 - [平台要求](#平台要求)
@@ -53,7 +53,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 
 ## 装配结构
 
-`cordis.patch.yml` 共 23 个插件行：
+`cordis.patch.yml` 共 24 个插件行：
 
 | 层 | 插件行 | 作用 |
 |---|---|---|
@@ -66,6 +66,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | 技能 | `skill-filesystem` | 用户自有技能根（`$DSH_HOME/skills`） |
 | 技能 | `bio-skills` | 挂载 `skills/biomedical`（30） |
 | 技能 | `bio-core-skills` | 挂载 `skills/science-core`（33） |
+| 技能 | `omics-skills` | 挂载 `skills/omics`（15 个组学技能） |
 | 技能 | `tool-skill` | 技能目录与加载器 |
 | 数据 | `bio-mcp` | 拉起 `mcp/biomedical_mcp.py`（51 工具，stdio） |
 | 编排 | `command-goal`、`tool-goal` | 长课题目标追踪 |
@@ -80,11 +81,31 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 
 ---
 
-## 技能清单（63）
+## 技能清单（78）
 
-技能分两组挂载：`skills/biomedical`（30，偏"做出来"）与 `skills/science-core`（33，偏"想清楚 + 交付合规"）。下表按用途归类，一个技能只出现一次。
+技能分三组挂载：`skills/omics`（15，组学平台与流程）、`skills/biomedical`（30，结构与生信写作）、`skills/science-core`（33，方法学与交付合规）。下表按用途归类，一个技能只出现一次。
 
-### 1. 组学与表达分析（9）
+### 1. 组学平台（15）
+
+| 技能 | 组学 | 用途 |
+|---|---|---|
+| `proteomics-quantification` | **蛋白组** | **本项目原创**：MaxQuant / DIA-NN / Spectronaut / FragPipe 输出 → 过滤 → 归一化 → 缺失值 → limma/DEqMS → 富集 → 交付 |
+| `metabolomics-profiling` | **代谢组 / 脂质组** | **本项目原创**：峰表 QC 过滤 → PQN 归一化 → PCA/PLS-DA/OPLS-DA（含置换验证）→ 单变量 → 注释置信级 → mummichog 通路 |
+| `pyopenms` | 蛋白组 / 代谢组 | 质谱全平台：feature detection、肽段鉴定、蛋白定量；MatchMS 谱相似度与代谢物谱库匹配 |
+| `scikit-bio` | **微生物组** | 序列与比对、系统发育、α/β 多样性（UniFrac）、PCoA/PERMANOVA、FASTA/Newick 读写 |
+| `scanpy` | 单细胞 | scverse 生态：AnnData、QC、降维聚类、scVelo RNA 速率、scvi-tools 集成（与 `bio-scanpy` 互补，更偏生态与速率） |
+| `sc-rna-seq-analysis` | 单细胞 | 17+ 模块全流程：decontX 去污染、双细胞检测、Harmony、自动注释、AUCell、scMetabolism、decoupleR |
+| `bulk-rnaseq` | 转录组 | FASTQ → counts → PyDESeq2 → 富集 → 出图（与 `bio-bulk-rnaseq` 同源不同路径：这条走 PyDESeq2 全程） |
+| `deeptools` | 表观组 | BAM→bigWig、相关性/PCA/指纹图、TSS 与 peak 热图（与 `bio-deeptools` 同源，供 ChIP/ATAC 覆写） |
+| `pysam` | 基因组 | SAM/BAM/CRAM/VCF/BCF/FASTA/FASTQ 读写、区域提取、覆盖度计算 |
+| `polars-bio` | 基因组 | 区间运算：overlap / nearest / merge / coverage / complement / subtract，流式读 BED/VCF/BAM |
+| `gtars` | 基因组 | 区间工具 Rust 绑定、覆盖度、坐标分块与 tokenization |
+| `cellxgene-census` | 单细胞图谱 | CZ CELLxGENE Census 的群体规模切片、元数据与 H5AD 定位 |
+| `arboreto` | 转录组 / GRN | GRNBoost2、GENIE3 推断基因调控网络（可分布式） |
+| `pathway-enrichment` | 通用下游 | ORA（Enrichr/Fisher/hypergeometric）与 preranked GSEA，所有组学共用 |
+| `pathml` | **空间 / 病理组学** | WSI 切块、Macenko/Reinhard 染色归一化、CODEX/Vectra 多重免疫荧光、核分割、组织图 |
+
+### 2. 转录组与单细胞（9）
 
 | 技能 | 用途 |
 |---|---|
@@ -98,7 +119,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | `public-omics-study-design-report` | 只有疾病或基因时：选公共数据、设计发现/验证路线、写可追溯报告 |
 | `conventional-oncology-hub-gene-research-planner` | 肿瘤 bulk 转录组标志物 + hub 基因研究设计（DEG→预后→PPI→免疫浸润） |
 
-### 2. 结构预测与分子设计（10）
+### 3. 结构预测与分子设计（10）
 
 | 技能 | 用途 |
 |---|---|
@@ -113,7 +134,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | `solublempnn` | 偏可溶表达的逆折叠，减少聚集与包涵体 |
 | `diffdock` | DiffDock-L 盲对接：SMILES/SDF → 蛋白口袋排序姿势 |
 
-### 3. 基因组、调控与变异（3）
+### 4. 基因组、调控与变异（3）
 
 | 技能 | 用途 |
 |---|---|
@@ -121,7 +142,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | `evo2` | 长上下文基因组模型：序列评分、嵌入、生成，跨物种调控区比较 |
 | `qtl-colocalization-study-planner` | QTL 共定位研究设计：eQTL/pQTL/sQTL 与 GWAS 位点的因果信号判断 |
 
-### 4. 数据库与知识整合（5）
+### 5. 数据库与知识整合（5）
 
 | 技能 | 用途 |
 |---|---|
@@ -131,7 +152,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | `tooluniverse-metabolomics` | 代谢组：HMDB 220K+ 代谢物、MetaboLights、Metabolomics Workbench |
 | `biomedical-knowledge-graph-rag` | 把论文、数据库、内部资料组织成可检索知识图谱或 RAG 问答 |
 
-### 5. 文献与证据（5）
+### 6. 文献与证据（5）
 
 | 技能 | 用途 |
 |---|---|
@@ -141,7 +162,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | `literature-evidence-writing` | 系统检索生物医学文献 → 整理证据 → 写带准确引用的科研文本 |
 | `indication-dossier` | 治疗适应症档案：人群、流行病学、疾病生物学、标准治疗、监管先例、里程碑试验 |
 
-### 6. 统计、临床与模型审计（6）
+### 7. 统计、临床与模型审计（6）
 
 | 技能 | 用途 |
 |---|---|
@@ -152,7 +173,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | `machine-learning-evaluation` | 预测模型有效性审计：数据泄漏、验证失败、换样本结果不变 |
 | `shap` | SHAP 解释生物医学表格模型：加和性、相关特征影响、全局与个体报告 |
 
-### 7. 研究设计与数据识别（3）
+### 8. 研究设计与数据识别（3）
 
 | 技能 | 用途 |
 |---|---|
@@ -160,7 +181,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | `experiment-protocol-design` | 只给疾病/基因/研究目标时：设计对照、重复、样本量与验证实验 |
 | `nfcore-catalog` | 只有交付文件、只知样本来源时：识别数据类型与处理阶段，匹配分析流程 |
 
-### 8. nf-core 工作流（8）
+### 9. nf-core 工作流（8）
 
 | 技能 | 用途 |
 |---|---|
@@ -173,7 +194,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | `nfcore-deepmodeloptim` | 有训练数据与模型时改预测效果或评估数据增强 |
 | `bioinformatics-file-format-conversion` | FASTA/FASTQ/SAM/BAM/CRAM/BIOM/TSV 互转，核对记录数与配对关系 |
 
-### 9. 数据工程与可靠性（6）
+### 10. 数据工程与可靠性（6）
 
 | 技能 | 用途 |
 |---|---|
@@ -184,14 +205,14 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | `biomedical-result-drift-audit` | 更新数据库后结果变了：核验运行条件、固定背景重算、比较两版资源影响 |
 | `research-data-privacy-deidentification` | 识别并降低个人身份、基因组再识别、敏感元数据风险 |
 
-### 10. 工程与集成（2）
+### 11. 工程与集成（2）
 
 | 技能 | 用途 |
 |---|---|
 | `api-external-integration` | 科研数据库/实验平台/院内系统的 API 对接：认证、分页、限流、重试、数据映射 |
 | `software-engineering-testing` | 编写、重构、验证生物医学分析用的科研软件与命令行工具 |
 
-### 11. 写作与可视化（4）
+### 12. 写作与可视化（4）
 
 | 技能 | 用途 |
 |---|---|
@@ -200,12 +221,18 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | `reporting-guideline-compliance-checker` | 按报告规范核查稿件缺项与弱项（投稿前自查） |
 | `scientific-visualization-reporting` | 把结果画清楚：图型顾问、布局验收、三格式导出、图与文一致性 |
 
-### 12. 其他（2）
+### 13. 其他（2）
 
 | 技能 | 用途 |
 |---|---|
 | `mcp-tool-operations` | 发现已配置的 MCP 工具、选型、排查连接与调用错误 |
 | `morning` | 晨间简报渲染为 HTML 或设为工作日循环任务（显式调用才触发） |
+
+### 第三方技能来源
+
+`skills/omics` 下 15 个技能中，`proteomics-quantification` 与 `metabolomics-profiling` 为本项目原创；其余 13 个（`pyopenms`、`scikit-bio`、`scanpy`、`sc-rna-seq-analysis`、`bulk-rnaseq`、`deeptools`、`pysam`、`polars-bio`、`gtars`、`cellxgene-census`、`arboreto`、`pathway-enrichment`、`pathml`）取自公开分发的 skill 集合，原始目录未随附许可文件。
+
+若上游主张权利，删除对应子目录即可，其余能力不受影响（`omics-skills` 是独立 provider，删目录后该组自动少一项，不会破坏装配）。
 
 ---
 
@@ -343,6 +370,7 @@ cordis.patch.yml        预设装配（23 个插件行）
 package.json            包声明：exports / files / engines.dsh
 subagent-cap.mjs        子智能体并发闸（tools/execute 作用域）
 mcp/biomedical_mcp.py   51 个数据源工具（stdio JSON-RPC，纯标准库）
+skills/omics/           15 个组学技能（蛋白组、代谢组、单细胞、微生物组、区间/变异、富集、空间病理）
 skills/biomedical/      30 个技能（结构预测、组学、生信写作…）
 skills/science-core/    33 个技能（nf-core、临床统计、证据与工作流…）
 locale/{en,zh}.json     市场与设置页展示元数据（meta.title / meta.description）
