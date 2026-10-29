@@ -190,6 +190,8 @@ tags: glycomics, glycan, glytoucan, glycoct, glycoproteomics
 
 - GU 是**相对保留时间**单位：用葡萄糖同系物梯（glucose homopolymer ladder）做外标，把样品峰保留时间
   插值换算成 GU。它绑定「色谱柱 + 梯度 + 标记化学（如 2-AB、procainamide）」三要素，换任一要素都必须重标。
+  （这一定义属各实验室方法学口径，**本环境未取到官方 GU 定义页**，报告里请引用所用方法学原文，
+  不要引用本技能作为出处。）
 - 官方层面能核实的是**保留性质库与单位词表**：GlycoStore 的单位栏为
   `HPLC`、`UPLC_2-AB`、`UPLC_Procainamide`、`CE`、`RP`、`PGC`，每条记录带 `GlycoCT Structure`。
   来源：<https://glycostore.org/>。
