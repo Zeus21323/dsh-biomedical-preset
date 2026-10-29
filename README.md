@@ -17,7 +17,6 @@ DeepSeek Harness 的 agent 预设（bundle）。它不是"给通用助手加个�
 - [平台要求](#平台要求)
 - [仓库结构](#仓库结构)
 - [更新与发版](#更新与发版)
-- [许可](#许可)
 
 ---
 
@@ -228,14 +227,6 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | `mcp-tool-operations` | 发现已配置的 MCP 工具、选型、排查连接与调用错误 |
 | `morning` | 晨间简报渲染为 HTML 或设为工作日循环任务（显式调用才触发） |
 
-### 第三方技能来源
-
-`skills/omics` 下 15 个技能中，`proteomics-quantification` 与 `metabolomics-profiling` 为本项目原创；其余 13 个（`pyopenms`、`scikit-bio`、`scanpy`、`sc-rna-seq-analysis`、`bulk-rnaseq`、`deeptools`、`pysam`、`polars-bio`、`gtars`、`cellxgene-census`、`arboreto`、`pathway-enrichment`、`pathml`）取自公开分发的 skill 集合，原始目录未随附许可文件。
-
-若上游主张权利，删除对应子目录即可，其余能力不受影响（`omics-skills` 是独立 provider，删目录后该组自动少一项，不会破坏装配）。
-
----
-
 ## MCP 工具清单（51）
 
 `mcp/biomedical_mcp.py` 是一个**纯标准库**（`json/sys/time/gzip/io/urllib`）的 stdio JSON-RPC 服务，一个进程承载 22 个数据域，全部直连公开 REST API，不需要 token，也不经过任何网关。工具名形如 `<域>_<动作>`。
@@ -410,7 +401,3 @@ npm publish --access public
 然后把索引条目的 `source` 改成 `{ "type": "npm" }` 并同步 `version`。
 
 ---
-
-## 许可
-
-MIT。技能与 MCP 服务随包分发；各技能内部若引用第三方资产（如图件模板、术语表），其原始许可声明保留在对应目录内。
