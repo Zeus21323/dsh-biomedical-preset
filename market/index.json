@@ -74,7 +74,7 @@
       },
       "description": {
         "en": "Biomedical research collaborator preset: bulk/single-cell omics, variant and clinical annotation, structure prediction and docking, literature evidence grading, survival statistics, publication figures and manuscripts. Ships its own MCP server (51 tools over PubMed/Ensembl/PDB/AlphaFold/ClinVar/gnomAD/GTEx/GEO/PRIDE/cBioPortal/CIViC/ENCODE/JASPAR/Rfam/ChEMBL/PubChem/Open Targets/openFDA/OpenAlex/arXiv) and 63 skills, so it carries no dependency on external plugin directories.",
-        "zh": "生物医学研究合作者预设：bulk/单细胞组学、变异与临床注释、结构预测与分子对接、文献证据分级、生存统计、投稿级图表与稿件。自带 MCP 服务（51 个工具，覆盖 PubMed/Ensembl/PDB/AlphaFold/ClinVar/gnomAD/GTEx/GEO/PRIDE/cBioPortal/CIViC/ENCODE/JASPAR/Rfam/ChEMBL/PubChem/Open Targets/openFDA/OpenAlex/arXiv）与 63 个技能，不依赖任何外部插件目录。"
+        "zh": "生物医学研究合作者预设：组学分析（蛋白组/代谢组/单细胞/微生物组/空间病理）、临床与变异注释、结构预测与分子对接、文献证据分级、生存统计、投稿级图表与稿件。自带 MCP 服务（51 个公开数据源工具）与 78 个流程技能，不依赖任何外部插件目录。"
       },
       "icon": "icons/biomedical.svg",
       "author": "Zeus21323",
@@ -104,12 +104,12 @@
       },
       "versions": [
         {
-          "version": "1.0.11",
-          "publishTimestamp": 1793262244,
+          "version": "1.0.12",
+          "publishTimestamp": 1793263185,
           "source": {
             "type": "git",
             "url": "https://github.com/Zeus21323/dsh-biomedical-preset",
-            "commit": "ba85419a12209d3e249058235831ca3d366bbc21"
+            "commit": "fef13db45634d1b8bfbf58ca37892b7b73f86b07"
           },
           "engines": {
             "dsh": "^0.2.1-rc.2"
