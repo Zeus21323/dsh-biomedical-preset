@@ -1,0 +1,18 @@
+{
+  "study_goal": "Build and validate a prognostic signature from candidate genes.",
+  "results_questions": [
+    {
+      "id": "RQ1",
+      "question": "Which candidate genes are associated with patient survival?",
+      "claim": "A subset of candidate genes shows prognostic relevance and can be used for model construction.",
+      "source_analysis": ["univariate_Cox", "LASSO_Cox"],
+      "source_files": ["results/univariate_cox.csv", "results/lasso_model.csv"],
+      "figure": "Figure 1",
+      "result_subsection_title": "Candidate prognostic genes were identified for model construction",
+      "required_panels": ["cohort flow", "univariate Cox forest", "LASSO path", "candidate gene heatmap"],
+      "main_statistics": ["hazard ratios", "cross-validation lambda"],
+      "limitations": ["Requires survival time and event status"]
+    }
+  ]
+}
+

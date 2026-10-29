@@ -1,0 +1,95 @@
+{
+  "figures": [
+    {
+      "figure_id": "Figure 1",
+      "title": "Study overview and transcriptomic differences between groups",
+      "result_question": "Do the comparison groups show distinct transcriptomic profiles?",
+      "claim": "The grouping variable is associated with broad transcriptomic differences.",
+      "contract": {
+        "core_conclusion": "The comparison groups show a reproducible global transcriptomic separation supported by differential expression.",
+        "archetype": "asymmetric_mixed_modality",
+        "evidence_hierarchy": {
+          "hero_panel": "C",
+          "primary_evidence": ["D"],
+          "validation_evidence": ["B"],
+          "controls_robustness": ["A"]
+        },
+        "reviewer_risks": [
+          "The PCA separation must be shown with all samples and linked to the normalized expression matrix."
+        ],
+        "image_integrity_notes": []
+      },
+      "panels": [
+        {
+          "label": "A",
+          "experiment": "study_overview",
+          "evidence_tier": "control",
+          "title": "Study workflow",
+          "plot_type": "workflow",
+          "input": "study_goal.json",
+          "evidence": "Shows dataset, preprocessing, and analysis sequence.",
+          "statistical_message": "Overview panel; no statistical test.",
+          "output": "figures/experiments/study_overview/panels/Figure1A_workflow.png"
+        },
+        {
+          "label": "B",
+          "experiment": "study_overview",
+          "evidence_tier": "validation",
+          "title": "Sample distribution",
+          "plot_type": "barplot",
+          "input": "results/sample_metadata_summary.json",
+          "evidence": "Shows number of samples in each group.",
+          "statistical_message": "Group sample sizes reported.",
+          "output": "figures/experiments/study_overview/panels/Figure1B_sample_distribution.png"
+        },
+        {
+          "label": "C",
+          "experiment": "transcriptomic_structure",
+          "evidence_tier": "hero",
+          "title": "Principal component analysis",
+          "plot_type": "PCA",
+          "input": "results/normalized_expression.csv",
+          "evidence": "Shows global expression structure.",
+          "statistical_message": "Unsupervised PCA colored by group.",
+          "output": "figures/experiments/transcriptomic_structure/panels/Figure1C_PCA.png"
+        },
+        {
+          "label": "D",
+          "experiment": "differential_expression",
+          "evidence_tier": "primary",
+          "title": "Differential expression landscape",
+          "plot_type": "volcano_plot",
+          "input": "results/differential_expression.csv",
+          "evidence": "Shows genes differentially expressed between groups.",
+          "statistical_message": "Differential expression with FDR correction.",
+          "output": "figures/experiments/differential_expression/panels/Figure1D_volcano.png"
+        }
+      ],
+      "layout": {
+        "render_backend": "python",
+        "backend_reason": "The complete figure can be reproduced from JSON/CSV inputs with matplotlib GridSpec while preserving editable vector text.",
+        "figure_source": "figures/combined/sources/Figure1.py",
+        "final_width_mm": 183,
+        "final_height_mm": 135,
+        "shared_legend": true,
+        "style_map": {
+          "group_1": "#4E79A7",
+          "group_2": "#E15759"
+        },
+        "panel_slots": [
+          {"label": "A", "row": 1, "column": 1, "rowspan": 1, "colspan": 1},
+          {"label": "B", "row": 2, "column": 1, "rowspan": 1, "colspan": 1},
+          {"label": "C", "row": 1, "column": 2, "rowspan": 2, "colspan": 2},
+          {"label": "D", "row": 3, "column": 1, "rowspan": 1, "colspan": 3}
+        ],
+        "preview_output": "figures/combined/Figure1_preview.png",
+        "publication_outputs": [
+          "figures/combined/Figure1.svg",
+          "figures/combined/Figure1.pdf",
+          "figures/combined/Figure1_600dpi.tiff"
+        ],
+        "qa_output": "figures/combined/Figure1_qa.json"
+      }
+    }
+  ]
+}

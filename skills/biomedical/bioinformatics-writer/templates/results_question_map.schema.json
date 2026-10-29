@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "required": ["study_goal", "results_questions"],
+  "properties": {
+    "study_goal": { "type": "string" },
+    "results_questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "question", "claim", "source_analysis", "source_files", "figure"],
+        "properties": {
+          "id": { "type": "string" },
+          "question": { "type": "string" },
+          "claim": { "type": "string" },
+          "source_analysis": { "type": "array", "items": { "type": "string" } },
+          "source_files": { "type": "array", "items": { "type": "string" } },
+          "figure": { "type": "string" },
+          "result_subsection_title": { "type": "string" },
+          "required_panels": { "type": "array", "items": { "type": "string" } },
+          "main_statistics": { "type": "array", "items": { "type": "string" } },
+          "limitations": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}
+

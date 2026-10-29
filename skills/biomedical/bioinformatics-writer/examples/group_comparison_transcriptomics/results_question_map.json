@@ -1,0 +1,18 @@
+{
+  "study_goal": "Characterize transcriptomic and immune microenvironment differences between two sample groups.",
+  "results_questions": [
+    {
+      "id": "RQ1",
+      "question": "Do the comparison groups show distinct transcriptomic profiles?",
+      "claim": "The grouping variable is associated with broad transcriptomic differences.",
+      "source_analysis": ["metadata_summary", "PCA", "differential_expression"],
+      "source_files": ["results/sample_metadata_summary.json", "results/differential_expression.csv"],
+      "figure": "Figure 1",
+      "result_subsection_title": "The comparison groups exhibit distinct transcriptomic profiles",
+      "required_panels": ["workflow", "sample distribution", "PCA", "volcano plot"],
+      "main_statistics": ["number of samples per group", "number of DEGs"],
+      "limitations": ["Requires adequate group annotation and normalized expression data"]
+    }
+  ]
+}
+

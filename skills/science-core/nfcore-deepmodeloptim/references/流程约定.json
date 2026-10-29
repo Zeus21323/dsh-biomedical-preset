@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/deepmodeloptim",
+  "skill_id": "nfcore-deepmodeloptim",
+  "scientific_title": "生物训练数据增强与模型评估",
+  "secondary_search_terms": "模型验证",
+  "upstream": {
+    "repository": "https://github.com/nf-core/deepmodeloptim",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "ee174c24395fb1f96f047844b49e4f00469857c6",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=24.04.2",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "4f3751a3b0837578bfc05db68e24c0e7b8a55d3434b765f60dfcdebc3314a8c9"
+    },
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/deepmodeloptim/ee174c24395fb1f96f047844b49e4f00469857c6/LICENSE",
+      "sha256": "61c903a889f0a24f20074d0c66f1d55a4d47dfc2e4725965bde9874e732b0114",
+      "bytes": 1083
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/deepmodeloptim/ee174c24395fb1f96f047844b49e4f00469857c6/README.md",
+      "sha256": "db24a504d1c42ba81a35381dda6fb87f56b03469a3eec0f2f605092f04b5706b",
+      "bytes": 13672
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/deepmodeloptim/ee174c24395fb1f96f047844b49e4f00469857c6/docs/output.md",
+      "sha256": "c381ce32b0a234a7d480f7c7baa22aeb8c9f4ec1ff3bf82e7cd799a45342f42c",
+      "bytes": 1616
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/deepmodeloptim/ee174c24395fb1f96f047844b49e4f00469857c6/docs/usage.md",
+      "sha256": "4180b15909d16cf441421a5b45130cfd06ce99b0022fb160d4ec2dbe6944528e",
+      "bytes": 14648
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/deepmodeloptim/ee174c24395fb1f96f047844b49e4f00469857c6/main.nf",
+      "sha256": "74de838581305310c1c43f5e27f9ac27a0cd9b9dca89734d2469d15cb31e177a",
+      "bytes": 3496
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/deepmodeloptim/ee174c24395fb1f96f047844b49e4f00469857c6/nextflow.config",
+      "sha256": "ad48d635bc19bd534064f19685ce6bb568660249b7d1b618313ceab7a402944a",
+      "bytes": 14856
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/deepmodeloptim/ee174c24395fb1f96f047844b49e4f00469857c6/nextflow_schema.json",
+      "sha256": "4f3751a3b0837578bfc05db68e24c0e7b8a55d3434b765f60dfcdebc3314a8c9",
+      "bytes": 18915
+    },
+    {
+      "path": "workflows/deepmodeloptim.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/deepmodeloptim/ee174c24395fb1f96f047844b49e4f00469857c6/workflows/deepmodeloptim.nf",
+      "sha256": "927fd2215fd3f70b2ce2e5092b34ec99655be3155474932e0f0a2fe83bb0ef39",
+      "bytes": 6223
+    }
+  ]
+}

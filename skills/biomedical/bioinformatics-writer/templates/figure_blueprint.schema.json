@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["figures"],
+  "properties": {
+    "figures": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["figure_id", "title", "result_question", "claim", "contract", "panels", "layout"],
+        "properties": {
+          "figure_id": {"type": "string", "minLength": 1},
+          "title": {"type": "string", "minLength": 1},
+          "result_question": {"type": "string", "minLength": 1},
+          "claim": {"type": "string", "minLength": 1},
+          "contract": {
+            "type": "object",
+            "required": ["core_conclusion", "archetype", "evidence_hierarchy", "reviewer_risks"],
+            "properties": {
+              "core_conclusion": {"type": "string", "minLength": 1},
+              "archetype": {
+                "enum": [
+                  "quantitative_grid",
+                  "schematic_led_composite",
+                  "image_plate_plus_quant",
+                  "asymmetric_mixed_modality"
+                ]
+              },
+              "evidence_hierarchy": {
+                "type": "object",
+                "required": ["hero_panel", "primary_evidence", "validation_evidence", "controls_robustness"],
+                "properties": {
+                  "hero_panel": {
+                    "anyOf": [
+                      {"type": "string", "minLength": 1},
+                      {"type": "null"}
+                    ]
+                  },
+                  "primary_evidence": {"type": "array", "items": {"type": "string"}},
+                  "validation_evidence": {"type": "array", "items": {"type": "string"}},
+                  "controls_robustness": {"type": "array", "items": {"type": "string"}}
+                }
+              },
+              "reviewer_risks": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+              "image_integrity_notes": {"type": "array", "items": {"type": "string"}}
+            }
+          },
+          "panels": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["label", "experiment", "evidence_tier", "plot_type", "input", "evidence", "statistical_message", "output"],
+              "properties": {
+                "label": {"type": "string", "minLength": 1},
+                "experiment": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]*$"},
+                "evidence_tier": {"enum": ["hero", "primary", "validation", "control"]},
+                "title": {"type": "string"},
+                "plot_type": {"type": "string", "minLength": 1},
+                "input": {"type": "string", "minLength": 1},
+                "evidence": {"type": "string", "minLength": 1},
+                "statistical_message": {"type": "string", "minLength": 1},
+                "output": {"type": "string", "minLength": 1}
+              }
+            }
+          },
+          "layout": {
+            "type": "object",
+            "required": [
+              "render_backend",
+              "backend_reason",
+              "figure_source",
+              "final_width_mm",
+              "final_height_mm",
+              "panel_slots",
+              "preview_output",
+              "publication_outputs",
+              "qa_output"
+            ],
+            "properties": {
+              "render_backend": {"enum": ["python", "r"]},
+              "backend_reason": {"type": "string", "minLength": 1},
+              "figure_source": {"type": "string", "minLength": 1},
+              "final_width_mm": {"type": "number", "exclusiveMinimum": 0},
+              "final_height_mm": {"type": "number", "exclusiveMinimum": 0},
+              "shared_legend": {"type": "boolean"},
+              "style_map": {"type": "object"},
+              "panel_slots": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "required": ["label", "row", "column", "rowspan", "colspan"],
+                  "properties": {
+                    "label": {"type": "string", "minLength": 1},
+                    "row": {"type": "integer", "minimum": 1},
+                    "column": {"type": "integer", "minimum": 1},
+                    "rowspan": {"type": "integer", "minimum": 1},
+                    "colspan": {"type": "integer", "minimum": 1},
+                    "relative_size": {"type": "number", "exclusiveMinimum": 0}
+                  }
+                }
+              },
+              "preview_output": {"type": "string", "pattern": "\\.png$"},
+              "publication_outputs": {"type": "array", "minItems": 3, "items": {"type": "string", "minLength": 1}},
+              "qa_output": {"type": "string", "pattern": "\\.json$"}
+            }
+          }
+        }
+      }
+    }
+  }
+}

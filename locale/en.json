@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Biomedical Mode",
+    "description": "Biomedical research collaborator preset: omics analysis, clinical and variant annotation, structure prediction and docking, literature evidence grading, survival statistics, publication figures and manuscripts. Ships its own MCP server (51 public-data tools) and 63 workflow skills."
+  }
+}

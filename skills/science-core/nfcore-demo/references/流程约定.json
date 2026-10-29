@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/demo",
+  "skill_id": "nfcore-demo",
+  "scientific_title": "nf-core 教学与环境演示",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/demo",
+    "archived": false,
+    "revision_label": "1.2.0",
+    "commit": "32893afef8076a03a2767a020b3f0cab2e0b40b2",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "4d8827c4f08f5d6105f1f296382ecc2be9ce723dbb5a7fe64ade96085bb94074"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "5a1a25dc7a9e39af4ed95dae9f8c19abac2fdc1d3dd788cc1b0866a6c082cf46",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/demo/32893afef8076a03a2767a020b3f0cab2e0b40b2/LICENSE",
+      "sha256": "fee099faa31025c66b3b68517a028716ac52a1fd6207e7e5d9dbb849c0c753f6",
+      "bytes": 1073
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/demo/32893afef8076a03a2767a020b3f0cab2e0b40b2/README.md",
+      "sha256": "01763dfda1b3cf75bf065eedb8689ef460bc5098e2389ee71a2c8c9d32cee114",
+      "bytes": 6991
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/demo/32893afef8076a03a2767a020b3f0cab2e0b40b2/assets/schema_input.json",
+      "sha256": "5a1a25dc7a9e39af4ed95dae9f8c19abac2fdc1d3dd788cc1b0866a6c082cf46",
+      "bytes": 1374
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/demo/32893afef8076a03a2767a020b3f0cab2e0b40b2/docs/output.md",
+      "sha256": "6bb7b2327f785009aa4e5ef596be7a1a378be44616540836cb515a72b7d76aad",
+      "bytes": 3545
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/demo/32893afef8076a03a2767a020b3f0cab2e0b40b2/docs/usage.md",
+      "sha256": "8501734fe1f76e52378badefb1efe16a7a5ef11c18d6a28f25a431f4a774f458",
+      "bytes": 14624
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/demo/32893afef8076a03a2767a020b3f0cab2e0b40b2/main.nf",
+      "sha256": "1e8152fd945bbdf672b0ac9caf8dcdcd027350c2528baa97b04b89c44a84727c",
+      "bytes": 2907
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/demo/32893afef8076a03a2767a020b3f0cab2e0b40b2/nextflow.config",
+      "sha256": "248fcc97fb83f14d86801200864d4e322a442218c020d067fd38164fb52b8b0e",
+      "bytes": 10271
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/demo/32893afef8076a03a2767a020b3f0cab2e0b40b2/nextflow_schema.json",
+      "sha256": "4d8827c4f08f5d6105f1f296382ecc2be9ce723dbb5a7fe64ade96085bb94074",
+      "bytes": 14075
+    },
+    {
+      "path": "workflows/demo.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/demo/32893afef8076a03a2767a020b3f0cab2e0b40b2/workflows/demo.nf",
+      "sha256": "a15140b5656e7ce13e9c020647654508be28c8a833b8ae9044e5502a10ee84b3",
+      "bytes": 4222
+    }
+  ]
+}

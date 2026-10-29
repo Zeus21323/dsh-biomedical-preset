@@ -1,0 +1,353 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/seqsubmit/main/nextflow_schema.json",
+    "title": "nf-core/seqsubmit pipeline parameters",
+    "description": "Submit sequences, assemblies, MAGs, etc., to public archives",
+    "type": "object",
+    "$defs": {
+        "input_output_options": {
+            "title": "Input/output options",
+            "type": "object",
+            "fa_icon": "fas fa-terminal",
+            "description": "Define where the pipeline should find input data and save output data.",
+            "required": ["outdir", "input"],
+            "properties": {
+                "input": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "mimetype": "text/csv",
+                    "pattern": "^\\S+\\.(csv|tsv|yaml|yml|json)$",
+                    "description": "Path to samplesheet describing the data to be submitted (supported formats: csv, tsv, yaml, yml, json). Columns/fields depend on the pipeline mode",
+                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a file in supported format with a set of columns depending on the type of data being submitted. See [usage docs](https://nf-co.re/seqsubmit/usage#samplesheet-input).",
+                    "fa_icon": "fas fa-file-csv"
+                },
+                "outdir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
+                    "fa_icon": "fas fa-folder-open"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address for completion summary.",
+                    "fa_icon": "fas fa-envelope",
+                    "help_text": "Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
+                },
+                "multiqc_title": {
+                    "type": "string",
+                    "description": "MultiQC report title. Printed as page header, used for filename if not otherwise specified.",
+                    "fa_icon": "fas fa-file-signature"
+                }
+            }
+        },
+        "rna_detection_options": {
+            "title": "rRNA and tRNA detection options",
+            "type": "object",
+            "fa_icon": "fas fa-university",
+            "description": "Parameters affecting a decision about presence/absence of tRNA and rRNA genes (RNA_presence) in a genome",
+            "help_text": "The value of RNA_presence is based on the number of rRNA and tRNA. If at least 18 tRNAs are detected and 16S, 23S, and 5S rRNA subunits pass the recovery threshold - RNA_presence is True, otherwise - False. The resulting value is a decisive factor affecting MISAG/MIMAG assembly quality classification of a genome.",
+            "properties": {
+                "rrna_limit": {
+                    "type": "number",
+                    "description": "Minimum percentage of 16S, 23S, and 5S rRNA gene length recovered to count the gene as present.",
+                    "default": 80,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "trna_limit": {
+                    "type": "number",
+                    "description": "Minimum number of tRNA genes detected to count tRNA as present. This value is defined by the MISAG/MIMAG standard and must not be modified.",
+                    "default": 18,
+                    "fa_icon": "fas fa-users-cog"
+                }
+            }
+        },
+        "taxonomy_assignment_options": {
+            "title": "Assigning NCBI taxonomy with CAT_pack",
+            "type": "object",
+            "fa_icon": "fas fa-university",
+            "description": "CAT_pack required data",
+            "help_text": "Provide a path to pre-downloaded DB or DB id for automatic download",
+            "properties": {
+                "cat_db": {
+                    "format": "file-path",
+                    "description": "Path to local CAT_pack DB",
+                    "help_text": "Database should be pre-downloaded using CATpack commands. The folder with database should contain sub-folders 'db' with files .dmnd, .fastaid2LCAtaxid, .taxids_with_multiple_offspring, etc, as well as subfolder 'tax' that should contain taxonomy files like .dmp, .taxdump.tar.gz, .prot.accession2taxid.FULL.gz, etc",
+                    "fa_icon": "fas fa-users-cog"
+                }
+            }
+        },
+        "genome_evaluation_options": {
+            "title": "Evaluation options",
+            "type": "object",
+            "fa_icon": "fas fa-university",
+            "description": "Parameters used to run Checkm2",
+            "help_text": "These options are used to run Checkm2 that will calculate completeness and contamination of genome if those were not provided as input",
+            "properties": {
+                "checkm2_db": {
+                    "format": "file-path",
+                    "description": "Path to pre-downloaded CheckM2 database. If omitted, downloads the version set by `--checkm2_db_download_id`",
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "checkm2_db_download_id": {
+                    "type": "integer",
+                    "description": "Zenodo ID for CheckM2 database download",
+                    "default": 14897628,
+                    "fa_icon": "fas fa-users-cog"
+                }
+            }
+        },
+        "institutional_config_options": {
+            "title": "Institutional config options",
+            "type": "object",
+            "fa_icon": "fas fa-university",
+            "description": "Parameters used to describe centralised config profiles. These should not be edited.",
+            "help_text": "The centralised nf-core configuration profiles use a handful of pipeline parameters to describe themselves. This information is then printed to the Nextflow log when you run a pipeline. You should not need to change these values when you run a pipeline.",
+            "properties": {
+                "custom_config_version": {
+                    "type": "string",
+                    "description": "Git commit id for Institutional configs.",
+                    "default": "master",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "custom_config_base": {
+                    "type": "string",
+                    "description": "Base directory for Institutional configs.",
+                    "default": "https://raw.githubusercontent.com/nf-core/configs/master",
+                    "hidden": true,
+                    "help_text": "If you're running offline, Nextflow will not be able to fetch the institutional config files from the internet. If you don't need them, then this is not a problem. If you do need them, you should download the files from the repo and tell Nextflow where to find them with this parameter.",
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_name": {
+                    "type": "string",
+                    "description": "Institutional config name.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_description": {
+                    "type": "string",
+                    "description": "Institutional config description.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_contact": {
+                    "type": "string",
+                    "description": "Institutional config contact information.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_url": {
+                    "type": "string",
+                    "description": "Institutional config URL link.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                }
+            }
+        },
+        "generic_options": {
+            "title": "Generic options",
+            "type": "object",
+            "fa_icon": "fas fa-file-import",
+            "description": "Less common options for the pipeline, typically set in a config file.",
+            "help_text": "These options are common to all nf-core pipelines and allow you to customise some of the core preferences for how the pipeline runs.\n\nTypically these options would be set in a Nextflow config file loaded for all pipeline runs, such as `~/.nextflow/config`.",
+            "properties": {
+                "version": {
+                    "type": "boolean",
+                    "description": "Display version and exit.",
+                    "fa_icon": "fas fa-question-circle",
+                    "hidden": true
+                },
+                "publish_dir_mode": {
+                    "type": "string",
+                    "default": "copy",
+                    "description": "Method used to save pipeline results to output directory.",
+                    "help_text": "The Nextflow `publishDir` option specifies which intermediate files should be saved to the output directory. This option tells the pipeline what method should be used to move these files. See [Nextflow docs](https://www.nextflow.io/docs/latest/process.html#publishdir) for details.",
+                    "fa_icon": "fas fa-copy",
+                    "enum": ["symlink", "rellink", "link", "copy", "copyNoFollow", "move"],
+                    "hidden": true
+                },
+                "email_on_fail": {
+                    "type": "string",
+                    "description": "Email address for completion summary, only when pipeline fails.",
+                    "fa_icon": "fas fa-exclamation-triangle",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$",
+                    "help_text": "An email address to send a summary email to when the pipeline is completed - ONLY sent if the pipeline does not exit successfully.",
+                    "hidden": true
+                },
+                "plaintext_email": {
+                    "type": "boolean",
+                    "description": "Send plain-text email instead of HTML.",
+                    "fa_icon": "fas fa-remove-format",
+                    "hidden": true
+                },
+                "max_multiqc_email_size": {
+                    "type": "string",
+                    "description": "File size limit when attaching MultiQC reports to summary emails.",
+                    "pattern": "^\\d+(\\.\\d+)?\\.?\\s*(K|M|G|T)?B$",
+                    "default": "25.MB",
+                    "fa_icon": "fas fa-file-upload",
+                    "hidden": true
+                },
+                "monochrome_logs": {
+                    "type": "boolean",
+                    "description": "Do not use coloured log outputs.",
+                    "fa_icon": "fas fa-palette",
+                    "hidden": true
+                },
+                "multiqc_config": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Custom config file to supply to MultiQC.",
+                    "fa_icon": "fas fa-cog",
+                    "hidden": true
+                },
+                "multiqc_logo": {
+                    "type": "string",
+                    "description": "Custom logo file to supply to MultiQC. File name must also be set in the MultiQC config file",
+                    "fa_icon": "fas fa-image",
+                    "hidden": true
+                },
+                "multiqc_methods_description": {
+                    "type": "string",
+                    "description": "Custom MultiQC yaml file containing HTML including a methods description.",
+                    "fa_icon": "fas fa-cog"
+                },
+                "validate_params": {
+                    "type": "boolean",
+                    "description": "Boolean whether to validate parameters against the schema at runtime",
+                    "default": true,
+                    "fa_icon": "fas fa-check-square",
+                    "hidden": true
+                },
+                "pipelines_testdata_base_path": {
+                    "type": "string",
+                    "fa_icon": "far fa-check-circle",
+                    "description": "Base URL or local path to location of pipeline test dataset files",
+                    "default": "https://raw.githubusercontent.com/nf-core/test-datasets/",
+                    "hidden": true
+                },
+                "trace_report_suffix": {
+                    "type": "string",
+                    "fa_icon": "far calendar",
+                    "description": "Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss.",
+                    "hidden": true
+                },
+                "help": {
+                    "type": ["boolean", "string"],
+                    "description": "Display the help message."
+                },
+                "help_full": {
+                    "type": "boolean",
+                    "description": "Display the full detailed help message."
+                },
+                "show_hidden": {
+                    "type": "boolean",
+                    "description": "Display hidden parameters in the help message (only works when --help or --help_full are provided)."
+                }
+            }
+        },
+        "pipeline_options": {
+            "title": "Pipeline flow control parameters",
+            "type": "object",
+            "description": "Use these parameters to control the flow of the pipeline execution.",
+            "required": ["centre_name", "mode"],
+            "properties": {
+                "centre_name": {
+                    "type": "string",
+                    "description": "Name of the submitter's organisation (mandatory for broker accounts).",
+                    "help_text": "ena-webin-cli argument -centerName: the center name of the submitter (mandatory for broker accounts)."
+                },
+                "upload_tpa": {
+                    "type": "boolean",
+                    "description": "Mark the assemblies as a Third PArty (TPA)",
+                    "help_text": "Set to true if the assembly was built from public sequence data (TPA) rather than original primary data. See NCBI TPA guidance: https://www.ncbi.nlm.nih.gov/genbank/tpa/",
+                    "default": false
+                },
+                "mode": {
+                    "type": "string",
+                    "default": null,
+                    "description": "Type of the data to be submitted",
+                    "help_text": "Different types of data require specific upload steps. That mode controls what upload workflow to run depending on type of data (mags/bins/metagenomic_assemblies/reads)",
+                    "enum": ["mags", "bins", "metagenomic_assemblies", "reads"]
+                },
+                "test_upload": {
+                    "type": "boolean",
+                    "description": "Upload to ENA TEST server instead of LIVE server",
+                    "default": true,
+                    "help_text": "Use that flag for development purposes or for validation of your submissions. Submission would be done to TEST ENA server instead of LIVE server. TEST server holds data 24h and removes afterwords. LIVE server does not have option to modify your submission, you can only suppress data and re-upload"
+                },
+                "is_private": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Use that flag if you are referencing private data accessions in the samplesheet",
+                    "help_text": "Set to true when the referenced project/reads/assembly are still private in ENA, so metadata is fetched via authenticated access. Does NOT affect the privacy of your own submission, use --release_date for that"
+                },
+                "release_date": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                    "description": "Date (YYYY-MM-DD) until which the newly created study stays private in ENA.",
+                    "help_text": "Sets the release date for the study created by the pipeline. Data stays private until this date, then is automatically released and indexed by ENA. Must be no more than 2 years from today. Omit to release the study publicly immediately."
+                },
+                "submission_study": {
+                    "type": "string",
+                    "description": "ENA study accession (PRJ/ERP) to submit the data to",
+                    "help_text": "Current implementation of pipeline requires to pre-register ENA project (PRJ/ERP) where you want to upload data to. Documentation how to register study: https://ena-docs.readthedocs.io/en/latest/submit/study.html"
+                },
+                "study_metadata": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "description": "Path to a file (JSON, CSV, or TSV) with metadata for registering a new ENA study. Required if --submission_study is not set.",
+                    "help_text": "File containing study metadata fields (required: study_title, alias; optional: study_abstract, existing_study_type, etc.) used by the pipeline to register a new ENA study when no existing --submission_study accession is given. ENA docs: https://ena-docs.readthedocs.io/en/latest/submit/study/programmatic.html",
+                    "fa_icon": "fas fa-file-alt"
+                },
+                "webincli_mode": {
+                    "type": "string",
+                    "description": "Webin-CLI mode for ENA interaction: `submit` uploads data, `validate` performs validation only.",
+                    "default": "submit",
+                    "enum": ["submit", "validate"],
+                    "help_text": "Controls ENA Webin-CLI mode. `validate` mode checks correctness of manifest files, data access and validity. `submit` mode does validation and push data to ENA server. Default: submit."
+                }
+            }
+        }
+    },
+    "oneOf": [
+        {
+            "required": ["submission_study"],
+            "not": {
+                "required": ["study_metadata"]
+            }
+        },
+        {
+            "required": ["study_metadata"],
+            "not": {
+                "required": ["submission_study"]
+            }
+        }
+    ],
+    "allOf": [
+        {
+            "$ref": "#/$defs/input_output_options"
+        },
+        {
+            "$ref": "#/$defs/rna_detection_options"
+        },
+        {
+            "$ref": "#/$defs/genome_evaluation_options"
+        },
+        {
+            "$ref": "#/$defs/taxonomy_assignment_options"
+        },
+        {
+            "$ref": "#/$defs/institutional_config_options"
+        },
+        {
+            "$ref": "#/$defs/generic_options"
+        },
+        {
+            "$ref": "#/$defs/pipeline_options"
+        }
+    ]
+}

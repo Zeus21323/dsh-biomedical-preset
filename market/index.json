@@ -1,0 +1,119 @@
+{
+  "format": 1,
+  "title": {
+    "en": "Biomedical Research Plugins",
+    "zh": "生物医学研究插件"
+  },
+  "description": {
+    "en": "A self-contained agent preset for biomedical research: 63 workflow skills, 51 public-data MCP tools, and a per-session subagent cap.",
+    "zh": "面向生物医学研究的自包含 agent 预设：63 个流程技能、51 个公开数据源 MCP 工具、3 个子智能体并发闸。"
+  },
+  "metadata": {
+    "categories": {
+      "preset": {
+        "title": {
+          "en": "Agent presets",
+          "zh": "Agent 预设"
+        }
+      },
+      "science": {
+        "title": {
+          "en": "Science",
+          "zh": "科研"
+        }
+      }
+    },
+    "labels": {
+      "bioinformatics": {
+        "title": {
+          "en": "Bioinformatics",
+          "zh": "生物信息"
+        }
+      },
+      "omics": {
+        "title": {
+          "en": "Omics",
+          "zh": "组学"
+        }
+      },
+      "clinical": {
+        "title": {
+          "en": "Clinical",
+          "zh": "临床"
+        }
+      },
+      "mcp": {
+        "title": {
+          "en": "MCP tools",
+          "zh": "MCP 工具"
+        }
+      },
+      "self-contained": {
+        "title": {
+          "en": "Self-contained",
+          "zh": "自包含"
+        }
+      }
+    },
+    "sortKeys": {
+      "featured": {
+        "title": {
+          "en": "Featured weight",
+          "zh": "推荐权重"
+        },
+        "order": "desc"
+      }
+    }
+  },
+  "plugins": [
+    {
+      "name": "dsh-biomedical-preset",
+      "title": {
+        "en": "Biomedical Mode",
+        "zh": "生物医学模式"
+      },
+      "description": {
+        "en": "Biomedical research collaborator preset: bulk/single-cell omics, variant and clinical annotation, structure prediction and docking, literature evidence grading, survival statistics, publication figures and manuscripts. Ships its own MCP server (51 tools over PubMed/Ensembl/PDB/AlphaFold/ClinVar/gnomAD/GTEx/GEO/PRIDE/cBioPortal/CIViC/ENCODE/JASPAR/Rfam/ChEMBL/PubChem/Open Targets/openFDA/OpenAlex/arXiv) and 63 skills, so it carries no dependency on external plugin directories.",
+        "zh": "生物医学研究合作者预设：bulk/单细胞组学、变异与临床注释、结构预测与分子对接、文献证据分级、生存统计、投稿级图表与稿件。自带 MCP 服务（51 个工具，覆盖 PubMed/Ensembl/PDB/AlphaFold/ClinVar/gnomAD/GTEx/GEO/PRIDE/cBioPortal/CIViC/ENCODE/JASPAR/Rfam/ChEMBL/PubChem/Open Targets/openFDA/OpenAlex/arXiv）与 63 个技能，不依赖任何外部插件目录。"
+      },
+      "icon": "icons/biomedical.svg",
+      "author": "Zeus21323",
+      "homepage": "https://github.com/Zeus21323/dsh-biomedical-preset#readme",
+      "repository": {
+        "url": "https://github.com/Zeus21323/dsh-biomedical-preset"
+      },
+      "metadata": {
+        "category": "preset",
+        "keywords": [
+          "biomedical",
+          "bioinformatics",
+          "agent-preset",
+          "omics",
+          "mcp"
+        ],
+        "labels": [
+          "bioinformatics",
+          "omics",
+          "clinical",
+          "mcp",
+          "self-contained"
+        ],
+        "sortKeys": {
+          "featured": 5
+        }
+      },
+      "versions": [
+        {
+          "version": "1.0.10",
+          "publishTimestamp": 1793247614,
+          "source": {
+            "type": "npm"
+          },
+          "engines": {
+            "dsh": "^0.2.1-rc.2"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Bioinformatics Writer citation preference",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "citation_style",
+    "citation_mode",
+    "citation_export_mode",
+    "in_text_presentation",
+    "csl",
+    "selection_source",
+    "user_response",
+    "approved_in_current_conversation",
+    "target_journal"
+  ],
+  "properties": {
+    "citation_style": {"type": "string", "minLength": 1},
+    "citation_mode": {"enum": ["numeric", "author_date"]},
+    "citation_export_mode": {
+      "enum": ["strict_linked", "bibliography_compatibility"]
+    },
+    "in_text_presentation": {"type": "string", "minLength": 1},
+    "csl": {"type": "string", "minLength": 1},
+    "selection_source": {"enum": ["ask_user", "direct_chat"]},
+    "user_response": {"type": "string", "minLength": 1},
+    "approved_in_current_conversation": {"const": true},
+    "target_journal": {"type": "string", "minLength": 1}
+  }
+}

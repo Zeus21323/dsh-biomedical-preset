@@ -1,0 +1,18 @@
+{
+  "study_goal": "Identify tumor microenvironment cell populations associated with a phenotype using single-cell data.",
+  "results_questions": [
+    {
+      "id": "RQ1",
+      "question": "What cell populations compose the tumor microenvironment in this dataset?",
+      "claim": "Single-cell profiling reveals the major immune and stromal cell populations in the tumor microenvironment.",
+      "source_analysis": ["single_cell_QC", "clustering", "cell_type_annotation"],
+      "source_files": ["results/sc_cell_annotations.csv", "results/sc_marker_genes.csv"],
+      "figure": "Figure 1",
+      "result_subsection_title": "Single-cell profiling defines the tumor microenvironment landscape",
+      "required_panels": ["UMAP clusters", "cell type annotation", "marker dotplot", "cell proportion barplot"],
+      "main_statistics": ["number of cells", "number of clusters", "marker genes"],
+      "limitations": ["Requires robust cell annotation and QC"]
+    }
+  ]
+}
+

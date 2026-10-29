@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bioinformatics Writer"
+  short_description: "生信与医学知识库选题、分析、论文及DOCX交付"
+  default_prompt: "Use $bioinformatics-writer to route my bioinformatics or medical knowledge-base request, recommend feasible topics when needed, and produce approval-gated verified outputs."

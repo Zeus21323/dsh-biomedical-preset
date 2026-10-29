@@ -1,0 +1,28 @@
+{
+  "name": "dsh-biomedical-preset",
+  "version": "1.0.10",
+  "type": "module",
+  "description": "生物医学模式 — DSH agent preset for biomedical research (omics, clinical, structure, literature, writing)",
+  "engines": {
+    "dsh": "^0.2.1-rc.2"
+  },
+  "exports": {
+    "./subagent-cap": "./subagent-cap.mjs",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "cordis.patch.yml",
+    "subagent-cap.mjs",
+    "icon.svg",
+    "locale/*.json",
+    "mcp/**",
+    "skills/**"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "license": "MIT"
+}

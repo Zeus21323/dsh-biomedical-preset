@@ -1,0 +1,27 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/provenancereport/master/assets/schema_input.json",
+    "title": "nf-core/provenancereport pipeline - params.input schema",
+    "description": "Schema for the file provided with params.input",
+    "type": "array",
+    "minItems": 1,
+    "items": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+                "errorMessage": "Input id must start with a letter or underscore and contain only letters, numbers and underscores",
+                "meta": ["id"]
+            },
+            "path": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "pattern": "^\\S+$",
+                "errorMessage": "Path must point to exactly one file and cannot contain spaces or comma-separated values"
+            }
+        },
+        "required": ["id", "path"]
+    }
+}
