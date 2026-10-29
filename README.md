@@ -1,9 +1,9 @@
 # 生物医学模式 · dsh-biomedical-preset
 
-DeepSeek Harness 的 agent 预设（bundle）。它不是"给通用助手加个提示词"，而是一套**自持**的生物医学研究装配：身份与纪律、执行工具、78 个流程技能、51 个数据源 MCP 工具、并发闸、交付通道，全部装在这一个包里，不引用任何外部插件目录。
+DeepSeek Harness 的 agent 预设（bundle）。它不是"给通用助手加个提示词"，而是一套**自持**的生物医学研究装配：身份与纪律、执行工具、88 个流程技能、51 个数据源 MCP 工具、并发闸、交付通道，全部装在这一个包里，不引用任何外部插件目录。
 
 - 心智模型：**MCP 负责取数据，Skill 负责选方法与执行流程**，persona 负责纪律与判断。
-- 已验证：市场索引通过官方 `@deepseek-ai/dsh-plugin-market-index` 校验；`npm pack` 产物 370 文件 / 0.87 MB（packed）/ 3.05 MB（unpacked）；本机预设 `fiberPhase: active`。
+- 已验证：市场索引通过官方 `@deepseek-ai/dsh-plugin-market-index` 校验；`npm pack` 产物 407 文件 / 1.16 MB（packed）/ 3.73 MB（unpacked）；本机预设 `fiberPhase: active`。
 
 ---
 
@@ -11,7 +11,7 @@ DeepSeek Harness 的 agent 预设（bundle）。它不是"给通用助手加个�
 
 - [安装](#安装)
 - [装配结构](#装配结构)
-- [技能清单（78）](#技能清单78)
+- [技能清单（88）](#技能清单88)
 - [MCP 工具清单（51）](#mcp-工具清单51)
 - [并发与资源约束](#并发与资源约束)
 - [平台要求](#平台要求)
@@ -65,7 +65,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | 技能 | `skill-filesystem` | 用户自有技能根（`$DSH_HOME/skills`） |
 | 技能 | `bio-skills` | 挂载 `skills/biomedical`（30） |
 | 技能 | `bio-core-skills` | 挂载 `skills/science-core`（33） |
-| 技能 | `omics-skills` | 挂载 `skills/omics`（15 个组学技能） |
+| 技能 | `omics-skills` | 挂载 `skills/omics`（25 个组学技能） |
 | 技能 | `tool-skill` | 技能目录与加载器 |
 | 数据 | `bio-mcp` | 拉起 `mcp/biomedical_mcp.py`（51 工具，stdio） |
 | 编排 | `command-goal`、`tool-goal` | 长课题目标追踪 |
@@ -80,11 +80,11 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 
 ---
 
-## 技能清单（78）
+## 技能清单（88）
 
-技能分三组挂载：`skills/omics`（15，组学平台与流程）、`skills/biomedical`（30，结构与生信写作）、`skills/science-core`（33，方法学与交付合规）。下表按用途归类，一个技能只出现一次。
+技能分三组挂载：`skills/omics`（25，组学平台与流程）、`skills/biomedical`（30，结构与生信写作）、`skills/science-core`（33，方法学与交付合规）。下表按用途归类，一个技能只出现一次。
 
-### 1. 组学平台（15）
+### 1. 组学平台（25）
 
 | 技能 | 组学 | 用途 |
 |---|---|---|
@@ -103,6 +103,16 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | `arboreto` | 转录组 / GRN | GRNBoost2、GENIE3 推断基因调控网络（可分布式） |
 | `pathway-enrichment` | 通用下游 | ORA（Enrichr/Fisher/hypergeometric）与 preranked GSEA，所有组学共用 |
 | `pathml` | **空间 / 病理组学** | WSI 切块、Macenko/Reinhard 染色归一化、CODEX/Vectra 多重免疫荧光、核分割、组织图 |
+| `variant-calling-wes-wgs` | **WES / WGS** | 种系变异检测主线：读组校正 → BWA-MEM2 → MarkDuplicates → BQSR → HaplotypeCaller(GVCF) → GenomicsDBImport/GenotypeGVCFs → VQSR 或硬过滤 → VEP；含 WES capture 区间（`-L`+`-ip 100`）与覆盖度/FREEMIX QC |
+| `cnv-sv-detection` | **CNV / SV** | CNVkit 深度流程（batch→reference→fix→segment→call）+ BAF；Manta germline/somatic/tumor-only；Delly sr/cnv/merge/filter；AnnotSV 与 VEP SV 注释 |
+| `variant-pathogenicity-acmg` | **临床遗传** | ACMG/AMP 28 条证据码全表、PVS1 决策树、Table 5 组合判级与点数法、BA1/BS1 频率口径、PP3/BP4 工具校准区间、VUS 处理与报告措辞 |
+| `epigenomics-peak-calling` | **表观遗传** | ChIP/ATAC/CUT&Tag 统一入口：MACS3、SEACR、IDR 与无重复替代方案、FRiP/TSS enrichment、HOMER motif；阈值全部落在 ENCODE standards |
+| `dna-methylation-wgbs` | **DNA 甲基化** | bismark 三步或 bwa-meth → 甲基化提取与转换效率 QC → methylKit / DSS / bsseq 差异甲基化 → genomation 注释；MeDIP 明确不得套单碱基模型 |
+| `rna-modification-clip` | **RNA 修饰 / CLIP** | MeRIP-seq 与 m6A（exomePeak2，motif 默认 DRACH）、RIP-seq、CLIP-seq（CLIPper）；peak 注释与表达/剪接关联 |
+| `immunogenomics` | **免疫组学** | MiXCR / TRUST4 免疫组库、NetMHCpan-4.1 与 IIpan-4.3 结合预测、新抗原五步流程、quanTIseq/CIBERSORTx 解卷积、CATALYST/FlowSOM CyTOF |
+| `lipidomics-annotation` | **脂质组** | LIPID MAPS 分类与命名体系、加合物与 MS2 匹配、lipidr 官方流程（`mva` / `lsea` / `plot_chain_distribution`）、MS-DIAL 注释码 |
+| `glycomics` | **糖组学** | GlyTouCan / GlycoCT / WURCS 命名与互转、N-糖/O-糖/完整糖肽/凝集素阵列分流、GU 标定与组成推断 |
+| `tiledbvcf` | 变异存储 | VCF 的 TileDB 归集、增量加样与并行查询，面向十万级样本的群体基因组 |
 
 ### 2. 转录组与单细胞（9）
 
@@ -361,7 +371,7 @@ cordis.patch.yml        预设装配（23 个插件行）
 package.json            包声明：exports / files / engines.dsh
 subagent-cap.mjs        子智能体并发闸（tools/execute 作用域）
 mcp/biomedical_mcp.py   51 个数据源工具（stdio JSON-RPC，纯标准库）
-skills/omics/           15 个组学技能（蛋白组、代谢组、单细胞、微生物组、区间/变异、富集、空间病理）
+skills/omics/           25 个组学技能（变异检测与分级、表观遗传、甲基化、RNA 修饰、免疫组学、脂质组、糖组、蛋白组、代谢组、单细胞、微生物组、空间病理）
 skills/biomedical/      30 个技能（结构预测、组学、生信写作…）
 skills/science-core/    33 个技能（nf-core、临床统计、证据与工作流…）
 locale/{en,zh}.json     市场与设置页展示元数据（meta.title / meta.description）
