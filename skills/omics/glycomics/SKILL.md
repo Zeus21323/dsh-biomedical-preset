@@ -79,10 +79,10 @@ tags: glycomics, glycan, glytoucan, glycoct, glycoproteomics
    `http://code.glytoucan.org/rdf-ontology/sparql-queries/` 原文：
    "Note that the endpoint is different depending on the type of query.  Glycan structures are primarily
    stored in GlyTouCan, while metadata such as species information can be queried from GlyCosmos."
-   逐字查询见 `references/nomenclature.md` §4。
+   逐字查询见 `references/nomenclature.md` §5.1–§5.3。
 2. **命令行提交/查询（官方已标 DEPRECATED，仅作存量脚本维护）**：
    页面顶部原文 "DEPRECATED — Please use direct REST access from the command line. This was using a
-   groovy-specific method of downloading java libraries…"。命令见 `references/nomenclature.md` §3.3，
+   groovy-specific method of downloading java libraries…"。命令见 `references/nomenclature.md` §2.3，
    引用时必须带 DEPRECATED 标记。
 
 ### 2.2 GlycoCT
@@ -118,7 +118,7 @@ tags: glycomics, glycan, glytoucan, glycoct, glycoproteomics
 - `Anomeric Symbol`：α = `a`，β = `b`，`u`/`d` 为绝对立体描述符（原文："α anomer is represented as
   symbol `a` and β anomer as symbol `b`"；"When an exocyclic atom … is on the left side in cyclic Fischer
   projection, the Anomeric Symbol is `u` … When the exocyclic atom is on the right side … `d`"）。
-- 完整 CarbonDescriptor 表与 LIP/GLIP 定义见 `references/nomenclature.md` §5。
+- 完整 CarbonDescriptor 表与 LIP/GLIP 定义见 `references/nomenclature.md` §4.2–§4.3。
 
 ### 2.4 官方编码互换工具：GlycanFormatConverter（可执行）
 
