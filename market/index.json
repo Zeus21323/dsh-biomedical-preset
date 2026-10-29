@@ -73,8 +73,8 @@
         "zh": "生物医学模式"
       },
       "description": {
-        "en": "Biomedical research collaborator preset: bulk/single-cell omics, variant and clinical annotation, structure prediction and docking, literature evidence grading, survival statistics, publication figures and manuscripts. Ships its own MCP server (51 tools over PubMed/Ensembl/PDB/AlphaFold/ClinVar/gnomAD/GTEx/GEO/PRIDE/cBioPortal/CIViC/ENCODE/JASPAR/Rfam/ChEMBL/PubChem/Open Targets/openFDA/OpenAlex/arXiv) and 63 skills, so it carries no dependency on external plugin directories.",
-        "zh": "生物医学研究合作者预设：组学分析（蛋白组/代谢组/单细胞/微生物组/空间病理）、临床与变异注释、结构预测与分子对接、文献证据分级、生存统计、投稿级图表与稿件。自带 MCP 服务（51 个公开数据源工具）与 78 个流程技能，不依赖任何外部插件目录。"
+        "en": "Biomedical research collaborator preset: 88 workflow skills covering variant calling/ACMG classification, epigenomics, methylation, RNA modification, immunogenomics, lipidomics, glycomics, proteomics, metabolomics, single-cell and spatial omics, plus structure prediction, literature evidence grading and manuscript delivery. Ships its own MCP server (51 public-data tools over PubMed/Ensembl/PDB/AlphaFold/ClinVar/gnomAD/GTEx/GEO/PRIDE/cBioPortal/CIViC/ENCODE/JASPAR/Rfam/ChEMBL/PubChem/Open Targets/openFDA/OpenAlex/arXiv).",
+        "zh": "生物医学研究合作者预设：88 个流程技能，覆盖变异检测与 ACMG 分级、表观遗传、甲基化、RNA 修饰、免疫组学、脂质组、糖组、蛋白组、代谢组、单细胞与空间组学，以及结构预测、文献证据分级与稿件交付。自带 MCP 服务（51 个公开数据源工具，覆盖 PubMed/Ensembl/PDB/AlphaFold/ClinVar/gnomAD/GTEx/GEO/PRIDE/cBioPortal/CIViC/ENCODE/JASPAR/Rfam/ChEMBL/PubChem/Open Targets/openFDA/OpenAlex/arXiv）。"
       },
       "icon": "icons/biomedical.svg",
       "author": "Zeus21323",
@@ -104,12 +104,12 @@
       },
       "versions": [
         {
-          "version": "1.0.13",
-          "publishTimestamp": 1793263707,
+          "version": "1.0.14",
+          "publishTimestamp": 1793266910,
           "source": {
             "type": "git",
             "url": "https://github.com/Zeus21323/dsh-biomedical-preset",
-            "commit": "d216e2994c1c7cc0ee022422075fca95cf6e15c8"
+            "commit": "6ee01d5f7c3c0523ed9cbfafe3c664e98597df23"
           },
           "engines": {
             "dsh": "^0.2.1-rc.2"
