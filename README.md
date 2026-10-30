@@ -3,7 +3,7 @@
 DeepSeek Harness 的 agent 预设（bundle）。它不是"给通用助手加个提示词"，而是一套**自持**的生物医学研究装配：身份与纪律、执行工具、603 个技能（34 个功能分类，可在设置里逐类开关）、51 个数据源 MCP 工具、并发闸、交付通道，全部装在这一个包里，不引用任何外部插件目录。
 
 - 心智模型：**MCP 负责取数据，Skill 负责选方法与执行流程**，persona 负责纪律与判断。
-- 已验证：市场索引通过官方 `@deepseek-ai/dsh-plugin-market-index` 校验；`npm pack` 产物 2216 文件 / 4.62 MB（packed）/ 18.29 MB（unpacked）；本机预设 `fiberPhase: active`。
+- 已验证：市场索引通过官方 `@deepseek-ai/dsh-plugin-market-index` 校验；`npm pack` 产物 2222 文件 / 4.9 MB（packed）/ 19.5 MB（unpacked）；本机预设 `fiberPhase: active`。
 
 ---
 
@@ -11,7 +11,7 @@ DeepSeek Harness 的 agent 预设（bundle）。它不是"给通用助手加个�
 
 - [安装](#安装)
 - [装配结构](#装配结构)
-- [技能清单（603）](#技能清单603)
+- [技能清单（603，34 个功能分类）](#技能清单60334-个功能分类)
 - [MCP 工具清单（51）](#mcp-工具清单51)
 - [并发与资源约束](#并发与资源约束)
 - [平台要求](#平台要求)
@@ -52,7 +52,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 
 ## 装配结构
 
-`cordis.patch.yml` 共 27 个插件行：
+`cordis.patch.yml` 在本包内声明 28 个插件行（22 个启用 + 6 个默认禁用、仅在 picker 故障时手动打开的 `skill-filesystem` 兜底行），另在 profile 里插 2 行（`preset-biomedical` 本预设 + `biomedical-skill-settings` 设置页）：
 
 | 层 | 插件行 | 作用 |
 |---|---|---|
@@ -152,7 +152,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 
 ### 目录成本
 
-603 个技能的名称与描述合计 84 044 字符 ≈ **38k token**，常驻系统提示。用分类开关按需裁剪，例如保留「组学 + 数据工程与统计 + 文献与证据合成 + 写作与文档交付」约 15k token。
+603 个技能的 name + description 合计 76 184 字符 ≈ **35k token**，常驻系统提示。用分类开关按需裁剪，例如保留「组学 + 数据工程与统计 + 文献与证据合成 + 写作与文档交付」约 14k token。
 
 ### 技能目录的兜底
 
@@ -286,7 +286,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | DSH | `^0.2.1-rc.2`（包内 `engines.dsh`，与市场索引条目一致） |
 | Python | 3.x，只用标准库；默认调用 DSH 自带 `dsh-primary-runtime` 的 python |
 | 网络 | 出网访问公开 REST API（NCBI/EBI/Ensembl/RCSB/Broad/EMBL 等） |
-| 磁盘 | 包本体约 2.05 MB（未压缩） |
+| 磁盘 | 包本体约 19.5 MB（未压缩；603 个技能的 2209 个文件占绝大部分） |
 | 权限 | 安装需要 profile 的 Full access 或审批；`plugin_manager` 每个动作都需要审批（无 Full 时） |
 
 ---
@@ -294,22 +294,23 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 ## 仓库结构
 
 ```
-cordis.patch.yml        预设装配（23 个插件行）
-package.json            包声明：exports / files / engines.dsh
-subagent-cap.mjs        子智能体并发闸（tools/execute 作用域）
+cordis.patch.yml        本包装配：内层 28 个插件行；profile 里插 2 行（预设 + 设置页）
+package.json            包声明：dsh.bundle（patch）+ dsh.client（设置页）/ exports / files / engines.dsh
+subagent-cap.mjs        子智能体并发闸（tools/execute 作用域，限 3 并发）
+picker/                 技能 provider：catalog.json（34 类 x 603 技能）+ index.js
+settings/               设置页：index.js（Config + 镜像）/ client.js（settings.section 页面）/ config.mjs
 mcp/biomedical_mcp.py   51 个数据源工具（stdio JSON-RPC，纯标准库）
-skills/omics/                21 个自建组学技能
-skills/genomics/       140 个（基因组/群体遗传/肿瘤/临床基因组/液体活检/法医）
-skills/omics-upstream/          193 个（转录/蛋白/代谢/表观/空间/多组学/单细胞/微生物组）
-skills/structure-drug/  79 个（结构生物学/AI 药物发现/合成生物学/药物基因组/基础模型）
-skills/clinical-imaging/ 36 个（精准医学/AI 医学影像/衰老长寿）
-skills/methods/        134 个（基础设施/方法学/网络系统生物学/免疫组学/生物医学科学）
-skills/biomedical/      30 个技能（结构预测、组学、生信写作…）
-skills/science-core/    33 个技能（nf-core、临床统计、证据与工作流…）
-locale/{en,zh}.json     市场与设置页展示元数据（meta.title / meta.description）
+skills/                 6 个域目录 / 603 个技能 / 2209 个文件
+  omics/                 21 个（自建，按官方文档整编，带 references）
+  genomics/             140 个（基因组/群体遗传/肿瘤/临床基因组/液体活检/法医）
+  omics-upstream/       193 个（转录/蛋白/代谢/表观/空间/多组学/单细胞/微生物组）
+  structure-drug/        79 个（结构生物学/AI 药物发现/合成生物学/药物基因组/基础模型）
+  clinical-imaging/      36 个（精准医学/AI 医学影像/衰老长寿）
+  methods/              134 个（基础设施/方法学/网络系统生物学/免疫组学/生物医学科学）
+locale/{en,zh}.json     市场展示元数据（meta.title / meta.description）
 icon.svg                原创图标（双螺旋，632 B）
-market/index.json       插件市场索引（format 1）
-market/icons/           索引引用的图标目录
+market/index.json       插件市场索引（format 1），只列本包一个条目
+market/icons/           索引引用的图标目录（biomedical.svg）
 README.md               本文件
 ```
 
