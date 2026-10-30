@@ -1,0 +1,2690 @@
+{
+ "version": 1,
+ "generatedAt": "2026-10-30T06:54:47.962Z",
+ "categories": [
+  {
+   "id": "sequencing-qc-alignment",
+   "label_zh": "测序质控与比对",
+   "label_en": "Sequencing QC & alignment",
+   "desc_zh": "把原始测序读段变成可信的比对结果，并回答数据质量、覆盖与污染能不能用。",
+   "skills": [
+    {
+     "name": "01-genome-alignment",
+     "path": "genomics/01-genome-alignment"
+    },
+    {
+     "name": "01-genome-bam",
+     "path": "genomics/01-genome-bam"
+    },
+    {
+     "name": "01-genome-fastqc",
+     "path": "genomics/01-genome-fastqc"
+    },
+    {
+     "name": "01-genome-long-read-sequencing",
+     "path": "genomics/01-genome-long-read-sequencing"
+    },
+    {
+     "name": "01-genome-multiqc",
+     "path": "genomics/01-genome-multiqc"
+    },
+    {
+     "name": "01-genome-reads-trimming",
+     "path": "genomics/01-genome-reads-trimming"
+    },
+    {
+     "name": "genome-contamination-detection",
+     "path": "genomics/genome-contamination-detection"
+    },
+    {
+     "name": "long-read-alignment",
+     "path": "genomics/long-read-alignment"
+    },
+    {
+     "name": "nanopore-basecalling",
+     "path": "genomics/nanopore-basecalling"
+    },
+    {
+     "name": "nfcore-bamtofastq",
+     "path": "genomics/nfcore-bamtofastq"
+    },
+    {
+     "name": "nfcore-demultiplex",
+     "path": "genomics/nfcore-demultiplex"
+    },
+    {
+     "name": "nfcore-fastqrepair",
+     "path": "genomics/nfcore-fastqrepair"
+    },
+    {
+     "name": "nfcore-fastquorum",
+     "path": "genomics/nfcore-fastquorum"
+    },
+    {
+     "name": "nfcore-genomeskim",
+     "path": "genomics/nfcore-genomeskim"
+    },
+    {
+     "name": "nfcore-mitodetect",
+     "path": "genomics/nfcore-mitodetect"
+    },
+    {
+     "name": "nfcore-nanoseq",
+     "path": "genomics/nfcore-nanoseq"
+    },
+    {
+     "name": "nfcore-seqinspector",
+     "path": "genomics/nfcore-seqinspector"
+    },
+    {
+     "name": "sequencing-coverage-capture-efficiency",
+     "path": "genomics/sequencing-coverage-capture-efficiency"
+    },
+    {
+     "name": "nfcore-ssds",
+     "path": "omics-upstream/nfcore-ssds"
+    }
+   ]
+  },
+  {
+   "id": "genome-assembly-comparative",
+   "label_zh": "基因组组装与比较基因组",
+   "label_en": "Genome assembly & comparative genomics",
+   "desc_zh": "从长读长或混合数据组装并注释基因组，再比较多个基因组的共线性、泛基因组与进化关系。",
+   "skills": [
+    {
+     "name": "01-genome-gene-annotation",
+     "path": "genomics/01-genome-gene-annotation"
+    },
+    {
+     "name": "02-population-genetics-phylogenetic-analysis",
+     "path": "genomics/02-population-genetics-phylogenetic-analysis"
+    },
+    {
+     "name": "cross-species-annotation-projection",
+     "path": "genomics/cross-species-annotation-projection"
+    },
+    {
+     "name": "genome-assembly-qc",
+     "path": "genomics/genome-assembly-qc"
+    },
+    {
+     "name": "long-read-de-novo-assembly",
+     "path": "genomics/long-read-de-novo-assembly"
+    },
+    {
+     "name": "nfcore-denovohybrid",
+     "path": "genomics/nfcore-denovohybrid"
+    },
+    {
+     "name": "nfcore-eager",
+     "path": "genomics/nfcore-eager"
+    },
+    {
+     "name": "nfcore-genephylomodeler",
+     "path": "genomics/nfcore-genephylomodeler"
+    },
+    {
+     "name": "nfcore-genomeannotator",
+     "path": "genomics/nfcore-genomeannotator"
+    },
+    {
+     "name": "nfcore-genomeassembler",
+     "path": "genomics/nfcore-genomeassembler"
+    },
+    {
+     "name": "nfcore-genomeqc",
+     "path": "genomics/nfcore-genomeqc"
+    },
+    {
+     "name": "nfcore-kmermaid",
+     "path": "genomics/nfcore-kmermaid"
+    },
+    {
+     "name": "nfcore-multiplesequencealign",
+     "path": "genomics/nfcore-multiplesequencealign"
+    },
+    {
+     "name": "nfcore-ncrnannotator",
+     "path": "genomics/nfcore-ncrnannotator"
+    },
+    {
+     "name": "nfcore-neutronstar",
+     "path": "genomics/nfcore-neutronstar"
+    },
+    {
+     "name": "nfcore-pairgenomealign",
+     "path": "genomics/nfcore-pairgenomealign"
+    },
+    {
+     "name": "nfcore-pangenome",
+     "path": "genomics/nfcore-pangenome"
+    },
+    {
+     "name": "nfcore-phyloplace",
+     "path": "genomics/nfcore-phyloplace"
+    },
+    {
+     "name": "nfcore-reportho",
+     "path": "genomics/nfcore-reportho"
+    },
+    {
+     "name": "pangenome-synteny-analysis",
+     "path": "genomics/pangenome-synteny-analysis"
+    }
+   ]
+  },
+  {
+   "id": "variant-calling-filtering",
+   "label_zh": "变异检测与过滤",
+   "label_en": "Variant calling & filtering",
+   "desc_zh": "从比对结果或读段得到胚系、体细胞或靶向 SNV/Indel，并完成规范化与质控过滤。",
+   "skills": [
+    {
+     "name": "01-genome-mtdna-variant-calling",
+     "path": "genomics/01-genome-mtdna-variant-calling"
+    },
+    {
+     "name": "01-genome-snp-calling",
+     "path": "genomics/01-genome-snp-calling"
+    },
+    {
+     "name": "01-genome-target-sequencing",
+     "path": "genomics/01-genome-target-sequencing"
+    },
+    {
+     "name": "01-genome-variant-filtering",
+     "path": "genomics/01-genome-variant-filtering"
+    },
+    {
+     "name": "01-genome-wes",
+     "path": "genomics/01-genome-wes"
+    },
+    {
+     "name": "01-genome-wgs",
+     "path": "genomics/01-genome-wgs"
+    },
+    {
+     "name": "long-read-variant-calling",
+     "path": "genomics/long-read-variant-calling"
+    },
+    {
+     "name": "nfcore-deepvariant",
+     "path": "genomics/nfcore-deepvariant"
+    },
+    {
+     "name": "nfcore-exoseq",
+     "path": "genomics/nfcore-exoseq"
+    },
+    {
+     "name": "nfcore-pacvar",
+     "path": "genomics/nfcore-pacvar"
+    },
+    {
+     "name": "nfcore-sarek",
+     "path": "genomics/nfcore-sarek"
+    },
+    {
+     "name": "nfcore-variantbenchmarking",
+     "path": "genomics/nfcore-variantbenchmarking"
+    },
+    {
+     "name": "vcf-normalization-curation",
+     "path": "genomics/vcf-normalization-curation"
+    },
+    {
+     "name": "vcf-qc-sample-consistency",
+     "path": "genomics/vcf-qc-sample-consistency"
+    },
+    {
+     "name": "nfcore-rnavar",
+     "path": "omics-upstream/nfcore-rnavar"
+    },
+    {
+     "name": "variant-calling-wes-wgs",
+     "path": "omics/variant-calling-wes-wgs"
+    }
+   ]
+  },
+  {
+   "id": "copy-number-structural-variation",
+   "label_zh": "拷贝数变异与结构变异",
+   "label_en": "CNV & structural variation",
+   "desc_zh": "检测缺失、重复、倒位、易位、重复扩增与等位失衡，并解释拷贝数与结构层面的改变。",
+   "skills": [
+    {
+     "name": "01-genome-germline-cnv",
+     "path": "genomics/01-genome-germline-cnv"
+    },
+    {
+     "name": "01-genome-loh-analysis",
+     "path": "genomics/01-genome-loh-analysis"
+    },
+    {
+     "name": "01-genome-repeat-expansion-analysis",
+     "path": "genomics/01-genome-repeat-expansion-analysis"
+    },
+    {
+     "name": "01-genome-sv-detection",
+     "path": "genomics/01-genome-sv-detection"
+    },
+    {
+     "name": "focal-amplification-ecdna-analysis",
+     "path": "genomics/focal-amplification-ecdna-analysis"
+    },
+    {
+     "name": "nfcore-circdna",
+     "path": "genomics/nfcore-circdna"
+    },
+    {
+     "name": "nfcore-createpanelrefs",
+     "path": "genomics/nfcore-createpanelrefs"
+    },
+    {
+     "name": "tumor-cnv-driver-event-analysis",
+     "path": "genomics/tumor-cnv-driver-event-analysis"
+    },
+    {
+     "name": "01-genome-single-cell-cnv",
+     "path": "omics-upstream/01-genome-single-cell-cnv"
+    },
+    {
+     "name": "cnv-sv-detection",
+     "path": "omics/cnv-sv-detection"
+    }
+   ]
+  },
+  {
+   "id": "variant-interpretation-clinical",
+   "label_zh": "变异解读与罕见病诊断",
+   "label_en": "Variant interpretation & rare disease",
+   "desc_zh": "把变异注释到基因与后果，按 ACMG/AMP 证据分级并支撑罕见病与家系诊断结论。",
+   "skills": [
+    {
+     "name": "13-clinical-genomics-hpo-matching",
+     "path": "genomics/13-clinical-genomics-hpo-matching"
+    },
+    {
+     "name": "13-clinical-genomics-intervar",
+     "path": "genomics/13-clinical-genomics-intervar"
+    },
+    {
+     "name": "13-clinical-genomics-rare-disease-diagnosis",
+     "path": "genomics/13-clinical-genomics-rare-disease-diagnosis"
+    },
+    {
+     "name": "13-clinical-genomics-spliceai",
+     "path": "genomics/13-clinical-genomics-spliceai"
+    },
+    {
+     "name": "13-clinical-genomics-trio-analysis",
+     "path": "genomics/13-clinical-genomics-trio-analysis"
+    },
+    {
+     "name": "13-clinical-genomics-varsome",
+     "path": "genomics/13-clinical-genomics-varsome"
+    },
+    {
+     "name": "acmg-clingen-germline-cnv-classification",
+     "path": "genomics/acmg-clingen-germline-cnv-classification"
+    },
+    {
+     "name": "nfcore-longraredisease",
+     "path": "genomics/nfcore-longraredisease"
+    },
+    {
+     "name": "nfcore-raredisease",
+     "path": "genomics/nfcore-raredisease"
+    },
+    {
+     "name": "variant-annotation-gene-consequence",
+     "path": "genomics/variant-annotation-gene-consequence"
+    },
+    {
+     "name": "variant-pathogenicity-acmg",
+     "path": "omics/variant-pathogenicity-acmg"
+    }
+   ]
+  },
+  {
+   "id": "population-genetics-gwas",
+   "label_zh": "群体遗传与 GWAS",
+   "label_en": "Population genetics & GWAS",
+   "desc_zh": "在人群层面找疾病关联位点、构建遗传评分并推断因果、共定位、精细定位与祖源结构。",
+   "skills": [
+    {
+     "name": "02-population-genetics-admixture-ancestry-estimation",
+     "path": "genomics/02-population-genetics-admixture-ancestry-estimation"
+    },
+    {
+     "name": "02-population-genetics-allele-frequency-analysis",
+     "path": "genomics/02-population-genetics-allele-frequency-analysis"
+    },
+    {
+     "name": "02-population-genetics-genotype-phenotype-qc",
+     "path": "genomics/02-population-genetics-genotype-phenotype-qc"
+    },
+    {
+     "name": "02-population-genetics-gwas-association-analysis",
+     "path": "genomics/02-population-genetics-gwas-association-analysis"
+    },
+    {
+     "name": "02-population-genetics-gwas-meta-analysis",
+     "path": "genomics/02-population-genetics-gwas-meta-analysis"
+    },
+    {
+     "name": "02-population-genetics-gwas-sumstats-qc",
+     "path": "genomics/02-population-genetics-gwas-sumstats-qc"
+    },
+    {
+     "name": "02-population-genetics-haplotype-analysis",
+     "path": "genomics/02-population-genetics-haplotype-analysis"
+    },
+    {
+     "name": "02-population-genetics-ldsc-analysis",
+     "path": "genomics/02-population-genetics-ldsc-analysis"
+    },
+    {
+     "name": "02-population-genetics-population-stratification",
+     "path": "genomics/02-population-genetics-population-stratification"
+    },
+    {
+     "name": "02-population-genetics-prs-polygenic-risk-score",
+     "path": "genomics/02-population-genetics-prs-polygenic-risk-score"
+    },
+    {
+     "name": "02-population-genetics-qtl-target-prioritization",
+     "path": "genomics/02-population-genetics-qtl-target-prioritization"
+    },
+    {
+     "name": "02-population-genetics-rare-variant-analysis",
+     "path": "genomics/02-population-genetics-rare-variant-analysis"
+    },
+    {
+     "name": "02-population-genetics-selection-analysis",
+     "path": "genomics/02-population-genetics-selection-analysis"
+    },
+    {
+     "name": "02-population-genetics-two-sample-mr",
+     "path": "genomics/02-population-genetics-two-sample-mr"
+    },
+    {
+     "name": "colocalization-analysis-scaffold-replace",
+     "path": "genomics/colocalization-analysis-scaffold-replace"
+    },
+    {
+     "name": "fine-mapping-scaffold-replace",
+     "path": "genomics/fine-mapping-scaffold-replace"
+    },
+    {
+     "name": "genotype-imputation-phasing",
+     "path": "genomics/genotype-imputation-phasing"
+    },
+    {
+     "name": "gwas-locus-gene-prioritization",
+     "path": "genomics/gwas-locus-gene-prioritization"
+    },
+    {
+     "name": "nfcore-genomicrelatedness",
+     "path": "genomics/nfcore-genomicrelatedness"
+    },
+    {
+     "name": "nfcore-gwas",
+     "path": "genomics/nfcore-gwas"
+    },
+    {
+     "name": "nfcore-phaseimpute",
+     "path": "genomics/nfcore-phaseimpute"
+    },
+    {
+     "name": "nfcore-radseq",
+     "path": "genomics/nfcore-radseq"
+    },
+    {
+     "name": "nfcore-rarevariantburden",
+     "path": "genomics/nfcore-rarevariantburden"
+    },
+    {
+     "name": "nfcore-variantcatalogue",
+     "path": "genomics/nfcore-variantcatalogue"
+    },
+    {
+     "name": "phewas-phenome-wide-association",
+     "path": "genomics/phewas-phenome-wide-association"
+    },
+    {
+     "name": "twas-transcriptome-association",
+     "path": "genomics/twas-transcriptome-association"
+    },
+    {
+     "name": "mendelian-randomization",
+     "path": "methods/mendelian-randomization"
+    },
+    {
+     "name": "nfcore-abotyper",
+     "path": "methods/nfcore-abotyper"
+    }
+   ]
+  },
+  {
+   "id": "cancer-genomics-liquid-biopsy",
+   "label_zh": "肿瘤基因组与液体活检",
+   "label_en": "Cancer genomics & liquid biopsy",
+   "desc_zh": "刻画肿瘤体细胞突变、克隆演化与可用标志物，并用 cfDNA/ctDNA 做早筛、监测与残留病判断。",
+   "skills": [
+    {
+     "name": "14-cancer-genomics-clonal-evolution",
+     "path": "genomics/14-cancer-genomics-clonal-evolution"
+    },
+    {
+     "name": "14-cancer-genomics-driver-gene-analysis",
+     "path": "genomics/14-cancer-genomics-driver-gene-analysis"
+    },
+    {
+     "name": "14-cancer-genomics-hrd",
+     "path": "genomics/14-cancer-genomics-hrd"
+    },
+    {
+     "name": "14-cancer-genomics-intratumor-heterogeneity",
+     "path": "genomics/14-cancer-genomics-intratumor-heterogeneity"
+    },
+    {
+     "name": "14-cancer-genomics-msi",
+     "path": "genomics/14-cancer-genomics-msi"
+    },
+    {
+     "name": "14-cancer-genomics-mutation-signature",
+     "path": "genomics/14-cancer-genomics-mutation-signature"
+    },
+    {
+     "name": "14-cancer-genomics-somatic-mutation",
+     "path": "genomics/14-cancer-genomics-somatic-mutation"
+    },
+    {
+     "name": "14-cancer-genomics-subclone-analysis",
+     "path": "genomics/14-cancer-genomics-subclone-analysis"
+    },
+    {
+     "name": "14-cancer-genomics-tmb",
+     "path": "genomics/14-cancer-genomics-tmb"
+    },
+    {
+     "name": "15-liquid-biopsy-cancer-origin-prediction",
+     "path": "genomics/15-liquid-biopsy-cancer-origin-prediction"
+    },
+    {
+     "name": "15-liquid-biopsy-exosome-rna-analysis",
+     "path": "genomics/15-liquid-biopsy-exosome-rna-analysis"
+    },
+    {
+     "name": "15-liquid-biopsy-mrd-detection",
+     "path": "genomics/15-liquid-biopsy-mrd-detection"
+    },
+    {
+     "name": "cancer-gene-dependency-analysis",
+     "path": "genomics/cancer-gene-dependency-analysis"
+    },
+    {
+     "name": "cancer-mutation-landscape-oncoplot",
+     "path": "genomics/cancer-mutation-landscape-oncoplot"
+    },
+    {
+     "name": "cfdna-fragmentomics-analysis",
+     "path": "genomics/cfdna-fragmentomics-analysis"
+    },
+    {
+     "name": "cfdna-preprocessing-umi-consensus",
+     "path": "genomics/cfdna-preprocessing-umi-consensus"
+    },
+    {
+     "name": "ctdna-mutation-detection-scaffold-replace",
+     "path": "genomics/ctdna-mutation-detection-scaffold-replace"
+    },
+    {
+     "name": "liquid-biopsy-assay-validation",
+     "path": "genomics/liquid-biopsy-assay-validation"
+    },
+    {
+     "name": "nfcore-evexplorer",
+     "path": "genomics/nfcore-evexplorer"
+    },
+    {
+     "name": "nfcore-oncoanalyser",
+     "path": "genomics/nfcore-oncoanalyser"
+    },
+    {
+     "name": "nfcore-pacsomatic",
+     "path": "genomics/nfcore-pacsomatic"
+    },
+    {
+     "name": "nfcore-rnadnavar",
+     "path": "genomics/nfcore-rnadnavar"
+    },
+    {
+     "name": "nfcore-tumourevo",
+     "path": "genomics/nfcore-tumourevo"
+    },
+    {
+     "name": "nfcore-variantprioritization",
+     "path": "genomics/nfcore-variantprioritization"
+    },
+    {
+     "name": "nfcore-viralintegration",
+     "path": "genomics/nfcore-viralintegration"
+    },
+    {
+     "name": "public-cancer-cohort-analysis",
+     "path": "genomics/public-cancer-cohort-analysis"
+    },
+    {
+     "name": "tumor-fraction-estimation",
+     "path": "genomics/tumor-fraction-estimation"
+    },
+    {
+     "name": "tumor-only-somatic-variant-calling",
+     "path": "genomics/tumor-only-somatic-variant-calling"
+    }
+   ]
+  },
+  {
+   "id": "forensic-identity-genetics",
+   "label_zh": "法医与身份鉴定",
+   "label_en": "Forensic & identity genetics",
+   "desc_zh": "用 SNP、STR、Y 染色体与线粒体标记完成身份、亲缘、混合样本与祖先来源判定。",
+   "skills": [
+    {
+     "name": "19-forensic-genomics-ancestry-snp",
+     "path": "genomics/19-forensic-genomics-ancestry-snp"
+    },
+    {
+     "name": "19-forensic-genomics-ibd-analysis",
+     "path": "genomics/19-forensic-genomics-ibd-analysis"
+    },
+    {
+     "name": "19-forensic-genomics-identity-snp",
+     "path": "genomics/19-forensic-genomics-identity-snp"
+    },
+    {
+     "name": "19-forensic-genomics-kinship-analysis",
+     "path": "genomics/19-forensic-genomics-kinship-analysis"
+    },
+    {
+     "name": "19-forensic-genomics-mixture-analysis",
+     "path": "genomics/19-forensic-genomics-mixture-analysis"
+    },
+    {
+     "name": "19-forensic-genomics-mtdna-haplogroup",
+     "path": "genomics/19-forensic-genomics-mtdna-haplogroup"
+    },
+    {
+     "name": "19-forensic-genomics-str-genotyping",
+     "path": "genomics/19-forensic-genomics-str-genotyping"
+    },
+    {
+     "name": "19-forensic-genomics-vntr-profiling",
+     "path": "genomics/19-forensic-genomics-vntr-profiling"
+    },
+    {
+     "name": "19-forensic-genomics-y-snp",
+     "path": "genomics/19-forensic-genomics-y-snp"
+    },
+    {
+     "name": "19-forensic-genomics-y-str",
+     "path": "genomics/19-forensic-genomics-y-str"
+    }
+   ]
+  },
+  {
+   "id": "clinical-precision-medicine",
+   "label_zh": "临床精准医学与结局分析",
+   "label_en": "Precision medicine & clinical outcomes",
+   "desc_zh": "评估生物标志物与预测模型，划分患者亚组，并把证据与结局分析整理成可交接的临床材料。",
+   "skills": [
+    {
+     "name": "18-precision-medicine-diagnostic-biomarker",
+     "path": "clinical-imaging/18-precision-medicine-diagnostic-biomarker"
+    },
+    {
+     "name": "18-precision-medicine-patient-stratification",
+     "path": "clinical-imaging/18-precision-medicine-patient-stratification"
+    },
+    {
+     "name": "18-precision-medicine-predictive-biomarker",
+     "path": "clinical-imaging/18-precision-medicine-predictive-biomarker"
+    },
+    {
+     "name": "18-precision-medicine-prognostic-biomarker",
+     "path": "clinical-imaging/18-precision-medicine-prognostic-biomarker"
+    },
+    {
+     "name": "clinical-decision-support",
+     "path": "clinical-imaging/clinical-decision-support"
+    },
+    {
+     "name": "clinical-multimodal-llm-evaluation",
+     "path": "clinical-imaging/clinical-multimodal-llm-evaluation"
+    },
+    {
+     "name": "clinical-prediction-model-validation",
+     "path": "clinical-imaging/clinical-prediction-model-validation"
+    },
+    {
+     "name": "molecular-trial-matching",
+     "path": "clinical-imaging/molecular-trial-matching"
+    },
+    {
+     "name": "prognostic-biomarker-survival-analysis",
+     "path": "clinical-imaging/prognostic-biomarker-survival-analysis"
+    },
+    {
+     "name": "clinical-statistics-survival",
+     "path": "methods/clinical-statistics-survival"
+    }
+   ]
+  },
+  {
+   "id": "medical-imaging-radiomics",
+   "label_zh": "医学影像与放射组学",
+   "label_en": "Medical imaging & radiomics",
+   "desc_zh": "处理 CT/MRI/病理等影像数据，做分割、配准、特征提取、模型训练与可信度评估。",
+   "skills": [
+    {
+     "name": "20-ai-medical-imaging-ai-cnn-imaging",
+     "path": "clinical-imaging/20-ai-medical-imaging-ai-cnn-imaging"
+    },
+    {
+     "name": "20-ai-medical-imaging-ai-feature-extraction",
+     "path": "clinical-imaging/20-ai-medical-imaging-ai-feature-extraction"
+    },
+    {
+     "name": "20-ai-medical-imaging-ai-image-omics-fusion",
+     "path": "clinical-imaging/20-ai-medical-imaging-ai-image-omics-fusion"
+    },
+    {
+     "name": "bids-neuroimaging-data-organization",
+     "path": "clinical-imaging/bids-neuroimaging-data-organization"
+    },
+    {
+     "name": "cancer-imaging-data-retrieval",
+     "path": "clinical-imaging/cancer-imaging-data-retrieval"
+    },
+    {
+     "name": "dicom-processing-deidentification",
+     "path": "clinical-imaging/dicom-processing-deidentification"
+    },
+    {
+     "name": "medical-image-analysis",
+     "path": "clinical-imaging/medical-image-analysis"
+    },
+    {
+     "name": "medical-image-registration-resampling",
+     "path": "clinical-imaging/medical-image-registration-resampling"
+    },
+    {
+     "name": "medical-imaging-model-trustworthiness",
+     "path": "clinical-imaging/medical-imaging-model-trustworthiness"
+    },
+    {
+     "name": "neuroimaging-electrophysiology-analysis",
+     "path": "clinical-imaging/neuroimaging-electrophysiology-analysis"
+    },
+    {
+     "name": "nfcore-liverctanalysis",
+     "path": "clinical-imaging/nfcore-liverctanalysis"
+    },
+    {
+     "name": "nnu-net-medical-image-segmentation",
+     "path": "clinical-imaging/nnu-net-medical-image-segmentation"
+    }
+   ]
+  },
+  {
+   "id": "microscopy-cell-phenotyping",
+   "label_zh": "显微成像与细胞表型",
+   "label_en": "Microscopy & cell phenotyping",
+   "desc_zh": "从显微、流式与空间蛋白图像定量细胞形态、分割、计数、追踪并比较组间表型。",
+   "skills": [
+    {
+     "name": "20-ai-medical-imaging-ai-whole-slide-image-analysis",
+     "path": "clinical-imaging/20-ai-medical-imaging-ai-whole-slide-image-analysis"
+    },
+    {
+     "name": "27-aging-longevity-sasp-analysis",
+     "path": "clinical-imaging/27-aging-longevity-sasp-analysis"
+    },
+    {
+     "name": "cellpose-cell-nucleus-segmentation",
+     "path": "clinical-imaging/cellpose-cell-nucleus-segmentation"
+    },
+    {
+     "name": "scratch-wound-analysis",
+     "path": "clinical-imaging/scratch-wound-analysis"
+    },
+    {
+     "name": "microscopy-data-management",
+     "path": "clinical-imaging/microscopy-data-management"
+    },
+    {
+     "name": "microscopy-image-quantification",
+     "path": "clinical-imaging/microscopy-image-quantification"
+    },
+    {
+     "name": "nfcore-cellpainting",
+     "path": "clinical-imaging/nfcore-cellpainting"
+    },
+    {
+     "name": "nfcore-lsmquant",
+     "path": "clinical-imaging/nfcore-lsmquant"
+    },
+    {
+     "name": "single-particle-tracking-diffusion",
+     "path": "clinical-imaging/single-particle-tracking-diffusion"
+    },
+    {
+     "name": "05-single-cell-virtual-cell-b11-t01",
+     "path": "methods/05-single-cell-virtual-cell-b11-t01"
+    },
+    {
+     "name": "05-single-cell-virtual-cell-b11-t02",
+     "path": "methods/05-single-cell-virtual-cell-b11-t02"
+    },
+    {
+     "name": "cytometry-differential-abundance-analysis",
+     "path": "methods/cytometry-differential-abundance-analysis"
+    },
+    {
+     "name": "fcs-qc-transformation",
+     "path": "methods/fcs-qc-transformation"
+    },
+    {
+     "name": "flow-cytometry-gating-analysis",
+     "path": "methods/flow-cytometry-gating-analysis"
+    },
+    {
+     "name": "nfcore-imcyto",
+     "path": "omics-upstream/nfcore-imcyto"
+    },
+    {
+     "name": "nfcore-mcmicro",
+     "path": "omics-upstream/nfcore-mcmicro"
+    },
+    {
+     "name": "pathml",
+     "path": "omics/pathml"
+    }
+   ]
+  },
+  {
+   "id": "transcriptomics-quantification",
+   "label_zh": "转录组上游与定量",
+   "label_en": "Transcriptomics upstream & quantification",
+   "desc_zh": "从 RNA 读段得到表达矩阵，处理链特异性、异构体组装、融合、剪接与 RNA 修饰证据。",
+   "skills": [
+    {
+     "name": "nfcore-drop",
+     "path": "genomics/nfcore-drop"
+    },
+    {
+     "name": "nfcore-isoseq",
+     "path": "genomics/nfcore-isoseq"
+    },
+    {
+     "name": "bulk-rnaseq",
+     "path": "methods/bulk-rnaseq"
+    },
+    {
+     "name": "04-transcriptomics-5-utr",
+     "path": "omics-upstream/04-transcriptomics-5-utr"
+    },
+    {
+     "name": "04-transcriptomics-alternative-splicing",
+     "path": "omics-upstream/04-transcriptomics-alternative-splicing"
+    },
+    {
+     "name": "04-transcriptomics-fusion-transcript-detection",
+     "path": "omics-upstream/04-transcriptomics-fusion-transcript-detection"
+    },
+    {
+     "name": "04-transcriptomics-m6a",
+     "path": "omics-upstream/04-transcriptomics-m6a"
+    },
+    {
+     "name": "04-transcriptomics-mirna-analysis",
+     "path": "omics-upstream/04-transcriptomics-mirna-analysis"
+    },
+    {
+     "name": "04-transcriptomics-rbp-regulation",
+     "path": "omics-upstream/04-transcriptomics-rbp-regulation"
+    },
+    {
+     "name": "04-transcriptomics-ribo-seq",
+     "path": "omics-upstream/04-transcriptomics-ribo-seq"
+    },
+    {
+     "name": "04-transcriptomics-rna-editing",
+     "path": "omics-upstream/04-transcriptomics-rna-editing"
+    },
+    {
+     "name": "04-transcriptomics-rna-quantification",
+     "path": "omics-upstream/04-transcriptomics-rna-quantification"
+    },
+    {
+     "name": "04-transcriptomics-transcript-assembly",
+     "path": "omics-upstream/04-transcriptomics-transcript-assembly"
+    },
+    {
+     "name": "nfcore-alleleexpression",
+     "path": "omics-upstream/nfcore-alleleexpression"
+    },
+    {
+     "name": "nfcore-cageseq",
+     "path": "omics-upstream/nfcore-cageseq"
+    },
+    {
+     "name": "nfcore-circrna",
+     "path": "omics-upstream/nfcore-circrna"
+    },
+    {
+     "name": "nfcore-clipseq",
+     "path": "omics-upstream/nfcore-clipseq"
+    },
+    {
+     "name": "nfcore-dartseq",
+     "path": "omics-upstream/nfcore-dartseq"
+    },
+    {
+     "name": "nfcore-denovotranscript",
+     "path": "omics-upstream/nfcore-denovotranscript"
+    },
+    {
+     "name": "nfcore-dualrnaseq",
+     "path": "omics-upstream/nfcore-dualrnaseq"
+    },
+    {
+     "name": "nfcore-lncpipe",
+     "path": "omics-upstream/nfcore-lncpipe"
+    },
+    {
+     "name": "nfcore-nanostring",
+     "path": "omics-upstream/nfcore-nanostring"
+    },
+    {
+     "name": "nfcore-nascent",
+     "path": "omics-upstream/nfcore-nascent"
+    },
+    {
+     "name": "nfcore-riboseq",
+     "path": "omics-upstream/nfcore-riboseq"
+    },
+    {
+     "name": "nfcore-rnafusion",
+     "path": "omics-upstream/nfcore-rnafusion"
+    },
+    {
+     "name": "nfcore-rnaseq",
+     "path": "omics-upstream/nfcore-rnaseq"
+    },
+    {
+     "name": "nfcore-rnasplice",
+     "path": "omics-upstream/nfcore-rnasplice"
+    },
+    {
+     "name": "nfcore-rnastructurome",
+     "path": "omics-upstream/nfcore-rnastructurome"
+    },
+    {
+     "name": "nfcore-slamseq",
+     "path": "omics-upstream/nfcore-slamseq"
+    },
+    {
+     "name": "nfcore-smrnaseq",
+     "path": "omics-upstream/nfcore-smrnaseq"
+    },
+    {
+     "name": "nfcore-stableexpression",
+     "path": "omics-upstream/nfcore-stableexpression"
+    },
+    {
+     "name": "rna-modification-clip",
+     "path": "omics/rna-modification-clip"
+    }
+   ]
+  },
+  {
+   "id": "differential-expression-enrichment",
+   "label_zh": "差异表达与功能富集",
+   "label_en": "Differential expression & enrichment",
+   "desc_zh": "在组学矩阵上做组间差异与统计建模，并把结果落到通路、基因集与功能解释。",
+   "skills": [
+    {
+     "name": "gwas-functional-interpretation",
+     "path": "genomics/gwas-functional-interpretation"
+    },
+    {
+     "name": "04-transcriptomics-b05-t03",
+     "path": "methods/04-transcriptomics-b05-t03"
+    },
+    {
+     "name": "pathway-enrichment",
+     "path": "methods/pathway-enrichment"
+    },
+    {
+     "name": "pathway-enrichment-analysis",
+     "path": "methods/pathway-enrichment-analysis"
+    },
+    {
+     "name": "pydeseq2",
+     "path": "methods/pydeseq2"
+    },
+    {
+     "name": "04-transcriptomics-deseq2",
+     "path": "omics-upstream/04-transcriptomics-deseq2"
+    },
+    {
+     "name": "metabolomics-differential-multivariate-stats",
+     "path": "omics-upstream/metabolomics-differential-multivariate-stats"
+    },
+    {
+     "name": "microbiome-differential-abundance",
+     "path": "omics-upstream/microbiome-differential-abundance"
+    },
+    {
+     "name": "nfcore-differentialabundance",
+     "path": "omics-upstream/nfcore-differentialabundance"
+    },
+    {
+     "name": "pathway-enrichment-scaffold-replace",
+     "path": "omics-upstream/pathway-enrichment-scaffold-replace"
+    },
+    {
+     "name": "single-cell-differential-abundance",
+     "path": "omics-upstream/single-cell-differential-abundance"
+    }
+   ]
+  },
+  {
+   "id": "single-cell-core",
+   "label_zh": "单细胞基础分析",
+   "label_en": "Single-cell core analysis",
+   "desc_zh": "完成单细胞数据的质控、双细胞与环境 RNA 清理、降维聚类、注释与对象格式管理。",
+   "skills": [
+    {
+     "name": "scanpy",
+     "path": "methods/scanpy"
+    },
+    {
+     "name": "05-single-cell-virtual-cell-b01-t01",
+     "path": "omics-upstream/05-single-cell-virtual-cell-b01-t01"
+    },
+    {
+     "name": "05-single-cell-virtual-cell-b01-t02",
+     "path": "omics-upstream/05-single-cell-virtual-cell-b01-t02"
+    },
+    {
+     "name": "05-single-cell-virtual-cell-b01-t03",
+     "path": "omics-upstream/05-single-cell-virtual-cell-b01-t03"
+    },
+    {
+     "name": "05-single-cell-virtual-cell-b01-t04",
+     "path": "omics-upstream/05-single-cell-virtual-cell-b01-t04"
+    },
+    {
+     "name": "05-single-cell-virtual-cell-b02-t01",
+     "path": "omics-upstream/05-single-cell-virtual-cell-b02-t01"
+    },
+    {
+     "name": "05-single-cell-virtual-cell-b02-t02",
+     "path": "omics-upstream/05-single-cell-virtual-cell-b02-t02"
+    },
+    {
+     "name": "05-single-cell-virtual-cell-b02-t03",
+     "path": "omics-upstream/05-single-cell-virtual-cell-b02-t03"
+    },
+    {
+     "name": "05-single-cell-virtual-cell-b03-t01",
+     "path": "omics-upstream/05-single-cell-virtual-cell-b03-t01"
+    },
+    {
+     "name": "05-single-cell-virtual-cell-b04-t04",
+     "path": "omics-upstream/05-single-cell-virtual-cell-b04-t04"
+    },
+    {
+     "name": "nfcore-hadge",
+     "path": "omics-upstream/nfcore-hadge"
+    },
+    {
+     "name": "nfcore-marsseq",
+     "path": "omics-upstream/nfcore-marsseq"
+    },
+    {
+     "name": "nfcore-scdownstream",
+     "path": "omics-upstream/nfcore-scdownstream"
+    },
+    {
+     "name": "nfcore-scflow",
+     "path": "omics-upstream/nfcore-scflow"
+    },
+    {
+     "name": "nfcore-scnanoseq",
+     "path": "omics-upstream/nfcore-scnanoseq"
+    },
+    {
+     "name": "nfcore-scrnaseq",
+     "path": "omics-upstream/nfcore-scrnaseq"
+    },
+    {
+     "name": "nfcore-smartseq2",
+     "path": "omics-upstream/nfcore-smartseq2"
+    },
+    {
+     "name": "single-cell-format-io",
+     "path": "omics-upstream/single-cell-format-io"
+    },
+    {
+     "name": "single-cell-staged-workflow",
+     "path": "omics-upstream/single-cell-staged-workflow"
+    },
+    {
+     "name": "sc-rna-seq-analysis",
+     "path": "omics/sc-rna-seq-analysis"
+    }
+   ]
+  },
+  {
+   "id": "single-cell-advanced-virtual-cell",
+   "label_zh": "单细胞高级与虚拟细胞",
+   "label_en": "Single-cell advanced & virtual cell",
+   "desc_zh": "在单细胞数据上做轨迹、通讯、扰动预测、多模态与队列复现等机制性推断。",
+   "skills": [
+    {
+     "name": "scgpt",
+     "path": "methods/scgpt"
+    },
+    {
+     "name": "scvi-tools",
+     "path": "methods/scvi-tools"
+    },
+    {
+     "name": "05-single-cell-virtual-cell-b05-t02",
+     "path": "omics-upstream/05-single-cell-virtual-cell-b05-t02"
+    },
+    {
+     "name": "05-single-cell-virtual-cell-b06-t03",
+     "path": "omics-upstream/05-single-cell-virtual-cell-b06-t03"
+    },
+    {
+     "name": "05-single-cell-virtual-cell-b06-t05",
+     "path": "omics-upstream/05-single-cell-virtual-cell-b06-t05"
+    },
+    {
+     "name": "05-single-cell-virtual-cell-b08-t04",
+     "path": "omics-upstream/05-single-cell-virtual-cell-b08-t04"
+    },
+    {
+     "name": "05-single-cell-virtual-cell-b09-t01",
+     "path": "omics-upstream/05-single-cell-virtual-cell-b09-t01"
+    },
+    {
+     "name": "05-single-cell-virtual-cell-b09-t04",
+     "path": "omics-upstream/05-single-cell-virtual-cell-b09-t04"
+    },
+    {
+     "name": "05-single-cell-virtual-cell-b09-t05",
+     "path": "omics-upstream/05-single-cell-virtual-cell-b09-t05"
+    },
+    {
+     "name": "05-single-cell-virtual-cell-b10-t01",
+     "path": "omics-upstream/05-single-cell-virtual-cell-b10-t01"
+    },
+    {
+     "name": "05-single-cell-virtual-cell-b10-t03",
+     "path": "omics-upstream/05-single-cell-virtual-cell-b10-t03"
+    },
+    {
+     "name": "metabolite-mediated-cell-communication",
+     "path": "omics-upstream/metabolite-mediated-cell-communication"
+    },
+    {
+     "name": "scvi-single-cell-probabilistic-modeling",
+     "path": "omics-upstream/scvi-single-cell-probabilistic-modeling"
+    },
+    {
+     "name": "secreted-protein-activity-inference",
+     "path": "omics-upstream/secreted-protein-activity-inference"
+    },
+    {
+     "name": "single-cell-alternative-splicing",
+     "path": "omics-upstream/single-cell-alternative-splicing"
+    },
+    {
+     "name": "single-cell-cohort-integration-meta-analysis",
+     "path": "omics-upstream/single-cell-cohort-integration-meta-analysis"
+    },
+    {
+     "name": "single-cell-genetic-variant-detection",
+     "path": "omics-upstream/single-cell-genetic-variant-detection"
+    },
+    {
+     "name": "single-cell-transposon-expression",
+     "path": "omics-upstream/single-cell-transposon-expression"
+    },
+    {
+     "name": "transcriptomic-reverse-perturbation",
+     "path": "omics-upstream/transcriptomic-reverse-perturbation"
+    },
+    {
+     "name": "21-biological-foundation-models-b04-t01",
+     "path": "structure-drug/21-biological-foundation-models-b04-t01"
+    }
+   ]
+  },
+  {
+   "id": "spatial-omics",
+   "label_zh": "空间组学分析",
+   "label_en": "Spatial omics",
+   "desc_zh": "利用空间坐标回答组织里谁在哪里、谁挨着谁，并识别空间域、邻域与细胞组成。",
+   "skills": [
+    {
+     "name": "he-virtual-spatial-transcriptomics",
+     "path": "clinical-imaging/he-virtual-spatial-transcriptomics"
+    },
+    {
+     "name": "06-spatial-omics-b05-t01",
+     "path": "omics-upstream/06-spatial-omics-b05-t01"
+    },
+    {
+     "name": "06-spatial-omics-cell2location",
+     "path": "omics-upstream/06-spatial-omics-cell2location"
+    },
+    {
+     "name": "06-spatial-omics-spatial-domain-identification",
+     "path": "omics-upstream/06-spatial-omics-spatial-domain-identification"
+    },
+    {
+     "name": "06-spatial-omics-spatial-metabolomics",
+     "path": "omics-upstream/06-spatial-omics-spatial-metabolomics"
+    },
+    {
+     "name": "06-spatial-omics-spatial-microenvironment",
+     "path": "omics-upstream/06-spatial-omics-spatial-microenvironment"
+    },
+    {
+     "name": "nfcore-molkart",
+     "path": "omics-upstream/nfcore-molkart"
+    },
+    {
+     "name": "nfcore-panoramaseq",
+     "path": "omics-upstream/nfcore-panoramaseq"
+    },
+    {
+     "name": "nfcore-pixelator",
+     "path": "omics-upstream/nfcore-pixelator"
+    },
+    {
+     "name": "nfcore-sopa",
+     "path": "omics-upstream/nfcore-sopa"
+    },
+    {
+     "name": "nfcore-spatialaxe",
+     "path": "omics-upstream/nfcore-spatialaxe"
+    },
+    {
+     "name": "nfcore-spatialvi",
+     "path": "omics-upstream/nfcore-spatialvi"
+    },
+    {
+     "name": "spatial-proteomics",
+     "path": "omics-upstream/spatial-proteomics"
+    },
+    {
+     "name": "spatial-transcriptomics",
+     "path": "omics-upstream/spatial-transcriptomics"
+    },
+    {
+     "name": "21-biological-foundation-models-nicheformer",
+     "path": "structure-drug/21-biological-foundation-models-nicheformer"
+    }
+   ]
+  },
+  {
+   "id": "proteomics",
+   "label_zh": "蛋白质组学",
+   "label_en": "Proteomics",
+   "desc_zh": "从质谱原始数据到肽段鉴定与蛋白定量，并处理修饰、亲和平台与定量质量。",
+   "skills": [
+    {
+     "name": "27-aging-longevity-protein-aging-clock",
+     "path": "clinical-imaging/27-aging-longevity-protein-aging-clock"
+    },
+    {
+     "name": "07-proteomics-dia-proteomics",
+     "path": "omics-upstream/07-proteomics-dia-proteomics"
+    },
+    {
+     "name": "07-proteomics-lc-ms-ms",
+     "path": "omics-upstream/07-proteomics-lc-ms-ms"
+    },
+    {
+     "name": "07-proteomics-phosphorylation",
+     "path": "omics-upstream/07-proteomics-phosphorylation"
+    },
+    {
+     "name": "07-proteomics-protein-quantification",
+     "path": "omics-upstream/07-proteomics-protein-quantification"
+    },
+    {
+     "name": "07-proteomics-skill-002",
+     "path": "omics-upstream/07-proteomics-skill-002"
+    },
+    {
+     "name": "07-proteomics-tmt-proteomics",
+     "path": "omics-upstream/07-proteomics-tmt-proteomics"
+    },
+    {
+     "name": "affinity-proteomics-analysis",
+     "path": "omics-upstream/affinity-proteomics-analysis"
+    },
+    {
+     "name": "nfcore-ddamsproteomics",
+     "path": "omics-upstream/nfcore-ddamsproteomics"
+    },
+    {
+     "name": "nfcore-diaproteomics",
+     "path": "omics-upstream/nfcore-diaproteomics"
+    },
+    {
+     "name": "nfcore-mspepid",
+     "path": "omics-upstream/nfcore-mspepid"
+    },
+    {
+     "name": "nfcore-proteinannotator",
+     "path": "omics-upstream/nfcore-proteinannotator"
+    },
+    {
+     "name": "nfcore-proteinfamilies",
+     "path": "omics-upstream/nfcore-proteinfamilies"
+    },
+    {
+     "name": "nfcore-proteogenomicsdb",
+     "path": "omics-upstream/nfcore-proteogenomicsdb"
+    },
+    {
+     "name": "nfcore-proteomicslfq",
+     "path": "omics-upstream/nfcore-proteomicslfq"
+    },
+    {
+     "name": "nfcore-quantms",
+     "path": "omics-upstream/nfcore-quantms"
+    },
+    {
+     "name": "nfcore-ribomsqc",
+     "path": "omics-upstream/nfcore-ribomsqc"
+    },
+    {
+     "name": "peptide-identification-protein-inference",
+     "path": "omics-upstream/peptide-identification-protein-inference"
+    },
+    {
+     "name": "proteomics-quality-control",
+     "path": "omics-upstream/proteomics-quality-control"
+    },
+    {
+     "name": "proteomics-quantification",
+     "path": "omics/proteomics-quantification"
+    },
+    {
+     "name": "pyopenms",
+     "path": "omics/pyopenms"
+    }
+   ]
+  },
+  {
+   "id": "metabolomics-lipidomics",
+   "label_zh": "代谢组与脂质糖组",
+   "label_en": "Metabolomics, lipidomics & glycomics",
+   "desc_zh": "把质谱、NMR 或电泳信号转成可信的代谢物、脂质与聚糖注释和定量结果。",
+   "skills": [
+    {
+     "name": "tooluniverse-metabolomics",
+     "path": "methods/tooluniverse-metabolomics"
+    },
+    {
+     "name": "08-metabolomics-exposomics",
+     "path": "omics-upstream/08-metabolomics-exposomics"
+    },
+    {
+     "name": "08-metabolomics-exposure-biomarker-discovery",
+     "path": "omics-upstream/08-metabolomics-exposure-biomarker-discovery"
+    },
+    {
+     "name": "08-metabolomics-flux-analysis",
+     "path": "omics-upstream/08-metabolomics-flux-analysis"
+    },
+    {
+     "name": "08-metabolomics-icp-ms-analysis",
+     "path": "omics-upstream/08-metabolomics-icp-ms-analysis"
+    },
+    {
+     "name": "08-metabolomics-metabolite-identification",
+     "path": "omics-upstream/08-metabolomics-metabolite-identification"
+    },
+    {
+     "name": "08-metabolomics-targeted-metabolomics",
+     "path": "omics-upstream/08-metabolomics-targeted-metabolomics"
+    },
+    {
+     "name": "08-metabolomics-untargeted-metabolomics",
+     "path": "omics-upstream/08-metabolomics-untargeted-metabolomics"
+    },
+    {
+     "name": "ce-ms-metabolomics",
+     "path": "omics-upstream/ce-ms-metabolomics"
+    },
+    {
+     "name": "dda-dia-acquisition-design",
+     "path": "omics-upstream/dda-dia-acquisition-design"
+    },
+    {
+     "name": "ion-mobility-ccs-analysis",
+     "path": "omics-upstream/ion-mobility-ccs-analysis"
+    },
+    {
+     "name": "lipidomics-analysis",
+     "path": "omics-upstream/lipidomics-analysis"
+    },
+    {
+     "name": "metabolomics-normalization-batch-correction",
+     "path": "omics-upstream/metabolomics-normalization-batch-correction"
+    },
+    {
+     "name": "nfcore-metaboigniter",
+     "path": "omics-upstream/nfcore-metaboigniter"
+    },
+    {
+     "name": "nmr-metabolomics",
+     "path": "omics-upstream/nmr-metabolomics"
+    },
+    {
+     "name": "glycomics",
+     "path": "omics/glycomics"
+    },
+    {
+     "name": "lipidomics-annotation",
+     "path": "omics/lipidomics-annotation"
+    },
+    {
+     "name": "metabolomics-profiling",
+     "path": "omics/metabolomics-profiling"
+    }
+   ]
+  },
+  {
+   "id": "epigenomics-methylation",
+   "label_zh": "表观遗传与 DNA 甲基化",
+   "label_en": "Epigenomics & DNA methylation",
+   "desc_zh": "处理 ChIP/ATAC/CUT&RUN、Hi-C 与亚硫酸氢盐数据，识别 peak、染色质状态、三维结构与甲基化差异。",
+   "skills": [
+    {
+     "name": "27-aging-longevity-dna-methylation-clock",
+     "path": "clinical-imaging/27-aging-longevity-dna-methylation-clock"
+    },
+    {
+     "name": "deeptools",
+     "path": "methods/deeptools"
+    },
+    {
+     "name": "03-epigenomics-atac-seq-analysis",
+     "path": "omics-upstream/03-epigenomics-atac-seq-analysis"
+    },
+    {
+     "name": "03-epigenomics-chip-seq-histone-analysis",
+     "path": "omics-upstream/03-epigenomics-chip-seq-histone-analysis"
+    },
+    {
+     "name": "03-epigenomics-chromatin-loop-detection",
+     "path": "omics-upstream/03-epigenomics-chromatin-loop-detection"
+    },
+    {
+     "name": "03-epigenomics-cut-run",
+     "path": "omics-upstream/03-epigenomics-cut-run"
+    },
+    {
+     "name": "03-epigenomics-dmr-identification",
+     "path": "omics-upstream/03-epigenomics-dmr-identification"
+    },
+    {
+     "name": "03-epigenomics-dnase-seq-analysis",
+     "path": "omics-upstream/03-epigenomics-dnase-seq-analysis"
+    },
+    {
+     "name": "03-epigenomics-enhancer-gene-association",
+     "path": "omics-upstream/03-epigenomics-enhancer-gene-association"
+    },
+    {
+     "name": "03-epigenomics-enhancer-identification",
+     "path": "omics-upstream/03-epigenomics-enhancer-identification"
+    },
+    {
+     "name": "03-epigenomics-footprinting-analysis",
+     "path": "omics-upstream/03-epigenomics-footprinting-analysis"
+    },
+    {
+     "name": "03-epigenomics-hi-c-analysis",
+     "path": "omics-upstream/03-epigenomics-hi-c-analysis"
+    },
+    {
+     "name": "03-epigenomics-wgbs-analysis",
+     "path": "omics-upstream/03-epigenomics-wgbs-analysis"
+    },
+    {
+     "name": "chromatin-compartment-tad-analysis",
+     "path": "omics-upstream/chromatin-compartment-tad-analysis"
+    },
+    {
+     "name": "chromatin-state-allele-specific-analysis",
+     "path": "omics-upstream/chromatin-state-allele-specific-analysis"
+    },
+    {
+     "name": "methylation-array-qc-deconvolution",
+     "path": "omics-upstream/methylation-array-qc-deconvolution"
+    },
+    {
+     "name": "nfcore-atacseq",
+     "path": "omics-upstream/nfcore-atacseq"
+    },
+    {
+     "name": "nfcore-callingcards",
+     "path": "omics-upstream/nfcore-callingcards"
+    },
+    {
+     "name": "nfcore-chipseq",
+     "path": "omics-upstream/nfcore-chipseq"
+    },
+    {
+     "name": "nfcore-cutandrun",
+     "path": "omics-upstream/nfcore-cutandrun"
+    },
+    {
+     "name": "nfcore-epigenomesegmentation",
+     "path": "omics-upstream/nfcore-epigenomesegmentation"
+    },
+    {
+     "name": "nfcore-hic",
+     "path": "omics-upstream/nfcore-hic"
+    },
+    {
+     "name": "nfcore-hicar",
+     "path": "omics-upstream/nfcore-hicar"
+    },
+    {
+     "name": "nfcore-methylarray",
+     "path": "omics-upstream/nfcore-methylarray"
+    },
+    {
+     "name": "nfcore-methylong",
+     "path": "omics-upstream/nfcore-methylong"
+    },
+    {
+     "name": "nfcore-methylseq",
+     "path": "omics-upstream/nfcore-methylseq"
+    },
+    {
+     "name": "nfcore-mnaseseq",
+     "path": "omics-upstream/nfcore-mnaseseq"
+    },
+    {
+     "name": "nfcore-sammyseq",
+     "path": "omics-upstream/nfcore-sammyseq"
+    },
+    {
+     "name": "epigenetics-drug-response-integration",
+     "path": "structure-drug/epigenetics-drug-response-integration"
+    },
+    {
+     "name": "dna-methylation-wgbs",
+     "path": "omics/dna-methylation-wgbs"
+    },
+    {
+     "name": "epigenomics-peak-calling",
+     "path": "omics/epigenomics-peak-calling"
+    }
+   ]
+  },
+  {
+   "id": "regulatory-network-sequence-models",
+   "label_zh": "调控网络与序列模型",
+   "label_en": "Regulatory networks & sequence models",
+   "desc_zh": "推断转录因子调控网络与模块，或用基因组基础模型评估序列变异的调控效应。",
+   "skills": [
+    {
+     "name": "borzoi",
+     "path": "methods/borzoi"
+    },
+    {
+     "name": "differential-regulatory-network",
+     "path": "methods/differential-regulatory-network"
+    },
+    {
+     "name": "evo2",
+     "path": "methods/evo2"
+    },
+    {
+     "name": "grn-inference-scaffold-replace",
+     "path": "methods/grn-inference-scaffold-replace"
+    },
+    {
+     "name": "network-pharmacology-analysis",
+     "path": "methods/network-pharmacology-analysis"
+    },
+    {
+     "name": "network-topology-community-analysis",
+     "path": "methods/network-topology-community-analysis"
+    },
+    {
+     "name": "nfcore-diseasemodulediscovery",
+     "path": "methods/nfcore-diseasemodulediscovery"
+    },
+    {
+     "name": "sbml-network-modeling",
+     "path": "methods/sbml-network-modeling"
+    },
+    {
+     "name": "string",
+     "path": "methods/string"
+    },
+    {
+     "name": "temporal-gene-regulatory-network",
+     "path": "methods/temporal-gene-regulatory-network"
+    },
+    {
+     "name": "wgcna-coexpression-network",
+     "path": "methods/wgcna-coexpression-network"
+    },
+    {
+     "name": "03-epigenomics-basenji",
+     "path": "omics-upstream/03-epigenomics-basenji"
+    },
+    {
+     "name": "04-transcriptomics-tf-activity-inference",
+     "path": "omics-upstream/04-transcriptomics-tf-activity-inference"
+    },
+    {
+     "name": "nfcore-tfactivity",
+     "path": "omics-upstream/nfcore-tfactivity"
+    },
+    {
+     "name": "single-cell-regulatory-network",
+     "path": "omics-upstream/single-cell-regulatory-network"
+    },
+    {
+     "name": "21-biological-foundation-models-b01-t03",
+     "path": "structure-drug/21-biological-foundation-models-b01-t03"
+    },
+    {
+     "name": "plant-long-context-genome-modeling",
+     "path": "structure-drug/plant-long-context-genome-modeling"
+    },
+    {
+     "name": "arboreto",
+     "path": "omics/arboreto"
+    }
+   ]
+  },
+  {
+   "id": "microbiome-metagenomics",
+   "label_zh": "微生物组与宏基因组",
+   "label_en": "Microbiome & metagenomics",
+   "desc_zh": "从扩增子或 shotgun 数据得到物种、功能、耐药与菌株结果，并做群落比较与传播分析。",
+   "skills": [
+    {
+     "name": "nfcore-detaxizer",
+     "path": "genomics/nfcore-detaxizer"
+    },
+    {
+     "name": "microbial-community-metabolic-network",
+     "path": "methods/microbial-community-metabolic-network"
+    },
+    {
+     "name": "nfcore-bacmodel",
+     "path": "methods/nfcore-bacmodel"
+    },
+    {
+     "name": "09-metagenomics-16s-analysis",
+     "path": "omics-upstream/09-metagenomics-16s-analysis"
+    },
+    {
+     "name": "09-metagenomics-amr-gene-analysis",
+     "path": "omics-upstream/09-metagenomics-amr-gene-analysis"
+    },
+    {
+     "name": "09-metagenomics-host-microbiome-interaction",
+     "path": "omics-upstream/09-metagenomics-host-microbiome-interaction"
+    },
+    {
+     "name": "09-metagenomics-humann",
+     "path": "omics-upstream/09-metagenomics-humann"
+    },
+    {
+     "name": "09-metagenomics-kraken2",
+     "path": "omics-upstream/09-metagenomics-kraken2"
+    },
+    {
+     "name": "09-metagenomics-mag-reconstruction",
+     "path": "omics-upstream/09-metagenomics-mag-reconstruction"
+    },
+    {
+     "name": "09-metagenomics-pathway-prediction",
+     "path": "omics-upstream/09-metagenomics-pathway-prediction"
+    },
+    {
+     "name": "bgc-identification-classification",
+     "path": "omics-upstream/bgc-identification-classification"
+    },
+    {
+     "name": "edna-metabarcoding-analysis",
+     "path": "omics-upstream/edna-metabarcoding-analysis"
+    },
+    {
+     "name": "metagenomics-analysis",
+     "path": "omics-upstream/metagenomics-analysis"
+    },
+    {
+     "name": "nfcore-ampliseq",
+     "path": "omics-upstream/nfcore-ampliseq"
+    },
+    {
+     "name": "nfcore-bacass",
+     "path": "omics-upstream/nfcore-bacass"
+    },
+    {
+     "name": "nfcore-bactmap",
+     "path": "omics-upstream/nfcore-bactmap"
+    },
+    {
+     "name": "nfcore-coproid",
+     "path": "omics-upstream/nfcore-coproid"
+    },
+    {
+     "name": "nfcore-createtaxdb",
+     "path": "omics-upstream/nfcore-createtaxdb"
+    },
+    {
+     "name": "nfcore-daamicrobiome",
+     "path": "omics-upstream/nfcore-daamicrobiome"
+    },
+    {
+     "name": "nfcore-funcprofiler",
+     "path": "omics-upstream/nfcore-funcprofiler"
+    },
+    {
+     "name": "nfcore-funcscan",
+     "path": "omics-upstream/nfcore-funcscan"
+    },
+    {
+     "name": "nfcore-hgtseq",
+     "path": "omics-upstream/nfcore-hgtseq"
+    },
+    {
+     "name": "nfcore-mag",
+     "path": "omics-upstream/nfcore-mag"
+    },
+    {
+     "name": "nfcore-magmap",
+     "path": "omics-upstream/nfcore-magmap"
+    },
+    {
+     "name": "nfcore-metatdenovo",
+     "path": "omics-upstream/nfcore-metatdenovo"
+    },
+    {
+     "name": "nfcore-pathogenepidemiology",
+     "path": "omics-upstream/nfcore-pathogenepidemiology"
+    },
+    {
+     "name": "nfcore-pathogensurveillance",
+     "path": "omics-upstream/nfcore-pathogensurveillance"
+    },
+    {
+     "name": "nfcore-phageannotator",
+     "path": "omics-upstream/nfcore-phageannotator"
+    },
+    {
+     "name": "nfcore-plasmodiumdrugres",
+     "path": "omics-upstream/nfcore-plasmodiumdrugres"
+    },
+    {
+     "name": "nfcore-taxprofiler",
+     "path": "omics-upstream/nfcore-taxprofiler"
+    },
+    {
+     "name": "nfcore-tbanalyzer",
+     "path": "omics-upstream/nfcore-tbanalyzer"
+    },
+    {
+     "name": "nfcore-vipr",
+     "path": "omics-upstream/nfcore-vipr"
+    },
+    {
+     "name": "nfcore-viralmetagenome",
+     "path": "omics-upstream/nfcore-viralmetagenome"
+    },
+    {
+     "name": "nfcore-viralrecon",
+     "path": "omics-upstream/nfcore-viralrecon"
+    },
+    {
+     "name": "strain-tracking-transmission-analysis",
+     "path": "omics-upstream/strain-tracking-transmission-analysis"
+    },
+    {
+     "name": "mgm-microbiome-foundation-model",
+     "path": "structure-drug/mgm-microbiome-foundation-model"
+    },
+    {
+     "name": "scikit-bio",
+     "path": "omics/scikit-bio"
+    },
+    {
+     "name": "microbiome-diversity-analysis",
+     "path": "omics-upstream/microbiome-diversity-analysis"
+    }
+   ]
+  },
+  {
+   "id": "structural-biology-modeling",
+   "label_zh": "结构预测与建模",
+   "label_en": "Structural prediction & modeling",
+   "desc_zh": "预测或准备蛋白与复合物结构，评估质量、相似性与界面几何并做动力学分析。",
+   "skills": [
+    {
+     "name": "alphafold2",
+     "path": "methods/alphafold2"
+    },
+    {
+     "name": "boltz",
+     "path": "methods/boltz"
+    },
+    {
+     "name": "chai1",
+     "path": "methods/chai1"
+    },
+    {
+     "name": "esmfold2",
+     "path": "methods/esmfold2"
+    },
+    {
+     "name": "openfold3",
+     "path": "methods/openfold3"
+    },
+    {
+     "name": "12-structural-biology-alphafold2",
+     "path": "structure-drug/12-structural-biology-alphafold2"
+    },
+    {
+     "name": "12-structural-biology-alphafold3",
+     "path": "structure-drug/12-structural-biology-alphafold3"
+    },
+    {
+     "name": "12-structural-biology-b01-t04",
+     "path": "structure-drug/12-structural-biology-b01-t04"
+    },
+    {
+     "name": "12-structural-biology-protein-mutation-enhancement",
+     "path": "structure-drug/12-structural-biology-protein-mutation-enhancement"
+    },
+    {
+     "name": "cryo-em-structure-data-retrieval",
+     "path": "structure-drug/cryo-em-structure-data-retrieval"
+    },
+    {
+     "name": "molecular-dynamics",
+     "path": "structure-drug/molecular-dynamics"
+    },
+    {
+     "name": "nfcore-proteinfold",
+     "path": "structure-drug/nfcore-proteinfold"
+    },
+    {
+     "name": "protein-rna-interaction-prediction-design",
+     "path": "structure-drug/protein-rna-interaction-prediction-design"
+    },
+    {
+     "name": "protein-structure-database-search",
+     "path": "structure-drug/protein-structure-database-search"
+    },
+    {
+     "name": "protein-structure-preparation",
+     "path": "structure-drug/protein-structure-preparation"
+    },
+    {
+     "name": "protein-structure-quality-assessment",
+     "path": "structure-drug/protein-structure-quality-assessment"
+    },
+    {
+     "name": "protein-structure-similarity-search",
+     "path": "structure-drug/protein-structure-similarity-search"
+    },
+    {
+     "name": "structure-geometry-interface-analysis",
+     "path": "structure-drug/structure-geometry-interface-analysis"
+    }
+   ]
+  },
+  {
+   "id": "chemoinformatics-drug-design",
+   "label_zh": "化学信息学与药物设计",
+   "label_en": "Cheminformatics & drug design",
+   "desc_zh": "围绕小分子做结构标准化、描述符、相似性、对接与筛选、成药性与毒性排序。",
+   "skills": [
+    {
+     "name": "diffdock",
+     "path": "methods/diffdock"
+    },
+    {
+     "name": "12-structural-biology-molecular-docking",
+     "path": "structure-drug/12-structural-biology-molecular-docking"
+    },
+    {
+     "name": "22-ai-ai-drug-discovery-docking-ai",
+     "path": "structure-drug/22-ai-ai-drug-discovery-docking-ai"
+    },
+    {
+     "name": "22-ai-ai-drug-discovery-dti-prediction",
+     "path": "structure-drug/22-ai-ai-drug-discovery-dti-prediction"
+    },
+    {
+     "name": "22-ai-ai-drug-discovery-molecular-generation",
+     "path": "structure-drug/22-ai-ai-drug-discovery-molecular-generation"
+    },
+    {
+     "name": "22-ai-ai-drug-discovery-retrosynthesis-planning",
+     "path": "structure-drug/22-ai-ai-drug-discovery-retrosynthesis-planning"
+    },
+    {
+     "name": "27-aging-longevity-drug-repurposing",
+     "path": "structure-drug/27-aging-longevity-drug-repurposing"
+    },
+    {
+     "name": "admet-prediction-scaffold-replace",
+     "path": "structure-drug/admet-prediction-scaffold-replace"
+    },
+    {
+     "name": "binding-free-energy-pose-validation",
+     "path": "structure-drug/binding-free-energy-pose-validation"
+    },
+    {
+     "name": "candidate-toxicity-risk-assessment",
+     "path": "structure-drug/candidate-toxicity-risk-assessment"
+    },
+    {
+     "name": "chemical-scaffold-sar-analysis",
+     "path": "structure-drug/chemical-scaffold-sar-analysis"
+    },
+    {
+     "name": "compound-commercial-availability",
+     "path": "structure-drug/compound-commercial-availability"
+    },
+    {
+     "name": "compound-identity-lookup",
+     "path": "structure-drug/compound-identity-lookup"
+    },
+    {
+     "name": "conformer-shape-similarity",
+     "path": "structure-drug/conformer-shape-similarity"
+    },
+    {
+     "name": "covalent-inhibitor-design",
+     "path": "structure-drug/covalent-inhibitor-design"
+    },
+    {
+     "name": "drug-target-evidence-validation",
+     "path": "structure-drug/drug-target-evidence-validation"
+    },
+    {
+     "name": "gpcr-ligand-pharmacology",
+     "path": "structure-drug/gpcr-ligand-pharmacology"
+    },
+    {
+     "name": "molecular-descriptors-fingerprints",
+     "path": "structure-drug/molecular-descriptors-fingerprints"
+    },
+    {
+     "name": "molecular-drug-discovery",
+     "path": "structure-drug/molecular-drug-discovery"
+    },
+    {
+     "name": "molecular-similarity-substructure-search",
+     "path": "structure-drug/molecular-similarity-substructure-search"
+    },
+    {
+     "name": "molecule-standardization-format-conversion",
+     "path": "structure-drug/molecule-standardization-format-conversion"
+    },
+    {
+     "name": "nfcore-drugresponseeval",
+     "path": "structure-drug/nfcore-drugresponseeval"
+    },
+    {
+     "name": "pharmacophore-modeling-screening",
+     "path": "structure-drug/pharmacophore-modeling-screening"
+    },
+    {
+     "name": "protein-binding-pocket-detection",
+     "path": "structure-drug/protein-binding-pocket-detection"
+    },
+    {
+     "name": "qsar-modeling-scaffold-replace",
+     "path": "structure-drug/qsar-modeling-scaffold-replace"
+    },
+    {
+     "name": "targeted-protein-degradation-design",
+     "path": "structure-drug/targeted-protein-degradation-design"
+    },
+    {
+     "name": "virtual-screening-scaffold-replace",
+     "path": "structure-drug/virtual-screening-scaffold-replace"
+    }
+   ]
+  },
+  {
+   "id": "protein-engineering-synbio",
+   "label_zh": "蛋白工程与合成生物学",
+   "label_en": "Protein engineering & synthetic biology",
+   "desc_zh": "设计蛋白序列与骨架、优化表达与可开发性，并把构建放进代谢与自动化实验方案。",
+   "skills": [
+    {
+     "name": "antibody-engineering-developability",
+     "path": "methods/antibody-engineering-developability"
+    },
+    {
+     "name": "fair-esm2",
+     "path": "methods/fair-esm2"
+    },
+    {
+     "name": "ligandmpnn",
+     "path": "methods/ligandmpnn"
+    },
+    {
+     "name": "proteinmpnn",
+     "path": "methods/proteinmpnn"
+    },
+    {
+     "name": "solublempnn",
+     "path": "methods/solublempnn"
+    },
+    {
+     "name": "12-structural-biology-b03-t05",
+     "path": "structure-drug/12-structural-biology-b03-t05"
+    },
+    {
+     "name": "12-structural-biology-b03-t07",
+     "path": "structure-drug/12-structural-biology-b03-t07"
+    },
+    {
+     "name": "26-synthetic-biology-metabolic-engineering",
+     "path": "structure-drug/26-synthetic-biology-metabolic-engineering"
+    },
+    {
+     "name": "26-synthetic-biology-self-driving-lab",
+     "path": "structure-drug/26-synthetic-biology-self-driving-lab"
+    },
+    {
+     "name": "antimicrobial-peptide-mic-prediction",
+     "path": "structure-drug/antimicrobial-peptide-mic-prediction"
+    },
+    {
+     "name": "cell-free-protein-expression-optimization",
+     "path": "structure-drug/cell-free-protein-expression-optimization"
+    },
+    {
+     "name": "esm",
+     "path": "structure-drug/esm"
+    },
+    {
+     "name": "esm3-protein-generation-structure-modeling",
+     "path": "structure-drug/esm3-protein-generation-structure-modeling"
+    },
+    {
+     "name": "nfcore-deepmutscan",
+     "path": "structure-drug/nfcore-deepmutscan"
+    },
+    {
+     "name": "rfdiffusion",
+     "path": "structure-drug/rfdiffusion"
+    }
+   ]
+  },
+  {
+   "id": "gene-editing-cloning",
+   "label_zh": "基因编辑与分子克隆",
+   "label_en": "Gene editing & molecular cloning",
+   "desc_zh": "设计 gRNA、供体与筛选文库，评估脱靶与编辑结果，并完成克隆相关的序列层面设计。",
+   "skills": [
+    {
+     "name": "26-synthetic-biology-gene-design",
+     "path": "structure-drug/26-synthetic-biology-gene-design"
+    },
+    {
+     "name": "base-editing-design-scaffold-replace",
+     "path": "structure-drug/base-editing-design-scaffold-replace"
+    },
+    {
+     "name": "construct-motif-scanning-logo",
+     "path": "structure-drug/construct-motif-scanning-logo"
+    },
+    {
+     "name": "crispr-screen-hit-analysis",
+     "path": "structure-drug/crispr-screen-hit-analysis"
+    },
+    {
+     "name": "crispr-screen-library-design",
+     "path": "structure-drug/crispr-screen-library-design"
+    },
+    {
+     "name": "crispr-screen-quality-control",
+     "path": "structure-drug/crispr-screen-quality-control"
+    },
+    {
+     "name": "grna-design-scaffold-replace",
+     "path": "structure-drug/grna-design-scaffold-replace"
+    },
+    {
+     "name": "hdr-donor-template-design",
+     "path": "structure-drug/hdr-donor-template-design"
+    },
+    {
+     "name": "nfcore-crisprseq",
+     "path": "structure-drug/nfcore-crisprseq"
+    },
+    {
+     "name": "nfcore-crisprvar",
+     "path": "structure-drug/nfcore-crisprvar"
+    },
+    {
+     "name": "off-target-prediction-off-target-scaffold",
+     "path": "structure-drug/off-target-prediction-off-target-scaffold"
+    },
+    {
+     "name": "pcr-qpcr-primer-design",
+     "path": "structure-drug/pcr-qpcr-primer-design"
+    },
+    {
+     "name": "restriction-enzyme-digest-map",
+     "path": "structure-drug/restriction-enzyme-digest-map"
+    }
+   ]
+  },
+  {
+   "id": "pharmacogenomics-dosing",
+   "label_zh": "药物基因组学与用药",
+   "label_en": "Pharmacogenomics & dosing",
+   "desc_zh": "把基因型转成星等位基因与表型，落到具体药物的剂量、疗效与安全性建议。",
+   "skills": [
+    {
+     "name": "17-pharmacogenomics-adverse-drug-reaction-prediction",
+     "path": "clinical-imaging/17-pharmacogenomics-adverse-drug-reaction-prediction"
+    },
+    {
+     "name": "17-pharmacogenomics-cyp450-analysis",
+     "path": "structure-drug/17-pharmacogenomics-cyp450-analysis"
+    },
+    {
+     "name": "17-pharmacogenomics-drug-response-prediction",
+     "path": "structure-drug/17-pharmacogenomics-drug-response-prediction"
+    },
+    {
+     "name": "17-pharmacogenomics-tacrolimus-dosing",
+     "path": "structure-drug/17-pharmacogenomics-tacrolimus-dosing"
+    },
+    {
+     "name": "17-pharmacogenomics-warfarin-dosing",
+     "path": "structure-drug/17-pharmacogenomics-warfarin-dosing"
+    },
+    {
+     "name": "cpic-dpwg-guideline-interpretation",
+     "path": "structure-drug/cpic-dpwg-guideline-interpretation"
+    },
+    {
+     "name": "drug-interaction-pk-pd-modeling",
+     "path": "structure-drug/drug-interaction-pk-pd-modeling"
+    },
+    {
+     "name": "noncompartmental-pk-analysis",
+     "path": "structure-drug/noncompartmental-pk-analysis"
+    },
+    {
+     "name": "pharmacogenomics-clinical-report",
+     "path": "structure-drug/pharmacogenomics-clinical-report"
+    },
+    {
+     "name": "pharmacogenomics-evidence-retrieval",
+     "path": "structure-drug/pharmacogenomics-evidence-retrieval"
+    }
+   ]
+  },
+  {
+   "id": "immunology-immuno-oncology",
+   "label_zh": "免疫组学与免疫治疗",
+   "label_en": "Immunogenomics & immuno-oncology",
+   "desc_zh": "分析受体库、HLA、新抗原与免疫浸润，评估免疫治疗获益与疫苗表位覆盖。",
+   "skills": [
+    {
+     "name": "16-immunomics-antibody-lineage",
+     "path": "methods/16-immunomics-antibody-lineage"
+    },
+    {
+     "name": "16-immunomics-clonotype-analysis",
+     "path": "methods/16-immunomics-clonotype-analysis"
+    },
+    {
+     "name": "16-immunomics-epic",
+     "path": "methods/16-immunomics-epic"
+    },
+    {
+     "name": "16-immunomics-hla-hd",
+     "path": "methods/16-immunomics-hla-hd"
+    },
+    {
+     "name": "16-immunomics-ssgsea-immune-score",
+     "path": "methods/16-immunomics-ssgsea-immune-score"
+    },
+    {
+     "name": "16-immunomics-tcr-repertoire",
+     "path": "methods/16-immunomics-tcr-repertoire"
+    },
+    {
+     "name": "16-immunomics-tide",
+     "path": "methods/16-immunomics-tide"
+    },
+    {
+     "name": "16-immunomics-tumor-antigen-prediction",
+     "path": "methods/16-immunomics-tumor-antigen-prediction"
+    },
+    {
+     "name": "mhc-binding-prediction-scaffold-replace",
+     "path": "methods/mhc-binding-prediction-scaffold-replace"
+    },
+    {
+     "name": "nfcore-airrflow",
+     "path": "methods/nfcore-airrflow"
+    },
+    {
+     "name": "nfcore-epitopeprediction",
+     "path": "methods/nfcore-epitopeprediction"
+    },
+    {
+     "name": "nfcore-hlatyping",
+     "path": "methods/nfcore-hlatyping"
+    },
+    {
+     "name": "nfcore-metapep",
+     "path": "methods/nfcore-metapep"
+    },
+    {
+     "name": "nfcore-mhcquant",
+     "path": "methods/nfcore-mhcquant"
+    },
+    {
+     "name": "tcr-bcr-antigen-specificity-prediction",
+     "path": "methods/tcr-bcr-antigen-specificity-prediction"
+    },
+    {
+     "name": "vaccine-epitope-hla-coverage-design",
+     "path": "methods/vaccine-epitope-hla-coverage-design"
+    },
+    {
+     "name": "immunogenomics",
+     "path": "omics/immunogenomics"
+    }
+   ]
+  },
+  {
+   "id": "literature-evidence-synthesis",
+   "label_zh": "文献检索与证据合成",
+   "label_en": "Literature search & evidence synthesis",
+   "desc_zh": "检索、核验并综合文献与数据库证据，形成可核查的综述、评审与证据强度判断。",
+   "skills": [
+    {
+     "name": "bibliography",
+     "path": "methods/bibliography"
+    },
+    {
+     "name": "biomedical-knowledge-graph-rag",
+     "path": "methods/biomedical-knowledge-graph-rag"
+    },
+    {
+     "name": "citation-management",
+     "path": "methods/citation-management"
+    },
+    {
+     "name": "evidence-validation",
+     "path": "methods/evidence-validation"
+    },
+    {
+     "name": "github-deep-research",
+     "path": "methods/github-deep-research"
+    },
+    {
+     "name": "literature-evidence-writing",
+     "path": "methods/literature-evidence-writing"
+    },
+    {
+     "name": "literature-review",
+     "path": "methods/literature-review"
+    },
+    {
+     "name": "literature-statistics",
+     "path": "methods/literature-statistics"
+    },
+    {
+     "name": "medical-research-literature-reader-pro",
+     "path": "methods/medical-research-literature-reader-pro"
+    },
+    {
+     "name": "paper-lookup",
+     "path": "methods/paper-lookup"
+    },
+    {
+     "name": "paper-review",
+     "path": "methods/paper-review"
+    },
+    {
+     "name": "review-paper",
+     "path": "methods/review-paper"
+    },
+    {
+     "name": "surveymaster",
+     "path": "methods/surveymaster"
+    }
+   ]
+  },
+  {
+   "id": "writing-document-delivery",
+   "label_zh": "写作与文档交付",
+   "label_en": "Writing & document delivery",
+   "desc_zh": "把分析与文献写成论文、基金、海报或报告，并导出合规的 Word/PDF/PPT 交付件。",
+   "skills": [
+    {
+     "name": "academic-poster-generator",
+     "path": "methods/academic-poster-generator"
+    },
+    {
+     "name": "article-format-adjustment",
+     "path": "methods/article-format-adjustment"
+    },
+    {
+     "name": "arxiv-preflight",
+     "path": "methods/arxiv-preflight"
+    },
+    {
+     "name": "bioinformatics-writer",
+     "path": "methods/bioinformatics-writer"
+    },
+    {
+     "name": "blind-review-sanitizer",
+     "path": "methods/blind-review-sanitizer"
+    },
+    {
+     "name": "clinical-research-reporting",
+     "path": "methods/clinical-research-reporting"
+    },
+    {
+     "name": "docx",
+     "path": "methods/docx"
+    },
+    {
+     "name": "docx-equation-processor",
+     "path": "methods/docx-equation-processor"
+    },
+    {
+     "name": "general-writer",
+     "path": "methods/general-writer"
+    },
+    {
+     "name": "grant-writing-agent",
+     "path": "methods/grant-writing-agent"
+    },
+    {
+     "name": "html-to-pdf",
+     "path": "methods/html-to-pdf"
+    },
+    {
+     "name": "latex-posters",
+     "path": "methods/latex-posters"
+    },
+    {
+     "name": "md-to-docx",
+     "path": "methods/md-to-docx"
+    },
+    {
+     "name": "methods-section-writer",
+     "path": "methods/methods-section-writer"
+    },
+    {
+     "name": "pdf",
+     "path": "methods/pdf"
+    },
+    {
+     "name": "ppt-builder",
+     "path": "methods/ppt-builder"
+    },
+    {
+     "name": "ppt-reader",
+     "path": "methods/ppt-reader"
+    },
+    {
+     "name": "reporting-guideline-compliance-checker",
+     "path": "methods/reporting-guideline-compliance-checker"
+    },
+    {
+     "name": "tex-to-docx",
+     "path": "methods/tex-to-docx"
+    },
+    {
+     "name": "xlsx",
+     "path": "methods/xlsx"
+    }
+   ]
+  },
+  {
+   "id": "data-engineering-statistics",
+   "label_zh": "数据工程与统计方法",
+   "label_en": "Data engineering & statistics",
+   "desc_zh": "整理表格与格式、建立统计与机器学习评估、管理隐私与数据交换的工程性任务。",
+   "skills": [
+    {
+     "name": "cdisc-clinical-data-standardization",
+     "path": "clinical-imaging/cdisc-clinical-data-standardization"
+    },
+    {
+     "name": "fhir-ehr-interoperability",
+     "path": "clinical-imaging/fhir-ehr-interoperability"
+    },
+    {
+     "name": "bioinformatics-format-conversion-integrity",
+     "path": "methods/bioinformatics-format-conversion-integrity"
+    },
+    {
+     "name": "data-processing-tables",
+     "path": "methods/data-processing-tables"
+    },
+    {
+     "name": "exploratory-data-analysis-statistical-tests",
+     "path": "methods/exploratory-data-analysis-statistical-tests"
+    },
+    {
+     "name": "instrument-data-standardization",
+     "path": "methods/instrument-data-standardization"
+    },
+    {
+     "name": "machine-learning-evaluation",
+     "path": "methods/machine-learning-evaluation"
+    },
+    {
+     "name": "nfcore-deepmodeloptim",
+     "path": "methods/nfcore-deepmodeloptim"
+    },
+    {
+     "name": "omics-negative-control-calibration",
+     "path": "methods/omics-negative-control-calibration"
+    },
+    {
+     "name": "output-fidelity-lock",
+     "path": "methods/output-fidelity-lock"
+    },
+    {
+     "name": "research-data-privacy-deidentification",
+     "path": "methods/research-data-privacy-deidentification"
+    },
+    {
+     "name": "shap",
+     "path": "methods/shap"
+    },
+    {
+     "name": "software-engineering-testing",
+     "path": "methods/software-engineering-testing"
+    },
+    {
+     "name": "10-multi-omics-integration-diablo",
+     "path": "omics-upstream/10-multi-omics-integration-diablo"
+    },
+    {
+     "name": "10-multi-omics-integration-early-integration",
+     "path": "omics-upstream/10-multi-omics-integration-early-integration"
+    },
+    {
+     "name": "10-multi-omics-integration-late-integration",
+     "path": "omics-upstream/10-multi-omics-integration-late-integration"
+    },
+    {
+     "name": "10-multi-omics-integration-mofa",
+     "path": "omics-upstream/10-multi-omics-integration-mofa"
+    },
+    {
+     "name": "10-multi-omics-integration-omics-network-fusion",
+     "path": "omics-upstream/10-multi-omics-integration-omics-network-fusion"
+    },
+    {
+     "name": "nfcore-omicsgenetraitassociation",
+     "path": "omics-upstream/nfcore-omicsgenetraitassociation"
+    },
+    {
+     "name": "biomedical-time-series-forecasting",
+     "path": "structure-drug/biomedical-time-series-forecasting"
+    },
+    {
+     "name": "gtars",
+     "path": "omics/gtars"
+    },
+    {
+     "name": "polars-bio",
+     "path": "omics/polars-bio"
+    },
+    {
+     "name": "pysam",
+     "path": "omics/pysam"
+    },
+    {
+     "name": "tiledbvcf",
+     "path": "omics/tiledbvcf"
+    }
+   ]
+  },
+  {
+   "id": "workflow-reproducibility",
+   "label_zh": "计算流程与可复现性",
+   "label_en": "Workflows & reproducibility",
+   "desc_zh": "搭可复现的分析环境与流程，追溯输入与版本，并审计结果漂移与助手可靠性。",
+   "skills": [
+    {
+     "name": "bioinformatics-agent-reliability-evaluation",
+     "path": "methods/bioinformatics-agent-reliability-evaluation"
+    },
+    {
+     "name": "biomedical-result-drift-audit",
+     "path": "methods/biomedical-result-drift-audit"
+    },
+    {
+     "name": "infrastructure-workflows",
+     "path": "methods/infrastructure-workflows"
+    },
+    {
+     "name": "nfcore-catalog",
+     "path": "methods/nfcore-catalog"
+    },
+    {
+     "name": "nfcore-datasync",
+     "path": "methods/nfcore-datasync"
+    },
+    {
+     "name": "nfcore-demo",
+     "path": "methods/nfcore-demo"
+    },
+    {
+     "name": "nfcore-provenancereport",
+     "path": "methods/nfcore-provenancereport"
+    },
+    {
+     "name": "nfcore-references",
+     "path": "methods/nfcore-references"
+    },
+    {
+     "name": "nfcore-seqsubmit",
+     "path": "methods/nfcore-seqsubmit"
+    },
+    {
+     "name": "standardization",
+     "path": "methods/standardization"
+    }
+   ]
+  },
+  {
+   "id": "database-api-access",
+   "label_zh": "数据库与接口对接",
+   "label_en": "Database & API access",
+   "desc_zh": "通过 API 或公共库取回基因、变异、结构、组学与文献数据，并核对版本与可用性。",
+   "skills": [
+    {
+     "name": "api-external-integration",
+     "path": "methods/api-external-integration"
+    },
+    {
+     "name": "bioservices",
+     "path": "methods/bioservices"
+    },
+    {
+     "name": "gget",
+     "path": "methods/gget"
+    },
+    {
+     "name": "mcp-tool-operations",
+     "path": "methods/mcp-tool-operations"
+    },
+    {
+     "name": "nfcore-fetchngs",
+     "path": "methods/nfcore-fetchngs"
+    },
+    {
+     "name": "scientific-database-access",
+     "path": "methods/scientific-database-access"
+    },
+    {
+     "name": "metabolomics-database-search",
+     "path": "omics-upstream/metabolomics-database-search"
+    },
+    {
+     "name": "microbiome-data-retrieval",
+     "path": "omics-upstream/microbiome-data-retrieval"
+    },
+    {
+     "name": "proteomics-data-retrieval",
+     "path": "omics-upstream/proteomics-data-retrieval"
+    },
+    {
+     "name": "single-cell-data-retrieval",
+     "path": "omics-upstream/single-cell-data-retrieval"
+    },
+    {
+     "name": "cellxgene-census",
+     "path": "omics/cellxgene-census"
+    }
+   ]
+  },
+  {
+   "id": "visualization-figures",
+   "label_zh": "可视化与图件",
+   "label_en": "Visualization & figures",
+   "desc_zh": "把数据与结构做成清晰可发表的图表、轨道、示意图或渲染好的图形交付件。",
+   "skills": [
+    {
+     "name": "genome-browser-track-creation",
+     "path": "genomics/genome-browser-track-creation"
+    },
+    {
+     "name": "biological-network-visualization",
+     "path": "methods/biological-network-visualization"
+    },
+    {
+     "name": "drawio",
+     "path": "methods/drawio"
+    },
+    {
+     "name": "excalidraw-diagram-generator",
+     "path": "methods/excalidraw-diagram-generator"
+    },
+    {
+     "name": "image-painter",
+     "path": "methods/image-painter"
+    },
+    {
+     "name": "matplotlib",
+     "path": "methods/matplotlib"
+    },
+    {
+     "name": "morning",
+     "path": "methods/morning"
+    },
+    {
+     "name": "scientific-visualization",
+     "path": "methods/scientific-visualization"
+    },
+    {
+     "name": "scientific-visualization-reporting",
+     "path": "methods/scientific-visualization-reporting"
+    },
+    {
+     "name": "protein-structure-visualization",
+     "path": "structure-drug/protein-structure-visualization"
+    }
+   ]
+  },
+  {
+   "id": "research-design-hypothesis",
+   "label_zh": "研究设计与假设生成",
+   "label_en": "Research design & hypothesis generation",
+   "desc_zh": "把宽泛兴趣收束成可检验问题，规划数据、对照、样本量与验证路线。",
+   "skills": [
+    {
+     "name": "nfcore-readsimulator",
+     "path": "genomics/nfcore-readsimulator"
+    },
+    {
+     "name": "clinical-trial-workflows",
+     "path": "methods/clinical-trial-workflows"
+    },
+    {
+     "name": "conventional-oncology-hub-gene-research-planner",
+     "path": "methods/conventional-oncology-hub-gene-research-planner"
+    },
+    {
+     "name": "experiment-protocol-design",
+     "path": "methods/experiment-protocol-design"
+    },
+    {
+     "name": "hypothesis-generation",
+     "path": "methods/hypothesis-generation"
+    },
+    {
+     "name": "indication-dossier",
+     "path": "methods/indication-dossier"
+    },
+    {
+     "name": "public-omics-study-design-report",
+     "path": "methods/public-omics-study-design-report"
+    },
+    {
+     "name": "qtl-colocalization-study-planner",
+     "path": "methods/qtl-colocalization-study-planner"
+    },
+    {
+     "name": "scientific-problem-hypothesis",
+     "path": "methods/scientific-problem-hypothesis"
+    },
+    {
+     "name": "multi-omics-integration-design",
+     "path": "omics-upstream/multi-omics-integration-design"
+    }
+   ]
+  }
+ ]
+}
