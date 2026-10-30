@@ -3,15 +3,10 @@
 # 装配逻辑：
 #   1) 身份层：persona（生物医学研究者）+ AGENTS.md + 时间锚
 #   2) 执行层：shell / 文件 / 后台长任务（比对、训练、批量下载）
-#   3) 技能层：本预设自带的 63 个科研 skill（skills/biomedical + skills/science-core）
+#   3) 技能层：603 个技能，按 34 个功能分类由 picker 统一提供（可在设置页按组开关）
 #   4) 数据层：本预设自带的 stdio MCP（mcp/biomedical_mcp.py，51 个数据源工具）
-#   5) 编排层：plan-mode / compaction / subagent+workflow / todo / goal
+#   5) 编排层：plan-mode / compaction / subagent + subagent-cap / todo / goal
 #   6) 交付层：web（文献与库 API）、present（图表与稿件）
-#
-# 与 profile 的配套改动（见安装后的 verification）：
-#   profile patch 里把 include:dsh-upstream-biomedical-skills、
-#   include:dsh-upstream-science-core-skills、include:mcp-upstream-local 三行
-#   disabled: true，技能与 MCP 才只在本模式可见。
 
 - insert:
     - id: preset-biomedical
@@ -272,11 +267,11 @@
               includeDefaultRoots: false
               watch: false
               bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/structure-drug
-          - id: fallback-upstream-clinical   # 临床影像 36 个
+          - id: fallback-clinical-imaging   # 临床影像 36 个
             name: '@deepseek-ai/dsh-skill-filesystem'
             disabled: true
             config:
-              providerName: fallback-upstream-clinical
+              providerName: fallback-clinical-imaging
               includeDefaultRoots: false
               watch: false
               bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/clinical-imaging

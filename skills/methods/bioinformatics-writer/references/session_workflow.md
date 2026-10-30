@@ -29,7 +29,7 @@ At the first Skill invocation in a conversation, call SpeedClaw's built-in
 5. EHR/clinical-data knowledge-base writing
 6. Biomedical-literature/knowledge-graph writing
 
-Do this before inspecting data or generating a plan. In SpeedClaw, present
+Do this before inspecting data or generating a plan. In DSH, present
 these as structured options, not manually typed choices. Ask directly only if
 no structured ask-user tool is available. Store the selection in the current
 conversation; do not repeat it unless the user changes goals.

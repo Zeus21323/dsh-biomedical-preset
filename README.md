@@ -146,7 +146,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 
 ### 技能来源
 
-- **upstream（582 个）**：取自本机 `~/.dsh/plugins/releases` 下 27 个 upstream 插件（2026-10-30 版本）。134 个原始占位名（`upstream-*-skill-<hash>`）已改写为语义化 kebab 名称；跨插件重名的 9 个只保留一份。
+- **上游技能插件（582 个）**：取自本机已安装的 27 个技能插件的发布内容（2026-10-30 版本）。其中 134 个原始占位名（`*-skill-<hash>` 形式）已改写为语义化 kebab 名称；跨插件重名的 9 个只保留一份。
 - **自建（21 个）**：`skills/omics`，其中 11 个按官方文档整编（`SKILL.md` + `references/{official-docs,parameters,troubleshooting}.md`，命令均标注官方来源，官方未提供可执行命令处显式标注）。
 
 ### 目录成本
