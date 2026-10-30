@@ -235,6 +235,60 @@
           - id: biomedical-skill-picker
             name: dsh-biomedical-preset/picker
 
+          # ---- 兜底（默认关闭，稳定优先）----
+          # picker 已在内部兜底：catalog 损坏或所有分类被关闭时，自动退化为全目录扫描。
+          # 若 picker 模块本身加载失败（改坏了 JS / 依赖解析失败），在 设置 → 插件 →
+          # 生物医学模式 里把下面 6 行逐个打开，即可恢复全部 603 个技能（无分类开关）。
+          # 启用兜底前请先禁用 picker 行，否则同一个技能会由两个 provider 各提供一份。
+          - id: fallback-omics-skills   # 自建组学 21 个
+            name: '@deepseek-ai/dsh-skill-filesystem'
+            disabled: true
+            config:
+              providerName: fallback-omics
+              includeDefaultRoots: false
+              watch: false
+              bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/omics
+          - id: fallback-genomics   # 基因组 140 个
+            name: '@deepseek-ai/dsh-skill-filesystem'
+            disabled: true
+            config:
+              providerName: fallback-genomics
+              includeDefaultRoots: false
+              watch: false
+              bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/genomics
+          - id: fallback-omics-upstream   # 组学 193 个
+            name: '@deepseek-ai/dsh-skill-filesystem'
+            disabled: true
+            config:
+              providerName: fallback-omics-upstream
+              includeDefaultRoots: false
+              watch: false
+              bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/omics-upstream
+          - id: fallback-structure   # 结构与药物 79 个
+            name: '@deepseek-ai/dsh-skill-filesystem'
+            disabled: true
+            config:
+              providerName: fallback-structure
+              includeDefaultRoots: false
+              watch: false
+              bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/structure-drug
+          - id: fallback-upstream-clinical   # 临床影像 36 个
+            name: '@deepseek-ai/dsh-skill-filesystem'
+            disabled: true
+            config:
+              providerName: fallback-upstream-clinical
+              includeDefaultRoots: false
+              watch: false
+              bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/clinical-imaging
+          - id: fallback-methods   # 方法学 134 个
+            name: '@deepseek-ai/dsh-skill-filesystem'
+            disabled: true
+            config:
+              providerName: fallback-methods
+              includeDefaultRoots: false
+              watch: false
+              bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/methods
+
 
 
           - id: tool-skill

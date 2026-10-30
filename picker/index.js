@@ -6,7 +6,7 @@
  * 的设置页写入），本插件刻意不声明 Config —— 这样它只依赖 node 内置模块，
  * 不会因为跨包解析（schemastery 等）失败而拖垮整个预设的挂载。
  */
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -60,10 +60,63 @@ function frontmatter(text) {
   return { fm, body: text.slice(m[0].length).replace(/^\r?\n/, '') };
 }
 
+/** 兜底：catalog 损坏/缺失时直接扫 skills/<domain>/<skill>/SKILL.md，保证技能可用。 */
+async function scanAll() {
+  const out = [];
+  let domains;
+  try {
+    domains = await readdir(SKILLS_ROOT, { withFileTypes: true });
+  } catch {
+    return out;
+  }
+  for (const domain of domains) {
+    if (!domain.isDirectory()) continue;
+    const domainPath = join(SKILLS_ROOT, domain.name);
+    let entries;
+    try {
+      entries = await readdir(domainPath, { withFileTypes: true });
+    } catch {
+      continue;
+    }
+    for (const entry of entries) {
+      if (!entry.isDirectory()) continue;
+      const directory = join(domainPath, entry.name);
+      const file = join(directory, 'SKILL.md');
+      let text;
+      try {
+        text = await readFile(file, 'utf8');
+      } catch {
+        continue;
+      }
+      const { fm } = frontmatter(text);
+      if (!fm.name) continue;
+      out.push({
+        name: fm.name,
+        description: fm.description ?? '',
+        ...(fm.whenToUse ? { whenToUse: fm.whenToUse } : {}),
+        invocation: { modelInvocable: true, userInvocable: true },
+        provider: 'biomedical-picker',
+        source: 'custom',
+        rank: 0,
+        locator: { path: file, directory },
+        resourceBase: { kind: 'directory', path: directory },
+        path: file,
+        metadata: { category: 'fallback', categoryLabel: domain.name },
+      });
+    }
+  }
+  return out;
+}
+
 export function apply(ctx, config = {}) {
   let catalog;
   const load = async () => {
-    if (catalog === undefined) catalog = JSON.parse(await readFile(CATALOG_PATH, 'utf8'));
+    if (catalog !== undefined) return catalog;
+    try {
+      catalog = JSON.parse(await readFile(CATALOG_PATH, 'utf8'));
+    } catch {
+      return undefined; // 不缓存失败：文件修好后下次即可恢复
+    }
     return catalog;
   };
 
@@ -82,6 +135,10 @@ export function apply(ctx, config = {}) {
 
     async list() {
       const doc = await load();
+      if (!doc || !Array.isArray(doc.categories) || doc.categories.length === 0) {
+        ctx.logger?.warn?.('biomedical-picker: catalog empty, falling back to full directory scan');
+        return scanAll();
+      }
       const effective = { ...config, ...(await switches()) };
       const out = [];
       for (const category of doc.categories) {
@@ -111,6 +168,10 @@ export function apply(ctx, config = {}) {
             metadata: { category: category.id, categoryLabel: category.label_zh },
           });
         }
+      }
+      if (out.length === 0) {
+        ctx.logger?.warn?.('biomedical-picker: every category disabled or unreadable, falling back to full scan');
+        return scanAll();
       }
       return out;
     },
