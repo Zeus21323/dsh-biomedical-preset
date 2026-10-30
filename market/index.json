@@ -5,8 +5,8 @@
     "zh": "生物医学研究插件"
   },
   "description": {
-    "en": "A self-contained agent preset for biomedical research: 63 workflow skills, 51 public-data MCP tools, and a per-session subagent cap.",
-    "zh": "面向生物医学研究的自包含 agent 预设：63 个流程技能、51 个公开数据源 MCP 工具、3 个子智能体并发闸。"
+    "en": "A self-contained agent preset for biomedical research: 603 skills in 34 functional categories (genomics, multi-omics, single-cell, proteomics, metabolomics, epigenomics, spatial omics, structural biology, drug discovery, clinical imaging, research methods), each category toggleable from a grouped settings page, plus a bundled 51-tool public-data MCP server and a per-session subagent cap.",
+    "zh": "面向生物医学研究的自包含 agent 预设：603 个技能按 34 个功能分类组织（基因组、多组学、单细胞、蛋白组、代谢组、表观组、空间组学、结构生物学、药物发现、临床影像、研究方法），可在设置页按组逐类开关；自带 51 个公开数据源 MCP 工具，并对子智能体并发设上限。"
   },
   "metadata": {
     "categories": {
@@ -73,8 +73,8 @@
         "zh": "生物医学模式"
       },
       "description": {
-        "en": "Biomedical research collaborator preset: 603 skills across genomics, multi-omics, single-cell, proteomics, metabolomics, epigenomics, spatial omics, structural biology, drug discovery, clinical imaging and research methods, plus its own 51-tool public-data MCP server.",
-        "zh": "生物医学研究合作者预设：603 个技能，覆盖基因组、多组学、单细胞、蛋白组、代谢组、表观组、空间组学、结构生物学、药物发现、临床影像与研究方法，自带 51 个公开数据源 MCP 工具。"
+        "en": "Biomedical research collaborator preset: 603 skills across 34 functional categories, a grouped settings page to toggle them per category, and its own 51-tool public-data MCP server.",
+        "zh": "生物医学研究合作者预设：603 个技能分 34 个功能分类，设置页按 6 个大组分节开关；自带 51 个公开数据源 MCP 工具。"
       },
       "icon": "icons/biomedical.svg",
       "author": "Zeus21323",
@@ -104,12 +104,12 @@
       },
       "versions": [
         {
-          "version": "1.0.17",
-          "publishTimestamp": 1793335018,
+          "version": "1.1.3",
+          "publishTimestamp": 1793359448,
           "source": {
             "type": "git",
             "url": "https://github.com/Zeus21323/dsh-biomedical-preset",
-            "commit": "62c9b7cebfaf8d05a8035239600a16bceef26efe"
+            "commit": "cf3476eece5388e0e67ef4a025f349df7a146ef1"
           },
           "engines": {
             "dsh": "^0.2.1-rc.2"
