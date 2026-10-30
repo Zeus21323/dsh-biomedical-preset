@@ -21,6 +21,12 @@
           "en": "Science",
           "zh": "科研"
         }
+      },
+      "settings": {
+        "title": {
+          "en": "Settings pages",
+          "zh": "设置页"
+        }
       }
     },
     "labels": {
@@ -52,6 +58,18 @@
         "title": {
           "en": "Self-contained",
           "zh": "自包含"
+        }
+      },
+      "settings": {
+        "title": {
+          "en": "Settings",
+          "zh": "设置"
+        }
+      },
+      "skills": {
+        "title": {
+          "en": "Skills",
+          "zh": "技能"
         }
       }
     },
@@ -105,11 +123,58 @@
       "versions": [
         {
           "version": "1.1.3",
-          "publishTimestamp": 1793359448,
+          "publishTimestamp": 1793360070,
           "source": {
             "type": "git",
             "url": "https://github.com/Zeus21323/dsh-biomedical-preset",
-            "commit": "cf3476eece5388e0e67ef4a025f349df7a146ef1"
+            "commit": "803c030f4220bb9f830f5701d827e4a9d825d64a"
+          },
+          "engines": {
+            "dsh": "^0.2.1-rc.2"
+          }
+        }
+      ]
+    },
+    {
+      "name": "dsh-biomedical-skill-settings",
+      "title": {
+        "en": "Biomedical Skill Settings",
+        "zh": "生物医学技能设置"
+      },
+      "description": {
+        "en": "Settings page that toggles the 603 skills of Biomedical Mode per functional category, grouped into 6 sections (测序与变异 / 组学与单细胞 / 结构与药物 / 临床与影像 / 方法与工程 / 文献与写作).",
+        "zh": "设置页：按 34 个功能分类开关生物医学模式的 603 个技能，6 个大组分节显示，组内默认列出前 4 个分类并支持展开。"
+      },
+      "icon": "icons/skill-settings.svg",
+      "author": "Zeus21323",
+      "homepage": "https://github.com/Zeus21323/dsh-biomedical-skill-settings#readme",
+      "repository": {
+        "url": "https://github.com/Zeus21323/dsh-biomedical-skill-settings"
+      },
+      "metadata": {
+        "category": "settings",
+        "keywords": [
+          "biomedical",
+          "skills",
+          "settings",
+          "omics"
+        ],
+        "labels": [
+          "settings",
+          "skills"
+        ],
+        "sortKeys": {
+          "featured": 4
+        }
+      },
+      "versions": [
+        {
+          "version": "1.2.0",
+          "publishTimestamp": 1793360070,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/Zeus21323/dsh-biomedical-skill-settings",
+            "commit": "7d8f768f2101485512378ea63d100a3bea2d733d"
           },
           "engines": {
             "dsh": "^0.2.1-rc.2"
