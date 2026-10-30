@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/callingcards",
+  "skill_id": "nfcore-callingcards",
+  "scientific_title": "Calling Cards转录调控记录分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/callingcards",
+    "archived": false,
+    "revision_label": "1.0.0",
+    "commit": "20b66e785a822028eaa125583aad0747d55bba61",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=23.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "82b65ea4b6e37803d7525ffe363d7d2a7994d6f72c3b70a3486e27e324ab4cb0"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "2170c209fcc4f635b51673c85769d9541012fb79104a5dbe13b7f19f55fe625e",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/callingcards/20b66e785a822028eaa125583aad0747d55bba61/LICENSE",
+      "sha256": "417d41cc947da086abf26077d01c8768f66611f4341bfdbaf2d58ed1340e0322",
+      "bytes": 1086
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/callingcards/20b66e785a822028eaa125583aad0747d55bba61/README.md",
+      "sha256": "f2938fce0d5105bb09e38479911a04c0cf9cc7b481fbb9c4f220757c68618c0d",
+      "bytes": 8470
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/callingcards/20b66e785a822028eaa125583aad0747d55bba61/assets/schema_input.json",
+      "sha256": "2170c209fcc4f635b51673c85769d9541012fb79104a5dbe13b7f19f55fe625e",
+      "bytes": 1918
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/callingcards/20b66e785a822028eaa125583aad0747d55bba61/docs/output.md",
+      "sha256": "783e93cad2ac07c0c6344b092a69984a118fbde3897cf07230663657c9e7320a",
+      "bytes": 15893
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/callingcards/20b66e785a822028eaa125583aad0747d55bba61/docs/usage.md",
+      "sha256": "01c96d684849d4d5030ffb86ad68d8faa791848718538002a4bc4a5cf8ec97e0",
+      "bytes": 17182
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/callingcards/20b66e785a822028eaa125583aad0747d55bba61/main.nf",
+      "sha256": "8d425d71f424d1bc536971723a313c7f004fcc31cd4ecb030516b02f49ed498e",
+      "bytes": 6178
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/callingcards/20b66e785a822028eaa125583aad0747d55bba61/nextflow.config",
+      "sha256": "1ff3278195c1fa5212a68ee5fd8d37093a3a3ff07be6c3fe67b64bb5714bbd48",
+      "bytes": 10916
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/callingcards/20b66e785a822028eaa125583aad0747d55bba61/nextflow_schema.json",
+      "sha256": "82b65ea4b6e37803d7525ffe363d7d2a7994d6f72c3b70a3486e27e324ab4cb0",
+      "bytes": 25091
+    },
+    {
+      "path": "workflows/callingcards.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/callingcards/20b66e785a822028eaa125583aad0747d55bba61/workflows/callingcards.nf",
+      "sha256": "6cbe92d4afe8ccf1d3eb04f974fabd9602ea25a7fc8e3290369f7f0254b10cc2",
+      "bytes": 12327
+    }
+  ]
+}

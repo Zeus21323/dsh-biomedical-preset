@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/magmap",
+  "skill_id": "nfcore-magmap",
+  "scientific_title": "基因组集合映射与微生物基因定量",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/magmap",
+    "archived": false,
+    "revision_label": "1.2.0",
+    "commit": "20c6dda92b52ad9788dfcc7eebc6330ac48f2fcd",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=26.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "c01cd47e4f8e7f23a82fd8985492239ea3e8982e72fab32a733897f58b7d7ae1"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_genomeinfo.json",
+        "sha256": "8b1f7cdc882996e4d55cbd82799e71a04c23126864dabab7ebe593adf66ea376",
+        "parameters": [
+          "genomeinfo"
+        ]
+      },
+      {
+        "file": "输入模式-2.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "dd12cc292ddcfa6a1d8f0a3a745678908c7301b510852f62d591381eacc0e3b2",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/magmap/20c6dda92b52ad9788dfcc7eebc6330ac48f2fcd/LICENSE",
+      "sha256": "172d27cd5cc9a24e3cdc29de3753ba44c638b7c573ea3180fc4b62997a7742d6",
+      "bytes": 1075
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/magmap/20c6dda92b52ad9788dfcc7eebc6330ac48f2fcd/README.md",
+      "sha256": "f4959ccf6b7fc7afde33971761e14d58b5e0bf9abc7216e05d7fd38039a874d2",
+      "bytes": 9019
+    },
+    {
+      "path": "assets/schema_genomeinfo.json",
+      "url": "https://raw.githubusercontent.com/nf-core/magmap/20c6dda92b52ad9788dfcc7eebc6330ac48f2fcd/assets/schema_genomeinfo.json",
+      "sha256": "8b1f7cdc882996e4d55cbd82799e71a04c23126864dabab7ebe593adf66ea376",
+      "bytes": 1445
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/magmap/20c6dda92b52ad9788dfcc7eebc6330ac48f2fcd/assets/schema_input.json",
+      "sha256": "dd12cc292ddcfa6a1d8f0a3a745678908c7301b510852f62d591381eacc0e3b2",
+      "bytes": 1378
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/magmap/20c6dda92b52ad9788dfcc7eebc6330ac48f2fcd/docs/output.md",
+      "sha256": "5620819d3cc144ebe30fddcdf8aa6e325c149d50ad9e201268d0d5a50450991c",
+      "bytes": 14357
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/magmap/20c6dda92b52ad9788dfcc7eebc6330ac48f2fcd/docs/usage.md",
+      "sha256": "b283f93314a03eda95202b84db280b0a94e542dc8a75d48936ca7ae9ee8ce294",
+      "bytes": 36764
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/magmap/20c6dda92b52ad9788dfcc7eebc6330ac48f2fcd/main.nf",
+      "sha256": "949a1d25e93a030b7a4b39331858545d9f9d519a3cceb4610e7495f79ed6dcb5",
+      "bytes": 5906
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/magmap/20c6dda92b52ad9788dfcc7eebc6330ac48f2fcd/nextflow.config",
+      "sha256": "95c6570c68719b96d51f3e260bbe3fc1c1b3d155d714a03f0600a132603ce3d1",
+      "bytes": 12920
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/magmap/20c6dda92b52ad9788dfcc7eebc6330ac48f2fcd/nextflow_schema.json",
+      "sha256": "c01cd47e4f8e7f23a82fd8985492239ea3e8982e72fab32a733897f58b7d7ae1",
+      "bytes": 26816
+    },
+    {
+      "path": "workflows/magmap.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/magmap/20c6dda92b52ad9788dfcc7eebc6330ac48f2fcd/workflows/magmap.nf",
+      "sha256": "c3e1027c3893535802aed527990edabb64d21054e929d81a1d19ca77cd00d0de",
+      "bytes": 22357
+    }
+  ]
+}

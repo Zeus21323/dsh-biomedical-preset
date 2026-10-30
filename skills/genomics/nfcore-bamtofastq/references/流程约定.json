@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/bamtofastq",
+  "skill_id": "nfcore-bamtofastq",
+  "scientific_title": "BAM与CRAM读段恢复及质控",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/bamtofastq",
+    "archived": false,
+    "revision_label": "2.2.1",
+    "commit": "8a295860c0c9221337dec7f2620709a47cea254d",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "c98eeaa76a61ff7f1e7b8a09f1227ff869568010dd4b28bda98c819999bf1281"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "066ac80bdcf597ff6416a32de84dfc7250fa6a61f2466742256f04b190d6f42f",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/bamtofastq/8a295860c0c9221337dec7f2620709a47cea254d/LICENSE",
+      "sha256": "50e7a33dc6c06cde494852d18c5328332490eaeb4b66d2558c462c16fd0495cd",
+      "bytes": 1079
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/bamtofastq/8a295860c0c9221337dec7f2620709a47cea254d/README.md",
+      "sha256": "89e5b3993b83e3e45fcbaccadbc9ecfd120fddcd2c511d70c8031276d52559ef",
+      "bytes": 9031
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/bamtofastq/8a295860c0c9221337dec7f2620709a47cea254d/assets/schema_input.json",
+      "sha256": "066ac80bdcf597ff6416a32de84dfc7250fa6a61f2466742256f04b190d6f42f",
+      "bytes": 1575
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/bamtofastq/8a295860c0c9221337dec7f2620709a47cea254d/docs/output.md",
+      "sha256": "c58e294dfe495b63e5eb60de177a8087cf0de5d12836f2a6623bec390f9fb14b",
+      "bytes": 4777
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/bamtofastq/8a295860c0c9221337dec7f2620709a47cea254d/docs/usage.md",
+      "sha256": "fa3b34e54a15cf78904c8b8e641b3d2c14649778ff410aa52e18f48fb3e86253",
+      "bytes": 19169
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/bamtofastq/8a295860c0c9221337dec7f2620709a47cea254d/main.nf",
+      "sha256": "4d23faf15999c103dc34561254530b427e133163d4921d2bf2f2052e89faf950",
+      "bytes": 3534
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/bamtofastq/8a295860c0c9221337dec7f2620709a47cea254d/nextflow.config",
+      "sha256": "e9bcd67e190b25b7fca02e0700893d1d861f30b6cb5937b15a465daa0a48d0df",
+      "bytes": 12200
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/bamtofastq/8a295860c0c9221337dec7f2620709a47cea254d/nextflow_schema.json",
+      "sha256": "c98eeaa76a61ff7f1e7b8a09f1227ff869568010dd4b28bda98c819999bf1281",
+      "bytes": 16154
+    },
+    {
+      "path": "workflows/bamtofastq.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/bamtofastq/8a295860c0c9221337dec7f2620709a47cea254d/workflows/bamtofastq.nf",
+      "sha256": "e154f67f43ff72e5e28e40d34e8a1ebdb40676b19651c271422a7ba31b0f71a4",
+      "bytes": 9272
+    }
+  ]
+}

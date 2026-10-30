@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/raredisease",
+  "skill_id": "nfcore-raredisease",
+  "scientific_title": "WGS/WES罕见病变异检测与评分",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/raredisease",
+    "archived": false,
+    "revision_label": "3.1.2",
+    "commit": "83f2699d28bc957e1d3b875da3d96004a818c2c3",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "7a08efd474c50279a44321c438dbaa38066280771031b06add9c2ef43a5c9755"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/mobile_element_references_schema.json",
+        "sha256": "03e756e0128a52f344a70d8799a9cc24ee0776854e2a10e6b2a77e63f8fee14e",
+        "parameters": [
+          "mobile_element_references"
+        ]
+      },
+      {
+        "file": "输入模式-2.json",
+        "source_path": "assets/rtg_truthvcfs_schema.json",
+        "sha256": "f3d779f9207fcf25444b055528b779e8a626138b09f5c45871dc4c410a3a878e",
+        "parameters": [
+          "rtg_truthvcfs"
+        ]
+      },
+      {
+        "file": "输入模式-3.json",
+        "source_path": "assets/sample_id_map.json",
+        "sha256": "0f4ee9fdc887984885c713de5880aa16371d526999282154c16d9d39c2ccf473",
+        "parameters": [
+          "sample_id_map"
+        ]
+      },
+      {
+        "file": "输入模式-4.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "26bfe57124dd38aa755d6b32fabd3ceb53af36d670df7ecf096881303d14c2e1",
+        "parameters": [
+          "input"
+        ]
+      },
+      {
+        "file": "输入模式-5.json",
+        "source_path": "assets/svdb_query_bedpe_schema.json",
+        "sha256": "6d9dab4e8f5dbc66b89af12d358754e17b12722350f048377ac520a7c43144c1",
+        "parameters": [
+          "svdb_query_bedpedbs"
+        ]
+      },
+      {
+        "file": "输入模式-6.json",
+        "source_path": "assets/svdb_query_vcf_schema.json",
+        "sha256": "6f3cd394e270da89c713c5ffb0a10b6b7e74e950b3ad911ae726d63be924d785",
+        "parameters": [
+          "mobile_element_svdb_annotations",
+          "svdb_query_dbs"
+        ]
+      },
+      {
+        "file": "输入模式-7.json",
+        "source_path": "assets/vep_plugin_files_schema.json",
+        "sha256": "f5b616f45155267c81969e9946da018f5ab2f7d4836fba4f410688a79e698506",
+        "parameters": [
+          "vep_plugin_files"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/raredisease/83f2699d28bc957e1d3b875da3d96004a818c2c3/LICENSE",
+      "sha256": "b311700594dfd9c4a3c49895289276cf5119f600f2262b0cc9b49f5a3d337d9c",
+      "bytes": 1080
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/raredisease/83f2699d28bc957e1d3b875da3d96004a818c2c3/README.md",
+      "sha256": "46e7e9b55d60e9a4c5d2b9c64bc447e69067cb1b71b29acc30852da518b5a991",
+      "bytes": 12922
+    },
+    {
+      "path": "assets/mobile_element_references_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/raredisease/83f2699d28bc957e1d3b875da3d96004a818c2c3/assets/mobile_element_references_schema.json",
+      "sha256": "03e756e0128a52f344a70d8799a9cc24ee0776854e2a10e6b2a77e63f8fee14e",
+      "bytes": 959
+    },
+    {
+      "path": "assets/rtg_truthvcfs_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/raredisease/83f2699d28bc957e1d3b875da3d96004a818c2c3/assets/rtg_truthvcfs_schema.json",
+      "sha256": "f3d779f9207fcf25444b055528b779e8a626138b09f5c45871dc4c410a3a878e",
+      "bytes": 1444
+    },
+    {
+      "path": "assets/sample_id_map.json",
+      "url": "https://raw.githubusercontent.com/nf-core/raredisease/83f2699d28bc957e1d3b875da3d96004a818c2c3/assets/sample_id_map.json",
+      "sha256": "0f4ee9fdc887984885c713de5880aa16371d526999282154c16d9d39c2ccf473",
+      "bytes": 1245
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/raredisease/83f2699d28bc957e1d3b875da3d96004a818c2c3/assets/schema_input.json",
+      "sha256": "26bfe57124dd38aa755d6b32fabd3ceb53af36d670df7ecf096881303d14c2e1",
+      "bytes": 5486
+    },
+    {
+      "path": "assets/svdb_query_bedpe_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/raredisease/83f2699d28bc957e1d3b875da3d96004a818c2c3/assets/svdb_query_bedpe_schema.json",
+      "sha256": "6d9dab4e8f5dbc66b89af12d358754e17b12722350f048377ac520a7c43144c1",
+      "bytes": 1622
+    },
+    {
+      "path": "assets/svdb_query_vcf_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/raredisease/83f2699d28bc957e1d3b875da3d96004a818c2c3/assets/svdb_query_vcf_schema.json",
+      "sha256": "6f3cd394e270da89c713c5ffb0a10b6b7e74e950b3ad911ae726d63be924d785",
+      "bytes": 1621
+    },
+    {
+      "path": "assets/vep_plugin_files_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/raredisease/83f2699d28bc957e1d3b875da3d96004a818c2c3/assets/vep_plugin_files_schema.json",
+      "sha256": "f5b616f45155267c81969e9946da018f5ab2f7d4836fba4f410688a79e698506",
+      "bytes": 860
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/raredisease/83f2699d28bc957e1d3b875da3d96004a818c2c3/docs/output.md",
+      "sha256": "3bbac3107c0662ba42bc1d3bcd4929e23383134b4fe830ff2c13fce351239276",
+      "bytes": 37952
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/raredisease/83f2699d28bc957e1d3b875da3d96004a818c2c3/docs/usage.md",
+      "sha256": "4b03366be5e64a5778140a3cfcf55b9f282585193d6fbe197425ef82d819ad5c",
+      "bytes": 50308
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/raredisease/83f2699d28bc957e1d3b875da3d96004a818c2c3/main.nf",
+      "sha256": "458df4b2c4d3bb7b86dcceee42585019aa924a15e8e167b9c48875eedf3531e4",
+      "bytes": 26553
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/raredisease/83f2699d28bc957e1d3b875da3d96004a818c2c3/nextflow.config",
+      "sha256": "351f6e75063e1fed6e5216c359cc96a42042e51fa1d6c16ccc98cf8d2e1a307d",
+      "bytes": 22302
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/raredisease/83f2699d28bc957e1d3b875da3d96004a818c2c3/nextflow_schema.json",
+      "sha256": "7a08efd474c50279a44321c438dbaa38066280771031b06add9c2ef43a5c9755",
+      "bytes": 61536
+    },
+    {
+      "path": "workflows/raredisease.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/raredisease/83f2699d28bc957e1d3b875da3d96004a818c2c3/workflows/raredisease.nf",
+      "sha256": "4e1188205e4a70bedcfd6f2e2cd1c4acb1af1a9c05990a178c340d3cee637e73",
+      "bytes": 38588
+    }
+  ]
+}

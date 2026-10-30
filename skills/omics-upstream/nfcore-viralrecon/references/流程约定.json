@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/viralrecon",
+  "skill_id": "nfcore-viralrecon",
+  "scientific_title": "病毒共识组装与变异分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/viralrecon",
+    "archived": false,
+    "revision_label": "3.0.0",
+    "commit": "395079f1d24dce731ac22e03d7a5e71f110103fc",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "d03c1a646aae967fb2eeb857b12cdb2b71a1a4fc347fd98ee14b37cd7cfd3a4f"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "9d34861d7abdab56c89c0e0decc5080aba6ba8bfe08a933d6de36356cc728744",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/viralrecon/395079f1d24dce731ac22e03d7a5e71f110103fc/LICENSE",
+      "sha256": "9f9639a82279ffee111139b6daaa5427af2d51ef6a4deba8b4ddce44058a3f3a",
+      "bytes": 1079
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/viralrecon/395079f1d24dce731ac22e03d7a5e71f110103fc/README.md",
+      "sha256": "0f9ed9a561fa67831526510765f55edd4d374a8c297589866a5634ff6f5aeb68",
+      "bytes": 21867
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/viralrecon/395079f1d24dce731ac22e03d7a5e71f110103fc/assets/schema_input.json",
+      "sha256": "9d34861d7abdab56c89c0e0decc5080aba6ba8bfe08a933d6de36356cc728744",
+      "bytes": 1545
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/viralrecon/395079f1d24dce731ac22e03d7a5e71f110103fc/docs/output.md",
+      "sha256": "c0c56076e7dcaf6721829df930b7ec97372ab72b5514b897c7261f2995d52025",
+      "bytes": 59023
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/viralrecon/395079f1d24dce731ac22e03d7a5e71f110103fc/docs/usage.md",
+      "sha256": "b23e92f278e52e61793b03bc1375a326d60b5116e69b23a8d3ecb0d5949dcab6",
+      "bytes": 20824
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/viralrecon/395079f1d24dce731ac22e03d7a5e71f110103fc/main.nf",
+      "sha256": "a615f0b4a4099cf1cbf4096a117609426ad10cd0bd5f16da243b42c7fec1addc",
+      "bytes": 8749
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/viralrecon/395079f1d24dce731ac22e03d7a5e71f110103fc/nextflow.config",
+      "sha256": "602098e3386e0d64cbfb05809987818321f4780f4468fa8be52af7dea03ffa1d",
+      "bytes": 21052
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/viralrecon/395079f1d24dce731ac22e03d7a5e71f110103fc/nextflow_schema.json",
+      "sha256": "d03c1a646aae967fb2eeb857b12cdb2b71a1a4fc347fd98ee14b37cd7cfd3a4f",
+      "bytes": 41081
+    },
+    {
+      "path": "workflows/viralrecon.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/viralrecon/395079f1d24dce731ac22e03d7a5e71f110103fc/workflows/viralrecon.nf",
+      "sha256": "64ee90bd07a3e1e80989d35b4fc57b5c404d2a864af1b2151c40c39063ecdaf8",
+      "bytes": 53037
+    }
+  ]
+}

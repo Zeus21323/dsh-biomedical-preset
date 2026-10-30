@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Review"
+  short_description: "严谨审稿、事实核验和参考文献验证流程"
+  default_prompt: "Use $review-paper to review this academic paper rigorously, using available web or academic search tools when facts or references need verification."

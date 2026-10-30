@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/hic",
+  "skill_id": "nfcore-hic",
+  "scientific_title": "Hi-C接触矩阵与质量控制",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/hic",
+    "archived": false,
+    "revision_label": "2.1.0",
+    "commit": "fe4ac656317d24c37e81e7940a526ed9ea812f8e",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=22.10.1",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "430d2bb74c6e2d151591d476c872e54415e420b0b5d62d293a1ba947d44ebce5"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "a4a16776ee8e98052d5759c96ed07aa15fdbdfb3fb7efd0e01194bf4d2cf0594",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/hic/fe4ac656317d24c37e81e7940a526ed9ea812f8e/LICENSE",
+      "sha256": "f0154d41ecf45fd21b0e85e946d966c46ce1b8d7ed70ab801361dbd9c805ed2f",
+      "bytes": 1067
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/hic/fe4ac656317d24c37e81e7940a526ed9ea812f8e/README.md",
+      "sha256": "55ddf1a6af366ab072ce8d244a878a5dd99a286925bc5fae562e268d54717edf",
+      "bytes": 6946
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/hic/fe4ac656317d24c37e81e7940a526ed9ea812f8e/assets/schema_input.json",
+      "sha256": "a4a16776ee8e98052d5759c96ed07aa15fdbdfb3fb7efd0e01194bf4d2cf0594",
+      "bytes": 1381
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/hic/fe4ac656317d24c37e81e7940a526ed9ea812f8e/docs/output.md",
+      "sha256": "4877069c66531efcef68f9a88bb58c5bc4d13b1ddb5b87f46154e393e24983bf",
+      "bytes": 14977
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/hic/fe4ac656317d24c37e81e7940a526ed9ea812f8e/docs/usage.md",
+      "sha256": "bd1dda91a63c9a4b2f1732d273429f268ed081b65192787406d849f8c3ca3d8a",
+      "bytes": 26826
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/hic/fe4ac656317d24c37e81e7940a526ed9ea812f8e/main.nf",
+      "sha256": "591abc916dfe89ef123255640fa7130052f21d8a1a8c1738738e81427994d655",
+      "bytes": 1996
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/hic/fe4ac656317d24c37e81e7940a526ed9ea812f8e/nextflow.config",
+      "sha256": "cb195d1fbe1a7cc0e9f94826406f5479296add766757e1e81ee2dd78204e9518",
+      "bytes": 10893
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/hic/fe4ac656317d24c37e81e7940a526ed9ea812f8e/nextflow_schema.json",
+      "sha256": "430d2bb74c6e2d151591d476c872e54415e420b0b5d62d293a1ba947d44ebce5",
+      "bytes": 28151
+    },
+    {
+      "path": "workflows/hic.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/hic/fe4ac656317d24c37e81e7940a526ed9ea812f8e/workflows/hic.nf",
+      "sha256": "56559ca4712f5d4ce8aa5f75de0165fb07fb6db9c9bc0c8f80ea75f54bdc588b",
+      "bytes": 9923
+    }
+  ]
+}

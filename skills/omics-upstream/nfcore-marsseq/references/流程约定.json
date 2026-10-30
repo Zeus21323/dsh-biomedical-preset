@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/marsseq",
+  "skill_id": "nfcore-marsseq",
+  "scientific_title": "MARS-seq文库预处理与计数",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/marsseq",
+    "archived": false,
+    "revision_label": "1.0.3",
+    "commit": "b02ede773092f8a8a5999400acda6894d51b4d26",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=23.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "abab53beecb0a6c4260edba48513f2e93fe1a224dadb8cee15462e9888fba1c2"
+    },
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/marsseq/b02ede773092f8a8a5999400acda6894d51b4d26/LICENSE",
+      "sha256": "f19b62bb2772a55e10ff995149a2481d9fe1174c973b5081778e874ca10752e6",
+      "bytes": 1064
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/marsseq/b02ede773092f8a8a5999400acda6894d51b4d26/README.md",
+      "sha256": "dda2305a28aa4ecb8620e0460a0764971cdaa81f067a6701ac539b2ef4f9588d",
+      "bytes": 5855
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/marsseq/b02ede773092f8a8a5999400acda6894d51b4d26/docs/output.md",
+      "sha256": "44e97309388402afcf5b069f530180c14ac5e81258f793691209b27c8dd98725",
+      "bytes": 10308
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/marsseq/b02ede773092f8a8a5999400acda6894d51b4d26/docs/usage.md",
+      "sha256": "f1e0576c7798b7bb156242557b5315512cee30a5de472081cc9abe0b39a8c62b",
+      "bytes": 14439
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/marsseq/b02ede773092f8a8a5999400acda6894d51b4d26/main.nf",
+      "sha256": "97916f30554f7f6bd9400b7078ef3fbea24f9571f3a38b151a702fda61932e63",
+      "bytes": 2972
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/marsseq/b02ede773092f8a8a5999400acda6894d51b4d26/nextflow.config",
+      "sha256": "3d2f2a5d1f6b0fdb871694e887dd85426a16315d8b2a442016934c2d43352ca2",
+      "bytes": 9527
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/marsseq/b02ede773092f8a8a5999400acda6894d51b4d26/nextflow_schema.json",
+      "sha256": "abab53beecb0a6c4260edba48513f2e93fe1a224dadb8cee15462e9888fba1c2",
+      "bytes": 18728
+    },
+    {
+      "path": "workflows/build_references.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/marsseq/b02ede773092f8a8a5999400acda6894d51b4d26/workflows/build_references.nf",
+      "sha256": "3ff98cecc864e0f8734ce361820b86ea585e5ef40bbadaa57003cf37a17d36c9",
+      "bytes": 3558
+    },
+    {
+      "path": "workflows/marsseq.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/marsseq/b02ede773092f8a8a5999400acda6894d51b4d26/workflows/marsseq.nf",
+      "sha256": "a6c25f6d4a2cc89d557d27ffb38281fb6d0d4a42e112c1cd9a1a0c71a77c2f64",
+      "bytes": 9121
+    }
+  ]
+}

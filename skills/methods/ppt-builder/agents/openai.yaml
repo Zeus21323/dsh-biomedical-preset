@@ -1,0 +1,4 @@
+interface:
+  display_name: "PPT 生成器"
+  short_description: "状态化生成和导出中文研究 PPT"
+  default_prompt: "使用 $ppt-builder 为我的主题调研、规划并制作一份视觉统一的图片式 PPT，生成后先让我审阅。"

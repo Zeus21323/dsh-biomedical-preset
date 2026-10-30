@@ -1,0 +1,2126 @@
+{
+  "schema_version": 1,
+  "methods": [
+    {
+      "id": "dlrp-autocrine-loop",
+      "name": "DLRP/autocrine-loop",
+      "aliases": [],
+      "family": "历史方法",
+      "owner": "主通讯",
+      "kind": "historical",
+      "primary_sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/11685206/"
+      ],
+      "software_sources": [],
+      "catalog_source": null,
+      "execution_status": "documented",
+      "runner": null,
+      "version": "Nature Genetics 2001 archival algorithm; no released software or fixed DLRP snapshot located",
+      "last_api_verified": "2026-09-10",
+      "scope": "原论文以多样本表达中配体和受体的转录相关、随机配对背景及置换背景寻找潜在自分泌环。当前没有可固定的软件入口，原始DLRP资源快照及再分发许可也未取得；不能用现代LR库重写后仍称为原生DLRP。输入、原生步骤、预期图型和解除条件记录在待执行方法核验.json，可用audit_communication_method.py生成Git外就绪报告。",
+      "catalog_characterization": {},
+      "readiness_contract": "待执行方法核验.json#dlrp-autocrine-loop"
+    },
+    {
+      "id": "community-molecular-network",
+      "name": "Community Molecular Network",
+      "aliases": [],
+      "family": "历史方法",
+      "owner": "主通讯",
+      "kind": "historical",
+      "primary_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC3338330/"
+      ],
+      "software_sources": [],
+      "catalog_source": null,
+      "execution_status": "documented",
+      "runner": null,
+      "version": "Bioinformatics 2012 archival CMN + NetWalk workflow; executable release not located",
+      "last_api_verified": "2026-09-10",
+      "scope": "原方法为每个细胞类型复制细胞内网络，再以胞外/膜蛋白结合和共享代谢物连接细胞层，最后用NetWalk Edge Flux整合全基因组数据；不是普通LR矩阵。当前缺论文对应全局网络、NetWalk完整发布快照和可核实入口，不能用现有网络图冒充。输入、图型和解除条件见待执行方法核验.json。",
+      "catalog_characterization": {},
+      "readiness_contract": "待执行方法核验.json#community-molecular-network"
+    },
+    {
+      "id": "cccexplorer",
+      "name": "CCCExplorer",
+      "aliases": [],
+      "family": "历史方法",
+      "owner": "主通讯",
+      "kind": "historical",
+      "primary_sources": [
+        "https://github.com/methodistsmab/CCCExplorer"
+      ],
+      "software_sources": [
+        "https://github.com/methodistsmab/CCCExplorer"
+      ],
+      "catalog_source": null,
+      "execution_status": "documented",
+      "runner": null,
+      "version": "1.1.0 binary at commit 1344c6f5092f2794e7e6140124e12ebda736544b; license blocked",
+      "last_api_verified": "2026-09-10",
+      "scope": "原生桌面程序结合差异表达、LR、PPI和下游TF构建直接/连接网络并给出Fisher-like激活或失活证据。随仓EULA仅允许个人非商业使用，并明确禁止agents/bots修改、逆向、反编译或制作派生作品；因此不接受许可、不解包加密资源、不制作派生runner。只有权利人提供允许自动化的开放API/许可和公开资源后才可升级。",
+      "catalog_characterization": {},
+      "software_commit": "1344c6f5092f2794e7e6140124e12ebda736544b",
+      "readiness_contract": "待执行方法核验.json#cccexplorer"
+    },
+    {
+      "id": "cellphonedb",
+      "name": "CellPhoneDB",
+      "aliases": [
+        "CellPhoneDB v5",
+        "CellPhoneDB5"
+      ],
+      "family": "经典配体受体",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41586-018-0698-6",
+        "https://www.nature.com/articles/s41596-020-0292-x",
+        "https://www.nature.com/articles/s41588-021-00972-2",
+        "https://www.nature.com/articles/s41586-022-04918-4",
+        "https://www.nature.com/articles/s41596-024-01137-1"
+      ],
+      "software_sources": [
+        "https://github.com/ventolab/CellphoneDB"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "cellphonedb",
+      "version": "5.0.1",
+      "last_api_verified": "2026-09-08",
+      "scope": "逐方法原生适配；CellPhoneDB v5 单列版本配置，LIANA 内重实现与原生软件分别标识",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "Yes",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "Python"
+      }
+    },
+    {
+      "id": "cellchat",
+      "name": "CellChat",
+      "aliases": [],
+      "family": "经典配体受体",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://doi.org/10.1038/s41467-021-21246-9"
+      ],
+      "software_sources": [
+        "https://github.com/jinworks/CellChat"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "cellchat",
+      "version": "2.2.0.9001",
+      "last_api_verified": "2026-09-08",
+      "scope": "逐方法原生适配；CellPhoneDB v5 单列版本配置，LIANA 内重实现与原生软件分别标识",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq; STall",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "Yes",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "R; C++"
+      }
+    },
+    {
+      "id": "italk",
+      "name": "iTALK",
+      "aliases": [],
+      "family": "经典配体受体",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.biorxiv.org/content/10.1101/507871v1.full"
+      ],
+      "software_sources": [
+        "https://github.com/Coolgenome/iTALK"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "italk",
+      "version": "0.1.0",
+      "last_api_verified": "2026-09-08",
+      "scope": "原生rawParse/FindLR高表达候选分支；保留双端点均值，存在数量不冒充连续LR强度；DEG分支未核验",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "R"
+      }
+    },
+    {
+      "id": "singlecellsignalr",
+      "name": "SingleCellSignalR",
+      "aliases": [],
+      "family": "经典配体受体",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://doi.org/10.1093/nar/gkaa183"
+      ],
+      "software_sources": [
+        "https://bioconductor.org/packages/3.20/bioc/src/contrib/SingleCellSignalR_1.18.0.tar.gz"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "singlecellsignalr",
+      "version": "1.18.0",
+      "last_api_verified": "2026-09-08",
+      "scope": "原生v1.18 human counts准备、单样本cluster markers、autocrine/paracrine LRscore；不冒充v2 BulkSignalR整合接口",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "R"
+      }
+    },
+    {
+      "id": "natmi",
+      "name": "NATMI",
+      "aliases": [],
+      "family": "经典配体受体",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41467-020-18873-z"
+      ],
+      "software_sources": [
+        "https://github.com/forrest-lab/NATMI/"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "natmi",
+      "version": "git:c7ad5a953ff85a9a69f6c397fae26747a0f13e01",
+      "last_api_verified": "2026-09-08",
+      "scope": "原生ExtractEdges human connectomeDB2020 gene-symbol分支；表达与specificity分开，原生展示筛选阈值不是P/FDR",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq; bulk",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "Python"
+      },
+      "software_commit": "c7ad5a953ff85a9a69f6c397fae26747a0f13e01"
+    },
+    {
+      "id": "icellnet",
+      "name": "ICELLNET",
+      "aliases": [],
+      "family": "经典配体受体",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41467-021-21244-x",
+        "https://doi.org/10.1093/bioinformatics/btae089"
+      ],
+      "software_sources": [
+        "https://github.com/soumelis-lab/ICELLNET"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "icellnet",
+      "version": "2.2.1",
+      "last_api_verified": "2026-09-08",
+      "scope": "原生gene.scaling和icellnet.score；v2全部9列亚基传入缩放基因选择器，缺失复合物不算支持；真实样本分别评分，分数不具跨数据集绝对尺度",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq; bulk; microarray",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "Yes",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "R"
+      }
+    },
+    {
+      "id": "connectome",
+      "name": "Connectome",
+      "aliases": [],
+      "family": "经典配体受体",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41598-022-07959-x"
+      ],
+      "software_sources": [
+        "https://github.com/msraredon/Connectome"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "connectome",
+      "version": "1.0.1",
+      "last_api_verified": "2026-09-08",
+      "scope": "逐实际样本原生CreateConnectome与FilterConnectome；weight_norm和可能为负的weight_sc分开；表达比例/z支持而非LR联合P；FANTOM5资源固定摘要；复用原生结果。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "R"
+      },
+      "software_commit": "57c44b1a2cde4521c6192da3570cb215370eb0b5",
+      "inputs": [
+        "human expression/metadata RDS with genuine aligned counts",
+        "natural log1p normalized expression",
+        "isolated Seurat4.4.0/SeuratObject4.1.4"
+      ]
+    },
+    {
+      "id": "celltalker",
+      "name": "CellTalker",
+      "aliases": [],
+      "family": "经典配体受体",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.sciencedirect.com/science/article/pii/S1074761319304959"
+      ],
+      "software_sources": [
+        "https://github.com/arc85/celltalker"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "celltalker",
+      "version": "0.0.7.9000",
+      "last_api_verified": "2026-09-08",
+      "scope": "原生celltalk按实际样本计算双端点均值、LR细胞类型组合随机化及正态上尾P；追加完整有限候选BH并明确独立来源；不是供体条件检验，退化null未检验，保留原生对象复用。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "R"
+      },
+      "software_commit": "6edd610bf558bb1777590f8a6b02711ef7d0fc47",
+      "inputs": [
+        "human normalized expression/metadata RDS with genuine aligned counts",
+        "declared total-count thresholds",
+        "isolated Seurat4.4.0/SeuratObject4.1.4"
+      ]
+    },
+    {
+      "id": "sclr",
+      "name": "scLR",
+      "aliases": [],
+      "family": "经典配体受体",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://academic.oup.com/bioinformatics/article/38/12/3216/6575434"
+      ],
+      "software_sources": [
+        "https://github.com/cyhsuTN/scLR"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "sclr",
+      "version": "0.9.6",
+      "last_api_verified": "2026-09-09",
+      "scope": "原生scLR独立样本两条件Monte Carlo/BH；真实counts伪汇总、DESeq2 ByALL归一化，样本复制资格检查；保留零值插补与原生舍入语义，差异均值与插补前样本端点分开。无配对/协变量支持。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "R"
+      },
+      "software_commit": "7e2d5eedb713b867414f563c24b2dce40cb07e70",
+      "inputs": [
+        "human raw integer counts/metadata RDS",
+        "versioned single-gene LR TSV",
+        "independent two-condition sample design provenance"
+      ]
+    },
+    {
+      "id": "liana",
+      "name": "LIANA",
+      "aliases": [],
+      "family": "共识与大规模",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://liana-py.readthedocs.io/en/stable/"
+      ],
+      "software_sources": [],
+      "catalog_source": null,
+      "execution_status": "framework_execution_supported",
+      "runner": "liana",
+      "version": "1.10.0",
+      "last_api_verified": "2026-09-08",
+      "scope": "此通用名称默认路由到已核验的LIANA+ Python框架，同一执行不计作第二种独立算法；原始LIANA R接口尚未核验，不冒名执行。",
+      "catalog_characterization": {},
+      "equivalent_execution": "liana-plus"
+    },
+    {
+      "id": "liana-plus",
+      "name": "LIANA+",
+      "aliases": [
+        "LIANA+ rank_aggregate",
+        "LIANA+ cellphonedb",
+        "LIANA+ cellchat",
+        "LIANA+ connectome",
+        "LIANA+ natmi",
+        "LIANA+ singlecellsignalr",
+        "LIANA+ geometric_mean"
+      ],
+      "family": "共识与大规模",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41556-024-01469-w"
+      ],
+      "software_sources": [
+        "https://github.com/saezlab/liana-py"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "framework_execution_supported",
+      "runner": "liana",
+      "version": "1.10.0",
+      "last_api_verified": "2026-09-08",
+      "scope": "LIANA+ Python框架；LIANA R旧版不冒名执行。可配置共识或明确的成员重实现。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq; STall",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "Yes",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "Python"
+      }
+    },
+    {
+      "id": "fastccc",
+      "name": "FastCCC",
+      "aliases": [],
+      "family": "共识与大规模",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41467-025-66272-z"
+      ],
+      "software_sources": [],
+      "catalog_source": null,
+      "execution_status": "native_execution_supported",
+      "runner": "fastccc",
+      "version": "1.0.1",
+      "last_api_verified": "2026-09-08",
+      "scope": "共识和大规模执行；锁定实际包含的成员方法、数据库、评分方向与聚合语义",
+      "catalog_characterization": {}
+    },
+    {
+      "id": "nichenet",
+      "name": "NicheNet",
+      "aliases": [],
+      "family": "靶基因与胞内网络",
+      "owner": "分泌蛋白活性推断",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41592-019-0667-5"
+      ],
+      "software_sources": [
+        "https://github.com/saeyslab/nichenetr"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "nichenet",
+      "version": "2.2.1.1",
+      "last_api_verified": "2026-09-08",
+      "scope": "每方法独立函数；从表达/响应程序执行到 ligand、receptor、TF、target 或 flow 结果，保留原生对象",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq; bulk",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "R"
+      }
+    },
+    {
+      "id": "cellcall",
+      "name": "CellCall",
+      "aliases": [],
+      "family": "靶基因与胞内网络",
+      "owner": "分泌蛋白活性推断",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://academic.oup.com/nar/article/49/15/8520/6332819"
+      ],
+      "software_sources": [
+        "https://github.com/ShellyCoder/cellcall"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "cellcall",
+      "version": "1.0.7",
+      "last_api_verified": "2026-09-08",
+      "scope": "原生CellCall LR–TF整合；extended参数仅为本包数据库分支，独立CellCallEXT由其单独原生适配器执行",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "Yes",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "R"
+      },
+      "software_commit": "5066738689017cd1ebe9356d534003fe58b4c54e"
+    },
+    {
+      "id": "cellcallext",
+      "name": "CellCallEXT",
+      "aliases": [],
+      "family": "靶基因与胞内网络",
+      "owner": "分泌蛋白活性推断",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.mdpi.com/2072-6694/14/19/4957"
+      ],
+      "software_sources": [
+        "https://github.com/shouguog/cellcallEXT"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "cellcallext",
+      "version": "0.0.0.9000",
+      "last_api_verified": "2026-09-08",
+      "scope": "独立CellCallEXT原生病例对照regulon整合；按细胞池化，不支持供体协变量；绘图导入兼容补丁不改评分源码",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "Yes",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "R"
+      },
+      "software_commit": "8ce584ac27ebf2f709a1e1b640f8834dbbac27e6"
+    },
+    {
+      "id": "domino",
+      "name": "Domino",
+      "aliases": [
+        "dominoSignal"
+      ],
+      "family": "靶基因与胞内网络",
+      "owner": "分泌蛋白活性推断",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41551-021-00770-5"
+      ],
+      "software_sources": [
+        "https://github.com/Elisseeff-Lab/domino",
+        "https://github.com/FertigLab/dominoSignal"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "domino",
+      "version": "dominoSignal 1.7.0",
+      "last_api_verified": "2026-09-09",
+      "scope": "原生dominoSignal续作create/build，真实TF活性与regulon剪枝、完整亚基中位相关、原生簇TF未校正Wilcoxon筛选及信号矩阵；保留该版本单配体接收群汇总为0的原生行为，不作为供体差异检验。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "R"
+      },
+      "software_commit": "86b9188b10ac19d264e3329178eeb0521a6a3d2c"
+    },
+    {
+      "id": "cytotalk",
+      "name": "CytoTalk",
+      "aliases": [],
+      "family": "靶基因与胞内网络",
+      "owner": "分泌蛋白活性推断",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.science.org/doi/10.1126/sciadv.abf1356"
+      ],
+      "software_sources": [
+        "https://github.com/tanlabcode/CytoTalk",
+        "https://github.com/huBioinfo/CytoTalk/releases/tag/v2.1"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "cytotalk",
+      "version": "0.99.9 + pinned PCST/RNG adapter",
+      "last_api_verified": "2026-09-09",
+      "scope": "原生CytoTalk run_cytotalk；同一池化样本的全部细胞类型用于PEM背景，对指定两群执行MI/ARACNE胞内网络、LR跨群边、pcst_fast及路径Gamma拟合；保留完整原生对象、网络、KS P下溢并列、路径与自动图集；无供体差异或因果推断",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "R; Matlab"
+      },
+      "software_commit": "451adfa50e6af4c38d29cbb9fc0c0139a5d3c3c5",
+      "pcst_fast_commit": "25ab31a245b2278848b5a8814924cdb3039b4279"
+    },
+    {
+      "id": "scseqcomm",
+      "name": "scSeqComm",
+      "aliases": [],
+      "family": "靶基因与胞内网络",
+      "owner": "分泌蛋白活性推断",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://academic.oup.com/bioinformatics/article/38/7/1920/6511439"
+      ],
+      "software_sources": [
+        "https://gitlab.com/sysbiobig/scseqcomm"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "scseqcomm",
+      "version": "2.0.0",
+      "last_api_verified": "2026-09-08",
+      "scope": "原生scSeqComm 2.0.0；分别导出S_inter/S_intra；multi-sample差异分支使用独立样本Wilcoxon/BH及样本平均表达胞内响应，无配对/协变量；保留原生缺失和阴性结果",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "Yes",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "R; C++"
+      }
+    },
+    {
+      "id": "scmlnet",
+      "name": "scMLnet",
+      "aliases": [],
+      "family": "靶基因与胞内网络",
+      "owner": "分泌蛋白活性推断",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://academic.oup.com/bib/article/22/2/988/6042243"
+      ],
+      "software_sources": [
+        "https://github.com/SunXQlab/scMLnet"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "scmlnet",
+      "version": "0.1.0 + audited pooled-cell adapter",
+      "last_api_verified": "2026-09-09",
+      "scope": "固定作者原始counts与单一发送→接收群调用原生RunMLnet，保留LR–Receptor–TF–Target边身份；独立复算点概率及全部Kendall候选并暴露上游字符P阈值漏选。结果是池化细胞描述，无供体推断、边强度或因果效应；多样本须分别运行后比较。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "R"
+      },
+      "source_commit": "ef2c245e2ce4c08839dd471fc67b37b65a8de3d1"
+    },
+    {
+      "id": "cellcomm",
+      "name": "CellComm",
+      "aliases": [],
+      "family": "靶基因与胞内网络",
+      "owner": "分泌蛋白活性推断",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41556-022-00884-1"
+      ],
+      "software_sources": [
+        "https://github.com/edroaldo/fusca"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "cellcomm",
+      "version": "1.3.1 + deterministic documented-intent permutation adapter",
+      "last_api_verified": "2026-09-09",
+      "scope": "固定FUSCA源码与版本化LR资源，调用CellComm原生population.pairing、calculateObservedMean及calculatePvalue；以显式seed串行实现作者文档所述的保群大小标签置换，保留全部候选、原始经验P、BH诊断、置换分辨率、原生对象和自动图集。当前验收群间LR核心；未提供物种匹配PPI/GRN/marker和Java Flow时不补造PPI→TF胞内路径。池化细胞标签置换不是供体推断、分子通量或因果证据。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq; STall",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "R"
+      },
+      "source_commit": "348d653184928d430bb8db7489f80947f25cc93e"
+    },
+    {
+      "id": "commpath",
+      "name": "CommPath",
+      "aliases": [],
+      "family": "靶基因与胞内网络",
+      "owner": "分泌蛋白活性推断",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.sciencedirect.com/science/article/pii/S2001037022004755"
+      ],
+      "software_sources": [
+        "https://github.com/yingyonghui/CommPath"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "commpath",
+      "version": "1.1.0",
+      "last_api_verified": "2026-09-08",
+      "scope": "原生marker、LR筛选、GSVA、群内通路差异、filterLR/filterPath/pathNet；原生筛后q的范围完整声明，不作供体条件FDR；LR与受体所属激活通路分开输出，无TF时不补造。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "R"
+      },
+      "software_commit": "f40286445f9bd74d0f5370667d7d12735ba8d3cf",
+      "inputs": [
+        "human log1p normalized expression/metadata RDS",
+        "GSVA2.0.7"
+      ]
+    },
+    {
+      "id": "flowsig",
+      "name": "FlowSig",
+      "aliases": [],
+      "family": "靶基因与胞内网络",
+      "owner": "分泌蛋白活性推断",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41592-024-02380-w"
+      ],
+      "software_sources": [
+        "https://github.com/axelalmet/flowsig"
+      ],
+      "catalog_source": null,
+      "execution_status": "native_execution_supported",
+      "runner": "flowsig",
+      "version": "0.5.5",
+      "last_api_verified": "2026-09-08",
+      "scope": "两条件非空间原生CellChat+GEM→FlowSig构建与100次以上细胞bootstrap；支持作者GEM复用或原生NMF，保留数值/变异资格排除。不提供供体层因果检验。",
+      "catalog_characterization": {}
+    },
+    {
+      "id": "multinichenet",
+      "name": "MultiNicheNet",
+      "aliases": [],
+      "family": "条件差异",
+      "owner": "主通讯路由；MultiNicheNet 归分泌蛋白 skill",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://doi.org/10.1101/2023.06.13.544751"
+      ],
+      "software_sources": [
+        "https://github.com/saeyslab/multinichenetr"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "multinichenet",
+      "version": "2.1.0",
+      "last_api_verified": "2026-09-08",
+      "scope": "每方法核验统计单位和设计能力；scTenifoldXct 的目标与多供体条件比较分别说明，不能由文件归组推定支持",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "R"
+      }
+    },
+    {
+      "id": "scseqcommdiff",
+      "name": "scSeqCommDiff",
+      "aliases": [],
+      "family": "条件差异",
+      "owner": "主通讯路由；MultiNicheNet 归分泌蛋白 skill",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC12204404/"
+      ],
+      "software_sources": [],
+      "catalog_source": null,
+      "execution_status": "native_execution_supported",
+      "runner": "scseqcomm",
+      "version": "2.0.0",
+      "last_api_verified": "2026-09-08",
+      "scope": "原生scSeqComm 2.0.0；分别导出S_inter/S_intra；multi-sample差异分支使用独立样本Wilcoxon/BH及样本平均表达胞内响应，无配对/协变量；保留原生缺失和阴性结果",
+      "catalog_characterization": {}
+    },
+    {
+      "id": "scdiffcom",
+      "name": "scDiffCom",
+      "aliases": [],
+      "family": "条件差异",
+      "owner": "主通讯路由；MultiNicheNet 归分泌蛋白 skill",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s43587-023-00514-x"
+      ],
+      "software_sources": [
+        "https://github.com/CyrilLagger/scDiffCom/tree/master"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "scdiffcom",
+      "version": "1.2.0",
+      "last_api_verified": "2026-09-08",
+      "scope": "原生双条件细胞池化置换、完整表达候选并集BH、原生检测/差异标签及CCI类别ORA；非供体混合模型，复用须核验原生对象摘要",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "Yes",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "R"
+      }
+    },
+    {
+      "id": "sctenifoldxct",
+      "name": "scTenifoldXct",
+      "aliases": [],
+      "family": "靶基因与胞内网络",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.sciencedirect.com/science/article/pii/S2405471223000303"
+      ],
+      "software_sources": [
+        "https://github.com/cailab-tamu/scTenifoldXct"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "sctenifoldxct",
+      "version": "0.2.2",
+      "last_api_verified": "2026-09-09",
+      "scope": "原生逐样本pcNet、双图Stiefel流形训练、经验距离背景检验或全跨基因对chi2/BH；保留真实3D基因嵌入、所有训练步、低细胞样本资格。经验P未校正，不是细胞标签置换；当前入口不作多供体条件差异/敲除分析。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "Python"
+      },
+      "software_commit": "01f6666238e135e473039707025583447039444c"
+    },
+    {
+      "id": "tensor-cell2cell",
+      "name": "Tensor-cell2cell",
+      "aliases": [],
+      "family": "通讯模式与网络",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41467-022-31369-2"
+      ],
+      "software_sources": [
+        "https://github.com/earmingol/cell2cell"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "tensor-cell2cell",
+      "version": "0.9.0",
+      "last_api_verified": "2026-09-08",
+      "scope": "原生模式分解、因子稳定性、网络后处理；不将因子载荷或中心性当条件差异 P 值",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq; bulk",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "Yes",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "Python"
+      }
+    },
+    {
+      "id": "cell2cell",
+      "name": "cell2cell",
+      "aliases": [],
+      "family": "通讯模式与网络",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010715"
+      ],
+      "software_sources": [
+        "https://earmingol.github.io/cell2cell/"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "cell2cell",
+      "version": "0.9.0",
+      "last_api_verified": "2026-09-09",
+      "scope": "原生SingleCellInteractions非零细胞比例、二元CCC、细胞标签双尾置换与有向Bray-Curtis-like CCI；完整复合体检查、反向资源去重范围、原生对象复用；与Tensor-cell2cell独立。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq; bulk",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "Python"
+      }
+    },
+    {
+      "id": "sctensor",
+      "name": "scTensor",
+      "aliases": [],
+      "family": "通讯模式与网络",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-023-05490-y"
+      ],
+      "software_sources": [
+        "https://github.com/rikenbit/scTensor"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "sctensor",
+      "version": "2.18.2",
+      "last_api_verified": "2026-09-09",
+      "scope": "原生NTD2及自动NMF RSS秩选择；人类唯一NCBI Gene ID与固定LRBase。逐样本类型均值外积、完整核心张量、多种子匹配与重构诊断；无复合体联合检验、供体差异P或因果含义。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "R"
+      },
+      "software_commit": "4cd7e4c92575387edfaa942f4a01bb641aa82d9c"
+    },
+    {
+      "id": "comunet",
+      "name": "COMUNET",
+      "aliases": [],
+      "family": "通讯模式与网络",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://academic.oup.com/bioinformatics/article/36/15/4296/5836497"
+      ],
+      "software_sources": [
+        "https://github.com/ScialdoneLab/COMUNET/tree/master/COMUNET"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "comunet",
+      "version": "0.1.0",
+      "last_api_verified": "2026-09-09",
+      "scope": "原生通讯层不相似度、平均连接/dynamicTreeCut聚类、二元模式搜索及两输入拓扑比较；已有通讯结果下游，不产生新LR显著性或供体差异P；缺测不补0，空层/未分配类保留记录。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "LRanalysis",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "R"
+      },
+      "software_commit": "4fd4635c196fa597545b14c45ebf241aad252f76"
+    },
+    {
+      "id": "crosstalker",
+      "name": "CrossTalkeR",
+      "aliases": [],
+      "family": "通讯模式与网络",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://academic.oup.com/bioinformatics/article/37/22/4263/6275746"
+      ],
+      "software_sources": [
+        "https://github.com/CostaLab/CrossTalkeR"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "crosstalker",
+      "version": "2.0.0",
+      "last_api_verified": "2026-09-09",
+      "scope": "原生细胞/细胞-基因图、中心性、PCA与网络差值；Fisher为未校正图条目构成比例，不是供体差异。可选原生KEGG仅保留表并注明内置背景，未替代实测背景验收。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "LRanalysis",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "Yes",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "R"
+      },
+      "software_commit": "8bca82e13fd099e9d731832d3e2f7ef841876c0a"
+    },
+    {
+      "id": "soptsc",
+      "name": "SoptSC",
+      "aliases": [],
+      "family": "单细胞与动态",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://academic.oup.com/nar/article/47/11/e66/5421812"
+      ],
+      "software_sources": [
+        "https://github.com/WangShuxiong/SoptSC",
+        "https://mkarikom.github.io/RSoptSC/"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "soptsc",
+      "version": "RSoptSC 0.0.0.9000 signaling module",
+      "last_api_verified": "2026-09-09",
+      "scope": "固定RSoptSC源码及版本化Ligand-Receptor、Receptor-Target资源，原生调用ImportPathway、GetSignalingPartners、ClusterSig与ClusterSig_single，交付单LR群级接收份额、等权LR汇总群网络、路径表达和Ligand→Receptor→up/down Target成员图。单LR只对有正信号的发送细胞求均值，群汇总先算各LR群分布再等权归一化；无置换、P值、供体模型或条件检验，正值不是显著性、分子通量或因果证据。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "R; Matlab"
+      },
+      "source_commit": "052195bb98157e6a35957b71141ef1bf5bb9f024"
+    },
+    {
+      "id": "scriabin",
+      "name": "scriabin",
+      "aliases": [],
+      "family": "单细胞与动态",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41587-023-01782-z"
+      ],
+      "software_sources": [
+        "https://github.com/BlishLab/scriabin"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "scriabin",
+      "version": "0.0.0.9000 dual-module adapter",
+      "last_api_verified": "2026-09-09",
+      "scope": "固定scriabin源码与内置OmniPath资源，分两个隔离环境原生执行：Seurat 4.4.0运行单细胞对CCIM及原始/深度校正prior graph，Seurat 5.5.1运行LR共变InteractionPrograms、随机集合检验、程序打分与细胞群汇总。CCIM几何表达、群总和/均值、深度残差、程序kWithin、AddModuleScore及程序相加分数均分列交付；上游所谓program pval是随机LR集合的Wilcoxon raw P大于0.05的比例，不是常规P值。没有供体模型、条件检验、分子通量或因果效应。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq; STspot",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "R"
+      },
+      "source_commit": "bce695bd598e2e2d37e51d983dca2a29d5ef61c7"
+    },
+    {
+      "id": "sccomm",
+      "name": "scComm",
+      "aliases": [],
+      "family": "单细胞与动态",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC13134144/"
+      ],
+      "software_sources": [
+        "https://github.com/ZijieJin/scComm"
+      ],
+      "catalog_source": null,
+      "execution_status": "native_execution_supported",
+      "runner": "sccomm",
+      "version": "source ed0f372",
+      "last_api_verified": "2026-09-09",
+      "scope": "原生细胞/群/LR评分、100次群层置换、SupCon分类及自定义集合；保留原生LR非统一校正、增强标签非真值和历史最优状态浅引用限制。自动评分/分类/训练曲线，按规模明确完整候选与展示子集。",
+      "catalog_characterization": {},
+      "software_commit": "ed0f372fdc122333afa834150c566948bef68a29"
+    },
+    {
+      "id": "trasig",
+      "name": "TraSig",
+      "aliases": [],
+      "family": "单细胞与动态",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02629-7"
+      ],
+      "software_sources": [
+        "https://github.com/doraadong/TraSig"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "trasig",
+      "version": "1.0.0 + audited permutation adapter",
+      "last_api_verified": "2026-09-09",
+      "scope": "原生 unaligned 滑窗 dot/cov 轨迹评分；上游置换会原地污染真实伪时间，精确上游 P 值被禁用，按其文档意图使用不改写输入的条件时间置换并明确标记；当前不支持未验收的 DTW 分支或供体差异",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "PTtrajectories",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "Python"
+      },
+      "source_commit": "465cffc10a77502aaee0b60f4d73940ca2e32379"
+    },
+    {
+      "id": "timetalk",
+      "name": "TimeTalk",
+      "aliases": [],
+      "family": "单细胞与动态",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s42003-023-05283-2"
+      ],
+      "software_sources": [
+        "https://github.com/ChengLiLab/TimeTalk"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "timetalk",
+      "version": "0.0.310.316 + explicit multiplicity and real-cell support gate",
+      "last_api_verified": "2026-09-09",
+      "scope": "固定已有Monocle3伪时间，原生cellAlign插值、LR Spearman筛选与双向Granger LR–TF检验；保留原生raw-P PASS，另列两方向Bonferroni与全LR–TF BH，并以真实细胞数门槛阻止插值点冒充支持；不作供体推断或实验因果结论",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "R"
+      },
+      "source_commit": "efcf887d285d7c8dafa5e2df7b17aa8280ae9c37"
+    },
+    {
+      "id": "cccvelo",
+      "name": "CCCvelo",
+      "aliases": [],
+      "family": "单细胞与动态",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s43588-025-00934-2"
+      ],
+      "software_sources": [
+        "https://github.com/SunXQlab/CCCvelo",
+        "https://github.com/SunXQlab/CCCvelo-analysis",
+        "https://doi.org/10.5281/zenodo.17384457"
+      ],
+      "catalog_source": null,
+      "execution_status": "documented",
+      "runner": null,
+      "version": "source audit at commit 0abd1f1; upstream execution blocked",
+      "last_api_verified": "2026-09-09",
+      "scope": "方法需要高分辨率空间表达、真实二维坐标、细胞类型、版本化Ligand–Receptor–TF–Target资源、候选基因和插补层，联合拟合LR空间信号、TF/TG动力学、潜时间与速度。当前GitHub固定提交的顶层run_CCCvelo.py存在未闭合字符串语法错误和Windows绝对路径；calculateLRscore.py以不存在的mode参数调用build_DT_neighbors；train_CCCvelo.py导入requirements未声明的TFvelo；requirements又固定仅Windows可用的pywin32。Zenodo在本次环境无法连接。未获得可编译、资源完整且与论文发布一致的上游快照前保持documented，不用自写速度模型或其他通讯工具冒充原生CCCvelo。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "high-resolution spatial transcriptomics",
+        "INPUT - Additional mandatory input": "spatial coordinates; cell types; imputed expression; Ligand-Receptor-TF-Target priors; candidate ligands/receptors/targets",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "Python; R"
+      },
+      "source_commit": "0abd1f13e1caf36b475d12b220d31ee1f958e9f4",
+      "analysis_source_commit": "3c27d7cb4daf70468a96d8fc9eaffcdf597b105f",
+      "readiness_contract": "待执行方法核验.json#cccvelo"
+    },
+    {
+      "id": "neuronchat",
+      "name": "NeuronChat",
+      "aliases": [],
+      "family": "特殊分子",
+      "owner": "主通讯神经分支；MEBOCOST 归代谢 skill",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://doi.org/10.1038/s41467-023-36800-w"
+      ],
+      "software_sources": [],
+      "catalog_source": null,
+      "execution_status": "native_execution_supported",
+      "runner": "neuronchat",
+      "version": "1.0.0",
+      "last_api_verified": "2026-09-08",
+      "scope": "递质合成/运输与代谢物感知证据分开；CellPhoneDB v5 非肽类分支通过主通讯对应适配器接入",
+      "catalog_characterization": {},
+      "source_commit": "36e06b29397558ba2433bd5deccacd7f2071170e"
+    },
+    {
+      "id": "scconnect",
+      "name": "scConnect",
+      "aliases": [],
+      "family": "特殊分子",
+      "owner": "主通讯神经分支；MEBOCOST 归代谢 skill",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://academic.oup.com/bioinformatics/article/37/20/3501/6273571"
+      ],
+      "software_sources": [
+        "https://github.com/JonETJakobsson/scConnect"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "scconnect",
+      "version": "1.0.4",
+      "last_api_verified": "2026-09-08",
+      "scope": "原生scConnect meanExpression、1000标签置换和GtoPdb肽/递质代理；分别保留两端q，不声称LR联合FDR",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "Yes",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "Python"
+      },
+      "software_commit": "546053d7a8a18762b90f4a5e4ca2a76be7a2b459"
+    },
+    {
+      "id": "mebocost",
+      "name": "MEBOCOST",
+      "aliases": [],
+      "family": "特殊分子",
+      "owner": "主通讯神经分支；MEBOCOST 归代谢 skill",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://academic.oup.com/nar/article/53/12/gkaf569/8174779"
+      ],
+      "software_sources": [],
+      "catalog_source": null,
+      "execution_status": "native_execution_supported",
+      "runner": "mebocost",
+      "version": "1.2.2",
+      "last_api_verified": "2026-09-08",
+      "scope": "递质合成/运输与代谢物感知证据分开；CellPhoneDB v5 非肽类分支通过主通讯对应适配器接入",
+      "catalog_characterization": {},
+      "source_commit": "3e0be6f638b71c0f5bd08cef8b1448ae5230560e"
+    },
+    {
+      "id": "spaotsc",
+      "name": "SpaOTsc",
+      "aliases": [],
+      "family": "空间推断与关联",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41467-020-15968-5"
+      ],
+      "software_sources": [
+        "https://github.com/zcang/SpaOTsc"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "spaotsc",
+      "version": "0.2",
+      "last_api_verified": "2026-09-09",
+      "scope": "原生 spatial_signaling_ot 平衡 Sinkhorn 传输；使用真实空间坐标，保留完整细胞对矩阵、群对描述汇总及边缘守恒诊断；不提供 P/FDR 或供体差异，rho 在该原生实现中未进入计算",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq AND STsc",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "Python"
+      },
+      "source_commit": "def276221e3b636916a812b39f2658737584c212"
+    },
+    {
+      "id": "giotto",
+      "name": "Giotto",
+      "aliases": [],
+      "family": "空间推断与关联",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://doi.org/10.1186/s13059-021-02286-2"
+      ],
+    "software_sources": [
+      "https://github.com/RubD/Giotto",
+      "https://giottosuite.readthedocs.io/en/master/index.html"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+    "execution_status": "native_execution_supported",
+    "runner": "giotto",
+    "version": "1.1.0 (paper-era tag v1.1.0)",
+    "last_api_verified": "2026-09-10",
+    "scope": "固定RubD/Giotto v1.1.0原生执行exprCellCellcom、spatCellCellcom与combCCcom；每个样本分别建立Delaunay网络，交付表达标签置换、空间邻域内同群组成抽样、全部原生均值/效应/P/q/PI、空间与表达PI秩、恢复曲线、真实坐标和无向邻域。原生P是置换差值符号比例，空间分支对约1e-16名义并列敏感；没有供体条件模型，PI也不是通讯通量。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "STall",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "R"
+      },
+      "source_commit": "eaccf736f431bdf80633bd05feb975c5b276b7df"
+    },
+    {
+      "id": "squidpy",
+      "name": "Squidpy",
+      "aliases": [],
+      "family": "空间推断与关联",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://doi.org/10.1038/s41592-021-01358-2"
+      ],
+      "software_sources": [
+        "https://squidpy.readthedocs.io/en/stable/index.html"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "squidpy",
+      "version": "1.8.3",
+      "last_api_verified": "2026-09-08",
+      "scope": "原生单基因LR标签置换与真实组织邻域富集分开执行；单样本计算，禁止以邻域Z冒充有向LR通讯；复合物min/all尚不声明支持",
+      "catalog_characterization": {
+        "INPUT - Type of data": "STall",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "Python"
+      }
+    },
+    {
+      "id": "spatalk",
+      "name": "SpaTalk",
+      "aliases": [],
+      "family": "空间推断与关联",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41467-022-32111-8"
+      ],
+      "software_sources": [
+        "https://github.com/ZJUFanLab/SpaTalk"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "spatalk",
+      "version": "1.0",
+      "last_api_verified": "2026-09-08",
+      "scope": "原生单细胞空间近邻LR、接收端TF评分及真实路径；spot解卷积尚未适配。只保留原生筛后候选，不提供全候选FDR。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "STall",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "R"
+      },
+      "source_commit": "c86829c42008fb059eba75bec1eec523378e8da6"
+    },
+    {
+      "id": "commot",
+      "name": "COMMOT",
+      "aliases": [],
+      "family": "空间推断与关联",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41592-022-01728-4"
+      ],
+      "software_sources": [
+        "https://github.com/zcang/COMMOT"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "commot",
+      "version": "0.0.3",
+      "last_api_verified": "2026-09-08",
+      "scope": "每方法独立函数；分别承载关联、邻近过滤、传输和响应；Squidpy 的 LR 检验与邻域模块分开输出",
+      "catalog_characterization": {
+        "INPUT - Type of data": "STall",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "Yes",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "Python"
+      }
+    },
+    {
+      "id": "spatialdm",
+      "name": "SpatialDM",
+      "aliases": [],
+      "family": "空间推断与关联",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41467-023-39608-w"
+      ],
+      "software_sources": [
+        "https://github.com/StatBiomed/SpatialDM"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "spatialdm",
+      "version": "0.3.1",
+      "last_api_verified": "2026-09-08",
+      "scope": "每方法独立函数；分别承载关联、邻近过滤、传输和响应；Squidpy 的 LR 检验与邻域模块分开输出",
+      "catalog_characterization": {
+        "INPUT - Type of data": "STall",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "Yes",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "Python"
+      }
+    },
+    {
+      "id": "stlearn",
+      "name": "stLearn",
+      "aliases": [],
+      "family": "空间推断与关联",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41467-023-43120-6"
+      ],
+      "software_sources": [
+        "https://stlearn.readthedocs.io/en/latest/",
+        "https://github.com/BiomedicalMachineLearning/stLearn"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "stlearn",
+      "version": "1.4.1 (tag V1.4.1)",
+      "last_api_verified": "2026-09-10",
+      "software_commit": "03e38844a599ef4f3df8235e3f57bd74a9e96fcf",
+      "scope": "固定 stLearn V1.4.1 原生 SCTP 与细胞类型 CCI：逐样本使用真实二维空间坐标、显式归一化与距离来源，支持离散标签或严格对齐的 spot 细胞混合比例；自动输出 LR 汇总、spot 分数/q 值、空间配体→受体边、原生细胞类型行列计数、稳定性、热图、网络、弦图和论文概览。CCI 行列角色不解析分子发送方向，经验 P 无伪计数且未经多重校正；Numba 并行随机置换不可完全复现，因此支持结论必须通过重复置换稳定率。方法不提供供体条件推断。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "STall",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "Yes",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "Python"
+      }
+    },
+    {
+      "id": "scotia",
+      "name": "SCOTIA",
+      "aliases": [],
+      "family": "空间推断与关联",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41588-024-01890-9",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10327107/"
+      ],
+      "software_sources": [
+        "https://github.com/Caochris/SCOTIA"
+      ],
+      "catalog_source": null,
+      "execution_status": "native_execution_supported",
+      "runner": "scotia",
+      "version": "1.0.0 (fixed commit; no upstream tag)",
+      "last_api_verified": "2026-09-10",
+      "software_commit": "5c5feef08c1bb0d68e654b2f436be17cef2b36e7",
+      "scope": "固定 SCOTIA 1.0.0 原生 DBSCAN/forest-fire 空间簇、邻近簇筛选、非平衡最优传输、post_ot 汇总及教程坐标抖动+表达行置换。要求单细胞分辨率整数 counts、微米坐标、sample/FOV/cell_type 和版本化同物种 LR；按全输入基因正值 99% 分位缩放并截断。自动输出细胞类型与原生聚类空间图、eps/聚类资格热图、细胞级 OT 箭头、LR 气泡/网络/弦图、观测-null 和置换敏感性图。原生 P 严格比较 null>observed、无伪计数，缺失 null 候选按 0；适配器另在样本/有向细胞类型对内做 BH。方法不提供供体条件模型。",
+      "catalog_characterization": {}
+    },
+    {
+      "id": "nichede",
+      "name": "NicheDE",
+      "aliases": [],
+      "family": "空间推断与关联",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10785550/"
+      ],
+      "software_sources": [
+        "https://github.com/kaishumason/NicheDE"
+      ],
+      "catalog_source": null,
+      "execution_status": "native_execution_supported",
+      "runner": "nichede",
+      "version": "nicheDE 0.0.0.9000",
+      "last_api_verified": "2026-09-09",
+      "scope": "原生逐样本空间邻域、Poisson均值/NB离散度或连续值线性回归、多核分层检验；按焦点调用Niche-LR。保留原生缺失传播、拟合不可用与受体索引限制。输出空间邻域、回归及基因检验图，不冒充供体差异/独立受体验证。",
+      "catalog_characterization": {},
+      "software_commit": "87e0e89bb066702a54fa47638965b61dc6f24d05"
+    },
+    {
+      "id": "spacci",
+      "name": "SpaCCI",
+      "aliases": [],
+      "family": "空间推断与关联",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://litingku.github.io/SpaCCI/docs/tutorial2/"
+      ],
+      "software_sources": [
+        "https://github.com/LitingKu/SpaCCI",
+        "https://litingku.github.io/SpaCCI/docs/tutorial1/",
+        "https://litingku.github.io/SpaCCI/docs/tutorial3/"
+      ],
+      "catalog_source": null,
+      "execution_status": "native_execution_supported",
+      "runner": "spacci",
+      "version": "1.0.3 (fixed commit; no upstream tag)",
+      "last_api_verified": "2026-09-10",
+      "software_commit": "87ce16eb75a901440f4744594b7eae247cd6fead",
+      "scope": "固定 SpaCCI 1.0.3 原生 global/regional/local 分支：以归一化的基因×spot表达、spot细胞比例和真实二维坐标，运行NNLS、复合物几何均值、15近邻过滤与原生置换。可用固定的CellChat、CellPhoneDB、Cellinker、ICELLNET或ConnectomeDB资源。上游三个分支都把BH校正值立即覆盖为原始P；适配器保留原生字段并重算明确作用域的BH。一次运行直接交付全局/区域/局部完整表、LR气泡图、热图、有向网络、弦图、论文概览、区域成员图和局部强度/BH证据图。统计单位是样本内spot/区域，不提供供体条件模型。",
+      "catalog_characterization": {}
+    },
+    {
+      "id": "svca",
+      "name": "SVCA",
+      "aliases": [],
+      "family": "微环境效应",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.sciencedirect.com/science/article/pii/S2211124719311325"
+      ],
+      "software_sources": [
+        "https://github.com/damienArnol/svca"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "svca",
+      "version": "0.0.1 + bundled limix 0.8.5 (fixed commit; no upstream tag)",
+      "last_api_verified": "2026-09-10",
+      "software_commit": "1454c908b360a6118c2384c675aecdb9de7fca2e",
+      "scope": "固定SVCA 0.0.1与仓库内limix 0.8.5原生模型：在每个真实空间单细胞图像内，对选定RNA/蛋白特征分解内在分子状态、非特异空间环境、细胞交互和残差方差；保留原始分量、行归一化方差签名、原生10点长度网格与选择尺度，并可选运行作者嵌套折外预测。一次运行生成堆叠方差签名、分量小提琴/箱线图、特征分组图、热图、交互方差供体点图、尺度图及输入空间背景图；交叉验证开启时另生成R²汇总和热图。SVCA不估计LR、命名发送/接收细胞、局部交互分数或P值，因此不补造气泡图、弦图或显著性。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "STsc",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "R; Python"
+      }
+    },
+    {
+      "id": "misty",
+      "name": "MISTy",
+      "aliases": [],
+      "family": "微环境效应",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9011939/"
+      ],
+      "software_sources": [
+        "https://github.com/saezlab/mistyR"
+      ],
+      "catalog_source": null,
+      "execution_status": "native_execution_supported",
+      "runner": "misty",
+      "version": "mistyR 1.18.0; ranger 0.18.0",
+      "last_api_verified": "2026-09-09",
+      "scope": "原生RF/OOB和线性或岭元模型；精确或kNN paraview、Delaunay juxtaview、有来源custom视图；逐样本输出性能/未截断CV/贡献/重要性与空间定位。随机细胞CV不是供体或空间分块验证，无LR推断。",
+      "catalog_characterization": {},
+      "software_commit": "5dcd31fecb52995216db1a589798660da8dc72a3"
+    },
+    {
+      "id": "ncem",
+      "name": "NCEM",
+      "aliases": [],
+      "family": "微环境效应",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41587-022-01467-z"
+      ],
+      "software_sources": [
+        "https://github.com/theislab/ncem"
+      ],
+      "catalog_source": null,
+      "execution_status": "native_execution_supported",
+      "runner": "ncem",
+      "version": "0.1.5（固定提交；线性细胞分辨率 GLM 分支）",
+      "last_api_verified": "2026-09-10",
+      "scope": "固定半径、样本内细胞邻接图上的原生 linear NCEM 与 cell-level differential NCEM；输出完整接收类型×邻域发送类型×基因/蛋白系数、Wald P、对齐全候选 BH、接收群热图、发送类型系数相关、支持特征数网络/弦图、图度数质控和输入空间图。它检验邻域细胞类型与接收细胞分子状态的关联，不是配体–受体、分子流或供体层条件检验。当前不声称支持 neural NCEM、deconvoluted spot NCEM 或 spline NCEM。",
+      "catalog_characterization": {},
+      "software_commit": "216fd576d1d1842234ceec300435a1dafcdf8b0c"
+    },
+    {
+      "id": "spacenet",
+      "name": "SpaCeNet",
+      "aliases": [],
+      "family": "微环境效应",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://doi.org/10.1101/gr.279125.124"
+      ],
+      "software_sources": [
+        "https://github.com/sschrod/SpaCeNet"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "spacenet",
+      "version": "0.0.1",
+      "last_api_verified": "2026-09-09",
+      "scope": "原生逐样本空间高斯伪似然、距离势、对称Omega/Drho、固定正则或原生AIC/BIC网格；收敛失败退出并保存原生轨迹，自动交付条件关联矩阵和实测/同样本条件拟合空间图。无LR、方向性通讯、供体差异或因果推断。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "STsc",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "Python"
+      },
+      "software_commit": "22923caeecc4f24b1696715146ae815b0e064aa0"
+    },
+    {
+      "id": "nichecompass",
+      "name": "NicheCompass",
+      "aliases": [],
+      "family": "微环境效应",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://doi.org/10.1038/s41588-025-02120-6"
+      ],
+      "software_sources": [
+        "https://github.com/Lotfollahi-lab/nichecompass"
+      ],
+      "catalog_source": null,
+      "execution_status": "native_execution_supported",
+      "runner": "nichecompass",
+      "version": "0.3.3",
+      "last_api_verified": "2026-09-10",
+      "scope": "固定且逐文件校验的 NicheCompass 0.3.3 RNA-only GCN 分支：显式校验整数 counts、非负通讯表达层、二维真实坐标、sample/donor/condition/cell_type 与带摘要的 GP JSON；训练和通讯 KNN 都逐样本构建，publication 层至少3种子×100 epoch。自动交付完整 epoch 日志、原生验证指标、可重载模型、全部 GP 权重/活性、latent UMAP、空间 niche、decoder 方向对齐前后的 GP 种子稳定性、Leiden ARI、按预声明或 latent 方差选择的逐 GP source/target potential 空间图及原生相对通讯网络。上游网络在每个 GP/样本内独立 min-max 并取2位，不能跨 GP、样本或数据集比较/相加；无 P/FDR、供体条件检验或因果结论。当前不声称 ATAC、reference mapping、addon GP 或全资源自动下载。",
+      "catalog_characterization": {},
+      "software_commit": "5bf7d2a09e70bd490c59e978e37f4df30f812994"
+    },
+    {
+      "id": "holonet",
+      "name": "HoloNet",
+      "aliases": [],
+      "family": "空间机制与表征",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://academic.oup.com/bib/article/24/6/bbad359/7306826"
+      ],
+      "software_sources": [
+        "https://github.com/lhc17/HoloNet"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "holonet",
+      "version": "0.1.dev215",
+      "last_api_verified": "2026-09-10",
+      "scope": "固定并逐文件校验 lhc17/HoloNet 提交 920da6a9e63e51c8146da70264a4c0db2222310c 的单切片、单基因 pairwise Connectome 风格原生分支：从显式带摘要 LR 表执行 CE 距离加权、表达匹配背景过滤、发送/接收/总度数与特征向量中心性、LR 层次聚类，以及以细胞类型和 CE 多图预测预声明目标基因的 FCE。publication 层至少50次初始化×300 epoch，并自动交付距离核、逐 LR 热点/细胞边/细胞类型网络、LR UMAP/树状图/簇热点、目标实测与预测、全体和留出细胞表现、LR attention 稳定性、FCE 网络、delta-E、单视图和预声明 pathway 面板。CE/FCE 矩阵与 attention 均含上游独立 min-max，不能跨 LR、目标、样本或数据集比较；随机细胞拆分不能替代空间分块、供体复制或因果验证；原生过滤无逐假设 P/q。当前适配器不声称执行 multisubunit complex、agonist、antagonist 或 co-receptor 分支。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "STall",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "Yes",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "Python"
+      },
+      "source_commit": "920da6a9e63e51c8146da70264a4c0db2222310c"
+    },
+    {
+      "id": "spacia",
+      "name": "Spacia",
+      "aliases": [],
+      "family": "空间机制与表征",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://doi.org/10.1038/s41592-024-02408-1",
+        "https://spacia-doc.readthedocs.io/en/latest/"
+      ],
+      "software_sources": [
+        "https://github.com/yunguan-wang/Spacia"
+      ],
+      "catalog_source": null,
+      "execution_status": "native_execution_supported",
+      "runner": "spacia",
+      "version": "commit-11809bb",
+      "last_api_verified": "2026-09-10",
+      "scope": "固定并逐文件校验 yunguan-wang/Spacia 提交 11809bbe38e9107ab2b4444466958fdf7ab1e369 的单切片、单发送群到单接收群 Bayesian multiple-instance learning 原生分支。支持明确单基因列表，或全部至少含2个实测基因的显式基因集；默认关闭会改变特征身份的数据驱动相关聚合。每个接收细胞为 bag，距离阈值内发送细胞为 instances；自动交付完整 primary-instance 空间边、接收热点、bag 覆盖、发送特征 beta、距离 b.2 posterior summary、0.1–0.9 Bayesian FDR、beta PSRF 和逐链 trace。publication 层至少使用作者默认 50000/25000/10/3 MCMC 设置。上游 P/q 是对每链抽取 posterior draws 的 t 检验及 BH，不是独立供体检验；primary-instance score 对 response 特异但不对单个 signal 特异；一个切片不能证明条件或数据集特异性，也不建立配体结合或因果机制。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "STsc",
+        "INPUT - Additional mandatory input": "cell type; spatial coordinates; declared sender/receiver features",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "Python/R/C++"
+      },
+      "software_commit": "11809bbe38e9107ab2b4444466958fdf7ab1e369"
+    },
+    {
+      "id": "cellnest",
+      "name": "CellNEST",
+      "aliases": [],
+      "family": "空间机制与表征",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://doi.org/10.1038/s41592-025-02721-3",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC12240806/"
+      ],
+      "software_sources": [
+        "https://github.com/schwartzlab-methods/CellNEST"
+      ],
+      "catalog_source": null,
+      "execution_status": "native_execution_supported",
+      "runner": "cellnest",
+      "version": "commit-2fd4f87",
+      "last_api_verified": "2026-09-10",
+      "scope": "固定上游两层 GAT-DGI、跨种子/跨层 rank-product、top-20%细胞级LR边与两跳 relay；当前仅开放 kNN 且阻断 autocrine，P值和区间脚本因固定提交中的可执行缺陷不进入结果",
+      "catalog_characterization": {
+        "INPUT - Type of data": "STsc",
+        "INPUT - Additional mandatory input": "cell type; spatial coordinates; ligand-receptor database",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "Optional prior relay confidence",
+        "SOFTWARE - Programming language": "Python"
+      },
+      "software_commit": "2fd4f875ec2916ce51f674342aec1f59596c79ed"
+    },
+    {
+      "id": "renoir",
+      "name": "Renoir",
+      "aliases": [],
+      "family": "空间机制与表征",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://doi.org/10.1038/s41467-026-72388-7",
+        "https://www.biorxiv.org/content/10.1101/2023.04.14.536833v1"
+      ],
+      "software_sources": [
+        "https://github.com/Zafar-Lab/Renoir"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "renoir",
+      "version": "1.0.0",
+      "last_api_verified": "2026-09-10",
+      "scope": "固定上游 ISM×PEM ligand-to-target 空间邻域分数、受体资格门、radius/Visium 图、de novo 分子程序和 Leiden 活性域；无原生边级P值、供体条件检验或发送细胞→接收细胞网络",
+      "catalog_characterization": {
+        "INPUT - Type of data": "STall",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "Python"
+      },
+      "software_commit": "2ea1c987ae5217ced16f2884050678ff3832fbf7"
+    },
+    {
+      "id": "finest",
+      "name": "FineST",
+      "aliases": [],
+      "family": "空间机制与表征",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC13201544/"
+      ],
+      "software_sources": [
+        "https://github.com/StatBiomed/FineST",
+        "https://pypi.org/project/finest/"
+      ],
+      "catalog_source": null,
+      "execution_status": "documented",
+      "runner": null,
+      "version": "source commit cf35c678ecb06e407b1da683e9f38df2302a9322; author inputs incomplete",
+      "last_api_verified": "2026-09-10",
+      "scope": "FineST是图像特征提取、对比训练/推断、亚spot或细胞核级表达插补、SpatialDM全局/局部LR及SparseAEH模式发现的连续流程。作者通讯notebook直接读取预生成的patient1_adata_imput_all_sc.h5ad和patient1_adata_imput_all_spot_scale.h5ad；固定仓库只有坐标、资源、部分checkpoint和Git LFS指针，缺完整图像特征及这两个插补对象，NPC h5ad下载本次又被Figshare WAF拦截。不能在原始h5ad上只跑SpatialDM后标成FineST。完整输入和解除条件见待执行方法核验.json。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "spatial transcriptomics + paired histology",
+        "INPUT - Additional mandatory input": "within/between-spot image features; matched checkpoint; nuclei segmentation for single-cell branch",
+        "INTER - Multisubunit": "via downstream SpatialDM/CellChatDB resource",
+        "INTRA - Intracellular": "optional LR-Receptor-TF-Target branch",
+        "SOFTWARE - Programming language": "Python; R"
+      },
+      "software_commit": "cf35c678ecb06e407b1da683e9f38df2302a9322",
+      "readiness_contract": "待执行方法核验.json#finest"
+    },
+    {
+      "id": "spaci",
+      "name": "spaCI",
+      "aliases": [],
+      "family": "空间机制与表征",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://academic.oup.com/bib/article/24/1/bbac563/6955269"
+      ],
+      "software_sources": [
+        "https://github.com/QSong-github/spaCI"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "spaci",
+      "version": "1.0.0",
+      "last_api_verified": "2026-09-10",
+      "scope": "固定 QSong-github/spaCI v1.0.0 提交 5bf1470；按发布版 R 规则重建相关三元组和对称 KNN 图，以原生 TripletGraphModel 学习基因嵌入和 LR 余弦分数，并按论文定义交付去除两端各10%后的细胞类型表达乘积、汇总网络、完整阈值敏感性、训练与验证诊断、分子潜在空间及空间表达；无 P/FDR、供体或条件特异性推断",
+      "catalog_characterization": {
+        "INPUT - Type of data": "STsc",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "Python"
+      },
+      "software_commit": "5bf1470ccfcf45e01f11621c58d884b0dd9cfc80"
+    },
+    {
+      "id": "stmlnet",
+      "name": "stMLnet",
+      "aliases": [],
+      "family": "空间机制与表征",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC12129024/"
+      ],
+      "software_sources": [
+        "https://github.com/SunXQlab/stMLnet"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "stmlnet",
+      "version": "0.1.2",
+      "last_api_verified": "2026-09-10",
+      "software_commit": "bfffc8fce73459946df119923470cc9bcd167ea0",
+      "scope": "固定源码与作者数据库，按官方教程逐步执行 runMLnet、getSiganlActivity 和 runRFModel；要求有来源的显式细胞类型 ligand/receptor/target 候选，避开上游损坏的自动候选和总入口。输出 1/d 接收细胞 LR 活性、细胞群网络、Ligand-Receptor-TF-Target 路径、随机森林 IM/pIM、OOB 质量、反馈环、空间分布与坐标尺度敏感性。单切片没有供体条件检验，OOB 不是独立验证，绝对活性不能跨坐标尺度直接比较。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "STall",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "R"
+      }
+    },
+    {
+      "id": "deepcolor",
+      "name": "DeepCOLOR",
+      "aliases": [],
+      "family": "空间机制与表征",
+      "owner": "空间通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.sciencedirect.com/science/article/abs/pii/S2405471224000280"
+      ],
+      "software_sources": [
+        "https://github.com/kojikoji/deepcolor"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "deepcolor",
+      "version": "0.0.6",
+      "last_api_verified": "2026-09-10",
+      "software_commit": "7400a2aefb55045f596446f24d5b1df550474c5d",
+      "scope": "固定源码执行单细胞到空间spot的VAE映射、原生log2共定位、固定阈值细胞对聚类，以及可选NicheNet配体—靶基因coactivity层；自动输出完整映射数组、mapped h5ad、类型空间权重、共定位矩阵、网络、映射QC、数值诊断、双细胞UMAP/簇组成与配体活动图。通讯层不含受体结合检验；单患者单切片没有供体条件统计，不能声称疾病或数据集特异性。作者Linux/CUDA精确环境在arm64不可复原，固定兼容环境和平台敏感性必须随结果报告。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq; STall",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "Python"
+      }
+    },
+    {
+      "id": "pyminer",
+      "name": "PyMINEr",
+      "aliases": [],
+      "family": "其他流程与模型",
+      "owner": "按原生任务核验后归主通讯、响应或空间",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://doi.org/10.1016/j.celrep.2019.01.063"
+      ],
+      "software_sources": [
+        "https://bitbucket.org/scottyler892/pyminer_release/src/master/"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "documented",
+      "runner": null,
+      "version": "source commit 30046cc904a26c6dbc8c6978cb81dbd46b911dae; legacy external-service blocked",
+      "last_api_verified": "2026-09-10",
+      "scope": "固定Bitbucket源码包含cell_signals.py：接收各细胞类型的显著富集基因，经在线g:Profiler转换ENSP/GO定位，再与随仓STRING protein.actions 10.5交叉，输出自分泌/旁分泌、激活/抑制和细胞对富集。该流程冻结于2019依赖及gprofiler-official 0.3.5旧返回结构，核心映射和富集依赖在线服务；本次隔离安装未完成，也没有真实通讯样例验收。当前不以现代API重写冒充原生，解除条件见待执行方法核验.json。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "Python"
+      },
+      "software_commit": "30046cc904a26c6dbc8c6978cb81dbd46b911dae",
+      "readiness_contract": "待执行方法核验.json#pyminer"
+    },
+    {
+      "id": "rna-magnet",
+      "name": "RNA-Magnet",
+      "aliases": [],
+      "family": "其他流程与模型",
+      "owner": "按原生任务核验后归主通讯、响应或空间",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41556-019-0439-6"
+      ],
+      "software_sources": [
+        "https://github.com/veltenlab/rnamagnet"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "rnamagnet",
+      "version": "RNAMagnet 0.1.0; Rmagic 2.0.3.999; MAGIC 3.0.0",
+      "last_api_verified": "2026-09-09",
+      "scope": "小鼠原生MAGIC及signaling/anchors两分支；真实PCA邻域、AND/OR端点、逐细胞interaction/specificity/adhesiveness与原生群LR分数，保留反向边重复名称的行身份；已有降维坐标自动着色。黏附是预测，无P/FDR或实际组织接触证明。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "R"
+      },
+      "software_commit": "e4c220d6e5e356d230dc4d0aa6511dfe42d64db3"
+    },
+    {
+      "id": "remi",
+      "name": "REMI",
+      "aliases": [],
+      "family": "其他流程与模型",
+      "owner": "按原生任务核验后归主通讯、响应或空间",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.science.org/doi/10.1126/sciadv.abi4757"
+      ],
+      "software_sources": [
+        "https://github.com/plevritis-lab/REMI"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "remi",
+      "version": "0.0.0.9000",
+      "last_api_verified": "2026-09-10",
+      "software_commit": "704b11b4f66e59c7683ad544cf9c0aa41751d83a",
+      "scope": "固定源码执行同一条件、匹配独立供体表达谱的setupData、Louvain LR社区和先验约束图形Lasso；支持细胞级供体×细胞类型聚合或已聚合bulk谱，输出有符号REMI边、完整社区、细胞类型网络/角色和诊断。主流程没有全边P/FDR或条件差异；DESCRIPTION仍为许可模板占位，Plugin不复制上游代码和数据。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq; bulk",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "R"
+      }
+    },
+    {
+      "id": "cscp",
+      "name": "CSCP",
+      "aliases": [],
+      "family": "其他流程与模型",
+      "owner": "按原生任务核验后归主通讯、响应或空间",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.nature.com/articles/s41598-023-42883-8"
+      ],
+      "software_sources": [
+        "https://github.com/GaoLabXDU/cell-sub-crosstalk-pair"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "cscp",
+      "version": "fixed source commit fc035a97a1caf81f7d416f72dd846489b88dc621",
+      "last_api_verified": "2026-09-10",
+      "software_commit": "fc035a97a1caf81f7d416f72dd846489b88dc621",
+      "scope": "对两个预先指定细胞类型的真实单细胞表达和版本化LR表执行固定源码的逐细胞最大值归一化、LR拉普拉斯耦合、5次coupled NMF及共识层次聚类，得到配对的发送/接收细胞亚群。自动输出完整亚群标签、完整共识矩阵、配对规模、重启ARI和亚群LR两端均值乘积图。它不产生供体条件检验、空间方向或靶基因机制；固定源码未声明软件许可，适配器只编排外部源码，不复制上游代码或数据。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "Python"
+      }
+    },
+    {
+      "id": "deepcci",
+      "name": "DeepCCI",
+      "aliases": [],
+      "family": "其他流程与模型",
+      "owner": "按原生任务核验后归主通讯、响应或空间",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://academic.oup.com/bioinformatics/article/39/10/btad596/7281356"
+      ],
+      "software_sources": [
+        "https://github.com/JiangBioLab/DeepCCI"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "documented",
+      "runner": null,
+      "version": "source commit 0ad534f91f3c669ab97546741778d977f3347242; author test package missing",
+      "last_api_verified": "2026-09-10",
+      "scope": "固定MIT源码提供GCN聚类、R/Seurat/CellChat特征构造、MobileNet/GCN交互分类、checkpoint和绘图脚本，但仓库只有极小标签文件，没有README下载页中的完整测试数据；Feature与推断入口硬编码./output并依赖缺失的R中间对象、邻接和特征。它同时固定Python3.7.4、torch1.10及旧R生态。未取得作者测试包并完成双环境原生链路前保持documented，不能只读取checkpoint或伪造中间文件。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "Yes",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "R; Python"
+      },
+      "software_commit": "0ad534f91f3c669ab97546741778d977f3347242",
+      "readiness_contract": "待执行方法核验.json#deepcci"
+    },
+    {
+      "id": "disir",
+      "name": "DiSiR",
+      "aliases": [],
+      "family": "其他流程与模型",
+      "owner": "按原生任务核验后归主通讯、响应或空间",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://academic.oup.com/nargab/article/5/1/lqad030/7084607"
+      ],
+      "software_sources": [
+        "https://github.com/miladrafiee/disir_package/"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "disir",
+      "version": "0.0.1",
+      "last_api_verified": "2026-09-09",
+      "scope": "原生DiSiR明确亚基组、log2(counts+1)、独立有放回细胞抽样与全部亚基P阈值；没有联合复合体P或多重校正，完整亚基身份与未评估候选保留；按实际样本运行及原生对象复用。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "Yes",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "R; Python"
+      },
+      "software_commit": "3998f7a7fcb2fd3babc9c54da8afd74bf8f608f0"
+    },
+    {
+      "id": "graphcomm",
+      "name": "GraphComm",
+      "aliases": [],
+      "family": "其他流程与模型",
+      "owner": "按原生任务核验后归主通讯、响应或空间",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.biorxiv.org/content/10.1101/2023.04.26.538432v3.full"
+      ],
+      "software_sources": [
+        "https://github.com/bhklab/GraphComm"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "documented",
+      "runner": null,
+      "version": "source commit daa4d96fbbed578e9cf7017bb301baebae67d667; Code Ocean data/model missing",
+      "last_api_verified": "2026-09-10",
+      "scope": "固定MIT源码以OmniPath/KEGG和表达构建cell-LR-pathway异构图，用GAT表征和预测通讯，并含空间及随机化分支。Git仓库没有README所述data目录和训练模型，关键notebook、train.py、utilities及随机化脚本写死/data、/results和Code Ocean路径。未取得capsule数据/模型并固定资源前没有完整原生入口；不能拿任意PyG模型或已有LR矩阵冒充GraphComm。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "Yes",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "Python"
+      },
+      "software_commit": "daa4d96fbbed578e9cf7017bb301baebae67d667",
+      "readiness_contract": "待执行方法核验.json#graphcomm"
+    },
+    {
+      "id": "exfinder",
+      "name": "exFINDER",
+      "aliases": [],
+      "family": "其他流程与模型",
+      "owner": "主通讯",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://academic.oup.com/nar/article/51/10/e58/7110758"
+      ],
+      "software_sources": [
+        "https://github.com/ChanghanGitHub/exFINDER"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "exfinder",
+      "version": "1.0.0",
+      "last_api_verified": "2026-09-09",
+      "scope": "原生先验与表达筛选、角色裁剪、节点/边容量、配体–靶基因最大流及AcI；显式配体或低表达外部候选筛选，可使用真实外部表达参考。原生TF角色层可含信号中介，展示不保证TF身份；无显著性或因果解释。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "R"
+      },
+      "software_commit": "516bcb946272ab313e3e3d802fef44d1fa51f80e"
+    },
+    {
+      "id": "cellagentchat",
+      "name": "CellAgentChat",
+      "aliases": [],
+      "family": "其他流程与模型",
+      "owner": "按原生任务核验后归主通讯、响应或空间",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://www.biorxiv.org/content/10.1101/2023.08.23.554489v2"
+      ],
+      "software_sources": [
+        "https://github.com/mcgilldinglab/CellAgentChat"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "cellagentchat",
+      "version": "0.2.0",
+      "last_api_verified": "2026-09-10",
+      "software_commit": "310cfc03df91c5ec917f110801e0c2ae4ab57800",
+      "scope": "固定源码执行CellAgentChat一步基础ABM、可选真实空间距离、原生细胞类型置换—Gamma背景—Bonferroni支持、群对LR分数与逐细胞接收分数；支持外部提供的受体转化率，或仅为适配器验收显式使用全1速率。当前不声称接入依赖torch-sparse的神经网络转化率、连续动态或交互动画分支；全1速率不能解释成完整CellAgentChat机制模型。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "Yes",
+        "SOFTWARE - Programming language": "R; Python"
+      }
+    },
+    {
+      "id": "mdic3",
+      "name": "MDIC3",
+      "aliases": [],
+      "family": "其他流程与模型",
+      "owner": "按原生任务核验后归主通讯、响应或空间",
+      "kind": "method_or_workflow",
+      "primary_sources": [
+        "https://doi.org/10.1016/j.patter.2023.100911"
+      ],
+      "software_sources": [
+        "https://github.com/LYxiaotai/MDIC3"
+      ],
+      "catalog_source": "https://sysbiobig.gitlab.io/ccc-catalog/tools.html",
+      "execution_status": "native_execution_supported",
+      "runner": "mdic3",
+      "version": "fixed source commit 94f1a2a6de4fa5bb6b714b28c0778212ee3c82f3",
+      "last_api_verified": "2026-09-10",
+      "software_commit": "94f1a2a6de4fa5bb6b714b28c0778212ee3c82f3",
+      "scope": "执行外部GRN分支的固定MDIC3.py，保留完整细胞和细胞类型方向矩阵，并从细胞矩阵重建可加群网络；可选MDIC3_LR.py原生结果与透明统计诊断并行输出。固定源码没有许可声明；GNIPLR自产GRN分支尚未验收。LR脚本按独立排序表达的次序统计相关，复合受体列表拼接且只在raw-P子集内Bonferroni，不能当作供体层显著性。",
+      "catalog_characterization": {
+        "INPUT - Type of data": "scRNAseq",
+        "INPUT - Additional mandatory input": "none",
+        "INTER - Multisubunit": "No",
+        "INTRA - Intracellular": "No",
+        "SOFTWARE - Programming language": "R; Python"
+      }
+    }
+  ],
+  "resources": [
+    {
+      "name": "FANTOM5 LR atlas",
+      "source": "https://www.nature.com/articles/ncomms8866",
+      "kind": "resource",
+      "download_policy": "按许可固定版本与sha256，数据内容保存Git外"
+    },
+    {
+      "name": "CellPhoneDB DB",
+      "source": "https://github.com/ventolab/cellphonedb-data",
+      "kind": "resource",
+      "download_policy": "按许可固定版本与sha256，数据内容保存Git外"
+    },
+    {
+      "name": "CellChatDB",
+      "source": "https://github.com/jinworks/CellChat",
+      "kind": "resource",
+      "download_policy": "按许可固定版本与sha256，数据内容保存Git外"
+    },
+    {
+      "name": "OmniPath",
+      "source": "https://omnipathdb.org/",
+      "kind": "resource",
+      "download_policy": "按许可固定版本与sha256，数据内容保存Git外"
+    },
+    {
+      "name": "CellTalkDB",
+      "source": "http://tcm.zju.edu.cn/celltalkdb/",
+      "kind": "resource",
+      "download_policy": "按许可固定版本与sha256，数据内容保存Git外"
+    },
+    {
+      "name": "Cellinker",
+      "source": "https://www.rna-society.org/cellinker/",
+      "kind": "resource",
+      "download_policy": "按许可固定版本与sha256，数据内容保存Git外"
+    },
+    {
+      "name": "InterCellDB",
+      "source": "https://github.com/ZJUDBlab/InterCellDB",
+      "kind": "resource",
+      "download_policy": "按许可固定版本与sha256，数据内容保存Git外"
+    },
+    {
+      "name": "Guide to Pharmacology",
+      "source": "https://www.guidetopharmacology.org/",
+      "kind": "resource",
+      "download_policy": "按许可固定版本与sha256，数据内容保存Git外"
+    },
+    {
+      "name": "MetalinksDB",
+      "source": "https://liana-py.readthedocs.io/en/stable/generated/liana.resource.get_metalinks.html",
+      "kind": "resource",
+      "download_policy": "按许可固定版本与sha256，数据内容保存Git外"
+    }
+  ],
+  "status_semantics": {
+    "documented": "定位资料；无原生适配器，不可宣称可执行",
+    "native_execution_supported": "已有原生调用代码；真实验收记录另存运行工作区",
+    "framework_execution_supported": "框架实现，非各原包的全部功能",
+    "adapter_implemented_unvalidated": "原生适配代码已编写，尚未完成真实运行；不得计入已跑通方法"
+  }
+}

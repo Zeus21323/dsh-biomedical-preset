@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/smartseq2",
+  "skill_id": "nfcore-smartseq2",
+  "scientific_title": "历史Smart-seq2单细胞处理",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/smartseq2",
+    "archived": true,
+    "revision_label": "dev",
+    "commit": "6d474839a0f5cf03a266e3314ba1d2c062d96285",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": ">=19.10.0",
+    "legacy_dsl_observed": true,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": null,
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/smartseq2/6d474839a0f5cf03a266e3314ba1d2c062d96285/LICENSE",
+      "sha256": "3fc4af8711d1a4ffcc7bf85c1941b5e6db295f58313ebc959d2bcfd0a602dd6a",
+      "bytes": 1143
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/smartseq2/6d474839a0f5cf03a266e3314ba1d2c062d96285/README.md",
+      "sha256": "8b2145cf4429ce6e448851909c4d4135dcc45a4d5f6ab86222252800a863d27b",
+      "bytes": 4634
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/smartseq2/6d474839a0f5cf03a266e3314ba1d2c062d96285/docs/output.md",
+      "sha256": "acdcb2ddea4e670cb737d35a4d4890b84502cc35060c5aea27c5cf4f88f7d2db",
+      "bytes": 4395
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/smartseq2/6d474839a0f5cf03a266e3314ba1d2c062d96285/docs/usage.md",
+      "sha256": "e6195cb79b89523f73d81074c7e5b5086438cf6d50124871f2ef3b57c3ef3207",
+      "bytes": 16269
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/smartseq2/6d474839a0f5cf03a266e3314ba1d2c062d96285/main.nf",
+      "sha256": "c056da80b6ac88a45a6321961575213c46a91125659114f528f8902d84b839cb",
+      "bytes": 30289
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/smartseq2/6d474839a0f5cf03a266e3314ba1d2c062d96285/nextflow.config",
+      "sha256": "088adb9fba3b1875ae318230417a4189dae176e6df7fe6764dfeea0130a8ec6d",
+      "bytes": 4583
+    }
+  ]
+}

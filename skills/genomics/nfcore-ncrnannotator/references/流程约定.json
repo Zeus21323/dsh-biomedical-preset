@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/ncrnannotator",
+  "skill_id": "nfcore-ncrnannotator",
+  "scientific_title": "基因组非编码RNA注释",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/ncrnannotator",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "7b3c4e5685da83e53590c2c514368be3fcaac189",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "a0aaac3174f86aaae2ebbf4f765701f96397b7d62a1dc79ec83dd9785334fa85"
+    },
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/ncrnannotator/7b3c4e5685da83e53590c2c514368be3fcaac189/LICENSE",
+      "sha256": "0eb0514f47c8e295b727e0a450fae7f5f5857bfc778d8b8800698a61b3ee5e15",
+      "bytes": 1082
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/ncrnannotator/7b3c4e5685da83e53590c2c514368be3fcaac189/README.md",
+      "sha256": "9ee36de6b5cf8fec799b9c9098df208a64446201bb50eb8feaa0d3f8d86fda46",
+      "bytes": 6492
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/ncrnannotator/7b3c4e5685da83e53590c2c514368be3fcaac189/docs/output.md",
+      "sha256": "7d70e5298ccd890e7d969fefa549180b3af94b644011e868b0d2159359441b7f",
+      "bytes": 5930
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/ncrnannotator/7b3c4e5685da83e53590c2c514368be3fcaac189/docs/usage.md",
+      "sha256": "0e52d51c28411e60285d906db828dadf28d4b429b3a718ee3e563d9dd9a47c3f",
+      "bytes": 6297
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/ncrnannotator/7b3c4e5685da83e53590c2c514368be3fcaac189/main.nf",
+      "sha256": "019901081e7ced3220c5e02e48b7a6a96195707aacc0a9129d71fa939e33e4ca",
+      "bytes": 2493
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/ncrnannotator/7b3c4e5685da83e53590c2c514368be3fcaac189/nextflow.config",
+      "sha256": "cdc42feb9b65fcf1244a6f92619219eadd17789000eb049126b5706a4ee32db1",
+      "bytes": 10108
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/ncrnannotator/7b3c4e5685da83e53590c2c514368be3fcaac189/nextflow_schema.json",
+      "sha256": "a0aaac3174f86aaae2ebbf4f765701f96397b7d62a1dc79ec83dd9785334fa85",
+      "bytes": 14524
+    },
+    {
+      "path": "workflows/ncrnannotator.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/ncrnannotator/7b3c4e5685da83e53590c2c514368be3fcaac189/workflows/ncrnannotator.nf",
+      "sha256": "7528c3d99d8dcd13aa94f49a664149d42af8e53999a93ac755328be40c1ca423",
+      "bytes": 8035
+    }
+  ]
+}

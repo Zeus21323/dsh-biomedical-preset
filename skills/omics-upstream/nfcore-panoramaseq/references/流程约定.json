@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/panoramaseq",
+  "skill_id": "nfcore-panoramaseq",
+  "scientific_title": "原位阵列空间测序处理",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/panoramaseq",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "4908592cbc5ccd79a7f99edc56825c5a98079aae",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=24.04.2",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "8323f9b8ebd37af5bc9890b3f384b7a1abc234c50e57c27f6e3f870c23c5c322"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "37b52d8e48e5af125af9e096575f71d6cc925d1e8c5e1f85d835787e6060fd6b",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/panoramaseq/4908592cbc5ccd79a7f99edc56825c5a98079aae/LICENSE",
+      "sha256": "6408d62bc75427babc62d8916f532a5ba56ee669a81e9ecd0796660ccdf602d5",
+      "bytes": 1080
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/panoramaseq/4908592cbc5ccd79a7f99edc56825c5a98079aae/README.md",
+      "sha256": "d2a42ebaffbeb5987b2acf88473f3ec68e8b801fbf6c61f2b404e4d5cd340206",
+      "bytes": 18760
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/panoramaseq/4908592cbc5ccd79a7f99edc56825c5a98079aae/assets/schema_input.json",
+      "sha256": "37b52d8e48e5af125af9e096575f71d6cc925d1e8c5e1f85d835787e6060fd6b",
+      "bytes": 1824
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/panoramaseq/4908592cbc5ccd79a7f99edc56825c5a98079aae/docs/output.md",
+      "sha256": "a80c9b30303a6bf3539ffe735101f5c174920bae8cad7d47668c88d5a94347d7",
+      "bytes": 3953
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/panoramaseq/4908592cbc5ccd79a7f99edc56825c5a98079aae/docs/usage.md",
+      "sha256": "b715a8b982837835d979aa5c4f76306a8344a5e567e755c1c4b2dbb59b5a58eb",
+      "bytes": 14707
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/panoramaseq/4908592cbc5ccd79a7f99edc56825c5a98079aae/main.nf",
+      "sha256": "629a3e5b066f3356bd36e0e349fc5581604309aa8e0711dea36832c1a16bf54d",
+      "bytes": 4426
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/panoramaseq/4908592cbc5ccd79a7f99edc56825c5a98079aae/nextflow.config",
+      "sha256": "5769b80694c12fb76dbbd8d7df15311f5cd313c1a0053c925401617574820b3d",
+      "bytes": 12344
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/panoramaseq/4908592cbc5ccd79a7f99edc56825c5a98079aae/nextflow_schema.json",
+      "sha256": "8323f9b8ebd37af5bc9890b3f384b7a1abc234c50e57c27f6e3f870c23c5c322",
+      "bytes": 18874
+    },
+    {
+      "path": "workflows/panoramaseq.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/panoramaseq/4908592cbc5ccd79a7f99edc56825c5a98079aae/workflows/panoramaseq.nf",
+      "sha256": "ee6e4b3bc931836065cc5d01d032229c79dd30ab3a5f286aa0b6c7a62a9fa079",
+      "bytes": 13753
+    }
+  ]
+}

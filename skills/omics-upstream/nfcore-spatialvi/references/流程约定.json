@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/spatialvi",
+  "skill_id": "nfcore-spatialvi",
+  "scientific_title": "Visium空间表达与图像联合处理",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/spatialvi",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "630fb85d30a088363c60b4676e0fd60ae3283a82",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "a433cd62828367665b678c4563dfbd683c57aa5525814f5038457acd170e50af"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "582d57c39b756b040c6e482d09c22beba159f4b24a1d95be22ec9f1be899c769",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/spatialvi/630fb85d30a088363c60b4676e0fd60ae3283a82/LICENSE",
+      "sha256": "09ee899e726dd294aa07ed9381258e6fe3208cc2797bc74c47b41de1a8702b93",
+      "bytes": 1078
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/spatialvi/630fb85d30a088363c60b4676e0fd60ae3283a82/README.md",
+      "sha256": "76435f651c7fd3d60e53ce91467d4a32d915c2d33773837f21f092c9e04aebb0",
+      "bytes": 8104
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/spatialvi/630fb85d30a088363c60b4676e0fd60ae3283a82/assets/schema_input.json",
+      "sha256": "582d57c39b756b040c6e482d09c22beba159f4b24a1d95be22ec9f1be899c769",
+      "bytes": 663
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/spatialvi/630fb85d30a088363c60b4676e0fd60ae3283a82/docs/output.md",
+      "sha256": "6a7ed01d7e141373a9a124934c7a9bbaf9d4cf4cf3587bc44c69b3849c2c626c",
+      "bytes": 6683
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/spatialvi/630fb85d30a088363c60b4676e0fd60ae3283a82/docs/usage.md",
+      "sha256": "9e6732ea5042818da2ed62f67e848405525cb0581c5a9fd5c33de6771ad59df0",
+      "bytes": 19080
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/spatialvi/630fb85d30a088363c60b4676e0fd60ae3283a82/main.nf",
+      "sha256": "221ec93b077c743cff28342f66bfca575b45f5469d770698f9bc8bd7ac7a0742",
+      "bytes": 7036
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/spatialvi/630fb85d30a088363c60b4676e0fd60ae3283a82/nextflow.config",
+      "sha256": "6babe2c65e21b01c277fd61f9c015d773e8f911a142b3940c8c0a7bf9c215215",
+      "bytes": 13442
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/spatialvi/630fb85d30a088363c60b4676e0fd60ae3283a82/nextflow_schema.json",
+      "sha256": "a433cd62828367665b678c4563dfbd683c57aa5525814f5038457acd170e50af",
+      "bytes": 26650
+    },
+    {
+      "path": "workflows/spatialvi.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/spatialvi/630fb85d30a088363c60b4676e0fd60ae3283a82/workflows/spatialvi.nf",
+      "sha256": "38ea731fc5ed68b297f9dc4e6465a3f80eb7aa2cb4f043d5e63dcf1f69d9ff27",
+      "bytes": 15235
+    }
+  ]
+}

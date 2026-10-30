@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/pangenome",
+  "skill_id": "nfcore-pangenome",
+  "scientific_title": "序列集合泛基因组图构建",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/pangenome",
+    "archived": false,
+    "revision_label": "1.1.3",
+    "commit": "3d02bd1df79f48b4bfdb4ad95d4ca0d7f6aeb337",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=24.04.2",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "c2ae21baa7335d3bb3e2150ea35b3e3965cd66930f582573bca21cb4aa0d031a"
+    },
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/pangenome/3d02bd1df79f48b4bfdb4ad95d4ca0d7f6aeb337/LICENSE",
+      "sha256": "5cce7bfaac6435ce4fa64902e06316d6a8fecac5816c694b35563c015681baf7",
+      "bytes": 1078
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/pangenome/3d02bd1df79f48b4bfdb4ad95d4ca0d7f6aeb337/README.md",
+      "sha256": "8d82892df96547b4ff36953532451c7e14208107ed685cfaf7b138ab90f93678",
+      "bytes": 14017
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/pangenome/3d02bd1df79f48b4bfdb4ad95d4ca0d7f6aeb337/docs/output.md",
+      "sha256": "3ac9f3f7d1e2dd4256da05df3dd962013d1c5698f69d4e71f63a8d229797e7fd",
+      "bytes": 20578
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/pangenome/3d02bd1df79f48b4bfdb4ad95d4ca0d7f6aeb337/docs/usage.md",
+      "sha256": "55d5fd7832329befdd2a84b8b2f02ff37bf67ef1d9c44e4871b3a93503d47aa1",
+      "bytes": 13371
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/pangenome/3d02bd1df79f48b4bfdb4ad95d4ca0d7f6aeb337/main.nf",
+      "sha256": "dcd9cfa4667e3e6ca63a91d3235efb8632c211c15809684dd05488862cf3e2fa",
+      "bytes": 2353
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/pangenome/3d02bd1df79f48b4bfdb4ad95d4ca0d7f6aeb337/nextflow.config",
+      "sha256": "27e574090a84560df15b6262bc4bd154300df744422779d9ebffc2384e406fb9",
+      "bytes": 15484
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/pangenome/3d02bd1df79f48b4bfdb4ad95d4ca0d7f6aeb337/nextflow_schema.json",
+      "sha256": "c2ae21baa7335d3bb3e2150ea35b3e3965cd66930f582573bca21cb4aa0d031a",
+      "bytes": 29495
+    },
+    {
+      "path": "workflows/pangenome.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/pangenome/3d02bd1df79f48b4bfdb4ad95d4ca0d7f6aeb337/workflows/pangenome.nf",
+      "sha256": "c293bc36c50bf9b7c132709daffd3e1bd9794a1957a9aacce2c947d496577c5e",
+      "bytes": 8049
+    }
+  ]
+}

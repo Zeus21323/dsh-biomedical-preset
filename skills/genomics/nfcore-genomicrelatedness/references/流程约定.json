@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/genomicrelatedness",
+  "skill_id": "nfcore-genomicrelatedness",
+  "scientific_title": "低覆盖基因组亲缘关系估计",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/genomicrelatedness",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "2484e643de827050d2b6a10b150223cf9ec5c9e6",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "98b5dd5ec843297edd2f7cb3044af4604935cae211bb40d12b30db7f0ccaeab6"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "54ac5f35289a0fbc458266a87aca7d005a758029573f0726f3da4cc00437f90b",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/genomicrelatedness/2484e643de827050d2b6a10b150223cf9ec5c9e6/LICENSE",
+      "sha256": "6cbecbe53601c08912c1808d7e0326977bc44701c052a743e88ddc95cd783687",
+      "bytes": 1087
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/genomicrelatedness/2484e643de827050d2b6a10b150223cf9ec5c9e6/README.md",
+      "sha256": "8c5b7f8d97c2ab25a1db472ef49e6f6206c721e3419a28e6f41ccf75cdd31a9f",
+      "bytes": 20072
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/genomicrelatedness/2484e643de827050d2b6a10b150223cf9ec5c9e6/assets/schema_input.json",
+      "sha256": "54ac5f35289a0fbc458266a87aca7d005a758029573f0726f3da4cc00437f90b",
+      "bytes": 3271
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/genomicrelatedness/2484e643de827050d2b6a10b150223cf9ec5c9e6/docs/output.md",
+      "sha256": "971ce4355ecfe863dc6d4b1750de924dcb8a8de7dc71207f3c7c928c6bf190a7",
+      "bytes": 16827
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/genomicrelatedness/2484e643de827050d2b6a10b150223cf9ec5c9e6/docs/usage.md",
+      "sha256": "731cda1ffb39069fafb61891a277b2288de39813f3a2fd04aafd70880a28c765",
+      "bytes": 18452
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/genomicrelatedness/2484e643de827050d2b6a10b150223cf9ec5c9e6/main.nf",
+      "sha256": "01ad7f461bf7b658f102f180a87723d0c14330968777183085063a239891ce56",
+      "bytes": 2937
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/genomicrelatedness/2484e643de827050d2b6a10b150223cf9ec5c9e6/nextflow.config",
+      "sha256": "62219b5fa98ae1e9e7d5f68213d73ec7d0704220a715027aadeb2b04875ae0e2",
+      "bytes": 13896
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/genomicrelatedness/2484e643de827050d2b6a10b150223cf9ec5c9e6/nextflow_schema.json",
+      "sha256": "98b5dd5ec843297edd2f7cb3044af4604935cae211bb40d12b30db7f0ccaeab6",
+      "bytes": 25724
+    },
+    {
+      "path": "workflows/genomicrelatedness.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/genomicrelatedness/2484e643de827050d2b6a10b150223cf9ec5c9e6/workflows/genomicrelatedness.nf",
+      "sha256": "c9bbb25695a00d6b9a522f79d667f375ad618fc5a279a3efa7da46b74204b123",
+      "bytes": 12344
+    }
+  ]
+}

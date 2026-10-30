@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/quantms",
+  "skill_id": "nfcore-quantms",
+  "scientific_title": "历史多模式定量质谱流程",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/quantms",
+    "archived": true,
+    "revision_label": "1.2.0",
+    "commit": "fa34d79f5071ae064d1438ad59c53b0093622ae5",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=23.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "c7ed9fae9ce1019fb431a6369436ab773cc85f87e3a182229fc066b200562b79"
+    },
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/quantms/fa34d79f5071ae064d1438ad59c53b0093622ae5/LICENSE",
+      "sha256": "375892f079597627de96141818bff8c0b5d388af7e38b8c8338c59da4d104aca",
+      "bytes": 1072
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/quantms/fa34d79f5071ae064d1438ad59c53b0093622ae5/README.md",
+      "sha256": "cc5913665057967eb24a1b89bde364136718c438b1c0629ea327e3c041e7d6f9",
+      "bytes": 12109
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/quantms/fa34d79f5071ae064d1438ad59c53b0093622ae5/docs/output.md",
+      "sha256": "dd10c994987fc76a661a45cbb370b79c3b9e05410e479e55479a680261467ae3",
+      "bytes": 13710
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/quantms/fa34d79f5071ae064d1438ad59c53b0093622ae5/docs/usage.md",
+      "sha256": "a3e5833bdfb7bc743cf018a3494606e4bdb3d4b3b74fc708e18ee7e5da0316fd",
+      "bytes": 17122
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/quantms/fa34d79f5071ae064d1438ad59c53b0093622ae5/main.nf",
+      "sha256": "30ea26e938cc78b443504626c6b79b065eb3c498e069ac2f3ab0e4960d03eeb4",
+      "bytes": 2302
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/quantms/fa34d79f5071ae064d1438ad59c53b0093622ae5/nextflow.config",
+      "sha256": "e535cd85f28a648fcd00079ea5c55df632f41407a7256cd49b4548a876279012",
+      "bytes": 16977
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/quantms/fa34d79f5071ae064d1438ad59c53b0093622ae5/nextflow_schema.json",
+      "sha256": "c7ed9fae9ce1019fb431a6369436ab773cc85f87e3a182229fc066b200562b79",
+      "bytes": 81651
+    },
+    {
+      "path": "workflows/quantms.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/quantms/fa34d79f5071ae064d1438ad59c53b0093622ae5/workflows/quantms.nf",
+      "sha256": "bb4d15f14dabcc7a452944a72689f6216997b6da38ebc104d0e2e07046463df3",
+      "bytes": 9577
+    }
+  ]
+}

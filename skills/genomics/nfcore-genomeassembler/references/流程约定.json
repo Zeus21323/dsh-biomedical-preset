@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/genomeassembler",
+  "skill_id": "nfcore-genomeassembler",
+  "scientific_title": "长读长基因组组装与scaffolding",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/genomeassembler",
+    "archived": false,
+    "revision_label": "1.1.0",
+    "commit": "ccf1b89898cb720f46a966029c3a60dbcc25b012",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=24.10.5",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "181b23184893191e4725ec46540fc835b894fcde6c5955386f8639d2dc544c6b"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "57cc09fbaff7ddaf8f31f50853f765625993ea0650c6d941a28cb967944e8e2f",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeassembler/ccf1b89898cb720f46a966029c3a60dbcc25b012/LICENSE",
+      "sha256": "717ef35b8a048bda6f0683acf4251c38b6f08eca55185fd708ff8b6a3e25bf44",
+      "bytes": 1084
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeassembler/ccf1b89898cb720f46a966029c3a60dbcc25b012/README.md",
+      "sha256": "8773f1a3cd03ef044cf07275a862efc6bb9386661d4f9c9666ace957bc9dc363",
+      "bytes": 7898
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeassembler/ccf1b89898cb720f46a966029c3a60dbcc25b012/assets/schema_input.json",
+      "sha256": "57cc09fbaff7ddaf8f31f50853f765625993ea0650c6d941a28cb967944e8e2f",
+      "bytes": 2808
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeassembler/ccf1b89898cb720f46a966029c3a60dbcc25b012/docs/output.md",
+      "sha256": "0cd36315fd3d7dc0cdd69722c4509e58cab50ca0dc50897716f87c7b22c61d72",
+      "bytes": 15765
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeassembler/ccf1b89898cb720f46a966029c3a60dbcc25b012/docs/usage.md",
+      "sha256": "98c4f152adadc4a99d8796cfa300dfedbda5729c73e44e4212d85903689d53d5",
+      "bytes": 14834
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeassembler/ccf1b89898cb720f46a966029c3a60dbcc25b012/main.nf",
+      "sha256": "4291c715fd481cb98f57f28d5869b67ae3dab8a0b14fe5137a4e7f3ab712a4d5",
+      "bytes": 2630
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeassembler/ccf1b89898cb720f46a966029c3a60dbcc25b012/nextflow.config",
+      "sha256": "45e8d7b15c9e92a9378273183f3c8967139a690e4a992a8d6c959f22feb89fb2",
+      "bytes": 15076
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeassembler/ccf1b89898cb720f46a966029c3a60dbcc25b012/nextflow_schema.json",
+      "sha256": "181b23184893191e4725ec46540fc835b894fcde6c5955386f8639d2dc544c6b",
+      "bytes": 18834
+    },
+    {
+      "path": "workflows/genomeassembler.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeassembler/ccf1b89898cb720f46a966029c3a60dbcc25b012/workflows/genomeassembler.nf",
+      "sha256": "27461bb98cacd7b6bc83f070994fa86dbd1d73b7c16036c46aaf74a26d4df6ce",
+      "bytes": 6696
+    }
+  ]
+}

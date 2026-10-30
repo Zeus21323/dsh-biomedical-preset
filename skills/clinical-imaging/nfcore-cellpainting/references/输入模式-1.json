@@ -1,0 +1,67 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/cellpainting/master/assets/schema_input.json",
+    "title": "nf-core/cellpainting pipeline - params.input schema",
+    "description": "Schema for the file provided with params.input",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "channel": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]+$",
+                "description": "Channel identifier for the image (alphanumeric characters and underscores only)",
+                "meta": ["channel"]
+            },
+            "path": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "pattern": "\\.tiff?$",
+                "description": "Path to a .tif or .tiff image"
+            },
+            "source": {
+                "type": "string",
+                "errorMessage": "Source info must be provided",
+                "meta": ["source"]
+            },
+            "batch": {
+                "type": "string",
+                "errorMessage": "Batch info must be provided",
+                "meta": ["batch"]
+            },
+            "plate": {
+                "type": "string",
+                "errorMessage": "Plate info must be provided",
+                "meta": ["plate"]
+            },
+            "well": {
+                "type": "string",
+                "errorMessage": "Well info must be provided",
+                "meta": ["well"]
+            },
+            "site": {
+                "type": "number",
+                "errorMessage": "Site info must be provided",
+                "meta": ["site"]
+            },
+            "col": {
+                "type": "number",
+                "meta": ["col"]
+            },
+            "field_id": {
+                "type": "number",
+                "meta": ["field_id"]
+            },
+            "plane_id": {
+                "type": "number",
+                "meta": ["plane_id"]
+            },
+            "row": {
+                "type": "number",
+                "meta": ["row"]
+            }
+        },
+        "required": ["channel", "path", "source", "batch", "plate", "well", "site", "row", "col"]
+    }
+}

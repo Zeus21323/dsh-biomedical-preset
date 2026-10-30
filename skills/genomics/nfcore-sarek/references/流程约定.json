@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/sarek",
+  "skill_id": "nfcore-sarek",
+  "scientific_title": "胚系与体细胞变异流程",
+  "secondary_search_terms": "胚系变异、体细胞变异、肿瘤基因组学",
+  "upstream": {
+    "repository": "https://github.com/nf-core/sarek",
+    "archived": false,
+    "revision_label": "3.10.0",
+    "commit": "8ccac7ad37b05dd792447763bf9671b719824587",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "9710ac2b8f052ea264064772fc4c94e52accf402a918ce71da49970210a0218a"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "79a82c21f14dc158ffeb8ca10780179bbdac375802319a77f70db251f8db937b",
+        "parameters": [
+          "input",
+          "input_restart"
+        ]
+      },
+      {
+        "file": "输入模式-2.json",
+        "source_path": "assets/schema_snpsift_databases.json",
+        "sha256": "781c31961476d262239d3ce979faba4d1613c71ae3f1a899b2e9913f8168cc7c",
+        "parameters": [
+          "snpsift_databases"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/sarek/8ccac7ad37b05dd792447763bf9671b719824587/LICENSE",
+      "sha256": "4b4d4dcfe4367910627dde3999ec28c001197f3d8167e5db14a6f1d0adbae48b",
+      "bytes": 1074
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/sarek/8ccac7ad37b05dd792447763bf9671b719824587/README.md",
+      "sha256": "a8ad914957d23e0d961d6908241b4af93065bd355d43f31792e4eaf35c851400",
+      "bytes": 15339
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/sarek/8ccac7ad37b05dd792447763bf9671b719824587/assets/schema_input.json",
+      "sha256": "79a82c21f14dc158ffeb8ca10780179bbdac375802319a77f70db251f8db937b",
+      "bytes": 6125
+    },
+    {
+      "path": "assets/schema_snpsift_databases.json",
+      "url": "https://raw.githubusercontent.com/nf-core/sarek/8ccac7ad37b05dd792447763bf9671b719824587/assets/schema_snpsift_databases.json",
+      "sha256": "781c31961476d262239d3ce979faba4d1613c71ae3f1a899b2e9913f8168cc7c",
+      "bytes": 1346
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/sarek/8ccac7ad37b05dd792447763bf9671b719824587/docs/output.md",
+      "sha256": "529620c8b7651e4752959a6c2b7b4681fb1a4dcdf96e9ed4a2acf501ab622b00",
+      "bytes": 80646
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/sarek/8ccac7ad37b05dd792447763bf9671b719824587/docs/usage.md",
+      "sha256": "adfcfcb571f42f6da5e24c6e940ee86d467e6b2c3d43d88e083c6768b9c77e9e",
+      "bytes": 113669
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/sarek/8ccac7ad37b05dd792447763bf9671b719824587/main.nf",
+      "sha256": "0416bc8c10c029d990c1e952a0e0ca32b6630b5e4bc536c3e2de07821c50f104",
+      "bytes": 18574
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/sarek/8ccac7ad37b05dd792447763bf9671b719824587/nextflow.config",
+      "sha256": "519eefbbc9b95c4dbe312d69f33e3bae2e440e973e99fd1a2f57440e371b8101",
+      "bytes": 33292
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/sarek/8ccac7ad37b05dd792447763bf9671b719824587/nextflow_schema.json",
+      "sha256": "9710ac2b8f052ea264064772fc4c94e52accf402a918ce71da49970210a0218a",
+      "bytes": 92334
+    },
+    {
+      "path": "workflows/sarek.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/sarek/8ccac7ad37b05dd792447763bf9671b719824587/workflows/sarek.nf",
+      "sha256": "99e5aa7d817d65165aa23d8f7544b1fa7d665dc06a6d3749c165f380d83bd461",
+      "bytes": 29671
+    }
+  ]
+}

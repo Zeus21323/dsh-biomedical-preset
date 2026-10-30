@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/proteinfold",
+  "skill_id": "nfcore-proteinfold",
+  "scientific_title": "蛋白质三维结构预测",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/proteinfold",
+    "archived": false,
+    "revision_label": "2.0.0",
+    "commit": "5338c24b2af62cc4c02dcd34bcc49912eebffb3a",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.2",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "54f71930657bb6de20e118b0bbfbf4f97be76f7671aff8cb21ceba2917bf0f2f"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "8f24ed2aef4ff70d9bbee83d08c7d05c4687c3cb0dfdd095fe8cae1344c2eaf4",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfold/5338c24b2af62cc4c02dcd34bcc49912eebffb3a/LICENSE",
+      "sha256": "afa5591bc1c268da0276ac834da6e5d1e7cb0c65e0dfea4510c7b3680ae10eca",
+      "bytes": 1080
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfold/5338c24b2af62cc4c02dcd34bcc49912eebffb3a/README.md",
+      "sha256": "b3f018884fe4edd4198058ad444f50f05efe5ece05fba0442b0762498b492c4a",
+      "bytes": 12639
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfold/5338c24b2af62cc4c02dcd34bcc49912eebffb3a/assets/schema_input.json",
+      "sha256": "8f24ed2aef4ff70d9bbee83d08c7d05c4687c3cb0dfdd095fe8cae1344c2eaf4",
+      "bytes": 1365
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfold/5338c24b2af62cc4c02dcd34bcc49912eebffb3a/docs/output.md",
+      "sha256": "58cc56e968d8281966ea6d4c1aaab687ff1ee4f73c31fd401c595b0cc971758a",
+      "bytes": 10218
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfold/5338c24b2af62cc4c02dcd34bcc49912eebffb3a/docs/usage.md",
+      "sha256": "9fb1269c85503da15cb56a7357449dca5d76f7631bb1d036e5016a2cd55bcaa1",
+      "bytes": 19252
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfold/5338c24b2af62cc4c02dcd34bcc49912eebffb3a/main.nf",
+      "sha256": "16d5401db21d848b2c61e297d55e632d0b5c467807ca83d214d36b183c8e9e41",
+      "bytes": 26909
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfold/5338c24b2af62cc4c02dcd34bcc49912eebffb3a/nextflow.config",
+      "sha256": "11615a10549dfac1c57f45394de518e5b254ddb5a40df7cc6c2f8821378ed538",
+      "bytes": 26927
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfold/5338c24b2af62cc4c02dcd34bcc49912eebffb3a/nextflow_schema.json",
+      "sha256": "54f71930657bb6de20e118b0bbfbf4f97be76f7671aff8cb21ceba2917bf0f2f",
+      "bytes": 67066
+    },
+    {
+      "path": "workflows/alphafold2.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfold/5338c24b2af62cc4c02dcd34bcc49912eebffb3a/workflows/alphafold2.nf",
+      "sha256": "1210e1dd1e7d29e67838e00cca96b8f0e5ab64880a58b46058d774eaadd99ed1",
+      "bytes": 7193
+    },
+    {
+      "path": "workflows/alphafold3.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfold/5338c24b2af62cc4c02dcd34bcc49912eebffb3a/workflows/alphafold3.nf",
+      "sha256": "ccb4a1bc91e39e84aaa52d6344f2d96ae733ce7a650cecc75bdf99a129601672",
+      "bytes": 4932
+    },
+    {
+      "path": "workflows/boltz.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfold/5338c24b2af62cc4c02dcd34bcc49912eebffb3a/workflows/boltz.nf",
+      "sha256": "130e7a3b72f00deee7af18635330f28c5a6e1ce52b9262660fe09b8429bf4801",
+      "bytes": 5602
+    },
+    {
+      "path": "workflows/colabfold.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfold/5338c24b2af62cc4c02dcd34bcc49912eebffb3a/workflows/colabfold.nf",
+      "sha256": "53fc13a9d2191b7c09743ba94301ed3615614d1508334ff2a3c4c587d57939ab",
+      "bytes": 4472
+    },
+    {
+      "path": "workflows/esmfold.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfold/5338c24b2af62cc4c02dcd34bcc49912eebffb3a/workflows/esmfold.nf",
+      "sha256": "fa21e315c77c15bc9a2187735e70caaea032693599e265b6834fc1736cc5113b",
+      "bytes": 2631
+    },
+    {
+      "path": "workflows/helixfold3.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfold/5338c24b2af62cc4c02dcd34bcc49912eebffb3a/workflows/helixfold3.nf",
+      "sha256": "ce9adf663273d5c51fb077a5a77f010bfc89e2c430cae41c979fe8d777329b51",
+      "bytes": 4514
+    },
+    {
+      "path": "workflows/rosettafold2na.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfold/5338c24b2af62cc4c02dcd34bcc49912eebffb3a/workflows/rosettafold2na.nf",
+      "sha256": "20c31a77ac272e14e42177b521879ee6f683617612f5899e9163dad9bb95eca7",
+      "bytes": 3007
+    },
+    {
+      "path": "workflows/rosettafold_all_atom.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfold/5338c24b2af62cc4c02dcd34bcc49912eebffb3a/workflows/rosettafold_all_atom.nf",
+      "sha256": "e5ff29bc30f54809b1d8761c6481be570280086b88f184f17373d5b4e9407739",
+      "bytes": 3359
+    }
+  ]
+}

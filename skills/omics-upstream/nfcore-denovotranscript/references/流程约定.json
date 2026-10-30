@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/denovotranscript",
+  "skill_id": "nfcore-denovotranscript",
+  "scientific_title": "无参考bulk转录组组装",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/denovotranscript",
+    "archived": false,
+    "revision_label": "1.2.1",
+    "commit": "9ab0f57785c37f77e05a03c8c327e35c63c8432b",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=24.04.2",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "3ac8eedcf4e0b92053e9917dc597e0fb8f58bd5bab4a1cc06777992a6775adbf"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "27094c0807c86fa22200ae075df2fd208ddc153f032a3bd9f6892d9cbd725769",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/denovotranscript/9ab0f57785c37f77e05a03c8c327e35c63c8432b/LICENSE",
+      "sha256": "792925c7dcc4b9b3e441c09e59bfc3acf6b6aad0e1f31e3a8faf8fccae1bfc2f",
+      "bytes": 1085
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/denovotranscript/9ab0f57785c37f77e05a03c8c327e35c63c8432b/README.md",
+      "sha256": "7dcba6cf9fab460a428f86944b1c387522d77029c61a216a18302ee6b89e0d44",
+      "bytes": 7532
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/denovotranscript/9ab0f57785c37f77e05a03c8c327e35c63c8432b/assets/schema_input.json",
+      "sha256": "27094c0807c86fa22200ae075df2fd208ddc153f032a3bd9f6892d9cbd725769",
+      "bytes": 1356
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/denovotranscript/9ab0f57785c37f77e05a03c8c327e35c63c8432b/docs/output.md",
+      "sha256": "2f7c0735b84f37e48a655b0cc645a35da16076d845dcbd11523f820dff537c5a",
+      "bytes": 15890
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/denovotranscript/9ab0f57785c37f77e05a03c8c327e35c63c8432b/docs/usage.md",
+      "sha256": "0b2def93c7162323a94c292e74cf1e1f1f39fec8ca244a141459df9d167dd55a",
+      "bytes": 18053
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/denovotranscript/9ab0f57785c37f77e05a03c8c327e35c63c8432b/main.nf",
+      "sha256": "b08b674e4d7bd18ac374918a5bc97ed7767a304d5dc721f04fca54dc63e5dc19",
+      "bytes": 2729
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/denovotranscript/9ab0f57785c37f77e05a03c8c327e35c63c8432b/nextflow.config",
+      "sha256": "5630edf432128b964ef547b58e968782de94df6366f7edb038731ab4a09c381b",
+      "bytes": 12708
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/denovotranscript/9ab0f57785c37f77e05a03c8c327e35c63c8432b/nextflow_schema.json",
+      "sha256": "3ac8eedcf4e0b92053e9917dc597e0fb8f58bd5bab4a1cc06777992a6775adbf",
+      "bytes": 22286
+    },
+    {
+      "path": "workflows/denovotranscript.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/denovotranscript/9ab0f57785c37f77e05a03c8c327e35c63c8432b/workflows/denovotranscript.nf",
+      "sha256": "2d899829484865d7045ea6f37027d591f5899cec3254b2efb71c69988597f493",
+      "bytes": 12419
+    }
+  ]
+}

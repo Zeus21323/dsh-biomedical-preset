@@ -1,0 +1,38 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/reportho/master/assets/schema_input.json",
+    "title": "nf-core/reportho pipeline - params.input schema",
+    "description": "Schema for the file provided with params.input",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "errorMessage": "Sample name must be provided and cannot contain spaces",
+                "meta": ["id"]
+            },
+            "query": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "errorMessage": "A query must be provided"
+            },
+            "fasta": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "pattern": "^\\S+\\.fa(sta)?$",
+                "errorMessage": "Fasta file must be provided, cannot contain spaces and must have extension '.fa' or '.fasta'"
+            }
+        }
+    },
+    "anyOf": [
+        {
+            "required": ["id", "query"]
+        },
+        {
+            "required": ["id", "fasta"]
+        }
+    ]
+}

@@ -1,0 +1,559 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/genomeqc/master/nextflow_schema.json",
+    "title": "nf-core/genomeqc pipeline parameters",
+    "description": "A pipeline to compare multiple genomes and annotations",
+    "type": "object",
+    "$defs": {
+        "input_output_options": {
+            "title": "Input/output options",
+            "type": "object",
+            "fa_icon": "fas fa-terminal",
+            "description": "Define where the pipeline should find input data and save output data.",
+            "required": ["input", "outdir"],
+            "properties": {
+                "input": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "schema": "assets/schema_input.json",
+                    "mimetype": "text/csv",
+                    "pattern": "^\\S+\\.csv$",
+                    "description": "Path to comma-separated file containing information about the samples in the experiment.",
+                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row. See [usage docs](https://nf-co.re/genomeqc/usage#samplesheet-input).",
+                    "fa_icon": "fas fa-file-csv"
+                },
+                "outdir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
+                    "fa_icon": "fas fa-folder-open"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address for completion summary.",
+                    "fa_icon": "fas fa-envelope",
+                    "help_text": "Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
+                },
+                "multiqc_title": {
+                    "type": "string",
+                    "description": "MultiQC report title. Printed as page header, used for filename if not otherwise specified.",
+                    "fa_icon": "fas fa-file-signature"
+                }
+            }
+        },
+        "pipeline_mode_options": {
+            "title": "Pipeline mode options",
+            "type": "object",
+            "fa_icon": "fas fa-cogs",
+            "description": "General options that control which parts of the pipeline run.",
+            "properties": {
+                "genome_only": {
+                    "type": "boolean",
+                    "description": "Run genomeqc on genomes only.",
+                    "hidden": true
+                },
+                "kvalue": {
+                    "type": "integer",
+                    "default": 21,
+                    "description": "k-mer size for meryl (merqury)."
+                },
+                "container_engine": {
+                    "type": "string",
+                    "description": "Container engine used to launch the interactive Shiny app. Only 'docker' and 'podman' are supported - Singularity/Apptainer does not work.",
+                    "default": "docker",
+                    "enum": ["docker", "podman"]
+                }
+            }
+        },
+        "busco_options": {
+            "title": "BUSCO options",
+            "type": "object",
+            "fa_icon": "fas fa-check-circle",
+            "description": "Options for BUSCO completeness assessment.",
+            "properties": {
+                "groups": {
+                    "type": "string",
+                    "default": "all",
+                    "description": "A string with NCBI taxonomic groups of the assemblies. Can be a comma-separated list.",
+                    "help_text": "Only specify the groups if you are having problems downloading the assmeblies. Otherwise, the default value should work for any type of organism.\nAvailable options: all, archaea, bacteria, fungi, invertebrate, metagenomes, plant, protozoa, vertebrate_mammalian, vertebrate_other, viral.",
+                    "pattern": "^(all|archaea|bacteria|fungi|invertebrate|metagenomes|plant|protozoa|vertebrate_mammalian|vertebrate_other|viral)(,(all|archaea|bacteria|fungi|invertebrate|metagenomes|plant|protozoa|vertebrate_mammalian|vertebrate_other|viral))*$"
+                },
+                "busco_lineage": {
+                    "type": "string",
+                    "default": "hymenoptera_odb10",
+                    "description": "A flag to set the busco lineage."
+                },
+                "busco_lineages_path": {
+                    "type": "string",
+                    "description": "A flag to set the BUSCO lineages directory (optional)"
+                },
+                "busco_config": {
+                    "type": "string",
+                    "description": "A path to a BUSCO config file (optional)"
+                },
+                "busco_clean": {
+                    "type": "boolean",
+                    "description": "Remove intermediate files"
+                },
+                "min_buscos": {
+                    "type": "integer",
+                    "help_text": "Threshold for BUSCO count table: counts how many sequences in each assembly have at least this many Complete BUSCOs.\n",
+                    "description": "Minimum number of Complete BUSCOs a sequence must have to be counted as significant ortholog-containing sequences."
+                },
+                "skip_busco": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Skip BUSCO. If run on genome only, it will also skip orthofinder."
+                }
+            }
+        },
+        "decontamination_options": {
+            "title": "Decontamination options",
+            "type": "object",
+            "fa_icon": "fas fa-shield-alt",
+            "description": "Options for FCS-GX/FCS-adaptor contamination screening.",
+            "properties": {
+                "gxdb": {
+                    "type": "string",
+                    "description": "Path to FCS-GX contamination screening database."
+                },
+                "gxdb_manifest": {
+                    "type": "string",
+                    "description": "Path to FCS GX contamination screening database"
+                },
+                "ramdisk": {
+                    "type": "string",
+                    "description": "Path to RAM-backed tmpfs or ramfs location to store FCS-GX database",
+                    "help_text": "This parameter is optional, but settinng this directory will make contamination screening significantly faster.",
+                    "format": "directory-path"
+                },
+                "save_cleaned_genome": {
+                    "type": "boolean",
+                    "description": "Save cleaned genome after decontamination with FCS-GX"
+                },
+                "save_cleaned_adaptor": {
+                    "type": "boolean",
+                    "description": "Save cleaned genome after adaptor removal with FCS-GX"
+                }
+            }
+        },
+        "annotation_options": {
+            "title": "Annotation options",
+            "type": "object",
+            "fa_icon": "fas fa-align-left",
+            "description": "Options for annotation (GFF/GTF) validation.",
+            "properties": {
+                "val_tool": {
+                    "type": "string",
+                    "default": "agat",
+                    "description": "Tool for gxf validation.",
+                    "enum": ["agat", "gffread"]
+                }
+            }
+        },
+        "orthology_options": {
+            "title": "Orthology options",
+            "type": "object",
+            "fa_icon": "fas fa-project-diagram",
+            "description": "Options for orthology inference.",
+            "properties": {
+                "ortho_version": {
+                    "type": "string",
+                    "default": "v3",
+                    "description": "OrthoFinder major version to run.",
+                    "help_text": "Use 'v2' on arm64 (Apple Silicon) hosts, where OrthoFinder v3 does not work.",
+                    "enum": ["v2", "v3"]
+                },
+                "save_orthofinder_results": {
+                    "type": "boolean",
+                    "description": "Publish orthofinder results.",
+                    "default": true
+                },
+                "save_longest_isoform": {
+                    "type": "boolean",
+                    "description": "Publish longest protein isoform fasta files."
+                }
+            }
+        },
+        "tidk_options": {
+            "title": "TIDK options",
+            "type": "object",
+            "fa_icon": "fas fa-ruler-horizontal",
+            "description": "Options for telomere identification with TIDK.",
+            "properties": {
+                "skip_tidk": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Do not run TIDK."
+                },
+                "repeat": {
+                    "type": "string",
+                    "description": "DNA string for tidk motif search"
+                }
+            }
+        },
+        "tree_summary_options": {
+            "title": "Tree summary options",
+            "type": "object",
+            "fa_icon": "fas fa-tree",
+            "description": "Options for the summary tree plot.",
+            "properties": {
+                "tree_scale": {
+                    "type": "integer",
+                    "description": "Modifies scale of the tree plot in the tree summary, default value is '0.0005'. Useful if tree tips overlap with the concatenated plots. Very sensitive, increase/decrease by two-fold."
+                },
+                "tree_margin": {
+                    "type": "string",
+                    "description": "Tree's right margin size for the non-circular layouts.",
+                    "hidden": true
+                },
+                "tree_style": {
+                    "type": "string",
+                    "default": "roundrect",
+                    "description": "Tree layout style for the tree summary plot.",
+                    "help_text": "'roundrect' draws rounded branches (default), 'ellipse' draws curved branches with node points, 'rectangular' reproduces the legacy look with dotted leader lines, and 'circular' draws a fan tree with each summary statistic as a concentric coloured ring and a numbered assembly key. In circular mode the same stats as the default layout are available (sequence number, genome size, N50, gene number, genome and protein BUSCO completeness, FCS-GX contamination, etc.), each toggled independently via --skip_stats.",
+                    "enum": ["roundrect", "ellipse", "rectangular", "circular"]
+                },
+                "circular_rings": {
+                    "type": "string",
+                    "description": "Circular layout only: which summary stats to draw as rings.",
+                    "help_text": "Comma-separated, ordered (inner->outer) list of stat keys, or 'all' to show every available stat. Unset uses a curated assembly/annotation-quality default (sequence number, N50, genome BUSCO, protein BUSCO, FCS-GX contamination). Keys: ch_plot, len_plot, n50_plot, gene_plot, busco_gen_plot, busco_prot_plot, fcs_plot, nseqs_plot, ortho_plot."
+                },
+                "quality_preset": {
+                    "type": "string",
+                    "description": "Circular layout only: phylogenetic-group thresholds used to score the quality (traffic-light) rings.",
+                    "help_text": "Quality rings (sequence count, N50, BUSCO completeness/duplication, FCS-GX contamination) are scored Good/Warn/Poor against these thresholds. 'generic' is deliberately lenient. The N50 and sequence-count cut-offs are clade-dependent starting points and should be tuned per project; the FCS-GX contamination cut-offs are fixed across presets.",
+                    "enum": ["generic", "vertebrate", "insect", "plant", "fungi", "bacteria"]
+                },
+                "quality_thresholds": {
+                    "type": "string",
+                    "description": "Circular layout only: override individual --quality_preset cut-offs.",
+                    "help_text": "Comma-separated 'metric=good:warn' pairs, e.g. 'n50=2e6:5e5,seq_number=500:5000'. Metrics: busco_complete, busco_duplicated, n50, seq_number, fcs_noncontam. Direction (higher/lower is better) is fixed per metric, so only the cut-off values are given. Metrics not mentioned keep the selected preset's cut-offs."
+                },
+                "show_ring_values": {
+                    "type": "boolean",
+                    "description": "Circular layout only: print each value on its ring.",
+                    "help_text": "Adds a redundant, non-colour-only encoding (important for accessibility, since the traffic-light rings otherwise rely on colour alone). Best suited to small trees.",
+                    "default": false
+                },
+                "skip_plots_genome_anno": {
+                    "type": "string",
+                    "description": "Skip these stat plots in the genome and annotation tree plot.",
+                    "pattern": "^(ch_plot|nseqs_plot|ortho_plot|len_plot|gene_plot|n50_plot|busco_gen_plot|busco_prot_plot|te_plot|fcs_plot)(,(ch_plot|nseqs_plot|ortho_plot|len_plot|gene_plot|n50_plot|busco_gen_plot|busco_prot_plot|te_plot|fcs_plot))*$",
+                    "help_text": "Comma-separated list of plot types to skip. Valid values: ch_plot, nseqs_plot, ortho_plot, len_plot, gene_plot, n50_plot, busco_gen_plot, busco_prot_plot, te_plot, fcs_plot\nch_plot: Number of sequences\nlen_plot: Genome size and GC content\ngene_plot: Number of genes and overlapping genes\nn50_plot: N50\nbusco_gen_plot: Genome BUSCO completeness\nbusco_prot_plot: Protein BUSCO completeness\nte_plot: TE composition\nfcs_plot: FCS-GX contamination",
+                    "default": "nseqs_plot"
+                },
+                "skip_plots_genome_only": {
+                    "type": "string",
+                    "description": "Skip these stat plots in the genome only tree plot.",
+                    "pattern": "^(ch_plot|nseqs_plot|ortho_plot|len_plot|n50_plot|busco_gen_plot|te_plot|fcs_plot)(,(ch_plot|nseqs_plot|ortho_plot|len_plot|n50_plot|busco_gen_plot|te_plot|fcs_plot))*$",
+                    "help_text": "Comma-separated list of plot types to skip. Valid values: ch_plot, nseqs_plot, ortho_plot, len_plot, n50_plot, busco_gen_plot, te_plot, fcs_plot\nch_plot: Number of sequences\nlen_plot: Genome size and GC content\nn50_plot: N50\nbusco_gen_plot: Genome BUSCO completeness\nte_plot: TE composition\nfcs_plot: FCS-GX contamination",
+                    "default": "nseqs_plot"
+                }
+            }
+        },
+        "save_intermediate_files_options": {
+            "title": "Save intermediate files",
+            "type": "object",
+            "fa_icon": "fas fa-save",
+            "description": "Options to publish intermediate files that are not saved by default.",
+            "properties": {
+                "save_sorted_seqs": {
+                    "type": "boolean",
+                    "description": "Publish sorted fasta genome files from seqkit."
+                },
+                "save_validated_annotation": {
+                    "type": "boolean",
+                    "description": "Publish gff files validated by AGAT."
+                },
+                "save_assembly": {
+                    "type": "boolean",
+                    "description": "Publish genomes and/or annotations of user-supplied RefSeq IDs."
+                },
+                "save_extracted_seqs": {
+                    "type": "boolean",
+                    "description": "Publish extracted protein fasta files by GFFREAD."
+                },
+                "save_filtered_seqs": {
+                    "type": "boolean",
+                    "description": "Publish filtered fasta genome files from seqkit."
+                }
+            }
+        },
+        "te_annotation_options": {
+            "title": "TE annotation options",
+            "type": "object",
+            "fa_icon": "fas fa-dna",
+            "description": "Options for transposable element annotation.",
+            "properties": {
+                "te": {
+                    "type": "string",
+                    "description": "TE annotation method to run. Use 'hite' for HiTE or 'repeatmasker' for the full RepeatMasker pipeline. Omit to skip TE annotation. 'hite' does not support -profile conda/mamba  - use `-profile docker`, `-profile singularity`, or `-profile podman` instead.",
+                    "enum": ["hite", "repeatmasker"],
+                    "fa_icon": "fas fa-dna"
+                },
+                "is_plant": {
+                    "type": "boolean",
+                    "description": "Set to true for plant genomes (passed to HiTE).",
+                    "fa_icon": "fas fa-leaf"
+                },
+                "curated_lib": {
+                    "type": "string",
+                    "description": "Path to a curated repeat library for HiTE.",
+                    "format": "file-path",
+                    "fa_icon": "fas fa-file"
+                },
+                "famdb_library": {
+                    "type": "string",
+                    "description": "Path to pre-staged famdb h5 partition file(s). Accepts a single file path or a glob pattern (e.g. '/path/FamDB*'). Alternative to downloading via RM_db.",
+                    "format": "file-path-pattern",
+                    "fa_icon": "fas fa-database"
+                },
+                "famdb_lineage": {
+                    "type": "string",
+                    "description": "Taxonomic lineage to filter repeat families from famdb (e.g. 'hymenoptera'). Omit to export all families.",
+                    "fa_icon": "fas fa-sitemap"
+                },
+                "run_repeatmodeler": {
+                    "type": "boolean",
+                    "description": "Run de novo repeat discovery with RepeatModeler before masking. Disabled by default \u2014 RepeatModeler typically requires 24 CPUs and 24\u201348 h per genome. When false, only the curated famdb library is used.",
+                    "fa_icon": "fas fa-clock"
+                },
+                "repeatmasker_speed": {
+                    "type": "string",
+                    "description": "RepeatMasker sensitivity/speed mode. 'default' is most sensitive; 'q' (quick) is ~5x faster; 'qq' (rush) is fastest with lowest sensitivity.",
+                    "default": "qq",
+                    "enum": ["default", "q", "qq"],
+                    "fa_icon": "fas fa-tachometer-alt"
+                },
+                "RM_download_db": {
+                    "type": "boolean",
+                    "description": "Download h5 partition files from the URLs specified in RM_db.",
+                    "default": false,
+                    "fa_icon": "fas fa-download"
+                },
+                "RM_db": {
+                    "type": "array",
+                    "description": "List of URLs to DFAM h5 partition files to download.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "fa_icon": "fas fa-link"
+                },
+                "te_clusterer": {
+                    "type": "string",
+                    "description": "Clustering tool used to dereplicate the repeat library before RepeatMasker. 'mmseqs' uses MMseqs2 easy-cluster; 'linclust' (default) uses MMseqs2 easy-linclust (linear time, less sensitive); 'cdhit' uses CD-HIT-EST.",
+                    "default": "linclust",
+                    "enum": ["mmseqs", "linclust", "cdhit"],
+                    "fa_icon": "fas fa-object-group"
+                },
+                "te_cluster_identity": {
+                    "type": "number",
+                    "default": 0.8,
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Minimum sequence identity threshold (0.0\u20131.0) for repeat library clustering. Passed as -c to CD-HIT-EST and --min-seq-id to MMseqs2.",
+                    "fa_icon": "fas fa-percentage"
+                },
+                "te_cluster_coverage": {
+                    "type": "number",
+                    "default": 0.8,
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Minimum alignment coverage threshold (0.0\u20131.0) for repeat library clustering. Passed as -aS to CD-HIT-EST and -c (with --cov-mode 1) to MMseqs2.",
+                    "fa_icon": "fas fa-ruler-horizontal"
+                }
+            }
+        },
+        "institutional_config_options": {
+            "title": "Institutional config options",
+            "type": "object",
+            "fa_icon": "fas fa-university",
+            "description": "Parameters used to describe centralised config profiles. These should not be edited.",
+            "help_text": "The centralised nf-core configuration profiles use a handful of pipeline parameters to describe themselves. This information is then printed to the Nextflow log when you run a pipeline. You should not need to change these values when you run a pipeline.",
+            "properties": {
+                "custom_config_version": {
+                    "type": "string",
+                    "description": "Git commit id for Institutional configs.",
+                    "default": "master",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "custom_config_base": {
+                    "type": "string",
+                    "description": "Base directory for Institutional configs.",
+                    "default": "https://raw.githubusercontent.com/nf-core/configs/master",
+                    "hidden": true,
+                    "help_text": "If you're running offline, Nextflow will not be able to fetch the institutional config files from the internet. If you don't need them, then this is not a problem. If you do need them, you should download the files from the repo and tell Nextflow where to find them with this parameter.",
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_name": {
+                    "type": "string",
+                    "description": "Institutional config name.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_description": {
+                    "type": "string",
+                    "description": "Institutional config description.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_contact": {
+                    "type": "string",
+                    "description": "Institutional config contact information.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_url": {
+                    "type": "string",
+                    "description": "Institutional config URL link.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                }
+            }
+        },
+        "generic_options": {
+            "title": "Generic options",
+            "type": "object",
+            "fa_icon": "fas fa-file-import",
+            "description": "Less common options for the pipeline, typically set in a config file.",
+            "help_text": "These options are common to all nf-core pipelines and allow you to customise some of the core preferences for how the pipeline runs.\n\nTypically these options would be set in a Nextflow config file loaded for all pipeline runs, such as `~/.nextflow/config`.",
+            "properties": {
+                "version": {
+                    "type": "boolean",
+                    "description": "Display version and exit.",
+                    "fa_icon": "fas fa-question-circle",
+                    "hidden": true
+                },
+                "publish_dir_mode": {
+                    "type": "string",
+                    "default": "copy",
+                    "description": "Method used to save pipeline results to output directory.",
+                    "help_text": "The Nextflow `publishDir` option specifies which intermediate files should be saved to the output directory. This option tells the pipeline what method should be used to move these files. See [Nextflow docs](https://www.nextflow.io/docs/latest/process.html#publishdir) for details.",
+                    "fa_icon": "fas fa-copy",
+                    "enum": ["symlink", "rellink", "link", "copy", "copyNoFollow", "move"],
+                    "hidden": true
+                },
+                "email_on_fail": {
+                    "type": "string",
+                    "description": "Email address for completion summary, only when pipeline fails.",
+                    "fa_icon": "fas fa-exclamation-triangle",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$",
+                    "help_text": "An email address to send a summary email to when the pipeline is completed - ONLY sent if the pipeline does not exit successfully.",
+                    "hidden": true
+                },
+                "plaintext_email": {
+                    "type": "boolean",
+                    "description": "Send plain-text email instead of HTML.",
+                    "fa_icon": "fas fa-remove-format",
+                    "hidden": true
+                },
+                "max_multiqc_email_size": {
+                    "type": "string",
+                    "description": "File size limit when attaching MultiQC reports to summary emails.",
+                    "pattern": "^\\d+(\\.\\d+)?\\.?\\s*(K|M|G|T)?B$",
+                    "default": "25.MB",
+                    "fa_icon": "fas fa-file-upload",
+                    "hidden": true
+                },
+                "monochrome_logs": {
+                    "type": "boolean",
+                    "description": "Do not use coloured log outputs.",
+                    "fa_icon": "fas fa-palette",
+                    "hidden": true
+                },
+                "multiqc_config": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Custom config file to supply to MultiQC.",
+                    "fa_icon": "fas fa-cog",
+                    "hidden": true
+                },
+                "multiqc_logo": {
+                    "type": "string",
+                    "description": "Custom logo file to supply to MultiQC. File name must also be set in the MultiQC config file",
+                    "fa_icon": "fas fa-image",
+                    "hidden": true
+                },
+                "multiqc_methods_description": {
+                    "type": "string",
+                    "description": "Custom MultiQC yaml file containing HTML including a methods description.",
+                    "fa_icon": "fas fa-cog"
+                },
+                "validate_params": {
+                    "type": "boolean",
+                    "description": "Boolean whether to validate parameters against the schema at runtime",
+                    "default": true,
+                    "fa_icon": "fas fa-check-square",
+                    "hidden": true
+                },
+                "pipelines_testdata_base_path": {
+                    "type": "string",
+                    "fa_icon": "far fa-check-circle",
+                    "description": "Base URL or local path to location of pipeline test dataset files",
+                    "default": "https://raw.githubusercontent.com/nf-core/test-datasets/",
+                    "hidden": true
+                },
+                "trace_report_suffix": {
+                    "type": "string",
+                    "fa_icon": "far calendar",
+                    "description": "Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss.",
+                    "hidden": true
+                },
+                "help": {
+                    "type": ["boolean", "string"],
+                    "description": "Display the help message."
+                },
+                "help_full": {
+                    "type": "boolean",
+                    "description": "Display the full detailed help message."
+                },
+                "show_hidden": {
+                    "type": "boolean",
+                    "description": "Display hidden parameters in the help message (only works when --help or --help_full are provided)."
+                }
+            }
+        }
+    },
+    "allOf": [
+        {
+            "$ref": "#/$defs/input_output_options"
+        },
+        {
+            "$ref": "#/$defs/pipeline_mode_options"
+        },
+        {
+            "$ref": "#/$defs/busco_options"
+        },
+        {
+            "$ref": "#/$defs/decontamination_options"
+        },
+        {
+            "$ref": "#/$defs/annotation_options"
+        },
+        {
+            "$ref": "#/$defs/orthology_options"
+        },
+        {
+            "$ref": "#/$defs/tidk_options"
+        },
+        {
+            "$ref": "#/$defs/tree_summary_options"
+        },
+        {
+            "$ref": "#/$defs/save_intermediate_files_options"
+        },
+        {
+            "$ref": "#/$defs/te_annotation_options"
+        },
+        {
+            "$ref": "#/$defs/institutional_config_options"
+        },
+        {
+            "$ref": "#/$defs/generic_options"
+        }
+    ]
+}

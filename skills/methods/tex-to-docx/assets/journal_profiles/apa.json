@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "profile_id": "apa",
+  "display_name": "APA Style 7th edition",
+  "scope": "style-system",
+  "aliases": ["apa", "apa 7", "apa 7th", "apa style"],
+  "csl_files": ["apa.csl"],
+  "language": "en",
+  "verified_on": "2026-07-24",
+  "sources": [
+    {"title": "APA Style paper format", "url": "https://apastyle.apa.org/style-grammar-guidelines/paper-format", "authority": "official"},
+    {"title": "APA Style headings", "url": "https://apastyle.apa.org/style-grammar-guidelines/paper-format/headings", "authority": "official"},
+    {"title": "APA Style figures", "url": "https://apastyle.apa.org/style-grammar-guidelines/tables-figures/figures", "authority": "official"},
+    {"title": "APA Style reference examples", "url": "https://apastyle.apa.org/style-grammar-guidelines/references/examples", "authority": "official"}
+  ],
+  "template": {
+    "body": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "line_spacing": "2.0", "margin_inches": 1.0},
+    "title": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "bold": true, "alignment": "center"},
+    "headings": {
+      "heading_1": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "bold": true, "alignment": "center"},
+      "heading_2": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "bold": true},
+      "heading_3": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "bold": true, "italic": true}
+    },
+    "caption": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "line_spacing": "2.0"},
+    "bibliography": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "line_spacing": "2.0", "hanging_indent_inches": 0.5}
+  },
+  "evidence": {
+    "body": {"status": "official", "source": 0, "note": "APA permits several accessible fonts; 12-point Times New Roman is one official option. Double spacing and 1-inch margins are used here."},
+    "title": {"status": "official", "source": 0},
+    "headings": {"status": "official", "source": 1},
+    "caption": {"status": "official", "source": 2, "note": "APA figure number/title semantics cannot be represented completely by one Word Caption style."},
+    "bibliography": {"status": "official", "source": 3, "note": "References use double spacing and a 0.5-inch hanging indent."}
+  }
+}

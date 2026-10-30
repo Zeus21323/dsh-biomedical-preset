@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/multiplesequencealign",
+  "skill_id": "nfcore-multiplesequencealign",
+  "scientific_title": "多序列比对方法比较",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/multiplesequencealign",
+    "archived": false,
+    "revision_label": "1.1.1",
+    "commit": "79724dac3d240b9bb7684532d3fe238b42f6a4b4",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.04.2",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "d87f7414ecb32532fec3be3c07652edad3f94ec8301acded731aa83afe512f7e"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "a60682ab78115229d30a6ef59b6164e004c5276bee11e1a68ab0af1c40daa3e6",
+        "parameters": [
+          "input"
+        ]
+      },
+      {
+        "file": "输入模式-2.json",
+        "source_path": "assets/schema_tools.json",
+        "sha256": "8b7f5eb7666a88deb54525eef4a8f4de118c39077bcc68aa81b65f60e34681e0",
+        "parameters": [
+          "tools"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/multiplesequencealign/79724dac3d240b9bb7684532d3fe238b42f6a4b4/LICENSE",
+      "sha256": "243c3c1886cef4130d508ce4d07f3f2d7bd49b6326863bbb5d1d3acfa93e2b7a",
+      "bytes": 1090
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/multiplesequencealign/79724dac3d240b9bb7684532d3fe238b42f6a4b4/README.md",
+      "sha256": "9918878b6aed00a46ef2df31ddf3205abbb6ad9bbb2cf45e352a7c53ff7f2d8d",
+      "bytes": 13094
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/multiplesequencealign/79724dac3d240b9bb7684532d3fe238b42f6a4b4/assets/schema_input.json",
+      "sha256": "a60682ab78115229d30a6ef59b6164e004c5276bee11e1a68ab0af1c40daa3e6",
+      "bytes": 2001
+    },
+    {
+      "path": "assets/schema_tools.json",
+      "url": "https://raw.githubusercontent.com/nf-core/multiplesequencealign/79724dac3d240b9bb7684532d3fe238b42f6a4b4/assets/schema_tools.json",
+      "sha256": "8b7f5eb7666a88deb54525eef4a8f4de118c39077bcc68aa81b65f60e34681e0",
+      "bytes": 1841
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/multiplesequencealign/79724dac3d240b9bb7684532d3fe238b42f6a4b4/docs/output.md",
+      "sha256": "c3354f3a9541733b77a1a8cd9507aa53defeb21a5dc066e0078918f6c175a651",
+      "bytes": 7316
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/multiplesequencealign/79724dac3d240b9bb7684532d3fe238b42f6a4b4/docs/usage.md",
+      "sha256": "ce71f32b229348f8ae3e6985a11a7f2ba6e0f59ddfb5522a3090e0c231f7c406",
+      "bytes": 27002
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/multiplesequencealign/79724dac3d240b9bb7684532d3fe238b42f6a4b4/main.nf",
+      "sha256": "ae049f990b6dc02a311e96d6af6f8ad9ae438d12759823339c424413903fbd42",
+      "bytes": 3316
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/multiplesequencealign/79724dac3d240b9bb7684532d3fe238b42f6a4b4/nextflow.config",
+      "sha256": "94dff4f8d003278c3af4d91422f6965f34c9fbfb6d96d624c202a35b5fec2dbb",
+      "bytes": 14593
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/multiplesequencealign/79724dac3d240b9bb7684532d3fe238b42f6a4b4/nextflow_schema.json",
+      "sha256": "d87f7414ecb32532fec3be3c07652edad3f94ec8301acded731aa83afe512f7e",
+      "bytes": 22751
+    },
+    {
+      "path": "workflows/multiplesequencealign.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/multiplesequencealign/79724dac3d240b9bb7684532d3fe238b42f6a4b4/workflows/multiplesequencealign.nf",
+      "sha256": "b4533614d911b57046da978d0f542215f1c8cbc8e826698814ed3d5ff9960aef",
+      "bytes": 15252
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/mag",
+  "skill_id": "nfcore-mag",
+  "scientific_title": "宏基因组组装与分箱",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/mag",
+    "archived": false,
+    "revision_label": "5.5.0",
+    "commit": "56abab5b023ce953c9c43fe21090d156ad0e18af",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=26.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "c09c9116d72e45c743f73fb8a4928d43b1db2aa015de894640ce9ee77d41918c"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_assembly_input.json",
+        "sha256": "a4b26f0582ff683b66f6273a7d0126fdd40a2b8360caed0071e7b08b157ebef0",
+        "parameters": [
+          "assembly_input"
+        ]
+      },
+      {
+        "file": "输入模式-2.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "6e35c7210839d988a10d2be786407be811e4d87e8218b43a2f33a9cd4012c109",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/mag/56abab5b023ce953c9c43fe21090d156ad0e18af/LICENSE",
+      "sha256": "e82811283149f426a14367135ec18c9242e90158c84ba8773a337d126f2bda06",
+      "bytes": 1072
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/mag/56abab5b023ce953c9c43fe21090d156ad0e18af/README.md",
+      "sha256": "6b302d300e5f0e552de9e583ca01a6d571d344756252650caf33981050c91eab",
+      "bytes": 11610
+    },
+    {
+      "path": "assets/schema_assembly_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/mag/56abab5b023ce953c9c43fe21090d156ad0e18af/assets/schema_assembly_input.json",
+      "sha256": "a4b26f0582ff683b66f6273a7d0126fdd40a2b8360caed0071e7b08b157ebef0",
+      "bytes": 1179
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/mag/56abab5b023ce953c9c43fe21090d156ad0e18af/assets/schema_input.json",
+      "sha256": "6e35c7210839d988a10d2be786407be811e4d87e8218b43a2f33a9cd4012c109",
+      "bytes": 3073
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/mag/56abab5b023ce953c9c43fe21090d156ad0e18af/docs/output.md",
+      "sha256": "e1d59dfc7b7c55aeecc155ea51eb5a285f8736e3ecef23bf4ddb36ec846e2df8",
+      "bytes": 55781
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/mag/56abab5b023ce953c9c43fe21090d156ad0e18af/docs/usage.md",
+      "sha256": "7c2d9dee0d3d05354c01eb65c51c8bc1695012b03732e9deed067df9b7c95b3e",
+      "bytes": 40445
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/mag/56abab5b023ce953c9c43fe21090d156ad0e18af/main.nf",
+      "sha256": "cc5a8c42de5d825a8fd96b9bf54af62e3fac1967e9bc2a4f86889c0e33f5f6ef",
+      "bytes": 3114
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/mag/56abab5b023ce953c9c43fe21090d156ad0e18af/nextflow.config",
+      "sha256": "e73dcfcf2bc2240be006de5b6e406d9f8e5029e5ae389331d7e8093877af1cb0",
+      "bytes": 21994
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/mag/56abab5b023ce953c9c43fe21090d156ad0e18af/nextflow_schema.json",
+      "sha256": "c09c9116d72e45c743f73fb8a4928d43b1db2aa015de894640ce9ee77d41918c",
+      "bytes": 72603
+    },
+    {
+      "path": "workflows/mag.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/mag/56abab5b023ce953c9c43fe21090d156ad0e18af/workflows/mag.nf",
+      "sha256": "df38ad5067f9abf2416750e259fa1cf40b97274975cdb0a154ac7491ea18cf09",
+      "bytes": 28463
+    }
+  ]
+}

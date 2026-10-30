@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/methylseq",
+  "skill_id": "nfcore-methylseq",
+  "scientific_title": "亚硫酸氢盐及兼容甲基化测序分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/methylseq",
+    "archived": false,
+    "revision_label": "4.2.0",
+    "commit": "5aa56467a85a5e2d6795ea72dfa5a5f0c9babc23",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "d36c0badea1d18fe483a5736d5f36add86e34b03bc8fd7bd958769a89581239f"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "c0f30905daf652baa68569a7dfa9723d788efa90cfa84d212663073db3a903fe",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/methylseq/5aa56467a85a5e2d6795ea72dfa5a5f0c9babc23/LICENSE",
+      "sha256": "59d91fc44baf355cea99db6818206df34a465337fd3074a16707c581ce7793b1",
+      "bytes": 1078
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/methylseq/5aa56467a85a5e2d6795ea72dfa5a5f0c9babc23/README.md",
+      "sha256": "64dd3332af7bb9044f4f29fb1d3b58b10496546bc1567a21e9ddb76fc3b070c0",
+      "bytes": 11267
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/methylseq/5aa56467a85a5e2d6795ea72dfa5a5f0c9babc23/assets/schema_input.json",
+      "sha256": "c0f30905daf652baa68569a7dfa9723d788efa90cfa84d212663073db3a903fe",
+      "bytes": 1640
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/methylseq/5aa56467a85a5e2d6795ea72dfa5a5f0c9babc23/docs/output.md",
+      "sha256": "114bd273e65028201ba82477bfd910aaf8288054304931b694fdfa085ea2dca0",
+      "bytes": 19185
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/methylseq/5aa56467a85a5e2d6795ea72dfa5a5f0c9babc23/docs/usage.md",
+      "sha256": "3648304b13b255f14dfbf686363507448e60a8609aa12be0f5ec731f60feb0ce",
+      "bytes": 32531
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/methylseq/5aa56467a85a5e2d6795ea72dfa5a5f0c9babc23/main.nf",
+      "sha256": "f480a2c288949a03c0a641cbe0786379b4f8c682d9a1d8c4b1311465db6af426",
+      "bytes": 5157
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/methylseq/5aa56467a85a5e2d6795ea72dfa5a5f0c9babc23/nextflow.config",
+      "sha256": "4c3a8c87cd3c9310894cadef93ac0b72f5e97c5f71eb7d455349e2575f7dbe8b",
+      "bytes": 16837
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/methylseq/5aa56467a85a5e2d6795ea72dfa5a5f0c9babc23/nextflow_schema.json",
+      "sha256": "d36c0badea1d18fe483a5736d5f36add86e34b03bc8fd7bd958769a89581239f",
+      "bytes": 46899
+    },
+    {
+      "path": "workflows/methylseq//main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/methylseq/5aa56467a85a5e2d6795ea72dfa5a5f0c9babc23/workflows/methylseq//main.nf",
+      "sha256": "be2a52d1e71b71d104fbc23772847e4b1cfdf4a7c758663d2dfd811c8335a787",
+      "bytes": 17762
+    }
+  ]
+}

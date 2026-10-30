@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/sopa",
+  "skill_id": "nfcore-sopa",
+  "scientific_title": "空间组学图像与分子数据分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/sopa",
+    "archived": false,
+    "revision_label": "1.0.1",
+    "commit": "0b959963a3984ff78725209113d9ecdb78cef0b6",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "f911bd58af5c1bb41acf7d736333035fca51f1239c6fcc5b8e571211c2076bb4"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "2acd8f864d88aa926f614632ec39ea2d9c872eabc8a57349a94d4c71d82c9f66",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/sopa/0b959963a3984ff78725209113d9ecdb78cef0b6/LICENSE",
+      "sha256": "1ea630f0099b42dd1a2448cd43c662560c4332c7371975f6de6e8d0e2476e7d3",
+      "bytes": 1073
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/sopa/0b959963a3984ff78725209113d9ecdb78cef0b6/README.md",
+      "sha256": "f95ec7e2983b599f234beb0865f536f0852989aaaf4d258e8719044310b4977e",
+      "bytes": 8773
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/sopa/0b959963a3984ff78725209113d9ecdb78cef0b6/assets/schema_input.json",
+      "sha256": "2acd8f864d88aa926f614632ec39ea2d9c872eabc8a57349a94d4c71d82c9f66",
+      "bytes": 3962
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/sopa/0b959963a3984ff78725209113d9ecdb78cef0b6/docs/output.md",
+      "sha256": "286786cae8ba9fec0b3bb450f93d2b5372c15404610c20e670656124782ca707",
+      "bytes": 3470
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/sopa/0b959963a3984ff78725209113d9ecdb78cef0b6/docs/usage.md",
+      "sha256": "c0b9597dba5c6e468acc1029ac56add9195ebfb1b42fb0203f1d5bb92c7b354b",
+      "bytes": 24748
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/sopa/0b959963a3984ff78725209113d9ecdb78cef0b6/main.nf",
+      "sha256": "fca46e210beb337c9fc8e9920bbc0236ad5d6a3cb6218a35b394f2679ae3ddde",
+      "bytes": 2299
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/sopa/0b959963a3984ff78725209113d9ecdb78cef0b6/nextflow.config",
+      "sha256": "13f9b607a952cf9ed8d8d5bd3482a6b61bc5d04823f0b0fe688e4e4dd6d665f8",
+      "bytes": 15059
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/sopa/0b959963a3984ff78725209113d9ecdb78cef0b6/nextflow_schema.json",
+      "sha256": "f911bd58af5c1bb41acf7d736333035fca51f1239c6fcc5b8e571211c2076bb4",
+      "bytes": 31042
+    },
+    {
+      "path": "workflows/sopa.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/sopa/0b959963a3984ff78725209113d9ecdb78cef0b6/workflows/sopa.nf",
+      "sha256": "8b2ef3f054bbf818ec0f388eb3a50eb1216636a373cfcb3ef0744b0d44ae1fbe",
+      "bytes": 6626
+    }
+  ]
+}

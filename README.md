@@ -1,9 +1,9 @@
 # 生物医学模式 · dsh-biomedical-preset
 
-DeepSeek Harness 的 agent 预设（bundle）。它不是"给通用助手加个提示词"，而是一套**自持**的生物医学研究装配：身份与纪律、执行工具、88 个流程技能、51 个数据源 MCP 工具、并发闸、交付通道，全部装在这一个包里，不引用任何外部插件目录。
+DeepSeek Harness 的 agent 预设（bundle）。它不是"给通用助手加个提示词"，而是一套**自持**的生物医学研究装配：身份与纪律、执行工具、603 个流程技能、51 个数据源 MCP 工具、并发闸、交付通道，全部装在这一个包里，不引用任何外部插件目录。
 
 - 心智模型：**MCP 负责取数据，Skill 负责选方法与执行流程**，persona 负责纪律与判断。
-- 已验证：市场索引通过官方 `@deepseek-ai/dsh-plugin-market-index` 校验；`npm pack` 产物 407 文件 / 1.16 MB（packed）/ 3.73 MB（unpacked）；本机预设 `fiberPhase: active`。
+- 已验证：市场索引通过官方 `@deepseek-ai/dsh-plugin-market-index` 校验；`npm pack` 产物 2216 文件 / 4.62 MB（packed）/ 18.29 MB（unpacked）；本机预设 `fiberPhase: active`。
 
 ---
 
@@ -11,7 +11,7 @@ DeepSeek Harness 的 agent 预设（bundle）。它不是"给通用助手加个�
 
 - [安装](#安装)
 - [装配结构](#装配结构)
-- [技能清单（88）](#技能清单88)
+- [技能清单（603）](#技能清单603)
 - [MCP 工具清单（51）](#mcp-工具清单51)
 - [并发与资源约束](#并发与资源约束)
 - [平台要求](#平台要求)
@@ -52,7 +52,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 
 ## 装配结构
 
-`cordis.patch.yml` 共 24 个插件行：
+`cordis.patch.yml` 共 27 个插件行：
 
 | 层 | 插件行 | 作用 |
 |---|---|---|
@@ -63,9 +63,8 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | 执行 | `tool-fs`、`tool-fs-search` | 读写脚本、检索大表、grep 参数文件 |
 | 执行 | `tool-jobs` | 后台长任务（比对、训练、批量下载） |
 | 技能 | `skill-filesystem` | 用户自有技能根（`$DSH_HOME/skills`） |
-| 技能 | `bio-skills` | 挂载 `skills/biomedical`（30） |
-| 技能 | `bio-core-skills` | 挂载 `skills/science-core`（33） |
-| 技能 | `omics-skills` | 挂载 `skills/omics`（25 个组学技能） |
+| 技能 | `omics-skills` | 挂载 `skills/omics`（21 个自建组学技能） |
+| 技能 | `upstream-*-skills`（5 组） | 挂载 `skills/upstream-*`（582 个，按域拆分，可单独关闭） |
 | 技能 | `tool-skill` | 技能目录与加载器 |
 | 数据 | `bio-mcp` | 拉起 `mcp/biomedical_mcp.py`（51 工具，stdio） |
 | 编排 | `command-goal`、`tool-goal` | 长课题目标追踪 |
@@ -80,162 +79,45 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 
 ---
 
-## 技能清单（88）
+## 技能清单（603）
 
-技能分三组挂载：`skills/omics`（25，组学平台与流程）、`skills/biomedical`（30，结构与生信写作）、`skills/science-core`（33，方法学与交付合规）。下表按用途归类，一个技能只出现一次。
+按来源分 6 组，每组是独立 skill provider，可单独开关。
 
-### 1. 组学平台（25）
+| provider | 目录 | 数量 | 体积 | 覆盖 |
+|---|---|---|---|---|
+| `biomedical-omics` | `skills/omics` | 21 | 1.5 MB | 自建：变异检测、CNV/SV、ACMG 分级、表观 peak、DNA 甲基化、RNA 修饰/CLIP、免疫组学、脂质组、糖组、蛋白组定量、代谢组、单细胞、微生物组、空间病理、区间运算 |
+| `genomics` | `skills/genomics` | 140 | 2.1 MB | 基因组、群体遗传、肿瘤基因组、临床基因组、液体活检、法医基因组 |
+| `omics-upstream` | `skills/omics-upstream` | 193 | 5.7 MB | 转录组、蛋白组、代谢组、表观组、空间组、多组学整合、单细胞与虚拟细胞、微生物组 |
+| `structure-drug` | `skills/structure-drug` | 79 | 0.3 MB | 结构生物学、AI 药物发现、合成生物学、药物基因组学、生物基础模型 |
+| `clinical-imaging` | `skills/clinical-imaging` | 36 | 0.1 MB | 精准医学、AI 医学影像、衰老与长寿 |
+| `methods` | `skills/methods` | 134 | 8.7 MB | 科研基础设施、方法学、网络系统生物学、免疫组学、生物医学科学 |
+| **合计** | | **603** | **18.2 MB** | |
 
-| 技能 | 组学 | 用途 |
-|---|---|---|
-| `proteomics-quantification` | **蛋白组** | **本项目原创**：MaxQuant / DIA-NN / Spectronaut / FragPipe 输出 → 过滤 → 归一化 → 缺失值 → limma/DEqMS → 富集 → 交付 |
-| `metabolomics-profiling` | **代谢组 / 脂质组** | **本项目原创**：峰表 QC 过滤 → PQN 归一化 → PCA/PLS-DA/OPLS-DA（含置换验证）→ 单变量 → 注释置信级 → mummichog 通路 |
-| `pyopenms` | 蛋白组 / 代谢组 | 质谱全平台：feature detection、肽段鉴定、蛋白定量；MatchMS 谱相似度与代谢物谱库匹配 |
-| `scikit-bio` | **微生物组** | 序列与比对、系统发育、α/β 多样性（UniFrac）、PCoA/PERMANOVA、FASTA/Newick 读写 |
-| `scanpy` | 单细胞 | scverse 生态：AnnData、QC、降维聚类、scVelo RNA 速率、scvi-tools 集成（与 `bio-scanpy` 互补，更偏生态与速率） |
-| `sc-rna-seq-analysis` | 单细胞 | 17+ 模块全流程：decontX 去污染、双细胞检测、Harmony、自动注释、AUCell、scMetabolism、decoupleR |
-| `bulk-rnaseq` | 转录组 | FASTQ → counts → PyDESeq2 → 富集 → 出图（与 `bio-bulk-rnaseq` 同源不同路径：这条走 PyDESeq2 全程） |
-| `deeptools` | 表观组 | BAM→bigWig、相关性/PCA/指纹图、TSS 与 peak 热图（与 `bio-deeptools` 同源，供 ChIP/ATAC 覆写） |
-| `pysam` | 基因组 | SAM/BAM/CRAM/VCF/BCF/FASTA/FASTQ 读写、区域提取、覆盖度计算 |
-| `polars-bio` | 基因组 | 区间运算：overlap / nearest / merge / coverage / complement / subtract，流式读 BED/VCF/BAM |
-| `gtars` | 基因组 | 区间工具 Rust 绑定、覆盖度、坐标分块与 tokenization |
-| `cellxgene-census` | 单细胞图谱 | CZ CELLxGENE Census 的群体规模切片、元数据与 H5AD 定位 |
-| `arboreto` | 转录组 / GRN | GRNBoost2、GENIE3 推断基因调控网络（可分布式） |
-| `pathway-enrichment` | 通用下游 | ORA（Enrichr/Fisher/hypergeometric）与 preranked GSEA，所有组学共用 |
-| `pathml` | **空间 / 病理组学** | WSI 切块、Macenko/Reinhard 染色归一化、CODEX/Vectra 多重免疫荧光、核分割、组织图 |
-| `variant-calling-wes-wgs` | **WES / WGS** | 种系变异检测主线：读组校正 → BWA-MEM2 → MarkDuplicates → BQSR → HaplotypeCaller(GVCF) → GenomicsDBImport/GenotypeGVCFs → VQSR 或硬过滤 → VEP；含 WES capture 区间（`-L`+`-ip 100`）与覆盖度/FREEMIX QC |
-| `cnv-sv-detection` | **CNV / SV** | CNVkit 深度流程（batch→reference→fix→segment→call）+ BAF；Manta germline/somatic/tumor-only；Delly sr/cnv/merge/filter；AnnotSV 与 VEP SV 注释 |
-| `variant-pathogenicity-acmg` | **临床遗传** | ACMG/AMP 28 条证据码全表、PVS1 决策树、Table 5 组合判级与点数法、BA1/BS1 频率口径、PP3/BP4 工具校准区间、VUS 处理与报告措辞 |
-| `epigenomics-peak-calling` | **表观遗传** | ChIP/ATAC/CUT&Tag 统一入口：MACS3、SEACR、IDR 与无重复替代方案、FRiP/TSS enrichment、HOMER motif；阈值全部落在 ENCODE standards |
-| `dna-methylation-wgbs` | **DNA 甲基化** | bismark 三步或 bwa-meth → 甲基化提取与转换效率 QC → methylKit / DSS / bsseq 差异甲基化 → genomation 注释；MeDIP 明确不得套单碱基模型 |
-| `rna-modification-clip` | **RNA 修饰 / CLIP** | MeRIP-seq 与 m6A（exomePeak2，motif 默认 DRACH）、RIP-seq、CLIP-seq（CLIPper）；peak 注释与表达/剪接关联 |
-| `immunogenomics` | **免疫组学** | MiXCR / TRUST4 免疫组库、NetMHCpan-4.1 与 IIpan-4.3 结合预测、新抗原五步流程、quanTIseq/CIBERSORTx 解卷积、CATALYST/FlowSOM CyTOF |
-| `lipidomics-annotation` | **脂质组** | LIPID MAPS 分类与命名体系、加合物与 MS2 匹配、lipidr 官方流程（`mva` / `lsea` / `plot_chain_distribution`）、MS-DIAL 注释码 |
-| `glycomics` | **糖组学** | GlyTouCan / GlycoCT / WURCS 命名与互转、N-糖/O-糖/完整糖肽/凝集素阵列分流、GU 标定与组成推断 |
-| `tiledbvcf` | 变异存储 | VCF 的 TileDB 归集、增量加样与并行查询，面向十万级样本的群体基因组 |
+`upstream-*` 的 582 个技能取自本机 `~/.dsh/plugins/releases` 下 27 个 upstream 插件（2026-10-30 版本）；其中 134 个原始占位名（`upstream-*-skill-<hash>`）已改写为语义化 kebab 名称，跨插件重名的 9 个只保留一份。
 
-### 2. 转录组与单细胞（9）
+### 技能目录的成本与按需启用
 
-| 技能 | 用途 |
-|---|---|
-| `bio-bulk-rnaseq` | bulk RNA-seq 端到端：FASTQ → QC/trim → STAR/Salmon → counts → 差异 → 富集 → 出图 |
-| `bio-scanpy` | 单细胞标准流程：QC、归一化、PCA/UMAP/t-SNE、聚类、差异、可视化 |
-| `bio-deeptools` | NGS 覆盖与质控：BAM→bigWig、相关性/PCA/指纹图、TSS 与 peak 热图 |
-| `pydeseq2` | PyDESeq2 差异表达：公式化设计、Wald 检验、FDR、LFC 收缩 |
-| `scvi-tools` | 单细胞概率建模：scVI 批次校正、scANVI 标签转移、贝叶斯差异表达 |
-| `scgpt` | 单细胞基础模型：细胞嵌入、零样本/微调注释、基因级表示 |
-| `omics-negative-control-calibration` | 负对照与置换校准：回应"碰巧显著"，识别独立/分块/配对设计 |
-| `public-omics-study-design-report` | 只有疾病或基因时：选公共数据、设计发现/验证路线、写可追溯报告 |
-| `conventional-oncology-hub-gene-research-planner` | 肿瘤 bulk 转录组标志物 + hub 基因研究设计（DEG→预后→PPI→免疫浸润） |
+603 个技能的名称与描述会常驻系统提示，实测 **84 044 字符 ≈ 38k token**。技能按 provider 分组，可单独关闭以压缩这一开销：
 
-### 3. 结构预测与分子设计（10）
+```
+plugin_manager set_plugin target=include:omics-upstream-skills enabled=false
+```
 
-| 技能 | 用途 |
-|---|---|
-| `alphafold2` | ColabFold 跑 AF2/AF2-Multimer，pLDDT/ipTM/RMSD 评估 |
-| `boltz` | Boltz-2：蛋白/核酸/小分子复合物共折叠，可选结合亲和力 |
-| `chai1` | Chai-1：单条 FASTA 预测抗体–抗原、蛋白–配体复合物 |
-| `openfold3` | OpenFold3：AF3 开放权重复现，蛋白/核酸/配体复合物 |
-| `esmfold2` | ESMFold2 全原子共折叠：单序列与 MSA 模式、CCD/SMILES 配体 |
-| `fair-esm2` | ESM-2 嵌入：残基/序列级表示、突变效应打分、接触图 |
-| `proteinmpnn` | 骨架逆折叠为序列（RFdiffusion 骨架、固定界面残基） |
-| `ligandmpnn` | 配体/核酸/金属环境下的口袋重设计、金属配位几何保持 |
-| `solublempnn` | 偏可溶表达的逆折叠，减少聚集与包涵体 |
-| `diffdock` | DiffDock-L 盲对接：SMILES/SDF → 蛋白口袋排序姿势 |
+关闭后该域技能不再出现在新会话的技能目录中，已加载的技能不受影响。
 
-### 4. 基因组、调控与变异（3）
+| 场景 | 建议启用 | 技能数 | 约 token |
+|---|---|---|---|
+| 全开（默认） | 6 组全部 | 603 | 38k |
+| 基因组 / 变异为主 | omics + genomics + methods | 295 | 22k |
+| 单细胞 / 组学为主 | omics + omics-upstream + methods | 348 | 24k |
+| 结构 / 药物为主 | omics + structure-drug + methods | 234 | 18k |
+| 极简 | omics + methods | 155 | 13k |
 
-| 技能 | 用途 |
-|---|---|
-| `borzoi` | 由 DNA 序列预测全基因组功能轨迹，评估非编码变异的调控效应 |
-| `evo2` | 长上下文基因组模型：序列评分、嵌入、生成，跨物种调控区比较 |
-| `qtl-colocalization-study-planner` | QTL 共定位研究设计：eQTL/pQTL/sQTL 与 GWAS 位点的因果信号判断 |
+### 自建组学技能（21，`skills/omics`）
 
-### 5. 数据库与知识整合（5）
+`variant-calling-wes-wgs`、`cnv-sv-detection`、`variant-pathogenicity-acmg`、`epigenomics-peak-calling`、`dna-methylation-wgbs`、`rna-modification-clip`、`immunogenomics`、`lipidomics-annotation`、`glycomics`、`proteomics-quantification`、`metabolomics-profiling`、`pyopenms`、`scanpy`、`sc-rna-seq-analysis`、`scikit-bio`、`pysam`、`polars-bio`、`gtars`、`cellxgene-census`、`arboreto`、`pathml`、`pathway-enrichment`、`tiledbvcf`
 
-| 技能 | 用途 |
-|---|---|
-| `bioservices` | 40+ 生物信息服务统一 Python 接口（UniProt/KEGG/ChEMBL/Reactome…） |
-| `gget` | 20+ 数据库的快速 CLI/Python 查询（基因、BLAST、结构、富集） |
-| `scientific-database-access` | 基因/变异/表达/药物/通路/结构/临床数据库的查询与结果解释规范 |
-| `tooluniverse-metabolomics` | 代谢组：HMDB 220K+ 代谢物、MetaboLights、Metabolomics Workbench |
-| `biomedical-knowledge-graph-rag` | 把论文、数据库、内部资料组织成可检索知识图谱或 RAG 问答 |
-
-### 6. 文献与证据（5）
-
-| 技能 | 用途 |
-|---|---|
-| `literature-review` | 从"奠基性论文是哪篇"到多来源综述；真实来源支撑、避免伪造引文、处理撤稿 |
-| `medical-research-literature-reader-pro` | 医学研究原生精读：按方法→数据→统计→结论→局限拆解，给同类研究与审稿准备 |
-| `evidence-validation` | 评价论文/数据库结果/实验发现的证据强度、偏倚与可复现性 |
-| `literature-evidence-writing` | 系统检索生物医学文献 → 整理证据 → 写带准确引用的科研文本 |
-| `indication-dossier` | 治疗适应症档案：人群、流行病学、疾病生物学、标准治疗、监管先例、里程碑试验 |
-
-### 7. 统计、临床与模型审计（6）
-
-| 技能 | 用途 |
-|---|---|
-| `clinical-statistics-survival` | 临床描述统计、生存分析、回归模型、敏感性分析的设计与检查 |
-| `clinical-research-reporting` | 把临床数据与统计结果整理成可复核的研究报告/摘要/结果章节 |
-| `clinical-trial-workflows` | 临床试验检索、可行性评估、研究方案框架起草 |
-| `exploratory-data-analysis-stat-tests` | 表格数据质量/分布/关联/异常值检查，连续/分类/配对/多组的检验选择 |
-| `machine-learning-evaluation` | 预测模型有效性审计：数据泄漏、验证失败、换样本结果不变 |
-| `shap` | SHAP 解释生物医学表格模型：加和性、相关特征影响、全局与个体报告 |
-
-### 8. 研究设计与数据识别（3）
-
-| 技能 | 用途 |
-|---|---|
-| `scientific-problem-hypothesis` | 把宽泛兴趣收束成可检验、可证伪、有价值的科研问题与假设 |
-| `experiment-protocol-design` | 只给疾病/基因/研究目标时：设计对照、重复、样本量与验证实验 |
-| `nfcore-catalog` | 只有交付文件、只知样本来源时：识别数据类型与处理阶段，匹配分析流程 |
-
-### 9. nf-core 工作流（8）
-
-| 技能 | 用途 |
-|---|---|
-| `nfcore-fetchngs` | 只有数据库编号时取得测序文件与样本信息 |
-| `nfcore-references` | 生成/获取与数据兼容的参考基因组、注释与索引 |
-| `nfcore-datasync` | 存储位置之间的复制、同步与整理 |
-| `nfcore-demo` | 用小示例认识分析步骤或体检计算环境 |
-| `nfcore-seqsubmit` | 整理成公开测序数据库的提交材料（ENA/SRA） |
-| `nfcore-provenancereport` | 已有结果但不知用了哪些输入/版本/参数时核查可复现性 |
-| `nfcore-deepmodeloptim` | 有训练数据与模型时改预测效果或评估数据增强 |
-| `bioinformatics-file-format-conversion` | FASTA/FASTQ/SAM/BAM/CRAM/BIOM/TSV 互转，核对记录数与配对关系 |
-
-### 10. 数据工程与可靠性（6）
-
-| 技能 | 用途 |
-|---|---|
-| `data-processing-tables` | CSV/TSV/Excel 的清理、合并、核对、汇总 |
-| `instrument-data-standardization` | 仪器原始导出 → 统一、可交换、保留元数据的结构 |
-| `infrastructure-workflows` | 可复现科研计算环境：容器、工作流编排、运行记录 |
-| `bioinformatics-agent-reliability-evaluation` | 比较生信助手、检查自动分析是否编造、建失败基准（BioAgent Failure Atlas） |
-| `biomedical-result-drift-audit` | 更新数据库后结果变了：核验运行条件、固定背景重算、比较两版资源影响 |
-| `research-data-privacy-deidentification` | 识别并降低个人身份、基因组再识别、敏感元数据风险 |
-
-### 11. 工程与集成（2）
-
-| 技能 | 用途 |
-|---|---|
-| `api-external-integration` | 科研数据库/实验平台/院内系统的 API 对接：认证、分页、限流、重试、数据映射 |
-| `software-engineering-testing` | 编写、重构、验证生物医学分析用的科研软件与命令行工具 |
-
-### 12. 写作与可视化（4）
-
-| 技能 | 用途 |
-|---|---|
-| `bioinformatics-writer` | 生信请求分流：写稿 / 数据分析 / 其他服务 / 从影像或文献知识图谱写稿 |
-| `methods-section-writer` | 把协议与分析流程写成可投稿 Methods，对齐 CONSORT/STROBE/PRISMA/TRIPOD |
-| `reporting-guideline-compliance-checker` | 按报告规范核查稿件缺项与弱项（投稿前自查） |
-| `scientific-visualization-reporting` | 把结果画清楚：图型顾问、布局验收、三格式导出、图与文一致性 |
-
-### 13. 其他（2）
-
-| 技能 | 用途 |
-|---|---|
-| `mcp-tool-operations` | 发现已配置的 MCP 工具、选型、排查连接与调用错误 |
-| `morning` | 晨间简报渲染为 HTML 或设为工作日循环任务（显式调用才触发） |
+其中 11 个为按官方文档整编（每个含 `SKILL.md` + `references/{official-docs,parameters,troubleshooting}.md`，命令均标注官方来源，官方未提供可执行命令处显式标注），其余为引入的第三方技能。
 
 ## MCP 工具清单（51）
 
@@ -371,7 +253,12 @@ cordis.patch.yml        预设装配（23 个插件行）
 package.json            包声明：exports / files / engines.dsh
 subagent-cap.mjs        子智能体并发闸（tools/execute 作用域）
 mcp/biomedical_mcp.py   51 个数据源工具（stdio JSON-RPC，纯标准库）
-skills/omics/           25 个组学技能（变异检测与分级、表观遗传、甲基化、RNA 修饰、免疫组学、脂质组、糖组、蛋白组、代谢组、单细胞、微生物组、空间病理）
+skills/omics/                21 个自建组学技能
+skills/genomics/       140 个（基因组/群体遗传/肿瘤/临床基因组/液体活检/法医）
+skills/omics-upstream/          193 个（转录/蛋白/代谢/表观/空间/多组学/单细胞/微生物组）
+skills/structure-drug/  79 个（结构生物学/AI 药物发现/合成生物学/药物基因组/基础模型）
+skills/clinical-imaging/ 36 个（精准医学/AI 医学影像/衰老长寿）
+skills/methods/        134 个（基础设施/方法学/网络系统生物学/免疫组学/生物医学科学）
 skills/biomedical/      30 个技能（结构预测、组学、生信写作…）
 skills/science-core/    33 个技能（nf-core、临床统计、证据与工作流…）
 locale/{en,zh}.json     市场与设置页展示元数据（meta.title / meta.description）

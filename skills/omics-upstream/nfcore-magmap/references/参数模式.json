@@ -1,0 +1,471 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/magmap/master/nextflow_schema.json",
+    "title": "nf-core/magmap pipeline parameters",
+    "description": "nf-core/magmap is a bioinformatics best-practice analysis pipeline for mapping reads to a (large) collections of genomes.",
+    "type": "object",
+    "$defs": {
+        "input_output_options": {
+            "title": "Input/output options",
+            "type": "object",
+            "fa_icon": "fas fa-terminal",
+            "description": "Define where the pipeline should find input data and save output data.",
+            "required": ["input", "outdir"],
+            "properties": {
+                "input": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "mimetype": "text/csv",
+                    "schema": "assets/schema_input.json",
+                    "pattern": "^\\S+\\.(csv|tsv|yaml|yml|json)$",
+                    "description": "Path to a file containing information about the samples in the experiment.",
+                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row.",
+                    "fa_icon": "fas fa-file-csv"
+                },
+                "genomeinfo": {
+                    "type": "string",
+                    "format": "file-path",
+                    "pattern": "^\\S+\\.(csv|tsv|yaml|yml|json)$",
+                    "fa_icon": "fas fa-dna",
+                    "description": "Path to a file containing information about the genomes to map to, see [usage docs](https://nf-co.re/magmap/usage#genome-input).",
+                    "schema": "assets/schema_genomeinfo.json"
+                },
+                "gtdb_metadata": {
+                    "type": "string",
+                    "description": "Comma-separated list of paths to tab-separated files containing information from GTDB. For column description, see [usage docs](https://nf-co.re/magmap/usage#gtdb-metadata).",
+                    "help_text": "Typically, the files are the standard GTDB metadata files, e.g. `bac120_metadata_r226.tsv.gz`. You will need to use or create a file with information about the genomes' taxonomy you want to map to before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 9 columns, and a header row. Columns are: `accno`, `checkm_completeness`, `checkm_contamination`, `checkm_strain_heterogeneity`, `contig_count`, `genome_size`, `gtdb_genome_representative`, `gtdb_representative` and `gtdb_taxonomy`.",
+                    "fa_icon": "fas fa-table"
+                },
+                "checkm_metadata": {
+                    "type": "string",
+                    "description": "Comma-separated list of path to tab-separated files containing the output from CheckM. For column description, see [usage docs](https://nf-co.re/magmap/usage#checkmcheckm2-metadata).",
+                    "help_text": "You will need to use or create a file with information about the genomes' statistics you want to map to before running the pipeline. Use this parameter to specify its location. The files have to be tab-separated with a minimum of five columns, and a header row. Required columns are: `Name` or `Bin Id`, `Completeness`, `Contamination`, and `Genome_Size` or `Genome size (bp)`.",
+                    "fa_icon": "fas fa-table"
+                },
+                "gtdbtk_metadata": {
+                    "type": "string",
+                    "description": "Comma-separated list of paths to tab-separated files containing a .tsv file which has the same columns as the output from GTDB-Tk, see [usage docs](https://nf-co.re/magmap/usage#gtdb-tk-metadata).",
+                    "help_text": "You will need to use or create a file with information about the genomes' taxonomy you want to map to before running the pipeline. Use this parameter to specify its location. The files have to be tab-separated with a minimum of two columns, and a header row. Required columns are: `user_genome` and `classification`.",
+                    "fa_icon": "fas fa-bacteria"
+                },
+                "indexes": {
+                    "type": "string",
+                    "description": "Comma-separated list of paths to Sourmash .sbt/.sbt.zip files.",
+                    "help_text": "The Sourmash authors provide index files for e.g. GTDB and NCBI data at https://sourmash.readthedocs.io/en/latest/databases.html. For GTDB, we recommend using the species-representative genomes.",
+                    "fa_icon": "far fa-address-book"
+                },
+                "remote_genome_sources": {
+                    "type": "string",
+                    "description": "Comma-separated list of paths to tsv files with information about genomes in NCBI 'assembly_summary' format. The default are GenBank and RefSeq summary files.",
+                    "help_text": "The summary files need to contain the column '#assembly_accession', referring to genome identifiers used in sourmash indexes and 'ftp_path' pointing to where the genome can be fetched. The directory structure of the 'ftp_path' paths needs to conform with NCBI standards and contain a contig file with the pattern '<accno>*_genomic.fna.gz'.",
+                    "default": "https://ftp.ncbi.nlm.nih.gov/genomes/ASSEMBLY_REPORTS/assembly_summary_refseq.txt,https://ftp.ncbi.nlm.nih.gov/genomes/ASSEMBLY_REPORTS/assembly_summary_genbank.txt",
+                    "fa_icon": "fas fa-network-wired"
+                },
+                "genome_store_dir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "default": "magmap_genomes",
+                    "fa_icon": "fas fa-dna",
+                    "description": "Path to a directory where downloaded genome files is stored.",
+                    "help_text": "Any genome files downloaded by the pipeline will be stored in this directory for potential later use."
+                },
+                "prokka_store_dir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "default": "magmap_prokka",
+                    "fa_icon": "fas fa-dna",
+                    "description": "Path to a directory where prokka output is stored.",
+                    "help_text": "Prokka annotation files created by the pipeline will be stored in this directory for potential later use."
+                },
+                "annotator": {
+                    "type": "string",
+                    "default": "prokka",
+                    "description": "Which tool to annotate genomes lacking a GFF with: 'prokka', 'bakta_supported_only' (Bacteria to Bakta, everything else -- Archaea and unclassified genomes -- to Prokka) or 'bakta_all' (everything to Bakta, including domains Bakta wasn't designed for).",
+                    "help_text": "'bakta_supported_only' and 'bakta_all' require `--bakta_db`. 'bakta_supported_only' determines each genome's domain from `--gtdb_metadata`/`--gtdbtk_metadata`; genomes it can't classify fall back to Prokka, with a warning.",
+                    "enum": ["prokka", "bakta_supported_only", "bakta_all"],
+                    "fa_icon": "fas fa-dna"
+                },
+                "bakta_db": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "default": "magmap_bakta_db",
+                    "fa_icon": "fas fa-database",
+                    "description": "Path to a directory holding the Bakta database, used only when --annotator is bakta_supported_only or bakta_all.",
+                    "help_text": "If the directory already contains a Bakta database (e.g. one you downloaded yourself with `bakta_db download`), the pipeline reuses it instead of downloading. Otherwise the pipeline downloads one into this directory for potential later use."
+                },
+                "bakta_store_dir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "default": "magmap_bakta",
+                    "fa_icon": "fas fa-dna",
+                    "description": "Path to a directory where Bakta annotation output is stored.",
+                    "help_text": "Bakta annotation files created by the pipeline will be stored in this directory for potential later use."
+                },
+                "save_parquet": {
+                    "type": "boolean",
+                    "description": "Also write the summary tables in Parquet format, alongside the default gzipped TSV.",
+                    "fa_icon": "fas fa-table"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address for completion summary.",
+                    "fa_icon": "fas fa-envelope",
+                    "help_text": "Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
+                },
+                "multiqc_title": {
+                    "type": "string",
+                    "description": "MultiQC report title. Printed as page header, used for filename if not otherwise specified.",
+                    "fa_icon": "fas fa-file-signature"
+                },
+                "outdir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
+                    "fa_icon": "fas fa-folder-open"
+                }
+            }
+        },
+        "quality_control_options": {
+            "title": "Quality control options",
+            "type": "object",
+            "description": "Option for QC steps",
+            "default": "",
+            "properties": {
+                "skip_qc": {
+                    "type": "boolean",
+                    "description": "Skip all QC steps except for MultiQC.",
+                    "fa_icon": "fas fa-forward"
+                },
+                "skip_fastqc": {
+                    "type": "boolean",
+                    "description": "Skip FastQC.",
+                    "fa_icon": "fas fa-forward"
+                }
+            },
+            "fa_icon": "fas fa-check-circle"
+        },
+        "trimming_options": {
+            "title": "Trimming options",
+            "type": "object",
+            "description": "All the trim option are listed below",
+            "default": "",
+            "properties": {
+                "clip_r1": {
+                    "type": "string",
+                    "description": "Instructs Trim Galore to remove bp from the 5' end of read 1 (or single-end reads).",
+                    "fa_icon": "fas fa-hand-scissors"
+                },
+                "clip_r2": {
+                    "type": "string",
+                    "description": "Instructs Trim Galore to remove bp from the 5' end of read 2 (or single-end reads).",
+                    "fa_icon": "fas fa-hand-scissors"
+                },
+                "three_prime_clip_r1": {
+                    "type": "string",
+                    "description": "Instructs Trim Galore to remove bp from the 3' end of read 1 AFTER adapter/quality trimming has been performed.",
+                    "fa_icon": "far fa-hand-scissors"
+                },
+                "three_prime_clip_r2": {
+                    "type": "string",
+                    "description": "Instructs Trim Galore to remove bp from the 3' end of read 2 AFTER adapter/quality trimming has been performed.",
+                    "fa_icon": "far fa-hand-scissors"
+                },
+                "trim_reads": {
+                    "type": "string",
+                    "description": "Instructs Trim Galore to apply the --nextseq=X option, to trim based on quality after removing poly-G tails.",
+                    "fa_icon": "fab fa-cuttlefish"
+                },
+                "save_trimmed": {
+                    "type": "boolean",
+                    "description": "Save the trimmed FastQ files in the results directory.",
+                    "fa_icon": "fab fa-cuttlefish"
+                },
+                "skip_trimming": {
+                    "type": "boolean",
+                    "description": "Skip the adapter trimming step.",
+                    "fa_icon": "fas fa-forward"
+                }
+            },
+            "fa_icon": "fas fa-cut"
+        },
+        "mapping_options": {
+            "title": "Mapping options",
+            "type": "object",
+            "description": "All the options you can use for BBmap or BBduk",
+            "default": "",
+            "properties": {
+                "sequence_filter": {
+                    "type": "string",
+                    "description": "Instructs BBduk to use a fasta file to filter away sequences before running further analysis.",
+                    "fa_icon": "fas fa-filter"
+                },
+                "bbmap_minid": {
+                    "type": "number",
+                    "default": 0.9,
+                    "description": "Minimal identity for BBmap",
+                    "fa_icon": "fas fa-search-minus"
+                },
+                "bbmap_ambiguous": {
+                    "type": "string",
+                    "default": "best",
+                    "description": "Select how BBmap should treat ambiguous mapping",
+                    "enum": ["best", "all", "random", "toss"],
+                    "help_text": "Using `all` allows multi-mapping, see [usage docs](https://nf-co.re/magmap/usage#multimapping"
+                },
+                "bbmap_save_bam": {
+                    "type": "boolean",
+                    "description": "Save bam output file",
+                    "fa_icon": "fas fa-save"
+                },
+                "bbmap_save_index": {
+                    "type": "boolean",
+                    "description": "Save ref folder containing the reference index",
+                    "fa_icon": "fas fa-save"
+                },
+                "save_concatenated_genomes": {
+                    "type": "boolean",
+                    "description": "Save genomes concatenated file",
+                    "fa_icon": "fas fa-save"
+                }
+            },
+            "fa_icon": "fas fa-align-justify"
+        },
+        "featurecounts_option": {
+            "title": "FeatureCounts option",
+            "type": "object",
+            "description": "FeatureCounts option",
+            "default": "",
+            "properties": {
+                "features": {
+                    "type": "string",
+                    "description": "Specify which features to count",
+                    "default": "CDS,rRNA,tRNA,tmRNA"
+                },
+                "featurecounts_fraction": {
+                    "type": "boolean",
+                    "description": "Allow featureCounts to handle multiple-mapping",
+                    "help_text": "This parameter works best coupled with `--bbmap_ambiguous`. See documentation."
+                }
+            }
+        },
+        "sourmash_options": {
+            "title": "Sourmash",
+            "type": "object",
+            "description": "Options available for Sourmash",
+            "default": "",
+            "properties": {
+                "genomeset_mode": {
+                    "type": "string",
+                    "description": "Perform mapping on all genomes for all samples ('joint') or sample-specific selections of genomes ('sample').",
+                    "default": "joint",
+                    "help_text": "When you use Sourmash to select genomes, either from remote sources, from your own genomes or both, the pipeline can either map to all identified genomes ('joint') or sample-specific selections of genomes ('sample').",
+                    "enum": ["joint", "sample"],
+                    "fa_icon": "far fa-address-book"
+                },
+                "species_preference": {
+                    "type": "string",
+                    "description": "Select genomes from the same species: 'all', 'local' (prefer local genomes), 'completeness' (prefer the most complete) or 'gtdb' (use GTDB's criterion of completeness and contamination)",
+                    "default": "all",
+                    "help_text": "When more than one genome from the same species is selected, select all (default) or select a single genome based on this preference. 'local', 'completeness' and 'gtdb' all require `--gtdb_metadata` and `--gtdbtk_metadata`; 'completeness' and 'gtdb' additionally require `--checkm_metadata`, since they compare local and remote genomes and can select the remote one over the local one.",
+                    "enum": ["all", "local", "completeness", "gtdb"],
+                    "fa_icon": "far fa-address-book"
+                },
+                "skip_sourmash": {
+                    "type": "boolean",
+                    "description": "Skip Sourmash filtering for user-provided genomes",
+                    "default": true,
+                    "fa_icon": "fas fa-play-circle"
+                },
+                "sourmash_ksize": {
+                    "type": "integer",
+                    "default": 21,
+                    "description": "K-mer size used by Sourmash",
+                    "fa_icon": "fas fa-arrows-alt-h"
+                },
+                "sourmash_save_sourmash": {
+                    "type": "boolean",
+                    "description": "Save Sourmash output"
+                }
+            },
+            "fa_icon": "fas fa-filter"
+        },
+        "institutional_config_options": {
+            "title": "Institutional config options",
+            "type": "object",
+            "fa_icon": "fas fa-university",
+            "description": "Parameters used to describe centralised config profiles. These should not be edited.",
+            "help_text": "The centralised nf-core configuration profiles use a handful of pipeline parameters to describe themselves. This information is then printed to the Nextflow log when you run a pipeline. You should not need to change these values when you run a pipeline.",
+            "properties": {
+                "custom_config_version": {
+                    "type": "string",
+                    "description": "Git commit id for Institutional configs.",
+                    "default": "master",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "custom_config_base": {
+                    "type": "string",
+                    "description": "Base directory for Institutional configs.",
+                    "default": "https://raw.githubusercontent.com/nf-core/configs/master",
+                    "hidden": true,
+                    "help_text": "If you're running offline, Nextflow will not be able to fetch the institutional config files from the internet. If you don't need them, then this is not a problem. If you do need them, you should download the files from the repo and tell Nextflow where to find them with this parameter.",
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_name": {
+                    "type": "string",
+                    "description": "Institutional config name.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_description": {
+                    "type": "string",
+                    "description": "Institutional config description.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_contact": {
+                    "type": "string",
+                    "description": "Institutional config contact information.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_url": {
+                    "type": "string",
+                    "description": "Institutional config URL link.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                }
+            }
+        },
+        "generic_options": {
+            "title": "Generic options",
+            "type": "object",
+            "fa_icon": "fas fa-file-import",
+            "description": "Less common options for the pipeline, typically set in a config file.",
+            "help_text": "These options are common to all nf-core pipelines and allow you to customise some of the core preferences for how the pipeline runs.\n\nTypically these options would be set in a Nextflow config file loaded for all pipeline runs, such as `~/.nextflow/config`.",
+            "properties": {
+                "version": {
+                    "type": "boolean",
+                    "description": "Display version and exit.",
+                    "fa_icon": "fas fa-question-circle",
+                    "hidden": true
+                },
+                "publish_dir_mode": {
+                    "type": "string",
+                    "default": "copy",
+                    "description": "Method used to save pipeline results to output directory.",
+                    "help_text": "The Nextflow `publishDir` option specifies which intermediate files should be saved to the output directory. This option tells the pipeline what method should be used to move these files. See [Nextflow docs](https://www.nextflow.io/docs/latest/process.html#publishdir) for details.",
+                    "fa_icon": "fas fa-copy",
+                    "enum": ["symlink", "rellink", "link", "copy", "copyNoFollow", "move"],
+                    "hidden": true
+                },
+                "email_on_fail": {
+                    "type": "string",
+                    "description": "Email address for completion summary, only when pipeline fails.",
+                    "fa_icon": "fas fa-exclamation-triangle",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$",
+                    "help_text": "An email address to send a summary email to when the pipeline is completed - ONLY sent if the pipeline does not exit successfully.",
+                    "hidden": true
+                },
+                "plaintext_email": {
+                    "type": "boolean",
+                    "description": "Send plain-text email instead of HTML.",
+                    "fa_icon": "fas fa-remove-format",
+                    "hidden": true
+                },
+                "max_multiqc_email_size": {
+                    "type": "string",
+                    "description": "File size limit when attaching MultiQC reports to summary emails.",
+                    "pattern": "^\\d+(\\.\\d+)?\\.?\\s*(K|M|G|T)?B$",
+                    "default": "25.MB",
+                    "fa_icon": "fas fa-file-upload",
+                    "hidden": true
+                },
+                "monochrome_logs": {
+                    "type": "boolean",
+                    "description": "Do not use coloured log outputs.",
+                    "fa_icon": "fas fa-palette",
+                    "hidden": true
+                },
+                "multiqc_config": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Custom config file to supply to MultiQC.",
+                    "fa_icon": "fas fa-cog",
+                    "hidden": true
+                },
+                "multiqc_logo": {
+                    "type": "string",
+                    "description": "Custom logo file to supply to MultiQC. File name must also be set in the MultiQC config file",
+                    "fa_icon": "fas fa-image",
+                    "hidden": true
+                },
+                "multiqc_methods_description": {
+                    "type": "string",
+                    "description": "Custom MultiQC yaml file containing HTML including a methods description.",
+                    "fa_icon": "fas fa-cog"
+                },
+                "validate_params": {
+                    "type": "boolean",
+                    "description": "Boolean whether to validate parameters against the schema at runtime",
+                    "default": true,
+                    "fa_icon": "fas fa-check-square",
+                    "hidden": true
+                },
+                "pipelines_testdata_base_path": {
+                    "type": "string",
+                    "fa_icon": "far fa-check-circle",
+                    "description": "Base URL or local path to location of pipeline test dataset files",
+                    "default": "https://raw.githubusercontent.com/nf-core/test-datasets/",
+                    "hidden": true
+                },
+                "trace_report_suffix": {
+                    "type": "string",
+                    "fa_icon": "far calendar",
+                    "description": "Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss.",
+                    "hidden": true
+                },
+                "help": {
+                    "type": ["boolean", "string"],
+                    "description": "Display the help message."
+                },
+                "help_full": {
+                    "type": "boolean",
+                    "description": "Display the full detailed help message."
+                },
+                "show_hidden": {
+                    "type": "boolean",
+                    "description": "Display hidden parameters in the help message (only works when --help or --help_full are provided)."
+                }
+            }
+        }
+    },
+    "allOf": [
+        {
+            "$ref": "#/$defs/input_output_options"
+        },
+        {
+            "$ref": "#/$defs/quality_control_options"
+        },
+        {
+            "$ref": "#/$defs/trimming_options"
+        },
+        {
+            "$ref": "#/$defs/mapping_options"
+        },
+        {
+            "$ref": "#/$defs/featurecounts_option"
+        },
+        {
+            "$ref": "#/$defs/sourmash_options"
+        },
+        {
+            "$ref": "#/$defs/institutional_config_options"
+        },
+        {
+            "$ref": "#/$defs/generic_options"
+        }
+    ]
+}

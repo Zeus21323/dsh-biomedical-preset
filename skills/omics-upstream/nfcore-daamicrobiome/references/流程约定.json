@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/daamicrobiome",
+  "skill_id": "nfcore-daamicrobiome",
+  "scientific_title": "微生物差异丰度多方法比较",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/daamicrobiome",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "de1ab09c7c7ebb763e59a721533b70445eb7ad0a",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "ac628030dc8ada96b205e96bd9590b95bd9282eb6835099a4dce78318289baba"
+    },
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/daamicrobiome/de1ab09c7c7ebb763e59a721533b70445eb7ad0a/LICENSE",
+      "sha256": "b19aff7c373b8ee60a2153450ad1b4f99ae03ddde13f9a7d323cf8f4c61b1d15",
+      "bytes": 1082
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/daamicrobiome/de1ab09c7c7ebb763e59a721533b70445eb7ad0a/README.md",
+      "sha256": "731c81e29beb00087a8db27c021638ff784202aa805fc8ea2894a7299af46d57",
+      "bytes": 8190
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/daamicrobiome/de1ab09c7c7ebb763e59a721533b70445eb7ad0a/docs/output.md",
+      "sha256": "4a696f107c1d7ca8f0fd40ebc8e27f7fe759693c3c83d7ecf6986713de40cb5c",
+      "bytes": 2930
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/daamicrobiome/de1ab09c7c7ebb763e59a721533b70445eb7ad0a/docs/usage.md",
+      "sha256": "99dc83b626408958280430e6cb981da0be96b99d92684a1d9a09af0efbf46796",
+      "bytes": 4195
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/daamicrobiome/de1ab09c7c7ebb763e59a721533b70445eb7ad0a/main.nf",
+      "sha256": "e401a006cc8d18cb5f8d98ff37a4e82ea6db9d2b9134abe7f64cf3de1c77727b",
+      "bytes": 2610
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/daamicrobiome/de1ab09c7c7ebb763e59a721533b70445eb7ad0a/nextflow.config",
+      "sha256": "e08ab839a3716b739e74b8d10792c25c1bb0eec5eefe4fc4fcac924e46a84099",
+      "bytes": 11794
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/daamicrobiome/de1ab09c7c7ebb763e59a721533b70445eb7ad0a/nextflow_schema.json",
+      "sha256": "ac628030dc8ada96b205e96bd9590b95bd9282eb6835099a4dce78318289baba",
+      "bytes": 18793
+    },
+    {
+      "path": "workflows/daamicrobiome.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/daamicrobiome/de1ab09c7c7ebb763e59a721533b70445eb7ad0a/workflows/daamicrobiome.nf",
+      "sha256": "b6cd0af31f8e32380a481b52ad5524b7a1eeba451e87a922fc3dba2afec40180",
+      "bytes": 6375
+    }
+  ]
+}

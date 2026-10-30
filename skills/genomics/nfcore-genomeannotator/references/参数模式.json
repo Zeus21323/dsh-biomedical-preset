@@ -1,0 +1,624 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/genomeannotator/master/nextflow_schema.json",
+    "title": "nf-core/genomeannotator pipeline parameters",
+    "description": "Annotation of metazoan genomes",
+    "type": "object",
+    "definitions": {
+        "input_output_options": {
+            "title": "Input/output options",
+            "type": "object",
+            "fa_icon": "fas fa-terminal",
+            "description": "Define where the pipeline should find input data and save output data.",
+            "required": [
+                "assembly",
+                "outdir"
+            ],
+            "properties": {
+                "assembly": {
+                    "type": "string",
+                    "format": "file-path",
+                    "mimetype": "text/csv",
+                    "pattern": "^\\S+\\.fn?a(sta)?$",
+                    "schema": "assets/schema_input.json",
+                    "description": "Path to the genome assembly.",
+                    "help_text": "This is the assembly you wish to annotate.",
+                    "fa_icon": "fas fa-file-csv"
+                },
+                "outdir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
+                    "fa_icon": "fas fa-folder-open"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address for completion summary.",
+                    "fa_icon": "fas fa-envelope",
+                    "help_text": "Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
+                },
+                "multiqc_title": {
+                    "type": "string",
+                    "description": "MultiQC report title. Printed as page header, used for filename if not otherwise specified.",
+                    "fa_icon": "fas fa-file-signature"
+                },
+                "rnaseq_samples": {
+                    "type": "string",
+                    "format": "file-path",
+                    "mimetype": "text/csv",
+                    "pattern": "^\\S+\\.csv$",
+                    "schema": "assets/schema_input.json",
+                    "description": "Path to samplesheet for RNAseq data.",
+                    "help_text": "If you wish to include RNAseq data, you will need to create a samplesheet in CSV format. Use this parameter to specify its location. It has to be a comma-separated file with 4 columns, and a header row.",
+                    "fa_icon": "fas fa-file-csv"
+                },
+                "proteins": {
+                    "type": "string",
+                    "format": "file-path",
+                    "mimetype": "text/csv",
+                    "fa_icon": "fas fa-file",
+                    "pattern": "^\\S+\\.fn?a(sta)?$",
+                    "description": "Path to a fasta file with proteins",
+                    "help_text": "Specify a fasta-formatted file with proteins from related organisms. Typical sources are Uniprot, EnsEMBL or Refseq."
+                },
+                "proteins_targeted": {
+                    "type": "string",
+                    "format": "file-path",
+                    "mimetype": "text/csv",
+                    "fa_icon": "fas fa-file",
+                    "pattern": "^\\S+\\.fn?a(sta)?$",
+                    "description": "Path to a fasta file with proteins",
+                    "help_text": "Specify a fasta-formatted file with proteins your organism of interest. Typical sources are Uniprot, EnsEMBL or Refseq."
+                },
+                "transcripts": {
+                    "type": "string",
+                    "format": "file-path",
+                    "mimetype": "text/csv",
+                    "pattern": "^\\S+\\.fn?a(sta)?$",
+                    "description": "Path to a fasta file with transcripts/ESTs",
+                    "fa_icon": "fas fa-file",
+                    "help_text": "Specify a fasta-formatted file with transcripts/ESTs from your organism of interest. Typical sources are ENA and dbEST."
+                },
+                "rm_lib": {
+                    "type": "string",
+                    "format": "file-path",
+                    "fa_icon": "fas fa-file",
+                    "mimetype": "text/csv",
+                    "pattern": "^\\S+\\.fn?a(sta)?$",
+                    "description": "Path to a fasta file with known repeat sequences for this organism",
+                    "help_text": "Specify a fasta-formatted file with repeat sequences for this organism. Typical sources are databases (NCBI, GRINST) or RepeatModeler."
+                },
+                "references": {
+                    "type": "string",
+                    "format": "file-path",
+                    "mimetype": "text/csv",
+                    "pattern": "^\\S+\\.csv$",
+                    "schema": "assets/schema_input.json",
+                    "description": "Path to samplesheet for Reference genomes and annotations.",
+                    "help_text": "If you wish to If you wish to include annotations from related species (lift-over), you will need to create a samplesheet in CSV format.  Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row.",
+                    "fa_icon": "fas fa-file-csv"
+                }
+            }
+        },
+        "annotation_module_options": {
+            "title": "Options for pipeline behavior",
+            "type": "object",
+            "fa_icon": "fas fa-fna",
+            "description": "Options that control pipeline behavior",
+            "properties": {
+                "npart_size": {
+                    "type": "integer",
+                    "description": "Chunk size for splitting the assembly.",
+                    "fa_icon": "fas fa-wrench",
+                    "default": 200000000,
+                    "help_text": "The assembly will split into pieces of this size, in bp, to increase parallelization."
+                },
+                "max_intron_size": {
+                    "type": "integer",
+                    "description": "Maximum length of expected introns in bp.",
+                    "fa_icon": "fas fa-wrench",
+                    "help_text": "This option specifies the longest expected intron in base-pairs. Seeting this too low will result in broken gene models. Conversely, setting this too large may create unreasonable gene models and increase run time."
+                },
+                "min_contig_size": {
+                    "type": "integer",
+                    "default": 5000,
+                    "fa_icon": "fas fa-wrench",
+                    "description": "Minimum size of contig to consider",
+                    "help_text": "Small contigs will typically not add anything to the annotation, but can increase run time or trigger crashes. This value determines the cutoff for contig inclusion."
+                },
+                "rm_species": {
+                    "type": "string",
+                    "description": "Taxonomic group to guide repeat masking.",
+                    "fa_icon": "fas fa-wrench",
+                    "help_text": "Use this taxonomic group or species to identify and mask repeats. Valid names can, in most cases, be guessed, and follow the nomenclature provided through the [NCBI taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy). This option draws from available data included in [DFam 3.2](https://www.dfam.org/releases/Dfam_3.2/relnotes.txt), which contains HMM profiles for over 273.0000 repeat families from 347 species.",
+                    "default": null
+                },
+                "rm_db": {
+                    "type": "string",
+                    "pattern": "^\\S+\\.gz$",
+                    "format": "file-path",
+                    "description": "A database of curated repeats in EMBL format.",
+                    "fa_icon": "fas fa-file",
+                    "help_text": "This option points to the DFam database (h5 format) of curated repeats for RepeatMasker. By default, the pipeline will get it on-the-fly from the [DFam server](https://www.dfam.org/releases/Dfam_3.5/families/). You can pre-download the file (.gz) and provide it via this option.",
+                    "default": "https://www.dfam.org/releases/Dfam_3.5/families/Dfam_curatedonly.h5.gz"
+                },
+
+                "busco_lineage": {
+                   "type": "string",
+                   "fa_icon": "fas fa-wrench",
+                   "description": "Name of a BUSCO taxonomic group to evaluate the completeness of annotated gene set(s).",
+                   "help_text": "Use this to provide the name of a BUSCO [taxonomic group](https://busco.ezlab.org/list_of_lineages.html) against which to evaluate the resulting gene builds. Format should be taxgroup_odb10 (i.e. without the date).",
+                   "default": null
+                },
+		"busco_db_path": {
+                   "type": "string",
+                   "fa_icon": "fas fa-folder-open",
+                   "description": "Path to the local BUSCO data.",
+                   "help_text": "Use this to provide the path to a local copy of the busco database (usually /path/to/busco_downloads). For details, see the BUSCO [documentation](https://busco.ezlab.org/busco_userguide.html#download-and-automated-update).",
+                   "default": null
+                },
+                "dummy_gff": {
+                   "type": "string",
+                   "default": "PIPELINE_BASE/assets/empty.gff3",
+                   "description": "A placeholder gff file to help trigger certain processes."
+                }
+
+            }
+        },
+        "augustus_options": {
+            "title": "Options for ab-initio gene finding",
+            "type": "object",
+            "fa_icon": "fas fa-fna",
+            "description": "Options that control gene finding with AUGUSTUS",
+            "properties": {
+                "aug_species": {
+                    "type": "string",
+                    "description": "AUGUSTUS species model to use.",
+                    "fa_icon": "fas fa-book",
+                    "help_text": "Specify which model AUGUSTUS will run with. A full list is available here: https://github.com/Gaius-Augustus/Augustus/blob/master/docs/RUNNING-AUGUSTUS.md"
+                },
+                "aug_options": {
+                    "type": "string",
+                    "default": "--alternatives-from-evidence=on --minexonintronprob=0.08 --minmeanexonintronprob=0.4 --maxtracks=3",
+                    "description": "Options to pass to AUGUSTUS.",
+                    "fa_icon": "fas fa-wrench",
+                    "help_text": "AUGUSTUS has many options that are not specifically available as pipeline options. Instead, you can pass them through this flag."
+                },
+                "aug_config_container": {
+                    "type": "string",
+                    "default": "/usr/local/config",
+                    "fa_icon": "fas fa-folder-open",
+                    "description": "Location of the AUGUSTUS config directory within the docker container",
+                    "help_text": "This option specifies where to find the AUGUSTUS config directory inside the Docker container. Normally, you should not change this!"
+                },
+                "aug_config_dir": {
+                    "type": "string",
+                    "default": null,
+                    "fa_icon": "fas fa-folder-open",
+                    "description": "A custom config directory for AUGUSTUS",
+                    "help_text": "Use this to point to a custom AUGUSTUS config directory - for example if you have trained a new model outside of GENOMEANNOTATOR. Most be compatible with AUGUSTUS 3.4."
+                },
+                "aug_extrinsic_cfg": {
+                    "type": "string",
+                    "default": null,
+                    "fa_icon": "fas fa-file",
+                    "description": "Custom AUGUSTUS extrinsic config file path",
+                    "help_text": "Provide a custom extrinsic config file to AUGUSTUS, specifying the weight of different types if evidence. We suggest you start with our [built-in](https://raw.githubusercontent.com/nf-core/genomeannotator/dev/assets/augustus/augustus_default.cfg) base version."
+                },
+                "aug_chunk_length": {
+                    "type": "integer",
+                    "default": 3000000,
+                    "description": "Length of annotation chunks in AUGUSTUS",
+                    "fa_icon": "fas fa-wrench",
+                    "help_text": "This value determines the length of a region worked on by each AUGUSTUS sub process. The overlap between neighboring chunks is 1/6 the chunk length. The default value should be adequate for most scenarios."
+                },
+                "aug_training": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable training of a new AUGUSTUS profile.",
+                    "fa_icon": "fas fa-wrench",
+                    "help_text": "This option enables training of a new AUGUSTUS prediction profile. You must provide either a full (!) species-specific proteome via --proteins_targeted or a sufficiently comprehensive set of transcripts/RNA-seq data. When both are provided, proteins will be preferred."
+                },
+                "pri_prot": {
+                    "type": "integer",
+                    "default": 3,
+                    "description": "Priority for protein-derived hints for gene building.",
+                    "fa_icon": "fas fa-wrench",
+                    "help_text": "This value determines the priority protein-derived hints are given during AUGUSTUS gene finding. The higher the value, the more important the hint (1-5)."
+                },
+                "pri_prot_target": {
+                    "type": "integer",
+                    "default": 5,
+                    "fa_icon": "fas fa-wrench",
+                    "description": "Priority for targeted protein evidences",
+                    "help_text": "A value to determine the weight of this type of evidence (1-5). A higher value means this type of evidence is given more consideration."
+                },
+                "pri_est": {
+                    "type": "integer",
+                    "default": 4,
+                    "fa_icon": "fas fa-wrench",
+                    "description": "Priority for transcript evidences",
+                    "help_text": "A value to determine the weight of this type of evidence (1-5). A higher value means this type of evidence is given more consideration."
+                },
+                "pri_rnaseq": {
+                    "type": "integer",
+                    "default": 4,
+                    "fa_icon": "fas fa-wrench",
+                    "description": "Priority for RNAseq splice junction evidences",
+                    "help_text": "A value to determine the weight of this type of evidence (1-5). A higher value means this type of evidence is given more consideration."
+                },
+                "pri_wiggle": {
+                    "type": "integer",
+                    "default": 2,
+                    "fa_icon": "fas fa-wrench",
+                    "description": "Priority for RNAseq exon coverage evidences",
+                    "help_text": "A value to determine the weight of this type of evidence (1-5). A higher value means this type of evidence is given more consideration."
+                },
+                "pri_trans": {
+                    "type": "integer",
+                    "default": 4,
+                    "fa_icon": "fas fa-wrench",
+                    "description": "Priority for trans-mapped gene model evidences",
+                    "help_text": "A value to determine the weight of this type of evidence (1-5). A higher value means this type of evidence is given more consideration."
+                },
+                "t_est": {
+                    "type": "string",
+                    "default": "E",
+                    "fa_icon": "fas fa-wrench",
+                    "description": "Evidence label for transcriptome data",
+                    "help_text": "A label for a given type of evidence - corresponds to labels in the AUGUSTUS extrinsic config file. Should not be changed."
+                },
+                "t_prot": {
+                    "type": "string",
+                    "default": "P",
+                    "fa_icon": "fas fa-wrench",
+                    "description": "Evidence label for protein data",
+                    "help_text": "A label for a given type of evidence - corresponds to labels in the AUGUSTUS extrinsic config file. Should not be changed."
+                },
+                "t_rnaseq": {
+                    "type": "string",
+                    "default": "E",
+                    "fa_icon": "fas fa-wrench",
+                    "description": "Evidence label for RNAseq data",
+                    "help_text": "A label for a given type of evidence - corresponds to labels in the AUGUSTUS extrinsic config file. Should not be changed."
+                }
+            }
+        },
+        "protein_tool_options": {
+            "title": "Options for protein data processing",
+            "type": "object",
+            "fa_icon": "fas fa-fna",
+            "description": "Options that control processing of protein evidences",
+            "properties": {
+                "spaln_taxon": {
+                    "type": "string",
+                    "description": "Taxon model to use for SPALN protein alignments.",
+                    "fa_icon": "fas fa-wrench",
+                    "help_text": "This option specifies which SPALN alignment model to use. For a full list of available models, see: https://github.com/ogotoh/spaln/blob/master/table/gnm2tab"
+                },
+                "spaln_options": {
+                    "type": "string",
+                    "default": "-M",
+                    "description": "SPALN custom options.",
+                    "fa_icon": "fas fa-wrench",
+                    "help_text": "USers can pass custom options to the SPALN alignment process. Normally, this will not be necessary!"
+                },
+                "spaln_protein_id": {
+                    "type": "integer",
+                    "default": 60,
+                    "description": "SPALN id threshold for aligning.",
+                    "fa_icon": "fas fa-wrench",
+                    "help_text": "Users can pass custom id threshold to the SPALN alignment process. Normally, this will not be necessary!"
+                },
+                "min_prot_length": {
+                    "type": "integer",
+                    "description": "Minimum size of a protein sequence to be included.",
+                    "default": 35,
+                    "fa_icon": "fas fa-wrench",
+                    "help_text": "Protein-Databases often contain fragmented protein sequences. Use this option to filter out very small proteins from your evidence set."
+                },
+                "nproteins": {
+                    "type": "integer",
+                    "default": 200,
+                    "description": "Numbe of proteins per alignment job.",
+                    "fa_icon": "fas fa-wrench",
+                    "help_text": "Specifies the number of proteins per alignnment job. This option controls parallelism - the higher this number, the fewer jobs are created and the longer the individual run times. Only increase if you have a very large number of proteins to process. The default value should be fine though."
+                },
+                "spaln_q": {
+                    "type": "integer",
+                    "default": 5,
+                    "fa_icon": "fas fa-wrench",
+                    "description": "Q value for the SPALN alignment algorithm."
+                },
+                "spaln_protein_id_targeted": {
+                    "type": "integer",
+                    "default": 90,
+                    "fa_icon": "fas fa-wrench",
+                    "description" : "ID threshold for targeted protein alignments."
+                }
+            }
+        },
+        "pasa_options": {
+            "title": "Options for PASA behavior",
+            "type": "object",
+            "fa_icon": "fas fa-fna",
+            "description": "Options that control the PASA transcriptome annotation pipeline",
+            "properties": {
+                "pasa_nmodels": {
+                    "type": "integer",
+                    "default": 1000,
+                    "fa_icon": "fas fa-wrench",
+                    "description": "Number of PASA models to select for AUGUSTUS training."
+                },
+                "pasa_config_file": {
+                    "type": "string",
+                    "default": "PIPELINE_BASE/assets/pasa/alignAssembly.config",
+                    "fa_icon": "fas fa-wrench",
+                    "description": "Built-in config file for PASA."
+                }
+            }
+        },
+        "evm_options": {
+            "title": "Options for EvidenceModeler behavior",
+            "type": "object",
+            "fa_icon": "fas fa-fna",
+            "description": "Options that control the EvidenceModeler pipeline",
+            "properties": {
+               "evm_weights": {
+                  "type": "string",
+                  "default": "None",
+                  "fa_icon": "fas fa-tape",
+                  "description": "Weights file for EVM."
+               },
+               "nevm": {
+                  "type": "integer",
+                  "default": 10,
+                  "fa_icon": "fas fa-wrench",
+                  "description" :"Number of EVM jobs per chunk."
+               }
+            }
+        },
+        "annotation_tool_options": {
+            "title": "Options for tool behavior",
+            "type": "object",
+            "fa_icon": "fas fa-fna",
+            "description": "Options that control individual tool behavior",
+            "properties": {
+                "trinity": {
+                    "type": "boolean",
+                    "description": "Activate the trinity assembly sub-pipeline",
+                    "fa_icon": "fas fa-toolbox",
+                    "help_text": "Assemble short-reads into transcripts using Trinity"
+                },
+                "pasa": {
+                    "type": "boolean",
+                    "description": "Activate the PASA sub-pipeline",
+                    "fa_icon": "fas fa-toolbox",
+                    "help_text": "Assemble into gene models using PASA."
+                },
+                "evm": {
+                    "type": "boolean",
+                    "description": "Activate the EvidenceModeler sub-pipeline",
+                    "fa_icon": "fas fa-toolbox",
+                    "help_text": "Perform consensus gene building using EvidenceModeler."
+                },
+                "ncrna": {
+                    "type": "boolean",
+                    "description": "Activate search for ncRNAs with RFam/infernal",
+                    "fa_icon": "fas fa-toolbox",
+                    "help_text": "Perform prediction of non-coding RNAs using CM profiles from Rfam release 14."
+                }
+            }
+        },
+        "institutional_config_options": {
+            "title": "Institutional config options",
+            "type": "object",
+            "fa_icon": "fas fa-university",
+            "description": "Parameters used to describe centralised config profiles. These should not be edited.",
+            "help_text": "The centralised nf-core configuration profiles use a handful of pipeline parameters to describe themselves. This information is then printed to the Nextflow log when you run a pipeline. You should not need to change these values when you run a pipeline.",
+            "properties": {
+                "custom_config_version": {
+                    "type": "string",
+                    "description": "Git commit id for Institutional configs.",
+                    "default": "master",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "custom_config_base": {
+                    "type": "string",
+                    "description": "Base directory for Institutional configs.",
+                    "default": "https://raw.githubusercontent.com/nf-core/configs/master",
+                    "hidden": true,
+                    "help_text": "If you're running offline, Nextflow will not be able to fetch the institutional config files from the internet. If you don't need them, then this is not a problem. If you do need them, you should download the files from the repo and tell Nextflow where to find them with this parameter.",
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_name": {
+                    "type": "string",
+                    "description": "Institutional config name.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_description": {
+                    "type": "string",
+                    "description": "Institutional config description.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_contact": {
+                    "type": "string",
+                    "description": "Institutional config contact information.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_url": {
+                    "type": "string",
+                    "description": "Institutional config URL link.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                }
+            }
+        },
+        "max_job_request_options": {
+            "title": "Max job request options",
+            "type": "object",
+            "fa_icon": "fab fa-acquisitions-incorporated",
+            "description": "Set the top limit for requested resources for any single job.",
+            "help_text": "If you are running on a smaller system, a pipeline step requesting more resources than are available may cause the Nextflow to stop the run with an error. These options allow you to cap the maximum resources requested by any single job so that the pipeline will run on your system.\n\nNote that you can not _increase_ the resources requested by any job using these options. For that you will need your own configuration file. See [the nf-core website](https://nf-co.re/usage/configuration) for details.",
+            "properties": {
+                "max_cpus": {
+                    "type": "integer",
+                    "description": "Maximum number of CPUs that can be requested for any single job.",
+                    "default": 16,
+                    "fa_icon": "fas fa-microchip",
+                    "hidden": true,
+                    "help_text": "Use to set an upper-limit for the CPU requirement for each process. Should be an integer e.g. `--max_cpus 1`"
+                },
+                "max_memory": {
+                    "type": "string",
+                    "description": "Maximum amount of memory that can be requested for any single job.",
+                    "default": "128.GB",
+                    "fa_icon": "fas fa-memory",
+                    "pattern": "^\\d+(\\.\\d+)?\\.?\\s*(K|M|G|T)?B$",
+                    "hidden": true,
+                    "help_text": "Use to set an upper-limit for the memory requirement for each process. Should be a string in the format integer-unit e.g. `--max_memory '8.GB'`"
+                },
+                "max_time": {
+                    "type": "string",
+                    "description": "Maximum amount of time that can be requested for any single job.",
+                    "default": "240.h",
+                    "fa_icon": "far fa-clock",
+                    "pattern": "^(\\d+\\.?\\s*(s|m|h|day)\\s*)+$",
+                    "hidden": true,
+                    "help_text": "Use to set an upper-limit for the time requirement for each process. Should be a string in the format integer-unit e.g. `--max_time '2.h'`"
+                }
+            }
+        },
+        "generic_options": {
+            "title": "Generic options",
+            "type": "object",
+            "fa_icon": "fas fa-file-import",
+            "description": "Less common options for the pipeline, typically set in a config file.",
+            "help_text": "These options are common to all nf-core pipelines and allow you to customise some of the core preferences for how the pipeline runs.\n\nTypically these options would be set in a Nextflow config file loaded for all pipeline runs, such as `~/.nextflow/config`.",
+            "properties": {
+                "help": {
+                    "type": "boolean",
+                    "description": "Display help text.",
+                    "fa_icon": "fas fa-question-circle",
+                    "hidden": true
+                },
+                "publish_dir_mode": {
+                    "type": "string",
+                    "default": "copy",
+                    "description": "Method used to save pipeline results to output directory.",
+                    "help_text": "The Nextflow `publishDir` option specifies which intermediate files should be saved to the output directory. This option tells the pipeline what method should be used to move these files. See [Nextflow docs](https://www.nextflow.io/docs/latest/process.html#publishdir) for details.",
+                    "fa_icon": "fas fa-copy",
+                    "enum": [
+                        "symlink",
+                        "rellink",
+                        "link",
+                        "copy",
+                        "copyNoFollow",
+                        "move"
+                    ],
+                    "hidden": true
+                },
+                "email_on_fail": {
+                    "type": "string",
+                    "description": "Email address for completion summary, only when pipeline fails.",
+                    "fa_icon": "fas fa-exclamation-triangle",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$",
+                    "help_text": "An email address to send a summary email to when the pipeline is completed - ONLY sent if the pipeline does not exit successfully.",
+                    "hidden": true
+                },
+                "plaintext_email": {
+                    "type": "boolean",
+                    "description": "Send plain-text email instead of HTML.",
+                    "fa_icon": "fas fa-remove-format",
+                    "hidden": true
+                },
+                "max_multiqc_email_size": {
+                    "type": "string",
+                    "description": "File size limit when attaching MultiQC reports to summary emails.",
+                    "pattern": "^\\d+(\\.\\d+)?\\.?\\s*(K|M|G|T)?B$",
+                    "default": "25.MB",
+                    "fa_icon": "fas fa-file-upload",
+                    "hidden": true
+                },
+                "monochrome_logs": {
+                    "type": "boolean",
+                    "description": "Do not use coloured log outputs.",
+                    "fa_icon": "fas fa-palette",
+                    "hidden": true
+                },
+                "multiqc_config": {
+                    "type": "string",
+                    "description": "Custom config file to supply to MultiQC.",
+                    "fa_icon": "fas fa-cog",
+                    "hidden": true
+                },
+                "tracedir": {
+                    "type": "string",
+                    "description": "Directory to keep pipeline Nextflow logs and reports.",
+                    "default": "${params.outdir}/pipeline_info",
+                    "fa_icon": "fas fa-cogs",
+                    "hidden": true
+                },
+                "validate_params": {
+                    "type": "boolean",
+                    "description": "Boolean whether to validate parameters against the schema at runtime",
+                    "default": true,
+                    "fa_icon": "fas fa-check-square",
+                    "hidden": true
+                },
+                "show_hidden_params": {
+                    "type": "boolean",
+                    "fa_icon": "far fa-eye-slash",
+                    "description": "Show all params when using `--help`",
+                    "hidden": true,
+                    "help_text": "By default, parameters set as _hidden_ in the schema are not shown on the command line when a user runs with `--help`. Specifying this option will tell the pipeline to show all parameters."
+                },
+                "enable_conda": {
+                    "type": "boolean",
+                    "description": "Run this workflow with Conda. You can also use '-profile conda' instead of providing this parameter.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-bacon"
+                }
+            }
+        }
+    },
+    "allOf": [
+        {
+            "$ref": "#/definitions/input_output_options"
+        },
+        {
+            "$ref": "#/definitions/annotation_tool_options"
+        },
+        {
+            "$ref": "#/definitions/augustus_options"
+        },
+        {
+            "$ref": "#/definitions/evm_options"
+        },
+        {
+            "$ref": "#/definitions/pasa_options"
+        },
+        {
+            "$ref": "#/definitions/protein_tool_options"
+        },
+        {
+            "$ref": "#/definitions/annotation_module_options"
+        },
+        {
+            "$ref": "#/definitions/institutional_config_options"
+        },
+        {
+            "$ref": "#/definitions/max_job_request_options"
+        },
+        {
+            "$ref": "#/definitions/generic_options"
+        }
+    ],
+    "properties": {
+    }
+}

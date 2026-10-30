@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "profile_id": "science",
+  "display_name": "Science",
+  "scope": "journal",
+  "aliases": ["science", "science magazine", "aaas science"],
+  "csl_files": ["science.csl"],
+  "language": "en",
+  "verified_on": "2026-07-24",
+  "sources": [
+    {
+      "title": "Science instructions for preparing an initial manuscript",
+      "url": "https://www.science.org/content/page/instructions-preparing-initial-manuscript",
+      "authority": "official"
+    }
+  ],
+  "template": {
+    "body": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "line_spacing": "2.0", "margin_inches": 1.0},
+    "title": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 16, "bold": true, "alignment": "center"},
+    "headings": {
+      "heading_1": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "bold": true},
+      "heading_2": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "bold": true},
+      "heading_3": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "bold": true, "italic": true}
+    },
+    "caption": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 10, "line_spacing": "1.0"},
+    "bibliography": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 10, "line_spacing": "1.0", "hanging_indent_inches": 0.25}
+  },
+  "evidence": {
+    "body": {"status": "fallback", "source": 0, "note": "The official instructions govern manuscript organization and submission; these readable review-manuscript values must be verified for the selected article type."},
+    "title": {"status": "partial-official", "source": 0, "note": "Content constraints are official; Word font styling is a fallback."},
+    "headings": {"status": "fallback"},
+    "caption": {"status": "partial-official", "source": 0, "note": "Legend content/order is official; font styling is a fallback."},
+    "bibliography": {"status": "partial-official", "source": 0, "note": "Reference content and citation style are official; paragraph typography is a fallback."}
+  }
+}

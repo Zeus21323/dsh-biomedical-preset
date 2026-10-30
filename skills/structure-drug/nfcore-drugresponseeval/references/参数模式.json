@@ -1,0 +1,361 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/drugresponseeval/main/nextflow_schema.json",
+    "title": "nf-core/drugresponseeval pipeline parameters",
+    "description": "This pipeline evaluates drug response models in various settings on a variety of datasets.",
+    "type": "object",
+    "$defs": {
+        "model_options": {
+            "title": "Model options",
+            "type": "object",
+            "fa_icon": "fa-solid fa-laptop-code",
+            "description": "Define the models and baselines to be tested.",
+            "required": ["models", "baselines"],
+            "properties": {
+                "models": {
+                    "type": "string",
+                    "description": "Model to be tested.",
+                    "help_text": "Model to be tested. See the documentation for a list of pre-implemented models. Can be multiple models separated by ','.",
+                    "default": "NaiveDrugMeanPredictor"
+                },
+                "baselines": {
+                    "type": "string",
+                    "description": "Baselines to be tested.",
+                    "help_text": "Baselines to be tested. See documentation of a list of available models. For baselines, randomization and robustness tests are not run. The NaiveMeanEffectsPredictor will always be included.",
+                    "default": "NaiveMeanEffectsPredictor"
+                }
+            }
+        },
+        "input_output_options": {
+            "title": "Input/output options",
+            "type": "object",
+            "fa_icon": "fas fa-terminal",
+            "description": "Define where the pipeline should find input data and save output data.",
+            "required": ["run_id", "dataset_name", "outdir"],
+            "properties": {
+                "run_id": {
+                    "type": "string",
+                    "description": "Run name for the pipeline. The subdirectory in results will be named like this.",
+                    "help_text": "You will need to set a run identifier for the pipeline. This is used to create a unique output directory for each run.",
+                    "default": "my_run"
+                },
+                "dataset_name": {
+                    "type": "string",
+                    "description": "Name of the dataset. Pre-supplied datasets are CTRPv2, CTRPv1, CCLE, GDSC1, GDSC2, TOYv1, TOYv2, BeatAML2, and PDX_Bruna.",
+                    "help_text": "Name of the dataset used for the pipeline. This can be either one of the provided datasets ('GDSC1', 'GDSC2', 'CCLE', 'CTRPv2', 'TOYv1', 'TOYv2', 'BeatAML2', 'PDX_Bruna') in which case the datasets with the fitted curves is downloaded, or a custom dataset name, pointing either to raw viability measurements for automatic curve fitting, or pre-fit data (see no_refitting option; not recommended for dataset comparability reasons due to potential differences in fitting procedures).",
+                    "default": "CTRPv2"
+                },
+                "outdir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "The output directory where the results will be saved. Default is results/",
+                    "fa_icon": "fas fa-folder-open",
+                    "default": "results"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address for completion summary.",
+                    "fa_icon": "fas fa-envelope",
+                    "help_text": "Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
+                }
+            }
+        },
+        "mode_options": {
+            "title": "Mode options (LPO/LCO/LTO/LDO)",
+            "type": "object",
+            "fa_icon": "fa-solid fa-table-cells-column-lock",
+            "description": "Define the mode in which the pipeline will be run.",
+            "required": ["test_mode"],
+            "properties": {
+                "test_mode": {
+                    "type": "string",
+                    "description": "Run the pipeline in test mode LPO (Leave-random-Pairs-Out), LCO (Leave-Cell-line-Out), or LDO (Leave-Drug-Out).",
+                    "default": "LCO",
+                    "help_text": "Which tests to run (LPO=Leave-random-Pairs-Out, LCO=Leave-Cell-line-Out, LTO=Leave-Tissue-Out, LDO=Leave-Drug-Out). Can be a list of test runs e.g. 'LPO,LCO,LTO,LDO' to run all tests. Default is LCO.",
+                    "pattern": "^((LPO|LCO|LTO|LDO)?,?)*(?<!,)$"
+                }
+            }
+        },
+        "randomization_options": {
+            "title": "Randomization options",
+            "type": "object",
+            "fa_icon": "fa-solid fa-dice",
+            "description": "Options for randomization.",
+            "properties": {
+                "randomization_mode": {
+                    "type": "string",
+                    "description": "Randomization mode for the pipeline.",
+                    "help_text": "Which randomization tests to run, additionally to the normal run. Default is None which means no randomization tests are run. Modes: SVCC, SVRC, SVCD, SVRD. Can be a list of randomization tests e.g. 'SCVC,SCVD' to run two tests. Default is None. SVCC: Single View Constant for Cell Lines: in this mode, one experiment is done for every cell line view the model uses (e.g. gene expression, mutation, ..). For each experiment one cell line view is held constant while the others are randomized. SVRC Single View Random for Cell Lines: in this mode, one experiment is done for every cell line view the model uses (e.g. gene expression, mutation, ..).",
+                    "default": "None",
+                    "pattern": "^(None|(?:SVR[CD]|SVC[CD])(,(?:SVR[CD]|SVC[CD]))*)$"
+                },
+                "randomization_type": {
+                    "type": "string",
+                    "default": "permutation",
+                    "description": "Randomization type for the pipeline.",
+                    "help_text": "type of randomization to use. Choose from \"permutation\", \"invariant\". Default is \"permutation",
+                    "enum": ["permutation", "invariant"]
+                }
+            }
+        },
+        "robustness_options": {
+            "title": "Robustness options",
+            "type": "object",
+            "fa_icon": "fa-solid fa-repeat",
+            "description": "Options for robustness.",
+            "properties": {
+                "n_trials_robustness": {
+                    "type": "integer",
+                    "default": 0,
+                    "description": "Number of trials to run for the robustness test",
+                    "help_text": "Number of trials to run for the robustness test. Default is 0, which means no robustness test is run. The robustness test is a test where the model is trained with varying seeds. This is done multiple times to see how stable the model is.",
+                    "minimum": 0
+                }
+            }
+        },
+        "data_options": {
+            "title": "Data options",
+            "type": "object",
+            "fa_icon": "fa-solid fa-database",
+            "description": "Options for data input.",
+            "properties": {
+                "path_data": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "Path to the data directory.",
+                    "help_text": "Path to the data directory. The downloaded data will be exported here. If you supply custom data, it goes here, too.",
+                    "default": "data"
+                },
+                "measure": {
+                    "type": "string",
+                    "default": "LN_IC50",
+                    "description": "The name of the drug response measure to use.",
+                    "help": "The name of the measure to use, default 'LN_IC50'. Restricted to one of ['LN_IC50', 'IC50', 'pEC50', 'EC50', 'AUC', 'response']. This corresponds to the name of the column that contains the measure in the provided input dataset. If the option 'no_refitting' is not set (default), the prefix '_curvecurator' is automatically appended, e.g. 'LN_IC50_curvecurator', to allow using the refit measures instead of the ones originally published for the available datasets (see 'dataset_name' option for details), allowing for better dataset comparability (refit measures are already provided in the available datasets or computed as part of the fitting procedure when providing custom raw viability datasets, see 'no_refitting' option for details).",
+                    "help_text": "Column of the response dataset in which the drug response is stored. ",
+                    "enum": ["LN_IC50", "pEC50", "AUC", "response", "EC50", "IC50"]
+                },
+                "cross_study_datasets": {
+                    "type": "string",
+                    "description": "Datasets for cross-study prediction.",
+                    "help_text": "List of datasets to use to evaluate predictions across studies. Can be a combination like 'CTRPv1,CCLE'. Default is empty string which means no cross-study datasets are used.",
+                    "default": null,
+                    "pattern": "^(?:|(?:GDSC[12]|CCLE|CTRPv[12]|TOYv[12]|PDX_Bruna|BeatAML2)(,(?:GDSC[12]|CCLE|CTRPv[12]|TOYv[12]|PDX_Bruna|BeatAML2))*)$"
+                },
+                "zenodo_link": {
+                    "type": "string",
+                    "description": "Link to the latest Zenodo version of the dataset.",
+                    "default": "https://zenodo.org/records/20624451/files/",
+                    "help_text": "Link to the Zenodo dataset from where pre-supplied datasets like CTRPv2 are downloaded.",
+                    "pattern": "(^https://zenodo.org/records/[0-9]+/files/$)|(https://github.com/nf-core/test-datasets/raw/refs/heads/drugresponseeval/test_data/)"
+                }
+            }
+        },
+        "additional_options": {
+            "title": "Additional options",
+            "type": "object",
+            "fa_icon": "fas fa-cogs",
+            "description": "Additional options for the pipeline.",
+            "properties": {
+                "no_refitting": {
+                    "type": "boolean",
+                    "description": "False by default (=refitting). By default, we use measures calculated with CurveCurator instead of original measures reported by the authors for the available datasets, or invoke automatic fitting of custom raw viability data with CurveCurator. Set this flag to disable this option.",
+                    "help_text": "By default, measures calculated by CurveCurator (by re-fitting the response curves, see 'measure' option for details) are used for available datasets, which allows better comparability between datasets. When providing a custom dataset (see 'dataset_name' option), we expect a csv-formatted file at <path_data>/<dataset_name>/<dataset_name>_raw.csv (also see 'path_data' option) containing the raw response data. We fit the curves by default with CurveCurator to provide fair comparison to our other available datasets. The fitted data will then be stored at <path_data>/<dataset_name>/<dataset_name>.csv. If you want to disable this option, set the flag.",
+                    "default": false
+                },
+                "optim_metric": {
+                    "type": "string",
+                    "description": "Optimization metric for the pipeline.",
+                    "default": "RMSE",
+                    "help_text": "Optimization metric for the pipeline. All models will minimize (MSE, RMSE, MAE)/maximize (R^2, Pearson, Spearman, Kendall) this metric calculated on the validation set. Default is RMSE.",
+                    "enum": ["RMSE", "MSE", "MAE", "R^2", "Pearson", "Spearman", "Kendall"]
+                },
+                "n_cv_splits": {
+                    "type": "integer",
+                    "default": 10,
+                    "description": "Number of cross-validation splits.",
+                    "help_text": "Number of cross-validation splits. Default is 10.",
+                    "minimum": 2
+                },
+                "response_transformation": {
+                    "type": "string",
+                    "description": "Response transformation",
+                    "help_text": "Transformation to apply to the response variable possible values: None, standard, minmax, robust",
+                    "default": "None",
+                    "enum": ["None", "standard", "minmax", "robust"]
+                },
+                "model_checkpoint_dir": {
+                    "type": "string",
+                    "description": "Model checkpoint directory",
+                    "default": "TEMPORARY",
+                    "help_text": "Directory to save model checkpoints."
+                },
+                "no_hyperparameter_tuning": {
+                    "type": "boolean",
+                    "description": "Disable hyperparameter tuning.",
+                    "default": false,
+                    "help_text": "Set this flag to disable hyperparameter tuning. If set, the pipeline will not perform hyperparameter tuning and will use the default parameters for the models (more meant for quick runs or debugging)."
+                },
+                "final_model_on_full_data": {
+                    "type": "boolean",
+                    "description": "Train final model on full data.",
+                    "default": false,
+                    "help_text": "If True, saves a final model, trained/tuned on the union of all folds after CV. This is useful if you want to use the model for predictions on new data after running the pipeline."
+                }
+            }
+        },
+        "institutional_config_options": {
+            "title": "Institutional config options",
+            "type": "object",
+            "fa_icon": "fas fa-university",
+            "description": "Parameters used to describe centralised config profiles. These should not be edited.",
+            "help_text": "The centralised nf-core configuration profiles use a handful of pipeline parameters to describe themselves. This information is then printed to the Nextflow log when you run a pipeline. You should not need to change these values when you run a pipeline.",
+            "properties": {
+                "custom_config_version": {
+                    "type": "string",
+                    "description": "Git commit id for Institutional configs.",
+                    "default": "master",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "custom_config_base": {
+                    "type": "string",
+                    "description": "Base directory for Institutional configs.",
+                    "default": "https://raw.githubusercontent.com/nf-core/configs/master",
+                    "hidden": true,
+                    "help_text": "If you're running offline, Nextflow will not be able to fetch the institutional config files from the internet. If you don't need them, then this is not a problem. If you do need them, you should download the files from the repo and tell Nextflow where to find them with this parameter.",
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_name": {
+                    "type": "string",
+                    "description": "Institutional config name.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_description": {
+                    "type": "string",
+                    "description": "Institutional config description.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_contact": {
+                    "type": "string",
+                    "description": "Institutional config contact information.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_url": {
+                    "type": "string",
+                    "description": "Institutional config URL link.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                }
+            }
+        },
+        "generic_options": {
+            "title": "Generic options",
+            "type": "object",
+            "fa_icon": "fas fa-file-import",
+            "description": "Less common options for the pipeline, typically set in a config file.",
+            "help_text": "These options are common to all nf-core pipelines and allow you to customise some of the core preferences for how the pipeline runs.\n\nTypically these options would be set in a Nextflow config file loaded for all pipeline runs, such as `~/.nextflow/config`.",
+            "properties": {
+                "version": {
+                    "type": "boolean",
+                    "description": "Display version and exit.",
+                    "fa_icon": "fas fa-question-circle",
+                    "hidden": true
+                },
+                "publish_dir_mode": {
+                    "type": "string",
+                    "default": "copy",
+                    "description": "Method used to save pipeline results to output directory.",
+                    "help_text": "The Nextflow `publishDir` option specifies which intermediate files should be saved to the output directory. This option tells the pipeline what method should be used to move these files. See [Nextflow docs](https://www.nextflow.io/docs/latest/process.html#publishdir) for details.",
+                    "fa_icon": "fas fa-copy",
+                    "enum": ["symlink", "rellink", "link", "copy", "copyNoFollow", "move"],
+                    "hidden": true
+                },
+                "email_on_fail": {
+                    "type": "string",
+                    "description": "Email address for completion summary, only when pipeline fails.",
+                    "fa_icon": "fas fa-exclamation-triangle",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$",
+                    "help_text": "An email address to send a summary email to when the pipeline is completed - ONLY sent if the pipeline does not exit successfully.",
+                    "hidden": true
+                },
+                "plaintext_email": {
+                    "type": "boolean",
+                    "description": "Send plain-text email instead of HTML.",
+                    "fa_icon": "fas fa-remove-format",
+                    "hidden": true
+                },
+                "monochrome_logs": {
+                    "type": "boolean",
+                    "description": "Do not use coloured log outputs.",
+                    "fa_icon": "fas fa-palette",
+                    "hidden": true
+                },
+                "validate_params": {
+                    "type": "boolean",
+                    "description": "Boolean whether to validate parameters against the schema at runtime",
+                    "default": true,
+                    "fa_icon": "fas fa-check-square",
+                    "hidden": true
+                },
+                "pipelines_testdata_base_path": {
+                    "type": "string",
+                    "fa_icon": "far fa-check-circle",
+                    "description": "Base URL or local path to location of pipeline test dataset files",
+                    "default": "https://raw.githubusercontent.com/nf-core/test-datasets/",
+                    "hidden": true
+                },
+                "trace_report_suffix": {
+                    "type": "string",
+                    "fa_icon": "far calendar",
+                    "description": "Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss.",
+                    "hidden": true
+                },
+                "help": {
+                    "type": ["boolean", "string"],
+                    "description": "Display the help message."
+                },
+                "help_full": {
+                    "type": "boolean",
+                    "description": "Display the full detailed help message."
+                },
+                "show_hidden": {
+                    "type": "boolean",
+                    "description": "Display hidden parameters in the help message (only works when --help or --help_full are provided)."
+                }
+            }
+        }
+    },
+    "allOf": [
+        {
+            "$ref": "#/$defs/model_options"
+        },
+        {
+            "$ref": "#/$defs/input_output_options"
+        },
+        {
+            "$ref": "#/$defs/mode_options"
+        },
+        {
+            "$ref": "#/$defs/randomization_options"
+        },
+        {
+            "$ref": "#/$defs/data_options"
+        },
+        {
+            "$ref": "#/$defs/robustness_options"
+        },
+        {
+            "$ref": "#/$defs/additional_options"
+        },
+        {
+            "$ref": "#/$defs/institutional_config_options"
+        },
+        {
+            "$ref": "#/$defs/generic_options"
+        }
+    ]
+}

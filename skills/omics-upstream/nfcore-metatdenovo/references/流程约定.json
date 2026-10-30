@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/metatdenovo",
+  "skill_id": "nfcore-metatdenovo",
+  "scientific_title": "宏转录组与宏基因组从头组装注释",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/metatdenovo",
+    "archived": false,
+    "revision_label": "1.4.0",
+    "commit": "4d0307aa7d34575aa7891a7b4996ffe19e774cd9",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "2b474461220440ec8ed15071e2d3968740805d519a2644297117ff5e9216c23e"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_diamond_dbs.json",
+        "sha256": "a396f07d9b816d05b57328c00dd5ab99917314d4550d0853c930219a6acd39bc",
+        "parameters": [
+          "diamond_dbs"
+        ]
+      },
+      {
+        "file": "输入模式-2.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "586113a99f03e14c35ed441b50b8d4ac49e106ccf76092fb7143db8cb5273f0e",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/metatdenovo/4d0307aa7d34575aa7891a7b4996ffe19e774cd9/LICENSE",
+      "sha256": "c04ba13fa6cc745865f1fcf957c001902bb054db2c2a489184533fe5a9c7fd0c",
+      "bytes": 1080
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/metatdenovo/4d0307aa7d34575aa7891a7b4996ffe19e774cd9/README.md",
+      "sha256": "0a2fd3ab85b4b37c6d2f6f004c80ace1b18940f618f24a3c571074863dda057e",
+      "bytes": 9505
+    },
+    {
+      "path": "assets/schema_diamond_dbs.json",
+      "url": "https://raw.githubusercontent.com/nf-core/metatdenovo/4d0307aa7d34575aa7891a7b4996ffe19e774cd9/assets/schema_diamond_dbs.json",
+      "sha256": "a396f07d9b816d05b57328c00dd5ab99917314d4550d0853c930219a6acd39bc",
+      "bytes": 2022
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/metatdenovo/4d0307aa7d34575aa7891a7b4996ffe19e774cd9/assets/schema_input.json",
+      "sha256": "586113a99f03e14c35ed441b50b8d4ac49e106ccf76092fb7143db8cb5273f0e",
+      "bytes": 1426
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/metatdenovo/4d0307aa7d34575aa7891a7b4996ffe19e774cd9/docs/output.md",
+      "sha256": "b9e43bbea390aca231d5c7c2f290167b4bda4beef7986f8706764bbd1aefab06",
+      "bytes": 16079
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/metatdenovo/4d0307aa7d34575aa7891a7b4996ffe19e774cd9/docs/usage.md",
+      "sha256": "ab1e3f634ce0a34298d33942ac99f970dd56a3ff9c8f97812cda448a6e265c2f",
+      "bytes": 28330
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/metatdenovo/4d0307aa7d34575aa7891a7b4996ffe19e774cd9/main.nf",
+      "sha256": "aee8d809dc0e7df9f7ae08b639547990ce0ab0b2dfdf2217a6bd29864b213c6c",
+      "bytes": 3018
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/metatdenovo/4d0307aa7d34575aa7891a7b4996ffe19e774cd9/nextflow.config",
+      "sha256": "3adff74a488da817e38f879fc7605d6b547d72a893248993ff67db8148e4ae64",
+      "bytes": 13846
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/metatdenovo/4d0307aa7d34575aa7891a7b4996ffe19e774cd9/nextflow_schema.json",
+      "sha256": "2b474461220440ec8ed15071e2d3968740805d519a2644297117ff5e9216c23e",
+      "bytes": 30204
+    },
+    {
+      "path": "workflows/metatdenovo.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/metatdenovo/4d0307aa7d34575aa7891a7b4996ffe19e774cd9/workflows/metatdenovo.nf",
+      "sha256": "7aea16585335a56fac90cde553d821d2bf4fc02c8726ce6e7b099d745426a3c3",
+      "bytes": 28082
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/pairgenomealign/master/assets/schema_input.json",
+    "title": "nf-core/pairgenomealign pipeline - params.input schema",
+    "description": "Schema for the file provided with params.input",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "sample": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "errorMessage": "Sample name must be provided and cannot contain spaces",
+                "meta": ["id"]
+            },
+            "fasta": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "pattern": "^\\S+\\.f(ast|n)?(a|q)(\\.gz)?$",
+                "errorMessage": "Fasta file for genomes must be provided, cannot contain spaces and must have extension `.fa`, `.fa.gz`, `.fna`, `.fna.gz`, `.fasta` or `.fasta.gz`"
+            }
+        },
+        "required": ["sample", "fasta"]
+    }
+}

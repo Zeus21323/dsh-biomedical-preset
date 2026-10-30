@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/crisprseq",
+  "skill_id": "nfcore-crisprseq",
+  "scientific_title": "CRISPR编辑与筛选测序分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/crisprseq",
+    "archived": false,
+    "revision_label": "2.3.0",
+    "commit": "0e9f915c4a3c89d02a66ec58e2decbc832323c8b",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=24.04.2",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "59b4f1b746c8a6917db099371cf4ac8b5ee413184563545fca63eef0d7feeca9"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "76e9121442e8b3674c73624716ac67a3fa3e1ecee12784cef08750e7ed209694",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/crisprseq/0e9f915c4a3c89d02a66ec58e2decbc832323c8b/LICENSE",
+      "sha256": "e7f9a1b33724d742cc2f3362aa2b443bbfcd3e4c4f20ca509b1e034c9512e8a6",
+      "bytes": 1090
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/crisprseq/0e9f915c4a3c89d02a66ec58e2decbc832323c8b/README.md",
+      "sha256": "88e1370f642b9344bce1c9e72e3c83afb6ac4c8b883067ce834a956ffebaf3be",
+      "bytes": 11922
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/crisprseq/0e9f915c4a3c89d02a66ec58e2decbc832323c8b/assets/schema_input.json",
+      "sha256": "76e9121442e8b3674c73624716ac67a3fa3e1ecee12784cef08750e7ed209694",
+      "bytes": 2107
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/crisprseq/0e9f915c4a3c89d02a66ec58e2decbc832323c8b/docs/output.md",
+      "sha256": "8d85ba77059fa4b1c8326f5062d7bcf6b05248bd4e55f5a643e286167a40b5d1",
+      "bytes": 182
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/crisprseq/0e9f915c4a3c89d02a66ec58e2decbc832323c8b/docs/usage.md",
+      "sha256": "a77dd8205dcdb5b30d10924b91bdd4e0f96d45d391d8798f11571445cc4987d1",
+      "bytes": 17578
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/crisprseq/0e9f915c4a3c89d02a66ec58e2decbc832323c8b/main.nf",
+      "sha256": "c09f158d845f19f419f0fd68c6218b24c79ae8ee60fd36c7291de3e61d9eefba",
+      "bytes": 3957
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/crisprseq/0e9f915c4a3c89d02a66ec58e2decbc832323c8b/nextflow.config",
+      "sha256": "ecd5678662cd8ee0b585ba8803545383f19db400a768ed49aceed8e08e834703",
+      "bytes": 12648
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/crisprseq/0e9f915c4a3c89d02a66ec58e2decbc832323c8b/nextflow_schema.json",
+      "sha256": "59b4f1b746c8a6917db099371cf4ac8b5ee413184563545fca63eef0d7feeca9",
+      "bytes": 24168
+    },
+    {
+      "path": "workflows/crisprseq_screening.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/crisprseq/0e9f915c4a3c89d02a66ec58e2decbc832323c8b/workflows/crisprseq_screening.nf",
+      "sha256": "21b6989ec76a017f890354fc655a23e69167bbf6ad6c08b7f4408491a17b1f7e",
+      "bytes": 16904
+    },
+    {
+      "path": "workflows/crisprseq_targeted.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/crisprseq/0e9f915c4a3c89d02a66ec58e2decbc832323c8b/workflows/crisprseq_targeted.nf",
+      "sha256": "9b740e0c998271519f4cadc3b5a76fc091aa531885f55fc262d1aafd987a489f",
+      "bytes": 27416
+    }
+  ]
+}

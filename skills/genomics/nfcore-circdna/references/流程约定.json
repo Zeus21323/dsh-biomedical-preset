@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/circdna",
+  "skill_id": "nfcore-circdna",
+  "scientific_title": "环状DNA与ecDNA候选识别",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/circdna",
+    "archived": false,
+    "revision_label": "1.1.0",
+    "commit": "8e0e14c84f90c94d975c2bac6bde8e5a1d5bc8ab",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=23.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "95ad2f5c1df7dceb819348d63b42cf2d8f15737fe08d57e7c507266c88206b8f"
+    },
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/circdna/8e0e14c84f90c94d975c2bac6bde8e5a1d5bc8ab/LICENSE",
+      "sha256": "2a002e478669912c416c3ae4dbfe36817bed03f0e8e37d039bb9e7c45684d0f7",
+      "bytes": 1067
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/circdna/8e0e14c84f90c94d975c2bac6bde8e5a1d5bc8ab/README.md",
+      "sha256": "5d33d7655078c9d97be6a713931c339d1f06dc7fe1f3b6b7f3055c5d75d321fb",
+      "bytes": 11834
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/circdna/8e0e14c84f90c94d975c2bac6bde8e5a1d5bc8ab/docs/output.md",
+      "sha256": "9a5876253ebf5c8855b5f93a8c5ddb5e9b255a17cbed4138d9d9ded8c6bf687b",
+      "bytes": 17514
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/circdna/8e0e14c84f90c94d975c2bac6bde8e5a1d5bc8ab/docs/usage.md",
+      "sha256": "1d26c35172c42a695ff9dbb849d25e6d0cc48478fb692d23b6c55a6b97a3e415",
+      "bytes": 19108
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/circdna/8e0e14c84f90c94d975c2bac6bde8e5a1d5bc8ab/main.nf",
+      "sha256": "dc3f7026a976286b8b82be652e2e87926fcf53325a691d3ac83f9f47f98336f7",
+      "bytes": 2816
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/circdna/8e0e14c84f90c94d975c2bac6bde8e5a1d5bc8ab/nextflow.config",
+      "sha256": "2ad016bbaa9c72a78fbe548a0aa86bb46095fcc5f83e4685103b7cc3be39fb1b",
+      "bytes": 11216
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/circdna/8e0e14c84f90c94d975c2bac6bde8e5a1d5bc8ab/nextflow_schema.json",
+      "sha256": "95ad2f5c1df7dceb819348d63b42cf2d8f15737fe08d57e7c507266c88206b8f",
+      "bytes": 30421
+    },
+    {
+      "path": "workflows/circdna.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/circdna/8e0e14c84f90c94d975c2bac6bde8e5a1d5bc8ab/workflows/circdna.nf",
+      "sha256": "d5401dbdcaaf1f866e88415f888968073aedd74eec8122b5bdc52f46218f9f40",
+      "bytes": 23292
+    }
+  ]
+}

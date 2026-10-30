@@ -1,0 +1,32 @@
+# Project-owned communication figure preset, based on the cited Nature figure guide.
+# Physical sizing and export validation are implemented in render_communication.py.
+figure.dpi: 100
+figure.facecolor: white
+figure.constrained_layout.h_pad: 0.04
+figure.constrained_layout.w_pad: 0.04
+font.family: sans-serif
+font.sans-serif: Arial, Helvetica, DejaVu Sans
+font.size: 7
+axes.titlesize: 7
+axes.titleweight: normal
+axes.labelsize: 7
+axes.linewidth: 0.5
+axes.spines.top: False
+axes.spines.right: False
+axes.grid: False
+axes.axisbelow: True
+xtick.labelsize: 6
+ytick.labelsize: 6
+xtick.major.size: 2
+ytick.major.size: 2
+xtick.major.width: 0.5
+ytick.major.width: 0.5
+legend.fontsize: 6
+legend.title_fontsize: 6
+legend.frameon: False
+lines.linewidth: 0.7
+patch.linewidth: 0.4
+savefig.dpi: 600
+pdf.fonttype: 42
+svg.fonttype: none
+image.cmap: cividis

@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/sammyseq",
+  "skill_id": "nfcore-sammyseq",
+  "scientific_title": "SAMMY-seq染色质状态分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/sammyseq",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "d2407489a54fb4b635edc0ee0ca3d35e436fd3d8",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "bb2f8efbd67bc228533fd1abb64606ce52a8216141731adb09c36b68c994ebe3"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "d2eb62b7507dd3f2a0a12010a07977e36ae6017853ea8ad458d46a7a9cf28654",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/sammyseq/d2407489a54fb4b635edc0ee0ca3d35e436fd3d8/LICENSE",
+      "sha256": "fa5ee53009a81a3e84e24636f9e948a42085934dee9b888bf2f6bb550f22db3f",
+      "bytes": 1077
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/sammyseq/d2407489a54fb4b635edc0ee0ca3d35e436fd3d8/README.md",
+      "sha256": "6cb99c89c252892157c54812462427de33643c5364f1901284272763560f542f",
+      "bytes": 10963
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/sammyseq/d2407489a54fb4b635edc0ee0ca3d35e436fd3d8/assets/schema_input.json",
+      "sha256": "d2eb62b7507dd3f2a0a12010a07977e36ae6017853ea8ad458d46a7a9cf28654",
+      "bytes": 2244
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/sammyseq/d2407489a54fb4b635edc0ee0ca3d35e436fd3d8/docs/output.md",
+      "sha256": "12565a0977c69e3efd401f12019c12ff84d4f2da665e5aeced0d31706946143b",
+      "bytes": 16602
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/sammyseq/d2407489a54fb4b635edc0ee0ca3d35e436fd3d8/docs/usage.md",
+      "sha256": "04b477b3d011c77a4829040a50024b02d4bb946bf025fc121dd35339bba5a85d",
+      "bytes": 23005
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/sammyseq/d2407489a54fb4b635edc0ee0ca3d35e436fd3d8/main.nf",
+      "sha256": "e00c6934fa33e860ae8f2bc6f411f92d91e33fadff18f50113abdaa9349a38f6",
+      "bytes": 3589
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/sammyseq/d2407489a54fb4b635edc0ee0ca3d35e436fd3d8/nextflow.config",
+      "sha256": "7bb191645c1b33cfaec10d0e3bce7c7ef0c2194a96663907d763355026f9c28d",
+      "bytes": 13053
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/sammyseq/d2407489a54fb4b635edc0ee0ca3d35e436fd3d8/nextflow_schema.json",
+      "sha256": "bb2f8efbd67bc228533fd1abb64606ce52a8216141731adb09c36b68c994ebe3",
+      "bytes": 29047
+    },
+    {
+      "path": "workflows/sammyseq.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/sammyseq/d2407489a54fb4b635edc0ee0ca3d35e436fd3d8/workflows/sammyseq.nf",
+      "sha256": "10905e2585dbd0487d8e661d1ffdf80f7634fe8165c6d6228b63ec9cace5b643",
+      "bytes": 18426
+    }
+  ]
+}

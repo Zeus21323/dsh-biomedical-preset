@@ -1,0 +1,44 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/omicsgenetraitassociation/master/assets/schema_input.json",
+    "title": "nf-core/omicsgenetraitassociation pipeline - params.input schema",
+    "description": "Schema for the file provided with params.input",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "sample": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "errorMessage": "Sample name must be provided and cannot contain spaces"
+            },
+            "trait": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "errorMessage": "Trait must be provided and cannot contain spaces"
+            },
+            "pascal": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "pattern": "^\\S+\\.csv",
+                "errorMessage": "input summary statistics file cannot contain spaces and must have extension '.csv'"
+            },
+            "twas": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "pattern": "^\\S+\\.csv",
+                "errorMessage": "input gene-trait association file cannot contain spaces and must have extension '.csv'"
+            },
+            "additional_sources": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "pattern": "^\\S+\\.txt",
+                "errorMessage": "additional sources file cannot contain spaces and must have extension '.txt'"
+            }
+        },
+        "required": ["sample", "trait"]
+    }
+}

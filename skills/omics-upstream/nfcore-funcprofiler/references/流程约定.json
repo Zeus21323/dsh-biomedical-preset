@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/funcprofiler",
+  "skill_id": "nfcore-funcprofiler",
+  "scientific_title": "微生物读段功能组成分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/funcprofiler",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "a8101edc6deec2bf5eed2e27682f94512857844e",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "55fd70b30988035670766cfb71cdda5cd8efb09729930fa40a4ddb43b37692e1"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_database.json",
+        "sha256": "34b5c8119fa10c30e33283f251249e474e2220f1ff5a0fde9ad0fbf33ba12dea",
+        "parameters": [
+          "databases"
+        ]
+      },
+      {
+        "file": "输入模式-2.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "ba3bb4b090d0e368808079e50014a3db3c0427aec11e03022e41236b9662eb41",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/funcprofiler/a8101edc6deec2bf5eed2e27682f94512857844e/LICENSE",
+      "sha256": "cc98a9f965557891982e89747d52292c840d3d936d5e98db76ebbe88b9da81b4",
+      "bytes": 1081
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/funcprofiler/a8101edc6deec2bf5eed2e27682f94512857844e/README.md",
+      "sha256": "d4ddc8ac31d260f0c3dd18effab0753eafed56897ad76847f1ef1f1663f17d18",
+      "bytes": 8560
+    },
+    {
+      "path": "assets/schema_database.json",
+      "url": "https://raw.githubusercontent.com/nf-core/funcprofiler/a8101edc6deec2bf5eed2e27682f94512857844e/assets/schema_database.json",
+      "sha256": "34b5c8119fa10c30e33283f251249e474e2220f1ff5a0fde9ad0fbf33ba12dea",
+      "bytes": 2892
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/funcprofiler/a8101edc6deec2bf5eed2e27682f94512857844e/assets/schema_input.json",
+      "sha256": "ba3bb4b090d0e368808079e50014a3db3c0427aec11e03022e41236b9662eb41",
+      "bytes": 2861
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/funcprofiler/a8101edc6deec2bf5eed2e27682f94512857844e/docs/output.md",
+      "sha256": "e80640fed098af0eedd6bcad86eb178e64ca193e0d6b9d82ac62d89a3844d7f7",
+      "bytes": 8025
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/funcprofiler/a8101edc6deec2bf5eed2e27682f94512857844e/docs/usage.md",
+      "sha256": "eb0bf528c0ab81a5733185cf34fde2ea40c8bf8599162ad55d621218adfae024",
+      "bytes": 28474
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/funcprofiler/a8101edc6deec2bf5eed2e27682f94512857844e/main.nf",
+      "sha256": "b57e443eb4611af66f89b174f5b2b57f5b1f5bb02551d595b20301682027b0ac",
+      "bytes": 2800
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/funcprofiler/a8101edc6deec2bf5eed2e27682f94512857844e/nextflow.config",
+      "sha256": "e9875e14f77640d8725727b9aa65b6a8fb00f9f442f43f941fe853456b8e138f",
+      "bytes": 11132
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/funcprofiler/a8101edc6deec2bf5eed2e27682f94512857844e/nextflow_schema.json",
+      "sha256": "55fd70b30988035670766cfb71cdda5cd8efb09729930fa40a4ddb43b37692e1",
+      "bytes": 15505
+    },
+    {
+      "path": "workflows/funcprofiler.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/funcprofiler/a8101edc6deec2bf5eed2e27682f94512857844e/workflows/funcprofiler.nf",
+      "sha256": "2e7e670e9a4d6379800953dbbe9af620ccb191d6e892731419fe4d691bf7070c",
+      "bytes": 4030
+    }
+  ]
+}

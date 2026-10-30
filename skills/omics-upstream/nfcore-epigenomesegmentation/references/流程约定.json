@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/epigenomesegmentation",
+  "skill_id": "nfcore-epigenomesegmentation",
+  "scientific_title": "表观信号染色质状态分段",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/epigenomesegmentation",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "2fbdaf179be7c0bbcd18028c45c1af5798752e90",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "c27abd9108504b48696fcaf423c65130cf4f7bbb3829bae447dfee78f6079d6f"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "ecf17dfd02e800c21547ec212573eecf8202628c3eb351e3329cb53864fb6e75",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/epigenomesegmentation/2fbdaf179be7c0bbcd18028c45c1af5798752e90/LICENSE",
+      "sha256": "6f97156787f947873d313f680eb7bb973b85c9b23fe398e956a90cdd11743f7e",
+      "bytes": 1090
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/epigenomesegmentation/2fbdaf179be7c0bbcd18028c45c1af5798752e90/README.md",
+      "sha256": "7de06b76fb840e52ee20ef0de18b1fb0985a250f401b184cf209d6344c567728",
+      "bytes": 10587
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/epigenomesegmentation/2fbdaf179be7c0bbcd18028c45c1af5798752e90/assets/schema_input.json",
+      "sha256": "ecf17dfd02e800c21547ec212573eecf8202628c3eb351e3329cb53864fb6e75",
+      "bytes": 4713
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/epigenomesegmentation/2fbdaf179be7c0bbcd18028c45c1af5798752e90/docs/output.md",
+      "sha256": "e47b52bdc6552e3e4c742850c562ebe9a845d92921e3286c034ec3334c8cb288",
+      "bytes": 5223
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/epigenomesegmentation/2fbdaf179be7c0bbcd18028c45c1af5798752e90/docs/usage.md",
+      "sha256": "9cba5f4f6500d5d0f526490a2b457b6d13eed5c4f5b4fc3939d239bd1f4ae27f",
+      "bytes": 18530
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/epigenomesegmentation/2fbdaf179be7c0bbcd18028c45c1af5798752e90/main.nf",
+      "sha256": "34f4f3f530d938c5f65dff315bab2dc03cd7b9955aa616f4a4e84add19271c14",
+      "bytes": 2699
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/epigenomesegmentation/2fbdaf179be7c0bbcd18028c45c1af5798752e90/nextflow.config",
+      "sha256": "38cf8bbc08680a0624aa372d8382ea68f7cca169860e66f81c51890a3b714775",
+      "bytes": 11187
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/epigenomesegmentation/2fbdaf179be7c0bbcd18028c45c1af5798752e90/nextflow_schema.json",
+      "sha256": "c27abd9108504b48696fcaf423c65130cf4f7bbb3829bae447dfee78f6079d6f",
+      "bytes": 16826
+    },
+    {
+      "path": "workflows/epigenomesegmentation.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/epigenomesegmentation/2fbdaf179be7c0bbcd18028c45c1af5798752e90/workflows/epigenomesegmentation.nf",
+      "sha256": "e8a1b0f82e990bfbcb456c0c2f1fbf749977aaf6c4669785e68d18e115c6b33f",
+      "bytes": 11486
+    }
+  ]
+}

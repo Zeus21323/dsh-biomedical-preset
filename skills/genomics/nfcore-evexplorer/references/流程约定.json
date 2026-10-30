@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/evexplorer",
+  "skill_id": "nfcore-evexplorer",
+  "scientific_title": "细胞外囊泡RNA分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/evexplorer",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "b06c9114853b9370cec6c4f6c0c9c44550ed5125",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=23.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "cf9ba28a707d7a53a61000c4fa93d174122de5563f41ca5b349d4514fbf58c5e"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "99d01d986167736da0cc30dca8ce4d59351395a823744c87ba314e6aa16df964",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/evexplorer/b06c9114853b9370cec6c4f6c0c9c44550ed5125/LICENSE",
+      "sha256": "ca6add93789d0acd8586f2da2650326e983a87dd96ca7222eaf235560f58dc1b",
+      "bytes": 1052
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/evexplorer/b06c9114853b9370cec6c4f6c0c9c44550ed5125/README.md",
+      "sha256": "a50fc87e3269de6dd991d84e1f09364e72ea7ccefeea012f7233cda16ba24df6",
+      "bytes": 6692
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/evexplorer/b06c9114853b9370cec6c4f6c0c9c44550ed5125/assets/schema_input.json",
+      "sha256": "99d01d986167736da0cc30dca8ce4d59351395a823744c87ba314e6aa16df964",
+      "bytes": 1595
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/evexplorer/b06c9114853b9370cec6c4f6c0c9c44550ed5125/docs/output.md",
+      "sha256": "54adde22aa64cbca8f56d0342fa1f2a3cb79d9db5e8e231acbed55f2239e250c",
+      "bytes": 3860
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/evexplorer/b06c9114853b9370cec6c4f6c0c9c44550ed5125/docs/usage.md",
+      "sha256": "0e2d3202cb31e33e9323bbc0083a81964a8e286aeec6cf02e78dee725b97456f",
+      "bytes": 15201
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/evexplorer/b06c9114853b9370cec6c4f6c0c9c44550ed5125/main.nf",
+      "sha256": "069a1d8b74ad6257bf99c170d64216278c75ab8304f838fea22088ecfc6f4d27",
+      "bytes": 3729
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/evexplorer/b06c9114853b9370cec6c4f6c0c9c44550ed5125/nextflow.config",
+      "sha256": "94048d5656d39af4938bba78fc052a1ab90570f450a339ad7122edb1e8186576",
+      "bytes": 10321
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/evexplorer/b06c9114853b9370cec6c4f6c0c9c44550ed5125/nextflow_schema.json",
+      "sha256": "cf9ba28a707d7a53a61000c4fa93d174122de5563f41ca5b349d4514fbf58c5e",
+      "bytes": 16720
+    },
+    {
+      "path": "workflows/evexplorer.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/evexplorer/b06c9114853b9370cec6c4f6c0c9c44550ed5125/workflows/evexplorer.nf",
+      "sha256": "70d04ce18277da1207416442063788ba59b3cc31597d97148d6763c409c9066e",
+      "bytes": 6642
+    },
+    {
+      "path": "workflows/long_reads.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/evexplorer/b06c9114853b9370cec6c4f6c0c9c44550ed5125/workflows/long_reads.nf",
+      "sha256": "ae5fb58797c1ff5ff31823f1e7ed128cc246984d69b326d6432afe0f7674e5b7",
+      "bytes": 6171
+    },
+    {
+      "path": "workflows/small_reads.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/evexplorer/b06c9114853b9370cec6c4f6c0c9c44550ed5125/workflows/small_reads.nf",
+      "sha256": "b788e4d77f35fdfb1cc83755d80b2a225dd05da0e05b08da0524c3bad46b4992",
+      "bytes": 6444
+    }
+  ]
+}

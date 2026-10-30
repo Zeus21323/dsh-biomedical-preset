@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "profile_id": "nature",
+  "display_name": "Nature",
+  "scope": "journal",
+  "aliases": ["nature", "nature journal"],
+  "csl_files": ["nature.csl"],
+  "language": "en",
+  "verified_on": "2026-07-24",
+  "sources": [
+    {
+      "title": "Nature formatting guide",
+      "url": "https://www.nature.com/nature/for-authors/formatting-guide",
+      "authority": "official"
+    },
+    {
+      "title": "Nature initial submission",
+      "url": "https://www.nature.com/nature/for-authors/initial-submission",
+      "authority": "official"
+    }
+  ],
+  "template": {
+    "body": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "line_spacing": "2.0", "margin_inches": 1.0},
+    "title": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 16, "bold": true, "alignment": "center"},
+    "headings": {
+      "heading_1": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "bold": true},
+      "heading_2": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "bold": true},
+      "heading_3": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "bold": true, "italic": true}
+    },
+    "caption": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 10, "line_spacing": "1.0"},
+    "bibliography": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "line_spacing": "2.0", "hanging_indent_inches": 0.25}
+  },
+  "evidence": {
+    "body.font": {"status": "official", "source": 0, "note": "Nature prefers a standard font, preferably 12-point Times New Roman."},
+    "body.font_size_pt": {"status": "official", "source": 0},
+    "body.line_spacing": {"status": "official", "source": 0, "note": "Contributions should be double-spaced."},
+    "body.margin_inches": {"status": "fallback", "note": "No uniform margin value was found on the cited Nature pages."},
+    "title": {"status": "partial-official", "source": 1, "note": "Nature specifies title length/content, not a submission font size; 16 pt centered is a readable fallback."},
+    "headings": {"status": "partial-official", "source": 0, "note": "Nature permits short subheadings; font styling is a fallback."},
+    "caption": {"status": "partial-official", "source": 1, "note": "Nature specifies legend content and a <250-word guideline, not paragraph font size."},
+    "bibliography": {"status": "partial-official", "source": 0, "note": "Citation order and reference typography are official; paragraph size and indent are submission fallbacks."}
+  }
+}

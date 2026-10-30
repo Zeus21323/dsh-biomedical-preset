@@ -1,0 +1,4 @@
+interface:
+  display_name: "Image Painter"
+  short_description: "通过服务端 image_gen 工具生成 PPT 图、论文图、流程图和通用位图素材"
+  default_prompt: "使用 $image-painter 生成或参考图片修改位图：关键歧义先确认，从零创作可按需整理 prompt，局部修改优先描述改动与保留项；成功后展示图片，只说明实际验证过的内容。"

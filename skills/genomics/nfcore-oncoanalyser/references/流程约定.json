@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/oncoanalyser",
+  "skill_id": "nfcore-oncoanalyser",
+  "scientific_title": "肿瘤DNA与RNA综合分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/oncoanalyser",
+    "archived": false,
+    "revision_label": "3.0.0",
+    "commit": "7c74c87a43749952b38c9a18915947570f0595a0",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "5dc0582f9d023fa5537bbd1589c99a7cfee22702939b74644703b26059099b87"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "c10813bba1236b636ffb2ce56b2f74c24e6c489ebe72fa3dab01175c86f26fb4",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/oncoanalyser/7c74c87a43749952b38c9a18915947570f0595a0/LICENSE",
+      "sha256": "6bc9f874170e01f54c4b786af17703d4ff0374ea9a530457bcaa224592bc5abc",
+      "bytes": 1065
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/oncoanalyser/7c74c87a43749952b38c9a18915947570f0595a0/README.md",
+      "sha256": "ea29dbe2a4bfa0119c80c1ad21e7f5038e240c945f590a2d5f5ca483dd3e86cb",
+      "bytes": 11465
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/oncoanalyser/7c74c87a43749952b38c9a18915947570f0595a0/assets/schema_input.json",
+      "sha256": "c10813bba1236b636ffb2ce56b2f74c24e6c489ebe72fa3dab01175c86f26fb4",
+      "bytes": 2752
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/oncoanalyser/7c74c87a43749952b38c9a18915947570f0595a0/docs/output.md",
+      "sha256": "6a6333153acc32d08b37dcfb52e7e78c7c1e06b1a6b9bcf8fbb8223ea0b8eaa4",
+      "bytes": 30755
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/oncoanalyser/7c74c87a43749952b38c9a18915947570f0595a0/docs/usage.md",
+      "sha256": "6a7c87142551cb04e77f963c4575f68c971b4acf72bbb80ce8305f1e1a074328",
+      "bytes": 63228
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/oncoanalyser/7c74c87a43749952b38c9a18915947570f0595a0/main.nf",
+      "sha256": "735492754c25dbe808234f35fd70872b4dcd8874b69961ae767eaa4c38e34fa8",
+      "bytes": 5852
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/oncoanalyser/7c74c87a43749952b38c9a18915947570f0595a0/nextflow.config",
+      "sha256": "3c48696de778073c7666ab3eacb79e6c5837dcda48063f9b6e5a88053c6e228b",
+      "bytes": 12911
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/oncoanalyser/7c74c87a43749952b38c9a18915947570f0595a0/nextflow_schema.json",
+      "sha256": "5dc0582f9d023fa5537bbd1589c99a7cfee22702939b74644703b26059099b87",
+      "bytes": 24818
+    },
+    {
+      "path": "workflows/panel_resource_creation.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/oncoanalyser/7c74c87a43749952b38c9a18915947570f0595a0/workflows/panel_resource_creation.nf",
+      "sha256": "869c7c01b54d5a9acc32644ac3bbfa455f6aa94388f1e3dc84e4bc65076ab3f1",
+      "bytes": 11184
+    },
+    {
+      "path": "workflows/prepare_reference.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/oncoanalyser/7c74c87a43749952b38c9a18915947570f0595a0/workflows/prepare_reference.nf",
+      "sha256": "30a5cbb925540700ff61cceda147f47ad7bda562e3e4c1bc1440f59d483e1fa1",
+      "bytes": 2280
+    },
+    {
+      "path": "workflows/purity_estimate.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/oncoanalyser/7c74c87a43749952b38c9a18915947570f0595a0/workflows/purity_estimate.nf",
+      "sha256": "b3489d6331e582d287c36c66765634db63e1705f9dd4f712e0bd57058b457a88",
+      "bytes": 10012
+    },
+    {
+      "path": "workflows/targeted.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/oncoanalyser/7c74c87a43749952b38c9a18915947570f0595a0/workflows/targeted.nf",
+      "sha256": "14b9f72c95c5f92fb3a96cd523c440a6b26c4df57c758b04e17572d8f8370512",
+      "bytes": 25946
+    },
+    {
+      "path": "workflows/wgts.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/oncoanalyser/7c74c87a43749952b38c9a18915947570f0595a0/workflows/wgts.nf",
+      "sha256": "f567f4e687644263f993160a8478765a775956d8796e2b7b6b54d912a01f68d0",
+      "bytes": 29990
+    }
+  ]
+}

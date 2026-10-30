@@ -1,0 +1,97 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/longraredisease/master/assets/schema_input.json",
+    "title": "nf-core/longraredisease pipeline - params.input schema",
+    "description": "Schema for the file provided with params.input",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "sample": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "errorMessage": "Sample name must be provided and cannot contain spaces",
+                "meta": ["id"],
+                "description": "Unique sample identifier"
+            },
+            "file_path": {
+                "anyOf": [
+                    {
+                        "type": "string",
+                        "format": "directory-path",
+                        "description": "Directory containing input files"
+                    },
+                    {
+                        "type": "string",
+                        "format": "file-path",
+                        "pattern": "^\\S+\\.bam$",
+                        "description": "Single BAM file"
+                    },
+                    {
+                        "type": "string",
+                        "format": "file-path",
+                        "pattern": "^\\S+\\.fastq\\.gz$",
+                        "description": "Single FASTQ.gz file"
+                    },
+                    {
+                        "type": "string",
+                        "format": "file-path",
+                        "pattern": "^\\S+\\.fq\\.gz$",
+                        "description": "Single FQ.gz file"
+                    }
+                ],
+                "description": "Path to input file or directory",
+                "help_text": "Full path to input file or directory. Can be: (1) A directory containing multiple files of the specified input_type, (2) A single .bam file (for bam or ubam input_type), (3) A single .fastq.gz or .fq.gz file (for fastq input_type). For directories: fastq input_type expects .fastq.gz/.fq.gz files, ubam input_type expects .bam files, bam input_type expects a single .bam file with corresponding .bai index."
+            },
+            "hpo_terms": {
+                "type": "string",
+                "pattern": "^HP:\\d{7}(;HP:\\d{7})*$",
+                "meta": ["hpo_terms"],
+                "description": "HPO terms for phenotype annotation (optional)",
+                "help_text": "Human Phenotype Ontology terms in the format HP:0000000. Multiple terms should be separated by semicolons. Leave empty if no HPO terms are available."
+            },
+            "sex": {
+                "type": "integer",
+                "enum": [1, 2, 0],
+                "default": 0,
+                "meta": ["sex"],
+                "description": "Sex of the sample (optional)",
+                "help_text": "Sex (1=male, 2=female, 0=unknown). Leave empty if not specified."
+            },
+            "phenotype": {
+                "type": "integer",
+                "enum": [1, 2, 0, -9],
+                "default": 0,
+                "meta": ["phenotype"],
+                "description": "Phenotype of the sample (optional)",
+                "help_text": "Phenotype (-9=missing, 0=missing, 1=unaffected, 2=affected). Leave empty if not specified."
+            },
+            "family_id": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "default": "unknown",
+                "meta": ["family_id"],
+                "description": "Family identifier (optional)",
+                "help_text": "Identifier for the family this sample belongs to. Leave empty if not applicable."
+            },
+            "maternal_id": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "default": "0",
+                "meta": ["maternal_id"],
+                "description": "Maternal sample identifier (optional)",
+                "help_text": "Sample ID of the maternal sample. Leave empty if not available."
+            },
+            "paternal_id": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "default": "0",
+                "meta": ["paternal_id"],
+                "description": "Paternal sample identifier (optional)",
+                "help_text": "Sample ID of the paternal sample. Leave empty if not available."
+            }
+        },
+        "required": ["sample", "file_path"],
+        "additionalProperties": true
+    }
+}

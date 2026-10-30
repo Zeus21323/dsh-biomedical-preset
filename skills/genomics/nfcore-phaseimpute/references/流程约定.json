@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/phaseimpute",
+  "skill_id": "nfcore-phaseimpute",
+  "scientific_title": "基因型分相与填充",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/phaseimpute",
+    "archived": false,
+    "revision_label": "1.1.0",
+    "commit": "452783d960ebd2b4d337a649e9c8eb3859611916",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "883f4b105a8abef5bca78ba241a825872f4faa656e3ac324c44762a60006c010"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_chunks.json",
+        "sha256": "dea220218fe1b38b6ce1a42f55025c7f331368f418fc023c1f59aa9539053ff8",
+        "parameters": [
+          "chunks"
+        ]
+      },
+      {
+        "file": "输入模式-2.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "c84777d0924da113a82345bdc685c1a66c63502f8e97f5be64f9a54de9332bfb",
+        "parameters": [
+          "input",
+          "input_truth"
+        ]
+      },
+      {
+        "file": "输入模式-3.json",
+        "source_path": "assets/schema_input_panel.json",
+        "sha256": "cbb370a45b98ed6034d6f4c4cf98aadfdbcbfad4ac6eb9c3cb4baeec78685ada",
+        "parameters": [
+          "panel"
+        ]
+      },
+      {
+        "file": "输入模式-4.json",
+        "source_path": "assets/schema_input_region.json",
+        "sha256": "4ce5f84fc5e6742a5d7f37bc945a5b039b324f68451fcd702b2fe3264deccebe",
+        "parameters": [
+          "input_region"
+        ]
+      },
+      {
+        "file": "输入模式-5.json",
+        "source_path": "assets/schema_map.json",
+        "sha256": "3292cffa64c505187e8c19b6546f71965f038e3084b1d4b1a6ccde26593e7096",
+        "parameters": [
+          "map"
+        ]
+      },
+      {
+        "file": "输入模式-6.json",
+        "source_path": "assets/schema_posfile.json",
+        "sha256": "1e8b53e8a06ff8ab29d90411d0dab1161fc279299767315baa7f112f6fda1dfb",
+        "parameters": [
+          "posfile"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/phaseimpute/452783d960ebd2b4d337a649e9c8eb3859611916/LICENSE",
+      "sha256": "58b044dc76f3f3d77f16a831f0ae093bb4e257fad0dd06a46c6f6231a3a80995",
+      "bytes": 1080
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/phaseimpute/452783d960ebd2b4d337a649e9c8eb3859611916/README.md",
+      "sha256": "dcafe3fcc91609fc30f1ac0c60718a291a31a27a1ac488dec23daa697031b2e7",
+      "bytes": 9495
+    },
+    {
+      "path": "assets/schema_chunks.json",
+      "url": "https://raw.githubusercontent.com/nf-core/phaseimpute/452783d960ebd2b4d337a649e9c8eb3859611916/assets/schema_chunks.json",
+      "sha256": "dea220218fe1b38b6ce1a42f55025c7f331368f418fc023c1f59aa9539053ff8",
+      "bytes": 1219
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/phaseimpute/452783d960ebd2b4d337a649e9c8eb3859611916/assets/schema_input.json",
+      "sha256": "c84777d0924da113a82345bdc685c1a66c63502f8e97f5be64f9a54de9332bfb",
+      "bytes": 1570
+    },
+    {
+      "path": "assets/schema_input_panel.json",
+      "url": "https://raw.githubusercontent.com/nf-core/phaseimpute/452783d960ebd2b4d337a649e9c8eb3859611916/assets/schema_input_panel.json",
+      "sha256": "cbb370a45b98ed6034d6f4c4cf98aadfdbcbfad4ac6eb9c3cb4baeec78685ada",
+      "bytes": 1608
+    },
+    {
+      "path": "assets/schema_input_region.json",
+      "url": "https://raw.githubusercontent.com/nf-core/phaseimpute/452783d960ebd2b4d337a649e9c8eb3859611916/assets/schema_input_region.json",
+      "sha256": "4ce5f84fc5e6742a5d7f37bc945a5b039b324f68451fcd702b2fe3264deccebe",
+      "bytes": 1122
+    },
+    {
+      "path": "assets/schema_map.json",
+      "url": "https://raw.githubusercontent.com/nf-core/phaseimpute/452783d960ebd2b4d337a649e9c8eb3859611916/assets/schema_map.json",
+      "sha256": "3292cffa64c505187e8c19b6546f71965f038e3084b1d4b1a6ccde26593e7096",
+      "bytes": 1003
+    },
+    {
+      "path": "assets/schema_posfile.json",
+      "url": "https://raw.githubusercontent.com/nf-core/phaseimpute/452783d960ebd2b4d337a649e9c8eb3859611916/assets/schema_posfile.json",
+      "sha256": "1e8b53e8a06ff8ab29d90411d0dab1161fc279299767315baa7f112f6fda1dfb",
+      "bytes": 2101
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/phaseimpute/452783d960ebd2b4d337a649e9c8eb3859611916/docs/output.md",
+      "sha256": "36b1cf33b86c829cc7d4a7f0987031ea6fb0276e357ad210bd97758baa3c0d53",
+      "bytes": 9870
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/phaseimpute/452783d960ebd2b4d337a649e9c8eb3859611916/docs/usage.md",
+      "sha256": "7a5458fbd3430b23cc438da1268e4e59e72f7a26b609a1c059428b0655ceb686",
+      "bytes": 44710
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/phaseimpute/452783d960ebd2b4d337a649e9c8eb3859611916/main.nf",
+      "sha256": "06f3149e7a2988eb32d7390d9441a53c3a3d47cf0b1510dfb72b66226af5ad99",
+      "bytes": 5366
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/phaseimpute/452783d960ebd2b4d337a649e9c8eb3859611916/nextflow.config",
+      "sha256": "469de12f339dc6023f07a39a3369a8488d740e3e86e14798a7446f86fb02ce5d",
+      "bytes": 13778
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/phaseimpute/452783d960ebd2b4d337a649e9c8eb3859611916/nextflow_schema.json",
+      "sha256": "883f4b105a8abef5bca78ba241a825872f4faa656e3ac324c44762a60006c010",
+      "bytes": 25830
+    },
+    {
+      "path": "workflows/chrcheck/main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/phaseimpute/452783d960ebd2b4d337a649e9c8eb3859611916/workflows/chrcheck/main.nf",
+      "sha256": "fa99db07427eee5a71c476e68520efa4d93c90208856b63bf664185bb5533020",
+      "bytes": 3706
+    },
+    {
+      "path": "workflows/phaseimpute/main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/phaseimpute/452783d960ebd2b4d337a649e9c8eb3859611916/workflows/phaseimpute/main.nf",
+      "sha256": "1b029f970f363b11b6180e850198d0aeb953f7b114f3e012b3e1d4d24728af5b",
+      "bytes": 27309
+    }
+  ]
+}

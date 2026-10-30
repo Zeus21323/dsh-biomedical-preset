@@ -1,0 +1,332 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/deepmutscan/master/nextflow_schema.json",
+    "title": "nf-core/deepmutscan pipeline parameters",
+    "description": "Until now, most Deep Mutational Scanning (DMS) experiments relied on variant-specific barcoded libraries for sequencing. This method enabled DMS on large proteins and led to many great publications. Recently, efforts have increased to make use of the classic and more simple random fragmentation-based short-read sequencing (\u201cshotgun-sequencing\u201d). This saves time and money and due to its simpler experimental design is less prone to mistakes. dmscore handles the essential computational steps, processing the raw FASTQ files and generating a count table of variants. Along the way, it provides multiple QC metrics, enabling users to quickly evaluate the success of their experimental setup.",
+    "type": "object",
+    "$defs": {
+        "input_output_options": {
+            "title": "Input/output options",
+            "type": "object",
+            "fa_icon": "fas fa-terminal",
+            "description": "Define where the pipeline should find input data and save output data.",
+            "required": ["input", "outdir", "fasta", "reading_frame"],
+            "properties": {
+                "input": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "schema": "assets/schema_input.json",
+                    "mimetype": "text/csv",
+                    "pattern": "^\\S+\\.csv$",
+                    "description": "Path to comma-separated file containing information about the samples in the experiment.",
+                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row. See [usage docs](https://nf-co.re/deepmutscan/usage#samplesheet-input).",
+                    "fa_icon": "fas fa-file-csv"
+                },
+                "outdir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
+                    "fa_icon": "fas fa-folder-open"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address for completion summary.",
+                    "fa_icon": "fas fa-envelope",
+                    "help_text": "Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
+                },
+                "multiqc_title": {
+                    "type": "string",
+                    "description": "MultiQC report title. Printed as page header, used for filename if not otherwise specified.",
+                    "fa_icon": "fas fa-file-signature"
+                },
+                "reading_frame": {
+                    "type": "string",
+                    "description": "Start and stop codon positions in the format 'start-stop', e.g., '352-1383'.",
+                    "pattern": "^\\d+-\\d+$"
+                },
+                "min_counts": {
+                    "type": "integer",
+                    "description": "minimum counts for variant to be recognized. All variants below min_counts will be set to 0",
+                    "minimum": 1,
+                    "default": 1
+                },
+                "base_qual": {
+                    "type": "integer",
+                    "description": "Minimum base quality (Phred) for a mutation to be counted by the variant counter.",
+                    "minimum": 0,
+                    "default": 40
+                },
+                "min_flank": {
+                    "type": "integer",
+                    "description": "Minimum distance (nt) a mutation or covered base must be from a read edge; also excludes those bases from coverage. Set to 0 to disable edge trimming.",
+                    "minimum": 0,
+                    "default": 2
+                },
+                "error_correction": {
+                    "type": "string",
+                    "description": "Sequencing-error correction of single-codon variant counts. 'false_doubles' (default) treats observed multi-codon variants as errors to estimate the per-nucleotide error rate; 'none' disables correction; 'wildtype' subtracts the position-specific error profile measured from an additional deep wildtype-only sample (requires samplesheet rows with type 'wildtype').",
+                    "enum": ["false_doubles", "none", "wildtype"],
+                    "default": "false_doubles"
+                },
+                "false_doubles_method": {
+                    "type": "string",
+                    "description": "Estimator used by the false-doubles correction. 'mle' (default) is a per-variant maximum-likelihood error rate; 'eb' is an empirical-Bayes estimate that pools across variants and shrinks per substitution class (steadier for sparse variants). Only applies when error_correction = 'false_doubles'.",
+                    "enum": ["mle", "eb"],
+                    "default": "mle"
+                },
+                "false_doubles_codon_window": {
+                    "type": "integer",
+                    "description": "Window (in codons, upstream and downstream) within which false double mutants are matched to a single-nucleotide variant during false-doubles correction.",
+                    "minimum": 1,
+                    "default": 40
+                },
+                "pdb": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "mimetype": "chemical/x-pdb",
+                    "description": "Optional wildtype 3D structure (PDB). When supplied together with `--fitness`, an interactive variant effect inspection tool (self-contained HTML) is built that projects fitness, counts and error-correction biases onto the structure.",
+                    "help_text": "Use a crystal structure, an AlphaFold DB model, or any precomputed PDB whose sequence matches the wildtype ORF. Structure prediction (nf-core/proteinfold) is not wired in this release."
+                },
+                "sliding_window_size": {
+                    "type": "integer",
+                    "description": "To flatten graphs in plots (e.g. `GLOBAL_POS_BIASES_COUNTS` function)",
+                    "default": 10
+                },
+                "aimed_cov": {
+                    "type": "integer",
+                    "description": "aimed coverage (assuming equal spread) to visualize threshold in plots",
+                    "default": 100
+                },
+                "mutagenesis_type": {
+                    "type": "string",
+                    "description": "Type of mutagenic primers. Choose from nnk, nns, nnh, nnn, nnk_nns, nnk_nns_nnh, custom. When using 'custom', also provide the parameter 'custom_codon_library'.",
+                    "default": "nnk"
+                },
+                "custom_codon_library": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to a file defining a custom codon library. Required when mutagenesis_type is set to `custom`. The script auto-detects the format: provide either a global comma-separated list of codons (e.g., 'AAA,AAC,AAG') OR a position-specific, headerless list where each row specifies the target sequence position followed by its allowed codons (e.g., '1,ACG,AAA,ACA' and '2,AAA,TTT,ACA' on separate lines). Both as .csv.",
+                    "default": "/NULL"
+                },
+                "dimsum": {
+                    "type": ["boolean", "string"],
+                    "description": "Run DiMSum for fitness/functionality scores from growth-based selection input & output samples"
+                },
+                "mutscan": {
+                    "type": ["boolean", "string"],
+                    "description": "Run mutscan (Soneson et al., 2023) to estimate fitness/functionality scores from input & output samples"
+                },
+                "fitness": {
+                    "type": ["boolean", "string"],
+                    "description": "Enable basic fitness calculation and preceded data preparation."
+                },
+                "run_seqdepth": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Estimate sequencing-depth saturation by closed-form hypergeometric rarefaction (fast; on by default)."
+                }
+            }
+        },
+        "reference_genome_options": {
+            "title": "Reference genome options",
+            "type": "object",
+            "fa_icon": "fas fa-dna",
+            "description": "Reference genome related files and options required for the workflow.",
+            "properties": {
+                "genome": {
+                    "type": "string",
+                    "description": "Name of iGenomes reference.",
+                    "fa_icon": "fas fa-book",
+                    "help_text": "If using a reference genome configured in the pipeline using iGenomes, use this parameter to give the ID for the reference. This is then used to build the full paths for all required reference genome files e.g. `--genome GRCh38`. \n\nSee the [nf-core website docs](https://nf-co.re/usage/reference_genomes) for more details."
+                },
+                "fasta": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "mimetype": "text/plain",
+                    "pattern": "^\\S+\\.fn?a(sta)?(\\.gz)?$",
+                    "description": "Path to FASTA genome file.",
+                    "help_text": "This parameter is *mandatory* if `--genome` is not specified. If you don't have a BWA index available this will be generated for you automatically. Combine with `--save_reference` to save BWA index for future runs.",
+                    "fa_icon": "far fa-file-code"
+                },
+                "igenomes_ignore": {
+                    "type": "boolean",
+                    "description": "Do not load the iGenomes reference config.",
+                    "fa_icon": "fas fa-ban",
+                    "hidden": true,
+                    "help_text": "Do not load `igenomes.config` when running the pipeline. You may choose this option if you observe clashes between custom parameters and those supplied in `igenomes.config`."
+                },
+                "igenomes_base": {
+                    "type": "string",
+                    "description": "The base path to the igenomes reference files",
+                    "fa_icon": "fas fa-ban",
+                    "hidden": true,
+                    "default": "s3://ngi-igenomes/igenomes/"
+                }
+            }
+        },
+        "institutional_config_options": {
+            "title": "Institutional config options",
+            "type": "object",
+            "fa_icon": "fas fa-university",
+            "description": "Parameters used to describe centralised config profiles. These should not be edited.",
+            "help_text": "The centralised nf-core configuration profiles use a handful of pipeline parameters to describe themselves. This information is then printed to the Nextflow log when you run a pipeline. You should not need to change these values when you run a pipeline.",
+            "properties": {
+                "custom_config_version": {
+                    "type": "string",
+                    "description": "Git commit id for Institutional configs.",
+                    "default": "master",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "custom_config_base": {
+                    "type": "string",
+                    "description": "Base directory for Institutional configs.",
+                    "default": "https://raw.githubusercontent.com/nf-core/configs/master",
+                    "hidden": true,
+                    "help_text": "If you're running offline, Nextflow will not be able to fetch the institutional config files from the internet. If you don't need them, then this is not a problem. If you do need them, you should download the files from the repo and tell Nextflow where to find them with this parameter.",
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_name": {
+                    "type": "string",
+                    "description": "Institutional config name.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_description": {
+                    "type": "string",
+                    "description": "Institutional config description.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_contact": {
+                    "type": "string",
+                    "description": "Institutional config contact information.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_url": {
+                    "type": "string",
+                    "description": "Institutional config URL link.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                }
+            }
+        },
+        "generic_options": {
+            "title": "Generic options",
+            "type": "object",
+            "fa_icon": "fas fa-file-import",
+            "description": "Less common options for the pipeline, typically set in a config file.",
+            "help_text": "These options are common to all nf-core pipelines and allow you to customise some of the core preferences for how the pipeline runs.\n\nTypically these options would be set in a Nextflow config file loaded for all pipeline runs, such as `~/.nextflow/config`.",
+            "properties": {
+                "version": {
+                    "type": "boolean",
+                    "description": "Display version and exit.",
+                    "fa_icon": "fas fa-question-circle",
+                    "hidden": true
+                },
+                "publish_dir_mode": {
+                    "type": "string",
+                    "default": "copy",
+                    "description": "Method used to save pipeline results to output directory.",
+                    "help_text": "The Nextflow `publishDir` option specifies which intermediate files should be saved to the output directory. This option tells the pipeline what method should be used to move these files. See [Nextflow docs](https://www.nextflow.io/docs/latest/process.html#publishdir) for details.",
+                    "fa_icon": "fas fa-copy",
+                    "enum": ["symlink", "rellink", "link", "copy", "copyNoFollow", "move"],
+                    "hidden": true
+                },
+                "email_on_fail": {
+                    "type": "string",
+                    "description": "Email address for completion summary, only when pipeline fails.",
+                    "fa_icon": "fas fa-exclamation-triangle",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$",
+                    "help_text": "An email address to send a summary email to when the pipeline is completed - ONLY sent if the pipeline does not exit successfully.",
+                    "hidden": true
+                },
+                "plaintext_email": {
+                    "type": "boolean",
+                    "description": "Send plain-text email instead of HTML.",
+                    "fa_icon": "fas fa-remove-format",
+                    "hidden": true
+                },
+                "max_multiqc_email_size": {
+                    "type": "string",
+                    "description": "File size limit when attaching MultiQC reports to summary emails.",
+                    "pattern": "^\\d+(\\.\\d+)?\\.?\\s*(K|M|G|T)?B$",
+                    "default": "25.MB",
+                    "fa_icon": "fas fa-file-upload",
+                    "hidden": true
+                },
+                "monochrome_logs": {
+                    "type": "boolean",
+                    "description": "Do not use coloured log outputs.",
+                    "fa_icon": "fas fa-palette",
+                    "hidden": true
+                },
+                "multiqc_config": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Custom config file to supply to MultiQC.",
+                    "fa_icon": "fas fa-cog",
+                    "hidden": true
+                },
+                "multiqc_logo": {
+                    "type": "string",
+                    "description": "Custom logo file to supply to MultiQC. File name must also be set in the MultiQC config file",
+                    "fa_icon": "fas fa-image",
+                    "hidden": true
+                },
+                "multiqc_methods_description": {
+                    "type": "string",
+                    "description": "Custom MultiQC yaml file containing HTML including a methods description.",
+                    "fa_icon": "fas fa-cog"
+                },
+                "validate_params": {
+                    "type": "boolean",
+                    "description": "Boolean whether to validate parameters against the schema at runtime",
+                    "default": true,
+                    "fa_icon": "fas fa-check-square",
+                    "hidden": true
+                },
+                "pipelines_testdata_base_path": {
+                    "type": "string",
+                    "fa_icon": "far fa-check-circle",
+                    "description": "Base URL or local path to location of pipeline test dataset files",
+                    "default": "https://raw.githubusercontent.com/nf-core/test-datasets/",
+                    "hidden": true
+                },
+                "trace_report_suffix": {
+                    "type": "string",
+                    "fa_icon": "far calendar",
+                    "description": "Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss.",
+                    "hidden": true
+                },
+                "help_full": {
+                    "type": "boolean",
+                    "description": "Display the full detailed help message."
+                },
+                "show_hidden": {
+                    "type": "boolean",
+                    "description": "Display hidden parameters in the help message (only works when --help or --help_full are provided)."
+                }
+            }
+        }
+    },
+    "allOf": [
+        {
+            "$ref": "#/$defs/input_output_options"
+        },
+        {
+            "$ref": "#/$defs/reference_genome_options"
+        },
+        {
+            "$ref": "#/$defs/institutional_config_options"
+        },
+        {
+            "$ref": "#/$defs/generic_options"
+        }
+    ]
+}

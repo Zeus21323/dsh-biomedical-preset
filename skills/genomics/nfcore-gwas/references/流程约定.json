@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/gwas",
+  "skill_id": "nfcore-gwas",
+  "scientific_title": "全基因组关联研究流程",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/gwas",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "abc15c402e823391ac2fff51eed8d8e993376f08",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "e12c96399afc710cacaf66881c17226b8efee922e2fdc7cc46e44c74c9624110"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "8a28bcb282d673b994f09fdde6b08fac7f6f811658aa33584126faa77765f010",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/gwas/abc15c402e823391ac2fff51eed8d8e993376f08/LICENSE",
+      "sha256": "c7bf9943bfde518be053207ef6fa7514f7dfa6d167ee41d138e091a8d7bdf095",
+      "bytes": 1073
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/gwas/abc15c402e823391ac2fff51eed8d8e993376f08/README.md",
+      "sha256": "d2ccf904b86e5ac25d7e0ce6ed2463200a10323d6c95f55574821588626a1b3a",
+      "bytes": 7028
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/gwas/abc15c402e823391ac2fff51eed8d8e993376f08/assets/schema_input.json",
+      "sha256": "8a28bcb282d673b994f09fdde6b08fac7f6f811658aa33584126faa77765f010",
+      "bytes": 1493
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/gwas/abc15c402e823391ac2fff51eed8d8e993376f08/docs/output.md",
+      "sha256": "04342c6589adf2c6a66e354afa0eee631beadf726cc31f340d983ea04a91dc56",
+      "bytes": 2747
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/gwas/abc15c402e823391ac2fff51eed8d8e993376f08/docs/usage.md",
+      "sha256": "c676b37e972e8183cac92922565bc37a1c987202b9e8f60f2f9c8a3f229f5e98",
+      "bytes": 14718
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/gwas/abc15c402e823391ac2fff51eed8d8e993376f08/main.nf",
+      "sha256": "c8ca80764d10620e13b0abe2c3b25406186c8541d2b6dddb4d23446675fcf407",
+      "bytes": 2750
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/gwas/abc15c402e823391ac2fff51eed8d8e993376f08/nextflow.config",
+      "sha256": "4ac67070e39c5a088574c55421cac47338f2c9397d22f263fa2fd16ec57290aa",
+      "bytes": 10524
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/gwas/abc15c402e823391ac2fff51eed8d8e993376f08/nextflow_schema.json",
+      "sha256": "e12c96399afc710cacaf66881c17226b8efee922e2fdc7cc46e44c74c9624110",
+      "bytes": 11055
+    },
+    {
+      "path": "workflows/gwas.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/gwas/abc15c402e823391ac2fff51eed8d8e993376f08/workflows/gwas.nf",
+      "sha256": "6b8eefe9994b42504972cb78d7b04f69721a0b11caeecf2add839df7c96eeddc",
+      "bytes": 5173
+    }
+  ]
+}

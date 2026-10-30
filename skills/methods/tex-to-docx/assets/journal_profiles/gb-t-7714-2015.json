@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "profile_id": "gb-t-7714-2015",
+  "display_name": "GB/T 7714-2015",
+  "scope": "reference-standard",
+  "aliases": ["gb/t 7714", "gb/t 7714-2015", "gb-t-7714", "国标7714", "国标参考文献"],
+  "csl_files": [
+    "china-national-standard-gb-t-7714-2015-author-date.csl",
+    "china-national-standard-gb-t-7714-2015-note.csl",
+    "china-national-standard-gb-t-7714-2015-numeric.csl"
+  ],
+  "default_csl_file": "china-national-standard-gb-t-7714-2015-numeric.csl",
+  "language": "zh",
+  "verified_on": "2026-07-24",
+  "sources": [
+    {"title": "国家标准 GB/T 7714-2015 信息与文献 参考文献著录规则", "url": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=7FA63E9BBA56E60471AEDAEBDE44B14C", "authority": "official"}
+  ],
+  "template": {
+    "body": {"font": "Times New Roman", "font_east_asia": "宋体", "font_size_pt": 12, "line_spacing": "1.5", "margin_inches": 1.0},
+    "title": {"font": "Times New Roman", "font_east_asia": "黑体", "font_size_pt": 16, "bold": true, "alignment": "center"},
+    "headings": {
+      "heading_1": {"font": "Times New Roman", "font_east_asia": "黑体", "font_size_pt": 14, "bold": true},
+      "heading_2": {"font": "Times New Roman", "font_east_asia": "黑体", "font_size_pt": 13, "bold": true},
+      "heading_3": {"font": "Times New Roman", "font_east_asia": "黑体", "font_size_pt": 12, "bold": true}
+    },
+    "caption": {"font": "Times New Roman", "font_east_asia": "宋体", "font_size_pt": 10.5, "line_spacing": "1.0"},
+    "bibliography": {"font": "Times New Roman", "font_east_asia": "宋体", "font_size_pt": 10.5, "line_spacing": "1.0", "hanging_indent_inches": 0.25}
+  },
+  "evidence": {
+    "body": {"status": "not-applicable", "source": 0, "note": "GB/T 7714-2015 regulates bibliographic description, not manuscript body typography; these are generic Chinese DOCX defaults."},
+    "title": {"status": "not-applicable", "source": 0},
+    "headings": {"status": "not-applicable", "source": 0},
+    "caption": {"status": "not-applicable", "source": 0},
+    "bibliography": {"status": "partial-official", "source": 0, "note": "Bibliographic content/punctuation is official; font, size, line spacing and indent depend on the target institution or journal."}
+  }
+}

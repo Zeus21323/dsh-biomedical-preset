@@ -1,0 +1,25 @@
+{
+  "input": null,
+  "output": null,
+  "delimiter": "\t",
+  "columns": {
+    "CHR": null,
+    "POS": null,
+    "SNP": null,
+    "EA": null,
+    "NEA": null,
+    "BETA": null,
+    "SE": null,
+    "P": null
+  },
+  "metadata": {
+    "build": null,
+    "ancestry": null,
+    "trait": null,
+    "effect_scale": null,
+    "se_scale": null,
+    "coverage": null
+  },
+  "min_info": null,
+  "min_maf": null
+}

@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/hgtseq",
+  "skill_id": "nfcore-hgtseq",
+  "scientific_title": "水平基因转移候选分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/hgtseq",
+    "archived": false,
+    "revision_label": "1.1.0",
+    "commit": "683daaf41bb396839445e603152b45daa141ced4",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=22.10.1",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "24ec890d428567ad9623a01387b6fc4ee9bb7a80566bb42a52fb5ecf86de9d2e"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "ff48324f6046a6ee05285608f45dedcb1672498c5da23d9165f0ab7c5fcb2264",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/hgtseq/683daaf41bb396839445e603152b45daa141ced4/LICENSE",
+      "sha256": "78558a3dd69400107757117c8a74e8f8b3562806aa0b9719ac35d22b25adc14a",
+      "bytes": 1087
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/hgtseq/683daaf41bb396839445e603152b45daa141ced4/README.md",
+      "sha256": "bc0f623f6cb1a56d22094442a1d5eabc716531378e48ba29a5ee95b6ffc0df6a",
+      "bytes": 7418
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/hgtseq/683daaf41bb396839445e603152b45daa141ced4/assets/schema_input.json",
+      "sha256": "ff48324f6046a6ee05285608f45dedcb1672498c5da23d9165f0ab7c5fcb2264",
+      "bytes": 1387
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/hgtseq/683daaf41bb396839445e603152b45daa141ced4/docs/output.md",
+      "sha256": "866dbebc80f7fc785be114bc6cd1dad4358d166d8a5e914a403c1763f999c638",
+      "bytes": 12923
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/hgtseq/683daaf41bb396839445e603152b45daa141ced4/docs/usage.md",
+      "sha256": "eb4029c1fa572866c65db7b02b1dad9b9a0ee88ab5fb8d454cba1f98edbc019e",
+      "bytes": 18067
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/hgtseq/683daaf41bb396839445e603152b45daa141ced4/main.nf",
+      "sha256": "36624c86b682c10cdb586707769a19f778b92ceb6db9f3ddf4de4ee9900516d5",
+      "bytes": 2173
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/hgtseq/683daaf41bb396839445e603152b45daa141ced4/nextflow.config",
+      "sha256": "7b42d8fb223824f3e44a775abbc3d00102275a8749afbf20012f2bd7f447dac0",
+      "bytes": 9471
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/hgtseq/683daaf41bb396839445e603152b45daa141ced4/nextflow_schema.json",
+      "sha256": "24ec890d428567ad9623a01387b6fc4ee9bb7a80566bb42a52fb5ecf86de9d2e",
+      "bytes": 18935
+    },
+    {
+      "path": "workflows/hgtseq.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/hgtseq/683daaf41bb396839445e603152b45daa141ced4/workflows/hgtseq.nf",
+      "sha256": "1bbc63e6edc411a418dd403487f9eb46f0a00db399a2bfbd3574c3e33766f66e",
+      "bytes": 12541
+    }
+  ]
+}

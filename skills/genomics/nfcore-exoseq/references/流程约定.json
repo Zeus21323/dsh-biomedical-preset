@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/exoseq",
+  "skill_id": "nfcore-exoseq",
+  "scientific_title": "历史外显子组变异分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/exoseq",
+    "archived": true,
+    "revision_label": "dev",
+    "commit": "819cbac792b76cf66c840b567ed0ee9a2f620db7",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "PairedSingleSampleWF.nf",
+    "nextflow_constraint": null,
+    "legacy_dsl_observed": true,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": null,
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/exoseq/819cbac792b76cf66c840b567ed0ee9a2f620db7/LICENSE",
+      "sha256": "afb11426e09da40a1ae4f8fa17ddcc6b6a52d14df04c29bc5bcd06eb8730624d",
+      "bytes": 1057
+    },
+    {
+      "path": "PairedSingleSampleWF.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/exoseq/819cbac792b76cf66c840b567ed0ee9a2f620db7/PairedSingleSampleWF.nf",
+      "sha256": "8efd0ad416dcaf88d73c92cf307e5af7b64a302d38c2a808fee5cddd042b67f1",
+      "bytes": 21583
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/exoseq/819cbac792b76cf66c840b567ed0ee9a2f620db7/README.md",
+      "sha256": "9b4a9b48baef8df6608f9a95394109e0616188a0b2c7f8151b48c42ec2d2c631",
+      "bytes": 2912
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/exoseq/819cbac792b76cf66c840b567ed0ee9a2f620db7/docs/output.md",
+      "sha256": "7cbc2cf48f83d66eada72fff428e7eb19575406ab54d3e667d97603c557329d6",
+      "bytes": 9811
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/exoseq/819cbac792b76cf66c840b567ed0ee9a2f620db7/docs/usage.md",
+      "sha256": "727e6a294fce86678747e383684e4cb1db9457447d3ae7a6445021916312d6e8",
+      "bytes": 10140
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/exoseq/819cbac792b76cf66c840b567ed0ee9a2f620db7/nextflow.config",
+      "sha256": "eec6a14a4361c59a99e5392d7936ef81493d048908c15a4d69abbef74c926e16",
+      "bytes": 2873
+    }
+  ]
+}

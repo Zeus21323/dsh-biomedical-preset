@@ -1,0 +1,53 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/multiplesequencealign/master/assets/schema_input.json",
+    "title": "nf-core/multiplesequencealign pipeline - params.input schema",
+    "description": "Schema for the file provided with params.input",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "errorMessage": "Sample name must be provided, has to be a string and cannot contain spaces",
+                "meta": ["id"]
+            },
+            "fasta": {
+                "type": "string",
+                "pattern": "^\\S+\\.f(n|ast)?a$",
+                "exists": true,
+                "format": "file-path",
+                "errorMessage": "The fasta file has to exist and has to end in either '.fasta', '.fna' or '.fa'"
+            },
+            "reference": {
+                "type": "string",
+                "pattern": "^\\S+\\.(f(n|ast)?a|ref)$",
+                "exists": true,
+                "format": "file-path",
+                "errorMessage": "The reference file has to exist and has to end in either '.fasta', '.fna', '.fa' or '.ref'"
+            },
+            "optional_data": {
+                "type": "string",
+                "anyOf": [
+                    {
+                        "format": "file-path",
+                        "pattern": "^\\S+\\.tar\\.gz$"
+                    },
+                    {
+                        "format": "directory-path"
+                    }
+                ],
+                "exists": true
+            },
+            "template": {
+                "type": "string",
+                "pattern": "^\\S+\\.txt$",
+                "exists": true,
+                "format": "file-path"
+            }
+        },
+        "required": ["id"],
+        "anyOf": [{ "required": ["fasta"] }, { "required": ["optional_data"] }]
+    }
+}

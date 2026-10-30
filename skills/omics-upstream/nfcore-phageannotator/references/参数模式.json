@@ -1,0 +1,670 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/phageannotator/master/nextflow_schema.json",
+    "title": "nf-core/phageannotator pipeline parameters",
+    "description": "Identification, annotation, and quantification of phages in (meta)-genomic sequences",
+    "type": "object",
+    "definitions": {
+        "input_output_options": {
+            "title": "Input/output options",
+            "type": "object",
+            "fa_icon": "fas fa-terminal",
+            "description": "Define where the pipeline should find input data and save output data.",
+            "required": ["input", "outdir"],
+            "properties": {
+                "input": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "mimetype": "text/csv",
+                    "pattern": "^\\S+\\.csv$",
+                    "schema": "assets/schema_input.json",
+                    "description": "Path to comma-separated file containing information about the samples in the experiment.",
+                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row. See [usage docs](https://nf-co.re/phageannotator/usage#samplesheet-input).",
+                    "fa_icon": "fas fa-file-csv"
+                },
+                "outdir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
+                    "fa_icon": "fas fa-folder-open"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address for completion summary.",
+                    "fa_icon": "fas fa-envelope",
+                    "help_text": "Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
+                },
+                "multiqc_title": {
+                    "type": "string",
+                    "description": "MultiQC report title. Printed as page header, used for filename if not otherwise specified.",
+                    "fa_icon": "fas fa-file-signature"
+                }
+            }
+        },
+        "assembly_filtering_options": {
+            "title": "Assembly filtering options",
+            "type": "object",
+            "description": "Filter assemblies at the beginning of the workflow",
+            "default": "",
+            "properties": {
+                "assembly_min_length": {
+                    "type": "integer",
+                    "default": 1000,
+                    "description": "Minimum assembly length"
+                }
+            }
+        },
+        "virus_enrichment_options": {
+            "title": "Virus enrichment options",
+            "type": "object",
+            "description": "",
+            "default": "",
+            "properties": {
+                "run_viromeqc": {
+                    "type": "boolean",
+                    "description": "Run ViromeQC to estimate viral enrichment"
+                }
+            }
+        },
+        "reference_virus_containment_options": {
+            "title": "Reference virus containment options",
+            "type": "object",
+            "description": "Identify reference viruses contained in reads",
+            "default": "",
+            "properties": {
+                "run_reference_containment": {
+                    "type": "boolean",
+                    "description": "Run MASH screen to identify external viruses contained in reads"
+                },
+                "reference_virus_fasta": {
+                    "type": "string",
+                    "description": "Path to FASTA file containing reference virus sequences",
+                    "format": "file-path"
+                },
+                "reference_virus_sketch": {
+                    "type": "string",
+                    "description": "Path to mash sketch file for reference virus sequences",
+                    "format": "file-path"
+                },
+                "save_reference_virus_sketch": {
+                    "type": "boolean",
+                    "description": "Save reference virus sketch, if it was created."
+                },
+                "mash_screen_min_score": {
+                    "type": "number",
+                    "default": 0.95,
+                    "description": "Minimum mash screen score to consider a genome contained"
+                },
+                "mash_screen_winner_take_all": {
+                    "type": "boolean",
+                    "description": "Hashes present in multiple references are assigned only to top sequence"
+                }
+            },
+            "fa_icon": "fas fa-search"
+        },
+        "virus_classification_options": {
+            "title": "Virus classification options",
+            "type": "object",
+            "description": "Classify viral sequences using geNomad",
+            "default": "",
+            "properties": {
+                "skip_genomad": {
+                    "type": "boolean",
+                    "description": "Skip running geNomad to classify viral/non-viral sequences"
+                },
+                "genomad_db": {
+                    "type": "string",
+                    "description": "Path to directory containing geNomad's database",
+                    "format": "directory-path"
+                },
+                "save_genomad_db": {
+                    "type": "boolean",
+                    "description": "Save geNomad's database, if it was downloaded."
+                },
+                "genomad_min_score": {
+                    "type": "number",
+                    "default": 0.7,
+                    "description": "Minimum virus score for a sequence to be considered viral"
+                },
+                "genomad_max_fdr": {
+                    "type": "number",
+                    "default": 0.1,
+                    "description": "Maximum FDR for a sequence to be considered viral (will include --enable-score-calibration)"
+                },
+                "genomad_splits": {
+                    "type": "integer",
+                    "default": 5,
+                    "description": "Number of splits for running geNomad (more splits lowers memory requirements)"
+                }
+            }
+        },
+        "viral_contig_extension": {
+            "title": "Viral contig extension",
+            "type": "object",
+            "description": "Extend viral contigs",
+            "default": "",
+            "properties": {
+                "run_cobra": {
+                    "type": "boolean",
+                    "description": "Run COBRA to extend viral contigs"
+                },
+                "cobra_assembler": {
+                    "type": "string",
+                    "description": "The assembler that was used to assemble viral contigs"
+                },
+                "cobra_mink": {
+                    "type": "string",
+                    "description": "Minimum kmer value used during assembly"
+                },
+                "cobra_maxk": {
+                    "type": "string",
+                    "description": "Maximum kmer value used during assembly"
+                }
+            }
+        },
+        "virus_quality_options": {
+            "title": "Virus quality options",
+            "type": "object",
+            "description": "Assess virus quality and filter",
+            "default": "",
+            "properties": {
+                "skip_checkv": {
+                    "type": "boolean",
+                    "description": "Skip running CheckV to assess virus quality and filter sequences"
+                },
+                "checkv_db": {
+                    "type": "string",
+                    "description": "Path to directory containing CheckV database"
+                },
+                "save_checkv_db": {
+                    "type": "boolean",
+                    "description": "Save CheckV's database, if it was downloaded"
+                },
+                "checkv_min_length": {
+                    "type": "integer",
+                    "default": 3000,
+                    "description": "Minimum virus length to pass filtering"
+                },
+                "checkv_min_completeness": {
+                    "type": "integer",
+                    "default": 50,
+                    "description": "Minimum CheckV completeness to pass filtering"
+                },
+                "checkv_remove_proviruses": {
+                    "type": "boolean",
+                    "description": "Remove viruses labeled as provirus by geNomad or CheckV"
+                },
+                "checkv_remove_warnings": {
+                    "type": "boolean",
+                    "description": "Remove viruses with CheckV warnings"
+                }
+            }
+        },
+        "genome_clustering_options": {
+            "title": "Genome clustering options",
+            "type": "object",
+            "description": "Cluster virus genomes based on nucleotide/protein similarity",
+            "default": "",
+            "properties": {
+                "skip_virus_clustering": {
+                    "type": "boolean",
+                    "description": "Skip ANI-based virus clustering"
+                },
+                "blast_min_percent_identity": {
+                    "type": "integer",
+                    "default": 90,
+                    "description": "Minimum precent identity for BLAST hits"
+                },
+                "blast_max_num_seqs": {
+                    "type": "integer",
+                    "default": 25000,
+                    "description": "Maximum number of BLAST hits to record for each sequence"
+                },
+                "anicluster_min_ani": {
+                    "type": "integer",
+                    "default": 95,
+                    "description": "Minimum average nucleotide identity (ANI) for sequences to be clustered together"
+                },
+                "anicluster_min_qcov": {
+                    "type": "integer",
+                    "default": 0,
+                    "description": "Minimum query coverage for sequences to be clustered together"
+                },
+                "anicluster_min_tcov": {
+                    "type": "integer",
+                    "default": 85,
+                    "description": "Minimum test coverage for sequences to be clustered together"
+                }
+            }
+        },
+        "virus_abundance_options": {
+            "title": "Virus abundance options",
+            "type": "object",
+            "description": "Align reads to virus database",
+            "default": "",
+            "properties": {
+                "skip_read_alignment": {
+                    "type": "boolean",
+                    "description": "Skip read alignment to viral sequences"
+                },
+                "coverm_min_read_alignment": {
+                    "type": "integer",
+                    "default": 0,
+                    "description": "Minimum length of reads aligned to references"
+                },
+                "coverm_min_percent_identity": {
+                    "type": "integer",
+                    "default": 0,
+                    "description": "Minimum percent identity of aligned reads"
+                },
+                "coverm_min_percent_read_aligned": {
+                    "type": "integer",
+                    "default": 0,
+                    "description": "Minimum percent of read aligned to references"
+                },
+                "coverm_metrics": {
+                    "type": "string",
+                    "default": "mean",
+                    "description": "Abundance calculation metrics"
+                }
+            }
+        },
+        "virus_taxonomy_options": {
+            "title": "Virus taxonomy options",
+            "type": "object",
+            "description": "Assign taxonomy to virus sequences",
+            "default": "",
+            "properties": {
+                "run_genomad_taxonomy": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "phage_host_options": {
+            "title": "Phage host options",
+            "type": "object",
+            "description": "Predict host genus for phage sequences",
+            "default": "",
+            "properties": {
+                "run_iphop": {
+                    "type": "boolean",
+                    "description": "Run iPHoP to predict phage hosts"
+                },
+                "iphop_db": {
+                    "type": "string",
+                    "description": "Path to locally iPHoP database"
+                },
+                "save_iphop_db": {
+                    "type": "boolean",
+                    "description": "Save downloaded iPHoP database"
+                },
+                "iphop_min_score": {
+                    "type": "integer",
+                    "default": 90,
+                    "description": "Minimum confidence score to provide host prediction"
+                }
+            }
+        },
+        "virus_lifestyle_options": {
+            "title": "Virus lifestyle options",
+            "type": "object",
+            "description": "Predict the lifestyle of viral sequences",
+            "default": "",
+            "properties": {
+                "run_bacphlip": {
+                    "type": "boolean",
+                    "description": "Run BACPHLIP to predict virus lifestyle"
+                }
+            }
+        },
+        "virus_function_options": {
+            "title": "Virus function options",
+            "type": "object",
+            "description": "Functionally annotate viral genomes using a variety of approaches",
+            "default": "",
+            "properties": {
+                "run_pharokka": {
+                    "type": "boolean",
+                    "description": "Run pharokka to predict and annotate phage ORFs"
+                },
+                "pharokka_db": {
+                    "type": "string",
+                    "description": "Path to predownloaded pharokka db"
+                }
+            }
+        },
+        "virus_microdiversity_options": {
+            "title": "Virus microdiversity options",
+            "type": "object",
+            "description": "Analyze virus diversity at the strain level",
+            "default": "",
+            "properties": {
+                "skip_instrain": {
+                    "type": "boolean",
+                    "description": "Bypass microdiversity analysis with inStrain"
+                },
+                "instrain_min_ani": {
+                    "type": "number",
+                    "description": "Minimum identity for read alignment to be considered"
+                },
+                "instrain_min_mapq": {
+                    "type": "integer",
+                    "description": "Minimum MAPQ for a read to be considered"
+                },
+                "instrain_min_variant_cov": {
+                    "type": "integer",
+                    "description": "Minimum coverage for a variant to be considered"
+                },
+                "instrain_min_snp_freq": {
+                    "type": "number",
+                    "description": "Minimum allele frequency for an SNP to be considered"
+                },
+                "instrain_max_snp_fdr": {
+                    "type": "integer",
+                    "description": "Maximum FDR for a SNP to be considered"
+                },
+                "instrain_min_genome_cov": {
+                    "type": "number",
+                    "description": "Minimum number of reads mapping to a genome to consider profiling"
+                },
+                "instrain_popani_thresh": {
+                    "type": "number",
+                    "description": "Minimum identity for genomes to be considered in the same strain"
+                },
+                "instrain_min_genome_comp": {
+                    "type": "number",
+                    "description": "Minimum percent of genomes compared for comparison to be considered"
+                },
+                "instrain_min_genome_breadth": {
+                    "type": "number",
+                    "description": "Minimum breadth of coverage for a genome to be considered present"
+                }
+            }
+        },
+        "developer_options": {
+            "title": "Developer options",
+            "type": "object",
+            "description": "Arguments for running pipeline tests with custom arguments/databases.",
+            "properties": {
+                "genomad_disable_nn": {
+                    "type": "boolean",
+                    "hidden": true
+                },
+                "genomad_sensitivity": {
+                    "type": "number",
+                    "hidden": true
+                },
+                "checkv_minimal_db": {
+                    "type": "boolean",
+                    "hidden": true
+                },
+                "iphop_test_db": {
+                    "type": "boolean",
+                    "description": "Download test database rather than full database?",
+                    "hidden": true
+                },
+                "iphop_partial_test": {
+                    "type": "boolean",
+                    "hidden": true
+                }
+            }
+        },
+        "institutional_config_options": {
+            "title": "Institutional config options",
+            "type": "object",
+            "fa_icon": "fas fa-university",
+            "description": "Parameters used to describe centralised config profiles. These should not be edited.",
+            "help_text": "The centralised nf-core configuration profiles use a handful of pipeline parameters to describe themselves. This information is then printed to the Nextflow log when you run a pipeline. You should not need to change these values when you run a pipeline.",
+            "properties": {
+                "custom_config_version": {
+                    "type": "string",
+                    "description": "Git commit id for Institutional configs.",
+                    "default": "master",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "custom_config_base": {
+                    "type": "string",
+                    "description": "Base directory for Institutional configs.",
+                    "default": "https://raw.githubusercontent.com/nf-core/configs/master",
+                    "hidden": true,
+                    "help_text": "If you're running offline, Nextflow will not be able to fetch the institutional config files from the internet. If you don't need them, then this is not a problem. If you do need them, you should download the files from the repo and tell Nextflow where to find them with this parameter.",
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_name": {
+                    "type": "string",
+                    "description": "Institutional config name.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_description": {
+                    "type": "string",
+                    "description": "Institutional config description.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_contact": {
+                    "type": "string",
+                    "description": "Institutional config contact information.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_url": {
+                    "type": "string",
+                    "description": "Institutional config URL link.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                }
+            }
+        },
+        "max_job_request_options": {
+            "title": "Max job request options",
+            "type": "object",
+            "fa_icon": "fab fa-acquisitions-incorporated",
+            "description": "Set the top limit for requested resources for any single job.",
+            "help_text": "If you are running on a smaller system, a pipeline step requesting more resources than are available may cause the Nextflow to stop the run with an error. These options allow you to cap the maximum resources requested by any single job so that the pipeline will run on your system.\n\nNote that you can not _increase_ the resources requested by any job using these options. For that you will need your own configuration file. See [the nf-core website](https://nf-co.re/usage/configuration) for details.",
+            "properties": {
+                "max_cpus": {
+                    "type": "integer",
+                    "description": "Maximum number of CPUs that can be requested for any single job.",
+                    "default": 16,
+                    "fa_icon": "fas fa-microchip",
+                    "hidden": true,
+                    "help_text": "Use to set an upper-limit for the CPU requirement for each process. Should be an integer e.g. `--max_cpus 1`"
+                },
+                "max_memory": {
+                    "type": "string",
+                    "description": "Maximum amount of memory that can be requested for any single job.",
+                    "default": "128.GB",
+                    "fa_icon": "fas fa-memory",
+                    "pattern": "^\\d+(\\.\\d+)?\\.?\\s*(K|M|G|T)?B$",
+                    "hidden": true,
+                    "help_text": "Use to set an upper-limit for the memory requirement for each process. Should be a string in the format integer-unit e.g. `--max_memory '8.GB'`"
+                },
+                "max_time": {
+                    "type": "string",
+                    "description": "Maximum amount of time that can be requested for any single job.",
+                    "default": "240.h",
+                    "fa_icon": "far fa-clock",
+                    "pattern": "^(\\d+\\.?\\s*(s|m|h|d|day)\\s*)+$",
+                    "hidden": true,
+                    "help_text": "Use to set an upper-limit for the time requirement for each process. Should be a string in the format integer-unit e.g. `--max_time '2.h'`"
+                }
+            }
+        },
+        "generic_options": {
+            "title": "Generic options",
+            "type": "object",
+            "fa_icon": "fas fa-file-import",
+            "description": "Less common options for the pipeline, typically set in a config file.",
+            "help_text": "These options are common to all nf-core pipelines and allow you to customise some of the core preferences for how the pipeline runs.\n\nTypically these options would be set in a Nextflow config file loaded for all pipeline runs, such as `~/.nextflow/config`.",
+            "properties": {
+                "help": {
+                    "type": "boolean",
+                    "description": "Display help text.",
+                    "fa_icon": "fas fa-question-circle",
+                    "hidden": true
+                },
+                "version": {
+                    "type": "boolean",
+                    "description": "Display version and exit.",
+                    "fa_icon": "fas fa-question-circle",
+                    "hidden": true
+                },
+                "publish_dir_mode": {
+                    "type": "string",
+                    "default": "copy",
+                    "description": "Method used to save pipeline results to output directory.",
+                    "help_text": "The Nextflow `publishDir` option specifies which intermediate files should be saved to the output directory. This option tells the pipeline what method should be used to move these files. See [Nextflow docs](https://www.nextflow.io/docs/latest/process.html#publishdir) for details.",
+                    "fa_icon": "fas fa-copy",
+                    "enum": ["symlink", "rellink", "link", "copy", "copyNoFollow", "move"],
+                    "hidden": true
+                },
+                "email_on_fail": {
+                    "type": "string",
+                    "description": "Email address for completion summary, only when pipeline fails.",
+                    "fa_icon": "fas fa-exclamation-triangle",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$",
+                    "help_text": "An email address to send a summary email to when the pipeline is completed - ONLY sent if the pipeline does not exit successfully.",
+                    "hidden": true
+                },
+                "plaintext_email": {
+                    "type": "boolean",
+                    "description": "Send plain-text email instead of HTML.",
+                    "fa_icon": "fas fa-remove-format",
+                    "hidden": true
+                },
+                "max_multiqc_email_size": {
+                    "type": "string",
+                    "description": "File size limit when attaching MultiQC reports to summary emails.",
+                    "pattern": "^\\d+(\\.\\d+)?\\.?\\s*(K|M|G|T)?B$",
+                    "default": "25.MB",
+                    "fa_icon": "fas fa-file-upload",
+                    "hidden": true
+                },
+                "monochrome_logs": {
+                    "type": "boolean",
+                    "description": "Do not use coloured log outputs.",
+                    "fa_icon": "fas fa-palette",
+                    "hidden": true
+                },
+                "hook_url": {
+                    "type": "string",
+                    "description": "Incoming hook URL for messaging service",
+                    "fa_icon": "fas fa-people-group",
+                    "help_text": "Incoming hook URL for messaging service. Currently, MS Teams and Slack are supported.",
+                    "hidden": true
+                },
+                "multiqc_config": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Custom config file to supply to MultiQC.",
+                    "fa_icon": "fas fa-cog",
+                    "hidden": true
+                },
+                "multiqc_logo": {
+                    "type": "string",
+                    "description": "Custom logo file to supply to MultiQC. File name must also be set in the MultiQC config file",
+                    "fa_icon": "fas fa-image",
+                    "hidden": true
+                },
+                "multiqc_methods_description": {
+                    "type": "string",
+                    "description": "Custom MultiQC yaml file containing HTML including a methods description.",
+                    "fa_icon": "fas fa-cog"
+                },
+                "validate_params": {
+                    "type": "boolean",
+                    "description": "Boolean whether to validate parameters against the schema at runtime",
+                    "default": true,
+                    "fa_icon": "fas fa-check-square",
+                    "hidden": true
+                },
+                "logo": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Use logo in initialise subworkflow"
+                },
+                "validationShowHiddenParams": {
+                    "type": "boolean",
+                    "fa_icon": "far fa-eye-slash",
+                    "description": "Show all params when using `--help`",
+                    "hidden": true,
+                    "help_text": "By default, parameters set as _hidden_ in the schema are not shown on the command line when a user runs with `--help`. Specifying this option will tell the pipeline to show all parameters."
+                },
+                "validationFailUnrecognisedParams": {
+                    "type": "boolean",
+                    "fa_icon": "far fa-check-circle",
+                    "description": "Validation of parameters fails when an unrecognised parameter is found.",
+                    "hidden": true,
+                    "help_text": "By default, when an unrecognised parameter is found, it returns a warinig."
+                },
+                "validationLenientMode": {
+                    "type": "boolean",
+                    "fa_icon": "far fa-check-circle",
+                    "description": "Validation of parameters in lenient more.",
+                    "hidden": true,
+                    "help_text": "Allows string values that are parseable as numbers or booleans. For further information see [JSONSchema docs](https://github.com/everit-org/json-schema#lenient-mode)."
+                }
+            }
+        }
+    },
+    "allOf": [
+        {
+            "$ref": "#/definitions/input_output_options"
+        },
+        {
+            "$ref": "#/definitions/assembly_filtering_options"
+        },
+        {
+            "$ref": "#/definitions/virus_enrichment_options"
+        },
+        {
+            "$ref": "#/definitions/reference_virus_containment_options"
+        },
+        {
+            "$ref": "#/definitions/virus_classification_options"
+        },
+        {
+            "$ref": "#/definitions/viral_contig_extension"
+        },
+        {
+            "$ref": "#/definitions/virus_quality_options"
+        },
+        {
+            "$ref": "#/definitions/genome_clustering_options"
+        },
+        {
+            "$ref": "#/definitions/virus_abundance_options"
+        },
+        {
+            "$ref": "#/definitions/virus_taxonomy_options"
+        },
+        {
+            "$ref": "#/definitions/phage_host_options"
+        },
+        {
+            "$ref": "#/definitions/virus_lifestyle_options"
+        },
+        {
+            "$ref": "#/definitions/virus_function_options"
+        },
+        {
+            "$ref": "#/definitions/virus_microdiversity_options"
+        },
+        {
+            "$ref": "#/definitions/developer_options"
+        },
+        {
+            "$ref": "#/definitions/institutional_config_options"
+        },
+        {
+            "$ref": "#/definitions/max_job_request_options"
+        },
+        {
+            "$ref": "#/definitions/generic_options"
+        }
+    ]
+}

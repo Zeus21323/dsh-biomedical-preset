@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "profile_id": "elsevier",
+  "display_name": "Elsevier generic submission",
+  "scope": "publisher-style",
+  "aliases": ["elsevier", "elsevier with titles"],
+  "csl_files": ["elsevier-with-titles.csl"],
+  "language": "en",
+  "verified_on": "2026-07-24",
+  "sources": [
+    {"title": "Elsevier policies and guidelines", "url": "https://www.elsevier.com/researcher/author/policies-and-guidelines", "authority": "official"},
+    {"title": "Elsevier journal guide-for-authors example used by the CSL", "url": "https://www.sciencedirect.com/journal/journal-of-hazardous-materials/publish/guide-for-authors", "authority": "official"}
+  ],
+  "template": {
+    "body": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "line_spacing": "1.5", "margin_inches": 1.0},
+    "title": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 16, "bold": true, "alignment": "center"},
+    "headings": {
+      "heading_1": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 14, "bold": true},
+      "heading_2": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "bold": true},
+      "heading_3": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "bold": true, "italic": true}
+    },
+    "caption": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 10, "line_spacing": "1.0"},
+    "bibliography": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 10, "line_spacing": "1.0", "hanging_indent_inches": 0.25}
+  },
+  "evidence": {
+    "body": {"status": "fallback", "source": 0, "note": "Elsevier journals have journal-specific Guides for Authors and often allow flexible initial formatting."},
+    "title": {"status": "fallback"},
+    "headings": {"status": "fallback"},
+    "caption": {"status": "fallback"},
+    "bibliography": {"status": "partial-official", "source": 1, "note": "The CSL controls reference content; paragraph typography must follow the selected Elsevier journal."}
+  }
+}

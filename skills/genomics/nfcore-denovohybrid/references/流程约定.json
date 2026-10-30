@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/denovohybrid",
+  "skill_id": "nfcore-denovohybrid",
+  "scientific_title": "历史长短读混合组装",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/denovohybrid",
+    "archived": true,
+    "revision_label": "dev",
+    "commit": "92996210dcbb9dededdefb9169527645afd24cde",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": ">=0.32.0",
+    "legacy_dsl_observed": true,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": null,
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/denovohybrid/92996210dcbb9dededdefb9169527645afd24cde/LICENSE",
+      "sha256": "daa54f945dcce09d421fbc324ad77164feb211952a572ee8701adb5a9e8f30c3",
+      "bytes": 1064
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/denovohybrid/92996210dcbb9dededdefb9169527645afd24cde/README.md",
+      "sha256": "c31920cccfb5f2fcd779b15e5917ad658c693d0b474cd85dba5d1637cdd139cb",
+      "bytes": 2428
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/denovohybrid/92996210dcbb9dededdefb9169527645afd24cde/docs/output.md",
+      "sha256": "f28634e6fffde1784448c8f084164c49722e71c8da563c7991b55c822bed896d",
+      "bytes": 5610
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/denovohybrid/92996210dcbb9dededdefb9169527645afd24cde/docs/usage.md",
+      "sha256": "5d4fb563db67e3bab672494e0ff93c570931e878ce9b6749f03f3d5993d88763",
+      "bytes": 14692
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/denovohybrid/92996210dcbb9dededdefb9169527645afd24cde/main.nf",
+      "sha256": "f74401f3bce4501fd7fff6a8134ec1781b8ede8b4040774c7a17307d9d87d17b",
+      "bytes": 27783
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/denovohybrid/92996210dcbb9dededdefb9169527645afd24cde/nextflow.config",
+      "sha256": "72f49b8291d5ca5a5757c17bb7a77246d208f9e08ffed46f6304a75467cd942c",
+      "bytes": 3846
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/rnasplice",
+  "skill_id": "nfcore-rnasplice",
+  "scientific_title": "RNA-seq可变剪接分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/rnasplice",
+    "archived": false,
+    "revision_label": "1.0.4",
+    "commit": "1d0494ae3402d1a46e0adadad24f81a0ff855c77",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=23.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "e167e1d044ae661ab7346c098a85b1a760c59e16e69c100730c5c8ca4dd85783"
+    },
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/rnasplice/1d0494ae3402d1a46e0adadad24f81a0ff855c77/LICENSE",
+      "sha256": "d99de399b02cc49b3d74bd6c291250cd745933d4730c65a86dbf85c4518df0dd",
+      "bytes": 1080
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/rnasplice/1d0494ae3402d1a46e0adadad24f81a0ff855c77/README.md",
+      "sha256": "e1eaadf89b9d6b58ccdb097017d71ae3aa26ceb934f27e0dd106ecdb74293352",
+      "bytes": 9562
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/rnasplice/1d0494ae3402d1a46e0adadad24f81a0ff855c77/docs/output.md",
+      "sha256": "f687fe40fa836998fb6cfe333eac2838c67f09d5a1eb28c93be169f2484fae8d",
+      "bytes": 38377
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/rnasplice/1d0494ae3402d1a46e0adadad24f81a0ff855c77/docs/usage.md",
+      "sha256": "5432eb0eabe102190941b1b277162859799fae2d63eb9a1c511e1ed06501c4b4",
+      "bytes": 37825
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/rnasplice/1d0494ae3402d1a46e0adadad24f81a0ff855c77/main.nf",
+      "sha256": "af3b087a3000eaea12d9c77f36e53c9d66d76a718ec13903aea8a9bbd9c5c81d",
+      "bytes": 2868
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/rnasplice/1d0494ae3402d1a46e0adadad24f81a0ff855c77/nextflow.config",
+      "sha256": "9b792eb34889da28b30fed2d6c8e1be7fcf10666bbd349c91ba4165472964eb7",
+      "bytes": 14104
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/rnasplice/1d0494ae3402d1a46e0adadad24f81a0ff855c77/nextflow_schema.json",
+      "sha256": "e167e1d044ae661ab7346c098a85b1a760c59e16e69c100730c5c8ca4dd85783",
+      "bytes": 43985
+    },
+    {
+      "path": "workflows/rnasplice.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/rnasplice/1d0494ae3402d1a46e0adadad24f81a0ff855c77/workflows/rnasplice.nf",
+      "sha256": "794ac7544549d89753bcc840e4bf93b7132575d00125e4ebc21a7fa36b907bb5",
+      "bytes": 29250
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/nanostring",
+  "skill_id": "nfcore-nanostring",
+  "scientific_title": "NanoString nCounter表达分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/nanostring",
+    "archived": false,
+    "revision_label": "1.3.3",
+    "commit": "6f0b2d537a1f06e8fe1d6c63d7c409009141aa62",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.2",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "cb26c7a8ac0f6a0cbc627ee8aaa4fdf7bc9e6094e628f6ac319bb26c41404e1f"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "27ac7bcb652bee3b6238179995362ae8c0ee2902d76b71ac084d837cc953027b",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/nanostring/6f0b2d537a1f06e8fe1d6c63d7c409009141aa62/LICENSE",
+      "sha256": "49a9a6c51c77f6f873961381b802e643d56cb1ec249f9a6c7cdf5d27c09b43d1",
+      "bytes": 1079
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/nanostring/6f0b2d537a1f06e8fe1d6c63d7c409009141aa62/README.md",
+      "sha256": "7de356451094d28962d4aacd18848366be0c6bfff1de1957400b7b07686c5832",
+      "bytes": 7056
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/nanostring/6f0b2d537a1f06e8fe1d6c63d7c409009141aa62/assets/schema_input.json",
+      "sha256": "27ac7bcb652bee3b6238179995362ae8c0ee2902d76b71ac084d837cc953027b",
+      "bytes": 1689
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/nanostring/6f0b2d537a1f06e8fe1d6c63d7c409009141aa62/docs/output.md",
+      "sha256": "4bd1aade1f86b5286baddf7fb4067073ff166331fd955fe967218e2ba418a604",
+      "bytes": 6562
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/nanostring/6f0b2d537a1f06e8fe1d6c63d7c409009141aa62/docs/usage.md",
+      "sha256": "96207d994ff534b4c7e2317e10189fa6508c7dbae17eaa332f1b74122a100035",
+      "bytes": 15895
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/nanostring/6f0b2d537a1f06e8fe1d6c63d7c409009141aa62/main.nf",
+      "sha256": "5788035966a15aefee7be8ae57043f27edc5f817b91a2847bb6bbae9bac12738",
+      "bytes": 3189
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/nanostring/6f0b2d537a1f06e8fe1d6c63d7c409009141aa62/nextflow.config",
+      "sha256": "68c0a5248567a996fd010040d640036e3c59fef7ee629a04a9c814e6668688ab",
+      "bytes": 11734
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/nanostring/6f0b2d537a1f06e8fe1d6c63d7c409009141aa62/nextflow_schema.json",
+      "sha256": "cb26c7a8ac0f6a0cbc627ee8aaa4fdf7bc9e6094e628f6ac319bb26c41404e1f",
+      "bytes": 16585
+    },
+    {
+      "path": "workflows/nanostring.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/nanostring/6f0b2d537a1f06e8fe1d6c63d7c409009141aa62/workflows/nanostring.nf",
+      "sha256": "63ea2f39806d6e68417ae9f6e47636072e7f21de1e2b5ba4353839811133c6cd",
+      "bytes": 7103
+    }
+  ]
+}

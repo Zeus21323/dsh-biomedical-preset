@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "profile_id": "rsc",
+  "display_name": "Royal Society of Chemistry",
+  "scope": "publisher-style",
+  "aliases": ["rsc", "royal society of chemistry"],
+  "csl_files": ["royal-society-of-chemistry.csl"],
+  "language": "en",
+  "verified_on": "2026-07-24",
+  "sources": [
+    {"title": "RSC publish a journal article", "url": "https://www.rsc.org/publishing/publish-with-us/publish-a-journal-article", "authority": "official"},
+    {"title": "RSC article templates", "url": "https://www.rsc.org/publishing/publish-with-us/publish-a-journal-article/article-templates", "authority": "official"}
+  ],
+  "template": {
+    "body": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "line_spacing": "1.5", "margin_inches": 1.0},
+    "title": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 16, "bold": true, "alignment": "center"},
+    "headings": {
+      "heading_1": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 14, "bold": true},
+      "heading_2": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "bold": true},
+      "heading_3": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "bold": true, "italic": true}
+    },
+    "caption": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 10, "line_spacing": "1.0"},
+    "bibliography": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 10, "line_spacing": "1.0", "hanging_indent_inches": 0.25}
+  },
+  "evidence": {
+    "body": {"status": "fallback", "source": 0, "note": "RSC directs authors to the selected journal's guidelines and templates; this generic profile is for readable initial submission."},
+    "title": {"status": "fallback"},
+    "headings": {"status": "fallback"},
+    "caption": {"status": "fallback"},
+    "bibliography": {"status": "partial-official", "source": 0, "note": "RSC reference content is supplied by the CSL; paragraph typography varies by journal/template."}
+  }
+}

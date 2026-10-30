@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/abotyper",
+  "skill_id": "nfcore-abotyper",
+  "scientific_title": "长读长血型与红细胞抗原分型",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/abotyper",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "3a9a73a91b798ef2c17a48dc1104c4e7e1799d08",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "fbd57ceaf6c40d6ce9ea82f33d50fc4550b78f2cd2d8b7d28814c944eafa5385"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "222c0393ca09f7b8d7558fa508bcebd185dfaed70bbd5c572d69ce858f11dfd1",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/abotyper/3a9a73a91b798ef2c17a48dc1104c4e7e1799d08/LICENSE",
+      "sha256": "d14539c9f3c60b37d3dfd6cdc9f9be45eab51d978e18cd78e00fe529fbdb7cb9",
+      "bytes": 1077
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/abotyper/3a9a73a91b798ef2c17a48dc1104c4e7e1799d08/README.md",
+      "sha256": "5c5f8c617aa9bffd561e8474e8334c3d46e562c532d7697a3296358c11af14ad",
+      "bytes": 16886
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/abotyper/3a9a73a91b798ef2c17a48dc1104c4e7e1799d08/assets/schema_input.json",
+      "sha256": "222c0393ca09f7b8d7558fa508bcebd185dfaed70bbd5c572d69ce858f11dfd1",
+      "bytes": 1424
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/abotyper/3a9a73a91b798ef2c17a48dc1104c4e7e1799d08/docs/output.md",
+      "sha256": "f1a3986088b608965a9bff003821eb7ef7f9ed5fadee5156b4fcdf85c4abec62",
+      "bytes": 8612
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/abotyper/3a9a73a91b798ef2c17a48dc1104c4e7e1799d08/docs/usage.md",
+      "sha256": "1c23a644334a44f9ae7f34dec7e6d6391fe8418487c3db5a76f3688b47550309",
+      "bytes": 14745
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/abotyper/3a9a73a91b798ef2c17a48dc1104c4e7e1799d08/main.nf",
+      "sha256": "f283a607865d4503b75fd5a8f1c941b40525e6f20240026a0ac757fac25ec613",
+      "bytes": 3622
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/abotyper/3a9a73a91b798ef2c17a48dc1104c4e7e1799d08/nextflow.config",
+      "sha256": "04e7e818470e0e520e19458e64afd91768d590e9bed26844fe2136d99ec3961e",
+      "bytes": 11964
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/abotyper/3a9a73a91b798ef2c17a48dc1104c4e7e1799d08/nextflow_schema.json",
+      "sha256": "fbd57ceaf6c40d6ce9ea82f33d50fc4550b78f2cd2d8b7d28814c944eafa5385",
+      "bytes": 18098
+    },
+    {
+      "path": "workflows/abotyper.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/abotyper/3a9a73a91b798ef2c17a48dc1104c4e7e1799d08/workflows/abotyper.nf",
+      "sha256": "0242905e522ca54eb134c85e336f1de4b898cd52f65a6f758693bd997081f9ac",
+      "bytes": 6545
+    }
+  ]
+}

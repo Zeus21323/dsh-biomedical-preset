@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/pairgenomealign",
+  "skill_id": "nfcore-pairgenomealign",
+  "scientific_title": "基因组两两比对与共线性检查",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/pairgenomealign",
+    "archived": false,
+    "revision_label": "3.0.4",
+    "commit": "8ee09a1cdc920fc90cd62358952045e5019e1fe0",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=26.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "57344273d929bbbf9f7aa94d4f1babddb2a5d7cf24f1516b59667c24836f1c7c"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "26d7ff707de809787c60df289b180c602d850c76e01390a4a4d77dfb3eefecb5",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/pairgenomealign/8ee09a1cdc920fc90cd62358952045e5019e1fe0/LICENSE",
+      "sha256": "0921adb9c1454780a11f8ddbb47ace1f093dea3ecad5488ae379585dc5cb5077",
+      "bytes": 1084
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/pairgenomealign/8ee09a1cdc920fc90cd62358952045e5019e1fe0/README.md",
+      "sha256": "458907ac1dab5c5070e9579ed15ee83cfdeb5883d4b354bfd43f134dedbb95f8",
+      "bytes": 9182
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/pairgenomealign/8ee09a1cdc920fc90cd62358952045e5019e1fe0/assets/schema_input.json",
+      "sha256": "26d7ff707de809787c60df289b180c602d850c76e01390a4a4d77dfb3eefecb5",
+      "bytes": 1070
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/pairgenomealign/8ee09a1cdc920fc90cd62358952045e5019e1fe0/docs/output.md",
+      "sha256": "0ae861c19fa0898856a659692fd59e6a1a6f62e38b634a77ae4e3179026bbd76",
+      "bytes": 10156
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/pairgenomealign/8ee09a1cdc920fc90cd62358952045e5019e1fe0/docs/usage.md",
+      "sha256": "1804ae69b880338222c7e4254951e73308da7e123b8f66acdc175a60327e2aad",
+      "bytes": 18352
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/pairgenomealign/8ee09a1cdc920fc90cd62358952045e5019e1fe0/main.nf",
+      "sha256": "92495bc1e05e5bd45ac877c3028d41ce58bf4d09181deee27eb3420b90093e5e",
+      "bytes": 3375
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/pairgenomealign/8ee09a1cdc920fc90cd62358952045e5019e1fe0/nextflow.config",
+      "sha256": "9a7c2fda1e164b0c71a4c8c863d96d2935e5d6e90eed3bc6809558845e21e7b3",
+      "bytes": 12306
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/pairgenomealign/8ee09a1cdc920fc90cd62358952045e5019e1fe0/nextflow_schema.json",
+      "sha256": "57344273d929bbbf9f7aa94d4f1babddb2a5d7cf24f1516b59667c24836f1c7c",
+      "bytes": 25580
+    },
+    {
+      "path": "workflows/pairgenomealign.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/pairgenomealign/8ee09a1cdc920fc90cd62358952045e5019e1fe0/workflows/pairgenomealign.nf",
+      "sha256": "e5175fb06b7c187023e99efa23b4f7138675a43736ec81f55acbcfeb282479a1",
+      "bytes": 9579
+    }
+  ]
+}

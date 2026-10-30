@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/phyloplace",
+  "skill_id": "nfcore-phyloplace",
+  "scientific_title": "系统发育定位",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/phyloplace",
+    "archived": false,
+    "revision_label": "2.1.0",
+    "commit": "441e351e2703329c04ddb494cefcdd017a48b9f1",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "b72c171b025dc2d2c4e9ebe99bc4703a33d3e7155034ec184c0fded4ce44ba54"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_phyloplace_input.json",
+        "sha256": "383960ad56857244f47360254baaf1fa76ed1cbd7c595a28f0882d9690445396",
+        "parameters": [
+          "phyloplace_input"
+        ]
+      },
+      {
+        "file": "输入模式-2.json",
+        "source_path": "assets/schema_phylosearch_input.json",
+        "sha256": "b4e3be2f206c31af2ae467e9dbfec044e33cf7fd8e040eb203bd03399b85f6c8",
+        "parameters": [
+          "phylosearch_input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/phyloplace/441e351e2703329c04ddb494cefcdd017a48b9f1/LICENSE",
+      "sha256": "7948360c96f05a6c5333633da1c906206bec0949b9697b9753b7da44f48f032a",
+      "bytes": 1079
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/phyloplace/441e351e2703329c04ddb494cefcdd017a48b9f1/README.md",
+      "sha256": "0837f76a153d5c01ac01d547c47c5f4b578c40e1526506d2a7cdafe1f896f314",
+      "bytes": 7705
+    },
+    {
+      "path": "assets/schema_phyloplace_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/phyloplace/441e351e2703329c04ddb494cefcdd017a48b9f1/assets/schema_phyloplace_input.json",
+      "sha256": "383960ad56857244f47360254baaf1fa76ed1cbd7c595a28f0882d9690445396",
+      "bytes": 2596
+    },
+    {
+      "path": "assets/schema_phylosearch_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/phyloplace/441e351e2703329c04ddb494cefcdd017a48b9f1/assets/schema_phylosearch_input.json",
+      "sha256": "b4e3be2f206c31af2ae467e9dbfec044e33cf7fd8e040eb203bd03399b85f6c8",
+      "bytes": 2601
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/phyloplace/441e351e2703329c04ddb494cefcdd017a48b9f1/docs/output.md",
+      "sha256": "df1069f2c4a53dea7c1b5127ed1ec51504561a049ea7ff52d0363b08919b7a18",
+      "bytes": 7606
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/phyloplace/441e351e2703329c04ddb494cefcdd017a48b9f1/docs/usage.md",
+      "sha256": "7f90f878a0897a31debf1695ee613143bbf0c93dc7309e5a30cfb5cca278e401",
+      "bytes": 15789
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/phyloplace/441e351e2703329c04ddb494cefcdd017a48b9f1/main.nf",
+      "sha256": "eaacc7bcd59dc7992ff672f8e8d1db2ff22edf94b581696dd5f8d9bfbdc27e11",
+      "bytes": 3306
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/phyloplace/441e351e2703329c04ddb494cefcdd017a48b9f1/nextflow.config",
+      "sha256": "7224d8571a8365395518a9e3f870e48ab6483a07a8c301b2e189b66710fd0797",
+      "bytes": 11347
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/phyloplace/441e351e2703329c04ddb494cefcdd017a48b9f1/nextflow_schema.json",
+      "sha256": "b72c171b025dc2d2c4e9ebe99bc4703a33d3e7155034ec184c0fded4ce44ba54",
+      "bytes": 16241
+    },
+    {
+      "path": "workflows/phyloplace.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/phyloplace/441e351e2703329c04ddb494cefcdd017a48b9f1/workflows/phyloplace.nf",
+      "sha256": "51b23c5aa3f7108549aa49a3657fc76b997a053ff59a10e32a3a8458a8daef00",
+      "bytes": 9474
+    }
+  ]
+}

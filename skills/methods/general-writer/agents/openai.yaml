@@ -1,0 +1,5 @@
+interface:
+  display_name: "General Academic Writer"
+  short_description: "Write auditable evidence-grounded academic papers"
+  default_prompt: "Use $general-writer to turn my research materials and verified results into an auditable academic manuscript."
+

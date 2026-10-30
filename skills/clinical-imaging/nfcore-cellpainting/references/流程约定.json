@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/cellpainting",
+  "skill_id": "nfcore-cellpainting",
+  "scientific_title": "Cell Painting细胞形态特征提取",
+  "secondary_search_terms": "细胞形态、药物发现",
+  "upstream": {
+    "repository": "https://github.com/nf-core/cellpainting",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "6849844d1f7c841578a89caa5101d9537e7fa023",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "ea1b624606260aebc55dfc848a34249507ddfbbad8f9b8bfefe221ef87d02076"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "090334a2328a1cb350183c970620aa1a6f80dfdda0113d84567286eb933d2b5d",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/cellpainting/6849844d1f7c841578a89caa5101d9537e7fa023/LICENSE",
+      "sha256": "6e827f42fafb831a2152ce89f9de3125e5b70889f1d8bca07a162f0564c4b30d",
+      "bytes": 1081
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/cellpainting/6849844d1f7c841578a89caa5101d9537e7fa023/README.md",
+      "sha256": "d0d9db488112919e3a8a438a11e597cdf315cb57696cb9022d27fedbedd5814f",
+      "bytes": 7811
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/cellpainting/6849844d1f7c841578a89caa5101d9537e7fa023/assets/schema_input.json",
+      "sha256": "090334a2328a1cb350183c970620aa1a6f80dfdda0113d84567286eb933d2b5d",
+      "bytes": 2290
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/cellpainting/6849844d1f7c841578a89caa5101d9537e7fa023/docs/output.md",
+      "sha256": "4114fa770d1d39d985b6c55c39ba4a2236ebd8b1b422444c0e6e4fe72f0c39e5",
+      "bytes": 4423
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/cellpainting/6849844d1f7c841578a89caa5101d9537e7fa023/docs/usage.md",
+      "sha256": "ed32685509a6de0734e2adc3e919ca2812e4d20bca57655a4a6318d6999e67fc",
+      "bytes": 18436
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/cellpainting/6849844d1f7c841578a89caa5101d9537e7fa023/main.nf",
+      "sha256": "f24884a82b5cd2d9fc6e627e4f8fefcf33394680112c097f9b5c021003b59373",
+      "bytes": 2887
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/cellpainting/6849844d1f7c841578a89caa5101d9537e7fa023/nextflow.config",
+      "sha256": "22d46885185be81292dcef85106d7fe746c54289f546559cd65843d0df2b8bb5",
+      "bytes": 10879
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/cellpainting/6849844d1f7c841578a89caa5101d9537e7fa023/nextflow_schema.json",
+      "sha256": "ea1b624606260aebc55dfc848a34249507ddfbbad8f9b8bfefe221ef87d02076",
+      "bytes": 12567
+    },
+    {
+      "path": "workflows/cellpainting.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/cellpainting/6849844d1f7c841578a89caa5101d9537e7fa023/workflows/cellpainting.nf",
+      "sha256": "d7039a257de16b321a7e673a58671bcb2d4023617f55b92e2a19cc3daae3e409",
+      "bytes": 12464
+    }
+  ]
+}

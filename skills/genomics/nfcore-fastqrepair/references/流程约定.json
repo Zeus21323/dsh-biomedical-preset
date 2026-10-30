@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/fastqrepair",
+  "skill_id": "nfcore-fastqrepair",
+  "scientific_title": "损坏FASTQ恢复与读段配对修复",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/fastqrepair",
+    "archived": false,
+    "revision_label": "1.1.1",
+    "commit": "70a38209407b9367a9ff7ab8b26d84cb1983ea18",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "323f236cd74a165c842ea7f03b8f39777c109f7d894c0a042abef3d229aab6f9"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "7d9b53d7e1111088900cc435ba3161d4913b284db8d7ea5f4150e89171a1e761",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/fastqrepair/70a38209407b9367a9ff7ab8b26d84cb1983ea18/LICENSE",
+      "sha256": "db14f607748069ddfa965b057c493d11e3130ee2bcfd0862eaa02cbfb95feb89",
+      "bytes": 1080
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/fastqrepair/70a38209407b9367a9ff7ab8b26d84cb1983ea18/README.md",
+      "sha256": "a7877beda229d2494347249754abe068d6d95eaad7ead6bbf95fde66492f969e",
+      "bytes": 6954
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/fastqrepair/70a38209407b9367a9ff7ab8b26d84cb1983ea18/assets/schema_input.json",
+      "sha256": "7d9b53d7e1111088900cc435ba3161d4913b284db8d7ea5f4150e89171a1e761",
+      "bytes": 1467
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/fastqrepair/70a38209407b9367a9ff7ab8b26d84cb1983ea18/docs/output.md",
+      "sha256": "417b116bdd81ea44515a6f6c0e8cf138892581632e5376713299bf50e3aec2c0",
+      "bytes": 3234
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/fastqrepair/70a38209407b9367a9ff7ab8b26d84cb1983ea18/docs/usage.md",
+      "sha256": "d7cf2050ec19f213ac08d4d1238b088b5079b55b23464be99c1bdb4f0cc88582",
+      "bytes": 13761
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/fastqrepair/70a38209407b9367a9ff7ab8b26d84cb1983ea18/main.nf",
+      "sha256": "4b1ede881e006ce579c25ecb1417531a3675cf64b9a8b3ebafa54dfda5785602",
+      "bytes": 2841
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/fastqrepair/70a38209407b9367a9ff7ab8b26d84cb1983ea18/nextflow.config",
+      "sha256": "09c1117a60edc10ae6646f5d1a526ac1e99fd4c3ab3b9eb8d2bca28f792cfec4",
+      "bytes": 10253
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/fastqrepair/70a38209407b9367a9ff7ab8b26d84cb1983ea18/nextflow_schema.json",
+      "sha256": "323f236cd74a165c842ea7f03b8f39777c109f7d894c0a042abef3d229aab6f9",
+      "bytes": 13773
+    },
+    {
+      "path": "workflows/fastqrepair.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/fastqrepair/70a38209407b9367a9ff7ab8b26d84cb1983ea18/workflows/fastqrepair.nf",
+      "sha256": "0887ba0d0179efeff51029684c8ea2fad247f93971db0e97a83a109a3f2014e9",
+      "bytes": 7622
+    }
+  ]
+}

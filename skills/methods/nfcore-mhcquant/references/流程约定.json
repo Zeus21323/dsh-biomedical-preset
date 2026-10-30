@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/mhcquant",
+  "skill_id": "nfcore-mhcquant",
+  "scientific_title": "免疫肽组质谱鉴定与定量",
+  "secondary_search_terms": "蛋白质组学、免疫肽组",
+  "upstream": {
+    "repository": "https://github.com/nf-core/mhcquant",
+    "archived": false,
+    "revision_label": "3.2.0",
+    "commit": "6ec12c97f7889a3e1f09ab89930723045c6bac68",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "4177043a95fd3dc9e73288844bb274359ebc2047ca0c19f1f55041e55ce4fe3c"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_search_presets.json",
+        "sha256": "c3fe65ddc81c2179fc09b90fad1158836c39484a8961d0aa298b5825d093983e",
+        "parameters": [
+          "search_presets"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/mhcquant/6ec12c97f7889a3e1f09ab89930723045c6bac68/LICENSE",
+      "sha256": "6a590070f8a7479f39d300b94fc95285aeaae4c156d7e3faef3f1f28789f6285",
+      "bytes": 1077
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/mhcquant/6ec12c97f7889a3e1f09ab89930723045c6bac68/README.md",
+      "sha256": "0f626c89187ce5d9399cf06f1b4e4285d3d3f66dc25ea8689c3092c5f1527cd0",
+      "bytes": 15780
+    },
+    {
+      "path": "assets/schema_search_presets.json",
+      "url": "https://raw.githubusercontent.com/nf-core/mhcquant/6ec12c97f7889a3e1f09ab89930723045c6bac68/assets/schema_search_presets.json",
+      "sha256": "c3fe65ddc81c2179fc09b90fad1158836c39484a8961d0aa298b5825d093983e",
+      "bytes": 4934
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/mhcquant/6ec12c97f7889a3e1f09ab89930723045c6bac68/docs/output.md",
+      "sha256": "27c04bd95af041fb649d65359e81d8bd0d28ea6ec70d3472794235b210ae29a7",
+      "bytes": 11551
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/mhcquant/6ec12c97f7889a3e1f09ab89930723045c6bac68/docs/usage.md",
+      "sha256": "4207e592ba26b5fa9375fec9036be1d9daecc4ff3d318b84a96d70d26fe280ca",
+      "bytes": 28174
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/mhcquant/6ec12c97f7889a3e1f09ab89930723045c6bac68/main.nf",
+      "sha256": "d31099fc47eed6bcb869e55345f45cd1b010d78ba8e31268a2fa932c3303909b",
+      "bytes": 2839
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/mhcquant/6ec12c97f7889a3e1f09ab89930723045c6bac68/nextflow.config",
+      "sha256": "1d3193055cebcc3747cbd0e6666609d80da4d68c9222fd19ee21f83ec5727077",
+      "bytes": 14632
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/mhcquant/6ec12c97f7889a3e1f09ab89930723045c6bac68/nextflow_schema.json",
+      "sha256": "4177043a95fd3dc9e73288844bb274359ebc2047ca0c19f1f55041e55ce4fe3c",
+      "bytes": 33316
+    },
+    {
+      "path": "workflows/mhcquant.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/mhcquant/6ec12c97f7889a3e1f09ab89930723045c6bac68/workflows/mhcquant.nf",
+      "sha256": "b997cdb6a125622cb52a06c055222c1147b0fa8b869e297e8ce6546bae08ec21",
+      "bytes": 12622
+    }
+  ]
+}

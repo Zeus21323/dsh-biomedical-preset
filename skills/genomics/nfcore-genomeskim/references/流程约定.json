@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/genomeskim",
+  "skill_id": "nfcore-genomeskim",
+  "scientific_title": "浅测序流程版本核验与读段质控",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/genomeskim",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "bb613a28fafa8d7dc5cc86b5a55fb5bdd2531a16",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "read-qc-only",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": "已检查 workflow：只有输入检查、FastQC、MultiQC 和版本记录；当前 revision 不提供细胞器组装。"
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=21.10.3",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "51a69b7682336f94ea82fc9a68f7cfa7d81c9a485bde88bef3afa02b6d422a06"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "a383b760b6ceeee4d65cbe5342df4e836b625176d0e6de01b910ae6f291b0beb",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeskim/bb613a28fafa8d7dc5cc86b5a55fb5bdd2531a16/LICENSE",
+      "sha256": "f0fb8f05a072f8ab4ba4f1a379e9fa050ab9e0e60d901238e030a214912b13a0",
+      "bytes": 1068
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeskim/bb613a28fafa8d7dc5cc86b5a55fb5bdd2531a16/README.md",
+      "sha256": "d7e0af26059a48e39871f6c9d7e19b1b94bfef6979f474bdf0354fddfa9b2ae4",
+      "bytes": 8383
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeskim/bb613a28fafa8d7dc5cc86b5a55fb5bdd2531a16/assets/schema_input.json",
+      "sha256": "a383b760b6ceeee4d65cbe5342df4e836b625176d0e6de01b910ae6f291b0beb",
+      "bytes": 1395
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeskim/bb613a28fafa8d7dc5cc86b5a55fb5bdd2531a16/docs/output.md",
+      "sha256": "89479d074d781307eee42cdf72936b7fc51dc4e7e3dc6e5de568f8fda28382b1",
+      "bytes": 3802
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeskim/bb613a28fafa8d7dc5cc86b5a55fb5bdd2531a16/docs/usage.md",
+      "sha256": "3e9dd00eac6ccfd02e7d3057147448bfb90b9a12e7f3ce6327e0becfbaa40ce4",
+      "bytes": 17504
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeskim/bb613a28fafa8d7dc5cc86b5a55fb5bdd2531a16/main.nf",
+      "sha256": "9dccc6d43662b686fa05a3e4f36bd541ef09694a760fe0a79e60cdac7ed2fc50",
+      "bytes": 1995
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeskim/bb613a28fafa8d7dc5cc86b5a55fb5bdd2531a16/nextflow.config",
+      "sha256": "4089e7ac8db0199d68cff028c4ce0d3086aeaa8abf2495b20c9886a00ad51241",
+      "bytes": 7289
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeskim/bb613a28fafa8d7dc5cc86b5a55fb5bdd2531a16/nextflow_schema.json",
+      "sha256": "51a69b7682336f94ea82fc9a68f7cfa7d81c9a485bde88bef3afa02b6d422a06",
+      "bytes": 15229
+    },
+    {
+      "path": "workflows/genomeskim.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeskim/bb613a28fafa8d7dc5cc86b5a55fb5bdd2531a16/workflows/genomeskim.nf",
+      "sha256": "36fac320c51919012dabb049632e7d167b73e93df3f013ac8a837a767fb407a4",
+      "bytes": 4401
+    }
+  ]
+}

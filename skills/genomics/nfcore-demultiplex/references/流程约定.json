@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/demultiplex",
+  "skill_id": "nfcore-demultiplex",
+  "scientific_title": "测序样本拆分与条形码处理",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/demultiplex",
+    "archived": false,
+    "revision_label": "1.7.1",
+    "commit": "fbec8e442f0599f8b74876e62263af05b9a41d33",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.2",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "1ec6383eb094945fa31f51316b7c70a91922587e59bd1b231657b24af9f27666"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "0b87c6497c1df7a86249bbee1a5785f144908cb40e54c698cd7024b0431fb24d",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/demultiplex/fbec8e442f0599f8b74876e62263af05b9a41d33/LICENSE",
+      "sha256": "3d7bdebc9c28a2ae1d9215fd0767c5fdfc466aa72bc3e9a2091f47b8e5bfcfaa",
+      "bytes": 1080
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/demultiplex/fbec8e442f0599f8b74876e62263af05b9a41d33/README.md",
+      "sha256": "494543e615e11fa6f930cff5cac3772143d51a4ce6920d71d6cd0cb92e81a554",
+      "bytes": 9284
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/demultiplex/fbec8e442f0599f8b74876e62263af05b9a41d33/assets/schema_input.json",
+      "sha256": "0b87c6497c1df7a86249bbee1a5785f144908cb40e54c698cd7024b0431fb24d",
+      "bytes": 1534
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/demultiplex/fbec8e442f0599f8b74876e62263af05b9a41d33/docs/output.md",
+      "sha256": "d40bc6a65ced2ae67e338b61155986d30dad994bbea230376f0fac9f66998887",
+      "bytes": 16265
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/demultiplex/fbec8e442f0599f8b74876e62263af05b9a41d33/docs/usage.md",
+      "sha256": "67c85915f2627dbee31bb1621533d3b464106a4004625cafa0932ee983698854",
+      "bytes": 24326
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/demultiplex/fbec8e442f0599f8b74876e62263af05b9a41d33/main.nf",
+      "sha256": "32262b2263e874bd4872c2f4e15da402a2b2b4d1a5026c3044793046190e9f6f",
+      "bytes": 8241
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/demultiplex/fbec8e442f0599f8b74876e62263af05b9a41d33/nextflow.config",
+      "sha256": "043fb065a6aaa88b4f3fc3a555cb699df2d5442e1d2440ff1c46d92dad9c8e8c",
+      "bytes": 16386
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/demultiplex/fbec8e442f0599f8b74876e62263af05b9a41d33/nextflow_schema.json",
+      "sha256": "1ec6383eb094945fa31f51316b7c70a91922587e59bd1b231657b24af9f27666",
+      "bytes": 18555
+    },
+    {
+      "path": "workflows/demultiplex.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/demultiplex/fbec8e442f0599f8b74876e62263af05b9a41d33/workflows/demultiplex.nf",
+      "sha256": "918a5d57dd334764f03c293c471f0a203ada581fe73b493281b74a8ed3467d40",
+      "bytes": 25408
+    }
+  ]
+}

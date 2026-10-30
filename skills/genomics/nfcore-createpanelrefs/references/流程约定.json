@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/createpanelrefs",
+  "skill_id": "nfcore-createpanelrefs",
+  "scientific_title": "正常样本面板与背景模型构建",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/createpanelrefs",
+    "archived": false,
+    "revision_label": "1.0.0",
+    "commit": "8ce86a84b5af74facf99abb76216531622b52bc8",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=26.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "6f008e02e596ad2eb5cd001ffd3c08e195e485372b383a22e2794109d23c9635"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "5b6e150925ea07fbdac52270dd161036a12e2c592522503a5684fea5f1718b80",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/createpanelrefs/8ce86a84b5af74facf99abb76216531622b52bc8/LICENSE",
+      "sha256": "5133f0ab100ae4812ec67942dc3bee8f224c4de0a62c630019fee10eaa89dd54",
+      "bytes": 1084
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/createpanelrefs/8ce86a84b5af74facf99abb76216531622b52bc8/README.md",
+      "sha256": "62aad97fe7a81dfb2efd6d4e115321d09482d40c2855ab6bdb75da6946e54d46",
+      "bytes": 7202
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/createpanelrefs/8ce86a84b5af74facf99abb76216531622b52bc8/assets/schema_input.json",
+      "sha256": "5b6e150925ea07fbdac52270dd161036a12e2c592522503a5684fea5f1718b80",
+      "bytes": 1897
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/createpanelrefs/8ce86a84b5af74facf99abb76216531622b52bc8/docs/output.md",
+      "sha256": "62f811972da103e0a94bedc8fbf0f7a3d1676d3c17c3bf505eb2879bfdf1618c",
+      "bytes": 8068
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/createpanelrefs/8ce86a84b5af74facf99abb76216531622b52bc8/docs/usage.md",
+      "sha256": "c7e69d4b67f588d68acda78355a6dd842952d36eaa8b29836ab6d8b440e4cdcd",
+      "bytes": 17288
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/createpanelrefs/8ce86a84b5af74facf99abb76216531622b52bc8/main.nf",
+      "sha256": "b1b70e323d55f1a9a91e1cba756e923ad1776d205187237e0951755ffa373974",
+      "bytes": 14339
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/createpanelrefs/8ce86a84b5af74facf99abb76216531622b52bc8/nextflow.config",
+      "sha256": "966b6666e59df45b4aec36371df9ff5ffc78823f9ecc62f32b1db1c3c5bdfc4b",
+      "bytes": 12050
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/createpanelrefs/8ce86a84b5af74facf99abb76216531622b52bc8/nextflow_schema.json",
+      "sha256": "6f008e02e596ad2eb5cd001ffd3c08e195e485372b383a22e2794109d23c9635",
+      "bytes": 26183
+    },
+    {
+      "path": "workflows/createpanelrefs.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/createpanelrefs/8ce86a84b5af74facf99abb76216531622b52bc8/workflows/createpanelrefs.nf",
+      "sha256": "f57895d6e2ce8dc78931b791e5c70f4f26b20c0d394d1dc6d835b95b1863ecc4",
+      "bytes": 5292
+    }
+  ]
+}

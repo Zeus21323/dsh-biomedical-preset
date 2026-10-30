@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "purpose": "记录已定位但尚不能诚实登记为原生执行的方法。该文件只定义核验条件，不授权下载数据、接受许可或以相近算法替代。",
+  "methods": {
+    "dlrp-autocrine-loop": {
+      "classification": "archival_algorithm",
+      "source_version": "Nature Genetics 29:295-300 (2001), DOI 10.1038/ng755",
+      "license": "论文可读；未定位到可再分发的软件许可或原始 DLRP 数据库版本",
+      "input_contract": ["同一生物学体系的多样本基因表达", "论文对应的版本化 DLRP 配体-受体表", "样本分组与独立实验单位"],
+      "native_steps": ["逐 LR 计算跨样本表达相关", "随机基因配对背景", "样本标签或表达置换背景", "按论文双重概率条件筛选潜在自分泌环"],
+      "figures": ["LR 相关散点与区间", "全部 LR 相关/概率热图", "自分泌环网络", "多数据集方向一致性图"],
+      "blockers": ["论文没有发布可固定的软件入口", "原始 DLRP 数据库快照和许可未取得", "不能用现代 LR 库重建后仍称为论文原生 DLRP"],
+      "upgrade_requires": ["取得论文对应 DLRP 快照及使用许可", "逐公式实现并以论文数据或作者表复核", "对全部 LR 而非挑选候选执行多重检验与数值审计"]
+    },
+    "community-molecular-network": {
+      "classification": "archival_algorithm",
+      "source_version": "Bioinformatics 28:694-700 (2012), DOI 10.1093/bioinformatics/btr718",
+      "license": "论文为可读来源；未定位到论文 CMN/NetWalk 输入网络和可执行发布包的完整许可快照",
+      "input_contract": ["每个细胞类型分别测量的全基因组表达或差异统计", "版本化细胞内 PPI/Reactome 网络", "分泌蛋白、膜蛋白和代谢反应/代谢物注释", "条件与独立重复"],
+      "native_steps": ["为每个细胞类型复制细胞内网络", "按分泌/膜结合及共享代谢物建立跨细胞层边", "用 NetWalk 计算 data-biased random-walk Edge Flux", "比较条件 Edge Flux"],
+      "figures": ["细胞分层社区分子网络", "Edge Flux 网络", "条件 Edge Flux 差异图", "细胞内/细胞间/代谢边组成图"],
+      "blockers": ["不是单纯 LR 打分，不能由现有通讯矩阵替代", "论文使用的完整全局网络及 NetWalk 发布快照未随当前来源提供", "没有可核实的原生命令行入口"],
+      "upgrade_requires": ["固定 NetWalk 与全部网络资源", "按论文异种移植数据复核 Edge Flux", "保留细胞内、蛋白跨细胞和代谢跨细胞三类边身份"]
+    },
+    "cccexplorer": {
+      "classification": "license_blocked_binary",
+      "source_version": "CCCExplorer 1.1.0, source repository commit 1344c6f5092f2794e7e6140124e12ebda736544b",
+      "license": "专有 EULA；仅个人非商业使用，并明确禁止 agents/bots 修改、反编译、逆向或制作派生作品",
+      "input_contract": ["两个条件的 bulk 或分选细胞表达", "差异表达结果", "软件内置加密网络资源", "EULA 由实际使用者接受"],
+      "native_steps": ["构建直接和连接的细胞间信号网络", "结合 LR、下游 PPI 与 TF 表达", "计算 Fisher-like 激活/失活证据"],
+      "figures": ["直接通讯网络", "连接通路网络", "激活/失活网络", "LR-下游-TF 路径视图"],
+      "blockers": ["EULA 不允许智能体修改或逆向二进制及加密资源", "无法在仓库中制作派生 runner", "不能代替用户接受 EULA"],
+      "upgrade_requires": ["权利人提供允许自动化调用的书面许可或开放 API", "公开非加密资源与稳定批处理入口", "以作者示例完成数值和逐图验收"]
+    },
+    "cccvelo": {
+      "classification": "upstream_release_blocked",
+      "source_version": "CCCvelo commit 0abd1f13e1caf36b475d12b220d31ee1f958e9f4; analysis commit 3c27d7cb4daf70468a96d8fc9eaffcdf597b105f",
+      "license": "以固定上游仓库实际许可为准；数据库归档另行核验",
+      "input_contract": ["高分辨率空间表达与二维坐标", "细胞类型和插补层", "版本化 Ligand-Receptor-TF-Target 资源", "候选 TG/TF 与训练参数"],
+      "native_steps": ["计算扩散型/接触型 LR 空间信号", "拟合 TF/TG 动力学和潜时间", "估计速度", "生成状态相关 LR-TF-TG 网络"],
+      "figures": ["潜时间空间图", "速度流线/向量图", "TF/TG 动力学曲线", "LR-TF-TG 多层网络", "状态相关通讯网络"],
+      "blockers": ["固定入口存在未闭合字符串，无法编译", "代码含 Windows 绝对路径", "build_DT_neighbors 调用接口不一致", "TFvelo 未声明且 pywin32 限制平台", "Zenodo 发布包本次不可连接核验"],
+      "upgrade_requires": ["取得与论文一致且可编译的官方快照", "固定 TFvelo 与数据库版本", "消除上游接口矛盾并由作者数据原生复现", "对潜时间、速度和多层网络分别数值验收"]
+    },
+    "finest": {
+      "classification": "missing_author_inputs",
+      "source_version": "FineST commit cf35c678ecb06e407b1da683e9f38df2302a9322, Apache-2.0",
+      "license": "Apache-2.0；图像模型权重和原始组织图像的许可分别按来源核验",
+      "input_contract": ["原始空间表达和真实坐标", "配对 H&E 全切片或 ROI", "within-spot 与 between-spot 图像特征", "匹配的 FineST checkpoint", "细胞核分割结果（单细胞分辨率分支）"],
+      "native_steps": ["图像特征提取", "FineST 对比训练/推断", "亚 spot 或细胞核级表达插补", "SpatialDM 全局/局部 LR", "SparseAEH 空间 LR 模式", "可选 LR-Receptor-TF-Target 链"],
+      "figures": ["H&E 与分割叠图", "超分辨率基因表达图", "全局 Moran LR 图", "局部 LR 热点图", "SparseAEH LR 模式图", "LR-TF-TG 网络"],
+      "blockers": ["作者通讯 notebook 读取预先生成的 patient1_adata_imput_all_sc.h5ad 和 patient1_adata_imput_all_spot_scale.h5ad", "仓库含坐标、资源和 checkpoint，但缺这两个插补对象", "公开 NPC h5ad 下载在当前环境触发 Figshare WAF challenge", "仓库中的 HIPT checkpoint 文件为 Git LFS 指针，完整图像特征另在外部网盘"],
+      "upgrade_requires": ["取得配对 H&E、完整模型权重与两个尺度图像特征", "实际执行 FineST 插补而非直接在原始 h5ad 上运行 SpatialDM", "复核插补对象、LR 结果与 SparseAEH 模式", "对图像/坐标配准做视觉验收"]
+    },
+    "pyminer": {
+      "classification": "legacy_external_service_blocked",
+      "source_version": "PyMINEr commit 30046cc904a26c6dbc8c6978cb81dbd46b911dae (2019-11-14)",
+      "license": "README 声明非商业 AGPLv3；仓库未见独立 LICENSE 文件，商业使用需联系作者",
+      "input_contract": ["各细胞类型显著且富集的基因列表或布尔表", "物种 g:Profiler 代码", "随仓 STRING protein.actions 10.5"],
+      "native_steps": ["在线 g:Profiler 转 ENSP 和 GO 定位", "识别胞外与质膜蛋白", "与 STRING action 表交叉", "输出自分泌/旁分泌及激活/抑制注释", "按细胞对做通路富集"],
+      "figures": ["细胞对相互作用计数图", "自分泌/旁分泌网络", "激活/抑制组成图", "细胞对通路富集图"],
+      "blockers": ["冻结于 Python 2019 生态并依赖 gprofiler-official 0.3.5 的旧返回结构", "核心 ID/GO 映射和富集均依赖在线服务，离线不能复现", "本次隔离安装没有完成，尚无真实生物数据原生验收", "输入是预筛富集基因而非逐细胞表达，统计意义取决于上游筛选"],
+      "upgrade_requires": ["固定可响应的 g:Profiler API 或许可允许的版本化映射快照", "在兼容 Python 环境原样执行 cell_signals.py", "用真实、独立生成的细胞类型基因集完成数值验收", "记录 STRING 10.5 与在线富集响应快照"]
+    },
+    "deepcci": {
+      "classification": "missing_author_inputs",
+      "source_version": "DeepCCI commit 0ad534f91f3c669ab97546741778d977f3347242, MIT",
+      "license": "MIT；随附模型和 LRDB 的数据许可需另行核验",
+      "input_contract": ["scRNA-seq CSV/H5 和细胞标签", "Seurat/CellChat 预处理产生的特征与邻接对象", "作者 checkpoint", "匹配的 Python 3.7/PyTorch 环境"],
+      "native_steps": ["可选 GCN 聚类", "R/CellChat 构造细胞对特征", "MobileNet/GCN 交互分类", "输出 CCI_out"],
+      "figures": ["CCI 概率热图", "LR 气泡图", "细胞网络图", "弦图"],
+      "blockers": ["仓库只含极小标签样例和 checkpoint，没有 README 指向的完整 test 数据", "下载页为 HTTP 站点且未给文件摘要", "Feature.py、Feature.R 与推断入口硬编码 ./output 并依赖缺失的 R 中间对象、邻接和特征", "requirements 固定完整 Python 3.7.4/torch 1.10/旧 R 生态"],
+      "upgrade_requires": ["取得作者测试包并核验摘要与许可", "固定 R/CellChat 和 Python 双环境", "按原流程生成而非伪造缺失中间件", "校验 CCI_out 概率、标签顺序和逐图数值"]
+    },
+    "graphcomm": {
+      "classification": "missing_capsule_data",
+      "source_version": "GraphComm commit daa4d96fbbed578e9cf7017bb301baebae67d667, MIT",
+      "license": "代码 MIT；OmniPath、KEGG、训练数据和模型分别按来源核验",
+      "input_contract": ["scRNA-seq 或空间表达和细胞标签", "OmniPath 节点/相互作用图", "KEGG pathway 编码", "训练好的 GAT 模型或完整训练集", "空间分支的坐标"],
+      "native_steps": ["构建 cell/LR/通路异构图", "训练 GAT 节点/边表征", "预测 LR 或细胞通讯", "随机化和空间评估"],
+      "figures": ["GAT 预测/注意力图", "细胞-LR 异构网络", "细胞对通讯图", "空间预测图", "随机化对照图"],
+      "blockers": ["README 所述 data 目录和模型未包含在 Git 仓库", "关键 notebook/脚本硬编码 /data、/results 和 Code Ocean 目录", "预处理 utilities 中仍存在固定 /data/kegg_pathways.csv", "没有可直接运行的参数化生产入口"],
+      "upgrade_requires": ["取得 Code Ocean capsule 数据和模型并核验许可/摘要", "固定 OmniPath/KEGG 资源", "在原始 capsule 环境完整训练或加载作者模型", "独立核验节点身份、概率、随机化及空间结果"]
+    }
+  }
+}

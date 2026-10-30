@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/atacseq",
+  "skill_id": "nfcore-atacseq",
+  "scientific_title": "ATAC-seq开放染色质分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/atacseq",
+    "archived": false,
+    "revision_label": "2.1.2",
+    "commit": "1a1dbe52ffbd82256c941a032b0e22abbd925b8a",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=23.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "efe37d724f78ebb205df20ce3c7d17397c0e578542a301d44f1356bc302eefba"
+    },
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/atacseq/1a1dbe52ffbd82256c941a032b0e22abbd925b8a/LICENSE",
+      "sha256": "d44c17cdbb17478f7529066ea6838eda09654aa8e8f3822a7188a298c620d961",
+      "bytes": 1098
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/atacseq/1a1dbe52ffbd82256c941a032b0e22abbd925b8a/README.md",
+      "sha256": "505a8ca6a0f4eebc53a96b9fa548beab4769ab05aa84b0388d15474e5563a4c8",
+      "bytes": 12624
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/atacseq/1a1dbe52ffbd82256c941a032b0e22abbd925b8a/docs/output.md",
+      "sha256": "2766e3577a9bb289259376d4ec3e1e611df1f6c9afa116c0a4b34e5cf116b4a0",
+      "bytes": 28865
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/atacseq/1a1dbe52ffbd82256c941a032b0e22abbd925b8a/docs/usage.md",
+      "sha256": "6e307319fb1eb5ca145ad81d2a3e2502c3b16537bfe8fd146b3be8d89c071805",
+      "bytes": 20357
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/atacseq/1a1dbe52ffbd82256c941a032b0e22abbd925b8a/main.nf",
+      "sha256": "cdc1caa882d0d4937911c10815f501f8ba75e81f967fb5e21284e337694c9652",
+      "bytes": 3351
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/atacseq/1a1dbe52ffbd82256c941a032b0e22abbd925b8a/nextflow.config",
+      "sha256": "11ff44796c5109d1d274b8b355fcf4ac98b773eba97a43c9167093b981bfe4d4",
+      "bytes": 11439
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/atacseq/1a1dbe52ffbd82256c941a032b0e22abbd925b8a/nextflow_schema.json",
+      "sha256": "efe37d724f78ebb205df20ce3c7d17397c0e578542a301d44f1356bc302eefba",
+      "bytes": 39814
+    },
+    {
+      "path": "workflows/atacseq.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/atacseq/1a1dbe52ffbd82256c941a032b0e22abbd925b8a/workflows/atacseq.nf",
+      "sha256": "4c1ed05343026f339c02cf6efeef837dc8fdfc69481bb480af13c00b78c026e1",
+      "bytes": 33000
+    }
+  ]
+}

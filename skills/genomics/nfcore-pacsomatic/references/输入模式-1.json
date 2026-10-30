@@ -1,0 +1,56 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/pacsomatic/main/assets/schema_input.json",
+    "title": "nf-core/pacsomatic pipeline - params.input schema",
+    "description": "Schema for the file provided with params.input",
+    "type": "array",
+    "uniqueEntries": ["sample", "patient"],
+    "items": {
+        "type": "object",
+        "properties": {
+            "patient": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "errorMessage": "Patient ID must be provided and cannot contain spaces",
+                "meta": ["patient"]
+            },
+            "sample": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "errorMessage": "Sample ID must be provided and cannot contain spaces",
+                "meta": ["sample"]
+            },
+            "status": {
+                "type": "integer",
+                "errorMessage": "Status can only be 0 (normal) or 1 (tumor). Defaults to 0, if none is supplied.",
+                "meta": ["status"],
+                "default": 0,
+                "minimum": 0,
+                "maximum": 1
+            },
+            "bam": {
+                "type": "string",
+                "errorMessage": "BAM or CRAM file cannot contain spaces and must have extension '.bam' or '.cram'",
+                "pattern": "^\\S+\\.(bam|cram)$",
+                "format": "file-path",
+                "exists": true
+            },
+            "pbi": {
+                "errorMessage": "BAI or CRAI index file cannot contain spaces and must have extension '.bai', '.crai' or '.pbi'",
+                "anyOf": [
+                    {
+                        "type": "string",
+                        "pattern": "^\\S+\\.(bai|crai|pbi)$"
+                    },
+                    {
+                        "type": "string",
+                        "maxLength": 0
+                    }
+                ],
+                "format": "file-path",
+                "exists": true
+            }
+        },
+        "required": ["patient", "sample", "status", "bam"]
+    }
+}

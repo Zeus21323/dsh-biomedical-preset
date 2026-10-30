@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/ddamsproteomics",
+  "skill_id": "nfcore-ddamsproteomics",
+  "scientific_title": "历史DDA质谱蛋白定量",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/ddamsproteomics",
+    "archived": true,
+    "revision_label": "dev",
+    "commit": "e1f270b8260d1795ac8cac1cdce47caf015162ad",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": ">=0.32.0",
+    "legacy_dsl_observed": true,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": null,
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/ddamsproteomics/e1f270b8260d1795ac8cac1cdce47caf015162ad/LICENSE",
+      "sha256": "508a77d2e7b51d98adeed32648ad124b7b30241a8e70b2e72c99f92d8e5874d1",
+      "bytes": 1036
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/ddamsproteomics/e1f270b8260d1795ac8cac1cdce47caf015162ad/README.md",
+      "sha256": "c6734439849290622fa0525de9cc59256f35710092325b0ebebc8a6ec296d940",
+      "bytes": 1632
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/ddamsproteomics/e1f270b8260d1795ac8cac1cdce47caf015162ad/docs/output.md",
+      "sha256": "47fbf63331b966bb8a42689fe33042888aef35e3af7746214776e333cb9282b4",
+      "bytes": 1706
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/ddamsproteomics/e1f270b8260d1795ac8cac1cdce47caf015162ad/docs/usage.md",
+      "sha256": "b44ec7e0867d0aa09169de2bbb7866507e5e8dad4b7fe41dc3f6c1eff7bebc84",
+      "bytes": 9216
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/ddamsproteomics/e1f270b8260d1795ac8cac1cdce47caf015162ad/main.nf",
+      "sha256": "78e4e2195fb52c701cd10deeb3939720a2b9229cdf5442996b816729b5f68e94",
+      "bytes": 38018
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/ddamsproteomics/e1f270b8260d1795ac8cac1cdce47caf015162ad/nextflow.config",
+      "sha256": "a50be5ba8ad1253c5490573180e8dbf283d50a76f646c61e464fffcc6fd03a09",
+      "bytes": 3406
+    }
+  ]
+}

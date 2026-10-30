@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/proteinfamilies",
+  "skill_id": "nfcore-proteinfamilies",
+  "scientific_title": "蛋白家族构建与增量更新",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/proteinfamilies",
+    "archived": false,
+    "revision_label": "2.5.0",
+    "commit": "f8c0b183e59df3d87c38d0f7c4acc6918593f4f5",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=26.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "e9da4c8e63dd3d2d661dfcd5544a359e5f0b0255b99970df3ca4ddf8bbb1d2cc"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "f9e73d4a5ca484adfa1137901d9d60b8d4052b805c7f143ba6bfae249fc7ef00",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfamilies/f8c0b183e59df3d87c38d0f7c4acc6918593f4f5/LICENSE",
+      "sha256": "9154dd332bed6576e734b8c11f9df8171571639ee39fd2da530469e98c91d4fa",
+      "bytes": 1084
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfamilies/f8c0b183e59df3d87c38d0f7c4acc6918593f4f5/README.md",
+      "sha256": "87fda520cf97fa4ae69bfaf89db00cda4b7002c341b72b63badfafafd3b2438d",
+      "bytes": 10652
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfamilies/f8c0b183e59df3d87c38d0f7c4acc6918593f4f5/assets/schema_input.json",
+      "sha256": "f9e73d4a5ca484adfa1137901d9d60b8d4052b805c7f143ba6bfae249fc7ef00",
+      "bytes": 2153
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfamilies/f8c0b183e59df3d87c38d0f7c4acc6918593f4f5/docs/output.md",
+      "sha256": "34f7e67fbcc252b726247affe015898419e6f898e857024f287b29eeaaa7cb66",
+      "bytes": 38045
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfamilies/f8c0b183e59df3d87c38d0f7c4acc6918593f4f5/docs/usage.md",
+      "sha256": "7a448e8c52ad6735af05f5e2027e797c5a8f5f4f4751cde53adc292b82173751",
+      "bytes": 19812
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfamilies/f8c0b183e59df3d87c38d0f7c4acc6918593f4f5/main.nf",
+      "sha256": "65baf9521f61c135aa4548cfd5df52f5481573ecf28085e3a1858cbaeb7149f4",
+      "bytes": 3911
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfamilies/f8c0b183e59df3d87c38d0f7c4acc6918593f4f5/nextflow.config",
+      "sha256": "64b1f82cf05d0e1da97c6e7ad1b86944b8044ee525beaef35fe97b3a8bbc2520",
+      "bytes": 13430
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfamilies/f8c0b183e59df3d87c38d0f7c4acc6918593f4f5/nextflow_schema.json",
+      "sha256": "e9da4c8e63dd3d2d661dfcd5544a359e5f0b0255b99970df3ca4ddf8bbb1d2cc",
+      "bytes": 33151
+    },
+    {
+      "path": "workflows/proteinfamilies.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/proteinfamilies/f8c0b183e59df3d87c38d0f7c4acc6918593f4f5/workflows/proteinfamilies.nf",
+      "sha256": "653602b5db620ec9b862881e86b56c794f08b1158f86aed2f6bea3940e332aea",
+      "bytes": 10943
+    }
+  ]
+}

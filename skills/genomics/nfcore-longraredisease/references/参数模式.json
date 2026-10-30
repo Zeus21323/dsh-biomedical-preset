@@ -1,0 +1,737 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/longraredisease/master/nextflow_schema.json",
+    "title": "nf-core/longraredisease pipeline parameters",
+    "description": "A Nextflow pipeline for rare disease diagnostics from Oxford Nanopore long-read sequencing data. Includes SV, SNV, CNV, and methylation profiling.",
+    "type": "object",
+    "$defs": {
+        "input_output_options": {
+            "title": "Input/output options",
+            "type": "object",
+            "fa_icon": "fas fa-terminal",
+            "description": "Define where the pipeline should find input data and save output data.",
+            "required": ["input"],
+            "properties": {
+                "input": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "schema": "assets/schema_input.json",
+                    "mimetype": "text/csv",
+                    "pattern": "^\\S+\\.csv$",
+                    "description": "Path to comma-separated file containing information about the samples in the experiment.",
+                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row. See [usage docs](https://nf-co.re/longraredisease/usage#samplesheet-input).",
+                    "fa_icon": "fas fa-file-csv"
+                },
+                "outdir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
+                    "fa_icon": "fas fa-folder-open"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address for completion summary.",
+                    "fa_icon": "fas fa-envelope",
+                    "help_text": "Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
+                }
+            }
+        },
+        "workflow_options": {
+            "title": "Workflow options",
+            "type": "object",
+            "fa_icon": "fas fa-cogs",
+            "description": "Options to configure the workflow execution mode.",
+            "properties": {
+                "input_type": {
+                    "type": "string",
+                    "default": "ubam",
+                    "enum": ["ubam", "fastq", "bam"],
+                    "description": "Input file type.",
+                    "fa_icon": "fas fa-tools"
+                },
+                "sequencing_platform": {
+                    "type": "string",
+                    "default": "ont",
+                    "description": "Sequencing platform (e.g. 'ont', 'hifi', 'pacbio').",
+                    "fa_icon": "fas fa-microchip"
+                },
+                "minimap2_model": {
+                    "type": "string",
+                    "description": "Minimap2 model for alignment.",
+                    "fa_icon": "fas fa-brain"
+                },
+                "use_winnowmap": {
+                    "type": "boolean",
+                    "description": "Use Winnowmap for alignment instead of Minimap2",
+                    "default": false,
+                    "fa_icon": "fas fa-toggle-on"
+                },
+                "winnowmap_model": {
+                    "type": "string",
+                    "description": "Winnowmap model for alignment.",
+                    "fa_icon": "fas fa-brain"
+                },
+                "winnowmap_kmers": {
+                    "type": "string",
+                    "description": "Path to repetitive k-mer file for Winnowmap",
+                    "format": "file-path",
+                    "fa_icon": "fas fa-file-alt"
+                },
+                "haplotag_bam": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable haplotagging of BAM files.",
+                    "fa_icon": "fas fa-tag"
+                },
+                "trio_analysis": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable trio analysis for SNV calling and phasing.",
+                    "fa_icon": "fas fa-users"
+                },
+                "filter_targets": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable filtering of alignments to target regions.",
+                    "fa_icon": "fas fa-filter"
+                },
+                "targets_bed": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "BED file with target regions for filtering.",
+                    "fa_icon": "fas fa-crosshairs"
+                },
+                "generate_bam_stats": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Generate BAM statistics using samtools.",
+                    "fa_icon": "fas fa-chart-bar"
+                },
+                "generate_coverage_report": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Generate coverage statistics.",
+                    "fa_icon": "fas fa-layer-group"
+                },
+                "sv": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable structural variant calling.",
+                    "fa_icon": "fas fa-dna"
+                },
+                "snv": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable single nucleotide variant calling.",
+                    "fa_icon": "fas fa-search"
+                },
+                "cnv": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable CNV calling with HiFiCNV if cnv_spectre is false.",
+                    "fa_icon": "fas fa-chart-area"
+                },
+                "str": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable short tandem repeat analysis.",
+                    "fa_icon": "fas fa-repeat"
+                },
+                "qc": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable quality control analysis.",
+                    "fa_icon": "fas fa-check-circle"
+                },
+                "methyl": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable methylation calling.",
+                    "fa_icon": "fas fa-flask"
+                },
+                "unify_vcf": {
+                    "type": "boolean",
+                    "default": true,
+                    "title": "Unify VCF",
+                    "description": "Enable VCF unification"
+                },
+                "modify_str_calls": {
+                    "type": "boolean",
+                    "default": true,
+                    "title": "Modify STR Calls",
+                    "description": "Enable modification of STR calls"
+                },
+                "annotate_unified_vcf": {
+                    "type": "boolean",
+                    "default": true,
+                    "title": "Annotate Unified VCF",
+                    "description": "Enable annotation of unified VCF"
+                }
+            }
+        },
+        "reference_genome_options": {
+            "title": "Reference genome options",
+            "type": "object",
+            "fa_icon": "fas fa-dna",
+            "description": "Reference genome related files and options required for the workflow.",
+            "required": ["fasta_file"],
+            "properties": {
+                "genome": {
+                    "type": "string",
+                    "description": "Name of iGenomes reference.",
+                    "fa_icon": "fas fa-book",
+                    "help_text": "If using a reference genome configured in the pipeline using iGenomes, use this parameter to give the ID for the reference. This is then used to build the full paths for all required reference genome files e.g. `--genome GRCh38`. \n\nSee the [nf-core website docs](https://nf-co.re/usage/reference_genomes) for more details."
+                },
+                "fasta_file": {
+                    "type": "string",
+                    "format": "file-path",
+                    "mimetype": "text/plain",
+                    "pattern": "^\\S+\\.fn?a(sta)?(\\.gz)?$",
+                    "description": "Path to FASTA genome file.",
+                    "help_text": "This parameter is mandatory. Path to the reference genome FASTA file.",
+                    "fa_icon": "far fa-file-code"
+                },
+                "igenomes_ignore": {
+                    "type": "boolean",
+                    "description": "Do not load the iGenomes reference config.",
+                    "fa_icon": "fas fa-ban",
+                    "hidden": true,
+                    "help_text": "Do not load `igenomes.config` when running the pipeline. You may choose this option if you observe clashes between custom parameters and those supplied in `igenomes.config`."
+                },
+                "igenomes_base": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "The base path to the igenomes reference files",
+                    "fa_icon": "fas fa-ban",
+                    "hidden": true,
+                    "default": "s3://ngi-igenomes/igenomes/"
+                },
+                "sniffles_tandem_file": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to tandem repeat BED file for Sniffles.",
+                    "fa_icon": "fas fa-file"
+                },
+                "chromosome_codes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of chromosome codes to process.",
+                    "fa_icon": "fas fa-list"
+                }
+            }
+        },
+        "sv_calling_options": {
+            "title": "Structural Variant Calling",
+            "type": "object",
+            "fa_icon": "fas fa-dna",
+            "description": "Options for structural variant calling and filtering.",
+            "properties": {
+                "sniffles_min_mapq": {
+                    "type": "integer",
+                    "default": 20,
+                    "description": "Minimum mapping quality for Sniffles.",
+                    "fa_icon": "fas fa-filter"
+                },
+                "annotate_sv": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable structural variant annotation.",
+                    "fa_icon": "fas fa-tags"
+                },
+                "annotate_svim": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable structural variant annotation.",
+                    "fa_icon": "fas fa-tags"
+                },
+                "rankfiltering": {
+                    "type": "string",
+                    "default": "1-5,NA",
+                    "title": "Rank Filtering",
+                    "description": "Rank filtering criteria"
+                },
+                "merge_sv": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Merge SV calls from multiple callers.",
+                    "fa_icon": "fas fa-compress-arrows-alt"
+                },
+                "min_caller_support": {
+                    "type": "integer",
+                    "default": 2,
+                    "description": "This is set for jasmine - minimum number of callers supporting the variant",
+                    "fa_icon": "fas fa-limit"
+                },
+                "svim_min_mapq": {
+                    "type": "integer",
+                    "default": 20,
+                    "description": "Minimum mapping quality for SVIM.",
+                    "fa_icon": "fas fa-filter"
+                },
+                "run_svim": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Set off variant caller - SVIM",
+                    "fa_icon": "fas fa-compress-arrows-alt"
+                },
+                "cutesv_min_mapq": {
+                    "type": "integer",
+                    "default": 20,
+                    "description": "Minimum mapping quality for cuteSV.",
+                    "fa_icon": "fas fa-filter"
+                },
+                "filter_pass_sv": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Only consider PASS variants.",
+                    "fa_icon": "fas fa-check"
+                },
+                "downsample_sv": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable SV filtering by coverage.",
+                    "fa_icon": "fas fa-filter"
+                },
+                "coverage_bed": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "BED file with coverage information for SV filtering.",
+                    "fa_icon": "fas fa-bed"
+                },
+                "min_read_support": {
+                    "type": "string",
+                    "default": "auto",
+                    "description": "Minimum read support for SVs.",
+                    "fa_icon": "fas fa-support"
+                },
+                "min_read_support_limit": {
+                    "type": "integer",
+                    "default": 2,
+                    "description": "Minimum read support limit.",
+                    "fa_icon": "fas fa-limit"
+                },
+                "annotsv_annotations": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "Path to AnnotSV annotations directory.",
+                    "fa_icon": "fas fa-database"
+                }
+            }
+        },
+        "sv_annotation_options": {
+            "title": "SV Annotation with SvAnna",
+            "type": "object",
+            "fa_icon": "fas fa-tags",
+            "description": "Options for SV annotation and prioritization with SvAnna.",
+            "properties": {
+                "run_svanna": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable SV annotation with SvAnna.",
+                    "fa_icon": "fas fa-play"
+                },
+                "svanna_db": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "Path to the SvAnna database directory.",
+                    "fa_icon": "fas fa-database"
+                },
+                "output_format": {
+                    "type": "string",
+                    "default": "html",
+                    "enum": ["html", "tsv"],
+                    "description": "Output format for SvAnna results.",
+                    "fa_icon": "fas fa-file-code"
+                }
+            }
+        },
+        "snv_calling_options": {
+            "title": "SNV Calling",
+            "type": "object",
+            "fa_icon": "fas fa-search",
+            "description": "Options for single nucleotide variant calling.",
+            "properties": {
+                "run_deepvariant": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Run DeepVariant, otherwise runs Clair3.",
+                    "fa_icon": "fas fa-brain"
+                },
+                "filter_pass_snv": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Filter PASS variants only in SNV.",
+                    "fa_icon": "fas fa-check-circle"
+                },
+                "clair3_min_mq": {
+                    "type": "integer",
+                    "default": 10,
+                    "description": "Minimum mapping quality for Clair3 to consider an alignment.",
+                    "fa_icon": "fas fa-filter"
+                },
+                "clair3_model": {
+                    "type": "string",
+                    "default": "ont",
+                    "description": "Clair3 model to use.",
+                    "fa_icon": "fas fa-brain"
+                },
+                "clair3_platform": {
+                    "type": "string",
+                    "default": "ont",
+                    "description": "Clair3 platform.",
+                    "fa_icon": "fas fa-microchip"
+                },
+                "deepvariant_regions": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "BED file with regions to restrict DeepVariant calling to.",
+                    "fa_icon": "fas fa-crosshairs"
+                },
+                "deepvariant_runtime_report": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable generation of a runtime report for DeepVariant.",
+                    "fa_icon": "fas fa-clock"
+                },
+                "deepvariant_make_examples_extra_args": {
+                    "type": "string",
+                    "default": "min_mapping_quality=10",
+                    "description": "Extra arguments for DeepVariant make_examples step.",
+                    "fa_icon": "fas fa-cog"
+                },
+                "annotate_clair3": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable structural variant annotation.",
+                    "fa_icon": "fas fa-tags"
+                },
+                "snpeff_db": {
+                    "type": "string",
+                    "default": "GRCh38.mane.1.2.ensembl",
+                    "description": "SnpEff database to use for annotation"
+                }
+            }
+        },
+        "cnv_calling_options": {
+            "title": "CNV Calling",
+            "type": "object",
+            "fa_icon": "fas fa-chart-line",
+            "description": "Options for copy number variant calling.",
+            "properties": {
+                "hificnv_exclude_bed": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to BED file for regions to exclude in HiFiCNV.",
+                    "fa_icon": "fas fa-ban"
+                },
+                "hificnv_expected_cn_bed": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "BED file with expected CNVs for HiFiCNV evaluation.",
+                    "fa_icon": "fas fa-file"
+                },
+                "use_test_data": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Use test data for Spectre CNV calling.",
+                    "fa_icon": "fas fa-vial"
+                },
+                "spectre_bin_size": {
+                    "type": "integer",
+                    "default": "1000",
+                    "description": "Spectre bin size",
+                    "fa_icon": "fas fa-limit"
+                },
+                "spectre_metadata": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to Spectre metadata file.",
+                    "fa_icon": "fas fa-file-alt"
+                },
+                "spectre_blacklist": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to Spectre blacklist BED file.",
+                    "fa_icon": "fas fa-ban"
+                },
+                "spectre_test_summary_txt": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to test summary file for Spectre CNV calling.",
+                    "fa_icon": "fas fa-vial",
+                    "hidden": true
+                },
+                "spectre_test_regions_bed": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to test regions BED file for Spectre CNV calling.",
+                    "fa_icon": "fas fa-vial",
+                    "hidden": true
+                },
+                "spectre_test_regions_csi": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to test regions CSI file for Spectre CNV calling.",
+                    "fa_icon": "fas fa-vial",
+                    "hidden": true
+                },
+                "spectre_test_fasta_file": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to test FASTA file for Spectre CNV calling.",
+                    "fa_icon": "fas fa-vial",
+                    "hidden": true
+                },
+                "spectre_test_clair3_vcf": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to test Clair3 VCF for Spectre CNV calling.",
+                    "fa_icon": "fas fa-vial",
+                    "hidden": true
+                }
+            }
+        },
+        "str_analysis_options": {
+            "title": "STR Analysis",
+            "type": "object",
+            "fa_icon": "fas fa-repeat",
+            "description": "Options for short tandem repeat analysis.",
+            "properties": {
+                "straglr_bed": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to STR BED file.",
+                    "fa_icon": "fas fa-bed"
+                },
+                "trgt_bed": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to STR BED file.",
+                    "fa_icon": "fas fa-bed"
+                },
+                "variant_catalogue": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to variant catalogue JSON file.",
+                    "fa_icon": "fas fa-file-code"
+                }
+            }
+        },
+        "output_options": {
+            "title": "Output Options",
+            "type": "object",
+            "fa_icon": "fas fa-file-export",
+            "description": "Options for output formats.",
+            "properties": {
+                "vcf_output": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Generate VCF output.",
+                    "fa_icon": "fas fa-file-code"
+                },
+                "snf_output": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Generate SNF output.",
+                    "fa_icon": "fas fa-file-alt"
+                }
+            }
+        },
+        "institutional_config_options": {
+            "title": "Institutional config options",
+            "type": "object",
+            "fa_icon": "fas fa-university",
+            "description": "Parameters used to describe centralised config profiles. These should not be edited.",
+            "help_text": "The centralised nf-core configuration profiles use a handful of pipeline parameters to describe themselves. This information is then printed to the Nextflow log when you run a pipeline. You should not need to change these values when you run a pipeline.",
+            "properties": {
+                "custom_config_version": {
+                    "type": "string",
+                    "description": "Git commit id for Institutional configs.",
+                    "default": "master",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "custom_config_base": {
+                    "type": "string",
+                    "description": "Base directory for Institutional configs.",
+                    "default": "https://raw.githubusercontent.com/nf-core/configs/master",
+                    "hidden": true,
+                    "help_text": "If you're running offline, Nextflow will not be able to fetch the institutional config files from the internet. If you don't need them, then this is not a problem. If you do need them, you should download the files from the repo and tell Nextflow where to find them with this parameter.",
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_name": {
+                    "type": "string",
+                    "description": "Institutional config name.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_description": {
+                    "type": "string",
+                    "description": "Institutional config description.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_contact": {
+                    "type": "string",
+                    "description": "Institutional config contact information.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_url": {
+                    "type": "string",
+                    "description": "Institutional config URL link.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                }
+            }
+        },
+        "generic_options": {
+            "title": "Generic options",
+            "type": "object",
+            "fa_icon": "fas fa-file-import",
+            "description": "Less common options for the pipeline, typically set in a config file.",
+            "help_text": "These options are common to all nf-core pipelines and allow you to customise some of the core preferences for how the pipeline runs.\n\nTypically these options would be set in a Nextflow config file loaded for all pipeline runs, such as `~/.nextflow/config`.",
+            "properties": {
+                "version": {
+                    "type": "boolean",
+                    "description": "Display version and exit.",
+                    "fa_icon": "fas fa-question-circle",
+                    "hidden": true
+                },
+                "publish_dir_mode": {
+                    "type": "string",
+                    "default": "copy",
+                    "description": "Method used to save pipeline results to output directory.",
+                    "help_text": "The Nextflow `publishDir` option specifies which intermediate files should be saved to the output directory. This option tells the pipeline what method should be used to move these files. See [Nextflow docs](https://www.nextflow.io/docs/latest/process.html#publishdir) for details.",
+                    "fa_icon": "fas fa-copy",
+                    "enum": ["symlink", "rellink", "link", "copy", "copyNoFollow", "move"],
+                    "hidden": true
+                },
+                "email_on_fail": {
+                    "type": "string",
+                    "description": "Email address for completion summary, only when pipeline fails.",
+                    "fa_icon": "fas fa-exclamation-triangle",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$",
+                    "help_text": "An email address to send a summary email to when the pipeline is completed - ONLY sent if the pipeline does not exit successfully.",
+                    "hidden": true
+                },
+                "plaintext_email": {
+                    "type": "boolean",
+                    "description": "Send plain-text email instead of HTML.",
+                    "fa_icon": "fas fa-remove-format",
+                    "hidden": true
+                },
+                "max_multiqc_email_size": {
+                    "type": "string",
+                    "description": "File size limit when attaching MultiQC reports to summary emails.",
+                    "pattern": "^\\d+(\\.\\d+)?\\.?\\s*(K|M|G|T)?B$",
+                    "default": "25.MB",
+                    "fa_icon": "fas fa-file-upload",
+                    "hidden": true
+                },
+                "monochrome_logs": {
+                    "type": "boolean",
+                    "description": "Do not use coloured log outputs.",
+                    "fa_icon": "fas fa-palette",
+                    "hidden": true
+                },
+                "hook_url": {
+                    "type": "string",
+                    "description": "Incoming hook URL for messaging service",
+                    "fa_icon": "fas fa-people-group",
+                    "help_text": "Incoming hook URL for messaging service. Currently, MS Teams and Slack are supported.",
+                    "hidden": true
+                },
+                "multiqc_config": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Custom config file to supply to MultiQC.",
+                    "fa_icon": "fas fa-cog",
+                    "hidden": true
+                },
+                "multiqc_logo": {
+                    "type": "string",
+                    "description": "Custom logo file to supply to MultiQC. File name must also be set in the MultiQC config file",
+                    "fa_icon": "fas fa-image",
+                    "hidden": true
+                },
+                "multiqc_methods_description": {
+                    "type": "string",
+                    "description": "Custom MultiQC yaml file containing HTML including a methods description.",
+                    "fa_icon": "fas fa-cog"
+                },
+                "validate_params": {
+                    "type": "boolean",
+                    "description": "Boolean whether to validate parameters against the schema at runtime",
+                    "default": true,
+                    "fa_icon": "fas fa-check-square",
+                    "hidden": true
+                },
+                "pipelines_testdata_base_path": {
+                    "type": "string",
+                    "fa_icon": "far fa-check-circle",
+                    "description": "Base URL or local path to location of pipeline test dataset files",
+                    "default": "https://raw.githubusercontent.com/nf-core/test-datasets/",
+                    "hidden": true
+                },
+                "trace_report_suffix": {
+                    "type": "string",
+                    "fa_icon": "far calendar",
+                    "description": "Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss.",
+                    "hidden": true
+                },
+                "help": {
+                    "type": ["boolean", "string"],
+                    "description": "Display the help message."
+                },
+                "help_full": {
+                    "type": "boolean",
+                    "description": "Display the full detailed help message."
+                },
+                "show_hidden": {
+                    "type": "boolean",
+                    "description": "Display hidden parameters in the help message (only works when --help or --help_full are provided)."
+                }
+            }
+        }
+    },
+    "allOf": [
+        {
+            "$ref": "#/$defs/input_output_options"
+        },
+        {
+            "$ref": "#/$defs/workflow_options"
+        },
+        {
+            "$ref": "#/$defs/reference_genome_options"
+        },
+        {
+            "$ref": "#/$defs/sv_calling_options"
+        },
+        {
+            "$ref": "#/$defs/sv_annotation_options"
+        },
+        {
+            "$ref": "#/$defs/snv_calling_options"
+        },
+        {
+            "$ref": "#/$defs/cnv_calling_options"
+        },
+        {
+            "$ref": "#/$defs/str_analysis_options"
+        },
+        {
+            "$ref": "#/$defs/output_options"
+        },
+        {
+            "$ref": "#/$defs/institutional_config_options"
+        },
+        {
+            "$ref": "#/$defs/generic_options"
+        }
+    ]
+}

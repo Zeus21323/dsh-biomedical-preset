@@ -225,29 +225,20 @@
 
           # ── skills ──────────────────────────────────────────────────────
           # 三个 provider 分工：
-          #   filesystem      → $DSH_HOME/skills 等用户自有技能（默认根）
-          #   skills/biomedical  → 30 个结构预测/组学/生信写作技能
-          #   skills/science-core → 33 个 nf-core/临床统计/证据与工作流技能
+          # 技能来源（合计 603 个）：
+          #   filesystem             → $DSH_HOME/skills 等用户自有技能（默认根，不受本包影响）
+          #   skills/omics            → 21 个（自建：变异检测/CNV-SV/ACMG/表观/甲基化/RNA 修饰/免疫组学/脂质组/糖组 + 官方文档整编）
+          #   skills/genomics          → 140 个：基因组/群体遗传/肿瘤基因组/临床基因组/液体活检/法医基因组
+          #   skills/omics-upstream             → 193 个：转录组/蛋白组/代谢组/表观组/空间组/多组学/单细胞/微生物组
+          #   skills/structure-drug    → 79 个：结构生物学/AI 药物发现/合成生物学/药物基因组学/生物基础模型
+          #   skills/clinical-imaging  → 36 个：精准医学/AI 医学影像/衰老与长寿
+          #   skills/methods           → 134 个：科研基础设施/方法学/网络系统生物学/免疫组学/生物医学科学
+          # 每个域是独立 provider：技能目录过大时可用 plugin_manager set_plugin 单独关闭某个域。
+
           - id: skill-filesystem
             name: '@deepseek-ai/dsh-skill-filesystem'
 
-          - id: bio-skills
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              providerName: biomedical
-              includeDefaultRoots: false
-              watch: true
-              bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/biomedical
-
-          - id: bio-core-skills
-            name: '@deepseek-ai/dsh-skill-filesystem'
-            config:
-              providerName: biomedical-core
-              includeDefaultRoots: false
-              watch: true
-              bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/science-core
-
-          # 组学技能（25）：变异检测/CNV-SV/ACMG/表观遗传/甲基化/RNA 修饰/免疫组学/脂质组/糖组/蛋白组/代谢组/单细胞/微生物组/空间病理
+          # 组学技能（21）：变异检测/CNV-SV/ACMG/表观遗传/甲基化/RNA 修饰/免疫组学/脂质组/糖组/蛋白组/代谢组/单细胞/微生物组/空间病理
           - id: omics-skills
             name: '@deepseek-ai/dsh-skill-filesystem'
             config:
@@ -255,6 +246,52 @@
               includeDefaultRoots: false
               watch: true
               bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/omics
+
+          # 140 个：基因组/群体遗传/肿瘤基因组/临床基因组/液体活检/法医基因组
+          - id: genomics-skills
+            name: '@deepseek-ai/dsh-skill-filesystem'
+            config:
+              providerName: genomics
+              includeDefaultRoots: false
+              watch: true
+              bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/genomics
+
+          # 193 个：转录组/蛋白组/代谢组/表观组/空间组/多组学/单细胞/微生物组
+          - id: omics-upstream-skills
+            name: '@deepseek-ai/dsh-skill-filesystem'
+            config:
+              providerName: omics-upstream
+              includeDefaultRoots: false
+              watch: true
+              bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/omics-upstream
+
+          # 79 个：结构生物学/AI 药物发现/合成生物学/药物基因组学/生物基础模型
+          - id: structure-skills
+            name: '@deepseek-ai/dsh-skill-filesystem'
+            config:
+              providerName: structure-drug
+              includeDefaultRoots: false
+              watch: true
+              bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/structure-drug
+
+          # 36 个：精准医学/AI 医学影像/衰老与长寿
+          - id: upstream-clinical-skills
+            name: '@deepseek-ai/dsh-skill-filesystem'
+            config:
+              providerName: clinical-imaging
+              includeDefaultRoots: false
+              watch: true
+              bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/clinical-imaging
+
+          # 134 个：科研基础设施/方法学/网络系统生物学/免疫组学/生物医学科学
+          - id: methods-skills
+            name: '@deepseek-ai/dsh-skill-filesystem'
+            config:
+              providerName: methods
+              includeDefaultRoots: false
+              watch: true
+              bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/methods
+
 
           - id: tool-skill
             name: '@deepseek-ai/dsh-tool-skill'

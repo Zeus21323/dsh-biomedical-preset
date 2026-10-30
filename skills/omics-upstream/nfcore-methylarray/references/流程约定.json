@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/methylarray",
+  "skill_id": "nfcore-methylarray",
+  "scientific_title": "甲基化芯片处理与差异分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/methylarray",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "d34f5311f6d120ef748dc501ac2a47d20ba6c327",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "62aa9110c491f50ef658d3fe4cec5bbf8919788f0e633bcd18ef64034deab4bf"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "8c25f092af1c227c15f2aa6d0fdd1f4ac26092d6612cb94a87f9582480967d2e",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/methylarray/d34f5311f6d120ef748dc501ac2a47d20ba6c327/LICENSE",
+      "sha256": "5668017a6226d7ef5b9f8fde0a60977b06612d063b4d75d6e82d99c11d563c42",
+      "bytes": 1080
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/methylarray/d34f5311f6d120ef748dc501ac2a47d20ba6c327/README.md",
+      "sha256": "4eed4934bbeb1584044cb5cfef77c15d604eb0ebbfb86021b4dcc5e00364ab04",
+      "bytes": 8849
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/methylarray/d34f5311f6d120ef748dc501ac2a47d20ba6c327/assets/schema_input.json",
+      "sha256": "8c25f092af1c227c15f2aa6d0fdd1f4ac26092d6612cb94a87f9582480967d2e",
+      "bytes": 1469
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/methylarray/d34f5311f6d120ef748dc501ac2a47d20ba6c327/docs/output.md",
+      "sha256": "7587f32b4121a2eb4c8e09c947545b83541b8b03d86fe084ae2c43f86218bb5e",
+      "bytes": 3476
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/methylarray/d34f5311f6d120ef748dc501ac2a47d20ba6c327/docs/usage.md",
+      "sha256": "4aa41b71774daa5e5501d76551d5bf58ee12216f74124a9bf16e7fd9beb96b8d",
+      "bytes": 14631
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/methylarray/d34f5311f6d120ef748dc501ac2a47d20ba6c327/main.nf",
+      "sha256": "d7653c6757deea14392bf7c50e57e6663bdfae78b9eae29e3519477c2e8c1e12",
+      "bytes": 3281
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/methylarray/d34f5311f6d120ef748dc501ac2a47d20ba6c327/nextflow.config",
+      "sha256": "27df08ba350bf3fd47a071013fc28bd36011fee32b3f036938d96d5e59be1780",
+      "bytes": 11148
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/methylarray/d34f5311f6d120ef748dc501ac2a47d20ba6c327/nextflow_schema.json",
+      "sha256": "62aa9110c491f50ef658d3fe4cec5bbf8919788f0e633bcd18ef64034deab4bf",
+      "bytes": 17821
+    },
+    {
+      "path": "workflows/methylarray.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/methylarray/d34f5311f6d120ef748dc501ac2a47d20ba6c327/workflows/methylarray.nf",
+      "sha256": "2720d673250afe9ce9f959da94577bc83877d9f7834c0230f371c89e7b29fb31",
+      "bytes": 10418
+    }
+  ]
+}

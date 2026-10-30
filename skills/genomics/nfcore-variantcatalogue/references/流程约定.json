@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/variantcatalogue",
+  "skill_id": "nfcore-variantcatalogue",
+  "scientific_title": "群体变异目录与频率汇总",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/variantcatalogue",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "0073caae753b27b1999aa56a029c0bfa722d21a7",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=22.10.1",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "816180107d6d4b26fc9c66c2eab219fda083206b6aa8f21ce5dbee08d3a0e1fa"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "de518f3754a708ddb58d71fefa3cc8c1701be41ea42958607728917bd4b06857",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/variantcatalogue/0073caae753b27b1999aa56a029c0bfa722d21a7/LICENSE",
+      "sha256": "748263383b6d481c1c76adad80662826c278df1b5535964532e62acfbad0c275",
+      "bytes": 1062
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/variantcatalogue/0073caae753b27b1999aa56a029c0bfa722d21a7/README.md",
+      "sha256": "ed58b6b7b6054f15089377e19ed74de47b4e8e1d56b43d229830edc533518308",
+      "bytes": 10286
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/variantcatalogue/0073caae753b27b1999aa56a029c0bfa722d21a7/assets/schema_input.json",
+      "sha256": "de518f3754a708ddb58d71fefa3cc8c1701be41ea42958607728917bd4b06857",
+      "bytes": 1407
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/variantcatalogue/0073caae753b27b1999aa56a029c0bfa722d21a7/docs/output.md",
+      "sha256": "f2f76bca0c5acfdda3f83a5112128b2d64c7de265c8057ded465252e705437ab",
+      "bytes": 4781
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/variantcatalogue/0073caae753b27b1999aa56a029c0bfa722d21a7/docs/usage.md",
+      "sha256": "89d3334bc5a3e1a0c146c6bf3dc5368234009f9846bebdd5ec24ee7a57f1b247",
+      "bytes": 14894
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/variantcatalogue/0073caae753b27b1999aa56a029c0bfa722d21a7/main.nf",
+      "sha256": "5757f166847065ca17a72be18896b7a97cc71af6bdaaf8d3991542a49dd61803",
+      "bytes": 2056
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/variantcatalogue/0073caae753b27b1999aa56a029c0bfa722d21a7/nextflow.config",
+      "sha256": "399aba9cff019ffda2c8bd98d7c5b26949226e675674913c8feedb1e25621860",
+      "bytes": 8175
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/variantcatalogue/0073caae753b27b1999aa56a029c0bfa722d21a7/nextflow_schema.json",
+      "sha256": "816180107d6d4b26fc9c66c2eab219fda083206b6aa8f21ce5dbee08d3a0e1fa",
+      "bytes": 16168
+    },
+    {
+      "path": "workflows/variantcatalogue.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/variantcatalogue/0073caae753b27b1999aa56a029c0bfa722d21a7/workflows/variantcatalogue.nf",
+      "sha256": "4269c2dd93dd75b6fef404e5b6e3b93abd441a3b0fbd22710d4c8dade44df854",
+      "bytes": 18620
+    }
+  ]
+}

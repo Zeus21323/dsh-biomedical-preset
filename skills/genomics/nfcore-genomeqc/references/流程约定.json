@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/genomeqc",
+  "skill_id": "nfcore-genomeqc",
+  "scientific_title": "多基因组与注释质量比较",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/genomeqc",
+    "archived": false,
+    "revision_label": "1.0.0",
+    "commit": "e1aa8943b4752b9e540b2370aa2454ca9ba04742",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "5e0f9917fbdb83737ca0d0662832fbc390d60f1ac4c26014a4570bdb21255617"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "08c1baca06b2f02f4b7bf03551d05085f0dca8100b563561ed1495db27fe4f47",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeqc/e1aa8943b4752b9e540b2370aa2454ca9ba04742/LICENSE",
+      "sha256": "5c39c2e17a6858359ccc726b2420b90dc1fe89f47c2907e6dd4eb5605a5090a3",
+      "bytes": 1077
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeqc/e1aa8943b4752b9e540b2370aa2454ca9ba04742/README.md",
+      "sha256": "0c7cd3c0b474d33e8505f8032da0a510c930b32a44bec68c9e1dc4af33c497b9",
+      "bytes": 11504
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeqc/e1aa8943b4752b9e540b2370aa2454ca9ba04742/assets/schema_input.json",
+      "sha256": "08c1baca06b2f02f4b7bf03551d05085f0dca8100b563561ed1495db27fe4f47",
+      "bytes": 2326
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeqc/e1aa8943b4752b9e540b2370aa2454ca9ba04742/docs/output.md",
+      "sha256": "2f42c63f207e9c89f5d3f8d68f4576c559476ab556a12bc71f4086d58f416bb4",
+      "bytes": 26637
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeqc/e1aa8943b4752b9e540b2370aa2454ca9ba04742/docs/usage.md",
+      "sha256": "c5c64d81be4ee25d1e0ae0ab2688377f8e052cd2b868208584caa1128171b180",
+      "bytes": 30264
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeqc/e1aa8943b4752b9e540b2370aa2454ca9ba04742/main.nf",
+      "sha256": "eb6e3a7aed3e7f076708119a8a0f612940851e64687c085eb464006e5e414c64",
+      "bytes": 3406
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeqc/e1aa8943b4752b9e540b2370aa2454ca9ba04742/nextflow.config",
+      "sha256": "dba1dcde6a2cfe6f99be60cea42ee96ec02136cc2f29578473b47ca46b9be0ea",
+      "bytes": 16822
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeqc/e1aa8943b4752b9e540b2370aa2454ca9ba04742/nextflow_schema.json",
+      "sha256": "5e0f9917fbdb83737ca0d0662832fbc390d60f1ac4c26014a4570bdb21255617",
+      "bytes": 30342
+    },
+    {
+      "path": "workflows/genomeqc.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/genomeqc/e1aa8943b4752b9e540b2370aa2454ca9ba04742/workflows/genomeqc.nf",
+      "sha256": "3882c0d28df929bb15f8b386513e181a3cd34e955a213e1d5a3a5e5d0f8d80a4",
+      "bytes": 17623
+    }
+  ]
+}

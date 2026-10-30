@@ -1,0 +1,23 @@
+{
+  "exposure": null,
+  "outcome": null,
+  "instruments": null,
+  "output": null,
+  "exposure_name": null,
+  "outcome_name": null,
+  "exposure_unit": null,
+  "outcome_unit": null,
+  "build_exposure": null,
+  "build_outcome": null,
+  "ancestry_exposure": null,
+  "ancestry_outcome": null,
+  "sample_overlap": null,
+  "limitations": null,
+  "independent_instruments_reviewed": false,
+  "ld_reference": null,
+  "clumping_record": null,
+  "harmonise_action": 2,
+  "seed": 20260908,
+  "primary_method": "mr_ivw",
+  "methods": ["mr_ivw", "mr_egger_regression", "mr_weighted_median", "mr_weighted_mode"]
+}

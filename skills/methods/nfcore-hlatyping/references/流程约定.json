@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/hlatyping",
+  "skill_id": "nfcore-hlatyping",
+  "scientific_title": "测序HLA高分辨分型",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/hlatyping",
+    "archived": false,
+    "revision_label": "2.2.0",
+    "commit": "3237d20e7e611d8bbf8c37e637202dfe8a23e996",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.04.2",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "467e4e566ff84d09d078905aedb63085ac8f47b37808c40c854daef30307350d"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "9b5e8c411f4eddb285b55d1191b2e664c2cc202115cde17f378bb66fb57b6e36",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/hlatyping/3237d20e7e611d8bbf8c37e637202dfe8a23e996/LICENSE",
+      "sha256": "9322914032f8701f1810acc7c7a69907ccd07f892ae1608ac178de4579e6f3bd",
+      "bytes": 1078
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/hlatyping/3237d20e7e611d8bbf8c37e637202dfe8a23e996/README.md",
+      "sha256": "b826954b2fc2f24da646d2669dcb180292cc93008b89d54e7a44fc12efeaeed0",
+      "bytes": 9032
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/hlatyping/3237d20e7e611d8bbf8c37e637202dfe8a23e996/assets/schema_input.json",
+      "sha256": "9b5e8c411f4eddb285b55d1191b2e664c2cc202115cde17f378bb66fb57b6e36",
+      "bytes": 1922
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/hlatyping/3237d20e7e611d8bbf8c37e637202dfe8a23e996/docs/output.md",
+      "sha256": "09e647d59d43e802e5f48936dbb7233682e99af97be171534712367fb029665e",
+      "bytes": 7135
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/hlatyping/3237d20e7e611d8bbf8c37e637202dfe8a23e996/docs/usage.md",
+      "sha256": "f708b398560660fa0d5c9f611a1a83ff7e15d08ac7431fce0a7f2b97bfe564b4",
+      "bytes": 17213
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/hlatyping/3237d20e7e611d8bbf8c37e637202dfe8a23e996/main.nf",
+      "sha256": "fce9a450981bf7d210ffbc4ef68073629d86a391a7fa4f2f4fcd4ad6a7f9b576",
+      "bytes": 3022
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/hlatyping/3237d20e7e611d8bbf8c37e637202dfe8a23e996/nextflow.config",
+      "sha256": "1bb0b34ccad1ad8442056921dead78ada8188a0f648a4f927341a188a0dac7d4",
+      "bytes": 12777
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/hlatyping/3237d20e7e611d8bbf8c37e637202dfe8a23e996/nextflow_schema.json",
+      "sha256": "467e4e566ff84d09d078905aedb63085ac8f47b37808c40c854daef30307350d",
+      "bytes": 18395
+    },
+    {
+      "path": "workflows/hlatyping.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/hlatyping/3237d20e7e611d8bbf8c37e637202dfe8a23e996/workflows/hlatyping.nf",
+      "sha256": "33086e80ec1713bd58d9fb3055681797e84d01029d9a5fda81b43003b1eae5bc",
+      "bytes": 9781
+    }
+  ]
+}

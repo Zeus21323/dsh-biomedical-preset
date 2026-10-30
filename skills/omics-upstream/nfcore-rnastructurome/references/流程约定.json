@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/rnastructurome",
+  "skill_id": "nfcore-rnastructurome",
+  "scientific_title": "RNA化学结构探测数据分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/rnastructurome",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "19c952892031ce026ccad54617dcca47bfea2c97",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "d9dd35c9da694ad2548895dd5f0bd2235e6b203695ad72a9ec43e0def132a33a"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "e179d02fe4b32b22ed040a28b413ed05a744157e33b0c2c388a5518c3bd2b6f1",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/rnastructurome/19c952892031ce026ccad54617dcca47bfea2c97/LICENSE",
+      "sha256": "d4dc385bef5f565fa7a4d6708d6770ed50275479aaa40b33639eddbdc1a09d34",
+      "bytes": 1083
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/rnastructurome/19c952892031ce026ccad54617dcca47bfea2c97/README.md",
+      "sha256": "fbe1ea779edd6407d7663d76d420b4ab335420e336d160a9355af2c2e7a4cd39",
+      "bytes": 14146
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/rnastructurome/19c952892031ce026ccad54617dcca47bfea2c97/assets/schema_input.json",
+      "sha256": "e179d02fe4b32b22ed040a28b413ed05a744157e33b0c2c388a5518c3bd2b6f1",
+      "bytes": 5377
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/rnastructurome/19c952892031ce026ccad54617dcca47bfea2c97/docs/output.md",
+      "sha256": "e477841f702975997e6b73b27a32a5046b6374aab110fc11dfd180d243cc220d",
+      "bytes": 38618
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/rnastructurome/19c952892031ce026ccad54617dcca47bfea2c97/docs/usage.md",
+      "sha256": "ad440a602e3d13d7f4362fb1763e4bd1898a5746fbc85339a33f60c2a72086b6",
+      "bytes": 49334
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/rnastructurome/19c952892031ce026ccad54617dcca47bfea2c97/main.nf",
+      "sha256": "c24aa42954bb5e1a498a9bf49fdca3248d49652866739eae537464979b36a79d",
+      "bytes": 4548
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/rnastructurome/19c952892031ce026ccad54617dcca47bfea2c97/nextflow.config",
+      "sha256": "27677f70cb8a21c87d30e596bd80c93199ac648ffc9364abd3fde0d96d1ca20b",
+      "bytes": 39080
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/rnastructurome/19c952892031ce026ccad54617dcca47bfea2c97/nextflow_schema.json",
+      "sha256": "d9dd35c9da694ad2548895dd5f0bd2235e6b203695ad72a9ec43e0def132a33a",
+      "bytes": 62900
+    },
+    {
+      "path": "workflows/rnastructurome.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/rnastructurome/19c952892031ce026ccad54617dcca47bfea2c97/workflows/rnastructurome.nf",
+      "sha256": "374f63ea3f894e81ed5042f4a016ef59608af786494544a254e40ed8dbd0144c",
+      "bytes": 19665
+    },
+    {
+      "path": "workflows/rnastructurome_functions.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/rnastructurome/19c952892031ce026ccad54617dcca47bfea2c97/workflows/rnastructurome_functions.nf",
+      "sha256": "bb602ea35a4bf237253deccaf44bd322dd927497e369dec0754f4d60774f83e8",
+      "bytes": 37540
+    }
+  ]
+}

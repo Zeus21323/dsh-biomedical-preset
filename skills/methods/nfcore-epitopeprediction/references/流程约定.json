@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/epitopeprediction",
+  "skill_id": "nfcore-epitopeprediction",
+  "scientific_title": "抗原表位预测与注释",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/epitopeprediction",
+    "archived": false,
+    "revision_label": "3.1.1",
+    "commit": "48f2eaaeb9b2226489d60a69ce1796c2db4642f2",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "0e8122c70a3af414249bf5e65be658ff8ed5837217a9469fd87e267355282a0a"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "3a83aa7423ce53ae23d230c0bb1bb72b9e8a18d3c38a552fbf4c843e858788ce",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/epitopeprediction/48f2eaaeb9b2226489d60a69ce1796c2db4642f2/LICENSE",
+      "sha256": "33e18139928f0e799c52e9753c65e5e42f60bf4583882c0f4fec3f1ff0a6b743",
+      "bytes": 1086
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/epitopeprediction/48f2eaaeb9b2226489d60a69ce1796c2db4642f2/README.md",
+      "sha256": "9e3456335f415c992b91f6660e96cf25bc7e3b6da130dd5cfc1721b2d7418340",
+      "bytes": 8898
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/epitopeprediction/48f2eaaeb9b2226489d60a69ce1796c2db4642f2/assets/schema_input.json",
+      "sha256": "3a83aa7423ce53ae23d230c0bb1bb72b9e8a18d3c38a552fbf4c843e858788ce",
+      "bytes": 2174
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/epitopeprediction/48f2eaaeb9b2226489d60a69ce1796c2db4642f2/docs/output.md",
+      "sha256": "ca1d6ddb824b5079511e76f637b7f896739d7981bb40983a709063685ec54837",
+      "bytes": 8971
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/epitopeprediction/48f2eaaeb9b2226489d60a69ce1796c2db4642f2/docs/usage.md",
+      "sha256": "ee47dc5d1755dd8f9c1739a775fe76b0b8e310099feaed0d81a552b8e0f08677",
+      "bytes": 15686
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/epitopeprediction/48f2eaaeb9b2226489d60a69ce1796c2db4642f2/main.nf",
+      "sha256": "541f8d1db08e4c88bcf745d5ab0e9a6052ff66ff4a1db0b7b3935f25cd9b1ad4",
+      "bytes": 3135
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/epitopeprediction/48f2eaaeb9b2226489d60a69ce1796c2db4642f2/nextflow.config",
+      "sha256": "60cb8e7472d3d3696687538efed1bb3c1008699d3b648c73ce13b06260bfaf32",
+      "bytes": 15109
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/epitopeprediction/48f2eaaeb9b2226489d60a69ce1796c2db4642f2/nextflow_schema.json",
+      "sha256": "0e8122c70a3af414249bf5e65be658ff8ed5837217a9469fd87e267355282a0a",
+      "bytes": 21888
+    },
+    {
+      "path": "workflows/epitopeprediction.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/epitopeprediction/48f2eaaeb9b2226489d60a69ce1796c2db4642f2/workflows/epitopeprediction.nf",
+      "sha256": "e5fb61cf49e01355d1017073be324e5c69ed19f5865bde76e4b67a1d0721b24c",
+      "bytes": 10210
+    }
+  ]
+}

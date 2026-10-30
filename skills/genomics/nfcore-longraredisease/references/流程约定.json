@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/longraredisease",
+  "skill_id": "nfcore-longraredisease",
+  "scientific_title": "长读长罕见病变异分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/longraredisease",
+    "archived": false,
+    "revision_label": "1.0.0",
+    "commit": "f40870fcbcf2e9fc29b623b848487789d487ed4a",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "69575cbdce5d40a5e4a78c39e646db4f90c2c153ec2ee23c46455fed514546d9"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "d5d53b5a23bd36776ecd77be47b705c7de525cf6cb450ffc365d031c8a21a54a",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/longraredisease/f40870fcbcf2e9fc29b623b848487789d487ed4a/LICENSE",
+      "sha256": "bf11e88abf5967ba17be17fedcd8606b941df1b252bc93787361e73e0e3fea6e",
+      "bytes": 1084
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/longraredisease/f40870fcbcf2e9fc29b623b848487789d487ed4a/README.md",
+      "sha256": "6e4a9aa97837a36811477ef61d4c156449994747380e2177ae886fb2078a0ccc",
+      "bytes": 6816
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/longraredisease/f40870fcbcf2e9fc29b623b848487789d487ed4a/assets/schema_input.json",
+      "sha256": "d5d53b5a23bd36776ecd77be47b705c7de525cf6cb450ffc365d031c8a21a54a",
+      "bytes": 4543
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/longraredisease/f40870fcbcf2e9fc29b623b848487789d487ed4a/docs/output.md",
+      "sha256": "75d02226aeb88ef44ed683ce57b32cdf069a9ef541b085b82ca66872e702854d",
+      "bytes": 30838
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/longraredisease/f40870fcbcf2e9fc29b623b848487789d487ed4a/docs/usage.md",
+      "sha256": "a787ea89b9bcba948dfce37b980401248f6b35e279130323ca7568a837da7919",
+      "bytes": 9041
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/longraredisease/f40870fcbcf2e9fc29b623b848487789d487ed4a/main.nf",
+      "sha256": "e7122627a5c7434d1a0affbe468061bf601f6164fc3432225dfb858b598aadd7",
+      "bytes": 2794
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/longraredisease/f40870fcbcf2e9fc29b623b848487789d487ed4a/nextflow.config",
+      "sha256": "02315802f473802f3235febbe0b76e6f90e02f51be65f89fb643300e9e459fd0",
+      "bytes": 15095
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/longraredisease/f40870fcbcf2e9fc29b623b848487789d487ed4a/nextflow_schema.json",
+      "sha256": "69575cbdce5d40a5e4a78c39e646db4f90c2c153ec2ee23c46455fed514546d9",
+      "bytes": 33400
+    },
+    {
+      "path": "workflows/longraredisease.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/longraredisease/f40870fcbcf2e9fc29b623b848487789d487ed4a/workflows/longraredisease.nf",
+      "sha256": "63bdac49c95b11d326068e8918887ed23e24bb0d88fb3e8f876dd295a8483e03",
+      "bytes": 30927
+    }
+  ]
+}

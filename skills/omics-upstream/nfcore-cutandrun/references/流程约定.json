@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/cutandrun",
+  "skill_id": "nfcore-cutandrun",
+  "scientific_title": "CUT&RUN与CUT&Tag染色质定位",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/cutandrun",
+    "archived": false,
+    "revision_label": "3.2.2",
+    "commit": "6e1125d4fee4ea7c8b70ed836bb0e92a89e3305f",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=23.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "3fcd1deec9eaada1e93ca34a99509f69000b1805604ce6ae50caa1a24268eeef"
+    },
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/cutandrun/6e1125d4fee4ea7c8b70ed836bb0e92a89e3305f/LICENSE",
+      "sha256": "99e24a3a76d9d0c964d73fef3070e7a9f8f1557c1c06511ecab9a8b41a3e840e",
+      "bytes": 1102
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/cutandrun/6e1125d4fee4ea7c8b70ed836bb0e92a89e3305f/README.md",
+      "sha256": "327177d4797cf0c7637d50f5b96fd36a3e1d9157fc54ab27901a62cf82895538",
+      "bytes": 10136
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/cutandrun/6e1125d4fee4ea7c8b70ed836bb0e92a89e3305f/docs/output.md",
+      "sha256": "df7d3ce314ad391d85d35d14aace94dd68bdbc3049bf845c5fcf2633653615ba",
+      "bytes": 34607
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/cutandrun/6e1125d4fee4ea7c8b70ed836bb0e92a89e3305f/docs/usage.md",
+      "sha256": "0df034c4330b0b253bfe7584e1a76f6bf9cfd30651b8307d4fcc88f10f99e456",
+      "bytes": 22107
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/cutandrun/6e1125d4fee4ea7c8b70ed836bb0e92a89e3305f/main.nf",
+      "sha256": "da9842d2c1c826a786edc0e10fc9f06e7294c6aea9226b7cc942f3e01a9fa917",
+      "bytes": 3317
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/cutandrun/6e1125d4fee4ea7c8b70ed836bb0e92a89e3305f/nextflow.config",
+      "sha256": "10f4fc11b99a4e0e0a839396d7ff95545204435e404585ebf2aaf445d4dfd25d",
+      "bytes": 15374
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/cutandrun/6e1125d4fee4ea7c8b70ed836bb0e92a89e3305f/nextflow_schema.json",
+      "sha256": "3fcd1deec9eaada1e93ca34a99509f69000b1805604ce6ae50caa1a24268eeef",
+      "bytes": 37178
+    },
+    {
+      "path": "workflows/cutandrun.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/cutandrun/6e1125d4fee4ea7c8b70ed836bb0e92a89e3305f/workflows/cutandrun.nf",
+      "sha256": "0cca22d4e3cd388b8c696c53d8028889c0670334bd2cea6cc1a325d89938e0b8",
+      "bytes": 40128
+    }
+  ]
+}

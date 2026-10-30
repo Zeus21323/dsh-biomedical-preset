@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/pacsomatic",
+  "skill_id": "nfcore-pacsomatic",
+  "scientific_title": "PacBio肿瘤正常配对体细胞分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/pacsomatic",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "24c84cb371b0339c1d65a4de9451671945e19772",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=24.04.2",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "df51e8b60e92dc7e678692f3e9f6e0ced0f5a263b99c69a8dc8ca2ba741374da"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "5d11b78dd740159a916b8cab17a3949ca7aebd4adec56a240c8f5336fb789e06",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/pacsomatic/24c84cb371b0339c1d65a4de9451671945e19772/LICENSE",
+      "sha256": "c8b0b2335775e3219a3cb35a4505afbdeb7167d4dc9bf32492ae71bc0aeadc36",
+      "bytes": 1079
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/pacsomatic/24c84cb371b0339c1d65a4de9451671945e19772/README.md",
+      "sha256": "ece648df07f5f81712d39612762a4fd667edb75db085fcb69954515b64237d2d",
+      "bytes": 10800
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/pacsomatic/24c84cb371b0339c1d65a4de9451671945e19772/assets/schema_input.json",
+      "sha256": "5d11b78dd740159a916b8cab17a3949ca7aebd4adec56a240c8f5336fb789e06",
+      "bytes": 2148
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/pacsomatic/24c84cb371b0339c1d65a4de9451671945e19772/docs/output.md",
+      "sha256": "78027342ef7f4f0d220d37ff5db3adef0b4dcbd8a3d8ae8d6890e01679ae287f",
+      "bytes": 18935
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/pacsomatic/24c84cb371b0339c1d65a4de9451671945e19772/docs/usage.md",
+      "sha256": "585a125bfefd037a71539d56f5db6023b11cfbb406cd8563c3a0ddc99f401595",
+      "bytes": 13045
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/pacsomatic/24c84cb371b0339c1d65a4de9451671945e19772/main.nf",
+      "sha256": "471d791fa91f36d63aa8afb3a24999be27aa2274a5e56fbb57b5fb19c9fbb2dc",
+      "bytes": 3070
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/pacsomatic/24c84cb371b0339c1d65a4de9451671945e19772/nextflow.config",
+      "sha256": "7cec323a9db28783dc836eb7311bfa4427b99cfe6e5a767ce41cc55fd61f252d",
+      "bytes": 14212
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/pacsomatic/24c84cb371b0339c1d65a4de9451671945e19772/nextflow_schema.json",
+      "sha256": "df51e8b60e92dc7e678692f3e9f6e0ced0f5a263b99c69a8dc8ca2ba741374da",
+      "bytes": 34789
+    },
+    {
+      "path": "workflows/pacsomatic.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/pacsomatic/24c84cb371b0339c1d65a4de9451671945e19772/workflows/pacsomatic.nf",
+      "sha256": "4b47bce505431511f0d7b9cedfd2a1b8a4662675bb874df045924e9c4ac8d1a4",
+      "bytes": 17520
+    }
+  ]
+}

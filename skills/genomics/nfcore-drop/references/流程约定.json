@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/drop",
+  "skill_id": "nfcore-drop",
+  "scientific_title": "罕见病RNA异常表达与剪接筛查",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/drop",
+    "archived": false,
+    "revision_label": "1.0.0",
+    "commit": "20388350d242746f8e799b28c3ae80421627b077",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "70eec1bd757eb4d3f230575fc73b72d29636d9b7500e7e73e42e4b9b6e20230c"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_genes_to_test.json",
+        "sha256": "be79c12fe57e5b6f0333ae23bfbf11828fb112543c69ed4929d0a1c2552353df",
+        "parameters": [
+          "ae_genes_to_test",
+          "as_genes_to_test"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/drop/20388350d242746f8e799b28c3ae80421627b077/LICENSE",
+      "sha256": "50f906e4f3296cd4c25a7b8dceaf48c3d467a0f35fb8c6515d737eb491f1ed3d",
+      "bytes": 1073
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/drop/20388350d242746f8e799b28c3ae80421627b077/README.md",
+      "sha256": "6bbd659aa3fda2d62df1aeeac18bc2da1d4c161067a5c8e5591105ab41d6c92c",
+      "bytes": 8878
+    },
+    {
+      "path": "assets/schema_genes_to_test.json",
+      "url": "https://raw.githubusercontent.com/nf-core/drop/20388350d242746f8e799b28c3ae80421627b077/assets/schema_genes_to_test.json",
+      "sha256": "be79c12fe57e5b6f0333ae23bfbf11828fb112543c69ed4929d0a1c2552353df",
+      "bytes": 1237
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/drop/20388350d242746f8e799b28c3ae80421627b077/docs/output.md",
+      "sha256": "73aba68d904b5a118124b13f14540fd1c8bee019fea252d292d3684365a89389",
+      "bytes": 6411
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/drop/20388350d242746f8e799b28c3ae80421627b077/docs/usage.md",
+      "sha256": "0b8acb9f2a84174ee7cec7efc2962e4ba3e9619f34aa4e5a17601c8af4769803",
+      "bytes": 26780
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/drop/20388350d242746f8e799b28c3ae80421627b077/main.nf",
+      "sha256": "a7d6384a79f2d3cae763a34c80029633db08d10947655a0e480b9833ce845631",
+      "bytes": 6038
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/drop/20388350d242746f8e799b28c3ae80421627b077/nextflow.config",
+      "sha256": "14ccda0b54ab450941cc32779409939fefe51b8dade609d2a34fc5ec77d8fd3e",
+      "bytes": 14972
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/drop/20388350d242746f8e799b28c3ae80421627b077/nextflow_schema.json",
+      "sha256": "70eec1bd757eb4d3f230575fc73b72d29636d9b7500e7e73e42e4b9b6e20230c",
+      "bytes": 33899
+    },
+    {
+      "path": "workflows/drop.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/drop/20388350d242746f8e799b28c3ae80421627b077/workflows/drop.nf",
+      "sha256": "7eb5823e9554ed813a9b57c4d72bccc77b5d75d1b260e4c3cb006c158c8ac945",
+      "bytes": 11260
+    }
+  ]
+}

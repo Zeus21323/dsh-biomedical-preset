@@ -1,0 +1,27 @@
+{
+  "version": "3.10.1",
+  "official_release_base": "https://github.com/jgm/pandoc/releases/download/{version}/{asset}",
+  "verified_from": "https://api.github.com/repos/jgm/pandoc/releases/tags/3.10.1",
+  "assets": {
+    "darwin-arm64": {
+      "filename": "pandoc-3.10.1-arm64-macOS.zip",
+      "sha256": "8607160694a70ed9aa63776caa44acef3afb729c379c7c283724b7e27455bfda"
+    },
+    "darwin-x86_64": {
+      "filename": "pandoc-3.10.1-x86_64-macOS.zip",
+      "sha256": "76430dd0ce5305fc4b91d8c0d5c22a00c8d2197ad3cef3937f65048f087164f7"
+    },
+    "linux-arm64": {
+      "filename": "pandoc-3.10.1-linux-arm64.tar.gz",
+      "sha256": "cd3963da375793a4804c65ae538b4f7b9c23f87cac7f6c74a1cf5e2fff7e8d59"
+    },
+    "linux-x86_64": {
+      "filename": "pandoc-3.10.1-linux-amd64.tar.gz",
+      "sha256": "72948bf5784f560d5ad1876709daca27e0667f262da727bb33f77b58e52df2f5"
+    },
+    "windows-x86_64": {
+      "filename": "pandoc-3.10.1-windows-x86_64.zip",
+      "sha256": "4725a1883e2171c2e181e6fd45003acb59ca4e9cbe031fdd3b79ef0d697d36aa"
+    }
+  }
+}

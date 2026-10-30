@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/seqinspector",
+  "skill_id": "nfcore-seqinspector",
+  "scientific_title": "测序数据专用质量检查",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/seqinspector",
+    "archived": false,
+    "revision_label": "1.1.2",
+    "commit": "6aa08aabb00cdbb0f5b62adf2749b472e794ba04",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "ee1fb4b4125acc9b59f0f0bfa2761551fa4d0df1fed02a84065e4c7ea933ad23"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "c38a8bcd4fbd749b0c4f54009f8d7369abf0a6f57421338b6873c4c2325b908f",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/seqinspector/6aa08aabb00cdbb0f5b62adf2749b472e794ba04/LICENSE",
+      "sha256": "e7ac2fd22aa8f07de525364a1518b5855a3c0ddc79fb7fc6868160bd072078b7",
+      "bytes": 1081
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/seqinspector/6aa08aabb00cdbb0f5b62adf2749b472e794ba04/README.md",
+      "sha256": "6678988ea28eda144100a5ac2d1b758f6b68481afb050351184cf4d85636f254",
+      "bytes": 18360
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/seqinspector/6aa08aabb00cdbb0f5b62adf2749b472e794ba04/assets/schema_input.json",
+      "sha256": "c38a8bcd4fbd749b0c4f54009f8d7369abf0a6f57421338b6873c4c2325b908f",
+      "bytes": 2385
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/seqinspector/6aa08aabb00cdbb0f5b62adf2749b472e794ba04/docs/output.md",
+      "sha256": "e4b2e4525ca1b47495931589a08a043f9740b1596cdd415fd366b256c1dce697",
+      "bytes": 20074
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/seqinspector/6aa08aabb00cdbb0f5b62adf2749b472e794ba04/docs/usage.md",
+      "sha256": "d9fe1d62e8fd21c984c149c34927ac8b010c2da7ac2c9d2fd8063858829ad541",
+      "bytes": 20832
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/seqinspector/6aa08aabb00cdbb0f5b62adf2749b472e794ba04/main.nf",
+      "sha256": "85a34da848b39c15e010f337712693b83230d5189c2fad5466130a05627d08e9",
+      "bytes": 8584
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/seqinspector/6aa08aabb00cdbb0f5b62adf2749b472e794ba04/nextflow.config",
+      "sha256": "f83a32983fb4d5477676f81868ad755f3b9df2d3505e234b96bf54e58cf2a08a",
+      "bytes": 16751
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/seqinspector/6aa08aabb00cdbb0f5b62adf2749b472e794ba04/nextflow_schema.json",
+      "sha256": "ee1fb4b4125acc9b59f0f0bfa2761551fa4d0df1fed02a84065e4c7ea933ad23",
+      "bytes": 25536
+    },
+    {
+      "path": "workflows/seqinspector.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/seqinspector/6aa08aabb00cdbb0f5b62adf2749b472e794ba04/workflows/seqinspector.nf",
+      "sha256": "05bed88702f0af82033a4e0d314e8b6495056cbfca8d1b45b5c71f50ccc6e0d4",
+      "bytes": 19685
+    }
+  ]
+}

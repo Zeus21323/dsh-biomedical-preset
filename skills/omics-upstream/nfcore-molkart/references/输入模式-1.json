@@ -1,0 +1,44 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/molkart/master/assets/schema_input.json",
+    "title": "nf-core/molkart pipeline - params.input schema",
+    "description": "Schema for the file provided with params.input",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "sample": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "errorMessage": "Sample name must be provided and cannot contain spaces"
+            },
+            "nuclear_image": {
+                "type": "string",
+                "pattern": "^\\S+\\.(tif|tiff)$",
+                "format": "file-path",
+                "errorMessage": "Nuclear image must be provided, cannot contain spaces and must have extension '.tif' or '.tiff'"
+            },
+            "spot_table": {
+                "type": "string",
+                "pattern": "^\\S+\\.(txt|tsv)$",
+                "format": "file-path",
+                "errorMessage": "Spot table must be provided, has to have shape x,y,z,gene with sep = '\t' without a header, cannot contain spaces and must have extension '.txt'"
+            },
+            "membrane_image": {
+                "errorMessage": "Membrane image is optional, and cannot contain spaces and must have extension '.tif' or '.tiff'",
+                "anyOf": [
+                    {
+                        "type": "string",
+                        "pattern": "^\\S+\\.(tif|tiff)$",
+                        "format": "file-path"
+                    },
+                    {
+                        "type": "string",
+                        "maxLength": 0
+                    }
+                ]
+            }
+        },
+        "required": ["sample", "nuclear_image", "spot_table"]
+    }
+}

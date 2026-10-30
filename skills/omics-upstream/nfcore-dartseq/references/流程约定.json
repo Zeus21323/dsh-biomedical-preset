@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/dartseq",
+  "skill_id": "nfcore-dartseq",
+  "scientific_title": "DART-seq RNA m6A候选检测",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/dartseq",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "bad48a26b500363959f09afb804d0dd09d2a1431",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "4c9c99aaa845b5bbd5ccbe80ccb039858f8fab20dcc7041b8b2361f512687587"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "788107c2e56678f3ae3897df6965b8a3f31c9be30327ed045eafb84a5498cb39",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/dartseq/bad48a26b500363959f09afb804d0dd09d2a1431/LICENSE",
+      "sha256": "22f9c647ad386956e8f8ab4bf696ea4e95af5114415a78c1d8e2a0d99d2d006e",
+      "bytes": 1076
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/dartseq/bad48a26b500363959f09afb804d0dd09d2a1431/README.md",
+      "sha256": "9fbba8c68e392918238c6305fa9d71ea19d20567705d4b96ba9943fc8b7b5b29",
+      "bytes": 6777
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/dartseq/bad48a26b500363959f09afb804d0dd09d2a1431/assets/schema_input.json",
+      "sha256": "788107c2e56678f3ae3897df6965b8a3f31c9be30327ed045eafb84a5498cb39",
+      "bytes": 1557
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/dartseq/bad48a26b500363959f09afb804d0dd09d2a1431/docs/output.md",
+      "sha256": "7b8f608f23ec2159a4e7bb56c628d8b8bccaa24ea0c20cd825580dabf69e8971",
+      "bytes": 3615
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/dartseq/bad48a26b500363959f09afb804d0dd09d2a1431/docs/usage.md",
+      "sha256": "9bdc465d341393bccbe5b086923f3f348a95dda20454ef1f5e0c5bb03b963657",
+      "bytes": 17479
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/dartseq/bad48a26b500363959f09afb804d0dd09d2a1431/main.nf",
+      "sha256": "b88afdc3bd00ec2d3ecab4402ecaa3caeee4ae6c6de32489b170ed3da04e419d",
+      "bytes": 3238
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/dartseq/bad48a26b500363959f09afb804d0dd09d2a1431/nextflow.config",
+      "sha256": "9b4a748a31444d6eba2efd28752d88f3c8e1d163b24e3291c14e2d2d949b7d3c",
+      "bytes": 15487
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/dartseq/bad48a26b500363959f09afb804d0dd09d2a1431/nextflow_schema.json",
+      "sha256": "4c9c99aaa845b5bbd5ccbe80ccb039858f8fab20dcc7041b8b2361f512687587",
+      "bytes": 24596
+    },
+    {
+      "path": "workflows/dartseq.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/dartseq/bad48a26b500363959f09afb804d0dd09d2a1431/workflows/dartseq.nf",
+      "sha256": "47874e76968ae279b90691812f6f27f5a6a135dab7d41a75c288f78d24fd2922",
+      "bytes": 19844
+    }
+  ]
+}

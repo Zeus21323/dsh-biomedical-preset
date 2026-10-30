@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/diaproteomics",
+  "skill_id": "nfcore-diaproteomics",
+  "scientific_title": "DIA质谱谱图库搜索与定量",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/diaproteomics",
+    "archived": false,
+    "revision_label": "1.2.4",
+    "commit": "58b18dd02583ad4288949aa31471bcec375705cc",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": ">=20.04.0",
+    "legacy_dsl_observed": true,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "e659b2e15656833e669715539bf4a65c45404a928fb9ba02edca618c347e2361"
+    },
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/diaproteomics/58b18dd02583ad4288949aa31471bcec375705cc/LICENSE",
+      "sha256": "51583033aa139a7cff83b96437341f3d74ffa5e1b380aaea8f0da8a288dd12fd",
+      "bytes": 1065
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/diaproteomics/58b18dd02583ad4288949aa31471bcec375705cc/README.md",
+      "sha256": "c7c5e34333281ab5ca48a5a3800de7efe3d883f1f8be265d93c2092cc161d6e8",
+      "bytes": 7698
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/diaproteomics/58b18dd02583ad4288949aa31471bcec375705cc/docs/output.md",
+      "sha256": "965410e2df5ec1db6add7345457e4781943f43205e05f864b12b1d3254abf74b",
+      "bytes": 3679
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/diaproteomics/58b18dd02583ad4288949aa31471bcec375705cc/docs/usage.md",
+      "sha256": "7373a61f8fcb08d3325f1be6ed9e7f0117aed4176cb5823663f795930d19dde4",
+      "bytes": 9424
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/diaproteomics/58b18dd02583ad4288949aa31471bcec375705cc/main.nf",
+      "sha256": "226905b5c88cee2f3b9dfb3f96244b5f4796cead0d2c4d774b8d3dd6443d0f75",
+      "bytes": 39606
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/diaproteomics/58b18dd02583ad4288949aa31471bcec375705cc/nextflow.config",
+      "sha256": "78cd7f4843d0caa74748c4ca74234578c2ab16fbe3cdc1ad54552d1057638ff8",
+      "bytes": 7318
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/diaproteomics/58b18dd02583ad4288949aa31471bcec375705cc/nextflow_schema.json",
+      "sha256": "e659b2e15656833e669715539bf4a65c45404a928fb9ba02edca618c347e2361",
+      "bytes": 34195
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/viralintegration",
+  "skill_id": "nfcore-viralintegration",
+  "scientific_title": "病毒整合位点候选检测",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/viralintegration",
+    "archived": false,
+    "revision_label": "0.1.1",
+    "commit": "70e558aaff836d43f5d662bf9c28414f4e6db642",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=23.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "158de22cf39687408e880cde44838f63038a66b47b1a9592ba4f135d78a7f22f"
+    },
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/viralintegration/70e558aaff836d43f5d662bf9c28414f4e6db642/LICENSE",
+      "sha256": "47d83ccc3131921655c4b0c7ee2cf462e3526317f93694d87839c9ee56840167",
+      "bytes": 1080
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/viralintegration/70e558aaff836d43f5d662bf9c28414f4e6db642/README.md",
+      "sha256": "d18ccca051e9771d4ccfd13a21293b3caf71f60f9469e24ff28856a5821d6698",
+      "bytes": 8655
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/viralintegration/70e558aaff836d43f5d662bf9c28414f4e6db642/docs/output.md",
+      "sha256": "44270c4ab2a242ae0b3ff57a880194dca6bf1aff56e0a910a7691f28d8a4e762",
+      "bytes": 8895
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/viralintegration/70e558aaff836d43f5d662bf9c28414f4e6db642/docs/usage.md",
+      "sha256": "38ed180e647cbd52904ac0361847143953026005d98cc9c51ec109bbd28d1ba5",
+      "bytes": 15145
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/viralintegration/70e558aaff836d43f5d662bf9c28414f4e6db642/main.nf",
+      "sha256": "586e3082c7b552a3a895d45eb163970b080417e66e98e0ed94df612de70e31e5",
+      "bytes": 2706
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/viralintegration/70e558aaff836d43f5d662bf9c28414f4e6db642/nextflow.config",
+      "sha256": "498dde3d7e4daa6352d6253f41e961a9a8d0424937830a77ced204880de45193",
+      "bytes": 9792
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/viralintegration/70e558aaff836d43f5d662bf9c28414f4e6db642/nextflow_schema.json",
+      "sha256": "158de22cf39687408e880cde44838f63038a66b47b1a9592ba4f135d78a7f22f",
+      "bytes": 18775
+    },
+    {
+      "path": "workflows/viralintegration.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/viralintegration/70e558aaff836d43f5d662bf9c28414f4e6db642/workflows/viralintegration.nf",
+      "sha256": "5bdf41dc43b8811ebbbc24d7f50b731875083c9ac52bcfb8383cd9cc293fc450",
+      "bytes": 12038
+    }
+  ]
+}

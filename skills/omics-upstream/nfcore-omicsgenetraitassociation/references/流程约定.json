@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/omicsgenetraitassociation",
+  "skill_id": "nfcore-omicsgenetraitassociation",
+  "scientific_title": "多组学基因与性状关联",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/omicsgenetraitassociation",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "c21047b51320e2be5fa1b6a4d28545b51acb3851",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=23.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "323de177d969485d3ac1dba9e6a993d76b289fb3bc6b6a72039a80fb9658a916"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "4091526cb833cc3a656fc613f8331aaae9f592d7c5aaf4c01c81e21de09f97f0",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/omicsgenetraitassociation/c21047b51320e2be5fa1b6a4d28545b51acb3851/LICENSE",
+      "sha256": "a12c3d66c90212bd599fb4c7c2e771d79440c84b3a229f9164cf20f59411c140",
+      "bytes": 1051
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/omicsgenetraitassociation/c21047b51320e2be5fa1b6a4d28545b51acb3851/README.md",
+      "sha256": "37dd80d265ed191149fe452e8903056b74a0351b10288a396aa3a40b311dd71d",
+      "bytes": 7301
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/omicsgenetraitassociation/c21047b51320e2be5fa1b6a4d28545b51acb3851/assets/schema_input.json",
+      "sha256": "4091526cb833cc3a656fc613f8331aaae9f592d7c5aaf4c01c81e21de09f97f0",
+      "bytes": 1775
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/omicsgenetraitassociation/c21047b51320e2be5fa1b6a4d28545b51acb3851/docs/output.md",
+      "sha256": "d9d1da6d61905e54f6e0a7a6d6ebebad376ffad8c2a5fea5f7e3f91613d11e9e",
+      "bytes": 3893
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/omicsgenetraitassociation/c21047b51320e2be5fa1b6a4d28545b51acb3851/docs/usage.md",
+      "sha256": "632ec94cb551b18beeb3ddbfd0afe9cef12b4c4edad5b42446f0fb448697757a",
+      "bytes": 14412
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/omicsgenetraitassociation/c21047b51320e2be5fa1b6a4d28545b51acb3851/main.nf",
+      "sha256": "79cadba334bb76c7502fd8a616afb0dc99f720ef40d6f1e98c96a34f58c88e3f",
+      "bytes": 2671
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/omicsgenetraitassociation/c21047b51320e2be5fa1b6a4d28545b51acb3851/nextflow.config",
+      "sha256": "d6b035db8c393f6f48f79cb356152f2e8ad5c94e1a9f2bab50109aae9a134175",
+      "bytes": 9631
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/omicsgenetraitassociation/c21047b51320e2be5fa1b6a4d28545b51acb3851/nextflow_schema.json",
+      "sha256": "323de177d969485d3ac1dba9e6a993d76b289fb3bc6b6a72039a80fb9658a916",
+      "bytes": 14653
+    },
+    {
+      "path": "workflows/omicsgenetraitassociation.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/omicsgenetraitassociation/c21047b51320e2be5fa1b6a4d28545b51acb3851/workflows/omicsgenetraitassociation.nf",
+      "sha256": "a23e30e6f5564f2bf6b06d45031e8120f4702132cd918d3dfcd7ed26790bba69",
+      "bytes": 9193
+    }
+  ]
+}

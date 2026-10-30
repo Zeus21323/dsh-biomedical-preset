@@ -1,0 +1,371 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/plasmodiumdrugres/master/nextflow_schema.json",
+    "title": "nf-core/plasmodiumdrugres pipeline parameters",
+    "description": "This pipeline takes PMO format and provides key metrics on supplied markers applicable to drug resistance",
+    "type": "object",
+    "$defs": {
+        "input_output_options": {
+            "title": "Input/output options",
+            "type": "object",
+            "fa_icon": "fas fa-terminal",
+            "description": "Define where the pipeline should find input data and save output data.",
+            "required": ["loci_of_interest_bed"],
+            "properties": {
+                "pmo": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "mimetype": "json",
+                    "pattern": "^\\S+\\.json$",
+                    "description": "Path to json file containing metadata and microhaplotypes according to pmo format.",
+                    "help_text": "This parameter is *mandatory* if `--allele_table` is not specified. You will need to create a PMO file before running the pipeline. Use this parameter to specify its location. It has to be json formatted and include metadata and microhaplotypes. See [usage docs](https://nf-co.re/plasmodiumdrugres/usage#pmo-input).",
+                    "fa_icon": "fas fa-file"
+                },
+                "allele_table": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "mimetype": "text/tsv",
+                    "pattern": "^\\S+\\.[ct]sv$",
+                    "description": "Path to tab separated file containing microhaplotypes for specimens.",
+                    "help_text": "This parameter is *mandatory* if `--pmo` is not specified. You will need to create a TSV file before running the pipeline. Use this parameter to specify its location. It has to be tab separated and include columns specimen_name, target_name, and seq. See [usage docs](https://nf-co.re/plasmodiumdrugres/usage#allele-table-input).",
+                    "fa_icon": "fas fa-file-csv"
+                },
+                "input": {
+                    "type": "null",
+                    "format": "file-path",
+                    "mimetype": "text/csv",
+                    "description": "Path to input samplesheet (unused; kept for nf-core template lint compatibility).",
+                    "exists": false,
+                    "hidden": true
+                },
+                "loci_of_interest_bed": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "schema": "assets/schema_loci_of_interest_bed.json",
+                    "mimetype": "bed",
+                    "pattern": "^\\S+\\.bed$",
+                    "description": "Path to BED file containing individual loci of interest.",
+                    "help_text": "You will need to create a BED file before running the pipeline. Use this parameter to specify its location. It has to comply with BED format standards and include the coordinates of loci of interest. See [usage docs](https://nf-co.re/plasmodiumdrugres/usage#loci-of-interest-input).",
+                    "fa_icon": "fas fa-file-csv"
+                },
+                "loci_groups": {
+                    "type": ["string", "null"],
+                    "format": "file-path",
+                    "exists": true,
+                    "mimetype": "text/tsv",
+                    "pattern": "^\\S+\\.[ct]sv$",
+                    "description": "Path to tab separated file containing groups of loci of interest. Multi-locus allele frequency estimation is skipped when this parameter is not provided.",
+                    "help_text": "Optional. When provided, this file defines loci for which multilocus estimates will be made and must be tab-separated with columns group_id, gene_id, and aa_position.",
+                    "fa_icon": "fas fa-file-csv"
+                },
+                "panel_info_bed": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "schema": "assets/schema_panel_info_bed.json",
+                    "mimetype": "bed",
+                    "pattern": "^\\S+\\.bed$",
+                    "description": "Path to BED file containing panel location information.",
+                    "help_text": "This file is used to define coordinates for the targets in the panel. Use this parameter to specify its location. See [usage docs](https://nf-co.re/plasmodiumdrugres/usage#panel-info-bed).",
+                    "fa_icon": "fas fa-file-csv"
+                },
+                "population_assignment": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "schema": "assets/schema_population_map.json",
+                    "mimetype": "text/tsv",
+                    "pattern": "^\\S+\\.[ct]sv$",
+                    "description": "Path to tab separated file containing population assignment for each specimen_name.",
+                    "help_text": "This file is used to split specimens into separate populations to calculate metrics for each. It has to be tab separated and include columns specimen_name, population. See [usage docs](https://nf-co.re/plasmodiumdrugres/usage#population-map-input).",
+                    "fa_icon": "fas fa-file-csv"
+                },
+                "pmo_population_fields": {
+                    "type": ["string", "null"],
+                    "description": "Comma-separated list of PMO specimen metadata field names to combine into the population label (e.g. \"collection_country, collection_date\"). Whitespace is ignored.",
+                    "help_text": "Used only when providing `--pmo` without `--population_assignment`. The selected fields are concatenated by `pmo_population_separator` to build the `population` values.",
+                    "default": null,
+                    "fa_icon": "fas fa-list"
+                },
+                "pmo_population_separator": {
+                    "type": ["string", "null"],
+                    "description": "String used to join the selected `pmo_population_fields` when building the population label.",
+                    "default": "_",
+                    "fa_icon": "fas fa-link"
+                },
+                "outdir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
+                    "fa_icon": "fas fa-folder-open",
+                    "default": "output"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address for completion summary.",
+                    "fa_icon": "fas fa-envelope",
+                    "help_text": "Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
+                }
+            }
+        },
+        "reference_genome_options": {
+            "title": "Reference genome options",
+            "type": "object",
+            "fa_icon": "fas fa-dna",
+            "description": "Reference genome related files and options required for the workflow.",
+            "properties": {
+                "genome_reference": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "mimetype": "text/plain",
+                    "pattern": "^\\S+\\.fn?a(sta)?(\\.gz)?$",
+                    "description": "Path to FASTA file containing the full genome.",
+                    "help_text": "This parameter is *mandatory* if `--targeted_reference` is not specified and `--allele_table` is specified. This is used to extract the reference for the targets.",
+                    "fa_icon": "far fa-file-code"
+                },
+                "targeted_reference": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "mimetype": "text/plain",
+                    "pattern": "^\\S+\\.fn?a(sta)?(\\.gz)?$",
+                    "description": "Path to FASTA file containing the reference for only the targets.",
+                    "help_text": "This parameter is *mandatory* if `--genome_reference` is not specified and `--allele_table` is specified.",
+                    "fa_icon": "far fa-file-code"
+                }
+            }
+        },
+        "method_options": {
+            "title": "Method options for pipeline steps",
+            "type": "object",
+            "fa_icon": "fa fa-cog",
+            "description": "Parameters used to define the methods used for each step of the pipeline.",
+            "properties": {
+                "mlaf_method": {
+                    "type": "string",
+                    "description": "Method for multi-locus allele frequency estimates.",
+                    "default": "naive",
+                    "enum": ["MLBM", "FEM", "naive"],
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "slaf_method": {
+                    "type": "string",
+                    "description": "Method for single-locus allele frequency estimates.",
+                    "default": "naive",
+                    "enum": ["IDM", "naive", "mhaps_freq"],
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "translate_loci_extra_args": {
+                    "type": "string",
+                    "description": "Extra arguments supplied when translating loci of interest",
+                    "help_text": "See https://github.com/PlasmoGenEpi/PGEcore/tree/develop/scripts/translate_loci_of_interest",
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "naive_slaf_method": {
+                    "type": "string",
+                    "description": "Naive SLAF method when --slaf_method is naive.",
+                    "default": "read_count_prop",
+                    "enum": ["read_count_prop", "presence_absence"],
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "population_label": {
+                    "type": "string",
+                    "description": "label for population/ this individual pipeline run.",
+                    "help_text": "If --population_assignment is not set this can be used to label the population these estimates are for.",
+                    "default": "pop1",
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "mlbm_wrapper_aa_specimen_occurence_cut_off": {
+                    "type": ["integer", "null"],
+                    "description": "when running MLBM, a cut off value for filtering amino acid calls.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "naive_mlaf_method": {
+                    "type": "string",
+                    "description": "Naive MLAF method when --mlaf_method is naive.",
+                    "default": "wsaf_prop",
+                    "enum": ["wsaf_prop", "presence_absence"],
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "naive_multilocus_wsaf_cut_off": {
+                    "type": ["number", "null"],
+                    "description": "wsaf cut off for naive multilocus estimates.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "dcifer_slaf_wrapper_coi_lrank": {
+                    "type": ["integer", "null"],
+                    "description": "COI lrank for dcifer slaf wrapper.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "dcifer_slaf_wrapper_qstart": {
+                    "type": ["number", "null"],
+                    "description": "qstart for dcifer slaf wrapper.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "dcifer_slaf_wrapper_tol": {
+                    "type": ["number", "null"],
+                    "description": "tolerance for dcifer slaf wrapper.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "slaf_method_mhaps_freq_method": {
+                    "type": "string",
+                    "description": "Tool used for --slaf_method mhaps_freq.",
+                    "default": "dcifer",
+                    "enum": ["dcifer"],
+                    "fa_icon": "fas fa-users-cog"
+                }
+            }
+        },
+        "institutional_config_options": {
+            "title": "Institutional config options",
+            "type": "object",
+            "fa_icon": "fas fa-university",
+            "description": "Parameters used to describe centralised config profiles. These should not be edited.",
+            "help_text": "The centralised nf-core configuration profiles use a handful of pipeline parameters to describe themselves. This information is then printed to the Nextflow log when you run a pipeline. You should not need to change these values when you run a pipeline.",
+            "properties": {
+                "custom_config_version": {
+                    "type": "string",
+                    "description": "Git commit id for Institutional configs.",
+                    "default": "master",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "custom_config_base": {
+                    "type": "string",
+                    "description": "Base directory for Institutional configs.",
+                    "default": "https://raw.githubusercontent.com/nf-core/configs/master",
+                    "hidden": true,
+                    "help_text": "If you're running offline, Nextflow will not be able to fetch the institutional config files from the internet. If you don't need them, then this is not a problem. If you do need them, you should download the files from the repo and tell Nextflow where to find them with this parameter.",
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_name": {
+                    "type": "string",
+                    "description": "Institutional config name.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_description": {
+                    "type": "string",
+                    "description": "Institutional config description.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_contact": {
+                    "type": "string",
+                    "description": "Institutional config contact information.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_url": {
+                    "type": "string",
+                    "description": "Institutional config URL link.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                }
+            }
+        },
+        "generic_options": {
+            "title": "Generic options",
+            "type": "object",
+            "fa_icon": "fas fa-file-import",
+            "description": "Less common options for the pipeline, typically set in a config file.",
+            "help_text": "These options are common to all nf-core pipelines and allow you to customise some of the core preferences for how the pipeline runs.\n\nTypically these options would be set in a Nextflow config file loaded for all pipeline runs, such as `~/.nextflow/config`.",
+            "properties": {
+                "version": {
+                    "type": "boolean",
+                    "description": "Display version and exit.",
+                    "fa_icon": "fas fa-question-circle",
+                    "hidden": true
+                },
+                "publish_dir_mode": {
+                    "type": "string",
+                    "default": "copy",
+                    "description": "Method used to save pipeline results to output directory.",
+                    "help_text": "The Nextflow `publishDir` option specifies which intermediate files should be saved to the output directory. This option tells the pipeline what method should be used to move these files. See [Nextflow docs](https://www.nextflow.io/docs/latest/process.html#publishdir) for details.",
+                    "fa_icon": "fas fa-copy",
+                    "enum": ["symlink", "rellink", "link", "copy", "copyNoFollow", "move"],
+                    "hidden": true
+                },
+                "email_on_fail": {
+                    "type": "string",
+                    "description": "Email address for completion summary, only when pipeline fails.",
+                    "fa_icon": "fas fa-exclamation-triangle",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$",
+                    "help_text": "An email address to send a summary email to when the pipeline is completed - ONLY sent if the pipeline does not exit successfully.",
+                    "hidden": true
+                },
+                "plaintext_email": {
+                    "type": "boolean",
+                    "description": "Send plain-text email instead of HTML.",
+                    "fa_icon": "fas fa-remove-format",
+                    "hidden": true
+                },
+                "monochrome_logs": {
+                    "type": "boolean",
+                    "description": "Do not use coloured log outputs.",
+                    "fa_icon": "fas fa-palette",
+                    "hidden": true
+                },
+                "validate_params": {
+                    "type": "boolean",
+                    "description": "Boolean whether to validate parameters against the schema at runtime",
+                    "default": true,
+                    "fa_icon": "fas fa-check-square",
+                    "hidden": true
+                },
+                "pipelines_testdata_base_path": {
+                    "type": "string",
+                    "fa_icon": "far fa-check-circle",
+                    "description": "Base URL or local path to location of pipeline test dataset files",
+                    "default": "https://raw.githubusercontent.com/nf-core/test-datasets/refs/heads/plasmodiumdrugres/",
+                    "hidden": true
+                },
+                "trace_report_suffix": {
+                    "type": "string",
+                    "fa_icon": "far calendar",
+                    "description": "Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss.",
+                    "hidden": true
+                },
+                "help": {
+                    "type": ["boolean", "string"],
+                    "description": "Display the help message."
+                },
+                "help_full": {
+                    "type": "boolean",
+                    "description": "Display the full detailed help message."
+                },
+                "show_hidden": {
+                    "type": "boolean",
+                    "description": "Display hidden parameters in the help message (only works when --help or --help_full are provided)."
+                }
+            }
+        }
+    },
+    "allOf": [
+        {
+            "$ref": "#/$defs/input_output_options"
+        },
+        {
+            "$ref": "#/$defs/reference_genome_options"
+        },
+        {
+            "$ref": "#/$defs/institutional_config_options"
+        },
+        {
+            "$ref": "#/$defs/generic_options"
+        },
+        {
+            "$ref": "#/$defs/method_options"
+        }
+    ]
+}

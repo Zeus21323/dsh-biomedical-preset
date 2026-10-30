@@ -1,0 +1,4 @@
+interface:
+  display_name: "中文基金申报书助手"
+  short_description: "少打断地撰写、诊断并自动交付 TeX 与 DOCX 基金申请书"
+  default_prompt: "使用 $grant-writing-agent 基于现有材料起草中文基金申报书，正文直接写入 TeX 并自动通过 tex_to_docx 交付 DOCX。"

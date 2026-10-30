@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "profile_id": "acs",
+  "display_name": "ACS publications",
+  "scope": "publisher-style",
+  "aliases": ["acs", "american chemical society", "acs publications"],
+  "csl_files": ["american-chemical-society.csl"],
+  "language": "en",
+  "verified_on": "2026-07-24",
+  "sources": [
+    {"title": "ACS Guide to Scholarly Communication", "url": "https://doi.org/10.1021/acsguide", "authority": "official"},
+    {"title": "ACS author guidelines", "url": "https://researcher-resources.acs.org/publish/author_guidelines", "authority": "official"}
+  ],
+  "template": {
+    "body": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "line_spacing": "2.0", "margin_inches": 1.0},
+    "title": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 16, "bold": true, "alignment": "center"},
+    "headings": {
+      "heading_1": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 14, "bold": true},
+      "heading_2": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "bold": true},
+      "heading_3": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "bold": true, "italic": true}
+    },
+    "caption": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 10, "line_spacing": "1.0"},
+    "bibliography": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 10, "line_spacing": "1.0", "hanging_indent_inches": 0.25}
+  },
+  "evidence": {
+    "body": {"status": "fallback", "source": 1, "note": "ACS journal-specific author guidelines take precedence; the generic ACS CSL does not define a universal Word layout."},
+    "title": {"status": "fallback"},
+    "headings": {"status": "fallback"},
+    "caption": {"status": "fallback"},
+    "bibliography": {"status": "partial-official", "source": 0, "note": "ACS reference content is official; paragraph typography is a fallback."}
+  }
+}

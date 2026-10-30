@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/plasmodiumdrugres",
+  "skill_id": "nfcore-plasmodiumdrugres",
+  "scientific_title": "疟原虫耐药标记与微单倍型分析",
+  "secondary_search_terms": "耐药、群体遗传学",
+  "upstream": {
+    "repository": "https://github.com/nf-core/plasmodiumdrugres",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "076642a93b9d564708af5e75137eb19899c31266",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "0927d57ab2b6e0af13bd9ac62c71a93b488c113abf22ca9fab2049c4dadac83f"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_loci_of_interest_bed.json",
+        "sha256": "6e8ff62c96d3fca9c3ac3e572717a501fbfe1acada7e0342e8b9d54be9f880f2",
+        "parameters": [
+          "loci_of_interest_bed"
+        ]
+      },
+      {
+        "file": "输入模式-2.json",
+        "source_path": "assets/schema_panel_info_bed.json",
+        "sha256": "af9649d96f63ec2498c47335c04e5dd562822adcdc96aeb9f7b1b7daaf305d79",
+        "parameters": [
+          "panel_info_bed"
+        ]
+      },
+      {
+        "file": "输入模式-3.json",
+        "source_path": "assets/schema_population_map.json",
+        "sha256": "668d1ec3387b1fd7de6ac7042a9fa960fca992239b3d1420375e7bbd541b81ab",
+        "parameters": [
+          "population_assignment"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/plasmodiumdrugres/076642a93b9d564708af5e75137eb19899c31266/LICENSE",
+      "sha256": "8b5d2bf4ee7506db34166e962515e831862c37a6227739b6c70a65b97dbc113a",
+      "bytes": 1086
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/plasmodiumdrugres/076642a93b9d564708af5e75137eb19899c31266/README.md",
+      "sha256": "2e0f0e1fb81d0cdee1f5e9a48aee421755f46c3324b7eeefde9d536a64a0cc7a",
+      "bytes": 8498
+    },
+    {
+      "path": "assets/schema_loci_of_interest_bed.json",
+      "url": "https://raw.githubusercontent.com/nf-core/plasmodiumdrugres/076642a93b9d564708af5e75137eb19899c31266/assets/schema_loci_of_interest_bed.json",
+      "sha256": "6e8ff62c96d3fca9c3ac3e572717a501fbfe1acada7e0342e8b9d54be9f880f2",
+      "bytes": 2229
+    },
+    {
+      "path": "assets/schema_panel_info_bed.json",
+      "url": "https://raw.githubusercontent.com/nf-core/plasmodiumdrugres/076642a93b9d564708af5e75137eb19899c31266/assets/schema_panel_info_bed.json",
+      "sha256": "af9649d96f63ec2498c47335c04e5dd562822adcdc96aeb9f7b1b7daaf305d79",
+      "bytes": 1863
+    },
+    {
+      "path": "assets/schema_population_map.json",
+      "url": "https://raw.githubusercontent.com/nf-core/plasmodiumdrugres/076642a93b9d564708af5e75137eb19899c31266/assets/schema_population_map.json",
+      "sha256": "668d1ec3387b1fd7de6ac7042a9fa960fca992239b3d1420375e7bbd541b81ab",
+      "bytes": 1325
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/plasmodiumdrugres/076642a93b9d564708af5e75137eb19899c31266/docs/output.md",
+      "sha256": "64318a1220303a93e2d37c31b6b809b9a9f193d18b2cb880e205c33da5a12d2c",
+      "bytes": 9149
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/plasmodiumdrugres/076642a93b9d564708af5e75137eb19899c31266/docs/usage.md",
+      "sha256": "7f4112f2e8d818430854bb27ebd43e99c06752c6649b7fb8d2b08c292e9670e9",
+      "bytes": 30806
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/plasmodiumdrugres/076642a93b9d564708af5e75137eb19899c31266/main.nf",
+      "sha256": "eae93012b8470c2c11ffd6876fafdbbfc404a5d83a50c37d89e4bd90fc5d1046",
+      "bytes": 3197
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/plasmodiumdrugres/076642a93b9d564708af5e75137eb19899c31266/nextflow.config",
+      "sha256": "6872ad6017bd65e019775d4e3878e814b1a3610382988a5304b5d5ff83651ba4",
+      "bytes": 12272
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/plasmodiumdrugres/076642a93b9d564708af5e75137eb19899c31266/nextflow_schema.json",
+      "sha256": "0927d57ab2b6e0af13bd9ac62c71a93b488c113abf22ca9fab2049c4dadac83f",
+      "bytes": 20529
+    },
+    {
+      "path": "workflows/plasmodiumdrugres.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/plasmodiumdrugres/076642a93b9d564708af5e75137eb19899c31266/workflows/plasmodiumdrugres.nf",
+      "sha256": "1eac94b7caaa746a838695fa66da109009793644342b619d2bc9177d52a1a346",
+      "bytes": 6047
+    }
+  ]
+}

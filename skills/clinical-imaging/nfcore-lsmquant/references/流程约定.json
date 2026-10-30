@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/lsmquant",
+  "skill_id": "nfcore-lsmquant",
+  "scientific_title": "光片显微图像处理与定量",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/lsmquant",
+    "archived": false,
+    "revision_label": "1.0.3",
+    "commit": "b39ec6e1fb267ab3d2d3b16d05b921aaa679cd1f",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "3b47af970d70615a48a863756cbf400ad64ba34bfec3a54ec27f9203efc15ea0"
+    },
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/lsmquant/b39ec6e1fb267ab3d2d3b16d05b921aaa679cd1f/LICENSE",
+      "sha256": "29d1d3ef925b07588307a5c7f7f252cabc271015e1b19ae1eeaa299ca7dd5ff0",
+      "bytes": 1077
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/lsmquant/b39ec6e1fb267ab3d2d3b16d05b921aaa679cd1f/README.md",
+      "sha256": "53f19f6fab1ed63e2f5ab61fd16478490822e2b62bcd1bb498247b45b6dbc559",
+      "bytes": 9009
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/lsmquant/b39ec6e1fb267ab3d2d3b16d05b921aaa679cd1f/docs/output.md",
+      "sha256": "2825feccc49db928aa96e2bb36ed893d05f027f91ee65ca36c5730caf8b04197",
+      "bytes": 7103
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/lsmquant/b39ec6e1fb267ab3d2d3b16d05b921aaa679cd1f/docs/usage.md",
+      "sha256": "d59474de8b35514f7ba4155ee1e21459c3028c26b5fe3c91b3434a688f8b4014",
+      "bytes": 41359
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/lsmquant/b39ec6e1fb267ab3d2d3b16d05b921aaa679cd1f/main.nf",
+      "sha256": "39d60b213e249bd6153a620f3dfcaa5ee30d03977f545c04b53b937c45d7fec0",
+      "bytes": 2761
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/lsmquant/b39ec6e1fb267ab3d2d3b16d05b921aaa679cd1f/nextflow.config",
+      "sha256": "94bbe4ce60bdda4d74236567911a31888215fcd69a17aca18eebc06007d052fe",
+      "bytes": 10436
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/lsmquant/b39ec6e1fb267ab3d2d3b16d05b921aaa679cd1f/nextflow_schema.json",
+      "sha256": "3b47af970d70615a48a863756cbf400ad64ba34bfec3a54ec27f9203efc15ea0",
+      "bytes": 12837
+    },
+    {
+      "path": "workflows/lsmquant.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/lsmquant/b39ec6e1fb267ab3d2d3b16d05b921aaa679cd1f/workflows/lsmquant.nf",
+      "sha256": "8e535c7f94eb3d7ef76390be090d60f43b246844f008dbd160c133b2e54336ca",
+      "bytes": 8086
+    }
+  ]
+}

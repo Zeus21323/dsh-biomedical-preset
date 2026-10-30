@@ -1,0 +1,78 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/genomicrelatedness/dev/assets/schema_input.json",
+    "title": "nf-core/genomicrelatedness pipeline - params.input schema",
+    "description": "Schema for the file provided with params.input",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "sample": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "errorMessage": "Sample name must be provided and cannot contain spaces",
+                "meta": ["id", "sample"]
+            },
+            "fastq_1": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "pattern": "^([\\S\\s]*\\/)?[^\\s\\/]+\\.f(ast)?q\\.gz$",
+                "errorMessage": "FastQ file for reads 1 must be provided, cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+            },
+            "fastq_2": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "pattern": "^([\\S\\s]*\\/)?[^\\s\\/]+\\.f(ast)?q\\.gz$",
+                "errorMessage": "FastQ file for reads 2 cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+            },
+            "spring_1": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "pattern": "^\\S+\\.f(ast)?q\\.gz\\.spring$",
+                "errorMessage": "SPRING R1 must have extension '.fq.gz.spring' or '.fastq.gz.spring'"
+            },
+            "spring_2": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "pattern": "^\\S+\\.f(ast)?q\\.gz\\.spring$",
+                "errorMessage": "SPRING R2 must have extension '.fq.gz.spring' or '.fastq.gz.spring'"
+            },
+            "cram": {
+                "type": "string",
+                "format": "file-path",
+                "pattern": "^\\S+\\.cram$",
+                "exists": true
+            },
+            "bam": {
+                "type": "string",
+                "format": "file-path",
+                "pattern": "^\\S+\\.bam$",
+                "exists": true
+            },
+            "RGID": {
+                "type": ["string", "integer"],
+                "meta": ["RGID"],
+                "description": "Read group ID (string or integer)"
+            },
+            "RGLB": { "type": "string", "meta": ["RGLB"], "description": "Read group library" },
+            "RGPL": { "type": "string", "meta": ["RGPL"], "description": "Platform (e.g., ILLUMINA)" },
+            "RGPU": { "type": "string", "meta": ["RGPU"], "description": "Platform unit" },
+            "RGSM": { "type": "string", "meta": ["RGSM"], "description": "Sample name for read group" }
+        },
+        "required": ["sample"],
+        "dependentRequired": {
+            "fastq_2": ["fastq_1"],
+            "spring_2": ["spring_1"]
+        },
+        "anyOf": [
+            { "required": ["fastq_1"] },
+            { "required": ["spring_1"] },
+            { "required": ["bam"] },
+            { "required": ["cram"] }
+        ]
+    }
+}

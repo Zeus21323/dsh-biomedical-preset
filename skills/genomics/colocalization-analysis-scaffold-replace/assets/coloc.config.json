@@ -1,0 +1,31 @@
+{
+  "first": {
+    "file": null,
+    "type": null,
+    "N": null,
+    "sdY": null,
+    "s": null
+  },
+  "second": {
+    "file": null,
+    "type": null,
+    "N": null,
+    "sdY": null,
+    "s": null
+  },
+  "build": null,
+  "ancestry": null,
+  "region": null,
+  "aligned_reviewed": false,
+  "region_complete_reviewed": false,
+  "single_signal_reviewed": false,
+  "assumption_evidence": null,
+  "sample_overlap": null,
+  "p1": 0.0001,
+  "p2": 0.0001,
+  "p12": [
+    0.000001,
+    0.00001
+  ],
+  "output": null
+}

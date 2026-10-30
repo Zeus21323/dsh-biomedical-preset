@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/genephylomodeler",
+  "skill_id": "nfcore-genephylomodeler",
+  "scientific_title": "序列进化模型与自然选择分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/genephylomodeler",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "f423562fa3bed5c941429f0ef60d86ece8da4902",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "a6cfa9b8e27cfa73d94f0dce230c10b58966c1e342c7393ae36eefdee3f9b362"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "641eb64f78c19fab5cd5e11400bd5942c5a2e259fa9f05fd7ae8eeb3ece82555",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/genephylomodeler/f423562fa3bed5c941429f0ef60d86ece8da4902/LICENSE",
+      "sha256": "4dd1c7aa9aebb1e40f7ce75e3cb5ae45b1f0283ea989c461feee768d04237ea5",
+      "bytes": 1085
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/genephylomodeler/f423562fa3bed5c941429f0ef60d86ece8da4902/README.md",
+      "sha256": "6eed82e971248efc0bac5447918df8f4575f95ea712d2e5888341ab1c4117a15",
+      "bytes": 8282
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/genephylomodeler/f423562fa3bed5c941429f0ef60d86ece8da4902/assets/schema_input.json",
+      "sha256": "641eb64f78c19fab5cd5e11400bd5942c5a2e259fa9f05fd7ae8eeb3ece82555",
+      "bytes": 2266
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/genephylomodeler/f423562fa3bed5c941429f0ef60d86ece8da4902/docs/output.md",
+      "sha256": "e71c705df1132df2a782484d9e22d1918f27421547865c3a9ca8f4aa1a56c0b5",
+      "bytes": 8746
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/genephylomodeler/f423562fa3bed5c941429f0ef60d86ece8da4902/docs/usage.md",
+      "sha256": "3b7ffeaed294736f2643623c73e9b63ee6b2f422ee853d2612b921c11c962b86",
+      "bytes": 14159
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/genephylomodeler/f423562fa3bed5c941429f0ef60d86ece8da4902/main.nf",
+      "sha256": "7d42885ace43a9678c097f3a768c435cbe479cf03d4490621c95389dd378cdd6",
+      "bytes": 2644
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/genephylomodeler/f423562fa3bed5c941429f0ef60d86ece8da4902/nextflow.config",
+      "sha256": "848368e4d898caf4ed7dd53a15350467c1c19bf6cda772ccdf994e7f0a57fae4",
+      "bytes": 10606
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/genephylomodeler/f423562fa3bed5c941429f0ef60d86ece8da4902/nextflow_schema.json",
+      "sha256": "a6cfa9b8e27cfa73d94f0dce230c10b58966c1e342c7393ae36eefdee3f9b362",
+      "bytes": 9946
+    },
+    {
+      "path": "workflows/genephylomodeler.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/genephylomodeler/f423562fa3bed5c941429f0ef60d86ece8da4902/workflows/genephylomodeler.nf",
+      "sha256": "4c2ac8e852a29907951b793c7ddfa7e402334ac36b6bba7ee50bc786cd73b689",
+      "bytes": 5541
+    }
+  ]
+}

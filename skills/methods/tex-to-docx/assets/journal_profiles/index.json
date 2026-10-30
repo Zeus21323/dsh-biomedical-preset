@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "verified_on": "2026-07-24",
+  "profiles": [
+    "acs.json",
+    "ama.json",
+    "apa.json",
+    "cell.json",
+    "elsevier.json",
+    "gb-t-7714-2015.json",
+    "ieee.json",
+    "nature.json",
+    "rsc.json",
+    "science.json"
+  ]
+}

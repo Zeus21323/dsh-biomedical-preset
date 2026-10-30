@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/pacvar",
+  "skill_id": "nfcore-pacvar",
+  "scientific_title": "PacBio长读长变异预处理与分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/pacvar",
+    "archived": false,
+    "revision_label": "1.1.0",
+    "commit": "20364830237171928c79e59651142460379d1459",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "9da6abb738f8529e9375d115ae810fd38aa2ab916a991bd3b863199da4138dba"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "3c3daa2d8bb6f32034170083ddb8be6986bed80af4736f9d0f09f2f91a63cd73",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/pacvar/20364830237171928c79e59651142460379d1459/LICENSE",
+      "sha256": "c101265b4c8b15222563766eda5e12de059e1ed671014da64808b24d41f877b8",
+      "bytes": 1075
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/pacvar/20364830237171928c79e59651142460379d1459/README.md",
+      "sha256": "2de169ededf436c4d92cab7e06bcdbbae6f172a0c747d0c379a7341bbebce9eb",
+      "bytes": 11180
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/pacvar/20364830237171928c79e59651142460379d1459/assets/schema_input.json",
+      "sha256": "3c3daa2d8bb6f32034170083ddb8be6986bed80af4736f9d0f09f2f91a63cd73",
+      "bytes": 2401
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/pacvar/20364830237171928c79e59651142460379d1459/docs/output.md",
+      "sha256": "0f59c8b9d28524df81fbf07e2969099ae32df1d82c52a5334e0400805940d346",
+      "bytes": 18562
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/pacvar/20364830237171928c79e59651142460379d1459/docs/usage.md",
+      "sha256": "bc78a7b15f97142d05224cd8019d8444133db1334ecba42150470abcdd13ad33",
+      "bytes": 13223
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/pacvar/20364830237171928c79e59651142460379d1459/main.nf",
+      "sha256": "dd8716ff1fe0d9f71404957bacb3fcc2d011ab200eed2e579c11db91af6eec48",
+      "bytes": 7328
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/pacvar/20364830237171928c79e59651142460379d1459/nextflow.config",
+      "sha256": "f90badba816a816e92897501eef346c8e25f99deb36ac6d5c9edec52e85bdf6f",
+      "bytes": 12711
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/pacvar/20364830237171928c79e59651142460379d1459/nextflow_schema.json",
+      "sha256": "9da6abb738f8529e9375d115ae810fd38aa2ab916a991bd3b863199da4138dba",
+      "bytes": 28255
+    },
+    {
+      "path": "workflows/pacvar.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/pacvar/20364830237171928c79e59651142460379d1459/workflows/pacvar.nf",
+      "sha256": "890c2f76d29a7dcd844344c94b8b3d31f9f5b80d6d15c16912b1695f3e51dfb9",
+      "bytes": 18302
+    }
+  ]
+}

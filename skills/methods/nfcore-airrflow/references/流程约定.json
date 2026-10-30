@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/airrflow",
+  "skill_id": "nfcore-airrflow",
+  "scientific_title": "BCR与TCR免疫受体库分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/airrflow",
+    "archived": false,
+    "revision_label": "5.1.1",
+    "commit": "8bc3e567d0bb3a4c47ead15a8f42e764580f76dc",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=26.04.1",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "e9acd19f334a86442223cc5cec823156121469fa5acb9c6c528365c933c9b33b"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "9ff68d7c8d9afff122f63a1250c50f6ff4863b38263e52d802e2e75aa831352c",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/airrflow/8bc3e567d0bb3a4c47ead15a8f42e764580f76dc/LICENSE",
+      "sha256": "ab111d173b31de03845d69c0f5ed463fd49319cf720a4a21a9e13008eef206ed",
+      "bytes": 1077
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/airrflow/8bc3e567d0bb3a4c47ead15a8f42e764580f76dc/README.md",
+      "sha256": "0dc37730335cfda2c278d62a8d23b31e4f8011ae634f3b94e6e72d4c59034e0a",
+      "bytes": 16146
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/airrflow/8bc3e567d0bb3a4c47ead15a8f42e764580f76dc/assets/schema_input.json",
+      "sha256": "9ff68d7c8d9afff122f63a1250c50f6ff4863b38263e52d802e2e75aa831352c",
+      "bytes": 3130
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/airrflow/8bc3e567d0bb3a4c47ead15a8f42e764580f76dc/docs/output.md",
+      "sha256": "8cf96886c061c76c79d93c034e6f53f2475215dd3c03d6528aa4f424343d6012",
+      "bytes": 23160
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/airrflow/8bc3e567d0bb3a4c47ead15a8f42e764580f76dc/docs/usage.md",
+      "sha256": "1a63d814e69384e5b6fa4b7ed08c91fbaf720f81716016233d5b1cef9778d604",
+      "bytes": 52788
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/airrflow/8bc3e567d0bb3a4c47ead15a8f42e764580f76dc/main.nf",
+      "sha256": "1cf3d7782fd9dd9fe163b8092e338f2f2ece6241873e2cc6a850d66a7279dc8f",
+      "bytes": 12339
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/airrflow/8bc3e567d0bb3a4c47ead15a8f42e764580f76dc/nextflow.config",
+      "sha256": "6c94f9d74078e37e4327e9bf1295954f2cba5513b65262fb72b5e4d95ae6a2f2",
+      "bytes": 12917
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/airrflow/8bc3e567d0bb3a4c47ead15a8f42e764580f76dc/nextflow_schema.json",
+      "sha256": "e9acd19f334a86442223cc5cec823156121469fa5acb9c6c528365c933c9b33b",
+      "bytes": 47150
+    },
+    {
+      "path": "workflows/airrflow.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/airrflow/8bc3e567d0bb3a4c47ead15a8f42e764580f76dc/workflows/airrflow.nf",
+      "sha256": "5279256f841a82696b8f9093cb30dbe5151116fe4e9c0cea888de639f4dd2b1d",
+      "bytes": 22529
+    }
+  ]
+}

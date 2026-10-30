@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/createtaxdb",
+  "skill_id": "nfcore-createtaxdb",
+  "scientific_title": "微生物分类数据库构建",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/createtaxdb",
+    "archived": false,
+    "revision_label": "3.1.0",
+    "commit": "b01a0f8ed96a5990d15470828dfa92a22cf08bba",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "a5f1f49b77b2291df00417f120506237543cbe0d47510f6a28fc73159533c0ed"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "eedc1c4e1cf145163ad596059ddd24aa2dda8003eed2d7c9dd469dbbe9cb689c",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/createtaxdb/b01a0f8ed96a5990d15470828dfa92a22cf08bba/LICENSE",
+      "sha256": "16d2c981e4aa2899503c580bec7eaebaa984196ce318c975ffc5a4e5e03b2071",
+      "bytes": 1080
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/createtaxdb/b01a0f8ed96a5990d15470828dfa92a22cf08bba/README.md",
+      "sha256": "890d69f3bdae48e05646dd0ee2e5f8007a74d30ef4c6297237fb4262b203c041",
+      "bytes": 9637
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/createtaxdb/b01a0f8ed96a5990d15470828dfa92a22cf08bba/assets/schema_input.json",
+      "sha256": "eedc1c4e1cf145163ad596059ddd24aa2dda8003eed2d7c9dd469dbbe9cb689c",
+      "bytes": 2063
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/createtaxdb/b01a0f8ed96a5990d15470828dfa92a22cf08bba/docs/output.md",
+      "sha256": "f76134199b02419227ab52da04f4987b6ed8d5f8de7ffc4871ef06387ce06d64",
+      "bytes": 14575
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/createtaxdb/b01a0f8ed96a5990d15470828dfa92a22cf08bba/docs/usage.md",
+      "sha256": "22a5ae6fc3d6a4c3b31eff7646ac5e2e749eb192b0df320a030dbdf26b2e51b7",
+      "bytes": 15989
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/createtaxdb/b01a0f8ed96a5990d15470828dfa92a22cf08bba/main.nf",
+      "sha256": "4254eb8576c71ae6cec8c327dbb36287352962b86f9444e1647559a99d44dabe",
+      "bytes": 3478
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/createtaxdb/b01a0f8ed96a5990d15470828dfa92a22cf08bba/nextflow.config",
+      "sha256": "2e82710335b689ec6094a6d4e8d474a70163f93f3edb00d82e88d6ec87e84477",
+      "bytes": 13987
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/createtaxdb/b01a0f8ed96a5990d15470828dfa92a22cf08bba/nextflow_schema.json",
+      "sha256": "a5f1f49b77b2291df00417f120506237543cbe0d47510f6a28fc73159533c0ed",
+      "bytes": 35955
+    },
+    {
+      "path": "workflows/createtaxdb.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/createtaxdb/b01a0f8ed96a5990d15470828dfa92a22cf08bba/workflows/createtaxdb.nf",
+      "sha256": "7649d2f76b43fb9f27ee617001b418f03a04d00a37bb0c044a1e2f9a32fa6d20",
+      "bytes": 16662
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/mspepid",
+  "skill_id": "nfcore-mspepid",
+  "scientific_title": "MS2谱图肽段鉴定",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/mspepid",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "e87c5ed6a5b2909b2ded50ac7c02e1b75ce4cede",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "22f0936fa5b74b81d1b40c6b5720db4decedf304daf17aa2d62bda05ecd95bc5"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "4c76d2d697a3f93848931de8ea45ae689765c93907eef54bd481c9587d7bfe67",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/mspepid/e87c5ed6a5b2909b2ded50ac7c02e1b75ce4cede/LICENSE",
+      "sha256": "9f8516fb3ef5ba2696635d93acee36247f77dfc07a0e160ebec14b84e1eb3b7c",
+      "bytes": 1076
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/mspepid/e87c5ed6a5b2909b2ded50ac7c02e1b75ce4cede/README.md",
+      "sha256": "7c2b7602a033fb76cc501f91de1508eaa36d710ed1a594da1e1c13d489af4074",
+      "bytes": 8448
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/mspepid/e87c5ed6a5b2909b2ded50ac7c02e1b75ce4cede/assets/schema_input.json",
+      "sha256": "4c76d2d697a3f93848931de8ea45ae689765c93907eef54bd481c9587d7bfe67",
+      "bytes": 1336
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/mspepid/e87c5ed6a5b2909b2ded50ac7c02e1b75ce4cede/docs/output.md",
+      "sha256": "0901739f1e50c566c6ceda3054ea8ec91a20dfb799d8a5953cb7025c9071014f",
+      "bytes": 5438
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/mspepid/e87c5ed6a5b2909b2ded50ac7c02e1b75ce4cede/docs/usage.md",
+      "sha256": "75aad84114b561a078e670b55c7cb5d47177b33a8b95f65b719877014668f7cb",
+      "bytes": 14192
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/mspepid/e87c5ed6a5b2909b2ded50ac7c02e1b75ce4cede/main.nf",
+      "sha256": "623b579dd4dfcc41f3b3e0439f2b743f231f3f47add3bc25abd949fb08ba729b",
+      "bytes": 3032
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/mspepid/e87c5ed6a5b2909b2ded50ac7c02e1b75ce4cede/nextflow.config",
+      "sha256": "b3b6d845b112d2e96e48e487454d0c691b23a3b9fa9ebf81e61702d6f15c0d25",
+      "bytes": 11260
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/mspepid/e87c5ed6a5b2909b2ded50ac7c02e1b75ce4cede/nextflow_schema.json",
+      "sha256": "22f0936fa5b74b81d1b40c6b5720db4decedf304daf17aa2d62bda05ecd95bc5",
+      "bytes": 15871
+    },
+    {
+      "path": "workflows/mspepid.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/mspepid/e87c5ed6a5b2909b2ded50ac7c02e1b75ce4cede/workflows/mspepid.nf",
+      "sha256": "f65beee4c79346248e3ff60ca23e47686467273e4f668179d208c849960bff4a",
+      "bytes": 5592
+    }
+  ]
+}

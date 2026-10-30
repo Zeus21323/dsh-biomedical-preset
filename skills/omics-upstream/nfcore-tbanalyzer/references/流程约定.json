@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/tbanalyzer",
+  "skill_id": "nfcore-tbanalyzer",
+  "scientific_title": "结核分枝杆菌复合群分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/tbanalyzer",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "7355f703cc06edc2a5d10e6937102655d1162a16",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "bdc1e87debfe8bfbddfbb6179fa73df9a7a41e54cc44deb50bd478ce1e87a252"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "08a4bfd1d3b7297c0ec6d6a3bdf8266588663832cbadb95ff1a3dcba42632675",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/tbanalyzer/7355f703cc06edc2a5d10e6937102655d1162a16/LICENSE",
+      "sha256": "a6ec98548538192462f18fde0323a3a8c94c219cfc5b21904de9a55985b5f38b",
+      "bytes": 1079
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/tbanalyzer/7355f703cc06edc2a5d10e6937102655d1162a16/README.md",
+      "sha256": "fb420bb39bf9b8cefadd316a7efdfb9d0b79695f93a57fd47c7e3f7cdd09bbb5",
+      "bytes": 7208
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/tbanalyzer/7355f703cc06edc2a5d10e6937102655d1162a16/assets/schema_input.json",
+      "sha256": "08a4bfd1d3b7297c0ec6d6a3bdf8266588663832cbadb95ff1a3dcba42632675",
+      "bytes": 1645
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/tbanalyzer/7355f703cc06edc2a5d10e6937102655d1162a16/docs/output.md",
+      "sha256": "636486ec6ff9187b76275edd17409e6aa94cacd9c001b442121589df55046eb9",
+      "bytes": 3475
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/tbanalyzer/7355f703cc06edc2a5d10e6937102655d1162a16/docs/usage.md",
+      "sha256": "496c0fab9911700960e11c2ee7f54666acbbbdba51b1e06b7c6c0b8ad53521c1",
+      "bytes": 14798
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/tbanalyzer/7355f703cc06edc2a5d10e6937102655d1162a16/main.nf",
+      "sha256": "91fcdab0d4b0f64d2ade110f91577bbfc71ccd8ba863440036c120c2572f282a",
+      "bytes": 3804
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/tbanalyzer/7355f703cc06edc2a5d10e6937102655d1162a16/nextflow.config",
+      "sha256": "1a73ccc93e926e23928f2058a7e1f1dd6d5a954c0f7d755682c07adceabe6c35",
+      "bytes": 10714
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/tbanalyzer/7355f703cc06edc2a5d10e6937102655d1162a16/nextflow_schema.json",
+      "sha256": "bdc1e87debfe8bfbddfbb6179fa73df9a7a41e54cc44deb50bd478ce1e87a252",
+      "bytes": 21532
+    },
+    {
+      "path": "workflows/mtbseqnf.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/tbanalyzer/7355f703cc06edc2a5d10e6937102655d1162a16/workflows/mtbseqnf.nf",
+      "sha256": "67190a34fa191099ef501190e0c7710e58d7860fff36cd0f455c76b05e4d275f",
+      "bytes": 3450
+    },
+    {
+      "path": "workflows/tbanalyzer.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/tbanalyzer/7355f703cc06edc2a5d10e6937102655d1162a16/workflows/tbanalyzer.nf",
+      "sha256": "8f6159c5809f9f66b46ef2729dfbdb491391f945ecf93682ab66c8b1e1f49b4c",
+      "bytes": 4075
+    }
+  ]
+}

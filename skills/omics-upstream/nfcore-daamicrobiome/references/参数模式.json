@@ -1,0 +1,407 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/daamicrobiome/master/nextflow_schema.json",
+    "title": "nf-core/daamicrobiome pipeline parameters",
+    "description": "Microbiome differential abundance consensus pipeline",
+    "type": "object",
+    "$defs": {
+        "input_output_options": {
+            "title": "Input/output options",
+            "type": "object",
+            "fa_icon": "fas fa-terminal",
+            "description": "Define where the pipeline should find input data and save output data.",
+            "required": ["input", "outdir"],
+            "properties": {
+                "input": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "mimetype": "application/octet-stream",
+                    "description": "Path to phyloseq RDS file containing OTU table, taxonomy, sample metadata.",
+                    "help_text": "A phyloseq object saved as .rds. Must contain an OTU table, taxonomy table, and sample_data with at least the condition column.",
+                    "fa_icon": "fas fa-file"
+                },
+                "input_control": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to control-only phyloseq RDS (optional). If null and simulate=true, extracted from input.",
+                    "fa_icon": "fas fa-file"
+                },
+                "outdir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
+                    "fa_icon": "fas fa-folder-open"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address for completion summary.",
+                    "fa_icon": "fas fa-envelope",
+                    "help_text": "Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
+                }
+            }
+        },
+        "pipeline_mode_options": {
+            "title": "Pipeline mode",
+            "type": "object",
+            "fa_icon": "fas fa-cogs",
+            "description": "Choose between real-only consensus (Path A) and simulation-trained weighted consensus (Path B).",
+            "properties": {
+                "simulate": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable simulation mode (Path B). Set to false for real-only k-intersection (Path A)."
+                }
+            }
+        },
+        "metadata_options": {
+            "title": "Metadata options",
+            "type": "object",
+            "fa_icon": "fas fa-tags",
+            "description": "Metadata column names for real data analysis and control extraction.",
+            "properties": {
+                "condition": {
+                    "type": "string",
+                    "default": "study_condition",
+                    "description": "sample_data column with the group variable (case vs control)."
+                },
+                "base_level": {
+                    "type": "string",
+                    "default": "healthy",
+                    "description": "Reference/control level in the condition column."
+                },
+                "confounder": {
+                    "type": "string",
+                    "description": "Optional confounder column(s) in sample_data."
+                },
+                "bc_confounder": {
+                    "type": "string",
+                    "description": "Batch-correction confounder column (used by Maaslin2)."
+                },
+                "metadata_condition": {
+                    "type": "string",
+                    "default": "group",
+                    "description": "Condition column name for simulated data (set by MIDASim, usually 'group').",
+                    "hidden": true
+                },
+                "metadata_base": {
+                    "type": "string",
+                    "default": "control",
+                    "description": "Base level name for simulated data (set by MIDASim, usually 'control').",
+                    "hidden": true
+                },
+                "metadata_confounder": {
+                    "type": "string",
+                    "description": "Confounder column for simulated data analysis.",
+                    "hidden": true
+                },
+                "metadata_bc_confounder": {
+                    "type": "string",
+                    "description": "Batch-correction confounder for simulated data.",
+                    "hidden": true
+                }
+            }
+        },
+        "simulation_options": {
+            "title": "Simulation parameters",
+            "type": "object",
+            "fa_icon": "fas fa-random",
+            "description": "Parameters controlling the MIDASim simulation grid (Path B only).",
+            "properties": {
+                "sim_n_ctrl": {
+                    "type": "integer",
+                    "description": "Number of control samples per simulation. If null, uses input dataset size."
+                },
+                "sim_n_case": {
+                    "type": "integer",
+                    "description": "Number of case samples per simulation. If null, uses input dataset size."
+                },
+                "sim_p_da": {
+                    "type": "string",
+                    "description": "Proportions of DA taxa to simulate (Nextflow list, e.g. [0.05, 0.10])."
+                },
+                "sim_abs_logfc": {
+                    "type": "string",
+                    "description": "Absolute log-fold changes to simulate (Nextflow list, e.g. [0.5, 1.0, 2.0])."
+                },
+                "sim_n_rep": {
+                    "type": "integer",
+                    "default": 3,
+                    "description": "Number of replicates per scenario."
+                },
+                "sim_design": {
+                    "type": "string",
+                    "description": "Sample design types to simulate (Nextflow list, e.g. [balanced, unbalanced])."
+                },
+                "sim_subset_var": {
+                    "type": "string",
+                    "description": "Optional sample_data column to subset controls before simulation."
+                },
+                "sim_subset_keep": {
+                    "type": "string",
+                    "description": "Level to keep when subsetting controls."
+                },
+                "sim_batch_col": {
+                    "type": "string",
+                    "description": "Optional batch column for batch-aware simulation."
+                },
+                "sim_batch_sd": {
+                    "type": "number",
+                    "default": 0.3,
+                    "description": "Standard deviation for batch effects."
+                },
+                "sim_seed0": {
+                    "type": "integer",
+                    "default": 123,
+                    "description": "Base random seed for simulations."
+                },
+                "sim_prefix": {
+                    "type": "string",
+                    "default": "dataset",
+                    "description": "Prefix for scenario folder names."
+                },
+                "sim_outdir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "Output directory for simulated data.",
+                    "hidden": true
+                }
+            }
+        },
+        "da_tool_options": {
+            "title": "DA tool selection",
+            "type": "object",
+            "fa_icon": "fas fa-tools",
+            "description": "Toggle which differential abundance tools to run.",
+            "properties": {
+                "tool_adapt": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Run ADAPT."
+                },
+                "tool_corncob": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Run corncob."
+                },
+                "tool_linda": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Run LinDA (MicrobiomeStat)."
+                },
+                "tool_locom": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Run LOCOM2."
+                },
+                "tool_maaslin2": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Run Maaslin2."
+                },
+                "tool_metagenomeseq": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Run metagenomeSeq."
+                },
+                "metagenomeseq_contrast_mode": {
+                    "type": "string",
+                    "description": "Contrast mode for metagenomeSeq."
+                },
+                "metagenomeseq_contrast": {
+                    "type": "string",
+                    "description": "Contrast specification for metagenomeSeq."
+                }
+            }
+        },
+        "scoring_options": {
+            "title": "Scoring and consensus parameters",
+            "type": "object",
+            "fa_icon": "fas fa-chart-bar",
+            "description": "Parameters for DA scoring (Path B) and k-intersection consensus (Path A).",
+            "properties": {
+                "eval_alpha": {
+                    "type": "number",
+                    "default": 0.05,
+                    "description": "Significance threshold for DA evaluation."
+                },
+                "eval_fdr_target": {
+                    "type": "number",
+                    "default": 0.05,
+                    "description": "Target FDR for scoring."
+                },
+                "eval_fdr_reference": {
+                    "type": "number",
+                    "default": 0.10,
+                    "description": "Reference FDR threshold for scoring."
+                },
+                "eval_retention_at_ref": {
+                    "type": "number",
+                    "default": 0.25,
+                    "description": "Minimum retention at reference FDR."
+                },
+                "consensus_alpha": {
+                    "type": "number",
+                    "default": 0.05,
+                    "description": "Significance threshold for k-intersection consensus (Path A)."
+                },
+                "consensus_lfc_min": {
+                    "type": "number",
+                    "default": 0,
+                    "description": "Minimum log-fold change for k-intersection consensus (Path A)."
+                }
+            }
+        },
+        "institutional_config_options": {
+            "title": "Institutional config options",
+            "type": "object",
+            "fa_icon": "fas fa-university",
+            "description": "Parameters used to describe centralised config profiles. These should not be edited.",
+            "help_text": "The centralised nf-core configuration profiles use a handful of pipeline parameters to describe themselves. This information is then printed to the Nextflow log when you run a pipeline. You should not need to change these values when you run a pipeline.",
+            "properties": {
+                "custom_config_version": {
+                    "type": "string",
+                    "description": "Git commit id for Institutional configs.",
+                    "default": "master",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "custom_config_base": {
+                    "type": "string",
+                    "description": "Base directory for Institutional configs.",
+                    "default": "https://raw.githubusercontent.com/nf-core/configs/master",
+                    "hidden": true,
+                    "help_text": "If you're running offline, Nextflow will not be able to fetch the institutional config files from the internet. If you don't need them, then this is not a problem. If you do need them, you should download the files from the repo and tell Nextflow where to find them with this parameter.",
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_name": {
+                    "type": "string",
+                    "description": "Institutional config name.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_description": {
+                    "type": "string",
+                    "description": "Institutional config description.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_contact": {
+                    "type": "string",
+                    "description": "Institutional config contact information.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_url": {
+                    "type": "string",
+                    "description": "Institutional config URL link.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                }
+            }
+        },
+        "generic_options": {
+            "title": "Generic options",
+            "type": "object",
+            "fa_icon": "fas fa-file-import",
+            "description": "Less common options for the pipeline, typically set in a config file.",
+            "help_text": "These options are common to all nf-core pipelines and allow you to customise some of the core preferences for how the pipeline runs.\n\nTypically these options would be set in a Nextflow config file loaded for all pipeline runs, such as `~/.nextflow/config`.",
+            "properties": {
+                "version": {
+                    "type": "boolean",
+                    "description": "Display version and exit.",
+                    "fa_icon": "fas fa-question-circle",
+                    "hidden": true
+                },
+                "publish_dir_mode": {
+                    "type": "string",
+                    "default": "copy",
+                    "description": "Method used to save pipeline results to output directory.",
+                    "help_text": "The Nextflow `publishDir` option specifies which intermediate files should be saved to the output directory. This option tells the pipeline what method should be used to move these files. See [Nextflow docs](https://www.nextflow.io/docs/latest/process.html#publishdir) for details.",
+                    "fa_icon": "fas fa-copy",
+                    "enum": ["symlink", "rellink", "link", "copy", "copyNoFollow", "move"],
+                    "hidden": true
+                },
+                "email_on_fail": {
+                    "type": "string",
+                    "description": "Email address for completion summary, only when pipeline fails.",
+                    "fa_icon": "fas fa-exclamation-triangle",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$",
+                    "help_text": "An email address to send a summary email to when the pipeline is completed - ONLY sent if the pipeline does not exit successfully.",
+                    "hidden": true
+                },
+                "plaintext_email": {
+                    "type": "boolean",
+                    "description": "Send plain-text email instead of HTML.",
+                    "fa_icon": "fas fa-remove-format",
+                    "hidden": true
+                },
+                "monochrome_logs": {
+                    "type": "boolean",
+                    "description": "Do not use coloured log outputs.",
+                    "fa_icon": "fas fa-palette",
+                    "hidden": true
+                },
+                "validate_params": {
+                    "type": "boolean",
+                    "description": "Boolean whether to validate parameters against the schema at runtime",
+                    "default": true,
+                    "fa_icon": "fas fa-check-square",
+                    "hidden": true
+                },
+                "pipelines_testdata_base_path": {
+                    "type": "string",
+                    "fa_icon": "far fa-check-circle",
+                    "description": "Base URL or local path to location of pipeline test dataset files",
+                    "default": "https://raw.githubusercontent.com/nf-core/test-datasets/",
+                    "hidden": true
+                },
+                "trace_report_suffix": {
+                    "type": "string",
+                    "fa_icon": "far calendar",
+                    "description": "Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss.",
+                    "hidden": true
+                },
+                "help": {
+                    "type": ["boolean", "string"],
+                    "description": "Display the help message."
+                },
+                "help_full": {
+                    "type": "boolean",
+                    "description": "Display the full detailed help message."
+                },
+                "show_hidden": {
+                    "type": "boolean",
+                    "description": "Display hidden parameters in the help message (only works when --help or --help_full are provided)."
+                }
+            }
+        }
+    },
+    "allOf": [
+        {
+            "$ref": "#/$defs/input_output_options"
+        },
+        {
+            "$ref": "#/$defs/pipeline_mode_options"
+        },
+        {
+            "$ref": "#/$defs/metadata_options"
+        },
+        {
+            "$ref": "#/$defs/simulation_options"
+        },
+        {
+            "$ref": "#/$defs/da_tool_options"
+        },
+        {
+            "$ref": "#/$defs/scoring_options"
+        },
+        {
+            "$ref": "#/$defs/institutional_config_options"
+        },
+        {
+            "$ref": "#/$defs/generic_options"
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "profile_id": "ieee",
+  "display_name": "IEEE journal template",
+  "scope": "publisher-template",
+  "aliases": ["ieee", "ieee journal", "ieee transactions"],
+  "csl_files": ["ieee.csl"],
+  "language": "en",
+  "verified_on": "2026-07-24",
+  "sources": [
+    {
+      "title": "IEEE article templates",
+      "url": "https://journals.ieeeauthorcenter.ieee.org/create-your-ieee-journal-article/use-authoring-tools-and-ieee-article-templates/",
+      "authority": "official"
+    },
+    {
+      "title": "IEEE Editorial Style Manual",
+      "url": "https://journals.ieeeauthorcenter.ieee.org/your-role-in-article-production/ieee-editorial-style-manual/",
+      "authority": "official"
+    }
+  ],
+  "template": {
+    "body": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 10, "line_spacing": "1.0", "margin_inches": 0.75},
+    "title": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 24, "bold": false, "alignment": "center"},
+    "headings": {
+      "heading_1": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 10, "bold": false, "alignment": "center"},
+      "heading_2": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 10, "bold": false, "italic": true},
+      "heading_3": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 10, "bold": false, "italic": true}
+    },
+    "caption": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 8, "line_spacing": "1.0"},
+    "bibliography": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 8, "line_spacing": "1.0", "hanging_indent_inches": 0.25}
+  },
+  "evidence": {
+    "body": {"status": "partial-official", "source": 0, "note": "Font and size reflect a representative IEEE journal template. The single 0.75-inch margin value is a simplified fallback; use the selected IEEE publication's official template for exact per-side margins and columns."},
+    "title": {"status": "official-template", "source": 0},
+    "headings": {"status": "official-template", "source": 0},
+    "caption": {"status": "official-template", "source": 0},
+    "bibliography": {"status": "official-template", "source": 0, "note": "Reference content rules are also governed by the IEEE Editorial Style Manual."}
+  }
+}

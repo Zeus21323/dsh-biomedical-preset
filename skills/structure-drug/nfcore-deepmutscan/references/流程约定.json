@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/deepmutscan",
+  "skill_id": "nfcore-deepmutscan",
+  "scientific_title": "深度突变扫描与适应度估计",
+  "secondary_search_terms": "突变效应、蛋白工程",
+  "upstream": {
+    "repository": "https://github.com/nf-core/deepmutscan",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "3a055755d43dbbd69af64e6f0130fd82cf6833b9",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "30a1edc15a1a0fce2255eb3a214b68b32f06453db6d9fe87cf43026716e5e313"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "57dc40b663cdf6ffe225da8e2955e110d8155ca2cf952fe1932b0bd4179bb8aa",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/deepmutscan/3a055755d43dbbd69af64e6f0130fd82cf6833b9/LICENSE",
+      "sha256": "91d62268576b9e01efe1a6778836e60994f6ab8365a4a30f1e3570d80a64d2f5",
+      "bytes": 1080
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/deepmutscan/3a055755d43dbbd69af64e6f0130fd82cf6833b9/README.md",
+      "sha256": "c16610bed90791e39a5ad306f40b2b3d86a07762215349e82a2e53f749b91a4d",
+      "bytes": 9731
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/deepmutscan/3a055755d43dbbd69af64e6f0130fd82cf6833b9/assets/schema_input.json",
+      "sha256": "57dc40b663cdf6ffe225da8e2955e110d8155ca2cf952fe1932b0bd4179bb8aa",
+      "bytes": 2349
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/deepmutscan/3a055755d43dbbd69af64e6f0130fd82cf6833b9/docs/output.md",
+      "sha256": "93dffab00ae4c53e87b3d60870d4447de1524a5ea0a743f51cbbb7ef1dfa1364",
+      "bytes": 9572
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/deepmutscan/3a055755d43dbbd69af64e6f0130fd82cf6833b9/docs/usage.md",
+      "sha256": "f3b7b84bfa248b2c81bb6abe59f129a917e8ec0e94d22db09a51b9fa1f2ea7fb",
+      "bytes": 23367
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/deepmutscan/3a055755d43dbbd69af64e6f0130fd82cf6833b9/main.nf",
+      "sha256": "55618de7f943193f6ef058c1490253a292fcbdf9140a7d9be1950c295d3c173d",
+      "bytes": 3123
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/deepmutscan/3a055755d43dbbd69af64e6f0130fd82cf6833b9/nextflow.config",
+      "sha256": "09c96a48e34a58b4c1be7a5d76fbf8a9b04a5e29c0c7972db3a0d0e7c9e85661",
+      "bytes": 10936
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/deepmutscan/3a055755d43dbbd69af64e6f0130fd82cf6833b9/nextflow_schema.json",
+      "sha256": "30a1edc15a1a0fce2255eb3a214b68b32f06453db6d9fe87cf43026716e5e313",
+      "bytes": 19689
+    },
+    {
+      "path": "workflows/deepmutscan.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/deepmutscan/3a055755d43dbbd69af64e6f0130fd82cf6833b9/workflows/deepmutscan.nf",
+      "sha256": "7b2dfc51ef2d869402841e56350c2f22a4e6ab1e1da5a62800be335d39db5abf",
+      "bytes": 31023
+    }
+  ]
+}

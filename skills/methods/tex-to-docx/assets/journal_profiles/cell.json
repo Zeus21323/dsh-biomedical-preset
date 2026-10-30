@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "profile_id": "cell",
+  "display_name": "Cell",
+  "scope": "journal",
+  "aliases": ["cell", "cell journal"],
+  "csl_files": ["cell.csl"],
+  "language": "en",
+  "verified_on": "2026-07-24",
+  "sources": [
+    {
+      "title": "Cell information for authors",
+      "url": "https://www.cell.com/cell/authors",
+      "authority": "official"
+    }
+  ],
+  "template": {
+    "body": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "line_spacing": "2.0", "margin_inches": 1.0},
+    "title": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 16, "bold": true, "alignment": "center"},
+    "headings": {
+      "heading_1": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 13, "bold": true},
+      "heading_2": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "bold": true},
+      "heading_3": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 12, "bold": true, "italic": true}
+    },
+    "caption": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 10, "line_spacing": "1.0"},
+    "bibliography": {"font": "Times New Roman", "font_east_asia": "Times New Roman", "font_size_pt": 10, "line_spacing": "1.0", "hanging_indent_inches": 0.25}
+  },
+  "evidence": {
+    "body": {"status": "fallback", "source": 0, "note": "Cell's author instructions govern content and submission; the profile uses a readable review-manuscript layout where no universal Word value is stated."},
+    "title": {"status": "partial-official", "source": 0, "note": "Title content constraints are official; font styling is a fallback."},
+    "headings": {"status": "fallback"},
+    "caption": {"status": "partial-official", "source": 0, "note": "Figure-legend structure is official; paragraph typography is a fallback."},
+    "bibliography": {"status": "partial-official", "source": 0, "note": "Cell reference style is supplied by cell.csl; Word paragraph typography is a fallback."}
+  }
+}

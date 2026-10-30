@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/coproid",
+  "skill_id": "nfcore-coproid",
+  "scientific_title": "古粪便样本宿主来源识别",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/coproid",
+    "archived": false,
+    "revision_label": "2.0.1",
+    "commit": "045d569d5b01b2d1572220718e64a6d054ad57eb",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "289d5e8230e29d82ffbd77a72a82e4dacd3c30ef02ded6c37204ce99f7fff663"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_genomes.json",
+        "sha256": "d5136b77cd26090798f086fd87d692bb51feb696385ee5cdc8a223727a575899",
+        "parameters": [
+          "genome_sheet"
+        ]
+      },
+      {
+        "file": "输入模式-2.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "5c0bc1dbc38a580fa3906f01aff5a5a286d91e6a68589da17b44ee7097676c48",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/coproid/045d569d5b01b2d1572220718e64a6d054ad57eb/LICENSE",
+      "sha256": "bdb22bb59eae65dbc33c7a65e3e2ec7f8a6c479751a21ce66a9848594eab3211",
+      "bytes": 1076
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/coproid/045d569d5b01b2d1572220718e64a6d054ad57eb/README.md",
+      "sha256": "75be4942172473485e8919ca84e24924ad16e60553c0fa5d22b3c64e2ae85ea9",
+      "bytes": 10045
+    },
+    {
+      "path": "assets/schema_genomes.json",
+      "url": "https://raw.githubusercontent.com/nf-core/coproid/045d569d5b01b2d1572220718e64a6d054ad57eb/assets/schema_genomes.json",
+      "sha256": "d5136b77cd26090798f086fd87d692bb51feb696385ee5cdc8a223727a575899",
+      "bytes": 2072
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/coproid/045d569d5b01b2d1572220718e64a6d054ad57eb/assets/schema_input.json",
+      "sha256": "5c0bc1dbc38a580fa3906f01aff5a5a286d91e6a68589da17b44ee7097676c48",
+      "bytes": 1384
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/coproid/045d569d5b01b2d1572220718e64a6d054ad57eb/docs/output.md",
+      "sha256": "73bffa115a91f80089244ee9e190a0329971bc943c116a160da358d770ef9cdb",
+      "bytes": 9378
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/coproid/045d569d5b01b2d1572220718e64a6d054ad57eb/docs/usage.md",
+      "sha256": "053eecbd48e304b2b2052b537fb7a6d55d16440a8d2be35e76e4d9479ccad41d",
+      "bytes": 16736
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/coproid/045d569d5b01b2d1572220718e64a6d054ad57eb/main.nf",
+      "sha256": "4850cb3230502443086589a654695227b1471f831453e6d43bfba8671595fdb4",
+      "bytes": 3138
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/coproid/045d569d5b01b2d1572220718e64a6d054ad57eb/nextflow.config",
+      "sha256": "06b6e55c367fd7a53740799757d00f1bf98d25ba6694aa9914bdfed6407ea085",
+      "bytes": 10910
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/coproid/045d569d5b01b2d1572220718e64a6d054ad57eb/nextflow_schema.json",
+      "sha256": "289d5e8230e29d82ffbd77a72a82e4dacd3c30ef02ded6c37204ce99f7fff663",
+      "bytes": 15801
+    },
+    {
+      "path": "workflows/coproid.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/coproid/045d569d5b01b2d1572220718e64a6d054ad57eb/workflows/coproid.nf",
+      "sha256": "9bedce70ce2683a21362cdda625400fea820551e1867f025e7d11dc80b8b834f",
+      "bytes": 10632
+    }
+  ]
+}

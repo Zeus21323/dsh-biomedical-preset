@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/spatialaxe",
+  "skill_id": "nfcore-spatialaxe",
+  "scientific_title": "Xenium与Artera空间数据质控",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/spatialaxe",
+    "archived": false,
+    "revision_label": "1.0.1",
+    "commit": "748d310ac01943c97a15bdbc27ec2525a3ee0a96",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "64cc75b3eb2b10dae6bae6c07141ae57a165560216a7e0e96d0903c5d5eb77b3"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "efc7ab8faade11d94d66f6c08527730e8d2f8807c0c02d9711d757b8eef18346",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/spatialaxe/748d310ac01943c97a15bdbc27ec2525a3ee0a96/LICENSE",
+      "sha256": "1e8a314c5bccd28a2fd3c6a461515cc227d5bbefd73c88c720caf4285f34b9e6",
+      "bytes": 1079
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/spatialaxe/748d310ac01943c97a15bdbc27ec2525a3ee0a96/README.md",
+      "sha256": "9a506b6f54b34f8fc0ab32dc3f82e4e13bd033b72b98a00a9147065575850bfd",
+      "bytes": 10226
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/spatialaxe/748d310ac01943c97a15bdbc27ec2525a3ee0a96/assets/schema_input.json",
+      "sha256": "efc7ab8faade11d94d66f6c08527730e8d2f8807c0c02d9711d757b8eef18346",
+      "bytes": 1075
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/spatialaxe/748d310ac01943c97a15bdbc27ec2525a3ee0a96/docs/output.md",
+      "sha256": "f4452c9802557be38f2cf94462fc1baa313473c3b8802fd510fb12a5709e80f3",
+      "bytes": 8641
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/spatialaxe/748d310ac01943c97a15bdbc27ec2525a3ee0a96/docs/usage.md",
+      "sha256": "9235117278157177da7404f2320ad96f29748c28afd5b787417c75d9c2fce872",
+      "bytes": 15564
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/spatialaxe/748d310ac01943c97a15bdbc27ec2525a3ee0a96/main.nf",
+      "sha256": "c1f80390ba6d37d033e32cfc3a8fcb8b37c9df02e4808d0ff9b543ea4e1adb8a",
+      "bytes": 4299
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/spatialaxe/748d310ac01943c97a15bdbc27ec2525a3ee0a96/nextflow.config",
+      "sha256": "d9c06ee6888515942a54b6e085ef3f568e35e381fc8df8699462f774c1ef7731",
+      "bytes": 18820
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/spatialaxe/748d310ac01943c97a15bdbc27ec2525a3ee0a96/nextflow_schema.json",
+      "sha256": "64cc75b3eb2b10dae6bae6c07141ae57a165560216a7e0e96d0903c5d5eb77b3",
+      "bytes": 31022
+    },
+    {
+      "path": "workflows/spatialaxe.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/spatialaxe/748d310ac01943c97a15bdbc27ec2525a3ee0a96/workflows/spatialaxe.nf",
+      "sha256": "ef0cc8aace0d4dd27f7a0c7443e8f52d70eeff7b5ceca195222ee18a6ac6d74a",
+      "bytes": 29303
+    }
+  ]
+}

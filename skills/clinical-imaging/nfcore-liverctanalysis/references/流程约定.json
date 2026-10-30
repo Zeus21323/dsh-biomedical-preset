@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/liverctanalysis",
+  "skill_id": "nfcore-liverctanalysis",
+  "scientific_title": "历史肝脏CT流程实现审查",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/liverctanalysis",
+    "archived": true,
+    "revision_label": "dev",
+    "commit": "800d619c28b8647b9be443d2e0dd6e8b76b2a680",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "source-review-only",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": "已检查 workflow：仍为测序 QC 模板，没有可用的肝脏 CT 处理链路；不得用此入口处理 CT。"
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=21.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": false,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "40547bda380607a989dda3e49f29ff32484487dcdd31ff93439260e8c43221e3"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "3a774b940c53519288136b02d222521b48c22c8cc57c3ab0cee0c45dad9c82f6",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/liverctanalysis/800d619c28b8647b9be443d2e0dd6e8b76b2a680/LICENSE",
+      "sha256": "4594220844fa4cb1238ac92e5bffba3d3690ec1eac47689d9b6e2b9b992862c8",
+      "bytes": 1069
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/liverctanalysis/800d619c28b8647b9be443d2e0dd6e8b76b2a680/README.md",
+      "sha256": "148a2f02d86b7092fed1dc32565883c74161ae323c8fb287e24b4db9dea61ee4",
+      "bytes": 8095
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/liverctanalysis/800d619c28b8647b9be443d2e0dd6e8b76b2a680/assets/schema_input.json",
+      "sha256": "3a774b940c53519288136b02d222521b48c22c8cc57c3ab0cee0c45dad9c82f6",
+      "bytes": 1439
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/liverctanalysis/800d619c28b8647b9be443d2e0dd6e8b76b2a680/docs/output.md",
+      "sha256": "399d40509a40636121cc27feed8af31bcc25f008bd0eee49f6f0cd3bda7598e5",
+      "bytes": 3688
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/liverctanalysis/800d619c28b8647b9be443d2e0dd6e8b76b2a680/docs/usage.md",
+      "sha256": "f1063a73c2ee016e6f789487bba8fd646be85f03ff013c972acecc75badc040b",
+      "bytes": 23293
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/liverctanalysis/800d619c28b8647b9be443d2e0dd6e8b76b2a680/main.nf",
+      "sha256": "115acc1cd01127cacfb6f19a07d4fc015a16fbc3ca34ac672137ee2149254145",
+      "bytes": 2045
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/liverctanalysis/800d619c28b8647b9be443d2e0dd6e8b76b2a680/nextflow.config",
+      "sha256": "9a35b85b914f228e7ba5e49cf01dbaf0766817568418b0fc571d9b8d8bbaae29",
+      "bytes": 6600
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/liverctanalysis/800d619c28b8647b9be443d2e0dd6e8b76b2a680/nextflow_schema.json",
+      "sha256": "40547bda380607a989dda3e49f29ff32484487dcdd31ff93439260e8c43221e3",
+      "bytes": 16161
+    },
+    {
+      "path": "workflows/liverctanalysis.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/liverctanalysis/800d619c28b8647b9be443d2e0dd6e8b76b2a680/workflows/liverctanalysis.nf",
+      "sha256": "bcccecb54f0fb355890a25f9aff35030d57d3b48c0b42ba33d9183eed40b19af",
+      "bytes": 5069
+    }
+  ]
+}

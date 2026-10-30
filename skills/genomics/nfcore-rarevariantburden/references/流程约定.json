@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/rarevariantburden",
+  "skill_id": "nfcore-rarevariantburden",
+  "scientific_title": "稀有变异汇总计数负荷检验",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/rarevariantburden",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "1b3f20e2c0952e8f825a1c8bfb4cbd6efcb962bc",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=24.04.2",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "17d297f3d573a6081231af45d0211f011d9a164cca5ec278d74efc257f1767c1"
+    },
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/rarevariantburden/1b3f20e2c0952e8f825a1c8bfb4cbd6efcb962bc/LICENSE",
+      "sha256": "006f294e877ad2d1e34491cb5166b002d7f114c3e9a2e04f9d5af0dc47ca77c0",
+      "bytes": 1086
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/rarevariantburden/1b3f20e2c0952e8f825a1c8bfb4cbd6efcb962bc/README.md",
+      "sha256": "9510e149223bb2c92ab881b620d0425adf75263f8f38bf22dc8760f56c5d7c10",
+      "bytes": 12139
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/rarevariantburden/1b3f20e2c0952e8f825a1c8bfb4cbd6efcb962bc/docs/output.md",
+      "sha256": "4e1ecf88360315b614c9b053321a7b5c3b1fdbc8aaac05a1c6e46313a94429b7",
+      "bytes": 7353
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/rarevariantburden/1b3f20e2c0952e8f825a1c8bfb4cbd6efcb962bc/docs/usage.md",
+      "sha256": "c98a40072cbec452f2a4e07dd5bbeba107c9c073ef30a7f65124dbb675ff2306",
+      "bytes": 17542
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/rarevariantburden/1b3f20e2c0952e8f825a1c8bfb4cbd6efcb962bc/main.nf",
+      "sha256": "4b6c70211bf8d78181fb44e0be8b44bc29876ddd24288d7ab8871f26aad81dff",
+      "bytes": 3577
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/rarevariantburden/1b3f20e2c0952e8f825a1c8bfb4cbd6efcb962bc/nextflow.config",
+      "sha256": "ea106affa41b091b6a7286aa185f451ceb9139a8f3fa9313242daa87fbb8736b",
+      "bytes": 15227
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/rarevariantburden/1b3f20e2c0952e8f825a1c8bfb4cbd6efcb962bc/nextflow_schema.json",
+      "sha256": "17d297f3d573a6081231af45d0211f011d9a164cca5ec278d74efc257f1767c1",
+      "bytes": 33464
+    },
+    {
+      "path": "workflows/rarevariantburden.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/rarevariantburden/1b3f20e2c0952e8f825a1c8bfb4cbd6efcb962bc/workflows/rarevariantburden.nf",
+      "sha256": "20f532a9570f88685aff89e4c30c1595f9a618bc1e2881df01d1357839a73d36",
+      "bytes": 9859
+    }
+  ]
+}

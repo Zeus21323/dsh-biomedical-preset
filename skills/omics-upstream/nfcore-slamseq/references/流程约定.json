@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/slamseq",
+  "skill_id": "nfcore-slamseq",
+  "scientific_title": "SLAM-seq新生RNA标记分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/slamseq",
+    "archived": false,
+    "revision_label": "1.0.0",
+    "commit": "855583252166ca5ff739b40a6762837534a99c36",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": ">=19.10.0",
+    "legacy_dsl_observed": true,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": null,
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/slamseq/855583252166ca5ff739b40a6762837534a99c36/LICENSE",
+      "sha256": "8b2b0f1ce88edaedd15503e215f6c0081de52f322342318ed7d419d125e4dccd",
+      "bytes": 1066
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/slamseq/855583252166ca5ff739b40a6762837534a99c36/README.md",
+      "sha256": "e6c8bda6836efa48d6782321dc042bfaa8e0ba57dc80f8ed53e0d73bcce795cb",
+      "bytes": 5346
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/slamseq/855583252166ca5ff739b40a6762837534a99c36/docs/output.md",
+      "sha256": "c451331c641940c7d738d730a51698f9f235367c6f366ee8ab586ff1449a057d",
+      "bytes": 9279
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/slamseq/855583252166ca5ff739b40a6762837534a99c36/docs/usage.md",
+      "sha256": "cf606514fdad799020c6b3bb8f26345a6aa8ff219d48d987900d8844fe3fc381",
+      "bytes": 24559
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/slamseq/855583252166ca5ff739b40a6762837534a99c36/main.nf",
+      "sha256": "988952d3fea5883cc3b123bcccb94980628a8f2a476885a0c021d1cf92f7e455",
+      "bytes": 31333
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/slamseq/855583252166ca5ff739b40a6762837534a99c36/nextflow.config",
+      "sha256": "70f8d859003a40ad48e25dfc8cdc77aaa293108b3e72c01f4d99b7c61461b81f",
+      "bytes": 4642
+    }
+  ]
+}

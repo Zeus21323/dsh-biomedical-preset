@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/phageannotator",
+  "skill_id": "nfcore-phageannotator",
+  "scientific_title": "噬菌体序列识别与注释",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/phageannotator",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "30d09bd9e4b3538ae3394a91e6ffb44ad9d33183",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=23.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "c052182b8474d1de9e0e24bcbc36587114d78051d91f3d79cb940da7cf8e7ec8"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "628143673f508741501a2051a30e5480ae1e7eee3d8d8f27199d38890771786d",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/phageannotator/30d09bd9e4b3538ae3394a91e6ffb44ad9d33183/LICENSE",
+      "sha256": "da5556f071b4cc01e34967f7b310e65ff98b2a3d9afbd471f71421d7f90c509c",
+      "bytes": 1061
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/phageannotator/30d09bd9e4b3538ae3394a91e6ffb44ad9d33183/README.md",
+      "sha256": "08fe0706c27f4c7eccce74aa89754fc9bf17997e6d34e40243d4309418b49b0e",
+      "bytes": 11638
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/phageannotator/30d09bd9e4b3538ae3394a91e6ffb44ad9d33183/assets/schema_input.json",
+      "sha256": "628143673f508741501a2051a30e5480ae1e7eee3d8d8f27199d38890771786d",
+      "bytes": 2134
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/phageannotator/30d09bd9e4b3538ae3394a91e6ffb44ad9d33183/docs/output.md",
+      "sha256": "add5b3557c313c86648f41003eb9c7fba938e21de5db7de8eb940b5fcce5e62f",
+      "bytes": 3864
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/phageannotator/30d09bd9e4b3538ae3394a91e6ffb44ad9d33183/docs/usage.md",
+      "sha256": "0e27e4a3a3e4057d8f816ac03d1456ee8e07d712ddba8ac611f41c236a7d2ec0",
+      "bytes": 15053
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/phageannotator/30d09bd9e4b3538ae3394a91e6ffb44ad9d33183/main.nf",
+      "sha256": "57e5a30e652fe4e859d9f80149b1d9e696a5c9ced7035dc0796e8b2421964b10",
+      "bytes": 5875
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/phageannotator/30d09bd9e4b3538ae3394a91e6ffb44ad9d33183/nextflow.config",
+      "sha256": "b555d04b03e5ae61a977518b2400c6ea963da645524edd1c34f1106bbea1739b",
+      "bytes": 12670
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/phageannotator/30d09bd9e4b3538ae3394a91e6ffb44ad9d33183/nextflow_schema.json",
+      "sha256": "c052182b8474d1de9e0e24bcbc36587114d78051d91f3d79cb940da7cf8e7ec8",
+      "bytes": 30826
+    },
+    {
+      "path": "workflows/phageannotator/main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/phageannotator/30d09bd9e4b3538ae3394a91e6ffb44ad9d33183/workflows/phageannotator/main.nf",
+      "sha256": "d73bc40b7bd6ce49fe7da50918462a055d498946f274c4c50bac7390b509530d",
+      "bytes": 22426
+    }
+  ]
+}

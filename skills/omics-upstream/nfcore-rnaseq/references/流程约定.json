@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/rnaseq",
+  "skill_id": "nfcore-rnaseq",
+  "scientific_title": "bulk RNA-seq处理与表达质控",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/rnaseq",
+    "archived": false,
+    "revision_label": "3.26.0",
+    "commit": "e7ca46272c8f9d5ceee3f71759f4ba551d3217a4",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.04.3",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "8f2f84a25c0aec65a18234cf01acdd74f2385e8dfac8417e4bad23a70bfb4388"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "013b669b1a3d38709f548a2548350ecdabb3f2ba578f2b7de843105e2ce87a7d",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/rnaseq/e7ca46272c8f9d5ceee3f71759f4ba551d3217a4/LICENSE",
+      "sha256": "49147db9f580fc819494d436920fd8db97589e67989d8a82d5d18a4deb8d49f9",
+      "bytes": 1075
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/rnaseq/e7ca46272c8f9d5ceee3f71759f4ba551d3217a4/README.md",
+      "sha256": "524935917cc3c1b5ca442b545be2ae10f9a4aba1e310fe7ff0cfd86cd9439da1",
+      "bytes": 13048
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/rnaseq/e7ca46272c8f9d5ceee3f71759f4ba551d3217a4/assets/schema_input.json",
+      "sha256": "013b669b1a3d38709f548a2548350ecdabb3f2ba578f2b7de843105e2ce87a7d",
+      "bytes": 3218
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/rnaseq/e7ca46272c8f9d5ceee3f71759f4ba551d3217a4/docs/output.md",
+      "sha256": "b48d6d97c7c8dc6aad434c1e11d6afd15b7db02aa2374a0732c08c81013b6c65",
+      "bytes": 83334
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/rnaseq/e7ca46272c8f9d5ceee3f71759f4ba551d3217a4/docs/usage.md",
+      "sha256": "ba0fa41db62516cf9f4d774f0e51c803928a907454551bd8b03d0dbad1fdb2a6",
+      "bytes": 83940
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/rnaseq/e7ca46272c8f9d5ceee3f71759f4ba551d3217a4/main.nf",
+      "sha256": "5d4d7652f5726c2f387e5ce0aae4eca212972bc09b63d70e284bfa9e3d41112d",
+      "bytes": 7217
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/rnaseq/e7ca46272c8f9d5ceee3f71759f4ba551d3217a4/nextflow.config",
+      "sha256": "80c0abf26d9b9f963cec1abdca016082987beacffc75b8370d1e2c5804290972",
+      "bytes": 19500
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/rnaseq/e7ca46272c8f9d5ceee3f71759f4ba551d3217a4/nextflow_schema.json",
+      "sha256": "8f2f84a25c0aec65a18234cf01acdd74f2385e8dfac8417e4bad23a70bfb4388",
+      "bytes": 60620
+    },
+    {
+      "path": "workflows/rnaseq/main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/rnaseq/e7ca46272c8f9d5ceee3f71759f4ba551d3217a4/workflows/rnaseq/main.nf",
+      "sha256": "dbfc6f0eaf9079c96b4dfcaea674eb5885c7f1f495a9b22bf5c95887e2385f6a",
+      "bytes": 41775
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/mcmicro",
+  "skill_id": "nfcore-mcmicro",
+  "scientific_title": "多通道组织影像到单细胞数据",
+  "secondary_search_terms": "显微图像、多重组织成像",
+  "upstream": {
+    "repository": "https://github.com/nf-core/mcmicro",
+    "archived": false,
+    "revision_label": "2.0.0",
+    "commit": "f4400001578642e370a72668966c6602fe172ef6",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "a5b2bf1c0c5b0f37fd5aba55503c72ce452fcce964d33dfbd1c8ef8fdaf4c686"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input_cycle.json",
+        "sha256": "2949ef9513066795ecf3ece218d39e422cda96f639aae19a734b8ce8042718a0",
+        "parameters": [
+          "input_cycle"
+        ]
+      },
+      {
+        "file": "输入模式-2.json",
+        "source_path": "assets/schema_input_sample.json",
+        "sha256": "5e5193e022b8aaf3e49d2da4f6477d2e21b11989c280b2d952e0a4d28b092c63",
+        "parameters": [
+          "input_sample"
+        ]
+      },
+      {
+        "file": "输入模式-3.json",
+        "source_path": "assets/schema_marker.json",
+        "sha256": "45d509b8467a8df40f89b424e67b1328cbaf04e6174769aada04ff588bbdb29b",
+        "parameters": [
+          "marker_sheet"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/mcmicro/f4400001578642e370a72668966c6602fe172ef6/LICENSE",
+      "sha256": "91c75f074c98703b4cf33b8cd5a3a04eb3e1c15a44b7ea84a47871e203f6a23c",
+      "bytes": 1076
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/mcmicro/f4400001578642e370a72668966c6602fe172ef6/README.md",
+      "sha256": "7acbcf7a1597abf3dff647d315066eeaf29d43c1b8a888cdaecdc42044210d13",
+      "bytes": 8548
+    },
+    {
+      "path": "assets/schema_input_cycle.json",
+      "url": "https://raw.githubusercontent.com/nf-core/mcmicro/f4400001578642e370a72668966c6602fe172ef6/assets/schema_input_cycle.json",
+      "sha256": "2949ef9513066795ecf3ece218d39e422cda96f639aae19a734b8ce8042718a0",
+      "bytes": 1609
+    },
+    {
+      "path": "assets/schema_input_sample.json",
+      "url": "https://raw.githubusercontent.com/nf-core/mcmicro/f4400001578642e370a72668966c6602fe172ef6/assets/schema_input_sample.json",
+      "sha256": "5e5193e022b8aaf3e49d2da4f6477d2e21b11989c280b2d952e0a4d28b092c63",
+      "bytes": 1355
+    },
+    {
+      "path": "assets/schema_marker.json",
+      "url": "https://raw.githubusercontent.com/nf-core/mcmicro/f4400001578642e370a72668966c6602fe172ef6/assets/schema_marker.json",
+      "sha256": "45d509b8467a8df40f89b424e67b1328cbaf04e6174769aada04ff588bbdb29b",
+      "bytes": 2321
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/mcmicro/f4400001578642e370a72668966c6602fe172ef6/docs/output.md",
+      "sha256": "3c9396db96bc16c8852434de29aaeaeb24bb51ae278341cd498f05a2ef7f9a6b",
+      "bytes": 7087
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/mcmicro/f4400001578642e370a72668966c6602fe172ef6/docs/usage.md",
+      "sha256": "3e16ba19db6f82db937787ed2ab04d0fac7517db082cf2f1591387e247bf2bcd",
+      "bytes": 20003
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/mcmicro/f4400001578642e370a72668966c6602fe172ef6/main.nf",
+      "sha256": "9ad6580632e17b04fd1b72585c4c4529248318137e54fe55821ee0b1c98d2682",
+      "bytes": 2913
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/mcmicro/f4400001578642e370a72668966c6602fe172ef6/nextflow.config",
+      "sha256": "7f51e88b6b43969093a4388f58ac97f837fe3f522423b3b8060bd636f04b1f8b",
+      "bytes": 12293
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/mcmicro/f4400001578642e370a72668966c6602fe172ef6/nextflow_schema.json",
+      "sha256": "a5b2bf1c0c5b0f37fd5aba55503c72ce452fcce964d33dfbd1c8ef8fdaf4c686",
+      "bytes": 14601
+    },
+    {
+      "path": "workflows/mcmicro.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/mcmicro/f4400001578642e370a72668966c6602fe172ef6/workflows/mcmicro.nf",
+      "sha256": "f3bea335b3763800719e1aeb86ecf4ebb57ca631bc01ad5f3ed54579db58e8bb",
+      "bytes": 10652
+    }
+  ]
+}

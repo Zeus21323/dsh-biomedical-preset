@@ -1,0 +1,4 @@
+interface:
+  display_name: "TeX to DOCX"
+  short_description: "按期刊配置生成Word模板并导出带交叉引用的DOCX论文"
+  default_prompt: "Use $tex-to-docx to select the target journal profile, generate its Word template, and export this manuscript with validated citations and media."

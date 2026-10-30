@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/variantbenchmarking",
+  "skill_id": "nfcore-variantbenchmarking",
+  "scientific_title": "变异检测准确性基准评估",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/variantbenchmarking",
+    "archived": false,
+    "revision_label": "1.5.0",
+    "commit": "8b21c01749c4447b285d242a198127736f3ffe51",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "67181f2f71533dc03dc9bc4967ec8d4384f47c51c161eed62761e5df1b23c34f"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "16cd802d46b34aae0d3994d51dd5aebe962d68083de8d7e4264395882a7c8771",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/variantbenchmarking/8b21c01749c4447b285d242a198127736f3ffe51/LICENSE",
+      "sha256": "ada3a170121574587b8e0dd388497b273c85e150bc48f1a1fd1ec27638cdf6fd",
+      "bytes": 1088
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/variantbenchmarking/8b21c01749c4447b285d242a198127736f3ffe51/README.md",
+      "sha256": "1c96b389b7e903b04c06a874d6cc2a28b239471e69203e299f1c125be15ea2d2",
+      "bytes": 18607
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/variantbenchmarking/8b21c01749c4447b285d242a198127736f3ffe51/assets/schema_input.json",
+      "sha256": "16cd802d46b34aae0d3994d51dd5aebe962d68083de8d7e4264395882a7c8771",
+      "bytes": 9523
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/variantbenchmarking/8b21c01749c4447b285d242a198127736f3ffe51/docs/output.md",
+      "sha256": "2c0fe58c14df550c89590a73e08ab228d5f15418f41c5d2eaf77290f25254a23",
+      "bytes": 15958
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/variantbenchmarking/8b21c01749c4447b285d242a198127736f3ffe51/docs/usage.md",
+      "sha256": "201f3b198c021d10006ce594ffb1fc9e0d96802b270a00e78000a2274b155888",
+      "bytes": 35181
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/variantbenchmarking/8b21c01749c4447b285d242a198127736f3ffe51/main.nf",
+      "sha256": "f926113cd38adf90cbcbded2d2aa43fa2124c5663c90bd7f8293efd846e00450",
+      "bytes": 3252
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/variantbenchmarking/8b21c01749c4447b285d242a198127736f3ffe51/nextflow.config",
+      "sha256": "1bbe3c910ae20e98e81dea60c009fd4e7a619a2dc0b580a457cfe931459ab668",
+      "bytes": 14018
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/variantbenchmarking/8b21c01749c4447b285d242a198127736f3ffe51/nextflow_schema.json",
+      "sha256": "67181f2f71533dc03dc9bc4967ec8d4384f47c51c161eed62761e5df1b23c34f",
+      "bytes": 28011
+    },
+    {
+      "path": "workflows/variantbenchmarking.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/variantbenchmarking/8b21c01749c4447b285d242a198127736f3ffe51/workflows/variantbenchmarking.nf",
+      "sha256": "802c16e6c5fc29130bfd39179991cccf0f67ef32dbe1a1eab8b849e5c0fa8781",
+      "bytes": 18993
+    }
+  ]
+}

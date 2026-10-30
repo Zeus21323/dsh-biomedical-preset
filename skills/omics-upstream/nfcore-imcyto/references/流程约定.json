@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/imcyto",
+  "skill_id": "nfcore-imcyto",
+  "scientific_title": "成像质谱细胞表型与空间分析",
+  "secondary_search_terms": "成像质谱、免疫表型",
+  "upstream": {
+    "repository": "https://github.com/nf-core/imcyto",
+    "archived": false,
+    "revision_label": "1.0.0",
+    "commit": "5d6631332b43c78f12b853594e91a7f7356d87ae",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": ">=19.10.0",
+    "legacy_dsl_observed": true,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": null,
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/imcyto/5d6631332b43c78f12b853594e91a7f7356d87ae/LICENSE",
+      "sha256": "504bd9f2ad5b4f65244899e4068bc069ef505d45430e9dd724c51e26ae47d50c",
+      "bytes": 1065
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/imcyto/5d6631332b43c78f12b853594e91a7f7356d87ae/README.md",
+      "sha256": "bbde8c4a1db79e3735aaa554c5985b3a7c64ebea3edc8a77fc96a25a7a3a796b",
+      "bytes": 6750
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/imcyto/5d6631332b43c78f12b853594e91a7f7356d87ae/docs/output.md",
+      "sha256": "31bccaaf236b105891ce9ecade8d328094fe33201b8ecfde1338f1673de58f85",
+      "bytes": 17078
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/imcyto/5d6631332b43c78f12b853594e91a7f7356d87ae/docs/usage.md",
+      "sha256": "5a0161765a1b85456444ef905d9bccdd1bb46df26e49696bd2c85d474fcf79e6",
+      "bytes": 13702
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/imcyto/5d6631332b43c78f12b853594e91a7f7356d87ae/main.nf",
+      "sha256": "43b495179bca2089b9deed7a73c7964118cd2986cd094ebc3f05c3e9d545c727",
+      "bytes": 23325
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/imcyto/5d6631332b43c78f12b853594e91a7f7356d87ae/nextflow.config",
+      "sha256": "e291769accd33d23467896ffa37da422193b422723ac6f6670c2a03b431d299f",
+      "bytes": 4292
+    }
+  ]
+}

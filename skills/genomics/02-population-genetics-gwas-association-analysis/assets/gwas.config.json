@@ -1,0 +1,23 @@
+{
+  "engine": "plink2",
+  "executable": "plink2",
+  "pgen": null,
+  "step1_pgen": null,
+  "step1_extract": null,
+  "phenotypes": null,
+  "covariates": null,
+  "trait": null,
+  "trait_type": null,
+  "covariate_names": [],
+  "output": null,
+  "qc_reviewed": false,
+  "model_rationale": null,
+  "build": null,
+  "ancestry": null,
+  "threads": 4,
+  "bsize": 100,
+  "min_mac": 5,
+  "predictions": null,
+  "step1_run_record": null,
+  "firth_p_threshold": 0.05
+}

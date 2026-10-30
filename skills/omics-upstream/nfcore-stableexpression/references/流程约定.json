@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/stableexpression",
+  "skill_id": "nfcore-stableexpression",
+  "scientific_title": "稳定表达基因与qPCR内参筛选",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/stableexpression",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "10736a5a75afac14a6301163a3ef91510ff07eff",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=26.04.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "229ea0572f0dde44391ab4f1e8484f376c4604c23d35b73441a44f6cc904f7e9"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_datasets.json",
+        "sha256": "a189149ba0da489969932c302ed6e1d7348d7b45808be17662478aa1ad781f8b",
+        "parameters": [
+          "datasets"
+        ]
+      },
+      {
+        "file": "输入模式-2.json",
+        "source_path": "assets/schema_gene_id_mapping.json",
+        "sha256": "5db7d8de60e473015cccd1f28e5ee37b4e5306f56a7d5858a3f17a4d77ca7027",
+        "parameters": [
+          "gene_id_mapping"
+        ]
+      },
+      {
+        "file": "输入模式-3.json",
+        "source_path": "assets/schema_gene_length.json",
+        "sha256": "4f21ef93daf0dbd371856a772062fa85b32f4db768a36e9388765601a7c7b24a",
+        "parameters": [
+          "gene_length"
+        ]
+      },
+      {
+        "file": "输入模式-4.json",
+        "source_path": "assets/schema_gene_metadata.json",
+        "sha256": "6cf23a61442844d6993bfe6a406ceff20fb38ac8083088a8077e12233406ce89",
+        "parameters": [
+          "gene_metadata"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/stableexpression/10736a5a75afac14a6301163a3ef91510ff07eff/LICENSE",
+      "sha256": "77675744e2f6c4cb66b6d59cd1df594372c333f3d57403163500da6ea822dc9b",
+      "bytes": 1085
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/stableexpression/10736a5a75afac14a6301163a3ef91510ff07eff/README.md",
+      "sha256": "a1f7a71f0a7d46e92cc5ab2738cac2a7bb7d857b5f9927fe38f465d7deb96885",
+      "bytes": 11306
+    },
+    {
+      "path": "assets/schema_datasets.json",
+      "url": "https://raw.githubusercontent.com/nf-core/stableexpression/10736a5a75afac14a6301163a3ef91510ff07eff/assets/schema_datasets.json",
+      "sha256": "a189149ba0da489969932c302ed6e1d7348d7b45808be17662478aa1ad781f8b",
+      "bytes": 1681
+    },
+    {
+      "path": "assets/schema_gene_id_mapping.json",
+      "url": "https://raw.githubusercontent.com/nf-core/stableexpression/10736a5a75afac14a6301163a3ef91510ff07eff/assets/schema_gene_id_mapping.json",
+      "sha256": "5db7d8de60e473015cccd1f28e5ee37b4e5306f56a7d5858a3f17a4d77ca7027",
+      "bytes": 899
+    },
+    {
+      "path": "assets/schema_gene_length.json",
+      "url": "https://raw.githubusercontent.com/nf-core/stableexpression/10736a5a75afac14a6301163a3ef91510ff07eff/assets/schema_gene_length.json",
+      "sha256": "4f21ef93daf0dbd371856a772062fa85b32f4db768a36e9388765601a7c7b24a",
+      "bytes": 885
+    },
+    {
+      "path": "assets/schema_gene_metadata.json",
+      "url": "https://raw.githubusercontent.com/nf-core/stableexpression/10736a5a75afac14a6301163a3ef91510ff07eff/assets/schema_gene_metadata.json",
+      "sha256": "6cf23a61442844d6993bfe6a406ceff20fb38ac8083088a8077e12233406ce89",
+      "bytes": 1079
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/stableexpression/10736a5a75afac14a6301163a3ef91510ff07eff/docs/output.md",
+      "sha256": "ff0d2b8a88696404c47b8f3b1172388d8035ded395fa9832eb4bc7cd3fb765c8",
+      "bytes": 12528
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/stableexpression/10736a5a75afac14a6301163a3ef91510ff07eff/docs/usage.md",
+      "sha256": "8806d69a30777f6d21dda2f5cae742993ebc010229a56263f10a514ae32d6234",
+      "bytes": 23004
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/stableexpression/10736a5a75afac14a6301163a3ef91510ff07eff/main.nf",
+      "sha256": "83f01f23267da7ccb827f770f4c36e6ed00ba17565d3054862e1b179c5c28efb",
+      "bytes": 6189
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/stableexpression/10736a5a75afac14a6301163a3ef91510ff07eff/nextflow.config",
+      "sha256": "c10cd140d5d45028c56fb32d5149da8f2c6af8e3826bee4c1eee388a483f9f7e",
+      "bytes": 12852
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/stableexpression/10736a5a75afac14a6301163a3ef91510ff07eff/nextflow_schema.json",
+      "sha256": "229ea0572f0dde44391ab4f1e8484f376c4604c23d35b73441a44f6cc904f7e9",
+      "bytes": 34136
+    },
+    {
+      "path": "workflows/stableexpression.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/stableexpression/10736a5a75afac14a6301163a3ef91510ff07eff/workflows/stableexpression.nf",
+      "sha256": "1e7a81b0f366b0f0e4e88e3ca8d03ffd94f3e09e5c510772d2f10564aed3029b",
+      "bytes": 9971
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/ampliseq",
+  "skill_id": "nfcore-ampliseq",
+  "scientific_title": "扩增子微生物群落分析",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/ampliseq",
+    "archived": false,
+    "revision_label": "2.18.0",
+    "commit": "2723d4c298d48321594920d0324697e14d73ee94",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=25.10.4",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "0e8f195c88c1a1a07f610ebd74bd88bf6ef00d8f105dfe16e39989d429da516f"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "d573bbb755346350730472f0b620b47f618e065c147b59844d16efba7c2cbb26",
+        "parameters": [
+          "input"
+        ]
+      },
+      {
+        "file": "输入模式-2.json",
+        "source_path": "assets/schema_multiregion.json",
+        "sha256": "f3ab7c2758a8ac6278e80bf0956ef002f68fe1cff1fb348302fe00421c36804f",
+        "parameters": [
+          "multiregion"
+        ]
+      },
+      {
+        "file": "输入模式-3.json",
+        "source_path": "assets/schema_pplace_sheet.json",
+        "sha256": "18a97f3c0d729bb2367f1cc323ab91b1af9b6f139b146bbe66ea784001f6afbf",
+        "parameters": [
+          "pplace_sheet"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/ampliseq/2723d4c298d48321594920d0324697e14d73ee94/LICENSE",
+      "sha256": "be1914499a3bdefa7717f58f81e9e34ea9a2a85911dfcb42d55abc28dc192f08",
+      "bytes": 1077
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/ampliseq/2723d4c298d48321594920d0324697e14d73ee94/README.md",
+      "sha256": "4af787d30b680d7140e52c9269da0435b87199aee11d5d279c92947295409711",
+      "bytes": 11170
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/ampliseq/2723d4c298d48321594920d0324697e14d73ee94/assets/schema_input.json",
+      "sha256": "d573bbb755346350730472f0b620b47f618e065c147b59844d16efba7c2cbb26",
+      "bytes": 4607
+    },
+    {
+      "path": "assets/schema_multiregion.json",
+      "url": "https://raw.githubusercontent.com/nf-core/ampliseq/2723d4c298d48321594920d0324697e14d73ee94/assets/schema_multiregion.json",
+      "sha256": "f3ab7c2758a8ac6278e80bf0956ef002f68fe1cff1fb348302fe00421c36804f",
+      "bytes": 1579
+    },
+    {
+      "path": "assets/schema_pplace_sheet.json",
+      "url": "https://raw.githubusercontent.com/nf-core/ampliseq/2723d4c298d48321594920d0324697e14d73ee94/assets/schema_pplace_sheet.json",
+      "sha256": "18a97f3c0d729bb2367f1cc323ab91b1af9b6f139b146bbe66ea784001f6afbf",
+      "bytes": 2489
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/ampliseq/2723d4c298d48321594920d0324697e14d73ee94/docs/output.md",
+      "sha256": "4c468b07780748f2dec6713f9a3de2f2b8e0342fc97880344f65af09542a6152",
+      "bytes": 44771
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/ampliseq/2723d4c298d48321594920d0324697e14d73ee94/docs/usage.md",
+      "sha256": "ef80bb8f7196109d50ead9e660aa7e3fa1d02f03c1c7fcfe7a9f3082f3946e68",
+      "bytes": 39730
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/ampliseq/2723d4c298d48321594920d0324697e14d73ee94/main.nf",
+      "sha256": "6985423c6c76d64c48c8c0042bdbd34768eece64b7e74162dcbc0055e8ba9934",
+      "bytes": 2750
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/ampliseq/2723d4c298d48321594920d0324697e14d73ee94/nextflow.config",
+      "sha256": "914e11e7129cea6881a304881a2b3174ae86f3053141d0458c9f4f1b759e0cd4",
+      "bytes": 19865
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/ampliseq/2723d4c298d48321594920d0324697e14d73ee94/nextflow_schema.json",
+      "sha256": "0e8f195c88c1a1a07f610ebd74bd88bf6ef00d8f105dfe16e39989d429da516f",
+      "bytes": 95707
+    },
+    {
+      "path": "workflows/ampliseq.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/ampliseq/2723d4c298d48321594920d0324697e14d73ee94/workflows/ampliseq.nf",
+      "sha256": "3c4e480cb722b39aad8d41d7eadec9a47de3e10fd4791c7e7a9e297f0dd2275b",
+      "bytes": 66251
+    }
+  ]
+}

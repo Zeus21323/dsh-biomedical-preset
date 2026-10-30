@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/isoseq",
+  "skill_id": "nfcore-isoseq",
+  "scientific_title": "PacBio全长转录本辅助基因组注释",
+  "secondary_search_terms": "长读长转录组",
+  "upstream": {
+    "repository": "https://github.com/nf-core/isoseq",
+    "archived": false,
+    "revision_label": "2.0.0",
+    "commit": "c7536ab0e18a27460476d4e8557845950292f070",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=23.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "e01475bb47dcac63fdba60d28a87c6c2dd648b042a6f895f20ccea85d47fb143"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "261e8c1614570ec59c0af3c8d183a786e3f9cff53ac0f284e4eacb67ee1342e1",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/isoseq/c7536ab0e18a27460476d4e8557845950292f070/LICENSE",
+      "sha256": "b3e57042c71cb53e286c9ccf1ce762771e212c3a64d3bd0715925409c1adea3a",
+      "bytes": 1082
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/isoseq/c7536ab0e18a27460476d4e8557845950292f070/README.md",
+      "sha256": "56ea6303e4374326e38fedc72a69cde71660725e05aa6e137277b91ba33d4182",
+      "bytes": 9442
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/isoseq/c7536ab0e18a27460476d4e8557845950292f070/assets/schema_input.json",
+      "sha256": "261e8c1614570ec59c0af3c8d183a786e3f9cff53ac0f284e4eacb67ee1342e1",
+      "bytes": 1733
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/isoseq/c7536ab0e18a27460476d4e8557845950292f070/docs/output.md",
+      "sha256": "ba1eeb2c5d09cc14c29740d0a3d4319bafb3ebc48de3beaa36646425767c71a8",
+      "bytes": 9985
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/isoseq/c7536ab0e18a27460476d4e8557845950292f070/docs/usage.md",
+      "sha256": "c8f1bd696c64ba8c819db053e46699afcb79ee9e5a0282132ce1389f92c7fe14",
+      "bytes": 16129
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/isoseq/c7536ab0e18a27460476d4e8557845950292f070/main.nf",
+      "sha256": "8219d439e635e9556c7ec747f712b343f1e0b218bbc01c9614f610d0553c41ec",
+      "bytes": 3036
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/isoseq/c7536ab0e18a27460476d4e8557845950292f070/nextflow.config",
+      "sha256": "54ea90220e9ae9c49343c6bfe0c3d7ff6b33886fee314298f073d926d2275208",
+      "bytes": 10691
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/isoseq/c7536ab0e18a27460476d4e8557845950292f070/nextflow_schema.json",
+      "sha256": "e01475bb47dcac63fdba60d28a87c6c2dd648b042a6f895f20ccea85d47fb143",
+      "bytes": 24173
+    },
+    {
+      "path": "workflows/isoseq.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/isoseq/c7536ab0e18a27460476d4e8557845950292f070/workflows/isoseq.nf",
+      "sha256": "b408833ef0922987a40c271b8821f15fccb4d38aacb1a4b34da3b3922a7f71b6",
+      "bytes": 11543
+    }
+  ]
+}

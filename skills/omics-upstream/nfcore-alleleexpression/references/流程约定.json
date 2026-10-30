@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/alleleexpression",
+  "skill_id": "nfcore-alleleexpression",
+  "scientific_title": "等位基因特异表达",
+  "secondary_search_terms": "",
+  "upstream": {
+    "repository": "https://github.com/nf-core/alleleexpression",
+    "archived": false,
+    "revision_label": "dev",
+    "commit": "88c14b1de6f6734cc66e64b7ca4e8dfd1425d820",
+    "revision_kind": "development",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": "!>=23.04.0",
+    "legacy_dsl_observed": false,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "38bff93733cc5dd03fafb0d2b234626a993b70050f75b52d2daa6c752bb027af"
+    },
+    "inputs": [
+      {
+        "file": "输入模式-1.json",
+        "source_path": "assets/schema_input.json",
+        "sha256": "3d57d6505229144018bb035955d731250b16bb9eb588cb2b5f00aa0c80e2feb1",
+        "parameters": [
+          "input"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/alleleexpression/88c14b1de6f6734cc66e64b7ca4e8dfd1425d820/LICENSE",
+      "sha256": "f2db53818163f518e0009b05e21281024f71094d4e9a3167ceebd3c8d35511ea",
+      "bytes": 1085
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/alleleexpression/88c14b1de6f6734cc66e64b7ca4e8dfd1425d820/README.md",
+      "sha256": "0d989aa338917fc5d0d9d185b5ed44800b429543af84ab88cb99eb3b99fa788a",
+      "bytes": 1881
+    },
+    {
+      "path": "assets/schema_input.json",
+      "url": "https://raw.githubusercontent.com/nf-core/alleleexpression/88c14b1de6f6734cc66e64b7ca4e8dfd1425d820/assets/schema_input.json",
+      "sha256": "3d57d6505229144018bb035955d731250b16bb9eb588cb2b5f00aa0c80e2feb1",
+      "bytes": 1597
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/alleleexpression/88c14b1de6f6734cc66e64b7ca4e8dfd1425d820/docs/output.md",
+      "sha256": "801b17c4f4cfdcf642a4571ecbe4069d4f770ca2116b97f889d0bb21197cbfd7",
+      "bytes": 14078
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/alleleexpression/88c14b1de6f6734cc66e64b7ca4e8dfd1425d820/docs/usage.md",
+      "sha256": "6893d73a017b531192ea9bb846f9b04f990bbc173dee81d79fb97d381660a781",
+      "bytes": 25440
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/alleleexpression/88c14b1de6f6734cc66e64b7ca4e8dfd1425d820/main.nf",
+      "sha256": "647df5ce4d8422e8472b5116ce302e54e9dfb2ad802ecf5b27c1e21a3f4be232",
+      "bytes": 1903
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/alleleexpression/88c14b1de6f6734cc66e64b7ca4e8dfd1425d820/nextflow.config",
+      "sha256": "aa1d4bc380fde8f4837ad6771dfbd7122f7b03f0a604e83d8f5b72fd1901057e",
+      "bytes": 8183
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/alleleexpression/88c14b1de6f6734cc66e64b7ca4e8dfd1425d820/nextflow_schema.json",
+      "sha256": "38bff93733cc5dd03fafb0d2b234626a993b70050f75b52d2daa6c752bb027af",
+      "bytes": 16142
+    },
+    {
+      "path": "workflows/alleleexpression.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/alleleexpression/88c14b1de6f6734cc66e64b7ca4e8dfd1425d820/workflows/alleleexpression.nf",
+      "sha256": "74cc027b3506f1e85c15b2c050b35e2659abc4571fcc9c2c4be9d38e8704321d",
+      "bytes": 7196
+    }
+  ]
+}

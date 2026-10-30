@@ -1,0 +1,58 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/createtaxdb/main/assets/schema_input.json",
+    "title": "nf-core/createtaxdb pipeline - params.input schema",
+    "description": "Schema for the file provided with params.input",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "uniqueItems": true,
+                "errorMessage": "Sequence reference name must be provided and cannot contain spaces",
+                "meta": ["id"]
+            },
+            "taxid": {
+                "type": "integer",
+                "errorMessage": "Please provide a valid taxonomic ID in integer format",
+                "meta": ["taxid"]
+            },
+            "fasta_dna": {
+                "type": "string",
+                "format": "file-path",
+                "pattern": "^\\S+\\.(fasta|fas|fa|fna)(\\.gz)?$",
+                "exists": true,
+                "errorMessage": "FASTA file for nucleotide sequence cannot contain spaces and must have a valid FASTA extension (fasta, fna, fa, fas), optionally gzipped"
+            },
+            "fasta_aa": {
+                "type": "string",
+                "format": "file-path",
+                "pattern": "^\\S+\\.(fasta|fas|fa|faa)(\\.gz)?$",
+                "exists": true,
+                "errorMessage": "FASTA file for amino acid reference sequence cannot contain spaces and must have a valid FASTA extension (fasta, faa, fa, fas), optionally gzipped"
+            }
+        },
+        "required": ["id", "taxid"],
+        "anyOf": [
+            {
+                "required": ["fasta_dna"]
+            },
+            {
+                "required": ["fasta_aa"]
+            }
+        ]
+    },
+    "allOf": [
+        {
+            "uniqueEntries": ["id"]
+        },
+        {
+            "uniqueEntries": ["fasta_dna"]
+        },
+        {
+            "uniqueEntries": ["fasta_aa"]
+        }
+    ]
+}

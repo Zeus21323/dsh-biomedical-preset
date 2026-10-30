@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "nf-core/dualrnaseq",
+  "skill_id": "nfcore-dualrnaseq",
+  "scientific_title": "宿主与病原双RNA测序分析",
+  "secondary_search_terms": "转录组学、宿主病原互作",
+  "upstream": {
+    "repository": "https://github.com/nf-core/dualrnaseq",
+    "archived": false,
+    "revision_label": "1.0.0",
+    "commit": "d8dcd8acfa6f1c2de933294bc73344d6258ebb42",
+    "revision_kind": "numeric-tag-candidate",
+    "release_status_note": "数字标签来自官方目录；标签对应代码已读取，不将标签语法当作完整发布认证。"
+  },
+  "review": {
+    "date": "2026-09-07",
+    "capability_scope": "native-workflow-guidance",
+    "execution_tested": false,
+    "scientific_validation": "未进行数据集级验证",
+    "source_review_scope": "固定版本的说明、原生入口与可获取的主要工作流和模式文件；不代表所有传递依赖已经逐行审计。",
+    "implementation_note": null
+  },
+  "native": {
+    "entrypoint": "main.nf",
+    "nextflow_constraint": ">=20.10.0",
+    "legacy_dsl_observed": true,
+    "execution_allowed_for_claimed_assay": true,
+    "preparation": "先识别现有文件、处理阶段、实验设计和研究问题，依据本 Skill 的数据判断选择方法及阈值；未知事实与暂定参数分开记录，不要求用户懂流程或填写技术设置。先核验原生字段、必需输入与参数关系，写出 params.json；文件和参考资源需在选定计算目标可读。模式中的 schema/exists/file-path 等扩展需由对应 nf-schema 或原生逻辑验证，普通 JSON 校验不能替代。",
+    "environment": "核查该版本 Nextflow、Java、容器及 profile。历史 DSL1 流程不能假定兼容现代 DSL2/严格语法引擎；此处未实际安装或测试运行环境。",
+    "authorization": "仅在用户要求执行且条件满足时运行。准备说明、读取代码或生成参数不等于授权上传、公开提交、删除或覆盖外部数据。",
+    "handoff": "保存真实参数、源码与参考身份、日志、退出码和产物；按本 Skill 的科学质控解释结果，不能以退出成功替代产物和证据检查。"
+  },
+  "schemas": {
+    "parameters": {
+      "file": "参数模式.json",
+      "source_path": "nextflow_schema.json",
+      "sha256": "4cdf3994c30e1d6360ce2f0f661afef37653d79bc1b259ed5c21b82a66b42572"
+    },
+    "inputs": []
+  },
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nf-core/dualrnaseq/d8dcd8acfa6f1c2de933294bc73344d6258ebb42/LICENSE",
+      "sha256": "b9d69390164aaed238d04110407033f6c70fcba1d92cb76cd4a3eb207aee4c4a",
+      "bytes": 1088
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/nf-core/dualrnaseq/d8dcd8acfa6f1c2de933294bc73344d6258ebb42/README.md",
+      "sha256": "b0d50a9a87e3b747f5e919ac166997e45f817ac3ff41937275d7a7a62a0e2951",
+      "bytes": 4644
+    },
+    {
+      "path": "docs/output.md",
+      "url": "https://raw.githubusercontent.com/nf-core/dualrnaseq/d8dcd8acfa6f1c2de933294bc73344d6258ebb42/docs/output.md",
+      "sha256": "5ce5fbeb3655c753a4b0850e77992129e5b05417827a73f04ad3b8b7846bfc85",
+      "bytes": 24989
+    },
+    {
+      "path": "docs/usage.md",
+      "url": "https://raw.githubusercontent.com/nf-core/dualrnaseq/d8dcd8acfa6f1c2de933294bc73344d6258ebb42/docs/usage.md",
+      "sha256": "9722516ccc8ef8b6fa005abf8ad31c24409d0b168979c9801368bbcf1172888b",
+      "bytes": 30036
+    },
+    {
+      "path": "main.nf",
+      "url": "https://raw.githubusercontent.com/nf-core/dualrnaseq/d8dcd8acfa6f1c2de933294bc73344d6258ebb42/main.nf",
+      "sha256": "06d09d1ff0d5b94c1e58e1f725f0898f1c6377434db2c06ea9470837688f948a",
+      "bytes": 169928
+    },
+    {
+      "path": "nextflow.config",
+      "url": "https://raw.githubusercontent.com/nf-core/dualrnaseq/d8dcd8acfa6f1c2de933294bc73344d6258ebb42/nextflow.config",
+      "sha256": "28b6eb4f6ab9f0c535869997700e647b6ddee2b562ac20ddf4ed172e52aab82d",
+      "bytes": 8839
+    },
+    {
+      "path": "nextflow_schema.json",
+      "url": "https://raw.githubusercontent.com/nf-core/dualrnaseq/d8dcd8acfa6f1c2de933294bc73344d6258ebb42/nextflow_schema.json",
+      "sha256": "4cdf3994c30e1d6360ce2f0f661afef37653d79bc1b259ed5c21b82a66b42572",
+      "bytes": 46317
+    }
+  ]
+}
