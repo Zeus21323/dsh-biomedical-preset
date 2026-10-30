@@ -1,6 +1,6 @@
 {
   "name": "dsh-biomedical-preset",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "type": "module",
   "description": "生物医学模式 — DSH agent preset for biomedical research (omics, clinical, structure, literature, writing)",
   "engines": {

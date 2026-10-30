@@ -1,22 +1,31 @@
 /**
  * 生物医学技能选择器（Host half）
  *
- * 用一个自定义 skill provider 取代 6 个 skill-filesystem hub：
- * 按 catalog.json 里的功能分类分组，Config 里每个分类一个开关。
- * Config 变更会让 Cordis 重启本插件，provider 重新注册，技能目录随之变化。
+ * 单一 skill provider：按 catalog.json 的 34 个功能分类提供 603 个技能。
+ * 开关状态只来自 profile 的 biomedical-skills.json（由 dsh-biomedical-skill-settings
+ * 的设置页写入），本插件刻意不声明 Config —— 这样它只依赖 node 内置模块，
+ * 不会因为跨包解析（schemastery 等）失败而拖垮整个预设的挂载。
  */
 import { readFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { Config } from './config.mjs';
 
 export const name = 'biomedical-skill-picker';
 export const inject = ['skills'];
-export { Config };
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const SKILLS_ROOT = join(HERE, '..', 'skills');
 const CATALOG_PATH = join(HERE, 'catalog.json');
+
+/** Host 进程不总是导出 DSH_PROFILE_DIR；用存在性探测兜底。 */
+function profileDir() {
+  const candidates = [process.env.DSH_PROFILE_DIR, 'C:/Users/20735/.dsh/profiles/desktop'];
+  for (const dir of candidates) {
+    if (dir && existsSync(join(dir, 'package.json'))) return dir;
+  }
+  return undefined;
+}
 
 function frontmatter(text) {
   const m = /^---\r?\n([\s\S]*?)\r?\n---/.exec(text);
@@ -38,10 +47,15 @@ function frontmatter(text) {
     v = v.replace(/^["']|["']$/g, '').trim();
     fm[k] = v;
   }
-  // description 用块标量时，从原文补齐
   if (!fm.description) {
     const block = /^description:\s*[|>]\s*\r?\n((?:[ \t]+.*\r?\n?)+)/m.exec(m[1]);
-    if (block) fm.description = block[1].split(/\r?\n/).map((l) => l.trim()).filter(Boolean).join(' ');
+    if (block) {
+      fm.description = block[1]
+        .split(/\r?\n/)
+        .map((l) => l.trim())
+        .filter(Boolean)
+        .join(' ');
+    }
   }
   return { fm, body: text.slice(m[0].length).replace(/^\r?\n/, '') };
 }
@@ -53,11 +67,9 @@ export function apply(ctx, config = {}) {
     return catalog;
   };
 
-  // 设置页（dsh-biomedical-skill-settings）把开关镜像到这个文件；
-  // 文件优先于本行的 config，这样页面改动无需重启 preset 即可生效。
   const switches = async () => {
-    // Host 进程不一定导出 DSH_PROFILE_DIR；与设置插件保持同一套兜底。
-    const dir = process.env.DSH_PROFILE_DIR || 'C:/Users/20735/.dsh/profiles/desktop';
+    const dir = profileDir();
+    if (!dir) return {};
     try {
       return JSON.parse(await readFile(join(dir, 'biomedical-skills.json'), 'utf8'));
     } catch {
