@@ -169,12 +169,12 @@
       },
       "versions": [
         {
-          "version": "1.4.0",
-          "publishTimestamp": 1793367211,
+          "version": "1.4.1",
+          "publishTimestamp": 1793367442,
           "source": {
             "type": "git",
             "url": "https://github.com/Zeus21323/dsh-biomedical-skill-settings",
-            "commit": "6961c11ba61d4c23a0547ed8065a7763403ba87b"
+            "commit": "b73044360448694bc8fa78271df577fb66076b20"
           },
           "engines": {
             "dsh": "^0.2.1-rc.2"
