@@ -420,3 +420,45 @@
 
           - id: present
             name: '@deepseek-ai/dsh-tool-present'
+
+- insert:
+
+    # 设置页（设置 → 生物医学技能）：34 个分类开关的 Config 由本包 settings/ 提供，
+    # 它同时是 profile 级行 —— 只有这样才会出现在 settings.describe() 的命名空间列表里。
+    - id: biomedical-skill-settings
+      name: dsh-biomedical-preset/settings
+      config:
+        "sequencing-qc-alignment": true
+        "genome-assembly-comparative": true
+        "variant-calling-filtering": true
+        "copy-number-structural-variation": true
+        "variant-interpretation-clinical": true
+        "population-genetics-gwas": true
+        "cancer-genomics-liquid-biopsy": true
+        "forensic-identity-genetics": true
+        "clinical-precision-medicine": true
+        "medical-imaging-radiomics": true
+        "microscopy-cell-phenotyping": true
+        "transcriptomics-quantification": true
+        "differential-expression-enrichment": true
+        "single-cell-core": true
+        "single-cell-advanced-virtual-cell": true
+        "spatial-omics": true
+        "proteomics": true
+        "metabolomics-lipidomics": true
+        "epigenomics-methylation": true
+        "regulatory-network-sequence-models": true
+        "microbiome-metagenomics": true
+        "structural-biology-modeling": true
+        "chemoinformatics-drug-design": true
+        "protein-engineering-synbio": true
+        "gene-editing-cloning": true
+        "pharmacogenomics-dosing": true
+        "immunology-immuno-oncology": true
+        "literature-evidence-synthesis": true
+        "writing-document-delivery": true
+        "data-engineering-statistics": true
+        "workflow-reproducibility": true
+        "database-api-access": true
+        "visualization-figures": true
+        "research-design-hypothesis": true

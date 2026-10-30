@@ -63,6 +63,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | 执行 | `tool-fs`、`tool-fs-search` | 读写脚本、检索大表、grep 参数文件 |
 | 执行 | `tool-jobs` | 后台长任务（比对、训练、批量下载） |
 | 技能 | `skill-filesystem` | 用户自有技能根（`$DSH_HOME/skills`） |
+| 设置页 | `biomedical-skill-settings` | profile 级行 + `settings/client.js`（`dsh.client`），34 个分类开关写入 `biomedical-skills.json` |
 | 技能 | `biomedical-skill-picker` | 单一 provider：603 个技能按 34 个功能分类提供，开关见 `picker/catalog.json` |
 | 技能 | `tool-skill` | 技能目录与加载器 |
 | 数据 | `bio-mcp` | 拉起 `mcp/biomedical_mcp.py`（51 工具，stdio） |
@@ -84,7 +85,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 
 ### 在设置里按类开关
 
-配合 [`dsh-biomedical-skill-settings`](https://github.com/Zeus21323/dsh-biomedical-skill-settings) 使用：安装后 **设置 → 生物医学技能** 会列出 34 个分类开关和全开/全关按钮。
+设置页随本包一起安装（`settings/`，在 profile patch 里插一行 `biomedical-skill-settings`）：**设置 → 生物医学技能** 会列出 34 个分类开关和全开/全关按钮。
 
 开关写入 profile 的 `biomedical-skills.json`，`picker` 每次 `list()` 都读它，因此改动对**新会话**立即生效（已开启的会话不重算目录）。也可以直接编辑该文件，例如 `{"proteomics": false}`，缺省视为开启。
 
