@@ -1,6 +1,6 @@
 # 生物医学模式 · dsh-biomedical-preset
 
-DeepSeek Harness 的 agent 预设（bundle）。它不是"给通用助手加个提示词"，而是一套**自持**的生物医学研究装配：身份与纪律、执行工具、603 个流程技能、51 个数据源 MCP 工具、并发闸、交付通道，全部装在这一个包里，不引用任何外部插件目录。
+DeepSeek Harness 的 agent 预设（bundle）。它不是"给通用助手加个提示词"，而是一套**自持**的生物医学研究装配：身份与纪律、执行工具、603 个技能（34 个功能分类，可在设置里逐类开关）、51 个数据源 MCP 工具、并发闸、交付通道，全部装在这一个包里，不引用任何外部插件目录。
 
 - 心智模型：**MCP 负责取数据，Skill 负责选方法与执行流程**，persona 负责纪律与判断。
 - 已验证：市场索引通过官方 `@deepseek-ai/dsh-plugin-market-index` 校验；`npm pack` 产物 2216 文件 / 4.62 MB（packed）/ 18.29 MB（unpacked）；本机预设 `fiberPhase: active`。
@@ -63,8 +63,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | 执行 | `tool-fs`、`tool-fs-search` | 读写脚本、检索大表、grep 参数文件 |
 | 执行 | `tool-jobs` | 后台长任务（比对、训练、批量下载） |
 | 技能 | `skill-filesystem` | 用户自有技能根（`$DSH_HOME/skills`） |
-| 技能 | `omics-skills` | 挂载 `skills/omics`（21 个自建组学技能） |
-| 技能 | `upstream-*-skills`（5 组） | 挂载 `skills/upstream-*`（582 个，按域拆分，可单独关闭） |
+| 技能 | `biomedical-skill-picker` | 单一 provider：603 个技能按 34 个功能分类提供，开关见 `picker/catalog.json` |
 | 技能 | `tool-skill` | 技能目录与加载器 |
 | 数据 | `bio-mcp` | 拉起 `mcp/biomedical_mcp.py`（51 工具，stdio） |
 | 编排 | `command-goal`、`tool-goal` | 长课题目标追踪 |
@@ -79,45 +78,63 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 
 ---
 
-## 技能清单（603）
+## 技能清单（603，34 个功能分类）
 
-按来源分 6 组，每组是独立 skill provider，可单独开关。
+603 个技能按**用户要达成的任务**分为 34 类（每类 10–38 个），由 `picker` 插件统一提供，映射见 `picker/catalog.json`。分类不按文件格式切分；nf-core 流程按分析任务分散到各领域类。
 
-| provider | 目录 | 数量 | 体积 | 覆盖 |
-|---|---|---|---|---|
-| `biomedical-omics` | `skills/omics` | 21 | 1.5 MB | 自建：变异检测、CNV/SV、ACMG 分级、表观 peak、DNA 甲基化、RNA 修饰/CLIP、免疫组学、脂质组、糖组、蛋白组定量、代谢组、单细胞、微生物组、空间病理、区间运算 |
-| `genomics` | `skills/genomics` | 140 | 2.1 MB | 基因组、群体遗传、肿瘤基因组、临床基因组、液体活检、法医基因组 |
-| `omics-upstream` | `skills/omics-upstream` | 193 | 5.7 MB | 转录组、蛋白组、代谢组、表观组、空间组、多组学整合、单细胞与虚拟细胞、微生物组 |
-| `structure-drug` | `skills/structure-drug` | 79 | 0.3 MB | 结构生物学、AI 药物发现、合成生物学、药物基因组学、生物基础模型 |
-| `clinical-imaging` | `skills/clinical-imaging` | 36 | 0.1 MB | 精准医学、AI 医学影像、衰老与长寿 |
-| `methods` | `skills/methods` | 134 | 8.7 MB | 科研基础设施、方法学、网络系统生物学、免疫组学、生物医学科学 |
-| **合计** | | **603** | **18.2 MB** | |
+### 在设置里按类开关
 
-`upstream-*` 的 582 个技能取自本机 `~/.dsh/plugins/releases` 下 27 个 upstream 插件（2026-10-30 版本）；其中 134 个原始占位名（`upstream-*-skill-<hash>`）已改写为语义化 kebab 名称，跨插件重名的 9 个只保留一份。
+配合 [`dsh-biomedical-skill-settings`](https://github.com/Zeus21323/dsh-biomedical-skill-settings) 使用：安装后 **设置 → 生物医学技能** 会列出 34 个分类开关和全开/全关按钮。
 
-### 技能目录的成本与按需启用
+开关写入 profile 的 `biomedical-skills.json`，`picker` 每次 `list()` 都读它，因此改动对**新会话**立即生效（已开启的会话不重算目录）。也可以直接编辑该文件，例如 `{"proteomics": false}`，缺省视为开启。
 
-603 个技能的名称与描述会常驻系统提示，实测 **84 044 字符 ≈ 38k token**。技能按 provider 分组，可单独关闭以压缩这一开销：
+### 分类一览
 
-```
-plugin_manager set_plugin target=include:omics-upstream-skills enabled=false
-```
-
-关闭后该域技能不再出现在新会话的技能目录中，已加载的技能不受影响。
-
-| 场景 | 建议启用 | 技能数 | 约 token |
+| 分类 | id | 技能数 | 覆盖 |
 |---|---|---|---|
-| 全开（默认） | 6 组全部 | 603 | 38k |
-| 基因组 / 变异为主 | omics + genomics + methods | 295 | 22k |
-| 单细胞 / 组学为主 | omics + omics-upstream + methods | 348 | 24k |
-| 结构 / 药物为主 | omics + structure-drug + methods | 234 | 18k |
-| 极简 | omics + methods | 155 | 13k |
+| 测序质控与比对 | `sequencing-qc-alignment` | 19 | 把原始测序读段变成可信的比对结果，并回答数据质量、覆盖与污染能不能用。 |
+| 基因组组装与比较基因组 | `genome-assembly-comparative` | 20 | 从长读长或混合数据组装并注释基因组，再比较多个基因组的共线性、泛基因组与进化关系。 |
+| 变异检测与过滤 | `variant-calling-filtering` | 16 | 从比对结果或读段得到胚系、体细胞或靶向 SNV/Indel，并完成规范化与质控过滤。 |
+| 拷贝数变异与结构变异 | `copy-number-structural-variation` | 10 | 检测缺失、重复、倒位、易位、重复扩增与等位失衡，并解释拷贝数与结构层面的改变。 |
+| 变异解读与罕见病诊断 | `variant-interpretation-clinical` | 11 | 把变异注释到基因与后果，按 ACMG/AMP 证据分级并支撑罕见病与家系诊断结论。 |
+| 群体遗传与 GWAS | `population-genetics-gwas` | 28 | 在人群层面找疾病关联位点、构建遗传评分并推断因果、共定位、精细定位与祖源结构。 |
+| 肿瘤基因组与液体活检 | `cancer-genomics-liquid-biopsy` | 28 | 刻画肿瘤体细胞突变、克隆演化与可用标志物，并用 cfDNA/ctDNA 做早筛、监测与残留病判断。 |
+| 法医与身份鉴定 | `forensic-identity-genetics` | 10 | 用 SNP、STR、Y 染色体与线粒体标记完成身份、亲缘、混合样本与祖先来源判定。 |
+| 临床精准医学与结局分析 | `clinical-precision-medicine` | 10 | 评估生物标志物与预测模型，划分患者亚组，并把证据与结局分析整理成可交接的临床材料。 |
+| 医学影像与放射组学 | `medical-imaging-radiomics` | 12 | 处理 CT/MRI/病理等影像数据，做分割、配准、特征提取、模型训练与可信度评估。 |
+| 显微成像与细胞表型 | `microscopy-cell-phenotyping` | 17 | 从显微、流式与空间蛋白图像定量细胞形态、分割、计数、追踪并比较组间表型。 |
+| 转录组上游与定量 | `transcriptomics-quantification` | 32 | 从 RNA 读段得到表达矩阵，处理链特异性、异构体组装、融合、剪接与 RNA 修饰证据。 |
+| 差异表达与功能富集 | `differential-expression-enrichment` | 11 | 在组学矩阵上做组间差异与统计建模，并把结果落到通路、基因集与功能解释。 |
+| 单细胞基础分析 | `single-cell-core` | 20 | 完成单细胞数据的质控、双细胞与环境 RNA 清理、降维聚类、注释与对象格式管理。 |
+| 单细胞高级与虚拟细胞 | `single-cell-advanced-virtual-cell` | 20 | 在单细胞数据上做轨迹、通讯、扰动预测、多模态与队列复现等机制性推断。 |
+| 空间组学分析 | `spatial-omics` | 15 | 利用空间坐标回答组织里谁在哪里、谁挨着谁，并识别空间域、邻域与细胞组成。 |
+| 蛋白质组学 | `proteomics` | 21 | 从质谱原始数据到肽段鉴定与蛋白定量，并处理修饰、亲和平台与定量质量。 |
+| 代谢组与脂质糖组 | `metabolomics-lipidomics` | 18 | 把质谱、NMR 或电泳信号转成可信的代谢物、脂质与聚糖注释和定量结果。 |
+| 表观遗传与 DNA 甲基化 | `epigenomics-methylation` | 31 | 处理 ChIP/ATAC/CUT&RUN、Hi-C 与亚硫酸氢盐数据，识别 peak、染色质状态、三维结构与甲基化差异。 |
+| 调控网络与序列模型 | `regulatory-network-sequence-models` | 18 | 推断转录因子调控网络与模块，或用基因组基础模型评估序列变异的调控效应。 |
+| 微生物组与宏基因组 | `microbiome-metagenomics` | 38 | 从扩增子或 shotgun 数据得到物种、功能、耐药与菌株结果，并做群落比较与传播分析。 |
+| 结构预测与建模 | `structural-biology-modeling` | 18 | 预测或准备蛋白与复合物结构，评估质量、相似性与界面几何并做动力学分析。 |
+| 化学信息学与药物设计 | `chemoinformatics-drug-design` | 27 | 围绕小分子做结构标准化、描述符、相似性、对接与筛选、成药性与毒性排序。 |
+| 蛋白工程与合成生物学 | `protein-engineering-synbio` | 15 | 设计蛋白序列与骨架、优化表达与可开发性，并把构建放进代谢与自动化实验方案。 |
+| 基因编辑与分子克隆 | `gene-editing-cloning` | 13 | 设计 gRNA、供体与筛选文库，评估脱靶与编辑结果，并完成克隆相关的序列层面设计。 |
+| 药物基因组学与用药 | `pharmacogenomics-dosing` | 10 | 把基因型转成星等位基因与表型，落到具体药物的剂量、疗效与安全性建议。 |
+| 免疫组学与免疫治疗 | `immunology-immuno-oncology` | 17 | 分析受体库、HLA、新抗原与免疫浸润，评估免疫治疗获益与疫苗表位覆盖。 |
+| 文献检索与证据合成 | `literature-evidence-synthesis` | 13 | 检索、核验并综合文献与数据库证据，形成可核查的综述、评审与证据强度判断。 |
+| 写作与文档交付 | `writing-document-delivery` | 20 | 把分析与文献写成论文、基金、海报或报告，并导出合规的 Word/PDF/PPT 交付件。 |
+| 数据工程与统计方法 | `data-engineering-statistics` | 24 | 整理表格与格式、建立统计与机器学习评估、管理隐私与数据交换的工程性任务。 |
+| 计算流程与可复现性 | `workflow-reproducibility` | 10 | 搭可复现的分析环境与流程，追溯输入与版本，并审计结果漂移与助手可靠性。 |
+| 数据库与接口对接 | `database-api-access` | 11 | 通过 API 或公共库取回基因、变异、结构、组学与文献数据，并核对版本与可用性。 |
+| 可视化与图件 | `visualization-figures` | 10 | 把数据与结构做成清晰可发表的图表、轨道、示意图或渲染好的图形交付件。 |
+| 研究设计与假设生成 | `research-design-hypothesis` | 10 | 把宽泛兴趣收束成可检验问题，规划数据、对照、样本量与验证路线。 |
 
-### 自建组学技能（21，`skills/omics`）
+### 技能来源
 
-`variant-calling-wes-wgs`、`cnv-sv-detection`、`variant-pathogenicity-acmg`、`epigenomics-peak-calling`、`dna-methylation-wgbs`、`rna-modification-clip`、`immunogenomics`、`lipidomics-annotation`、`glycomics`、`proteomics-quantification`、`metabolomics-profiling`、`pyopenms`、`scanpy`、`sc-rna-seq-analysis`、`scikit-bio`、`pysam`、`polars-bio`、`gtars`、`cellxgene-census`、`arboreto`、`pathml`、`pathway-enrichment`、`tiledbvcf`
+- **upstream（582 个）**：取自本机 `~/.dsh/plugins/releases` 下 27 个 upstream 插件（2026-10-30 版本）。134 个原始占位名（`upstream-*-skill-<hash>`）已改写为语义化 kebab 名称；跨插件重名的 9 个只保留一份。
+- **自建（21 个）**：`skills/omics`，其中 11 个按官方文档整编（`SKILL.md` + `references/{official-docs,parameters,troubleshooting}.md`，命令均标注官方来源，官方未提供可执行命令处显式标注）。
 
-其中 11 个为按官方文档整编（每个含 `SKILL.md` + `references/{official-docs,parameters,troubleshooting}.md`，命令均标注官方来源，官方未提供可执行命令处显式标注），其余为引入的第三方技能。
+### 目录成本
+
+603 个技能的名称与描述合计 84 044 字符 ≈ **38k token**，常驻系统提示。用分类开关按需裁剪，例如保留「组学 + 数据工程与统计 + 文献与证据合成 + 写作与文档交付」约 15k token。
 
 ## MCP 工具清单（51）
 

@@ -53,14 +53,27 @@ export function apply(ctx, config = {}) {
     return catalog;
   };
 
+  // 设置页（dsh-biomedical-skill-settings）把开关镜像到这个文件；
+  // 文件优先于本行的 config，这样页面改动无需重启 preset 即可生效。
+  const switches = async () => {
+    // Host 进程不一定导出 DSH_PROFILE_DIR；与设置插件保持同一套兜底。
+    const dir = process.env.DSH_PROFILE_DIR || 'C:/Users/20735/.dsh/profiles/desktop';
+    try {
+      return JSON.parse(await readFile(join(dir, 'biomedical-skills.json'), 'utf8'));
+    } catch {
+      return {};
+    }
+  };
+
   const dispose = ctx.skills.registerProvider(() => ({
     name: 'biomedical-picker',
 
     async list() {
       const doc = await load();
+      const effective = { ...config, ...(await switches()) };
       const out = [];
       for (const category of doc.categories) {
-        if (config[category.id] === false) continue;
+        if (effective[category.id] === false) continue;
         for (const entry of category.skills) {
           const directory = join(SKILLS_ROOT, entry.path);
           const file = join(directory, 'SKILL.md');
