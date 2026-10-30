@@ -73,8 +73,8 @@
         "zh": "生物医学模式"
       },
       "description": {
-        "en": "Biomedical research collaborator preset: 88 workflow skills covering variant calling/ACMG classification, epigenomics, methylation, RNA modification, immunogenomics, lipidomics, glycomics, proteomics, metabolomics, single-cell and spatial omics, plus structure prediction, literature evidence grading and manuscript delivery. Ships its own MCP server (51 public-data tools over PubMed/Ensembl/PDB/AlphaFold/ClinVar/gnomAD/GTEx/GEO/PRIDE/cBioPortal/CIViC/ENCODE/JASPAR/Rfam/ChEMBL/PubChem/Open Targets/openFDA/OpenAlex/arXiv).",
-        "zh": "生物医学研究合作者预设：88 个流程技能，覆盖变异检测与 ACMG 分级、表观遗传、甲基化、RNA 修饰、免疫组学、脂质组、糖组、蛋白组、代谢组、单细胞与空间组学，以及结构预测、文献证据分级与稿件交付。自带 MCP 服务（51 个公开数据源工具，覆盖 PubMed/Ensembl/PDB/AlphaFold/ClinVar/gnomAD/GTEx/GEO/PRIDE/cBioPortal/CIViC/ENCODE/JASPAR/Rfam/ChEMBL/PubChem/Open Targets/openFDA/OpenAlex/arXiv）。"
+        "en": "Biomedical research collaborator preset: 603 skills across genomics, multi-omics, single-cell, proteomics, metabolomics, epigenomics, spatial omics, structural biology, drug discovery, clinical imaging and research methods, plus its own 51-tool public-data MCP server.",
+        "zh": "生物医学研究合作者预设：603 个技能，覆盖基因组、多组学、单细胞、蛋白组、代谢组、表观组、空间组学、结构生物学、药物发现、临床影像与研究方法，自带 51 个公开数据源 MCP 工具。"
       },
       "icon": "icons/biomedical.svg",
       "author": "Zeus21323",
@@ -104,12 +104,12 @@
       },
       "versions": [
         {
-          "version": "1.0.16",
-          "publishTimestamp": 1793269387,
+          "version": "1.0.17",
+          "publishTimestamp": 1793335018,
           "source": {
             "type": "git",
             "url": "https://github.com/Zeus21323/dsh-biomedical-preset",
-            "commit": "37ea5469adbcad5407c445f593fcba1eceb77611"
+            "commit": "62c9b7cebfaf8d05a8035239600a16bceef26efe"
           },
           "engines": {
             "dsh": "^0.2.1-rc.2"
