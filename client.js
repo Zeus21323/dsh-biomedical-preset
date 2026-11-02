@@ -11,7 +11,7 @@
  * 所以显示名/说明/技能清单全部来自构建时生成的 LABELS / GROUPS / SKILLS 常量。
  */
 window.__ModuleLoader__.load({
-  id: 'dsh-biomedical-skill-settings',
+  id: 'dsh-biomedical-preset',
   factory(require) {
     const React = require('react');
     const h = React.createElement;
