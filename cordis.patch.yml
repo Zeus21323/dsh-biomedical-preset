@@ -426,7 +426,7 @@
     # 设置页（设置 → 生物医学技能）：34 个分类开关的 Config 由本包 settings/ 提供，
     # 它同时是 profile 级行 —— 只有这样才会出现在 settings.describe() 的命名空间列表里。
     - id: biomedical-skill-settings
-      name: dsh-biomedical-preset/settings
+      name: dsh-biomedical-preset
       config:
         "sequencing-qc-alignment": true
         "genome-assembly-comparative": true
