@@ -79,6 +79,36 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 
 ---
 
+### 带浏览器半的包的硬性约束
+
+设置页是 `dsh.client` 声明的浏览器半，下面两条必须**同时**满足，否则启动会失败或设置页静默消失：
+
+1. **profile 里这一行的 `name` 必须是裸包名**（`dsh-biomedical-preset`），不能带子路径。
+   `dsh-client-modules` 的 `exactPackageSpecifier()` 只接受不含 `/` 的 specifier：
+
+   ```js
+   return specifier.length > 0 && !specifier.includes('/') && !specifier.includes(':')
+     ? specifier : void 0;
+   ```
+
+   带子路径（`dsh-biomedical-preset/settings`）的 entry 会被判为「not a client package」，
+   Client 半永远不加载，设置页那一项**静默消失且不报错**。
+
+2. **`client.js` 里 `__ModuleLoader__.load({ id })` 的 `id` 必须等于 `package.json` 的 `name`**。
+   DSH 用包名作为 `WebBootEntry.id`；id 不匹配会让它认为该 bundle 没有注册它要的 id，
+   于是重复执行，触发
+   `client-modules: duplicate factory registration for "<id>"`，
+   最终 `web boot: N entry did not activate` —— 桌面端直接弹「应用无法启动」。
+
+> **两次真实事故（2026-11-02，均已在 2.0.1 / 2.0.2 修复）**
+>
+> - 合并设置页时把 Loader 行写成 `dsh-biomedical-preset/settings`（违反第 1 条），设置页从侧边栏消失。
+> - 改包名后没有同步 `client.js` 的注册 id（违反第 2 条），启动崩溃；用户在那个对话框上点了
+>   「禁用第三方插件、备份 profile patch 并重启」，把 profile 里 17 个第三方 bundle 一并关掉。
+>
+> 自查方法：`node -e` 解析 client.js 取注册 id，与 `package.json` 的 `name` 比对；
+> 再确认 Loader 行的 `name` 不含 `/`。
+
 ## 技能清单（603，34 个功能分类）
 
 603 个技能按**用户要达成的任务**分为 34 类（每类 10–38 个），由 `picker` 插件统一提供，映射见 `picker/catalog.json`。分类不按文件格式切分；nf-core 流程按分析任务分散到各领域类。
