@@ -1,6 +1,6 @@
 ---
 name: 03-epigenomics-basenji
-description: "用于用Borzoi、Basenji、Enformer、Akita、AlphaGenome等模型预测序列变异对表达、可及性或染色质结构的潜在影响。"
+description: 用于用Borzoi、Basenji、Enformer、Akita、AlphaGenome等模型预测序列变异对表达、可及性或染色质结构的潜在影响。
 ---
 
 # 序列驱动的调控效应预测

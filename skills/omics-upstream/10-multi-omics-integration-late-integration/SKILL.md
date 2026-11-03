@@ -1,6 +1,7 @@
 ---
 name: 10-multi-omics-integration-late-integration
 description: 用于把多组学模型结果整理为可解释的通路、模块、标志物和验证计划；当整合模型已产生因子、网络或特征集时使用。
+whenToUse: 当整合模型已产生因子、网络或特征集时使用
 ---
 # 多组学联合解释与验证
 

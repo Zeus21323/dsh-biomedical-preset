@@ -1,6 +1,7 @@
 ---
 name: twas-transcriptome-association
 description: 当用户有疾病GWAS想找相关组织/表达基因、问遗传预测表达与疾病是否有关，或需要TWAS、FUSION、PrediXcan、MetaXcan及显著邻近基因解释时使用；普通差异表达问题不直接做TWAS。
+whenToUse: 当用户有疾病GWAS想找相关组织/表达基因、问遗传预测表达与疾病是否有关，或需要TWAS、FUSION、PrediXcan、MetaXcan及显著邻近基因解释时使用
 ---
 
 # TWAS转录组关联分析

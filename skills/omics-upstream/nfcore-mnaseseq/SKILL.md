@@ -1,6 +1,7 @@
 ---
 name: nfcore-mnaseseq
-description: "当MNase 消化测序数据需要分析核小体位置或占据变化时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/mnaseseq。"
+description: 当MNase 消化测序数据需要分析核小体位置或占据变化时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/mnaseseq。
+whenToUse: 当MNase 消化测序数据需要分析核小体位置或占据变化时使用
 ---
 
 # MNase-seq核小体定位（nf-core/mnaseseq）

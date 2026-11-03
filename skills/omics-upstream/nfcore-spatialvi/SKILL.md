@@ -1,6 +1,7 @@
 ---
 name: nfcore-spatialvi
-description: "当Visium 计数与组织图像需要联合分析空间表达时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/spatialvi。"
+description: 当Visium 计数与组织图像需要联合分析空间表达时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/spatialvi。
+whenToUse: 当Visium 计数与组织图像需要联合分析空间表达时使用
 ---
 
 # Visium空间表达与图像联合处理（nf-core/spatialvi）

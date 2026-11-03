@@ -1,6 +1,7 @@
 ---
 name: nfcore-epitopeprediction
-description: "当抗原序列或变异需要预测可能的 MHC 呈递表位时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/epitopeprediction。"
+description: 当抗原序列或变异需要预测可能的 MHC 呈递表位时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/epitopeprediction。
+whenToUse: 当抗原序列或变异需要预测可能的 MHC 呈递表位时使用
 ---
 
 # 抗原表位预测与注释（nf-core/epitopeprediction）

@@ -1,6 +1,6 @@
 ---
 name: paper-review
-description: "Use this skill for \"review this paper\", \"review this manuscript\", \"peer review\", \"review my paper\", \"critique this manuscript\", \"review this submission\", \"give me feedback on my paper\", \"check my methods\", \"review my statistics\", \"review as a peer reviewer\", \"evaluate this manuscript\", \"review this PDF\", or mentions manuscript review, peer review, paper critique, or methodological review."
+description: Use this skill for "review this paper", "review this manuscript", "peer review", "review my paper", "critique this manuscript", "review this submission", "give me feedback on my paper", "check my methods", "review my statistics", "review as a peer reviewer", "evaluate this manuscript", "review this PDF", or mentions manuscript review, peer review, paper critique, or methodological review.
 ---
 
 # Academic Manuscript Review

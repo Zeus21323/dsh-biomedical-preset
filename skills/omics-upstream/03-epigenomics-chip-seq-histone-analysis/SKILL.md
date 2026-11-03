@@ -1,6 +1,6 @@
 ---
 name: 03-epigenomics-chip-seq-histone-analysis
-description: "用于从组蛋白修饰ChIP-seq的IP与匹配input生成峰或宽域、信号轨道和差异富集结果。"
+description: 用于从组蛋白修饰ChIP-seq的IP与匹配input生成峰或宽域、信号轨道和差异富集结果。
 ---
 
 # 组蛋白ChIP-seq分析

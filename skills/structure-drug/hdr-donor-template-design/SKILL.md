@@ -1,6 +1,7 @@
 ---
 name: hdr-donor-template-design
 description: 当用户需要为CRISPR点突变、标签或片段敲入选择供体形式并设计同源臂与鉴定方案时使用。
+whenToUse: 当用户需要为CRISPR点突变、标签或片段敲入选择供体形式并设计同源臂与鉴定方案时使用
 ---
 
 # HDR供体模板设计

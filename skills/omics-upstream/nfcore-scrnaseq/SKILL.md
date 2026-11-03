@@ -1,6 +1,7 @@
 ---
 name: nfcore-scrnaseq
-description: "当建库或交付证据表明是单细胞 RNA 原始读段，需要生成细胞表达矩阵时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/scrnaseq。"
+description: 当建库或交付证据表明是单细胞 RNA 原始读段，需要生成细胞表达矩阵时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/scrnaseq。
+whenToUse: 当建库或交付证据表明是单细胞 RNA 原始读段，需要生成细胞表达矩阵时使用
 ---
 
 # 条形码单细胞RNA测序预处理（nf-core/scrnaseq）

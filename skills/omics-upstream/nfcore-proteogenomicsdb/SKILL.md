@@ -1,6 +1,7 @@
 ---
 name: nfcore-proteogenomicsdb
-description: "当有基因组、转录本或变异材料，需要构建适合质谱搜索的序列库时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/proteogenomicsdb。"
+description: 当有基因组、转录本或变异材料，需要构建适合质谱搜索的序列库时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/proteogenomicsdb。
+whenToUse: 当有基因组、转录本或变异材料，需要构建适合质谱搜索的序列库时使用
 ---
 
 # 蛋白基因组学搜索数据库构建（nf-core/proteogenomicsdb）

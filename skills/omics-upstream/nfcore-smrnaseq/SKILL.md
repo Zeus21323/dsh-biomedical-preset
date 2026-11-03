@@ -1,6 +1,7 @@
 ---
 name: nfcore-smrnaseq
-description: "当小 RNA 建库数据需要识别 miRNA 或其他短 RNA 并定量时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/smrnaseq。"
+description: 当小 RNA 建库数据需要识别 miRNA 或其他短 RNA 并定量时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/smrnaseq。
+whenToUse: 当小 RNA 建库数据需要识别 miRNA 或其他短 RNA 并定量时使用
 ---
 
 # 小RNA测序处理与定量（nf-core/smrnaseq）

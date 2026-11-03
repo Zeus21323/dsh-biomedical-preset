@@ -1,6 +1,7 @@
 ---
 name: 12-structural-biology-molecular-docking
 description: 用于Vina等经典方法的蛋白质—小分子对接、姿势筛选和相互作用复核；当用户有受体结构、配体和候选结合位点时使用。
+whenToUse: 当用户有受体结构、配体和候选结合位点时使用
 ---
 # 经典蛋白质—配体分子对接
 

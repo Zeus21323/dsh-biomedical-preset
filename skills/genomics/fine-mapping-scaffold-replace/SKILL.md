@@ -1,6 +1,7 @@
 ---
 name: fine-mapping-scaffold-replace
 description: 当用户已有某疾病的遗传关联峰却不知道哪个变异最值得验证、显著SNP太多、想缩小候选范围，或要求可信集、PIP、SuSiE/FINEMAP时使用；没有区域关联数据时先识别证据缺口。
+whenToUse: 当用户已有某疾病的遗传关联峰却不知道哪个变异最值得验证、显著SNP太多、想缩小候选范围，或要求可信集、PIP、SuSiE/FINEMAP时使用
 ---
 
 # GWAS精细定位

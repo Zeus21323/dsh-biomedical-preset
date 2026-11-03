@@ -1,6 +1,7 @@
 ---
 name: antimicrobial-peptide-mic-prediction
 description: 当用户需要使用 APEX 对不超过 50 个氨基酸的肽序列预测内置病原体特异性抗菌活性或 MIC 时使用；新肽生成、分子对接和内置病原体以外的外推不使用本 Skill。
+whenToUse: 当用户需要使用 APEX 对不超过 50 个氨基酸的肽序列预测内置病原体特异性抗菌活性或 MIC 时使用
 ---
 
 # 抗菌肽活性与 MIC 预测

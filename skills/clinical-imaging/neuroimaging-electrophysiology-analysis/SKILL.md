@@ -1,6 +1,7 @@
 ---
 name: neuroimaging-electrophysiology-analysis
 description: 当用户需要分析fMRI、EEG或其他神经电生理数据，完成预处理、事件建模、连接性和受试者层统计时使用。
+whenToUse: 当用户需要分析fMRI、EEG或其他神经电生理数据，完成预处理、事件建模、连接性和受试者层统计时使用
 ---
 
 # 神经影像与电生理分析

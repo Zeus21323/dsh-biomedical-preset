@@ -1,15 +1,9 @@
 ---
 name: glycomics
-description: |
-  Glycomics data analysis and glycan structure annotation. Covers data-type triage (N-glycan / O-glycan / intact
-  glycopeptide / glycan array / lectin array), GlyTouCan accession lookup, GlycoCT and WURCS encodings with the
-  official GlycanFormatConverter CLI, WURCS/GlycoCT SPARQL retrieval, LC-MS glycan profile (GU retention calibration,
-  m/z and charge state, HexNAc/Hex/Fuc/NeuAc composition inference, oxonium diagnostic ions), intact glycopeptide
-  search with the pGlyco series and its official helper scripts, glycan-array archives, and interpretation against
-  glycosyltransferase expression. 中文触发词：糖组学、glycomics、糖链、N-糖、O-糖、完整糖肽、GlyTouCan、GlycoCT、
-  WURCS、凝集素阵列。
+description: Glycomics data analysis and glycan structure annotation. Covers data-type triage (N-glycan / O-glycan / intact glycopeptide / glycan array / lectin array), GlyTouCan accession lookup, GlycoCT and WURCS encodings with the official GlycanFormatConverter CLI, WURCS/GlycoCT SPARQL retrieval, LC-MS glycan profile (GU retention calibration, m/z and charge state, HexNAc/Hex/Fuc/NeuAc composition inference, oxonium diagnostic ions), intact glycopeptide search with the pGlyco series and its official helper scripts, glycan-array archives, and interpretation against glycosyltransferase expression. 中文触发词：糖组学、glycomics、糖链、N-糖、O-糖、完整糖肽、GlyTouCan、GlycoCT、 WURCS、凝集素阵列。
 category: omics
 tags: glycomics, glycan, glytoucan, glycoct, glycoproteomics
+whenToUse: 触发词：糖组学、glycomics、糖链、N-糖、O-糖、完整糖肽、GlyTouCan、GlycoCT、 WURCS、凝集素阵列
 ---
 
 # 糖组学：糖谱数据分析与糖链结构注释

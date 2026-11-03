@@ -1,6 +1,7 @@
 ---
 name: dda-dia-acquisition-design
-description: "当用户需要为代谢组和小分子 LC-MS/MS 选择 DDA 或 DIA，并依据色谱峰宽设计循环时间、TopN、窗口与碰撞能时使用。"
+description: 当用户需要为代谢组和小分子 LC-MS/MS 选择 DDA 或 DIA，并依据色谱峰宽设计循环时间、TopN、窗口与碰撞能时使用。
+whenToUse: 当用户需要为代谢组和小分子 LC-MS/MS 选择 DDA 或 DIA，并依据色谱峰宽设计循环时间、TopN、窗口与碰撞能时使用
 ---
 
 # DDA与DIA质谱采集方案设计

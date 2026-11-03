@@ -1,6 +1,7 @@
 ---
 name: nfcore-omicsgenetraitassociation
-description: "当多组学数据与性状希望建立基因或特征层关联时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/omicsgenetraitassociation。"
+description: 当多组学数据与性状希望建立基因或特征层关联时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/omicsgenetraitassociation。
+whenToUse: 当多组学数据与性状希望建立基因或特征层关联时使用
 ---
 
 # 多组学基因与性状关联（nf-core/omicsgenetraitassociation）

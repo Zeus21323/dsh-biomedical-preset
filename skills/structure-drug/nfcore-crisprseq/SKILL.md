@@ -1,6 +1,7 @@
 ---
 name: nfcore-crisprseq
-description: "当CRISPR 编辑扩增子或混池筛选数据需要评估编辑或筛选命中时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/crisprseq。"
+description: 当CRISPR 编辑扩增子或混池筛选数据需要评估编辑或筛选命中时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/crisprseq。
+whenToUse: 当CRISPR 编辑扩增子或混池筛选数据需要评估编辑或筛选命中时使用
 ---
 
 # CRISPR编辑与筛选测序分析（nf-core/crisprseq）

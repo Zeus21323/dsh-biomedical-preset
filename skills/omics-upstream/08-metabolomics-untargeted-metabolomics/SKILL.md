@@ -1,6 +1,7 @@
 ---
 name: 08-metabolomics-untargeted-metabolomics
-description: "当用户需要将非靶向 LC-MS 或 GC-MS 原始数据转为可追溯的特征矩阵，并用空白、QC 和峰形证据限制假特征时使用。"
+description: 当用户需要将非靶向 LC-MS 或 GC-MS 原始数据转为可追溯的特征矩阵，并用空白、QC 和峰形证据限制假特征时使用。
+whenToUse: 当用户需要将非靶向 LC-MS 或 GC-MS 原始数据转为可追溯的特征矩阵，并用空白、QC 和峰形证据限制假特征时使用
 ---
 
 # 非靶向代谢组分析

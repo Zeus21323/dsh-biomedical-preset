@@ -1,6 +1,7 @@
 ---
 name: nfcore-longraredisease
-description: "当患者长读长数据和表型需要罕见病变异分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/longraredisease。"
+description: 当患者长读长数据和表型需要罕见病变异分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/longraredisease。
+whenToUse: 当患者长读长数据和表型需要罕见病变异分析时使用
 ---
 
 # 长读长罕见病变异分析（nf-core/longraredisease）

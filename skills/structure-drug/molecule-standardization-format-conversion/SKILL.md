@@ -1,6 +1,7 @@
 ---
 name: molecule-standardization-format-conversion
 description: 当用户需要清洗盐、溶剂、价态、互变异构体和立体化学，或在SMILES、InChI、SDF、MOL2、PDB等分子格式间转换时使用。
+whenToUse: 当用户需要清洗盐、溶剂、价态、互变异构体和立体化学，或在SMILES、InChI、SDF、MOL2、PDB等分子格式间转换时使用
 ---
 
 # 分子结构标准化与格式转换

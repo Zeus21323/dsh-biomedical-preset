@@ -1,6 +1,7 @@
 ---
 name: 17-pharmacogenomics-drug-response-prediction
 description: 用于综合PGx基因型及HLA分型与药物疗效、毒性和超敏反应证据；当用户需要区分可行动和研究性基因—药物关系时使用。
+whenToUse: 当用户需要区分可行动和研究性基因—药物关系时使用
 ---
 # 药物基因组反应与不良反应解读
 

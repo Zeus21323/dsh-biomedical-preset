@@ -1,6 +1,7 @@
 ---
 name: 20-ai-medical-imaging-ai-feature-extraction
 description: 当用户需要设计或审核从影像ROI提取放射组学特征并建立临床预测模型的流程时使用。
+whenToUse: 当用户需要设计或审核从影像ROI提取放射组学特征并建立临床预测模型的流程时使用
 ---
 
 # 放射组学特征提取与建模

@@ -1,6 +1,7 @@
 ---
 name: 14-cancer-genomics-msi
 description: 用于WES、WGS或靶向测序的微卫星不稳定性检测及MSI-H解释；当用户需要免疫治疗相关MSI标志物时使用。
+whenToUse: 当用户需要免疫治疗相关MSI标志物时使用
 ---
 # MSI 检测与解释
 

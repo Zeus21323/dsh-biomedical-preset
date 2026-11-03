@@ -1,6 +1,7 @@
 ---
 name: cdisc-clinical-data-standardization
 description: 当用户需要把临床研究数据映射、检查或准备为SDTM、ADaM等CDISC结构，并形成可追踪的数据交付时使用。
+whenToUse: 当用户需要把临床研究数据映射、检查或准备为SDTM、ADaM等CDISC结构，并形成可追踪的数据交付时使用
 ---
 
 # CDISC临床数据标准化

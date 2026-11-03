@@ -1,6 +1,7 @@
 ---
 name: nfcore-fastqrepair
-description: "当测序文件打不开、FASTQ 记录异常或成对读段错位，需要定位并修复文件问题时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/fastqrepair。"
+description: 当测序文件打不开、FASTQ 记录异常或成对读段错位，需要定位并修复文件问题时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/fastqrepair。
+whenToUse: 当测序文件打不开、FASTQ 记录异常或成对读段错位，需要定位并修复文件问题时使用
 ---
 
 # 损坏FASTQ恢复与读段配对修复（nf-core/fastqrepair）

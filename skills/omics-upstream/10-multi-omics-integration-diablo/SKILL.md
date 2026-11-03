@@ -1,6 +1,7 @@
 ---
 name: 10-multi-omics-integration-diablo
 description: 用于DIABLO/mixOmics的监督式多组学分类、特征选择和跨组学相关模块发现；当用户有明确类别标签和配对样本时使用。
+whenToUse: 当用户有明确类别标签和配对样本时使用
 ---
 # DIABLO 监督式多组学建模
 

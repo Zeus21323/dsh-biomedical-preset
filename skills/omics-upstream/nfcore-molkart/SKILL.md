@@ -1,6 +1,7 @@
 ---
 name: nfcore-molkart
-description: "当Resolve Molecular Cartography 交付数据需要整理分子坐标与细胞表达时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/molkart。"
+description: 当Resolve Molecular Cartography 交付数据需要整理分子坐标与细胞表达时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/molkart。
+whenToUse: 当Resolve Molecular Cartography 交付数据需要整理分子坐标与细胞表达时使用
 ---
 
 # Molecular Cartography空间转录处理（nf-core/molkart）

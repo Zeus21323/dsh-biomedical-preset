@@ -1,6 +1,7 @@
 ---
 name: metabolomics-database-search
-description: "当用户需要在 HMDB、MetaboLights、Metabolomics Workbench、GNPS 等资源中查找代谢物、参考谱图或可复用研究，并核对版本与许可时使用。"
+description: 当用户需要在 HMDB、MetaboLights、Metabolomics Workbench、GNPS 等资源中查找代谢物、参考谱图或可复用研究，并核对版本与许可时使用。
+whenToUse: 当用户需要在 HMDB、MetaboLights、Metabolomics Workbench、GNPS 等资源中查找代谢物、参考谱图或可复用研究，并核对版本与许可时使用
 ---
 
 # 代谢组公共数据库检索

@@ -1,6 +1,7 @@
 ---
 name: cross-species-annotation-projection
 description: 当用户需要把已注释参考物种的基因模型投影到近缘新组装基因组时使用。
+whenToUse: 当用户需要把已注释参考物种的基因模型投影到近缘新组装基因组时使用
 ---
 
 # 跨物种基因注释投影

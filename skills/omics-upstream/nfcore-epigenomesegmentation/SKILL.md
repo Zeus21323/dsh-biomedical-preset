@@ -1,6 +1,7 @@
 ---
 name: nfcore-epigenomesegmentation
-description: "当多种表观信号需要整合为染色质状态时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/epigenomesegmentation。"
+description: 当多种表观信号需要整合为染色质状态时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/epigenomesegmentation。
+whenToUse: 当多种表观信号需要整合为染色质状态时使用
 ---
 
 # 表观信号染色质状态分段（nf-core/epigenomesegmentation）

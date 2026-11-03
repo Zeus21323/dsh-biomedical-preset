@@ -1,6 +1,7 @@
 ---
 name: microscopy-image-quantification
 description: 当用户需要对显微图像或ImageJ、CellProfiler输出进行强度、形态、细胞计数和组间统计分析时使用。
+whenToUse: 当用户需要对显微图像或ImageJ、CellProfiler输出进行强度、形态、细胞计数和组间统计分析时使用
 ---
 
 # 生物显微图像处理与定量

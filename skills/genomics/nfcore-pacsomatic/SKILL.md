@@ -1,6 +1,7 @@
 ---
 name: nfcore-pacsomatic
-description: "当配对肿瘤与正常 PacBio HiFi 数据需要检测体细胞变异时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/pacsomatic。"
+description: 当配对肿瘤与正常 PacBio HiFi 数据需要检测体细胞变异时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/pacsomatic。
+whenToUse: 当配对肿瘤与正常 PacBio HiFi 数据需要检测体细胞变异时使用
 ---
 
 # PacBio肿瘤正常配对体细胞分析（nf-core/pacsomatic）

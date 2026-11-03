@@ -1,6 +1,7 @@
 ---
 name: 17-pharmacogenomics-tacrolimus-dosing
 description: 用于结合CYP3A5等基因型和移植临床因素解释他克莫司起始剂量；当用户明确询问他克莫司PGx剂量时使用。
+whenToUse: 当用户明确询问他克莫司PGx剂量时使用
 ---
 # 他克莫司基因型指导剂量
 

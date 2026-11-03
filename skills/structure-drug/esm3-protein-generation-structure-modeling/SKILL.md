@@ -1,6 +1,7 @@
 ---
 name: esm3-protein-generation-structure-modeling
 description: 当用户需要用ESM3或ESM C进行蛋白质序列生成、逆折叠、结构条件设计或通用蛋白质表示时使用。
+whenToUse: 当用户需要用ESM3或ESM C进行蛋白质序列生成、逆折叠、结构条件设计或通用蛋白质表示时使用
 ---
 
 # ESM3蛋白质生成与结构建模

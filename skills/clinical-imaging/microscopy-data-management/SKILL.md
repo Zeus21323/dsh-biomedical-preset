@@ -1,6 +1,7 @@
 ---
 name: microscopy-data-management
 description: 当用户需要整理、入库、检索、标注、共享或导出显微影像及其元数据时使用。
+whenToUse: 当用户需要整理、入库、检索、标注、共享或导出显微影像及其元数据时使用
 ---
 
 # 显微影像数据管理

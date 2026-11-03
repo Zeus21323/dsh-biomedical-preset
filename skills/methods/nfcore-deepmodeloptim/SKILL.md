@@ -1,6 +1,7 @@
 ---
 name: nfcore-deepmodeloptim
-description: "当已有生物医学训练数据和模型，希望改善预测效果或评估数据增强时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/deepmodeloptim。"
+description: 当已有生物医学训练数据和模型，希望改善预测效果或评估数据增强时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/deepmodeloptim。
+whenToUse: 当已有生物医学训练数据和模型，希望改善预测效果或评估数据增强时使用
 ---
 
 # 生物训练数据增强与模型评估（nf-core/deepmodeloptim）

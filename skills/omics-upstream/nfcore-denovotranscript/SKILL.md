@@ -1,6 +1,7 @@
 ---
 name: nfcore-denovotranscript
-description: "当没有合适参考基因组，已有双端 RNA 测序并希望重建转录本时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/denovotranscript。"
+description: 当没有合适参考基因组，已有双端 RNA 测序并希望重建转录本时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/denovotranscript。
+whenToUse: 当没有合适参考基因组，已有双端 RNA 测序并希望重建转录本时使用
 ---
 
 # 无参考bulk转录组组装（nf-core/denovotranscript）

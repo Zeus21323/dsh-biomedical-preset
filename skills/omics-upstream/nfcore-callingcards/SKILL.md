@@ -1,6 +1,7 @@
 ---
 name: nfcore-callingcards
-description: "当转录调控记录实验的插入位点或 Calling Cards 读段需要分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/callingcards。"
+description: 当转录调控记录实验的插入位点或 Calling Cards 读段需要分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/callingcards。
+whenToUse: 当转录调控记录实验的插入位点或 Calling Cards 读段需要分析时使用
 ---
 
 # Calling Cards转录调控记录分析（nf-core/callingcards）

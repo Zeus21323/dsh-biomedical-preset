@@ -1,6 +1,7 @@
 ---
 name: 06-spatial-omics-spatial-metabolomics
-description: "当用户需要处理 MALDI、DESI 等质谱成像数据，建立可信离子图、空间代谢物注释和组织区域比较；适用于保留像素坐标的 MSI 任务时使用。"
+description: 当用户需要处理 MALDI、DESI 等质谱成像数据，建立可信离子图、空间代谢物注释和组织区域比较；适用于保留像素坐标的 MSI 任务时使用。
+whenToUse: 当用户需要处理 MALDI、DESI 等质谱成像数据，建立可信离子图、空间代谢物注释和组织区域比较；适用于保留像素坐标的 MSI 任务时使用
 ---
 
 # 空间代谢组与质谱成像分析

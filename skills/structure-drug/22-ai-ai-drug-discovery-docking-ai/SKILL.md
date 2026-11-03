@@ -1,6 +1,7 @@
 ---
 name: 22-ai-ai-drug-discovery-docking-ai
 description: 当用户需要用DiffDock、Boltz、Chai、EquiBind等AI模型预测蛋白质—配体结合姿势、共折叠结构或进行AI重评分时使用。
+whenToUse: 当用户需要用DiffDock、Boltz、Chai、EquiBind等AI模型预测蛋白质—配体结合姿势、共折叠结构或进行AI重评分时使用
 ---
 
 # AI蛋白质-配体对接

@@ -1,6 +1,7 @@
 ---
 name: 01-genome-bam
 description: 当用户需要查看、转换、排序、索引、合并、切片或验证 SAM、BAM、CRAM 文件时使用。
+whenToUse: 当用户需要查看、转换、排序、索引、合并、切片或验证 SAM、BAM、CRAM 文件时使用
 ---
 
 # SAM、BAM与CRAM文件处理

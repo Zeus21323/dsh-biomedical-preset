@@ -1,6 +1,7 @@
 ---
 name: cfdna-fragmentomics-analysis
 description: 用于cfDNA片段长度、末端基序、覆盖波动、核小体足迹和断裂位点分析；当用户研究肿瘤早筛或组织来源时使用。
+whenToUse: 当用户研究肿瘤早筛或组织来源时使用
 ---
 # cfDNA 片段组学分析
 

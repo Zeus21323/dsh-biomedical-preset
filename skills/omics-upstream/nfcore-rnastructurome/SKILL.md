@@ -1,6 +1,7 @@
 ---
 name: nfcore-rnastructurome
-description: "当DMS 或 SHAPE 等 RNA 化学探测数据需要反应性或结构相关分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/rnastructurome。"
+description: 当DMS 或 SHAPE 等 RNA 化学探测数据需要反应性或结构相关分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/rnastructurome。
+whenToUse: 当DMS 或 SHAPE 等 RNA 化学探测数据需要反应性或结构相关分析时使用
 ---
 
 # RNA化学结构探测数据分析（nf-core/rnastructurome）

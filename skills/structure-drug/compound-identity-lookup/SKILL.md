@@ -1,6 +1,7 @@
 ---
 name: compound-identity-lookup
 description: 当用户按名称、CAS、CID、ChEMBL ID、SMILES或InChI查找化合物，并需要确认准确结构、盐型、立体化学或基础属性时使用。
+whenToUse: 当用户按名称、CAS、CID、ChEMBL ID、SMILES或InChI查找化合物，并需要确认准确结构、盐型、立体化学或基础属性时使用
 ---
 
 # 化合物信息检索与身份核对

@@ -1,6 +1,7 @@
 ---
 name: 20-ai-medical-imaging-ai-cnn-imaging
 description: 当用户需要构建可复现的医学影像分类、分割、检测或迁移学习训练流程时使用。
+whenToUse: 当用户需要构建可复现的医学影像分类、分割、检测或迁移学习训练流程时使用
 ---
 
 # 医学影像深度学习模型开发

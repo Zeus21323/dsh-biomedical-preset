@@ -1,6 +1,7 @@
 ---
 name: 01-genome-single-cell-cnv
-description: "当用户需要从 scRNA-seq 或 scDNA-seq 推断细胞拷贝数轮廓与克隆结构，并评估恶性细胞判定对正常参考的依赖时使用。"
+description: 当用户需要从 scRNA-seq 或 scDNA-seq 推断细胞拷贝数轮廓与克隆结构，并评估恶性细胞判定对正常参考的依赖时使用。
+whenToUse: 当用户需要从 scRNA-seq 或 scDNA-seq 推断细胞拷贝数轮廓与克隆结构，并评估恶性细胞判定对正常参考的依赖时使用
 ---
 
 # 单细胞CNV推断

@@ -1,6 +1,7 @@
 ---
 name: base-editing-design-scaffold-replace
 description: 当用户需要设计CBE或ABE碱基编辑并比较目标产物、旁观者编辑和脱靶风险时使用。
+whenToUse: 当用户需要设计CBE或ABE碱基编辑并比较目标产物、旁观者编辑和脱靶风险时使用
 ---
 
 # CRISPR碱基编辑设计与结果评估

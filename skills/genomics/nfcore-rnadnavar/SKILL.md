@@ -1,6 +1,7 @@
 ---
 name: nfcore-rnadnavar
-description: "当同一患者 DNA 和 RNA 数据需要联合评估体细胞变异时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/rnadnavar。"
+description: 当同一患者 DNA 和 RNA 数据需要联合评估体细胞变异时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/rnadnavar。
+whenToUse: 当同一患者 DNA 和 RNA 数据需要联合评估体细胞变异时使用
 ---
 
 # RNA与DNA联合体细胞变异分析（nf-core/rnadnavar）

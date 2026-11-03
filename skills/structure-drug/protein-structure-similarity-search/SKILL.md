@@ -1,6 +1,7 @@
 ---
 name: protein-structure-similarity-search
 description: 用于Foldseek快速搜索结构同源、远缘折叠和候选模板；当序列相似度不足或需要大规模结构比对时使用。
+whenToUse: 当序列相似度不足或需要大规模结构比对时使用
 ---
 # 蛋白质结构相似性搜索
 

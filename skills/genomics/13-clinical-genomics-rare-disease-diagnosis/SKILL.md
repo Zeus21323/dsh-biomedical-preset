@@ -1,6 +1,7 @@
 ---
 name: 13-clinical-genomics-rare-disease-diagnosis
 description: 用于整合表型、家系、小变异、CNV/SV和证据评级形成罕见病诊断候选；当用户需要端到端病例解释时使用。
+whenToUse: 当用户需要端到端病例解释时使用
 ---
 # 罕见病基因组诊断
 

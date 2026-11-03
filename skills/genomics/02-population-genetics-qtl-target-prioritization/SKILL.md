@@ -1,6 +1,7 @@
 ---
 name: 02-population-genetics-qtl-target-prioritization
 description: 当用户只知道疾病与候选基因/蛋白，想找作用机制、药物靶点、值得做实验的对象或问改变表达是否影响患病风险时使用；也处理cis-MR、eQTL/pQTL整合和靶点审稿补证据，不把任意基因名直接认定为有效靶点。
+whenToUse: 当用户只知道疾病与候选基因/蛋白，想找作用机制、药物靶点、值得做实验的对象或问改变表达是否影响患病风险时使用
 ---
 
 # 分子QTL与药物靶点因果优先排序

@@ -1,6 +1,7 @@
 ---
 name: cancer-gene-dependency-analysis
 description: 用于分析DepMap基因效应、药物反应、表达和基因组特征以发现癌细胞依赖；当用户需要靶点或合成致死候选时使用。
+whenToUse: 当用户需要靶点或合成致死候选时使用
 ---
 # 癌症基因依赖性分析
 

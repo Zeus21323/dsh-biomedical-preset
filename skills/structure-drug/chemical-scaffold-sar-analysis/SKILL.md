@@ -1,6 +1,7 @@
 ---
 name: chemical-scaffold-sar-analysis
 description: 当用户需要用Bemis–Murcko骨架、匹配分子对、R基团分解或Free–Wilson模型分析化学系列、构效关系与活性悬崖时使用。
+whenToUse: 当用户需要用Bemis–Murcko骨架、匹配分子对、R基团分解或Free–Wilson模型分析化学系列、构效关系与活性悬崖时使用
 ---
 
 # 化学骨架与SAR分析

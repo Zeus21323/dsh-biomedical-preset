@@ -1,6 +1,7 @@
 ---
 name: 16-immunomics-antibody-lineage
 description: 用于BCR克隆家族划分、体细胞高突变、胚系推断和抗体谱系树重建；当用户研究亲和成熟或抗体进化时使用。
+whenToUse: 当用户研究亲和成熟或抗体进化时使用
 ---
 # BCR 抗体谱系重建
 

@@ -1,6 +1,7 @@
 ---
 name: nfcore-panoramaseq
-description: "当已确认原位阵列空间转录测序，需要将读段与空间位置关联时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/panoramaseq。"
+description: 当已确认原位阵列空间转录测序，需要将读段与空间位置关联时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/panoramaseq。
+whenToUse: 当已确认原位阵列空间转录测序，需要将读段与空间位置关联时使用
 ---
 
 # 原位阵列空间测序处理（nf-core/panoramaseq）

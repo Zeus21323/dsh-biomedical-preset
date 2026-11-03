@@ -1,6 +1,7 @@
 ---
 name: cryo-em-structure-data-retrieval
 description: 用于检索EMDB、PDB中的冷冻电镜密度图、原子模型和实验元数据；当用户需要复用或评估cryo-EM结构时使用。
+whenToUse: 当用户需要复用或评估cryo-EM结构时使用
 ---
 # 冷冻电镜结构数据检索
 

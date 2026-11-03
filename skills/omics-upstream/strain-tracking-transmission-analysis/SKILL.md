@@ -1,6 +1,7 @@
 ---
 name: strain-tracking-transmission-analysis
 description: 用于样本间菌株相似性、定植持续性和潜在传播链分析；当用户有纵向、家庭、医院或暴发队列时使用。
+whenToUse: 当用户有纵向、家庭、医院或暴发队列时使用
 ---
 # 菌株追踪与传播分析
 

@@ -1,6 +1,7 @@
 ---
 name: nfcore-pacvar
-description: "当已有 PacBio HiFi 全基因组或 PureTarget 数据，需要变异分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/pacvar。"
+description: 当已有 PacBio HiFi 全基因组或 PureTarget 数据，需要变异分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/pacvar。
+whenToUse: 当已有 PacBio HiFi 全基因组或 PureTarget 数据，需要变异分析时使用
 ---
 
 # PacBio长读长变异预处理与分析（nf-core/pacvar）

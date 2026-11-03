@@ -1,6 +1,7 @@
 ---
 name: nfcore-proteomicslfq
-description: "当已有非标记蛋白质组质谱或历史结果，需要评估归档定量流程时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/proteomicslfq。"
+description: 当已有非标记蛋白质组质谱或历史结果，需要评估归档定量流程时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/proteomicslfq。
+whenToUse: 当已有非标记蛋白质组质谱或历史结果，需要评估归档定量流程时使用
 ---
 
 # 历史非标记蛋白质组定量（nf-core/proteomicslfq）

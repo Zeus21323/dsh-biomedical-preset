@@ -1,6 +1,7 @@
 ---
 name: drug-interaction-pk-pd-modeling
 description: 当用户需要评估多药CYP与转运体相互作用，或联合暴露和药效终点建立PK-PD模型时使用。
+whenToUse: 当用户需要评估多药CYP与转运体相互作用，或联合暴露和药效终点建立PK-PD模型时使用
 ---
 
 # 药物相互作用与PK-PD建模

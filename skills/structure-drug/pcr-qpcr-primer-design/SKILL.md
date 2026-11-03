@@ -1,6 +1,7 @@
 ---
 name: pcr-qpcr-primer-design
 description: 当用户需要为常规扩增、基因编辑鉴定或qPCR生成并筛选具有合适特异性和扩增性能的引物时使用。
+whenToUse: 当用户需要为常规扩增、基因编辑鉴定或qPCR生成并筛选具有合适特异性和扩增性能的引物时使用
 ---
 
 # PCR与qPCR引物设计

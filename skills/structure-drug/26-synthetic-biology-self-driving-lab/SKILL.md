@@ -1,6 +1,7 @@
 ---
 name: 26-synthetic-biology-self-driving-lab
 description: 当用户需要把液体处理实验转成可审查的板位、移液和设备操作方案并在执行前模拟时使用。
+whenToUse: 当用户需要把液体处理实验转成可审查的板位、移液和设备操作方案并在执行前模拟时使用
 ---
 
 # 实验室自动化与液体工作站

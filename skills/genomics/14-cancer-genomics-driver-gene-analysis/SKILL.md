@@ -1,6 +1,7 @@
 ---
 name: 14-cancer-genomics-driver-gene-analysis
 description: 用于肿瘤体细胞变异的驱动性、诊断、预后和治疗证据分级；当用户需要从突变表形成可审计临床解释时使用。
+whenToUse: 当用户需要从突变表形成可审计临床解释时使用
 ---
 # 体细胞变异临床解读与驱动基因分析
 

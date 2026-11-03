@@ -1,6 +1,6 @@
 ---
 name: 03-epigenomics-dnase-seq-analysis
-description: "用于从DNase-seq数据识别DNase超敏位点、生成切割信号轨道并比较染色质可及性。"
+description: 用于从DNase-seq数据识别DNase超敏位点、生成切割信号轨道并比较染色质可及性。
 ---
 
 # DNase-seq染色质可及性分析

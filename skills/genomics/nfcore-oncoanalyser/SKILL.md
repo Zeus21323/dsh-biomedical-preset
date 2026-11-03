@@ -1,6 +1,7 @@
 ---
 name: nfcore-oncoanalyser
-description: "当同一患者有肿瘤与正常 DNA 或可用 RNA，需要综合肿瘤基因组分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/oncoanalyser。"
+description: 当同一患者有肿瘤与正常 DNA 或可用 RNA，需要综合肿瘤基因组分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/oncoanalyser。
+whenToUse: 当同一患者有肿瘤与正常 DNA 或可用 RNA，需要综合肿瘤基因组分析时使用
 ---
 
 # 肿瘤DNA与RNA综合分析（nf-core/oncoanalyser）

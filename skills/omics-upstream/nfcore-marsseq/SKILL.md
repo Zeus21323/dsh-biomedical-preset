@@ -1,6 +1,7 @@
 ---
 name: nfcore-marsseq
-description: "当已确认板式 MARS-seq 数据，需要按孔位和分子标签整理表达时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/marsseq。"
+description: 当已确认板式 MARS-seq 数据，需要按孔位和分子标签整理表达时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/marsseq。
+whenToUse: 当已确认板式 MARS-seq 数据，需要按孔位和分子标签整理表达时使用
 ---
 
 # MARS-seq文库预处理与计数（nf-core/marsseq）

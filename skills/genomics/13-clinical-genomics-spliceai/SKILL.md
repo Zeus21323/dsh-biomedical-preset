@@ -1,6 +1,7 @@
 ---
 name: 13-clinical-genomics-spliceai
 description: 用于综合CADD、REVEL、AlphaMissense、SpliceAI等评估错义与潜在剪接变异；当用户需要计算证据而非最终临床分类时使用。
+whenToUse: 当用户需要计算证据而非最终临床分类时使用
 ---
 # 变异致害性与剪接效应预测
 

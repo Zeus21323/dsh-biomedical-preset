@@ -1,6 +1,7 @@
 ---
 name: fhir-ehr-interoperability
 description: 当用户需要把电子病历映射为FHIR资源、设计查询或交换流程，并处理术语、版本、患者匹配和隐私边界时使用。
+whenToUse: 当用户需要把电子病历映射为FHIR资源、设计查询或交换流程，并处理术语、版本、患者匹配和隐私边界时使用
 ---
 
 # FHIR与EHR数据互操作

@@ -1,6 +1,7 @@
 ---
 name: liquid-biopsy-assay-validation
 description: 用于评估液体活检试验的检测限、精密度、准确性、特异度和真实世界适用性；当用户设计分析验证或审查模型性能时使用。
+whenToUse: 当用户设计分析验证或审查模型性能时使用
 ---
 # 液体活检检测性能验证
 

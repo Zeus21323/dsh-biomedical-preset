@@ -1,6 +1,6 @@
 ---
 name: 04-transcriptomics-5-utr
-description: "用于分析UTR、Kozak、IRES、uORF、poly(A)位点、密码子偏好和tRNA适配等转录后与翻译调控元件。"
+description: 用于分析UTR、Kozak、IRES、uORF、poly(A)位点、密码子偏好和tRNA适配等转录后与翻译调控元件。
 ---
 
 # 转录与翻译调控元件分析

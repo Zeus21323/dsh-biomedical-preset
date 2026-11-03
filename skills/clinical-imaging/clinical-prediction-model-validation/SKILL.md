@@ -1,6 +1,7 @@
 ---
 name: clinical-prediction-model-validation
 description: 当用户需要审核或验证生物医学预测模型的数据泄漏、区分度、校准、临床净获益和可迁移性时使用。
+whenToUse: 当用户需要审核或验证生物医学预测模型的数据泄漏、区分度、校准、临床净获益和可迁移性时使用
 ---
 
 # 临床预测模型验证

@@ -1,6 +1,7 @@
 ---
 name: 01-genome-multiqc
 description: 当用户需要把 FastQC、比对、覆盖度和变异检测等多样本质控结果汇总并发现批次异常时使用。
+whenToUse: 当用户需要把 FastQC、比对、覆盖度和变异检测等多样本质控结果汇总并发现批次异常时使用
 ---
 
 # 多样本质控汇总

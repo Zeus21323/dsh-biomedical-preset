@@ -1,6 +1,7 @@
 ---
 name: 17-pharmacogenomics-adverse-drug-reaction-prediction
 description: 当用户需要综合药品标签、临床试验、自发不良事件、药物基因组和文献证据，评估已进入临床使用药物的安全性信号时使用。
+whenToUse: 当用户需要综合药品标签、临床试验、自发不良事件、药物基因组和文献证据，评估已进入临床使用药物的安全性信号时使用
 ---
 
 # 临床药物安全性信号评估

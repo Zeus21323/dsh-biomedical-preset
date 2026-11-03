@@ -1,6 +1,7 @@
 ---
 name: single-particle-tracking-diffusion
 description: 当用户需要从视频显微图像定位颗粒、连接轨迹并计算MSD或扩散系数时使用。
+whenToUse: 当用户需要从视频显微图像定位颗粒、连接轨迹并计算MSD或扩散系数时使用
 ---
 
 # 单颗粒跟踪与扩散分析

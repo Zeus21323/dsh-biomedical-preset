@@ -2,7 +2,7 @@
 name: pathml
 description: Comprehensive computational pathology toolkit. Covers both lightweight H&E tile extraction (tissue detection, tile extraction - RandomTiler/GridTiler/ScoreTiler, Macenko/Reinhard stain normalization, filter pipelines) and advanced WSI analysis (multiplexed immunofluorescence CODEX/Vectra, nucleus segmentation, tissue graph construction, ML model training). Supports 160+ slide formats.
 license: GPL-2.0 license
-metadata: {"version": "1.0", "skill-author": "K-Dense Inc."}
+metadata: "{\"version\": \"1.0\", \"skill-author\": \"K-Dense Inc.\"}"
 ---
 
 # PathML

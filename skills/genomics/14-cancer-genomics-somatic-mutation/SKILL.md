@@ -1,6 +1,7 @@
 ---
 name: 14-cancer-genomics-somatic-mutation
 description: 用于肿瘤—正常配对WES/WGS或靶向测序的体细胞SNV/Indel检测；当用户从BAM或FASTQ开展肿瘤突变分析时使用。
+whenToUse: 当用户从BAM或FASTQ开展肿瘤突变分析时使用
 ---
 # 肿瘤—正常配对体细胞变异检测
 

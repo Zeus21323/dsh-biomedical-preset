@@ -1,14 +1,9 @@
 ---
 name: cnv-sv-detection
-description: |
-  Copy-number variation (CNV) and structural variation (SV) detection and annotation for WGS/WES/panel data.
-  Covers CNVkit read-depth CNV calling (batch/reference/fix/segment/call, WGS binning and GC correction,
-  sex and ploidy handling, BAF-assisted allele-specific calls), Manta germline/somatic/tumor-only SV calling,
-  Delly call/merge/filter SV and CNV workflows, GATK-SV single-sample execution, and SV annotation with
-  AnnotSV and Ensembl VEP. All commands and defaults are quoted from official documentation.
-  中文触发词：拷贝数变异、CNV、结构变异、SV、缺失重复、CNVkit、Manta、Delly。
+description: 当用户需要从测序或芯片数据检测拷贝数变异（CNV）与结构变异（SV），并完成注释与致病性过滤时使用；Copy-number variation (CNV) and structural variation (SV) detection and annotation for WGS/WES/panel data. Covers CNVkit read-depth CNV calling (batch/reference/fix/segment/call, WGS binning and GC correction, sex and ploidy handling, BAF-assisted allele-specific calls), Manta germline/somatic/tumor-only SV calling, Delly call/merge/filter SV and CNV workflows, GATK-SV single-sample execution, and SV annotation with AnnotSV and Ensembl VEP. All commands and defaults are quoted from official documentation. 中文触发词：拷贝数变异、CNV、结构变异、SV、缺失重复、CNVkit、Manta、Delly。
 category: omics
 tags: cnv, sv, wgs, wes, cnvkit, manta, delly
+whenToUse: 当用户需要从测序或芯片数据检测拷贝数变异（CNV）与结构变异（SV），并完成注释与致病性过滤时使用
 ---
 
 # 拷贝数变异与结构变异检测（CNV / SV）

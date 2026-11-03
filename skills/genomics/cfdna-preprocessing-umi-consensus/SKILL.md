@@ -1,6 +1,7 @@
 ---
 name: cfdna-preprocessing-umi-consensus
 description: 用于cfDNA靶向测序的读段质控、UMI家族构建、单双链共识和背景错误控制；当用户从原始液体活检数据开始时使用。
+whenToUse: 当用户从原始液体活检数据开始时使用
 ---
 # cfDNA 预处理与 UMI 共识
 

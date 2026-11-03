@@ -1,6 +1,7 @@
 ---
 name: single-cell-cohort-integration-meta-analysis
 description: 当用户问换个队列还成立吗、细胞在什么阶段开始变、整合后结论相反，或需多队列单细胞状态复现与元分析（StateShiftAtlas方向）时使用；核验供体、状态和有序轴，自主选择可比较分析，不要求用户认识算法。
+whenToUse: 当用户问换个队列还成立吗、细胞在什么阶段开始变、整合后结论相反，或需多队列单细胞状态复现与元分析（StateShiftAtlas方向）时使用
 ---
 
 # 单细胞跨队列整合与元分析

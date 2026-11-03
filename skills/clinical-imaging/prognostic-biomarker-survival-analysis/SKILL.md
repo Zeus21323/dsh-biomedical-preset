@@ -1,6 +1,7 @@
 ---
 name: prognostic-biomarker-survival-analysis
 description: 当用户需要用生物标志物预测生存、复发或其他时间结局，并评估其独立预后价值时使用。
+whenToUse: 当用户需要用生物标志物预测生存、复发或其他时间结局，并评估其独立预后价值时使用
 ---
 
 # 预后生物标志物生存分析

@@ -1,6 +1,7 @@
 ---
 name: antibody-engineering-developability
 description: 当用户需要开展抗体人源化、亲和力成熟、序列风险检查和聚集、稳定性等可开发性综合评估时使用。
+whenToUse: 当用户需要开展抗体人源化、亲和力成熟、序列风险检查和聚集、稳定性等可开发性综合评估时使用
 ---
 
 # 抗体工程与可开发性评估

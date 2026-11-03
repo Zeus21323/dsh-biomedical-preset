@@ -1,6 +1,7 @@
 ---
 name: 10-multi-omics-integration-early-integration
 description: 用于多组学整合前的样本映射、特征统一、尺度变换、批次处理和缺失审计；当不同平台数据无法直接对齐时使用。
+whenToUse: 当不同平台数据无法直接对齐时使用
 ---
 # 多组学数据对齐与标准化
 

@@ -1,6 +1,7 @@
 ---
 name: 02-population-genetics-rare-variant-analysis
 description: 当用户有外显子/全基因组变异，想研究某病的罕见有害突变、基因负担、病例携带者或单SNP分析没信号，或提出burden、SKAT、SKAT-O时使用；先判定注释、携带者和队列条件。
+whenToUse: 当用户有外显子/全基因组变异，想研究某病的罕见有害突变、基因负担、病例携带者或单SNP分析没信号，或提出burden、SKAT、SKAT-O时使用
 ---
 
 # 稀有变异关联分析

@@ -1,6 +1,7 @@
 ---
 name: 02-population-genetics-prs-polygenic-risk-score
 description: 当用户想用遗传数据预测谁更容易患病、比较人群风险、评价已有遗传评分，或需要PRS、LDpred2、PRS-CS及校准图时使用；临床个体诊断与单个致病变异解释不是本任务。
+whenToUse: 当用户想用遗传数据预测谁更容易患病、比较人群风险、评价已有遗传评分，或需要PRS、LDpred2、PRS-CS及校准图时使用
 ---
 
 # PRS多基因风险评分

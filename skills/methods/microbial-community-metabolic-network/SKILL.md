@@ -1,6 +1,7 @@
 ---
 name: microbial-community-metabolic-network
 description: 用于由MAG或菌株模型构建群落代谢互作网络并分析交叉喂养；当用户研究菌群功能分工或代谢依赖时使用。
+whenToUse: 当用户研究菌群功能分工或代谢依赖时使用
 ---
 # 微生物群落代谢网络
 

@@ -1,6 +1,7 @@
 ---
 name: protein-structure-database-search
 description: 用于按蛋白、基因、序列或结构域检索PDB与AlphaFold DB并选择合适结构；当后续需要对接、界面分析或结构解释时使用。
+whenToUse: 当后续需要对接、界面分析或结构解释时使用
 ---
 # 蛋白质结构数据库检索
 

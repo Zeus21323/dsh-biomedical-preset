@@ -1,6 +1,6 @@
 ---
 name: 03-epigenomics-cut-run
-description: "用于处理CUT&RUN或CUT&Tag数据，并针对低背景、短片段、IgG对照和外源校准选择峰调用与归一化策略。"
+description: 用于处理CUT&RUN或CUT&Tag数据，并针对低背景、短片段、IgG对照和外源校准选择峰调用与归一化策略。
 ---
 
 # CUT&RUN与CUT&Tag分析

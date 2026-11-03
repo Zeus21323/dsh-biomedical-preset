@@ -1,6 +1,7 @@
 ---
 name: nfcore-fastquorum
-description: "当测序建库含 UMI，研究需要降低错误或形成分子共识读段时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/fastquorum。"
+description: 当测序建库含 UMI，研究需要降低错误或形成分子共识读段时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/fastquorum。
+whenToUse: 当测序建库含 UMI，研究需要降低错误或形成分子共识读段时使用
 ---
 
 # UMI共识读段构建（nf-core/fastquorum）

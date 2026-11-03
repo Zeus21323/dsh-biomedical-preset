@@ -1,6 +1,7 @@
 ---
 name: cytometry-differential-abundance-analysis
 description: 用于比较流式/CyTOF细胞亚群丰度和标记状态的组间、纵向或配对差异；当聚类或门控结果已完成时使用。
+whenToUse: 当聚类或门控结果已完成时使用
 ---
 # 流式细胞差异丰度与状态分析
 

@@ -1,6 +1,7 @@
 ---
 name: metabolomics-differential-multivariate-stats
-description: "当用户需要对质控后的代谢矩阵进行样本级差异、PCA 和监督建模，并用正确验证识别批次驱动或过拟合结果时使用。"
+description: 当用户需要对质控后的代谢矩阵进行样本级差异、PCA 和监督建模，并用正确验证识别批次驱动或过拟合结果时使用。
+whenToUse: 当用户需要对质控后的代谢矩阵进行样本级差异、PCA 和监督建模，并用正确验证识别批次驱动或过拟合结果时使用
 ---
 
 # 代谢组差异与多变量统计

@@ -1,6 +1,7 @@
 ---
 name: 20-ai-medical-imaging-ai-whole-slide-image-analysis
 description: 当用户需要对H&E或IHC全切片图像进行组织检测、切块、染色归一化、质量控制和特征提取时使用。
+whenToUse: 当用户需要对H&E或IHC全切片图像进行组织检测、切块、染色归一化、质量控制和特征提取时使用
 ---
 
 # 数字病理全切片分析

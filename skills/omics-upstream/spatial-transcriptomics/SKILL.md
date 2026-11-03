@@ -1,6 +1,7 @@
 ---
 name: spatial-transcriptomics
 description: 当用户想知道组织中基因或细胞在哪里、哪些细胞相邻、换半径或分割后结论是否可靠，或交付Visium、Xenium、MERFISH文件及EISTA/SpatialRobust请求时使用；自主识别平台、坐标和阶段，保留spot、bin与细胞边界，不要求用户选择算法。
+whenToUse: 当用户想知道组织中基因或细胞在哪里、哪些细胞相邻、换半径或分割后结论是否可靠，或交付Visium、Xenium、MERFISH文件及EISTA/SpatialRobust请求时使用
 ---
 
 # 空间转录组分析

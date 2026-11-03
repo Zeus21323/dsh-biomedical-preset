@@ -1,6 +1,7 @@
 ---
 name: 16-immunomics-clonotype-analysis
 description: 用于比较TCR/BCR克隆多样性、扩增、共享和纵向持续性；当用户已有标准化克隆型表和样本元数据时使用。
+whenToUse: 当用户已有标准化克隆型表和样本元数据时使用
 ---
 # 免疫受体库多样性与克隆追踪
 

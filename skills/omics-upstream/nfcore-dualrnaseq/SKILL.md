@@ -1,6 +1,7 @@
 ---
 name: nfcore-dualrnaseq
-description: "当共测定 RNA 数据来自宿主与病原，需要分别定量或研究感染反应时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/dualrnaseq。"
+description: 当共测定 RNA 数据来自宿主与病原，需要分别定量或研究感染反应时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/dualrnaseq。
+whenToUse: 当共测定 RNA 数据来自宿主与病原，需要分别定量或研究感染反应时使用
 ---
 
 # 宿主与病原双RNA测序分析（nf-core/dualrnaseq）

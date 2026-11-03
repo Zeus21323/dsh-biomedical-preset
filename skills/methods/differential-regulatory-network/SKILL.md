@@ -1,6 +1,7 @@
 ---
 name: differential-regulatory-network
 description: 用于比较疾病与对照、处理前后或细胞状态之间的网络重连；当用户关注边或模块如何变化而非单基因差异时使用。
+whenToUse: 当用户关注边或模块如何变化而非单基因差异时使用
 ---
 # 差异调控网络
 

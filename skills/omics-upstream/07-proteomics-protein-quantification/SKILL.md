@@ -1,6 +1,7 @@
 ---
 name: 07-proteomics-protein-quantification
-description: "当用户需要把肽段强度、谱图计数或 label-free 信号汇总为可比较的蛋白丰度，并处理跨运行匹配、归一化和缺失时使用。"
+description: 当用户需要把肽段强度、谱图计数或 label-free 信号汇总为可比较的蛋白丰度，并处理跨运行匹配、归一化和缺失时使用。
+whenToUse: 当用户需要把肽段强度、谱图计数或 label-free 信号汇总为可比较的蛋白丰度，并处理跨运行匹配、归一化和缺失时使用
 ---
 
 # 蛋白质丰度定量

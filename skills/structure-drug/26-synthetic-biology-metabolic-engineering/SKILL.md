@@ -1,6 +1,7 @@
 ---
 name: 26-synthetic-biology-metabolic-engineering
 description: 当用户需要用基因组尺度代谢模型评估培养基、反应通量、基因扰动或产物优化策略时使用。
+whenToUse: 当用户需要用基因组尺度代谢模型评估培养基、反应通量、基因扰动或产物优化策略时使用
 ---
 
 # 代谢网络建模与菌株优化

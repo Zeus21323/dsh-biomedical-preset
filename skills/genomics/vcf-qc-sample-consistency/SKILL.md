@@ -1,6 +1,7 @@
 ---
 name: vcf-qc-sample-consistency
 description: 用于检查VCF位点质量、基因型质量、样本身份、亲缘和异常值；当需要判断变异集能否进入关联、注释或临床解释时使用。
+whenToUse: 当需要判断变异集能否进入关联、注释或临床解释时使用
 ---
 
 # VCF质量统计与样本一致性

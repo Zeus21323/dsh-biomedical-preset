@@ -1,6 +1,7 @@
 ---
 name: nfcore-pangenome
-description: "当已有同源组装或单倍型序列集合，希望建立泛基因组图时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/pangenome。"
+description: 当已有同源组装或单倍型序列集合，希望建立泛基因组图时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/pangenome。
+whenToUse: 当已有同源组装或单倍型序列集合，希望建立泛基因组图时使用
 ---
 
 # 序列集合泛基因组图构建（nf-core/pangenome）

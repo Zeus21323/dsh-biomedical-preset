@@ -1,6 +1,7 @@
 ---
 name: nfcore-mitodetect
-description: "当需要评估线粒体分析所需数据或进行原始读段质控时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/mitodetect。"
+description: 当需要评估线粒体分析所需数据或进行原始读段质控时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/mitodetect。
+whenToUse: 当需要评估线粒体分析所需数据或进行原始读段质控时使用
 ---
 
 # 线粒体分析流程可用性审查（nf-core/mitodetect）

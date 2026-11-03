@@ -1,6 +1,7 @@
 ---
 name: nfcore-pairgenomealign
-description: "当已有两个或多套基因组组装，需要研究同源区域与共线性时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/pairgenomealign。"
+description: 当已有两个或多套基因组组装，需要研究同源区域与共线性时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/pairgenomealign。
+whenToUse: 当已有两个或多套基因组组装，需要研究同源区域与共线性时使用
 ---
 
 # 基因组两两比对与共线性检查（nf-core/pairgenomealign）

@@ -1,6 +1,7 @@
 ---
 name: nfcore-tumourevo
-description: "当肿瘤变异、拷贝数与时间或多区域样本需要研究克隆演化时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/tumourevo。"
+description: 当肿瘤变异、拷贝数与时间或多区域样本需要研究克隆演化时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/tumourevo。
+whenToUse: 当肿瘤变异、拷贝数与时间或多区域样本需要研究克隆演化时使用
 ---
 
 # 肿瘤克隆进化与突变特征分析（nf-core/tumourevo）

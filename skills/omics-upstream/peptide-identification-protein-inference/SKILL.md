@@ -1,6 +1,7 @@
 ---
 name: peptide-identification-protein-inference
-description: "当用户需要从 DDA/DIA MS/MS 谱图完成数据库搜索、分层 FDR 控制和透明的肽段到蛋白群推断时使用。"
+description: 当用户需要从 DDA/DIA MS/MS 谱图完成数据库搜索、分层 FDR 控制和透明的肽段到蛋白群推断时使用。
+whenToUse: 当用户需要从 DDA/DIA MS/MS 谱图完成数据库搜索、分层 FDR 控制和透明的肽段到蛋白群推断时使用
 ---
 
 # 肽段鉴定与蛋白质推断

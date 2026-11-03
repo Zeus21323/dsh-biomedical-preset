@@ -1,6 +1,7 @@
 ---
 name: nfcore-ncrnannotator
-description: "当已有基因组序列，需要识别非编码 RNA 家族时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/ncrnannotator。"
+description: 当已有基因组序列，需要识别非编码 RNA 家族时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/ncrnannotator。
+whenToUse: 当已有基因组序列，需要识别非编码 RNA 家族时使用
 ---
 
 # 基因组非编码RNA注释（nf-core/ncrnannotator）

@@ -1,6 +1,7 @@
 ---
 name: clinical-statistics-survival
 description: 当用户需要设计或检查临床数据的描述统计、生存分析、回归模型和敏感性分析时使用。
+whenToUse: 当用户需要设计或检查临床数据的描述统计、生存分析、回归模型和敏感性分析时使用
 ---
 
 # 临床统计与生存分析

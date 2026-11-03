@@ -1,6 +1,7 @@
 ---
 name: 07-proteomics-dia-proteomics
-description: "当用户需要处理 DIA-PASEF、SWATH 等数据，选择谱图库或无库搜索，并获得带分层 FDR 和运行质量证据的肽段、蛋白定量时使用。"
+description: 当用户需要处理 DIA-PASEF、SWATH 等数据，选择谱图库或无库搜索，并获得带分层 FDR 和运行质量证据的肽段、蛋白定量时使用。
+whenToUse: 当用户需要处理 DIA-PASEF、SWATH 等数据，选择谱图库或无库搜索，并获得带分层 FDR 和运行质量证据的肽段、蛋白定量时使用
 ---
 
 # DIA蛋白质组分析

@@ -1,6 +1,6 @@
 ---
 name: 04-transcriptomics-transcript-assembly
-description: "用于从短读RNA-seq或长读RNA数据重建转录本、发现异构体、合并样本注释并控制组装膨胀。"
+description: 用于从短读RNA-seq或长读RNA数据重建转录本、发现异构体、合并样本注释并控制组装膨胀。
 ---
 
 # 转录本组装

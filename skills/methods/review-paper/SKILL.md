@@ -1,6 +1,7 @@
 ---
 name: review-paper
-description: "当需要审稿、论文评审、paper review、manuscript review、reference verification、fact checking、逐章评审、参考文献核验、评分或给出审稿意见时使用。"
+description: 当需要审稿、论文评审、paper review、manuscript review、reference verification、fact checking、逐章评审、参考文献核验、评分或给出审稿意见时使用。
+whenToUse: 当需要审稿、论文评审、paper review、manuscript review、reference verification、fact checking、逐章评审、参考文献核验、评分或给出审稿意见时使用
 ---
 
 # 论文审稿

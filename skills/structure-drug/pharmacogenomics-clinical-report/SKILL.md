@@ -1,6 +1,7 @@
 ---
 name: pharmacogenomics-clinical-report
 description: 用于把PGx检测结果整理成面向临床的基因型、表型、证据和行动提示报告；当分析已完成并需要结构化交付时使用。
+whenToUse: 当分析已完成并需要结构化交付时使用
 ---
 # 药物基因组临床报告
 

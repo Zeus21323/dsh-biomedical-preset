@@ -1,6 +1,7 @@
 ---
 name: 13-clinical-genomics-hpo-matching
 description: 用于把自由文本临床表现标准化为HPO并进行疾病或基因相似度排序；当罕见病分析需要表型驱动优先级时使用。
+whenToUse: 当罕见病分析需要表型驱动优先级时使用
 ---
 # HPO 表型与疾病匹配
 

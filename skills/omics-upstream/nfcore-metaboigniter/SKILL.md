@@ -1,6 +1,7 @@
 ---
 name: nfcore-metaboigniter
-description: "当非靶向代谢组质谱数据需要提峰、对齐与特征注释时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/metaboigniter。"
+description: 当非靶向代谢组质谱数据需要提峰、对齐与特征注释时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/metaboigniter。
+whenToUse: 当非靶向代谢组质谱数据需要提峰、对齐与特征注释时使用
 ---
 
 # 非靶向质谱代谢组预处理（nf-core/metaboigniter）

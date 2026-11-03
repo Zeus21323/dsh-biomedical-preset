@@ -1,6 +1,7 @@
 ---
 name: instrument-data-standardization
 description: 当用户需要把不同实验仪器的原始导出转成统一、可交换且保留元数据的数据结构时使用。
+whenToUse: 当用户需要把不同实验仪器的原始导出转成统一、可交换且保留元数据的数据结构时使用
 ---
 
 # 实验仪器数据标准化

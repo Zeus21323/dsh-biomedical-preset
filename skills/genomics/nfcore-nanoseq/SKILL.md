@@ -1,6 +1,7 @@
 ---
 name: nfcore-nanoseq
-description: "当收到 Nanopore 数据，需要识别信号或读段阶段并进行拆样、质控与比对时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/nanoseq。"
+description: 当收到 Nanopore 数据，需要识别信号或读段阶段并进行拆样、质控与比对时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/nanoseq。
+whenToUse: 当收到 Nanopore 数据，需要识别信号或读段阶段并进行拆样、质控与比对时使用
 ---
 
 # Nanopore拆样质控与比对（nf-core/nanoseq）

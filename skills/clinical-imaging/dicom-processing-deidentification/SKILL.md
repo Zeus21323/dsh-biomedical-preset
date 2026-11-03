@@ -1,6 +1,7 @@
 ---
 name: dicom-processing-deidentification
 description: 当用户需要读取、检查、转换或安全去标识DICOM影像与元数据时使用。
+whenToUse: 当用户需要读取、检查、转换或安全去标识DICOM影像与元数据时使用
 ---
 
 # DICOM影像处理与去标识

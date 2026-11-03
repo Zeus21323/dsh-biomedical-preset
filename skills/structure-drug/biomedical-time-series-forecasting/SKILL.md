@@ -1,6 +1,7 @@
 ---
 name: biomedical-time-series-forecasting
 description: 当用户需要使用TimesFM等基础模型预测生命体征、组学纵向指标或实验监测序列，并评估泄漏、区间和异常时使用。
+whenToUse: 当用户需要使用TimesFM等基础模型预测生命体征、组学纵向指标或实验监测序列，并评估泄漏、区间和异常时使用
 ---
 
 # 生物医学时间序列预测

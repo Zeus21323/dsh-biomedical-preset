@@ -1,6 +1,7 @@
 ---
 name: nfcore-rnafusion
-description: "当RNA 测序需要寻找融合转录本或复核融合候选时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/rnafusion。"
+description: 当RNA 测序需要寻找融合转录本或复核融合候选时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/rnafusion。
+whenToUse: 当RNA 测序需要寻找融合转录本或复核融合候选时使用
 ---
 
 # RNA测序融合转录本检测（nf-core/rnafusion）

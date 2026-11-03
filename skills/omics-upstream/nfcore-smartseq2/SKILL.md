@@ -1,6 +1,7 @@
 ---
 name: nfcore-smartseq2
-description: "当已确认板式 Smart-seq2 测序，需要按细胞或孔位整理表达时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/smartseq2。"
+description: 当已确认板式 Smart-seq2 测序，需要按细胞或孔位整理表达时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/smartseq2。
+whenToUse: 当已确认板式 Smart-seq2 测序，需要按细胞或孔位整理表达时使用
 ---
 
 # 历史Smart-seq2单细胞处理（nf-core/smartseq2）

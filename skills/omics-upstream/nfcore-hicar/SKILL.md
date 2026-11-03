@@ -1,6 +1,7 @@
 ---
 name: nfcore-hicar
-description: "当已确认 HiCAR 共测定数据，需要整理染色质接触及相关信号时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/hicar。"
+description: 当已确认 HiCAR 共测定数据，需要整理染色质接触及相关信号时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/hicar。
+whenToUse: 当已确认 HiCAR 共测定数据，需要整理染色质接触及相关信号时使用
 ---
 
 # HiCAR染色质与转录共测定分析（nf-core/hicar）

@@ -1,19 +1,9 @@
 ---
 name: lipidomics-annotation
-description: |
-  Lipidomics annotation and lipid-specific analysis. Covers LIPID MAPS classification and
-  shorthand notation (species vs molecular species vs sn-position vs double-bond position),
-  MS1 m/z + adduct matching ([M+H]+, [M+Na]+, [M-H]-, [M+HCOO]-), RT/CCS-assisted and
-  MS2 fragment matching, annotation confidence levels, the official lipidr Bioconductor
-  workflow (read_skyline / as_lipidomics_experiment -> add_sample_annotation ->
-  summarize_transitions -> normalize_pqn -> mva -> de_analysis -> lsea ->
-  plot_class_enrichment / plot_chain_distribution / plot_trend), why class-aware
-  normalization differs from global normalization, LIPID MAPS LMSD REST + SwissLipids
-  SPARQL + MS-DIAL / LipidFinder official tooling, and PubChem / ChEMBL entity cross-checks
-  through the bundled MCP chemistry tools.
-  中文触发词：脂质组、lipidomics、脂质注释、LIPID MAPS、lipidr、PC/PE/TG、碳链双键、脂质异构体
+description: Lipidomics annotation and lipid-specific analysis. Covers LIPID MAPS classification and shorthand notation (species vs molecular species vs sn-position vs double-bond position), MS1 m/z + adduct matching ([M+H]+, [M+Na]+, [M-H]-, [M+HCOO]-), RT/CCS-assisted and MS2 fragment matching, annotation confidence levels, the official lipidr Bioconductor workflow (read_skyline / as_lipidomics_experiment -> add_sample_annotation -> summarize_transitions -> normalize_pqn -> mva -> de_analysis -> lsea -> plot_class_enrichment / plot_chain_distribution / plot_trend), why class-aware normalization differs from global normalization, LIPID MAPS LMSD REST + SwissLipids SPARQL + MS-DIAL / LipidFinder official tooling, and PubChem / ChEMBL entity cross-checks through the bundled MCP chemistry tools. 中文触发词：脂质组、lipidomics、脂质注释、LIPID MAPS、lipidr、PC/PE/TG、碳链双键、脂质异构体
 category: omics
 tags: lipidomics, lipid-annotation, lipid-maps, lipidr
+whenToUse: 触发词：脂质组、lipidomics、脂质注释、LIPID MAPS、lipidr、PC/PE/TG、碳链双键、脂质异构体
 ---
 
 # 脂质组学注释与脂质专用分析

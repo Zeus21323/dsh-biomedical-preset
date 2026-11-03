@@ -1,6 +1,7 @@
 ---
 name: nfcore-variantcatalogue
-description: "当多样本基因组变异需要整理成群体频率目录时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/variantcatalogue。"
+description: 当多样本基因组变异需要整理成群体频率目录时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/variantcatalogue。
+whenToUse: 当多样本基因组变异需要整理成群体频率目录时使用
 ---
 
 # 群体变异目录与频率汇总（nf-core/variantcatalogue）

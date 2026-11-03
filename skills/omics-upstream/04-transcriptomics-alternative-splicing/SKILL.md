@@ -1,6 +1,7 @@
 ---
 name: 04-transcriptomics-alternative-splicing
 description: 当用户问表达没变是否剪接变了、同一基因在不同细胞为何不同、长短读长结果矛盾，或需剪接和异构体状态证据整合（IsoformStateDB方向）时使用；先查读段、覆盖和注释，不要求用户选择算法或懂PSI。
+whenToUse: 当用户问表达没变是否剪接变了、同一基因在不同细胞为何不同、长短读长结果矛盾，或需剪接和异构体状态证据整合（IsoformStateDB方向）时使用
 ---
 
 # 可变剪接分析

@@ -1,6 +1,6 @@
 ---
 name: 04-transcriptomics-rbp-regulation
-description: "用于从eCLIP、iCLIP及其他CLIP-seq协议定位RNA结合蛋白位点，并评估交联事件、背景、基序和重复一致性。"
+description: 用于从eCLIP、iCLIP及其他CLIP-seq协议定位RNA结合蛋白位点，并评估交联事件、背景、基序和重复一致性。
 ---
 
 # CLIP-seq与RBP结合分析

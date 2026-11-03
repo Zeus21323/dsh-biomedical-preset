@@ -1,6 +1,7 @@
 ---
 name: protein-structure-visualization
 description: 用于制作蛋白结构、复合物、口袋、突变位点和轨迹的可解释图像或会话；当用户需要PyMOL/ChimeraX展示时使用。
+whenToUse: 当用户需要PyMOL/ChimeraX展示时使用
 ---
 # 蛋白质结构可视化
 

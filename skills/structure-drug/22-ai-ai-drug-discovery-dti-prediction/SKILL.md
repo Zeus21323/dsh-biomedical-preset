@@ -1,6 +1,7 @@
 ---
 name: 22-ai-ai-drug-discovery-dti-prediction
 description: 当用户需要检索化合物与靶点之间的Ki、Kd、IC50、EC50等活性数值，并核对实验体系、单位和文献时使用。
+whenToUse: 当用户需要检索化合物与靶点之间的Ki、Kd、IC50、EC50等活性数值，并核对实验体系、单位和文献时使用
 ---
 
 # 药物-靶点结合活性数据检索

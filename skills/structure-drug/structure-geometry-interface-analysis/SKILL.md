@@ -1,6 +1,7 @@
 ---
 name: structure-geometry-interface-analysis
 description: 用于测量残基距离、角度、接触、氢键、盐桥和蛋白界面；当用户需要解释突变、复合物或活性位点几何时使用。
+whenToUse: 当用户需要解释突变、复合物或活性位点几何时使用
 ---
 # 蛋白质结构几何与界面分析
 

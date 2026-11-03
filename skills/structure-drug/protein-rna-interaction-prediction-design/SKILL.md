@@ -1,6 +1,7 @@
 ---
 name: protein-rna-interaction-prediction-design
 description: 当用户问某蛋白是否结合某RNA、结合位置在哪里、如何比较候选RNA或设计能结合目标蛋白的RNA，或指定ProRB时使用；从分子身份、序列、约束和可用权重判断预测/设计模式，不要求结构文件或用户理解模型接口。
+whenToUse: 当用户问某蛋白是否结合某RNA、结合位置在哪里、如何比较候选RNA或设计能结合目标蛋白的RNA，或指定ProRB时使用
 ---
 
 # 蛋白质–RNA相互作用预测与设计

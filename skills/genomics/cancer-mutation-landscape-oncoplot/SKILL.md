@@ -1,6 +1,7 @@
 ---
 name: cancer-mutation-landscape-oncoplot
 description: 用于制作oncoplot、突变景观、共现互斥和样本临床注释图；当用户需要队列级肿瘤变异展示时使用。
+whenToUse: 当用户需要队列级肿瘤变异展示时使用
 ---
 # 肿瘤变异图谱可视化
 

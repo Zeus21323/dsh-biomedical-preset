@@ -1,6 +1,7 @@
 ---
 name: noncompartmental-pk-analysis
 description: 当用户需要从给药后的浓度-时间数据计算Cmax、Tmax、AUC、半衰期、清除率和表观分布容积时使用。
+whenToUse: 当用户需要从给药后的浓度-时间数据计算Cmax、Tmax、AUC、半衰期、清除率和表观分布容积时使用
 ---
 
 # 非房室药代动力学分析

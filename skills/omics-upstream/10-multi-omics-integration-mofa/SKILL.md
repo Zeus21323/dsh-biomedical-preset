@@ -1,6 +1,7 @@
 ---
 name: 10-multi-omics-integration-mofa
 description: 用于通过MOFA/MOFA+提取跨组学潜在因子、解释变异来源和处理部分缺失；当任务以无监督结构发现为主时使用。
+whenToUse: 当任务以无监督结构发现为主时使用
 ---
 # MOFA 多组学因子分析
 

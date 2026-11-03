@@ -1,6 +1,7 @@
 ---
 name: nfcore-hlatyping
-description: "当WGS、WES 或 RNA 数据需要推断 HLA 等位基因时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/hlatyping。"
+description: 当WGS、WES 或 RNA 数据需要推断 HLA 等位基因时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/hlatyping。
+whenToUse: 当WGS、WES 或 RNA 数据需要推断 HLA 等位基因时使用
 ---
 
 # 测序HLA高分辨分型（nf-core/hlatyping）

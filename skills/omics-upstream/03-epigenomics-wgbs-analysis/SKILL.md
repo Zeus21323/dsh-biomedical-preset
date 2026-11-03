@@ -1,6 +1,7 @@
 ---
 name: 03-epigenomics-wgbs-analysis
-description: "用于处理WGBS或RRBS数据，得到CpG及非CpG甲基化计数、覆盖与转换质量；当用户提供亚硫酸氢盐测序FASTQ时使用。"
+description: 用于处理WGBS或RRBS数据，得到CpG及非CpG甲基化计数、覆盖与转换质量；当用户提供亚硫酸氢盐测序FASTQ时使用。
+whenToUse: 当用户提供亚硫酸氢盐测序FASTQ时使用
 ---
 
 # 亚硫酸氢盐测序与DNA甲基化分析

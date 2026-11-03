@@ -1,6 +1,7 @@
 ---
 name: 08-metabolomics-icp-ms-analysis
-description: "当用户需要对 ICP-MS 或 ICP-MS/MS 元素数据进行校准、内标和干扰校正，输出带检测限、回收率与单位的离子组/金属组结果时使用。"
+description: 当用户需要对 ICP-MS 或 ICP-MS/MS 元素数据进行校准、内标和干扰校正，输出带检测限、回收率与单位的离子组/金属组结果时使用。
+whenToUse: 当用户需要对 ICP-MS 或 ICP-MS/MS 元素数据进行校准、内标和干扰校正，输出带检测限、回收率与单位的离子组/金属组结果时使用
 ---
 
 # ICP-MS离子组与金属组分析

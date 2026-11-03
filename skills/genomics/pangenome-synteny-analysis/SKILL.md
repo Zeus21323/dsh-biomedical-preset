@@ -1,6 +1,7 @@
 ---
 name: pangenome-synteny-analysis
 description: 当用户需要比较多个基因组的核心/可变序列、结构差异、基因家族和共线性时使用。
+whenToUse: 当用户需要比较多个基因组的核心/可变序列、结构差异、基因家族和共线性时使用
 ---
 
 # 泛基因组与共线性分析

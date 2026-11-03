@@ -1,6 +1,7 @@
 ---
 name: construct-motif-scanning-logo
 description: 当用户需要检查合成启动子、UTR、载体或其他设计构建中的固定、IUPAC或PWM/PSSM基序，并输出位点坐标或序列Logo时使用。
+whenToUse: 当用户需要检查合成启动子、UTR、载体或其他设计构建中的固定、IUPAC或PWM/PSSM基序，并输出位点坐标或序列Logo时使用
 ---
 
 # 合成构建基序扫描与Logo绘制

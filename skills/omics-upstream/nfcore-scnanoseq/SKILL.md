@@ -1,6 +1,7 @@
 ---
 name: nfcore-scnanoseq
-description: "当单细胞长读 RNA 数据需要恢复细胞身份并分析转录本时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/scnanoseq。"
+description: 当单细胞长读 RNA 数据需要恢复细胞身份并分析转录本时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/scnanoseq。
+whenToUse: 当单细胞长读 RNA 数据需要恢复细胞身份并分析转录本时使用
 ---
 
 # Nanopore单细胞长读长转录组（nf-core/scnanoseq）

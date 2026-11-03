@@ -1,6 +1,7 @@
 ---
 name: nfcore-reportho
-description: "当多个直系同源预测结果需要统一标识并比较一致性时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/reportho。"
+description: 当多个直系同源预测结果需要统一标识并比较一致性时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/reportho。
+whenToUse: 当多个直系同源预测结果需要统一标识并比较一致性时使用
 ---
 
 # 直系同源预测比较（nf-core/reportho）

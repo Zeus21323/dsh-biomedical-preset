@@ -1,6 +1,7 @@
 ---
 name: nfcore-diseasemodulediscovery
-description: "当疾病相关基因及互作网络需要寻找候选疾病模块时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/diseasemodulediscovery。"
+description: 当疾病相关基因及互作网络需要寻找候选疾病模块时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/diseasemodulediscovery。
+whenToUse: 当疾病相关基因及互作网络需要寻找候选疾病模块时使用
 ---
 
 # 网络疾病模块发现（nf-core/diseasemodulediscovery）

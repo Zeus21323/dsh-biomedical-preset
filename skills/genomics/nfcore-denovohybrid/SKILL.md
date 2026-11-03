@@ -1,6 +1,7 @@
 ---
 name: nfcore-denovohybrid
-description: "当同一样本有长读和短读数据，希望重建基因组并评估历史混合组装路径时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/denovohybrid。"
+description: 当同一样本有长读和短读数据，希望重建基因组并评估历史混合组装路径时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/denovohybrid。
+whenToUse: 当同一样本有长读和短读数据，希望重建基因组并评估历史混合组装路径时使用
 ---
 
 # 历史长短读混合组装（nf-core/denovohybrid）

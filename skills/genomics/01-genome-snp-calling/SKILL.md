@@ -1,6 +1,7 @@
 ---
 name: 01-genome-snp-calling
 description: 当用户需要从生殖系 DNA 的分析就绪 BAM/CRAM 检测 SNV 和短 Indel，并进行单样本或队列联合分型时使用。
+whenToUse: 当用户需要从生殖系 DNA 的分析就绪 BAM/CRAM 检测 SNV 和短 Indel，并进行单样本或队列联合分型时使用
 ---
 
 # 胚系小变异检测

@@ -1,6 +1,7 @@
 ---
 name: nfcore-crisprvar
-description: "当CRISPR 靶向编辑数据需要复核历史 NHEJ 或 HDR 评估时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/crisprvar。"
+description: 当CRISPR 靶向编辑数据需要复核历史 NHEJ 或 HDR 评估时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/crisprvar。
+whenToUse: 当CRISPR 靶向编辑数据需要复核历史 NHEJ 或 HDR 评估时使用
 ---
 
 # 历史CRISPR编辑结果评估（nf-core/crisprvar）

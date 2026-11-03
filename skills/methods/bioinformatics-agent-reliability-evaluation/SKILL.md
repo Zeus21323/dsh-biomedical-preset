@@ -1,6 +1,7 @@
 ---
 name: bioinformatics-agent-reliability-evaluation
 description: 当用户明确要比较生信助手、检查自动分析是否编造、评估升级回归或建立失败基准（BioAgent Failure Atlas），且有案例或记录时使用；组织冻结判据及产物审计，普通分析失败先回原流程，不要求科研新手设计测试。
+whenToUse: 当用户明确要比较生信助手、检查自动分析是否编造、评估升级回归或建立失败基准（BioAgent Failure Atlas），且有案例或记录时使用
 ---
 
 # 生信分析代理可靠性评测

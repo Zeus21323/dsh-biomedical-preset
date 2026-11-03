@@ -1,6 +1,7 @@
 ---
 name: nfcore-tbanalyzer
-description: "当结核分枝杆菌复合群测序需要分型及相关标记分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/tbanalyzer。"
+description: 当结核分枝杆菌复合群测序需要分型及相关标记分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/tbanalyzer。
+whenToUse: 当结核分枝杆菌复合群测序需要分型及相关标记分析时使用
 ---
 
 # 结核分枝杆菌复合群分析（nf-core/tbanalyzer）

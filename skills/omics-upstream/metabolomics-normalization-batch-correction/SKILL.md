@@ -1,6 +1,7 @@
 ---
 name: metabolomics-normalization-batch-correction
-description: "当用户需要利用空白、pooled QC、稀释系列和内标清理代谢组特征，校正运行漂移并评估是否保留真实生物变化时使用。"
+description: 当用户需要利用空白、pooled QC、稀释系列和内标清理代谢组特征，校正运行漂移并评估是否保留真实生物变化时使用。
+whenToUse: 当用户需要利用空白、pooled QC、稀释系列和内标清理代谢组特征，校正运行漂移并评估是否保留真实生物变化时使用
 ---
 
 # 代谢组质量控制归一化与批次校正

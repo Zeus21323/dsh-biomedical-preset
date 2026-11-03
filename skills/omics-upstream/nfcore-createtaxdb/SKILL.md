@@ -1,6 +1,7 @@
 ---
 name: nfcore-createtaxdb
-description: "当微生物分析需要适合目标样本与分类工具的数据库时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/createtaxdb。"
+description: 当微生物分析需要适合目标样本与分类工具的数据库时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/createtaxdb。
+whenToUse: 当微生物分析需要适合目标样本与分类工具的数据库时使用
 ---
 
 # 微生物分类数据库构建（nf-core/createtaxdb）

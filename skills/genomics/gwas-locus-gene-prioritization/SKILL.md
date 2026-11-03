@@ -1,6 +1,7 @@
 ---
 name: gwas-locus-gene-prioritization
 description: 当用户问疾病关联位点对应哪个基因、最近基因是否可信、该选哪个基因做实验，或想联合QTL、染色质互作和精细定位解释GWAS时使用；不要求知道L2G或增强子术语。
+whenToUse: 当用户问疾病关联位点对应哪个基因、最近基因是否可信、该选哪个基因做实验，或想联合QTL、染色质互作和精细定位解释GWAS时使用
 ---
 
 # GWAS位点到基因优先排序

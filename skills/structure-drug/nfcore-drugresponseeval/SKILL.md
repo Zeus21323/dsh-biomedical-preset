@@ -1,6 +1,7 @@
 ---
 name: nfcore-drugresponseeval
-description: "当药物反应和特征数据需要评估模型对新样本或新药的预测能力时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/drugresponseeval。"
+description: 当药物反应和特征数据需要评估模型对新样本或新药的预测能力时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/drugresponseeval。
+whenToUse: 当药物反应和特征数据需要评估模型对新样本或新药的预测能力时使用
 ---
 
 # 药物响应预测模型规范评估（nf-core/drugresponseeval）

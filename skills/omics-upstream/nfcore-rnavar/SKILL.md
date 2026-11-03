@@ -1,6 +1,7 @@
 ---
 name: nfcore-rnavar
-description: "当只有 RNA 测序或需补充 RNA 层证据，希望识别表达区域变异时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/rnavar。"
+description: 当只有 RNA 测序或需补充 RNA 层证据，希望识别表达区域变异时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/rnavar。
+whenToUse: 当只有 RNA 测序或需补充 RNA 层证据，希望识别表达区域变异时使用
 ---
 
 # RNA测序小变异检测（nf-core/rnavar）

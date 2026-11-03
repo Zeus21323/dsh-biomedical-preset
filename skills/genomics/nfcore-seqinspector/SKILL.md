@@ -1,6 +1,7 @@
 ---
 name: nfcore-seqinspector
-description: "当收到测序文件或比对结果，需要了解数据质量和异常样本时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/seqinspector。"
+description: 当收到测序文件或比对结果，需要了解数据质量和异常样本时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/seqinspector。
+whenToUse: 当收到测序文件或比对结果，需要了解数据质量和异常样本时使用
 ---
 
 # 测序数据专用质量检查（nf-core/seqinspector）

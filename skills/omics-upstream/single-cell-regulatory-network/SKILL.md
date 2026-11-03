@@ -1,6 +1,7 @@
 ---
 name: single-cell-regulatory-network
-description: "当用户需要从单细胞 RNA、ATAC 或多组学数据构建带 motif、可及性和扰动支持的 TF-regulon 调控网络时使用。"
+description: 当用户需要从单细胞 RNA、ATAC 或多组学数据构建带 motif、可及性和扰动支持的 TF-regulon 调控网络时使用。
+whenToUse: 当用户需要从单细胞 RNA、ATAC 或多组学数据构建带 motif、可及性和扰动支持的 TF-regulon 调控网络时使用
 ---
 
 # 单细胞调控网络分析

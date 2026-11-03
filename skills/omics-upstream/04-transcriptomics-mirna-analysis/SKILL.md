@@ -1,6 +1,6 @@
 ---
 name: 04-transcriptomics-mirna-analysis
-description: "用于按文库类型分析miRNA、lncRNA或circRNA的表达、注释、差异和候选调控关系。"
+description: 用于按文库类型分析miRNA、lncRNA或circRNA的表达、注释、差异和候选调控关系。
 ---
 
 # 非编码RNA分析

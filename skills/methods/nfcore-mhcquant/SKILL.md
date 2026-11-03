@@ -1,6 +1,7 @@
 ---
 name: nfcore-mhcquant
-description: "当MHC 洗脱肽质谱需要免疫肽鉴定与定量时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/mhcquant。"
+description: 当MHC 洗脱肽质谱需要免疫肽鉴定与定量时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/mhcquant。
+whenToUse: 当MHC 洗脱肽质谱需要免疫肽鉴定与定量时使用
 ---
 
 # 免疫肽组质谱鉴定与定量（nf-core/mhcquant）

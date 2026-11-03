@@ -1,6 +1,7 @@
 ---
 name: 12-structural-biology-alphafold2
 description: 用于AlphaFold2或ColabFold的单体、同源多聚体结构预测和置信度解释；当用户提供蛋白序列并需要结构模型时使用。
+whenToUse: 当用户提供蛋白序列并需要结构模型时使用
 ---
 # 蛋白质单体与同源多聚体结构预测
 

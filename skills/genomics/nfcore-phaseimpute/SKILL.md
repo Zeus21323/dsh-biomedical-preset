@@ -1,6 +1,7 @@
 ---
 name: nfcore-phaseimpute
-description: "当基因型缺失或密度不足，需要分相并补充可预测位点时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/phaseimpute。"
+description: 当基因型缺失或密度不足，需要分相并补充可预测位点时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/phaseimpute。
+whenToUse: 当基因型缺失或密度不足，需要分相并补充可预测位点时使用
 ---
 
 # 基因型分相与填充（nf-core/phaseimpute）

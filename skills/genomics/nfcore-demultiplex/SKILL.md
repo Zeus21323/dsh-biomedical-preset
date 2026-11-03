@@ -1,6 +1,7 @@
 ---
 name: nfcore-demultiplex
-description: "当收到未拆分的测序文件、索引读段或上机目录，需要按样本恢复数据时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/demultiplex。"
+description: 当收到未拆分的测序文件、索引读段或上机目录，需要按样本恢复数据时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/demultiplex。
+whenToUse: 当收到未拆分的测序文件、索引读段或上机目录，需要按样本恢复数据时使用
 ---
 
 # 测序样本拆分与条形码处理（nf-core/demultiplex）

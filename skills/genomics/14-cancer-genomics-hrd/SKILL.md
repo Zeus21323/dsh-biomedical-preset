@@ -1,6 +1,7 @@
 ---
 name: 14-cancer-genomics-hrd
 description: 用于计算并解释LOH、LST、TAI等HRD基因组瘢痕，联合HR通路变异和突变特征；当用户研究BRCA通路或PARP抑制剂生物标志物时使用。
+whenToUse: 当用户研究BRCA通路或PARP抑制剂生物标志物时使用
 ---
 # HRD 评分与解释
 

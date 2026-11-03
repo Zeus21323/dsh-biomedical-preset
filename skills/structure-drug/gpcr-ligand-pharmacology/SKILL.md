@@ -1,6 +1,7 @@
 ---
 name: gpcr-ligand-pharmacology
 description: 当用户需要分析GPCR配体的激动、拮抗、反向激动、偏向信号、亚型选择性或正构/变构机制时使用。
+whenToUse: 当用户需要分析GPCR配体的激动、拮抗、反向激动、偏向信号、亚型选择性或正构/变构机制时使用
 ---
 
 # GPCR配体药理分析

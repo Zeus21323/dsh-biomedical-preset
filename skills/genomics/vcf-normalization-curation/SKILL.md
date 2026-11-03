@@ -1,6 +1,7 @@
 ---
 name: vcf-normalization-curation
 description: 用于VCF拆分、左对齐、参考等位基因核对、排序、合并和索引；当变异文件需要注释、比较或交付前整理时使用。
+whenToUse: 当变异文件需要注释、比较或交付前整理时使用
 ---
 
 # VCF规范化与整理

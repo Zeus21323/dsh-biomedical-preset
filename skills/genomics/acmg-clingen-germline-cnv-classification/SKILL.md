@@ -1,6 +1,7 @@
 ---
 name: acmg-clingen-germline-cnv-classification
 description: 用于按ACMG/ClinGen技术标准解释胚系缺失和重复；当用户提供CNV坐标、基因内容与表型并需要临床分级时使用。
+whenToUse: 当用户提供CNV坐标、基因内容与表型并需要临床分级时使用
 ---
 # ACMG 与 ClinGen 胚系 CNV 分类
 

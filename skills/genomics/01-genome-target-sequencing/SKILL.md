@@ -1,6 +1,7 @@
 ---
 name: 01-genome-target-sequencing
 description: 当用户需要分析基因面板、扩增子或捕获式靶向测序，并处理 UMI、低频变异和目标区覆盖时使用。
+whenToUse: 当用户需要分析基因面板、扩增子或捕获式靶向测序，并处理 UMI、低频变异和目标区覆盖时使用
 ---
 
 # 靶向测序分析

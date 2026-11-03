@@ -1,6 +1,7 @@
 ---
 name: 22-ai-ai-drug-discovery-retrosynthesis-planning
 description: 当用户需要为明确结构和立体化学的目标分子生成、比较并初步验证多步逆合成路线时使用。
+whenToUse: 当用户需要为明确结构和立体化学的目标分子生成、比较并初步验证多步逆合成路线时使用
 ---
 
 # 逆合成路线规划

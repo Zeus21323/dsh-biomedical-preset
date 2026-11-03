@@ -1,6 +1,7 @@
 ---
 name: 18-precision-medicine-patient-stratification
 description: 当用户需要整合分子、临床和治疗信息划分患者亚组、风险层级或治疗决策组时使用。
+whenToUse: 当用户需要整合分子、临床和治疗信息划分患者亚组、风险层级或治疗决策组时使用
 ---
 
 # 患者分层与精准治疗匹配

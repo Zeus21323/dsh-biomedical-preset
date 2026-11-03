@@ -1,6 +1,7 @@
 ---
 name: scientific-problem-hypothesis
 description: 当用户需要把宽泛研究兴趣收束成可检验、可证伪且有现实价值的科研问题与假设时使用。
+whenToUse: 当用户需要把宽泛研究兴趣收束成可检验、可证伪且有现实价值的科研问题与假设时使用
 ---
 
 # 科研问题与假设设计

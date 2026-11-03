@@ -1,6 +1,7 @@
 ---
 name: ctdna-mutation-detection-scaffold-replace
 description: 用于cfDNA/ctDNA中的超低频SNV和Indel检测、技术噪声建模与候选复核；当预期VAF接近测序错误率时使用。
+whenToUse: 当预期VAF接近测序错误率时使用
 ---
 # ctDNA 低频突变检测
 

@@ -1,6 +1,7 @@
 ---
 name: focal-amplification-ecdna-analysis
 description: 用于从肿瘤WGS识别焦点扩增并用AmpliconArchitect/AmpliconClassifier区分ecDNA、BFB、HSR和线性扩增；当高拷贝致癌基因需要结构解析时使用。
+whenToUse: 当高拷贝致癌基因需要结构解析时使用
 ---
 # 焦点扩增与 ecDNA 分析
 

@@ -1,6 +1,7 @@
 ---
 name: 18-precision-medicine-prognostic-biomarker
 description: 当用户需要从高维组学或多组学数据中筛选稳定、可复现的候选生物标志物时使用。
+whenToUse: 当用户需要从高维组学或多组学数据中筛选稳定、可复现的候选生物标志物时使用
 ---
 
 # 多组学生物标志物发现

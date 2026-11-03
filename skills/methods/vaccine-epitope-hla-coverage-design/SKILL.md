@@ -1,6 +1,7 @@
 ---
 name: vaccine-epitope-hla-coverage-design
 description: 当用户需要联合T细胞或B细胞表位、抗原保守性和目标人群HLA频率设计候选疫苗并评估覆盖时使用。
+whenToUse: 当用户需要联合T细胞或B细胞表位、抗原保守性和目标人群HLA频率设计候选疫苗并评估覆盖时使用
 ---
 
 # 疫苗表位与人群HLA覆盖设计

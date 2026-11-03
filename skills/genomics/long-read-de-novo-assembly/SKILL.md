@@ -1,6 +1,7 @@
 ---
 name: long-read-de-novo-assembly
 description: 当用户需要使用 Nanopore、PacBio HiFi 或混合数据进行从头基因组组装与抛光时使用。
+whenToUse: 当用户需要使用 Nanopore、PacBio HiFi 或混合数据进行从头基因组组装与抛光时使用
 ---
 
 # 长读长从头组装

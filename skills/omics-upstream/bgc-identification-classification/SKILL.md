@@ -1,6 +1,7 @@
 ---
 name: bgc-identification-classification
 description: 当用户需要从微生物预测蛋白 FASTA 使用 BGC-Prophet 识别并分类生物合成基因簇时使用；原始核酸序列的基因预测和后续代谢产物结构鉴定不属于本 Skill。
+whenToUse: 当用户需要从微生物预测蛋白 FASTA 使用 BGC-Prophet 识别并分类生物合成基因簇时使用
 ---
 
 # 微生物生物合成基因簇识别与分类

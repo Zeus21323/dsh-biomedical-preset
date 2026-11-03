@@ -1,6 +1,7 @@
 ---
 name: clinical-multimodal-llm-evaluation
 description: 当用户需要评估放射报告生成、医学视觉问答或临床多模态LLM的正确性、忠实度和安全性时使用。
+whenToUse: 当用户需要评估放射报告生成、医学视觉问答或临床多模态LLM的正确性、忠实度和安全性时使用
 ---
 
 # 临床多模态LLM评估

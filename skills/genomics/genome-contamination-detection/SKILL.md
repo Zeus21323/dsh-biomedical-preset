@@ -1,6 +1,7 @@
 ---
 name: genome-contamination-detection
 description: 当用户需要识别测序数据或组装中的物种污染、样本混合、接头与外源序列时使用。
+whenToUse: 当用户需要识别测序数据或组装中的物种污染、样本混合、接头与外源序列时使用
 ---
 
 # 基因组污染检测

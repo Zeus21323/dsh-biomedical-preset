@@ -1,6 +1,7 @@
 ---
 name: 15-liquid-biopsy-mrd-detection
 description: 用于纵向ctDNA变化、分子残留病和复发预警分析；当用户有治疗前后多个时间点或肿瘤知情面板时使用。
+whenToUse: 当用户有治疗前后多个时间点或肿瘤知情面板时使用
 ---
 # ctDNA 动态与 MRD 监测
 

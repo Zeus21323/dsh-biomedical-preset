@@ -1,6 +1,7 @@
 ---
 name: 02-population-genetics-selection-analysis
 description: 当用户需要检测近期或长期自然选择信号并整合频率谱、单倍型和群体分化证据时使用。
+whenToUse: 当用户需要检测近期或长期自然选择信号并整合频率谱、单倍型和群体分化证据时使用
 ---
 
 # 自然选择信号分析

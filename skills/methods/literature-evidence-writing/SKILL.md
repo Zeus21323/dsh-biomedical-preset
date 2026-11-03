@@ -1,6 +1,7 @@
 ---
 name: literature-evidence-writing
 description: 当用户需要系统检索生物医学文献、整理证据并撰写带准确引用的科研文本时使用。
+whenToUse: 当用户需要系统检索生物医学文献、整理证据并撰写带准确引用的科研文本时使用
 ---
 
 # 文献检索与科学写作

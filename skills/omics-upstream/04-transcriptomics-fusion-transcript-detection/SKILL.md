@@ -1,6 +1,6 @@
 ---
 name: 04-transcriptomics-fusion-transcript-detection
-description: "用于从RNA-seq检测基因融合或嵌合转录本，整理断点、分裂读段、跨越读段、阅读框和假阳性证据。"
+description: 用于从RNA-seq检测基因融合或嵌合转录本，整理断点、分裂读段、跨越读段、阅读框和假阳性证据。
 ---
 
 # 融合转录本检测

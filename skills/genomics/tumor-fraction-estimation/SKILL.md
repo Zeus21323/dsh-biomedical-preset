@@ -1,6 +1,7 @@
 ---
 name: tumor-fraction-estimation
 description: 用于依据体细胞变异、拷贝数或甲基化信号估计血浆肿瘤分数；当用户需要量化ctDNA占比或评估样本可用性时使用。
+whenToUse: 当用户需要量化ctDNA占比或评估样本可用性时使用
 ---
 # ctDNA 肿瘤分数估计
 

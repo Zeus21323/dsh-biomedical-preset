@@ -1,6 +1,7 @@
 ---
 name: 17-pharmacogenomics-cyp450-analysis
 description: 用于从基因型、VCF或拷贝数结果推断CYP2D6、CYP2C19等药物代谢基因星等位基因和表型；当用户需要PGx单倍型解释时使用。
+whenToUse: 当用户需要PGx单倍型解释时使用
 ---
 # CYP450 星等位基因与代谢表型
 

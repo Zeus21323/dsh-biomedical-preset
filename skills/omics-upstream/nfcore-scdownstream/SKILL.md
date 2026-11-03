@@ -1,6 +1,7 @@
 ---
 name: nfcore-scdownstream
-description: "当收到单细胞表达矩阵、H5AD 或分析对象，需要细胞质控、注释与组间研究时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/scdownstream。"
+description: 当收到单细胞表达矩阵、H5AD 或分析对象，需要细胞质控、注释与组间研究时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/scdownstream。
+whenToUse: 当收到单细胞表达矩阵、H5AD 或分析对象，需要细胞质控、注释与组间研究时使用
 ---
 
 # 单细胞计数矩阵下游处理（nf-core/scdownstream）

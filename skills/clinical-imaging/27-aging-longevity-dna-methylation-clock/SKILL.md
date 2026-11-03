@@ -1,6 +1,7 @@
 ---
 name: 27-aging-longevity-dna-methylation-clock
 description: 当用户需要用冻结的DNA甲基化时钟计算预测年龄、年龄加速或DunedinPACE衰老速度并评估适用域时使用。
+whenToUse: 当用户需要用冻结的DNA甲基化时钟计算预测年龄、年龄加速或DunedinPACE衰老速度并评估适用域时使用
 ---
 
 # DNA甲基化年龄与衰老速度评估

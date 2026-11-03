@@ -1,6 +1,7 @@
 ---
 name: 09-metagenomics-amr-gene-analysis
 description: 用于宏基因组或菌株基因组的耐药基因、耐药突变和移动元件检测；当用户开展AMR监测或风险评估时使用。
+whenToUse: 当用户开展AMR监测或风险评估时使用
 ---
 # 抗微生物耐药基因检测
 

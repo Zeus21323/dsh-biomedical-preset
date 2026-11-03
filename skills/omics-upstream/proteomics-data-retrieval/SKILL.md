@@ -1,6 +1,7 @@
 ---
 name: proteomics-data-retrieval
-description: "当用户需要在 PRIDE/ProteomeXchange 中定位适合复用的蛋白质组项目，并核实样本、原始文件、许可和再分析可行性时使用。"
+description: 当用户需要在 PRIDE/ProteomeXchange 中定位适合复用的蛋白质组项目，并核实样本、原始文件、许可和再分析可行性时使用。
+whenToUse: 当用户需要在 PRIDE/ProteomeXchange 中定位适合复用的蛋白质组项目，并核实样本、原始文件、许可和再分析可行性时使用
 ---
 
 # 蛋白质组公共数据检索

@@ -1,6 +1,7 @@
 ---
 name: nfcore-variantbenchmarking
-description: "当已有变异检测结果和真值，需要衡量准确性或比较分析设置时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/variantbenchmarking。"
+description: 当已有变异检测结果和真值，需要衡量准确性或比较分析设置时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/variantbenchmarking。
+whenToUse: 当已有变异检测结果和真值，需要衡量准确性或比较分析设置时使用
 ---
 
 # 变异检测准确性基准评估（nf-core/variantbenchmarking）

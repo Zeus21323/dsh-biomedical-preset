@@ -1,6 +1,7 @@
 ---
 name: nfcore-lncpipe
-description: "当RNA 数据需要发现或整理长非编码 RNA 候选时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/lncpipe。"
+description: 当RNA 数据需要发现或整理长非编码 RNA 候选时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/lncpipe。
+whenToUse: 当RNA 数据需要发现或整理长非编码 RNA 候选时使用
 ---
 
 # 长非编码RNA候选分析（nf-core/lncpipe）

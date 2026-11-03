@@ -1,6 +1,7 @@
 ---
 name: nfcore-taxprofiler
-description: "当已确认非扩增子的混合微生物测序，需要识别物种与丰度时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/taxprofiler。"
+description: 当已确认非扩增子的混合微生物测序，需要识别物种与丰度时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/taxprofiler。
+whenToUse: 当已确认非扩增子的混合微生物测序，需要识别物种与丰度时使用
 ---
 
 # 宏基因组多方法分类与丰度估计（nf-core/taxprofiler）

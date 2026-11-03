@@ -1,6 +1,7 @@
 ---
 name: nfcore-slamseq
-description: "当代谢标记 SLAM-seq 数据需要估计新生 RNA 比例或动力学时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/slamseq。"
+description: 当代谢标记 SLAM-seq 数据需要估计新生 RNA 比例或动力学时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/slamseq。
+whenToUse: 当代谢标记 SLAM-seq 数据需要估计新生 RNA 比例或动力学时使用
 ---
 
 # SLAM-seq新生RNA标记分析（nf-core/slamseq）

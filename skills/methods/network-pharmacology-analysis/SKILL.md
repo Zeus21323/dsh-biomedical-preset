@@ -1,6 +1,7 @@
 ---
 name: network-pharmacology-analysis
 description: 用于整合药物、靶点、疾病基因和通路形成可审计的网络药理学假设；当用户需要候选机制或联合靶点优先级时使用。
+whenToUse: 当用户需要候选机制或联合靶点优先级时使用
 ---
 # 网络药理学分析
 

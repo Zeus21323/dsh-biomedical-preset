@@ -1,6 +1,7 @@
 ---
 name: qsar-modeling-scaffold-replace
 description: 当用户需要从分子结构和实验标签建立活性、理化性质或ADMET预测模型，并评估外部性能、不确定性与适用域时使用。
+whenToUse: 当用户需要从分子结构和实验标签建立活性、理化性质或ADMET预测模型，并评估外部性能、不确定性与适用域时使用
 ---
 
 # QSAR与QSPR建模

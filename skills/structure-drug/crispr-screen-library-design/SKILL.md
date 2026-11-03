@@ -1,6 +1,7 @@
 ---
 name: crispr-screen-library-design
 description: 当用户需要为全基因组或聚焦CRISPR筛选设计可合成、可克隆且覆盖充分的混合导向RNA文库时使用。
+whenToUse: 当用户需要为全基因组或聚焦CRISPR筛选设计可合成、可克隆且覆盖充分的混合导向RNA文库时使用
 ---
 
 # CRISPR筛选文库设计

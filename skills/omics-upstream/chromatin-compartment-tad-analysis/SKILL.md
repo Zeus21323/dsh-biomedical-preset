@@ -1,6 +1,6 @@
 ---
 name: chromatin-compartment-tad-analysis
-description: "用于从经过质控的Hi-C矩阵识别A/B区室、TAD和绝缘边界，并在统一分辨率下比较条件差异。"
+description: 用于从经过质控的Hi-C矩阵识别A/B区室、TAD和绝缘边界，并在统一分辨率下比较条件差异。
 ---
 
 # 染色质区室与TAD分析

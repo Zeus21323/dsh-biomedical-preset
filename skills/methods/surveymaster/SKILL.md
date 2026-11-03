@@ -1,6 +1,7 @@
 ---
 name: surveymaster
-description: "Produce, revise, or export an academic literature survey through an end-to-end workflow: intake constraints, build a literature library, generate and confirm an outline, write mainbody.tex, run citation and quality checks, export DOCX/LaTeX/BibTeX deliverables, and attempt optional PDF. Use when the user wants a complete literature survey or review paper rather than an isolated search, outline, or section."
+description: >-
+  Produce, revise, or export an academic literature survey through an end-to-end workflow: intake constraints, build a literature library, generate and confirm an outline, write mainbody.tex, run citation and quality checks, export DOCX/LaTeX/BibTeX deliverables, and attempt optional PDF. Use when the user wants a complete literature survey or review paper rather than an isolated search, outline, or section.
 ---
 
 ## Role

@@ -1,6 +1,6 @@
 ---
 name: 04-transcriptomics-ribo-seq
-description: "用于从Ribo-seq读段校准P-site、评估三核苷酸周期性、识别翻译ORF，并与匹配RNA-seq联合估计翻译效率。"
+description: 用于从Ribo-seq读段校准P-site、评估三核苷酸周期性、识别翻译ORF，并与匹配RNA-seq联合估计翻译效率。
 ---
 
 # Ribo-seq翻译组分析

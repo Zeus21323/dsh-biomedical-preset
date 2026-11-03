@@ -1,6 +1,7 @@
 ---
 name: 01-genome-repeat-expansion-analysis
 description: 当用户需要从Nanopore或PacBio长读长比对数据分析STR、VNTR等串联重复位点的等位长度、motif组成、中断结构、分相或扩增证据时使用。
+whenToUse: 当用户需要从Nanopore或PacBio长读长比对数据分析STR、VNTR等串联重复位点的等位长度、motif组成、中断结构、分相或扩增证据时使用
 ---
 
 # 长读长串联重复位点分析

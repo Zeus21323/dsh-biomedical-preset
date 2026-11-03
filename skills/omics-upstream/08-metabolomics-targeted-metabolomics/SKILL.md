@@ -1,6 +1,7 @@
 ---
 name: 08-metabolomics-targeted-metabolomics
-description: "当用户需要对 MRM、PRM 或其他标准曲线靶向数据完成峰积分、内标校正和浓度计算，并正确处理定量范围外结果时使用。"
+description: 当用户需要对 MRM、PRM 或其他标准曲线靶向数据完成峰积分、内标校正和浓度计算，并正确处理定量范围外结果时使用。
+whenToUse: 当用户需要对 MRM、PRM 或其他标准曲线靶向数据完成峰积分、内标校正和浓度计算，并正确处理定量范围外结果时使用
 ---
 
 # 靶向代谢组定量

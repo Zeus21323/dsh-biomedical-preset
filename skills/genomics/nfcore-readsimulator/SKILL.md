@@ -1,6 +1,7 @@
 ---
 name: nfcore-readsimulator
-description: "当需要为测序方法评估构建带真值的模拟数据时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/readsimulator。"
+description: 当需要为测序方法评估构建带真值的模拟数据时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/readsimulator。
+whenToUse: 当需要为测序方法评估构建带真值的模拟数据时使用
 ---
 
 # 测序读段模拟与基准数据构建（nf-core/readsimulator）

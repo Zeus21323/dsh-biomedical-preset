@@ -1,6 +1,7 @@
 ---
 name: 22-ai-ai-drug-discovery-molecular-generation
 description: 当用户需要进行从头分子生成、骨架或连接子改造，并在活性、选择性、ADMET、可合成性和多样性之间做多目标优化时使用。
+whenToUse: 当用户需要进行从头分子生成、骨架或连接子改造，并在活性、选择性、ADMET、可合成性和多样性之间做多目标优化时使用
 ---
 
 # 生成式分子设计与ADMET优化

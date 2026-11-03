@@ -1,6 +1,7 @@
 ---
 name: 01-genome-fastqc
 description: 当用户需要检查 FASTQ 原始读段质量、接头、碱基组成和过度代表序列，并决定后续处理时使用。
+whenToUse: 当用户需要检查 FASTQ 原始读段质量、接头、碱基组成和过度代表序列，并决定后续处理时使用
 ---
 
 # FASTQ质量评估

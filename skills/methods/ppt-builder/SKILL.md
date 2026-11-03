@@ -1,7 +1,7 @@
 ---
 name: ppt-builder
 description: 对齐 researcher/graph_pptx_agent 的状态化 PPT/PPTX 生成流程，覆盖需求澄清、研究规划、outline 确认、简体中文生图语言门禁、批量生成、版本记录、编辑循环和导出。
-metadata:
+metadata: 
   version: "0.2.2"
 ---
 

@@ -1,6 +1,7 @@
 ---
 name: 14-cancer-genomics-mutation-signature
 description: 用于从SNV、双碱基、Indel或SV谱分解COSMIC突变特征；当用户研究致突变过程、DNA修复或暴露来源时使用。
+whenToUse: 当用户研究致突变过程、DNA修复或暴露来源时使用
 ---
 # 肿瘤突变特征分析
 

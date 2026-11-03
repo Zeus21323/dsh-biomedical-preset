@@ -1,6 +1,7 @@
 ---
 name: variant-annotation-gene-consequence
 description: 当用户需要把 VCF 变异映射到基因、转录本、蛋白后果和群体数据库时使用。
+whenToUse: 当用户需要把 VCF 变异映射到基因、转录本、蛋白后果和群体数据库时使用
 ---
 
 # 变异功能注释

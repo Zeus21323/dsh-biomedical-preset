@@ -1,6 +1,7 @@
 ---
 name: medical-imaging-model-trustworthiness
 description: 当用户需要审核医学影像模型的数据泄漏、外部验证、校准、不确定性、OOD、可解释性或模型文档时使用。
+whenToUse: 当用户需要审核医学影像模型的数据泄漏、外部验证、校准、不确定性、OOD、可解释性或模型文档时使用
 ---
 
 # 医学影像模型可信评估

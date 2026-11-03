@@ -1,6 +1,7 @@
 ---
 name: nfcore-isoseq
-description: "当已有 PacBio 全长 RNA 数据，希望整理转录本或辅助基因组注释时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/isoseq。"
+description: 当已有 PacBio 全长 RNA 数据，希望整理转录本或辅助基因组注释时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/isoseq。
+whenToUse: 当已有 PacBio 全长 RNA 数据，希望整理转录本或辅助基因组注释时使用
 ---
 
 # PacBio全长转录本辅助基因组注释（nf-core/isoseq）

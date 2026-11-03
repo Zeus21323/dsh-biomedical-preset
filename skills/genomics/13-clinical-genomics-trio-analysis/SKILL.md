@@ -1,6 +1,7 @@
 ---
 name: 13-clinical-genomics-trio-analysis
 description: 用于三联体或扩展家系中的新发、隐性、显性、X连锁和复合杂合变异排序；当用户提供家系VCF和表型时使用。
+whenToUse: 当用户提供家系VCF和表型时使用
 ---
 # 三联体与家系变异排序
 

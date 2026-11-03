@@ -1,6 +1,7 @@
 ---
 name: nfcore-clipseq
-description: "当RNA 蛋白结合实验的 CLIP、iCLIP 或 eCLIP 数据需要处理时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/clipseq。"
+description: 当RNA 蛋白结合实验的 CLIP、iCLIP 或 eCLIP 数据需要处理时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/clipseq。
+whenToUse: 当RNA 蛋白结合实验的 CLIP、iCLIP 或 eCLIP 数据需要处理时使用
 ---
 
 # CLIP-seq RNA结合蛋白定位（nf-core/clipseq）

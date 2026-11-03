@@ -1,6 +1,7 @@
 ---
 name: long-read-variant-calling
 description: 用于从PacBio HiFi或Oxford Nanopore比对数据检测SNV、Indel和结构变异，并进行分相与复杂区域复核；当短读长难以解析或用户提供长读长时使用。
+whenToUse: 当短读长难以解析或用户提供长读长时使用
 ---
 
 # 长读长变异检测

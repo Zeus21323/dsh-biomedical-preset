@@ -1,6 +1,7 @@
 ---
 name: nfcore-viralintegration
-description: "当宿主与病毒相关测序需要寻找整合断点时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/viralintegration。"
+description: 当宿主与病毒相关测序需要寻找整合断点时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/viralintegration。
+whenToUse: 当宿主与病毒相关测序需要寻找整合断点时使用
 ---
 
 # 病毒整合位点候选检测（nf-core/viralintegration）

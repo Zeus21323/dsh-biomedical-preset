@@ -1,6 +1,7 @@
 ---
 name: 14-cancer-genomics-subclone-analysis
 description: 用于从等位特异拷贝数估计亚克隆CNV、倍性和肿瘤全基因组加倍；当用户需要解释拷贝数异质性、WGD或HRD中的倍性混淆时使用。
+whenToUse: 当用户需要解释拷贝数异质性、WGD或HRD中的倍性混淆时使用
 ---
 # 亚克隆拷贝数与全基因组加倍分析
 

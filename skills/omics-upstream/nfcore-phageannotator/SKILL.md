@@ -1,6 +1,7 @@
 ---
 name: nfcore-phageannotator
-description: "当基因组或宏基因组序列需要查找噬菌体及前噬菌体区域时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/phageannotator。"
+description: 当基因组或宏基因组序列需要查找噬菌体及前噬菌体区域时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/phageannotator。
+whenToUse: 当基因组或宏基因组序列需要查找噬菌体及前噬菌体区域时使用
 ---
 
 # 噬菌体序列识别与注释（nf-core/phageannotator）

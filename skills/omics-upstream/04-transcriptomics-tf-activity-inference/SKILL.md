@@ -1,6 +1,7 @@
 ---
 name: 04-transcriptomics-tf-activity-inference
-description: "用于从表达数据和TF—靶基因regulon推断转录因子活性；当TF自身表达量不足以代表其调控状态时使用。"
+description: 用于从表达数据和TF—靶基因regulon推断转录因子活性；当TF自身表达量不足以代表其调控状态时使用。
+whenToUse: 当TF自身表达量不足以代表其调控状态时使用
 ---
 
 # 转录因子活性推断

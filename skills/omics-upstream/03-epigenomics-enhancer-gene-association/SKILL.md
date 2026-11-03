@@ -1,6 +1,7 @@
 ---
 name: 03-epigenomics-enhancer-gene-association
 description: 当用户问某基因受哪些区域调控、ATAC/ChIP peaks对应哪些基因、想围绕候选基因找调控区域或回应调控机制审稿意见，或需要peakScout双向映射与增强子靶基因证据整合时使用；从实际peaks和参考判断可做的分析，不要求用户认识peak–gene方法。
+whenToUse: 当用户问某基因受哪些区域调控、ATAC/ChIP peaks对应哪些基因、想围绕候选基因找调控区域或回应调控机制审稿意见，或需要peakScout双向映射与增强子靶基因证据整合时使用
 ---
 
 # 增强子与靶基因关联

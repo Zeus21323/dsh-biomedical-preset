@@ -1,6 +1,7 @@
 ---
 name: molecular-similarity-substructure-search
 description: 当用户需要用Tanimoto、Tversky、Dice或SMARTS，从化合物库中查找类似物、包含特定子结构的分子、结构警报或活性悬崖时使用。
+whenToUse: 当用户需要用Tanimoto、Tversky、Dice或SMARTS，从化合物库中查找类似物、包含特定子结构的分子、结构警报或活性悬崖时使用
 ---
 
 # 分子相似性与子结构检索

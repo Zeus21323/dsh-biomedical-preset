@@ -1,6 +1,7 @@
 ---
 name: flow-cytometry-gating-analysis
 description: 用于传统流式细胞术的层级门控、群体统计和跨样本模板应用；当用户提供FCS和实验面板并需要细胞群比例时使用。
+whenToUse: 当用户提供FCS和实验面板并需要细胞群比例时使用
 ---
 # 流式细胞术门控分析
 

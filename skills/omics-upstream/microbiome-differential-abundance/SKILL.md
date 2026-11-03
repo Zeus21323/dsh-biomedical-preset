@@ -1,6 +1,7 @@
 ---
 name: microbiome-differential-abundance
 description: 用于微生物特征表的组成型差异丰度建模、协变量校正和结果解释；当用户询问哪些菌或通路在组间变化时使用。
+whenToUse: 当用户询问哪些菌或通路在组间变化时使用
 ---
 # 微生物差异丰度分析
 

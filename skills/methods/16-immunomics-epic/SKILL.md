@@ -1,6 +1,7 @@
 ---
 name: 16-immunomics-epic
 description: 用于从批量表达数据估计免疫和基质细胞组成；当用户需要比较CIBERSORTx、xCell、EPIC、TIMER等方法，或需要高分辨率去卷积时使用。
+whenToUse: 当用户需要比较CIBERSORTx、xCell、EPIC、TIMER等方法，或需要高分辨率去卷积时使用
 ---
 # 免疫浸润综合分析
 

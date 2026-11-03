@@ -1,6 +1,7 @@
 ---
 name: nfcore-ssds
-description: "当历史单链 DNA 富集实验数据需要复核专用信号处理时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/ssds。"
+description: 当历史单链 DNA 富集实验数据需要复核专用信号处理时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/ssds。
+whenToUse: 当历史单链 DNA 富集实验数据需要复核专用信号处理时使用
 ---
 
 # 历史单链DNA测序富集分析（nf-core/ssds）

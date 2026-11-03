@@ -1,6 +1,7 @@
 ---
 name: targeted-protein-degradation-design
 description: 当用户需要设计PROTAC、分子胶或其他靶向蛋白降解剂，并评估E3连接酶、连接子、三元复合物和细胞降解证据时使用。
+whenToUse: 当用户需要设计PROTAC、分子胶或其他靶向蛋白降解剂，并评估E3连接酶、连接子、三元复合物和细胞降解证据时使用
 ---
 
 # 靶向蛋白降解剂设计

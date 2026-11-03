@@ -1,6 +1,7 @@
 ---
 name: mcp-tool-operations
 description: 当用户需要发现本插件已配置的 MCP 工具、选择合适工具或排查连接与调用错误时使用。
+whenToUse: 当用户需要发现本插件已配置的 MCP 工具、选择合适工具或排查连接与调用错误时使用
 ---
 
 # MCP工具发现与故障处理

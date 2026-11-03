@@ -1,6 +1,7 @@
 ---
 name: 01-genome-variant-filtering
 description: 当用户需要对 SNV、Indel 或队列 VCF 做硬过滤、VQSR 或模型校准并解释保留规则时使用。
+whenToUse: 当用户需要对 SNV、Indel 或队列 VCF 做硬过滤、VQSR 或模型校准并解释保留规则时使用
 ---
 
 # 变异过滤与质量校准

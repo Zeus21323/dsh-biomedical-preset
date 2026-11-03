@@ -1,6 +1,7 @@
 ---
 name: nfcore-proteinfold
-description: "当只有蛋白序列或链组成，希望预测三维结构时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/proteinfold。"
+description: 当只有蛋白序列或链组成，希望预测三维结构时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/proteinfold。
+whenToUse: 当只有蛋白序列或链组成，希望预测三维结构时使用
 ---
 
 # 蛋白质三维结构预测（nf-core/proteinfold）

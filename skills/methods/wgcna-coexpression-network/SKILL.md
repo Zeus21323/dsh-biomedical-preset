@@ -1,6 +1,7 @@
 ---
 name: wgcna-coexpression-network
 description: 当用户想找疾病相关的一组协同变化基因、筛枢纽、把RNA与蛋白等组学联系起来、比较模块在不同队列是否稳定，或要求WGCNA/WGCNA+时使用；自主核实样本量、矩阵和配对关系，不能从单个基因或少量细胞假造共表达网络。
+whenToUse: 当用户想找疾病相关的一组协同变化基因、筛枢纽、把RNA与蛋白等组学联系起来、比较模块在不同队列是否稳定，或要求WGCNA/WGCNA+时使用
 ---
 # WGCNA 共表达网络
 

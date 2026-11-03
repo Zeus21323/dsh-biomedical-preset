@@ -1,6 +1,7 @@
 ---
 name: nfcore-coproid
-description: "当古粪便测序需要推断宿主来源并评估污染时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/coproid。"
+description: 当古粪便测序需要推断宿主来源并评估污染时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/coproid。
+whenToUse: 当古粪便测序需要推断宿主来源并评估污染时使用
 ---
 
 # 古粪便样本宿主来源识别（nf-core/coproid）

@@ -1,6 +1,7 @@
 ---
 name: nfcore-evexplorer
-description: "当细胞外囊泡来源的低输入 RNA 数据需要质控或表达分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/evexplorer。"
+description: 当细胞外囊泡来源的低输入 RNA 数据需要质控或表达分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/evexplorer。
+whenToUse: 当细胞外囊泡来源的低输入 RNA 数据需要质控或表达分析时使用
 ---
 
 # 细胞外囊泡RNA分析（nf-core/evexplorer）

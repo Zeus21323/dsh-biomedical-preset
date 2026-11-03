@@ -1,6 +1,7 @@
 ---
 name: 18-precision-medicine-predictive-biomarker
 description: 当用户需要评估亚组治疗效应、交互作用或异质性治疗效应并识别可能的反应人群时使用。
+whenToUse: 当用户需要评估亚组治疗效应、交互作用或异质性治疗效应并识别可能的反应人群时使用
 ---
 
 # 治疗反应预测与异质性分析

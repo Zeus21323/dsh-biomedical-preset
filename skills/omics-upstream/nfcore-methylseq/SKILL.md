@@ -1,6 +1,7 @@
 ---
 name: nfcore-methylseq
-description: "当转化化学相关 DNA 测序需要估计甲基化水平时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/methylseq。"
+description: 当转化化学相关 DNA 测序需要估计甲基化水平时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/methylseq。
+whenToUse: 当转化化学相关 DNA 测序需要估计甲基化水平时使用
 ---
 
 # 亚硫酸氢盐及兼容甲基化测序分析（nf-core/methylseq）

@@ -1,6 +1,7 @@
 ---
 name: single-cell-alternative-splicing
 description: 当用户需要从单细胞或单核RNA测序研究外显子、剪接位点、内含子保留和细胞状态相关的可变剪接时使用。
+whenToUse: 当用户需要从单细胞或单核RNA测序研究外显子、剪接位点、内含子保留和细胞状态相关的可变剪接时使用
 ---
 
 # 单细胞可变剪接分析

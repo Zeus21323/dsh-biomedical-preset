@@ -1,6 +1,7 @@
 ---
 name: nnu-net-medical-image-segmentation
 description: 当用户拥有标注医学影像并需要规划、训练或评估nnU-Net分割流程时使用。
+whenToUse: 当用户拥有标注医学影像并需要规划、训练或评估nnU-Net分割流程时使用
 ---
 
 # nnU-Net医学影像分割

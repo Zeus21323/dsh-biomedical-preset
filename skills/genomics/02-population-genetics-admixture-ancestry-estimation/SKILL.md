@@ -1,6 +1,7 @@
 ---
 name: 02-population-genetics-admixture-ancestry-estimation
 description: 当用户需要检测群体间基因流、渗入或历史混合，并区分不完全谱系排序时使用。
+whenToUse: 当用户需要检测群体间基因流、渗入或历史混合，并区分不完全谱系排序时使用
 ---
 
 # 基因渗入与群体混合检测

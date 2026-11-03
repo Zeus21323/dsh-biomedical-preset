@@ -1,6 +1,7 @@
 ---
 name: crispr-screen-quality-control
 description: 当用户需要在命中分析前判断CRISPR筛选文库是否经历覆盖损失、重复失真或生物学信号不足时使用。
+whenToUse: 当用户需要在命中分析前判断CRISPR筛选文库是否经历覆盖损失、重复失真或生物学信号不足时使用
 ---
 
 # CRISPR筛选质量控制

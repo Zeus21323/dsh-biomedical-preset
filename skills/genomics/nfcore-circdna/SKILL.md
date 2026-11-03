@@ -1,6 +1,7 @@
 ---
 name: nfcore-circdna
-description: "当已有 Circle-seq、WGS 或 ATAC 相关数据，希望寻找环状 DNA时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/circdna。"
+description: 当已有 Circle-seq、WGS 或 ATAC 相关数据，希望寻找环状 DNA时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/circdna。
+whenToUse: 当已有 Circle-seq、WGS 或 ATAC 相关数据，希望寻找环状 DNA时使用
 ---
 
 # 环状DNA与ecDNA候选识别（nf-core/circdna）

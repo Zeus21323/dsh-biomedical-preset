@@ -1,6 +1,7 @@
 ---
 name: binding-free-energy-pose-validation
 description: 当用户需要检查对接或生成姿势的几何与物理有效性，或用RBFE/ABFE对类似物亲和力进行定量排序时使用。
+whenToUse: 当用户需要检查对接或生成姿势的几何与物理有效性，或用RBFE/ABFE对类似物亲和力进行定量排序时使用
 ---
 
 # 结合自由能与对接姿势验证

@@ -1,6 +1,6 @@
 ---
 name: 04-transcriptomics-rna-editing
-description: "用于从RNA-seq识别A-to-I等RNA编辑候选，并排除胚系或体细胞DNA变异、链方向错误和比对伪影。"
+description: 用于从RNA-seq识别A-to-I等RNA编辑候选，并排除胚系或体细胞DNA变异、链方向错误和比对伪影。
 ---
 
 # RNA编辑检测

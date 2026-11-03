@@ -1,6 +1,7 @@
 ---
 name: research-data-privacy-deidentification
 description: 当用户需要识别、移除或降低科研数据中的个人身份、基因组再识别和敏感元数据风险时使用。
+whenToUse: 当用户需要识别、移除或降低科研数据中的个人身份、基因组再识别和敏感元数据风险时使用
 ---
 
 # 科研数据隐私与脱敏

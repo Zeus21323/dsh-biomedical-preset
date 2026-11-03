@@ -1,6 +1,7 @@
 ---
 name: 09-metagenomics-host-microbiome-interaction
 description: 当用户需要把微生物组成或功能与宿主基因、免疫、代谢或临床表型联合分析，并建立可验证互作证据时使用。
+whenToUse: 当用户需要把微生物组成或功能与宿主基因、免疫、代谢或临床表型联合分析，并建立可验证互作证据时使用
 ---
 
 # 宿主与微生物互作分析

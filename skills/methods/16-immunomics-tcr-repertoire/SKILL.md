@@ -1,6 +1,7 @@
 ---
 name: 16-immunomics-tcr-repertoire
 description: 用于TCR或BCR测序数据的V(D)J比对、克隆型构建和受体库质控；当用户提供AIRR-seq、单细胞VDJ或受体序列时使用。
+whenToUse: 当用户提供AIRR-seq、单细胞VDJ或受体序列时使用
 ---
 # TCR 与 BCR 免疫受体库分析
 

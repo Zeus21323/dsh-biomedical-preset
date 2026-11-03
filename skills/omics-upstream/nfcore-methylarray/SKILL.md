@@ -1,6 +1,7 @@
 ---
 name: nfcore-methylarray
-description: "当收到甲基化芯片 IDAT 或相关信号，需要质控与差异甲基化分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/methylarray。"
+description: 当收到甲基化芯片 IDAT 或相关信号，需要质控与差异甲基化分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/methylarray。
+whenToUse: 当收到甲基化芯片 IDAT 或相关信号，需要质控与差异甲基化分析时使用
 ---
 
 # 甲基化芯片处理与差异分析（nf-core/methylarray）

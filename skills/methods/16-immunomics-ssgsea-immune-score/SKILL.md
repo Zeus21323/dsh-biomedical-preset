@@ -1,6 +1,7 @@
 ---
 name: 16-immunomics-ssgsea-immune-score
 description: 用于ssGSEA免疫评分、免疫检查点表达及其与细胞浸润或临床特征的关联；当用户需要描述免疫状态而非直接预测疗效时使用。
+whenToUse: 当用户需要描述免疫状态而非直接预测疗效时使用
 ---
 # 免疫评分与检查点关联
 

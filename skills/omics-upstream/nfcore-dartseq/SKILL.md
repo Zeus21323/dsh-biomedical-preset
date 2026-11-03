@@ -1,6 +1,7 @@
 ---
 name: nfcore-dartseq
-description: "当带编辑标记的 RNA 数据需要分析修饰相关位点时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/dartseq。"
+description: 当带编辑标记的 RNA 数据需要分析修饰相关位点时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/dartseq。
+whenToUse: 当带编辑标记的 RNA 数据需要分析修饰相关位点时使用
 ---
 
 # DART-seq RNA m6A候选检测（nf-core/dartseq）

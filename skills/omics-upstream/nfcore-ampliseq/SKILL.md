@@ -1,6 +1,7 @@
 ---
 name: nfcore-ampliseq
-description: "当报告或引物证据表明是 16S、ITS 等扩增子测序，需要研究微生物群落时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/ampliseq。"
+description: 当报告或引物证据表明是 16S、ITS 等扩增子测序，需要研究微生物群落时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/ampliseq。
+whenToUse: 当报告或引物证据表明是 16S、ITS 等扩增子测序，需要研究微生物群落时使用
 ---
 
 # 扩增子微生物群落分析（nf-core/ampliseq）

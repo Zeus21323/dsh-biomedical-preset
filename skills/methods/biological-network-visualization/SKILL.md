@@ -1,6 +1,7 @@
 ---
 name: biological-network-visualization
 description: 用于把PPI、调控、代谢或多组学网络整理为可读的Cytoscape或图形结果；当网络需要布局、注释和发布级展示时使用。
+whenToUse: 当网络需要布局、注释和发布级展示时使用
 ---
 # 生物网络可视化
 

@@ -1,6 +1,7 @@
 ---
 name: nfcore-rnasplice
-description: "当RNA 测序及样本分组用于研究可变剪接或转录本使用变化时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/rnasplice。"
+description: 当RNA 测序及样本分组用于研究可变剪接或转录本使用变化时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/rnasplice。
+whenToUse: 当RNA 测序及样本分组用于研究可变剪接或转录本使用变化时使用
 ---
 
 # RNA-seq可变剪接分析（nf-core/rnasplice）

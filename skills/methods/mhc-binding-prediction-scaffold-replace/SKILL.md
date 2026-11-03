@@ -1,6 +1,7 @@
 ---
 name: mhc-binding-prediction-scaffold-replace
 description: 用于预测肽段与MHC-I/II结合、加工和呈递优先级；当用户给出蛋白序列、突变或HLA等位基因并需要筛选候选肽时使用。
+whenToUse: 当用户给出蛋白序列、突变或HLA等位基因并需要筛选候选肽时使用
 ---
 # 肽—MHC 结合与呈递预测
 

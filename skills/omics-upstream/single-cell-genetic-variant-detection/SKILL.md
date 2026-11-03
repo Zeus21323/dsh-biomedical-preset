@@ -1,6 +1,7 @@
 ---
 name: single-cell-genetic-variant-detection
 description: 当用户想从单细胞数据找突变、判断不同部位细胞是否可能来自同一克隆、寻找遗传差异或祖源证据，或提到Monopogen-Indel时使用；先检查是否有带细胞标识的读段与参考，表达矩阵或伪时间不能替代遗传变异证据。
+whenToUse: 当用户想从单细胞数据找突变、判断不同部位细胞是否可能来自同一克隆、寻找遗传差异或祖源证据，或提到Monopogen-Indel时使用
 ---
 
 # 单细胞遗传变异检测

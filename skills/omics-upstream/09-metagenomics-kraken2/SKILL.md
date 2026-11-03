@@ -1,6 +1,7 @@
 ---
 name: 09-metagenomics-kraken2
 description: 用于从宏基因组读段估计物种组成；当用户需要在Kraken2/Bracken的快速全读段分类与MetaPhlAn的标记基因谱之间选择或比较时使用。
+whenToUse: 当用户需要在Kraken2/Bracken的快速全读段分类与MetaPhlAn的标记基因谱之间选择或比较时使用
 ---
 # 宏基因组物种分类与丰度估计
 

@@ -1,6 +1,7 @@
 ---
 name: 15-liquid-biopsy-cancer-origin-prediction
 description: 用于cfDNA甲基化信号的癌症早筛、组织来源分类和模型验证；当用户提供亚硫酸氢盐或富集型甲基化数据时使用。
+whenToUse: 当用户提供亚硫酸氢盐或富集型甲基化数据时使用
 ---
 # cfDNA 甲基化早筛与组织溯源
 

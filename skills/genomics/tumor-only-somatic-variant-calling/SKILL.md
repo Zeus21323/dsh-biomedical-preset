@@ -1,6 +1,7 @@
 ---
 name: tumor-only-somatic-variant-calling
 description: 当用户只有肿瘤样本而缺少匹配正常样本，需要检测体细胞SNV和Indel并控制胚系与技术伪阳性时使用。
+whenToUse: 当用户只有肿瘤样本而缺少匹配正常样本，需要检测体细胞SNV和Indel并控制胚系与技术伪阳性时使用
 ---
 
 # 肿瘤单样本体细胞变异检测

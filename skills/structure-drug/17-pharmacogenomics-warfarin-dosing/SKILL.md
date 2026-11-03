@@ -1,6 +1,7 @@
 ---
 name: 17-pharmacogenomics-warfarin-dosing
 description: 用于结合VKORC1、CYP2C9、CYP4F2和临床因素解释华法林起始剂量模型；当用户明确询问华法林药物基因组剂量时使用。
+whenToUse: 当用户明确询问华法林药物基因组剂量时使用
 ---
 # 华法林基因型指导剂量
 

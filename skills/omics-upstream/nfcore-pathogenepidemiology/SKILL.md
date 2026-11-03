@@ -1,6 +1,7 @@
 ---
 name: nfcore-pathogenepidemiology
-description: "当已确认特定病原体的测序与采样信息，需要基因组流行病学分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/pathogenepidemiology。"
+description: 当已确认特定病原体的测序与采样信息，需要基因组流行病学分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/pathogenepidemiology。
+whenToUse: 当已确认特定病原体的测序与采样信息，需要基因组流行病学分析时使用
 ---
 
 # 指定病原体基因组流行病学（nf-core/pathogenepidemiology）

@@ -1,6 +1,7 @@
 ---
 name: nfcore-plasmodiumdrugres
-description: "当已有疟原虫等位基因表或微单倍型数据，需要汇总耐药相关标记时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/plasmodiumdrugres。"
+description: 当已有疟原虫等位基因表或微单倍型数据，需要汇总耐药相关标记时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/plasmodiumdrugres。
+whenToUse: 当已有疟原虫等位基因表或微单倍型数据，需要汇总耐药相关标记时使用
 ---
 
 # 疟原虫耐药标记与微单倍型分析（nf-core/plasmodiumdrugres）

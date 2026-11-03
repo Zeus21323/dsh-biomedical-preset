@@ -1,6 +1,7 @@
 ---
 name: nfcore-diaproteomics
-description: "当已确认 DIA 质谱与谱图库，需要色谱对齐及蛋白定量时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/diaproteomics。"
+description: 当已确认 DIA 质谱与谱图库，需要色谱对齐及蛋白定量时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/diaproteomics。
+whenToUse: 当已确认 DIA 质谱与谱图库，需要色谱对齐及蛋白定量时使用
 ---
 
 # DIA质谱谱图库搜索与定量（nf-core/diaproteomics）

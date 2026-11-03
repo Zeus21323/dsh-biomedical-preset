@@ -1,6 +1,7 @@
 ---
 name: nfcore-deepvariant
-description: "当已确认胚系小变异任务，需要评估历史 DeepVariant 流程与现有测序平台是否兼容时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/deepvariant。"
+description: 当已确认胚系小变异任务，需要评估历史 DeepVariant 流程与现有测序平台是否兼容时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/deepvariant。
+whenToUse: 当已确认胚系小变异任务，需要评估历史 DeepVariant 流程与现有测序平台是否兼容时使用
 ---
 
 # 历史 DeepVariant 胚系变异流程（nf-core/deepvariant）

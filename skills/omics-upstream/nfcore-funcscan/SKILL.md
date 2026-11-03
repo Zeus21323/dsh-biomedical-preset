@@ -1,6 +1,7 @@
 ---
 name: nfcore-funcscan
-description: "当微生物组装或 MAG 需要筛查功能基因及天然产物相关候选时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/funcscan。"
+description: 当微生物组装或 MAG 需要筛查功能基因及天然产物相关候选时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/funcscan。
+whenToUse: 当微生物组装或 MAG 需要筛查功能基因及天然产物相关候选时使用
 ---
 
 # 微生物功能与天然产物基因筛查（nf-core/funcscan）

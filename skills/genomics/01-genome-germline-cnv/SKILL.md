@@ -1,6 +1,7 @@
 ---
 name: 01-genome-germline-cnv
 description: 当用户需要从 WGS、WES 或靶向数据检测生殖系拷贝数变异并评估质量时使用。
+whenToUse: 当用户需要从 WGS、WES 或靶向数据检测生殖系拷贝数变异并评估质量时使用
 ---
 
 # 生殖系CNV检测

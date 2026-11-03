@@ -1,6 +1,7 @@
 ---
 name: nfcore-methylong
-description: "当长读长数据含修饰信号或标签，需要量化 DNA 甲基化时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/methylong。"
+description: 当长读长数据含修饰信号或标签，需要量化 DNA 甲基化时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/methylong。
+whenToUse: 当长读长数据含修饰信号或标签，需要量化 DNA 甲基化时使用
 ---
 
 # 长读长DNA甲基化信号提取（nf-core/methylong）

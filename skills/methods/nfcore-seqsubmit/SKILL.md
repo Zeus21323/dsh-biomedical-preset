@@ -1,6 +1,7 @@
 ---
 name: nfcore-seqsubmit
-description: "当研究数据需要整理成公开测序数据库的提交材料时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/seqsubmit。"
+description: 当研究数据需要整理成公开测序数据库的提交材料时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/seqsubmit。
+whenToUse: 当研究数据需要整理成公开测序数据库的提交材料时使用
 ---
 
 # ENA 测序数据提交准备（nf-core/seqsubmit）

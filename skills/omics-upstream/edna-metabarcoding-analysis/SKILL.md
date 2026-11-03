@@ -1,6 +1,7 @@
 ---
 name: edna-metabarcoding-analysis
 description: 用于环境DNA宏条形码数据的物种检出、污染控制和群落比较；当研究对象来自水体、土壤、沉积物或混合环境样本时使用。
+whenToUse: 当研究对象来自水体、土壤、沉积物或混合环境样本时使用
 ---
 # eDNA 宏条形码分析
 

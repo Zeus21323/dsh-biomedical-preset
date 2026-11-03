@@ -1,6 +1,7 @@
 ---
 name: protein-structure-quality-assessment
 description: 用于实验或预测蛋白结构的几何、立体化学、模型—数据一致性和局部置信度检查；当模型要进入下游分析时使用。
+whenToUse: 当模型要进入下游分析时使用
 ---
 # 蛋白质结构质量评估
 

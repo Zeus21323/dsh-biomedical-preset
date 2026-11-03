@@ -1,6 +1,7 @@
 ---
 name: genotype-imputation-phasing
 description: 当用户拿到芯片/低深度基因型发现位点不足、数据缺失、想对齐参考或为遗传关联和评分补位点，或需要Beagle/SHAPEIT、相位和填充时使用；先区别填充与从测序数据检测变异。
+whenToUse: 当用户拿到芯片/低深度基因型发现位点不足、数据缺失、想对齐参考或为遗传关联和评分补位点，或需要Beagle/SHAPEIT、相位和填充时使用
 ---
 
 # 基因型填充与相位推断

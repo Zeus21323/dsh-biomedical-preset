@@ -1,6 +1,7 @@
 ---
 name: nfcore-stableexpression
-description: "当多个表达数据集需要筛选在指定条件下稳定的参考基因时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/stableexpression。"
+description: 当多个表达数据集需要筛选在指定条件下稳定的参考基因时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/stableexpression。
+whenToUse: 当多个表达数据集需要筛选在指定条件下稳定的参考基因时使用
 ---
 
 # 稳定表达基因与qPCR内参筛选（nf-core/stableexpression）

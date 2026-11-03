@@ -1,6 +1,6 @@
 ---
 name: docx-equation-processor
-description: "Use this skill when Word .docx work involves math formulas, equations, LaTeX, MathML, OMML, MathType, equation numbering, inline equations, display equations, or academic papers with existing Word equation objects. It protects and edits native Word oMath and oMathPara formulas, converts LaTeX to OMML, inserts numbered equations, and can optionally prepare MathType-compatible output. Use alongside the docx skill for general Word layout; use this skill for all formula-specific handling."
+description: Use this skill when Word .docx work involves math formulas, equations, LaTeX, MathML, OMML, MathType, equation numbering, inline equations, display equations, or academic papers with existing Word equation objects. It protects and edits native Word oMath and oMathPara formulas, converts LaTeX to OMML, inserts numbered equations, and can optionally prepare MathType-compatible output. Use alongside the docx skill for general Word layout; use this skill for all formula-specific handling.
 ---
 
 # DOCX Equation Processor

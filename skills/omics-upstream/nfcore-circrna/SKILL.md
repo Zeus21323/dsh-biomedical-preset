@@ -1,6 +1,7 @@
 ---
 name: nfcore-circrna
-description: "当RNA 测序需要识别环状 RNA 或比较反向剪接信号时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/circrna。"
+description: 当RNA 测序需要识别环状 RNA 或比较反向剪接信号时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/circrna。
+whenToUse: 当RNA 测序需要识别环状 RNA 或比较反向剪接信号时使用
 ---
 
 # 环状RNA检测与表达分析（nf-core/circrna）

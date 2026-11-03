@@ -1,6 +1,7 @@
 ---
 name: molecular-descriptors-fingerprints
 description: 当用户需要为QSAR、相似性检索或虚拟筛选计算理化描述符、Morgan/ECFP、MACCS及其他分子指纹时使用。
+whenToUse: 当用户需要为QSAR、相似性检索或虚拟筛选计算理化描述符、Morgan/ECFP、MACCS及其他分子指纹时使用
 ---
 
 # 分子描述符与指纹计算

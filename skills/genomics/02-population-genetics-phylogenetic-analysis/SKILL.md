@@ -1,6 +1,7 @@
 ---
 name: 02-population-genetics-phylogenetic-analysis
 description: 当用户需要从序列或基因组构建系统发育树、选择模型并评估分支支持时使用。
+whenToUse: 当用户需要从序列或基因组构建系统发育树、选择模型并评估分支支持时使用
 ---
 
 # 系统发育树构建与评估

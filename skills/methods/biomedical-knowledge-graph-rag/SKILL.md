@@ -1,6 +1,7 @@
 ---
 name: biomedical-knowledge-graph-rag
 description: 当用户需要把论文、数据库和内部资料组织成可检索的生物医学知识图谱或 RAG 问答系统时使用。
+whenToUse: 当用户需要把论文、数据库和内部资料组织成可检索的生物医学知识图谱或 RAG 问答系统时使用
 ---
 
 # 生物医学知识图谱与RAG

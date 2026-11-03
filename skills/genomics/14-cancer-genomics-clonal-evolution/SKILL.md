@@ -1,6 +1,7 @@
 ---
 name: 14-cancer-genomics-clonal-evolution
 description: 用于单样本、多区域或纵向肿瘤样本的克隆聚类、系统发育和治疗前后演化分析；当用户研究亚克隆结构时使用。
+whenToUse: 当用户研究亚克隆结构时使用
 ---
 # 肿瘤克隆结构与进化
 

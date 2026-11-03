@@ -3,6 +3,7 @@ name: metabolomics-profiling
 description: 代谢组学分析——非靶向 LC/GC-MS 与靶向定量峰表的 QC 过滤、归一化、变换、PCA/PLS-DA/OPLS-DA（含置换验证）、单变量差异、注释置信级、通路富集与交付。当用户给的是峰表（m/z × 样本）、代谢物定量矩阵或 XCMS/MS-DIAL 输出时使用；原始谱图解卷积与谱库匹配用 pyopenms，代谢物数据库查询用 tooluniverse-metabolomics。
 category: omics
 tags: metabolomics, lipidomics, pls-da, mummichog, pathway-enrichment
+whenToUse: 当用户给的是峰表（m/z × 样本）、代谢物定量矩阵或 XCMS/MS-DIAL 输出时使用
 ---
 
 # 代谢组学分析

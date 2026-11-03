@@ -1,6 +1,7 @@
 ---
 name: 09-metagenomics-16s-analysis
 description: 用于从扩增子原始测序数据完成16S或ITS去噪、特征表构建、物种注释和基础质控；当用户提供FASTQ、样本表或询问扩增子分析流程时使用。
+whenToUse: 当用户提供FASTQ、样本表或询问扩增子分析流程时使用
 ---
 # 16S 与 ITS 扩增子分析
 

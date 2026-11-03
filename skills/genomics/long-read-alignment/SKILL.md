@@ -1,6 +1,7 @@
 ---
 name: long-read-alignment
 description: 当用户需要把 Nanopore 或 PacBio 长读长比对到参考基因组并支持变异、异构体或甲基化分析时使用。
+whenToUse: 当用户需要把 Nanopore 或 PacBio 长读长比对到参考基因组并支持变异、异构体或甲基化分析时使用
 ---
 
 # 长读长序列比对

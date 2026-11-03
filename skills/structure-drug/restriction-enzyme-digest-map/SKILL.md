@@ -1,6 +1,7 @@
 ---
 name: restriction-enzyme-digest-map
 description: 当用户需要根据DNA拓扑和序列选择克隆或鉴定用限制酶、计算片段并绘制酶切图时使用。
+whenToUse: 当用户需要根据DNA拓扑和序列选择克隆或鉴定用限制酶、计算片段并绘制酶切图时使用
 ---
 
 # 限制性内切酶分析与酶切图

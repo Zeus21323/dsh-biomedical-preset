@@ -1,6 +1,7 @@
 ---
 name: 19-forensic-genomics-y-snp
-description: 在法医基因组学领域开展“Y染色体与mtDNA”任务时使用；根据输入、科学假设和运行环境，在Y染色体与mtDNA下已保留的方法实现之间路由。
+description: 当用户需要基于 Y 染色体 SNP 位点判定男性个体身份、父系单倍群或家系来源时使用；涵盖 Y-SNP panel 分型、与参考单倍群树比对，以及在混合样本中判定男性成分的单倍群归属。
+whenToUse: 当用户需要基于 Y 染色体 SNP 位点判定男性个体身份、父系单倍群或家系来源时使用
 ---
 
 # Y染色体与mtDNA

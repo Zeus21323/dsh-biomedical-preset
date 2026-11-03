@@ -1,6 +1,7 @@
 ---
 name: nfcore-viralmetagenome
-description: "当非靶向混合样本测序需要发现并重建病毒基因组时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/viralmetagenome。"
+description: 当非靶向混合样本测序需要发现并重建病毒基因组时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/viralmetagenome。
+whenToUse: 当非靶向混合样本测序需要发现并重建病毒基因组时使用
 ---
 
 # 非靶向病毒基因组重建与宿主体内变异（nf-core/viralmetagenome）

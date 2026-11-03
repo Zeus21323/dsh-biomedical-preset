@@ -1,6 +1,6 @@
 ---
 name: arxiv-preflight
-description: "Run a submission-readiness preflight on a manuscript before arXiv upload. Use when the user is preparing an arXiv submission, asks to check a paper before uploading, mentions hallucinated or fake references, leftover LLM meta-comments / prompts in text, placeholder data (TODO, TBD, XX%), AI-use disclosure, scholarly integrity, research integrity, or arXiv moderation risk — even if they don't say \"preflight\". Also trigger on phrases like \"check my paper before arXiv\", \"verify my references\", \"scan for AI artifacts\", \"scan for LLM residue\", \"is my submission ready\", or \"review .tex/.bib before submit\"."
+description: Run a submission-readiness preflight on a manuscript before arXiv upload. Use when the user is preparing an arXiv submission, asks to check a paper before uploading, mentions hallucinated or fake references, leftover LLM meta-comments / prompts in text, placeholder data (TODO, TBD, XX%), AI-use disclosure, scholarly integrity, research integrity, or arXiv moderation risk — even if they don't say "preflight". Also trigger on phrases like "check my paper before arXiv", "verify my references", "scan for AI artifacts", "scan for LLM residue", "is my submission ready", or "review .tex/.bib before submit".
 license: MIT
 author: AIPOCH
 ---

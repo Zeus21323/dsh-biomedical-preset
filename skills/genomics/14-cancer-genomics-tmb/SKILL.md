@@ -1,6 +1,7 @@
 ---
 name: 14-cancer-genomics-tmb
 description: 用于计算肿瘤突变负荷、定义可计数区域并比较WES与靶向面板结果；当用户需要TMB数值或阈值解释时使用。
+whenToUse: 当用户需要TMB数值或阈值解释时使用
 ---
 # TMB 计算与平台换算
 

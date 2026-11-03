@@ -1,6 +1,7 @@
 ---
 name: scvi-single-cell-probabilistic-modeling
-description: "当用户需要使用 scVI、scANVI 或 totalVI 对单细胞计数进行概率表征、半监督标签迁移或 RNA-蛋白联合建模时使用。"
+description: 当用户需要使用 scVI、scANVI 或 totalVI 对单细胞计数进行概率表征、半监督标签迁移或 RNA-蛋白联合建模时使用。
+whenToUse: 当用户需要使用 scVI、scANVI 或 totalVI 对单细胞计数进行概率表征、半监督标签迁移或 RNA-蛋白联合建模时使用
 ---
 
 # scVI单细胞概率建模

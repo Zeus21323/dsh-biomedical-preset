@@ -1,6 +1,7 @@
 ---
 name: nfcore-atacseq
-description: "当已确认 bulk ATAC-seq 数据，需要分析开放染色质与条件差异时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/atacseq。"
+description: 当已确认 bulk ATAC-seq 数据，需要分析开放染色质与条件差异时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/atacseq。
+whenToUse: 当已确认 bulk ATAC-seq 数据，需要分析开放染色质与条件差异时使用
 ---
 
 # ATAC-seq开放染色质分析（nf-core/atacseq）

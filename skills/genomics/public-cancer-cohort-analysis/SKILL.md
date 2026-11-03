@@ -1,6 +1,7 @@
 ---
 name: public-cancer-cohort-analysis
 description: 用于检索和分析TCGA或cBioPortal中的癌症分子与临床队列；当用户需要外部频率、共变或生存验证时使用。
+whenToUse: 当用户需要外部频率、共变或生存验证时使用
 ---
 # 癌症公共队列分析
 

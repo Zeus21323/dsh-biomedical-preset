@@ -1,6 +1,7 @@
 ---
 name: nfcore-metatdenovo
-description: "当宏转录组或宏基因组读段缺少合适参考，需要从头组装与注释时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/metatdenovo。"
+description: 当宏转录组或宏基因组读段缺少合适参考，需要从头组装与注释时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/metatdenovo。
+whenToUse: 当宏转录组或宏基因组读段缺少合适参考，需要从头组装与注释时使用
 ---
 
 # 宏转录组与宏基因组从头组装注释（nf-core/metatdenovo）

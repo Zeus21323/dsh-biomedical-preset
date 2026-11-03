@@ -1,6 +1,7 @@
 ---
 name: 15-liquid-biopsy-exosome-rna-analysis
 description: 用于细胞外囊泡RNA测序的质控、定量、差异和标志物分析；当样本来自血浆、尿液等低输入体液时使用。
+whenToUse: 当样本来自血浆、尿液等低输入体液时使用
 ---
 # 细胞外囊泡 RNA 分析
 

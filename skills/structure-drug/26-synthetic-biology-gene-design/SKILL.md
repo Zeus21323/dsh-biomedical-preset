@@ -1,6 +1,7 @@
 ---
 name: 26-synthetic-biology-gene-design
 description: 当用户需要在Gibson、Golden Gate等组装方式之间选择并设计片段连接和构建验证时使用。
+whenToUse: 当用户需要在Gibson、Golden Gate等组装方式之间选择并设计片段连接和构建验证时使用
 ---
 
 # DNA组装与分子克隆

@@ -1,6 +1,7 @@
 ---
 name: nfcore-rnaseq
-description: "当测序报告或建库证据表明是普通整体 RNA 测序，需要整理表达或比较样本时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/rnaseq。"
+description: 当测序报告或建库证据表明是普通整体 RNA 测序，需要整理表达或比较样本时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/rnaseq。
+whenToUse: 当测序报告或建库证据表明是普通整体 RNA 测序，需要整理表达或比较样本时使用
 ---
 
 # bulk RNA-seq处理与表达质控（nf-core/rnaseq）

@@ -1,6 +1,7 @@
 ---
 name: nfcore-mspepid
-description: "当已有 MS2 谱图，需要搜索肽段并评估鉴定可靠性时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/mspepid。"
+description: 当已有 MS2 谱图，需要搜索肽段并评估鉴定可靠性时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/mspepid。
+whenToUse: 当已有 MS2 谱图，需要搜索肽段并评估鉴定可靠性时使用
 ---
 
 # MS2谱图肽段鉴定（nf-core/mspepid）

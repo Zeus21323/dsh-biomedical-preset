@@ -1,6 +1,7 @@
 ---
 name: bids-neuroimaging-data-organization
 description: 当用户需要组织、检查或转换符合BIDS规范的MRI、PET、EEG、MEG或其他神经影像研究数据时使用。
+whenToUse: 当用户需要组织、检查或转换符合BIDS规范的MRI、PET、EEG、MEG或其他神经影像研究数据时使用
 ---
 
 # BIDS神经影像数据整理

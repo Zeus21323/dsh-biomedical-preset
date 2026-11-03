@@ -1,6 +1,7 @@
 ---
 name: 27-aging-longevity-sasp-analysis
 description: 当用户需要综合生长停滞、损伤、SA-β-gal、p16/p21和SASP等正交证据判断细胞衰老时使用。
+whenToUse: 当用户需要综合生长停滞、损伤、SA-β-gal、p16/p21和SASP等正交证据判断细胞衰老时使用
 ---
 
 # 细胞衰老与SASP证据分析

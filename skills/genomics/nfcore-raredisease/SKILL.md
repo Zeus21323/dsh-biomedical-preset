@@ -1,6 +1,7 @@
 ---
 name: nfcore-raredisease
-description: "当患者 WGS 或 WES 与家系和症状需要寻找罕见病候选变异时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/raredisease。"
+description: 当患者 WGS 或 WES 与家系和症状需要寻找罕见病候选变异时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/raredisease。
+whenToUse: 当患者 WGS 或 WES 与家系和症状需要寻找罕见病候选变异时使用
 ---
 
 # WGS/WES罕见病变异检测与评分（nf-core/raredisease）

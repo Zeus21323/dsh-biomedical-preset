@@ -1,6 +1,7 @@
 ---
 name: chromatin-state-allele-specific-analysis
 description: 当用户需要用多种组蛋白或可及性信号分割染色质状态，或分析等位基因特异的表观调控差异时使用。
+whenToUse: 当用户需要用多种组蛋白或可及性信号分割染色质状态，或分析等位基因特异的表观调控差异时使用
 ---
 
 # 染色质状态与等位基因特异分析

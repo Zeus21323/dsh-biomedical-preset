@@ -1,6 +1,7 @@
 ---
 name: nfcore-variantprioritization
-description: "当已有癌症相关 VCF，需要注释与排序体细胞或遗传易感候选时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/variantprioritization。"
+description: 当已有癌症相关 VCF，需要注释与排序体细胞或遗传易感候选时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/variantprioritization。
+whenToUse: 当已有癌症相关 VCF，需要注释与排序体细胞或遗传易感候选时使用
 ---
 
 # 癌症变异注释与优先级解释（nf-core/variantprioritization）

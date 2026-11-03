@@ -1,6 +1,7 @@
 ---
 name: spatial-proteomics
-description: "当用户需要分析 CODEX、IMC、MIBI 等多通道空间蛋白数据，完成通道校正、细胞分割、表型和组织邻域定量时使用。"
+description: 当用户需要分析 CODEX、IMC、MIBI 等多通道空间蛋白数据，完成通道校正、细胞分割、表型和组织邻域定量时使用。
+whenToUse: 当用户需要分析 CODEX、IMC、MIBI 等多通道空间蛋白数据，完成通道校正、细胞分割、表型和组织邻域定量时使用
 ---
 
 # 空间蛋白质组分析

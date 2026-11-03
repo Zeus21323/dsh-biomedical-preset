@@ -1,6 +1,7 @@
 ---
 name: methylation-array-qc-deconvolution
 description: 当用户需要处理Illumina甲基化芯片、完成探针与样本质控、归一化、批次检查和细胞比例去卷积时使用。
+whenToUse: 当用户需要处理Illumina甲基化芯片、完成探针与样本质控、归一化、批次检查和细胞比例去卷积时使用
 ---
 
 # 甲基化芯片预处理与细胞组成校正

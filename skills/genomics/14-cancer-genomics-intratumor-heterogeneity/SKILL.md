@@ -1,6 +1,7 @@
 ---
 name: 14-cancer-genomics-intratumor-heterogeneity
 description: 用于估计肿瘤纯度、癌细胞分数和总体瘤内异质性；当VAF需要纯度校正或用户希望量化异质性时使用。
+whenToUse: 当VAF需要纯度校正或用户希望量化异质性时使用
 ---
 # 肿瘤纯度与瘤内异质性
 

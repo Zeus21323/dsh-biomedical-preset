@@ -1,6 +1,7 @@
 ---
 name: nfcore-viralrecon
-description: "当已确认病毒测序，需要获得共识序列和变异结果时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/viralrecon。"
+description: 当已确认病毒测序，需要获得共识序列和变异结果时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/viralrecon。
+whenToUse: 当已确认病毒测序，需要获得共识序列和变异结果时使用
 ---
 
 # 病毒共识组装与变异分析（nf-core/viralrecon）

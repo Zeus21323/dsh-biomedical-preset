@@ -1,6 +1,7 @@
 ---
 name: 27-aging-longevity-protein-aging-clock
 description: 当用户需要把冻结的器官特异蛋白质衰老时钟应用到匹配面板的Olink NPX数据并解释年龄加速时使用。
+whenToUse: 当用户需要把冻结的器官特异蛋白质衰老时钟应用到匹配面板的Olink NPX数据并解释年龄加速时使用
 ---
 
 # Olink器官特异性蛋白质衰老时钟

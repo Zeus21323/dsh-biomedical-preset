@@ -1,6 +1,7 @@
 ---
 name: single-cell-format-io
-description: "当用户需要在 h5ad、Seurat、loom、10x HDF5/MTX 等格式间转换单细胞对象，并验证矩阵层、元数据和稀疏结构没有静默丢失时使用。"
+description: 当用户需要在 h5ad、Seurat、loom、10x HDF5/MTX 等格式间转换单细胞对象，并验证矩阵层、元数据和稀疏结构没有静默丢失时使用。
+whenToUse: 当用户需要在 h5ad、Seurat、loom、10x HDF5/MTX 等格式间转换单细胞对象，并验证矩阵层、元数据和稀疏结构没有静默丢失时使用
 ---
 
 # 单细胞数据格式与读写

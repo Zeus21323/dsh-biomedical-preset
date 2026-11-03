@@ -1,6 +1,7 @@
 ---
 name: nfcore-pixelator
-description: "当分子邻近测定的 PNA 或 MPX 数据需要分子图和细胞相关分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/pixelator。"
+description: 当分子邻近测定的 PNA 或 MPX 数据需要分子图和细胞相关分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/pixelator。
+whenToUse: 当分子邻近测定的 PNA 或 MPX 数据需要分子图和细胞相关分析时使用
 ---
 
 # 单细胞蛋白丰度与互作数据处理（nf-core/pixelator）

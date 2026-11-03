@@ -1,6 +1,7 @@
 ---
 name: nfcore-lsmquant
-description: "当光片显微三维图像需要校正、对象识别或定量时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/lsmquant。"
+description: 当光片显微三维图像需要校正、对象识别或定量时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/lsmquant。
+whenToUse: 当光片显微三维图像需要校正、对象识别或定量时使用
 ---
 
 # 光片显微图像处理与定量（nf-core/lsmquant）

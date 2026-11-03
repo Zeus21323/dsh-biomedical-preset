@@ -1,6 +1,7 @@
 ---
 name: bioinformatics-format-conversion-integrity
 description: 当用户需要在 FASTA、FASTQ、SAM、BAM、CRAM、BIOM、TSV 或常见丰度表布局之间转换，并核对转换前后记录、配对关系和校验值时使用；分子结构格式转换不使用本 Skill。
+whenToUse: 当用户需要在 FASTA、FASTQ、SAM、BAM、CRAM、BIOM、TSV 或常见丰度表布局之间转换，并核对转换前后记录、配对关系和校验值时使用
 ---
 
 # 生物信息文件格式转换与完整性校验

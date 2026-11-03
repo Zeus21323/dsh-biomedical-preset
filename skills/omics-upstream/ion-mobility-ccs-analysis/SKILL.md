@@ -1,6 +1,7 @@
 ---
 name: ion-mobility-ccs-analysis
-description: "当用户需要校准 DTIMS、TWIMS 或 TIMS 漂移数据，计算带不确定性的碰撞截面 CCS，并按一致实验条件辅助候选鉴别时使用。"
+description: 当用户需要校准 DTIMS、TWIMS 或 TIMS 漂移数据，计算带不确定性的碰撞截面 CCS，并按一致实验条件辅助候选鉴别时使用。
+whenToUse: 当用户需要校准 DTIMS、TWIMS 或 TIMS 漂移数据，计算带不确定性的碰撞截面 CCS，并按一致实验条件辅助候选鉴别时使用
 ---
 
 # 离子迁移率与CCS分析

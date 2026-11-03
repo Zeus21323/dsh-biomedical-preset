@@ -1,6 +1,7 @@
 ---
 name: 16-immunomics-tide
 description: 用于TIDE、IPS、SubMap等免疫治疗反应评分的计算、比较和外部验证；当用户研究检查点抑制剂获益预测时使用。
+whenToUse: 当用户研究检查点抑制剂获益预测时使用
 ---
 # 免疫治疗疗效预测
 

@@ -1,6 +1,7 @@
 ---
 name: microbiome-diversity-analysis
 description: 用于扩增子、宏基因组或物种丰度表的α多样性、β多样性及组间群落差异分析；当用户已有特征表和样本元数据时使用。
+whenToUse: 当用户已有特征表和样本元数据时使用
 ---
 # 微生物群落多样性分析
 

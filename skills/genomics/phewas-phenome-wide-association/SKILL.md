@@ -1,6 +1,7 @@
 ---
 name: phewas-phenome-wide-association
 description: 当用户想知道一个变异、基因或遗传评分还关联哪些疾病、寻找潜在副作用、在大量病历表型中筛关联，或需要PheWAS图时使用；区分查询已有门户与对自己的队列重新建模。
+whenToUse: 当用户想知道一个变异、基因或遗传评分还关联哪些疾病、寻找潜在副作用、在大量病历表型中筛关联，或需要PheWAS图时使用
 ---
 
 # PheWAS全表型关联分析

@@ -1,6 +1,7 @@
 ---
 name: cell-free-protein-expression-optimization
 description: 当用户需要选择无细胞蛋白质合成体系并区分模板、表达、可溶性或活性导致的低产问题时使用。
+whenToUse: 当用户需要选择无细胞蛋白质合成体系并区分模板、表达、可溶性或活性导致的低产问题时使用
 ---
 
 # 无细胞蛋白质合成优化

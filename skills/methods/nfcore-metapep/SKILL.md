@@ -1,6 +1,7 @@
 ---
 name: nfcore-metapep
-description: "当微生物蛋白或组装需要生成并筛选 MHC 肽候选时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/metapep。"
+description: 当微生物蛋白或组装需要生成并筛选 MHC 肽候选时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/metapep。
+whenToUse: 当微生物蛋白或组装需要生成并筛选 MHC 肽候选时使用
 ---
 
 # 宏基因组来源MHC表位预测（nf-core/metapep）

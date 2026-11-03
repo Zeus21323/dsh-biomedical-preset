@@ -1,19 +1,9 @@
 ---
 name: xlsx
-description: >-
-  Use whenever an Excel workbook (.xlsx, .xlsm, .xls, .xlsb) must be read,
-  inspected, extracted, converted, cleaned, analyzed, edited, validated, or
-  written, whether the workbook is an input data source, intermediate artifact,
-  or final deliverable. Also use for .csv/.tsv when spreadsheet-style output or
-  Excel conversion is needed. Trigger especially for large Excel files,
-  slow/failed Excel reads, memory-efficient column/sheet extraction, formula
-  preservation, optional user-assisted formula verification, formatting, financial models, multi-sheet
-  workbooks, and tabular cleanup exported to Excel. Do NOT use only when no
-  spreadsheet file is involved, or for pure database/API/text/PDF/Word/HTML
-  tasks that do not need spreadsheet parsing or output.
+description: Use whenever an Excel workbook (.xlsx, .xlsm, .xls, .xlsb) must be read, inspected, extracted, converted, cleaned, analyzed, edited, validated, or written, whether the workbook is an input data source, intermediate artifact, or final deliverable. Also use for .csv/.tsv when spreadsheet-style output or Excel conversion is needed. Trigger especially for large Excel files, slow/failed Excel reads, memory-efficient column/sheet extraction, formula preservation, optional user-assisted formula verification, formatting, financial models, multi-sheet workbooks, and tabular cleanup exported to Excel. Do NOT use only when no spreadsheet file is involved, or for pure database/API/text/PDF/Word/HTML tasks that do not need spreadsheet parsing or output.
 allowed-tools: Read Write Edit Bash Grep Glob
 license: Proprietary. LICENSE.txt has complete terms
-metadata: {"version": "1.1", "skill-author": "K-Dense Inc."}
+metadata: "{\"version\": \"1.1\", \"skill-author\": \"K-Dense Inc.\"}"
 compatibility: Requires Python 3.8+
 ---
 

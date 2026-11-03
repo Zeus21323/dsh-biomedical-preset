@@ -1,6 +1,7 @@
 ---
 name: crispr-screen-hit-analysis
 description: 当用户需要从已通过质控的混合CRISPR筛选计数中选择合适统计模型并获得可复验命中基因时使用。
+whenToUse: 当用户需要从已通过质控的混合CRISPR筛选计数中选择合适统计模型并获得可复验命中基因时使用
 ---
 
 # CRISPR筛选命中分析

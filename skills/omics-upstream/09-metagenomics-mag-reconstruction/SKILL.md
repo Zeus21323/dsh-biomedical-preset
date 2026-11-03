@@ -1,6 +1,7 @@
 ---
 name: 09-metagenomics-mag-reconstruction
 description: 用于宏基因组读段组装、分箱、MAG质量控制、去冗余和分类；当目标是恢复微生物基因组或新物种时使用。
+whenToUse: 当目标是恢复微生物基因组或新物种时使用
 ---
 # 宏基因组组装与 MAG 重建
 

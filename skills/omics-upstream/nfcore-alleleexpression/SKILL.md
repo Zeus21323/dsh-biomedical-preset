@@ -1,6 +1,7 @@
 ---
 name: nfcore-alleleexpression
-description: "当RNA 数据及匹配基因型可用于研究等位基因表达不平衡时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/alleleexpression。"
+description: 当RNA 数据及匹配基因型可用于研究等位基因表达不平衡时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/alleleexpression。
+whenToUse: 当RNA 数据及匹配基因型可用于研究等位基因表达不平衡时使用
 ---
 
 # 等位基因特异表达（nf-core/alleleexpression）

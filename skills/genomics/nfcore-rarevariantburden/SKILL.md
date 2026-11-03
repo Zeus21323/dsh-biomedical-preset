@@ -1,6 +1,7 @@
 ---
 name: nfcore-rarevariantburden
-description: "当已有病例变异汇总计数和外部对照，需要检验基因稀有变异负荷时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/rarevariantburden。"
+description: 当已有病例变异汇总计数和外部对照，需要检验基因稀有变异负荷时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/rarevariantburden。
+whenToUse: 当已有病例变异汇总计数和外部对照，需要检验基因稀有变异负荷时使用
 ---
 
 # 稀有变异汇总计数负荷检验（nf-core/rarevariantburden）

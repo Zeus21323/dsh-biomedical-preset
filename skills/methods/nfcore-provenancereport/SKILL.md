@@ -1,6 +1,7 @@
 ---
 name: nfcore-provenancereport
-description: "当已有分析结果但不清楚用了哪些输入、软件版本和参数，需要核查可复现性时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/provenancereport。"
+description: 当已有分析结果但不清楚用了哪些输入、软件版本和参数，需要核查可复现性时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/provenancereport。
+whenToUse: 当已有分析结果但不清楚用了哪些输入、软件版本和参数，需要核查可复现性时使用
 ---
 
 # 工作流来源与运行证据报告（nf-core/provenancereport）

@@ -1,6 +1,7 @@
 ---
 name: temporal-gene-regulatory-network
 description: 用于带时间点或轨迹顺序的表达数据推断动态调控关系；当用户关心调控先后、状态转换或延迟效应时使用。
+whenToUse: 当用户关心调控先后、状态转换或延迟效应时使用
 ---
 # 时序基因调控网络
 

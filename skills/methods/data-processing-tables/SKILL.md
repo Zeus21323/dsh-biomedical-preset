@@ -1,6 +1,7 @@
 ---
 name: data-processing-tables
 description: 当用户需要清理、合并、核对或汇总 CSV、TSV、Excel 等科研表格数据时使用。
+whenToUse: 当用户需要清理、合并、核对或汇总 CSV、TSV、Excel 等科研表格数据时使用
 ---
 
 # 科研表格数据处理

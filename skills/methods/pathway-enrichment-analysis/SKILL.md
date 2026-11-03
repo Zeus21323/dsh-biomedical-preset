@@ -1,6 +1,7 @@
 ---
 name: pathway-enrichment-analysis
 description: 用于基因、蛋白或代谢物列表的GO、KEGG、Reactome等过度富集分析；当用户已有候选特征集合和明确背景集时使用。
+whenToUse: 当用户已有候选特征集合和明确背景集时使用
 ---
 # 通路与功能富集分析
 

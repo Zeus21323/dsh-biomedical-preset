@@ -1,6 +1,7 @@
 ---
 name: 12-structural-biology-protein-mutation-enhancement
 description: 用于评估突变对稳定性、界面、活性位点和构象的可能影响并排序候选；当用户提出定点突变或变体解释时使用。
+whenToUse: 当用户提出定点突变或变体解释时使用
 ---
 # 蛋白质突变效应评估
 

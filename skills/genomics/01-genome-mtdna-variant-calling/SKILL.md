@@ -1,6 +1,7 @@
 ---
 name: 01-genome-mtdna-variant-calling
 description: 当用户需要检测线粒体 DNA 变异、低频异质性并避免 NUMT 和污染造成误报时使用。
+whenToUse: 当用户需要检测线粒体 DNA 变异、低频异质性并避免 NUMT 和污染造成误报时使用
 ---
 
 # 线粒体变异与异质性分析

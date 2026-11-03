@@ -1,6 +1,7 @@
 ---
 name: image-painter
-description: "当需要通过 SpeedAI 图像接口生成位图或参考现有图片修改位图时使用，包括照片、插画、产品图、网站图、游戏素材、PPT 图、论文图、流程图和信息图。不承诺像素级精确编辑；不要用于 SVG/HTML/CSS/canvas 等代码原生图形。"
+description: 当需要通过 SpeedAI 图像接口生成位图或参考现有图片修改位图时使用，包括照片、插画、产品图、网站图、游戏素材、PPT 图、论文图、流程图和信息图。不承诺像素级精确编辑；不要用于 SVG/HTML/CSS/canvas 等代码原生图形。
+whenToUse: 当需要通过 SpeedAI 图像接口生成位图或参考现有图片修改位图时使用
 ---
 
 # Image Painter Skill

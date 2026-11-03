@@ -1,6 +1,7 @@
 ---
 name: nfcore-pathogensurveillance
-description: "当连续采集的病原测序需要群体比较与监测时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/pathogensurveillance。"
+description: 当连续采集的病原测序需要群体比较与监测时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/pathogensurveillance。
+whenToUse: 当连续采集的病原测序需要群体比较与监测时使用
 ---
 
 # 病原体群体基因组监测（nf-core/pathogensurveillance）

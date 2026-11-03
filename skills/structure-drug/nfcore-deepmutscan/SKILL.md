@@ -1,6 +1,7 @@
 ---
 name: nfcore-deepmutscan
-description: "当突变文库的选择前后或时间序列测序需要估计变异适应度时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/deepmutscan。"
+description: 当突变文库的选择前后或时间序列测序需要估计变异适应度时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/deepmutscan。
+whenToUse: 当突变文库的选择前后或时间序列测序需要估计变异适应度时使用
 ---
 
 # 深度突变扫描与适应度估计（nf-core/deepmutscan）

@@ -1,6 +1,7 @@
 ---
 name: 02-population-genetics-gwas-association-analysis
 description: 当用户有芯片/测序基因型和疾病、体征或随访信息，想找易感位点、解释遗传风险、比较病例对照，或已有GWAS结果需要排查QQ膨胀、补图或回应审稿意见时使用；不要求用户知道GWAS、PLINK、REGENIE或SAIGE。
+whenToUse: 当用户有芯片/测序基因型和疾病、体征或随访信息，想找易感位点、解释遗传风险、比较病例对照，或已有GWAS结果需要排查QQ膨胀、补图或回应审稿意见时使用
 ---
 
 # GWAS关联分析

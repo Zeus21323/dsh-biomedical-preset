@@ -1,6 +1,7 @@
 ---
 name: sequencing-coverage-capture-efficiency
 description: 当用户需要评估 WGS、WES 或面板测序的覆盖深度、均一性、可调用区域和捕获效率时使用。
+whenToUse: 当用户需要评估 WGS、WES 或面板测序的覆盖深度、均一性、可调用区域和捕获效率时使用
 ---
 
 # 测序覆盖度与捕获效率评估

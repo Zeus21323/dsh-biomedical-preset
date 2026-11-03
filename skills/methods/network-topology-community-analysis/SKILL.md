@@ -1,6 +1,7 @@
 ---
 name: network-topology-community-analysis
 description: 用于计算生物网络中心性、连通结构、社区和稳健性；当用户已有节点边表并希望寻找模块或关键节点时使用。
+whenToUse: 当用户已有节点边表并希望寻找模块或关键节点时使用
 ---
 # 生物网络拓扑与社区分析
 

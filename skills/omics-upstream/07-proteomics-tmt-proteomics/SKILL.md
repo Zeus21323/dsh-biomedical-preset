@@ -1,6 +1,7 @@
 ---
 name: 07-proteomics-tmt-proteomics
-description: "当用户需要分析 TMT/iTRAQ 等等重标签蛋白质组，处理通道映射、同位素杂质、隔离干扰和跨批次桥接时使用。"
+description: 当用户需要分析 TMT/iTRAQ 等等重标签蛋白质组，处理通道映射、同位素杂质、隔离干扰和跨批次桥接时使用。
+whenToUse: 当用户需要分析 TMT/iTRAQ 等等重标签蛋白质组，处理通道映射、同位素杂质、隔离干扰和跨批次桥接时使用
 ---
 
 # TMT定量蛋白质组分析

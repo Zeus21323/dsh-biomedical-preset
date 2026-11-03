@@ -1,6 +1,7 @@
 ---
 name: nfcore-cutandrun
-description: "当已知 CUT&RUN 或 CUT&Tag 实验，希望定位染色质靶标时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/cutandrun。"
+description: 当已知 CUT&RUN 或 CUT&Tag 实验，希望定位染色质靶标时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/cutandrun。
+whenToUse: 当已知 CUT&RUN 或 CUT&Tag 实验，希望定位染色质靶标时使用
 ---
 
 # CUT&RUN与CUT&Tag染色质定位（nf-core/cutandrun）

@@ -1,6 +1,7 @@
 ---
 name: nfcore-genomeannotator
-description: "当只有基因组组装或不完整注释，需要识别编码基因结构时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/genomeannotator。"
+description: 当只有基因组组装或不完整注释，需要识别编码基因结构时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/genomeannotator。
+whenToUse: 当只有基因组组装或不完整注释，需要识别编码基因结构时使用
 ---
 
 # 基因组编码基因结构注释（nf-core/genomeannotator）

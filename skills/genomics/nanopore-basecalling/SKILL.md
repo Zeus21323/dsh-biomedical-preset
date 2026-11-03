@@ -1,6 +1,7 @@
 ---
 name: nanopore-basecalling
 description: 当用户需要把 Nanopore POD5/FAST5 转为碱基序列，并选择模型、条码拆分和修饰检测设置时使用。
+whenToUse: 当用户需要把 Nanopore POD5/FAST5 转为碱基序列，并选择模型、条码拆分和修饰检测设置时使用
 ---
 
 # Nanopore碱基识别

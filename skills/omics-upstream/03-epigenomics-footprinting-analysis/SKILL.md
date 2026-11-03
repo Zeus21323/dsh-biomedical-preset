@@ -1,6 +1,6 @@
 ---
 name: 03-epigenomics-footprinting-analysis
-description: "用于在开放染色质或ChIP峰中做转录因子基序富集、位点扫描和Tn5/DNase足迹推断。"
+description: 用于在开放染色质或ChIP峰中做转录因子基序富集、位点扫描和Tn5/DNase足迹推断。
 ---
 
 # 转录因子基序与足迹分析

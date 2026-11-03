@@ -1,6 +1,7 @@
 ---
 name: infrastructure-workflows
 description: 当用户需要建立可复现的科研计算环境、容器、工作流编排和运行记录时使用。
+whenToUse: 当用户需要建立可复现的科研计算环境、容器、工作流编排和运行记录时使用
 ---
 
 # 科研计算环境与工作流

@@ -1,6 +1,7 @@
 ---
 name: medical-image-registration-resampling
 description: 当用户需要用SimpleITK对CT、MRI或显微体数据进行刚体、仿射或形变配准，并安全重采样影像与标签时使用。
+whenToUse: 当用户需要用SimpleITK对CT、MRI或显微体数据进行刚体、仿射或形变配准，并安全重采样影像与标签时使用
 ---
 
 # 三维医学影像配准与重采样

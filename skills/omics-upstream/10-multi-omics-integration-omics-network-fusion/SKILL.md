@@ -1,6 +1,7 @@
 ---
 name: 10-multi-omics-integration-omics-network-fusion
 description: 用于Similarity Network Fusion融合多组学样本相似性并发现分型；当各数据层尺度不同但样本配对完整时使用。
+whenToUse: 当各数据层尺度不同但样本配对完整时使用
 ---
 # SNF 多组学相似性网络融合
 

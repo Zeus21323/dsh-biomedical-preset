@@ -1,6 +1,7 @@
 ---
 name: 02-population-genetics-gwas-sumstats-qc
 description: 当用户拿到遗传关联结果表不知道能否用于论文、两份结果合不上、字段/OR/坐标/等位基因不一致，或准备MR、共定位、遗传相关、PRS和荟萃分析的输入时使用；先识别文件，无需用户知道汇总统计或harmonization。
+whenToUse: 当用户拿到遗传关联结果表不知道能否用于论文、两份结果合不上、字段/OR/坐标/等位基因不一致，或准备MR、共定位、遗传相关、PRS和荟萃分析的输入时使用
 ---
 
 # GWAS汇总统计质控与标准化

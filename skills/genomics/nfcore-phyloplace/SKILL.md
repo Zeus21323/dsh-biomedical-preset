@@ -1,6 +1,7 @@
 ---
 name: nfcore-phyloplace
-description: "当已有未知来源或新增序列，需要定位到参考系统树时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/phyloplace。"
+description: 当已有未知来源或新增序列，需要定位到参考系统树时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/phyloplace。
+whenToUse: 当已有未知来源或新增序列，需要定位到参考系统树时使用
 ---
 
 # 系统发育定位（nf-core/phyloplace）

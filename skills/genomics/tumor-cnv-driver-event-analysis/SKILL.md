@@ -1,6 +1,7 @@
 ---
 name: tumor-cnv-driver-event-analysis
 description: 用于肿瘤CNV检测、纯度倍性校正、复发性区域和候选驱动基因分析；当用户有WGS/WES、芯片或面板深度数据时使用。
+whenToUse: 当用户有WGS/WES、芯片或面板深度数据时使用
 ---
 # 肿瘤拷贝数变异与驱动事件
 

@@ -1,6 +1,7 @@
 ---
 name: 16-immunomics-tumor-antigen-prediction
 description: 用于从体细胞变异、融合、异常剪接或肿瘤抗原生成并筛选候选表位；当用户需要个体化新抗原或疫苗候选时使用。
+whenToUse: 当用户需要个体化新抗原或疫苗候选时使用
 ---
 # 肿瘤抗原与表位预测
 

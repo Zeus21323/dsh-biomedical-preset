@@ -1,6 +1,7 @@
 ---
 name: sbml-network-modeling
 description: 用于读取、检查、构建或转换SBML格式的反应网络模型；当用户处理动力学模型、代谢模型交换或模型可重复性时使用。
+whenToUse: 当用户处理动力学模型、代谢模型交换或模型可重复性时使用
 ---
 # SBML 生物网络建模
 

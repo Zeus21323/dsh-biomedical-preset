@@ -1,6 +1,7 @@
 ---
 name: nfcore-genomicrelatedness
-description: "当低覆盖基因组数据需要判断样本亲缘关系或重复身份时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/genomicrelatedness。"
+description: 当低覆盖基因组数据需要判断样本亲缘关系或重复身份时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/genomicrelatedness。
+whenToUse: 当低覆盖基因组数据需要判断样本亲缘关系或重复身份时使用
 ---
 
 # 低覆盖基因组亲缘关系估计（nf-core/genomicrelatedness）

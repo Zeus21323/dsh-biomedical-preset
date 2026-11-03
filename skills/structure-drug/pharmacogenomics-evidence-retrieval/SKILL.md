@@ -1,6 +1,7 @@
 ---
 name: pharmacogenomics-evidence-retrieval
 description: 用于检索基因—药物关系、变异注释、药品标签和指南证据；当用户询问某基因型与药物的已知关联时使用。
+whenToUse: 当用户询问某基因型与药物的已知关联时使用
 ---
 # 药物基因组证据检索
 

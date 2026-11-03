@@ -1,6 +1,7 @@
 ---
 name: tcr-bcr-antigen-specificity-prediction
 description: 用于根据受体序列、配对链和已知数据库预测TCR或BCR潜在抗原特异性；当用户要筛选候选受体—抗原关系时使用。
+whenToUse: 当用户要筛选候选受体—抗原关系时使用
 ---
 # TCR 与 BCR 抗原特异性预测
 

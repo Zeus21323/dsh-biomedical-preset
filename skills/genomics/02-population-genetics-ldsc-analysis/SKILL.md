@@ -1,6 +1,7 @@
 ---
 name: 02-population-genetics-ldsc-analysis
 description: 当用户问某病受遗传影响多大、两种疾病是否共享遗传背景、多个性状能否构成共同因素，或遇到GWAS整体膨胀、需要LDSC/Genomic SEM时使用；不要求知道遗传协方差术语。
+whenToUse: 当用户问某病受遗传影响多大、两种疾病是否共享遗传背景、多个性状能否构成共同因素，或遇到GWAS整体膨胀、需要LDSC/Genomic SEM时使用
 ---
 
 # 遗传力、遗传相关与Genomic SEM分析

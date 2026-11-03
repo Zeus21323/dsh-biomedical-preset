@@ -1,6 +1,7 @@
 ---
 name: 01-genome-loh-analysis
 description: 当用户需要从基因型、测序深度或等位基因失衡识别LOH和拷贝中性LOH，并区分缺失、UPD与肿瘤事件时使用。
+whenToUse: 当用户需要从基因型、测序深度或等位基因失衡识别LOH和拷贝中性LOH，并区分缺失、UPD与肿瘤事件时使用
 ---
 
 # 杂合性缺失与拷贝中性LOH分析

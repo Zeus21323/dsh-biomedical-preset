@@ -1,6 +1,7 @@
 ---
 name: nfcore-liverctanalysis
-description: "当肝脏 CT 数据需要分割或定量，而候选流程包含尚未实现该能力的历史模板时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/liverctanalysis。"
+description: 当肝脏 CT 数据需要分割或定量，而候选流程包含尚未实现该能力的历史模板时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/liverctanalysis。
+whenToUse: 当肝脏 CT 数据需要分割或定量，而候选流程包含尚未实现该能力的历史模板时使用
 ---
 
 # 历史肝脏CT流程实现审查（nf-core/liverctanalysis）

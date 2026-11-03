@@ -1,6 +1,7 @@
 ---
 name: nfcore-proteinannotator
-description: "当蛋白 FASTA 需要识别结构域或功能特征时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/proteinannotator。"
+description: 当蛋白 FASTA 需要识别结构域或功能特征时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/proteinannotator。
+whenToUse: 当蛋白 FASTA 需要识别结构域或功能特征时使用
 ---
 
 # 蛋白序列结构域与功能特征注释（nf-core/proteinannotator）

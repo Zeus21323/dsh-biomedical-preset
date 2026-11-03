@@ -1,6 +1,7 @@
 ---
 name: nfcore-nascent
-description: "当新生转录实验的 PRO、GRO 或 NET 类测序需要信号分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/nascent。"
+description: 当新生转录实验的 PRO、GRO 或 NET 类测序需要信号分析时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/nascent。
+whenToUse: 当新生转录实验的 PRO、GRO 或 NET 类测序需要信号分析时使用
 ---
 
 # 新生转录数据处理（nf-core/nascent）

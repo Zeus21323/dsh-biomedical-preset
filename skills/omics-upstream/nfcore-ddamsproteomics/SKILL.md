@@ -1,6 +1,7 @@
 ---
 name: nfcore-ddamsproteomics
-description: "当已有历史 DDA 质谱交付数据，需要评估或复现肽段鉴定与蛋白定量时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/ddamsproteomics。"
+description: 当已有历史 DDA 质谱交付数据，需要评估或复现肽段鉴定与蛋白定量时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/ddamsproteomics。
+whenToUse: 当已有历史 DDA 质谱交付数据，需要评估或复现肽段鉴定与蛋白定量时使用
 ---
 
 # 历史DDA质谱蛋白定量（nf-core/ddamsproteomics）

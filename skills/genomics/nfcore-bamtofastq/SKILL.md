@@ -1,6 +1,7 @@
 ---
 name: nfcore-bamtofastq
-description: "当收到 BAM 或 CRAM，比对前的测序读段缺失且后续任务确实需要恢复读段时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/bamtofastq。"
+description: 当收到 BAM 或 CRAM，比对前的测序读段缺失且后续任务确实需要恢复读段时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/bamtofastq。
+whenToUse: 当收到 BAM 或 CRAM，比对前的测序读段缺失且后续任务确实需要恢复读段时使用
 ---
 
 # BAM与CRAM读段恢复及质控（nf-core/bamtofastq）

@@ -1,6 +1,7 @@
 ---
 name: gwas-functional-interpretation
 description: 当用户有疾病遗传关联结果，不知道涉及什么通路、组织或细胞类型、想补机制解释和富集图，或提出MAGMA/分层LDSC时使用；区分遗传信号富集与普通基因列表富集。
+whenToUse: 当用户有疾病遗传关联结果，不知道涉及什么通路、组织或细胞类型、想补机制解释和富集图，或提出MAGMA/分层LDSC时使用
 ---
 
 # GWAS功能解释

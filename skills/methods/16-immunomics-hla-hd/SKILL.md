@@ -1,6 +1,7 @@
 ---
 name: 16-immunomics-hla-hd
 description: 用于WGS、WES或RNA-seq的HLA与KIR等位基因分型及质量复核；当用户需要免疫遗传背景、新抗原或药物关联输入时使用。
+whenToUse: 当用户需要免疫遗传背景、新抗原或药物关联输入时使用
 ---
 # HLA 与 KIR 分型
 

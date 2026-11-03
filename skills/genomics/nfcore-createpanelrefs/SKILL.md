@@ -1,6 +1,7 @@
 ---
 name: nfcore-createpanelrefs
-description: "当要为变异或拷贝数分析建立正常样本背景，已有多个正常样本数据时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/createpanelrefs。"
+description: 当要为变异或拷贝数分析建立正常样本背景，已有多个正常样本数据时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/createpanelrefs。
+whenToUse: 当要为变异或拷贝数分析建立正常样本背景，已有多个正常样本数据时使用
 ---
 
 # 正常样本面板与背景模型构建（nf-core/createpanelrefs）

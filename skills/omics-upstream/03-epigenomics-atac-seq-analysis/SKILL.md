@@ -1,6 +1,7 @@
 ---
 name: 03-epigenomics-atac-seq-analysis
-description: "用于从bulk ATAC-seq FASTQ生成开放染色质峰、差异可及区域和质量诊断；当用户需要处理Tn5切点、共识峰或重复一致性时使用。"
+description: 用于从bulk ATAC-seq FASTQ生成开放染色质峰、差异可及区域和质量诊断；当用户需要处理Tn5切点、共识峰或重复一致性时使用。
+whenToUse: 当用户需要处理Tn5切点、共识峰或重复一致性时使用
 ---
 
 # ATAC-seq染色质可及性分析

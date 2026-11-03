@@ -1,6 +1,6 @@
 ---
 name: 03-epigenomics-chromatin-loop-detection
-description: "用于从Hi-C、Micro-C或捕获Hi-C数据检测染色质环，注释增强子—启动子互作并比较互作强度。"
+description: 用于从Hi-C、Micro-C或捕获Hi-C数据检测染色质环，注释增强子—启动子互作并比较互作强度。
 ---
 
 # 染色质环与增强子-启动子互作

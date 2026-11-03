@@ -1,6 +1,6 @@
 ---
 name: 03-epigenomics-enhancer-identification
-description: "用于整合开放染色质与活性标记识别候选增强子；当具备H3K27ac、Mediator或BRD4等连续占据信号时，再按stitching和排序定义超级增强子。"
+description: 用于整合开放染色质与活性标记识别候选增强子；当具备H3K27ac、Mediator或BRD4等连续占据信号时，再按stitching和排序定义超级增强子。
 ---
 
 # 增强子与超级增强子识别

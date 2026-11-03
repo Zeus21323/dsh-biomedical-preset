@@ -1,6 +1,7 @@
 ---
 name: nfcore-genomeassembler
-description: "当已有 ONT 或 PacBio HiFi 长读数据，希望获得基因组组装时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/genomeassembler。"
+description: 当已有 ONT 或 PacBio HiFi 长读数据，希望获得基因组组装时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/genomeassembler。
+whenToUse: 当已有 ONT 或 PacBio HiFi 长读数据，希望获得基因组组装时使用
 ---
 
 # 长读长基因组组装与scaffolding（nf-core/genomeassembler）

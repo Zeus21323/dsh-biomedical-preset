@@ -1,6 +1,7 @@
 ---
 name: nfcore-nanostring
-description: "当已有 nCounter 计数、探针 panel 或 RCC 交付数据，需要表达比较时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/nanostring。"
+description: 当已有 nCounter 计数、探针 panel 或 RCC 交付数据，需要表达比较时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/nanostring。
+whenToUse: 当已有 nCounter 计数、探针 panel 或 RCC 交付数据，需要表达比较时使用
 ---
 
 # NanoString nCounter表达分析（nf-core/nanostring）

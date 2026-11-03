@@ -1,6 +1,7 @@
 ---
 name: protein-binding-pocket-detection
 description: 用于识别和比较蛋白小分子结合口袋、评估可成药性并准备对接区域；当靶点缺少已知配体位点时使用。
+whenToUse: 当靶点缺少已知配体位点时使用
 ---
 # 蛋白质结合口袋识别
 

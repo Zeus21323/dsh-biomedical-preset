@@ -1,6 +1,7 @@
 ---
 name: nfcore-cageseq
-description: "当转录起始相关 CAGE 测序需要提取标签和起始位点时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/cageseq。"
+description: 当转录起始相关 CAGE 测序需要提取标签和起始位点时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/cageseq。
+whenToUse: 当转录起始相关 CAGE 测序需要提取标签和起始位点时使用
 ---
 
 # CAGE转录起始位点与标签计数（nf-core/cageseq）

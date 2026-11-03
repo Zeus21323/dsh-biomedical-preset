@@ -1,6 +1,7 @@
 ---
 name: clinical-trial-workflows
 description: 当用户需要检索相关临床试验、评估可行性或起草研究方案框架时使用。
+whenToUse: 当用户需要检索相关临床试验、评估可行性或起草研究方案框架时使用
 ---
 
 # 临床试验检索与方案设计

@@ -1,6 +1,7 @@
 ---
 name: 13-clinical-genomics-varsome
 description: 用于检索ClinVar、VarSome及其链接的原始证据并处理分类冲突；当用户需要某一变异的临床记录、提交者和更新时间时使用。
+whenToUse: 当用户需要某一变异的临床记录、提交者和更新时间时使用
 ---
 # 临床变异证据检索
 

@@ -1,6 +1,7 @@
 ---
 name: 20-ai-medical-imaging-ai-image-omics-fusion
 description: 当用户需要整合放射影像、数字病理、组学和临床信息开展多模态研究时使用。
+whenToUse: 当用户需要整合放射影像、数字病理、组学和临床信息开展多模态研究时使用
 ---
 
 # 放射影像-病理-组学融合

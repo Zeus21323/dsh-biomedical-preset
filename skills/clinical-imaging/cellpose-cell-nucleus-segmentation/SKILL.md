@@ -1,6 +1,7 @@
 ---
 name: cellpose-cell-nucleus-segmentation
 description: 当用户需要在荧光或明场显微图像中使用Cellpose分割细胞或细胞核并提取形态指标时使用。
+whenToUse: 当用户需要在荧光或明场显微图像中使用Cellpose分割细胞或细胞核并提取形态指标时使用
 ---
 
 # Cellpose细胞与细胞核分割

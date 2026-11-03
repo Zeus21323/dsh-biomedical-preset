@@ -1,6 +1,7 @@
 ---
 name: protein-structure-preparation
 description: 用于对接、模拟或结构分析前修复PDB/mmCIF结构、确定质子化和处理缺失成分；当原始结构不能直接计算时使用。
+whenToUse: 当原始结构不能直接计算时使用
 ---
 # 蛋白质结构预处理
 

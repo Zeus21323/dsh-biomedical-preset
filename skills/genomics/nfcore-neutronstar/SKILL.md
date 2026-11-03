@@ -1,6 +1,7 @@
 ---
 name: nfcore-neutronstar
-description: "当数据和项目记录表明使用历史 10x linked-read 技术，需要评估或复现组装时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/neutronstar。"
+description: 当数据和项目记录表明使用历史 10x linked-read 技术，需要评估或复现组装时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/neutronstar。
+whenToUse: 当数据和项目记录表明使用历史 10x linked-read 技术，需要评估或复现组装时使用
 ---
 
 # 历史10x linked-read从头组装（nf-core/neutronstar）

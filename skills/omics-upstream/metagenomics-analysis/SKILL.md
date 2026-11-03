@@ -1,6 +1,7 @@
 ---
 name: metagenomics-analysis
 description: 用于把宏基因组研究从原始读段质控串联到物种、功能、耐药和统计解释；当用户需要完整而非单点流程时使用。
+whenToUse: 当用户需要完整而非单点流程时使用
 ---
 # 宏基因组端到端分析
 

@@ -1,6 +1,7 @@
 ---
 name: genome-browser-track-creation
 description: 当用户需要把比对、变异、覆盖、注释或调控信号制作成可在 IGV/UCSC 等浏览器查看的轨道时使用。
+whenToUse: 当用户需要把比对、变异、覆盖、注释或调控信号制作成可在 IGV/UCSC 等浏览器查看的轨道时使用
 ---
 
 # 基因组浏览器与轨道制作

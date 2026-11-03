@@ -1,6 +1,7 @@
 ---
 name: affinity-proteomics-analysis
-description: "当用户需要分析 Olink、SomaScan 等亲和试剂平台的 NPX/RFU 数据，正确处理板效应、检测限、探针版本和一蛋白多探针时使用。"
+description: 当用户需要分析 Olink、SomaScan 等亲和试剂平台的 NPX/RFU 数据，正确处理板效应、检测限、探针版本和一蛋白多探针时使用。
+whenToUse: 当用户需要分析 Olink、SomaScan 等亲和试剂平台的 NPX/RFU 数据，正确处理板效应、检测限、探针版本和一蛋白多探针时使用
 ---
 
 # 亲和蛋白质组分析

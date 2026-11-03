@@ -1,6 +1,7 @@
 ---
 name: nfcore-daamicrobiome
-description: "当已有微生物计数或丰度表，需要比较条件间差异时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/daamicrobiome。"
+description: 当已有微生物计数或丰度表，需要比较条件间差异时使用。根据文件、实验背景与研究问题判断适配性，选择方法及参数并解释限制；无需用户知道 nf-core/daamicrobiome。
+whenToUse: 当已有微生物计数或丰度表，需要比较条件间差异时使用
 ---
 
 # 微生物差异丰度多方法比较（nf-core/daamicrobiome）

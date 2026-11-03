@@ -1,6 +1,7 @@
 ---
 name: 18-precision-medicine-diagnostic-biomarker
 description: 当用户需要评估诊断试验或诊断生物标志物的灵敏度、特异度、预测值、似然比、ROC/AUC或阈值时使用。
+whenToUse: 当用户需要评估诊断试验或诊断生物标志物的灵敏度、特异度、预测值、似然比、ROC/AUC或阈值时使用
 ---
 
 # 诊断生物标志物性能评估

@@ -1,6 +1,7 @@
 ---
 name: 09-metagenomics-pathway-prediction
 description: 用于从16S ASV推测基因家族和通路组成；仅当没有宏基因组数据且用户接受预测性结果时使用。
+whenToUse: 当没有宏基因组数据且用户接受预测性结果时使用
 ---
 # 扩增子功能组成预测
 

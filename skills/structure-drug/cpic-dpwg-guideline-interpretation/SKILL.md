@@ -1,6 +1,7 @@
 ---
 name: cpic-dpwg-guideline-interpretation
 description: 用于将CPIC或DPWG药物基因组指南映射到患者基因型、表型和具体药物；当用户需要解释而非自行发明剂量规则时使用。
+whenToUse: 当用户需要解释而非自行发明剂量规则时使用
 ---
 # CPIC 与 DPWG 用药指南解释
 

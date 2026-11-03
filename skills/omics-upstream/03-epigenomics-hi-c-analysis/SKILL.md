@@ -1,6 +1,6 @@
 ---
 name: 03-epigenomics-hi-c-analysis
-description: "用于从Hi-C成对FASTQ构建接触矩阵，诊断连接产物、有效配对、距离衰减和可支持分辨率。"
+description: 用于从Hi-C成对FASTQ构建接触矩阵，诊断连接产物、有效配对、距离衰减和可支持分辨率。
 ---
 
 # Hi-C数据处理与质量控制

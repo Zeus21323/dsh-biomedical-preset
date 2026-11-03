@@ -1,6 +1,7 @@
 ---
 name: 02-population-genetics-population-stratification
 description: 当用户的遗传样本混在人群/批次中、PCA出现离群、担心病例对照来源不同或需要祖源和亲缘校正时使用，包括PCA/ADMIXTURE；不用于判定个人民族或文化身份。
+whenToUse: 当用户的遗传样本混在人群/批次中、PCA出现离群、担心病例对照来源不同或需要祖源和亲缘校正时使用
 ---
 
 # 群体结构与祖源分析

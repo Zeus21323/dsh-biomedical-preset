@@ -1,6 +1,7 @@
 ---
 name: 02-population-genetics-allele-frequency-analysis
 description: 当用户问某变异在患者/对照或不同人群中常不常见、数据库没查到是否罕见、如何计算携带频率或比较AF/AC/AN时使用；只提供百分比时先核查分母和质控。
+whenToUse: 当用户问某变异在患者/对照或不同人群中常不常见、数据库没查到是否罕见、如何计算携带频率或比较AF/AC/AN时使用
 ---
 
 # 群体等位基因频率分析

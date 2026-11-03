@@ -1,6 +1,7 @@
 ---
 name: drug-target-evidence-validation
 description: 当用户需要综合疾病关联、人类遗传、功能实验、可成药性、安全性、结构和临床先例，对候选药物靶点作GO/NO-GO判断时使用。
+whenToUse: 当用户需要综合疾病关联、人类遗传、功能实验、可成药性、安全性、结构和临床先例，对候选药物靶点作GO/NO-GO判断时使用
 ---
 
 # 药物靶点证据整合与验证

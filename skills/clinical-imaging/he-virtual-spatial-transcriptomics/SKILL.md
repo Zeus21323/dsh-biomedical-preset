@@ -1,6 +1,7 @@
 ---
 name: he-virtual-spatial-transcriptomics
 description: 当用户需要用DeepSpot-M从H&E切片切块预测空间基因表达并评估适用性时使用。
+whenToUse: 当用户需要用DeepSpot-M从H&E切片切块预测空间基因表达并评估适用性时使用
 ---
 
 # H&E虚拟空间转录组预测
