@@ -130,6 +130,13 @@ export function apply(ctx, config = {}) {
     }
   };
 
+  /**
+   * 白名单：专项 preset 只列自己要的分类（config.only），不写 34 个布尔值。
+   * 给了 only 就完全按 only 走，忽略 profile 级开关文件；否则退回「34 个布尔 + 文件覆盖」
+   * 的全量行为，这样全量 preset 仍然可以在设置页自由开关。
+   */
+  const only = Array.isArray(config?.only) && config.only.length > 0 ? new Set(config.only) : undefined;
+
   const dispose = ctx.skills.registerProvider(() => ({
     name: 'biomedical-picker',
 
@@ -142,7 +149,9 @@ export function apply(ctx, config = {}) {
       const effective = { ...config, ...(await switches()) };
       const out = [];
       for (const category of doc.categories) {
-        if (effective[category.id] === false) continue;
+        if (only) {
+          if (!only.has(category.id)) continue;
+        } else if (effective[category.id] === false) continue;
         for (const entry of category.skills) {
           const directory = join(SKILLS_ROOT, entry.path);
           const file = join(directory, 'SKILL.md');
