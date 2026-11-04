@@ -112,11 +112,11 @@
       "versions": [
         {
           "version": "2.3.0",
-          "publishTimestamp": 1793803360,
+          "publishTimestamp": 1793803612,
           "source": {
             "type": "git",
             "url": "https://github.com/Zeus21323/dsh-biomedical-preset",
-            "commit": "0ad8861392ccccb4c545a1e95699cef10541c982"
+            "commit": "2cccdd5391e662fc6a23acedc176ad57ec7c7a20"
           },
           "engines": {
             "dsh": "^0.2.1-rc.2"
