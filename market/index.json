@@ -5,8 +5,8 @@
     "zh": "生物医学研究插件"
   },
   "description": {
-    "en": "A self-contained agent preset for biomedical research: 603 skills in 34 functional categories (genomics, multi-omics, single-cell, proteomics, metabolomics, epigenomics, spatial omics, structural biology, drug discovery, clinical imaging, research methods), each category toggleable from a grouped settings page, plus a bundled 51-tool public-data MCP server and a per-session subagent cap.",
-    "zh": "面向生物医学研究的自包含 agent 预设：603 个技能按 34 个功能分类组织（基因组、多组学、单细胞、蛋白组、代谢组、表观组、空间组学、结构生物学、药物发现、临床影像、研究方法），可在设置页按组逐类开关；自带 51 个公开数据源 MCP 工具，并对子智能体并发设上限。"
+    "en": "A self-contained agent preset for biomedical research: 603 skills in 34 functional categories (genomics, multi-omics, single-cell, proteomics, metabolomics, epigenomics, spatial omics, structural biology, drug discovery, clinical imaging, research methods), each category toggleable from a grouped settings page, plus an in-conversation panel that narrows the skill set for the current session only, a bundled 51-tool public-data MCP server, and a per-session subagent cap.",
+    "zh": "面向生物医学研究的自包含 agent 预设：603 个技能按 34 个功能分类组织（基因组、多组学、单细胞、蛋白组、代谢组、表观组、空间组学、结构生物学、药物发现、临床影像、研究方法），可在设置页按组逐类开关；对话内还有一个浮窗，只调整当前会话的技能范围；自带 51 个公开数据源 MCP 工具，并对子智能体并发设上限。"
   },
   "metadata": {
     "categories": {
@@ -79,8 +79,8 @@
         "zh": "生物医学模式"
       },
       "description": {
-        "en": "Biomedical research collaborator preset as one package: 603 skills in 34 functional categories, a grouped settings page to toggle them per category, 51 public-data MCP tools, and a per-session subagent cap.",
-        "zh": "生物医学研究合作者预设（单包）：603 个技能分 34 个功能分类，自带按组开关的设置页、51 个公开数据源 MCP 工具，并对子智能体并发设上限。"
+        "en": "Biomedical research collaborator preset as one package: 603 skills in 34 functional categories, a grouped settings page to toggle them per category, an in-conversation panel to scope the skill set for the current session, 51 public-data MCP tools, and a per-session subagent cap.",
+        "zh": "生物医学研究合作者预设（单包）：603 个技能分 34 个功能分类，自带按组开关的设置页与对话内「只改本会话」的技能浮窗，51 个公开数据源 MCP 工具，并对子智能体并发设上限。"
       },
       "icon": "icons/biomedical.svg",
       "author": "Zeus21323",
@@ -111,12 +111,12 @@
       },
       "versions": [
         {
-          "version": "2.2.0",
-          "publishTimestamp": 1793715218,
+          "version": "2.3.0",
+          "publishTimestamp": 1793801235,
           "source": {
             "type": "git",
             "url": "https://github.com/Zeus21323/dsh-biomedical-preset",
-            "commit": "134606b05445370979526cc305d64a9178069507"
+            "commit": "efd9e6b982cb3c8162ad530e8a15d3d72fde53f3"
           },
           "engines": {
             "dsh": "^0.2.1-rc.2"
