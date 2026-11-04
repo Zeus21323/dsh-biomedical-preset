@@ -3521,18 +3521,90 @@ window.__ModuleLoader__.load({
       return res.json();
     }
 
+    /**
+     * 「这个会话是不是生物医学模式」——决定入口按键是否出现。
+     *
+     * 客户端半是 profile 级的（所有会话共用一份），所以必须问 Host：Host 用
+     * agents.get(sessionId) 找到会话，再用 agentPresets.composedPreset(ctx) 拿到
+     * 它实际组合的预设，然后看该预设的声明里有没有本插件。
+     *
+     * 结果按会话缓存 5 秒并合并并发请求：按键是输入框工具栏里的常驻项，不能每次
+     * 渲染都打一次网络。
+     */
+    const APPLIES_TTL_MS = 5000;
+    const appliesCache = new Map(); // sessionId → { at, value, inflight? }
+
+    function cachedApplies(sessionId) {
+      const hit = appliesCache.get(sessionId);
+      if (!hit) return undefined;
+      if (hit.value !== undefined && Date.now() - hit.at < APPLIES_TTL_MS) return hit.value;
+      return undefined;
+    }
+
+    function ensureApplies(sessionId) {
+      if (!sessionId) return Promise.resolve(undefined);
+      const hit = appliesCache.get(sessionId);
+      if (hit?.inflight) return hit.inflight;
+      const fresh = cachedApplies(sessionId);
+      if (fresh !== undefined) return Promise.resolve(fresh);
+      const entry = hit ?? { at: 0, value: undefined };
+      appliesCache.set(sessionId, entry);
+      entry.inflight = (async () => {
+        try {
+          const res = await fetch(`/bio-skills/applies?sessionId=${encodeURIComponent(sessionId)}`, {
+            headers: { accept: 'application/json' },
+          });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const data = await res.json();
+          const value = data?.applies === true ? true : data?.applies === false ? false : undefined;
+          entry.value = value;
+          entry.at = Date.now();
+          return value;
+        } catch {
+          // 拿不到就不显示（宁可不出现，也不要在别的模式里冒出来）
+          entry.value = false;
+          entry.at = Date.now();
+          return false;
+        } finally {
+          entry.inflight = undefined;
+        }
+      })();
+      return entry.inflight;
+    }
+
     function scopeErrorText(message) {
       if (/HTTP 404/.test(message)) return '本会话没有加载生物医学技能（可能不是生物医学模式的会话，或插件被停用了）。';
       return `${message}。路由未注册或 Host 未就绪时可刷新页面重试。`;
     }
 
-    /** 输入框右侧的入口按键。 */
+    /** 输入框右侧的入口按键：只在生物医学模式的会话里出现。 */
     function ScopeEntry(props) {
       useScopeStore();
       const sessionId = props?.sessionId;
+      const [applies, setApplies] = React.useState(() => cachedApplies(sessionId));
+
       React.useEffect(() => {
         scopeStore.bind(sessionId);
       }, [sessionId]);
+
+      React.useEffect(() => {
+        if (!sessionId) return undefined;
+        let alive = true;
+        ensureApplies(sessionId).then((value) => {
+          if (alive) setApplies(value);
+        });
+        return () => {
+          alive = false;
+        };
+      }, [sessionId]);
+
+      // 不是生物医学模式：连按键都不出现；面板若还开着就顺手关掉
+      React.useEffect(() => {
+        if (applies !== true && scopeStore.open) scopeStore.close();
+      }, [applies]);
+
+      if (applies !== true) return null;
+
       const active = scopeStore.open;
       return h(
         'button',

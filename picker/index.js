@@ -46,6 +46,12 @@ const SHARED = (globalThis[SHARED_KEY] ??= {
   routeError: undefined,
   /** agentPresets 服务引用：用来读每个预设的挂载诊断（broken） */
   presetsSvc: undefined,
+  /** agents 服务引用：用来按 sessionId 找到会话，判断它属于哪个预设 */
+  agentsSvc: undefined,
+  /** 缓存：哪些预设声明了本插件（即「生物医学模式」） */
+  biomedIds: undefined,
+  /** 最近的 applies 判定（诊断用：能看到每个会话被判成什么预设） */
+  appliesLog: [],
   disposeRoutes: undefined,
 });
 
@@ -246,13 +252,105 @@ async function handleGet(request, response, logger) {
 }
 
 /**
- * 诊断路由：把 13 个预设各自的挂载诊断（broken）原样透出来。
+ * 哪些预设算「生物医学模式」？
  *
- * 为什么需要它：预设挂载失败时 `agent-preset-registry` 只往 Host 日志写一行 warn，
- * 桌面端拿不到那行日志；而 `/api/*` 的 RPC 要求进程内 token。这个路由跟
- * /bio-skills/get 一样是未鉴权的回环路由，`curl 127.0.0.1:<port>/bio-skills/presets`
- * 就能看到「哪个预设坏了、坏在哪一行」。
+ * 不硬编码那 13 个 id：直接读每个预设声明的子插件列表（readDocument 的 content 是
+ * 声明原文 YAML），看它有没有 `dsh-biomedical-preset/picker`。这样以后加/改预设、
+ * 甚至换 id，判断都自动跟着走。结果缓存 60 秒（预设是启动时注册的，几乎不变）。
  */
+async function biomedicalPresetIds() {
+  const svc = SHARED.presetsSvc;
+  if (!svc || typeof svc.list !== 'function' || typeof svc.readDocument !== 'function') return undefined;
+  const cached = SHARED.biomedIds;
+  if (cached && Date.now() - cached.at < 60_000) return cached.ids;
+  let rows;
+  try {
+    rows = await svc.list();
+  } catch {
+    return undefined;
+  }
+  const ids = new Set();
+  for (const row of Array.isArray(rows) ? rows : []) {
+    if (!row?.id) continue;
+    try {
+      const doc = await svc.readDocument(row.id);
+      if (String(doc?.content ?? '').includes('dsh-biomedical-preset/picker')) ids.add(row.id);
+    } catch {
+      /* 读不到这个预设的声明就当它不是 */
+    }
+  }
+  SHARED.biomedIds = { at: Date.now(), ids };
+  return ids;
+}
+
+/**
+ * 这个会话是否在生物医学模式下。
+ * @returns {{ applies: boolean|undefined, presetId: string|undefined, reason?: string }}
+ *   applies=false 表示确定不是；undefined 表示判断不了（前端按「不显示」处理）
+ */
+async function resolveApplies(sessionId) {
+  if (!sessionId) return { applies: undefined, presetId: undefined, reason: 'sessionId required' };
+  const presets = SHARED.presetsSvc;
+  const agents = SHARED.agentsSvc;
+  if (!presets || typeof presets.composedPreset !== 'function') {
+    return { applies: undefined, presetId: undefined, reason: 'agentPresets unavailable' };
+  }
+  if (!agents || typeof agents.get !== 'function') {
+    return { applies: undefined, presetId: undefined, reason: 'agents unavailable' };
+  }
+  const ids = await biomedicalPresetIds();
+  if (!ids) return { applies: undefined, presetId: undefined, reason: 'preset declarations unreadable' };
+  const agent = agents.get(sessionId);
+  if (!agent || !agent.ctx) return { applies: undefined, presetId: undefined, reason: 'session has no live agent' };
+  let presetId;
+  try {
+    presetId = presets.composedPreset(agent.ctx);
+  } catch (e) {
+    return { applies: undefined, presetId: undefined, reason: `composedPreset failed: ${e?.message ?? e}` };
+  }
+  if (presetId === undefined) return { applies: false, presetId: undefined, reason: 'no preset bound' };
+  return { applies: ids.has(presetId), presetId };
+}
+
+/** 面板入口的显示判定：只有生物医学模式的会话才露按键。 */
+async function handleApplies(request, response, logger) {
+  if (request.method !== 'GET') {
+    response.writeHead(405, { allow: 'GET' });
+    response.end();
+    return;
+  }
+  const url = new URL(request.url ?? '/', 'http://127.0.0.1');
+  const sid = String(url.searchParams.get('sessionId') ?? '').trim();
+  let verdict;
+  try {
+    verdict = await resolveApplies(sid);
+  } catch (e) {
+    logger?.warn?.(`biomedical-picker: resolveApplies failed: ${e?.message ?? e}`);
+    verdict = { applies: undefined, presetId: undefined, reason: String(e?.message ?? e) };
+  }
+  sendJson(response, 200, {
+    ok: true,
+    sessionId: sid,
+    applies: verdict.applies === undefined ? null : verdict.applies,
+    presetId: verdict.presetId ?? null,
+    reason: verdict.reason ?? null,
+  });
+  // 留痕：每个会话的判定都记一条（最近 30 条），/bio-skills/presets 里可查
+  try {
+    SHARED.appliesLog.push({
+      at: Date.now(),
+      sessionId: sid,
+      presetId: verdict.presetId ?? null,
+      applies: verdict.applies === undefined ? null : verdict.applies,
+      reason: verdict.reason ?? null,
+    });
+    if (SHARED.appliesLog.length > 30) SHARED.appliesLog.splice(0, SHARED.appliesLog.length - 30);
+  } catch {
+    /* 诊断留痕失败不影响返回 */
+  }
+}
+
+/** 诊断用：把每个预设的挂载诊断（broken）原样透出来。 */
 async function handlePresets(request, response) {
   if (request.method !== 'GET') {
     response.writeHead(405, { allow: 'GET' });
@@ -276,6 +374,7 @@ async function handlePresets(request, response) {
     instances: SHARED.instances.size,
     routeCollisions: SHARED.routeCollisions,
     routeError: SHARED.routeError ?? null,
+    appliesLog: SHARED.appliesLog.slice(-30),
     presets: (Array.isArray(rows) ? rows : []).map((r) => ({
       id: r?.id,
       name: r?.name,
@@ -351,8 +450,10 @@ export function apply(ctx, config = {}) {
   let agentsSvc;
   ctx.inject(['agents'], (scoped) => {
     agentsSvc = scoped.agents;
+    SHARED.agentsSvc = scoped.agents;
     return () => {
       agentsSvc = undefined;
+      if (SHARED.agentsSvc === scoped.agents) SHARED.agentsSvc = undefined;
     };
   });
 
@@ -398,6 +499,16 @@ export function apply(ctx, config = {}) {
               handler: (request, response) => handlePresets(request, response),
             },
             'biomedical-picker: presets-diagnostic',
+          ),
+        );
+        disposers.push(
+          scoped.webServer.register(
+            {
+              kind: 'exact',
+              path: '/bio-skills/applies',
+              handler: (request, response) => handleApplies(request, response, ctx.logger),
+            },
+            'biomedical-picker: applies',
           ),
         );
         SHARED.disposeRoutes = () => {

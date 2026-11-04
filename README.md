@@ -208,6 +208,12 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 └─────────────────────────────────────────────┘
 ```
 
+- **只在本模式下出现**：入口按键是客户端半（profile 级，所有会话共用一份），所以每次挂载都会问 Host 一次
+  `GET /bio-skills/applies?sessionId=…`。Host 用 `agents.get(sessionId)` 找到会话，再用
+  `agentPresets.composedPreset(agent.ctx)` 读出它**实际组合的预设 id**，然后看该预设的声明里有没有
+  `dsh-biomedical-preset/picker`。是生物医学模式才显示按键；其它模式（standard / ptc / minimal / cordis /
+  redteam …）按键不出现，面板若开着会被自动关掉。判定按会话缓存 5 秒，不会每次渲染都打网络。
+- 判定不出来（路由 404、会话还没起 agent、读不到预设声明）时一律**不显示**——宁可不出现，也不要在别的模式里冒出来。要排查就直接看那条路由，它会回 `applies / presetId / reason`。
 - **12 个大类**与 12 个专项模式一一对应，展开后是该大类下的 34 个功能分类，可单独勾选；大类开关是三态（全开／部分／全关）。
 - 每行显示「N 类 · M 技能 · ≈X token」，底部汇总当前生效范围，选之前就知道目录成本。
 - 三个按钮：`全部开启` / `全部关闭` / `恢复默认`（`恢复默认` 清掉会话覆盖，回到「模式白名单 → 设置页」的默认状态）。
@@ -221,7 +227,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 
 | 半 | 位置 | 职责 |
 |---|---|---|
-| Host | `picker/index.js` | `GET /bio-skills/get?sessionId=`（返回 34 类 + 此刻 `effective` + `source`）、`POST /bio-skills/set`（`{sessionId, enabled: string[] \| null}`）；`sessionOverrides: Map<sessionId, Set<categoryId>>`；用 `agents.currentInitiator()` 取当前会话 |
+| Host | `picker/index.js` | `GET /bio-skills/get?sessionId=`（返回 34 类 + 此刻 `effective` + `source`）、`POST /bio-skills/set`（`{sessionId, enabled: string[] \| null}`）、`GET /bio-skills/applies?sessionId=`（该会话是不是生物医学模式）、`GET /bio-skills/presets`（13 个预设的 `broken` 诊断）；`sessionOverrides: Map<sessionId, Set<categoryId>>`；用 `agents.currentInitiator()` 取当前会话 |
 | Client | `client.js` | `conversation.input.right` 的入口按键（`inject: (sessionId) => ({sessionId})`）+ `shell.overlay` 的浮窗；两者只共享一个模块级 `scopeStore` |
 
 两个实现要点，改动时别踩：
