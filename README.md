@@ -111,6 +111,21 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 > 自查方法：`node -e` 解析 client.js 取注册 id，与 `package.json` 的 `name` 比对；
 > 再确认 Loader 行的 `name` 不含 `/`。
 
+3. **样式只能用 `--dsw-alias-*` 主题变量**，别自造变量名。
+
+   浏览器半能用的颜色 token 只有这 14 个（`cordis_inspect_query` 的 client `Theme.listTokens` 可查）：
+
+   | token | 用途 |
+   |---|---|
+   | `--dsw-alias-bg-base` / `-bg-layer-1` / `-bg-layer-2` / `-bg-overlay` | 底色 / 抬升面 / 嵌套面 / 浮层 |
+   | `--dsw-alias-border-l1` / `-l2` | 弱边框 / 强边框 |
+   | `--dsw-alias-label-primary` / `-label-secondary` | 主文字 / 次文字 |
+   | `--dsw-alias-brand-primary` | 主色（选中、强调） |
+   | `--dsw-alias-state-{error,success,warn,idle}-primary` | 状态色 |
+   | `--dsw-specific-sidebar-fill` | 侧栏底色 |
+
+   `--dsh-*` 之类自造名字**不存在**，`var()` 会静默落回兜底值——兜底若写成 `#fff`，深色模式下就是一块白板（2.3.0 开发期间真踩过）。浮窗背景用 `--dsw-alias-bg-overlay`，边框用 `-border-l1/-l2`，强调色用 `-brand-primary`。
+
 ## 技能清单（603，34 个功能分类）
 
 603 个技能按**用户要达成的任务**分为 34 类（每类 10–38 个），由 `picker` 插件统一提供，映射见 `picker/catalog.json`。分类不按文件格式切分；nf-core 流程按分析任务分散到各领域类。
