@@ -137,8 +137,151 @@ export function apply(ctx, config = {}) {
    */
   const only = Array.isArray(config?.only) && config.only.length > 0 ? new Set(config.only) : undefined;
 
-  const dispose = ctx.skills.registerProvider(() => ({
-    name: 'biomedical-picker',
+  // ══════════════════════════════════════════════════════════════════════
+  // 会话级覆盖：每个会话可以单独选启用哪些分类，优先于 preset 白名单与
+  // profile 级开关文件。存在内存里（重启清空），由 Web UI 通过下面两个
+  // HTTP 路由读写；skills.snapshot() 每个 step 都会重新查询，所以改完
+  // 下一个 step 就生效，不需要新开会话。
+  // ══════════════════════════════════════════════════════════════════════
+  /** @type {Map<string, Set<string>>} sessionId → 该会话启用的分类 id */
+  const sessionOverrides = new Map();
+
+  /** provider 的 control，改动配置后用它让目录缓存失效 */
+  let controlRef;
+
+  /**
+   * 可选服务必须用 ctx.inject 等待就绪，不能用 ctx.get：
+   * 冷启动时 apply() 可能早于 webServer / agents 注册，get 会拿到 undefined，
+   * 路由就永远注册不上（实测：热加载时 available，冷启动时 UNAVAILABLE）。
+   */
+  let agentsSvc;
+  ctx.inject(['agents'], (scoped) => {
+    agentsSvc = scoped.agents;
+    return () => {
+      agentsSvc = undefined;
+    };
+  });
+
+  function sendJson(response, status, body) {
+    try {
+      response.writeHead(status, { 'content-type': 'application/json; charset=utf-8' });
+      response.end(JSON.stringify(body));
+    } catch {
+      /* 连接已断，忽略 */
+    }
+  }
+
+  async function readJsonBody(request) {
+    const chunks = [];
+    let bytes = 0;
+    for await (const chunk of request) {
+      bytes += chunk.length;
+      if (bytes > 64 * 1024) throw new Error('body too large');
+      chunks.push(chunk);
+    }
+    if (chunks.length === 0) return {};
+    return JSON.parse(Buffer.concat(chunks).toString('utf8'));
+  }
+
+  ctx.inject(['webServer'], (scoped) => {
+    const disposeGet = scoped.webServer.register(
+      {
+        kind: 'exact',
+        path: '/bio-skills/get',
+        handler: async (request, response) => {
+          if (request.method !== 'GET') {
+            response.writeHead(405, { allow: 'GET' });
+            response.end();
+            return;
+          }
+          const url = new URL(request.url ?? '/', 'http://127.0.0.1');
+          const sid = String(url.searchParams.get('sessionId') ?? '').trim();
+          const doc = await load();
+          const active = sid ? sessionOverrides.get(sid) : undefined;
+          const profileSwitches = await switches();
+          const allIds = (doc?.categories ?? []).map((c) => c.id);
+          // 本会话此刻真正生效的分类：会话覆盖 > preset 白名单 > profile 开关文件。
+          // 前端不该自己猜这个优先级，所以这里直接算好回给 UI。
+          const effective = active
+            ? [...active]
+            : only
+              ? [...only]
+              : allIds.filter((id) => profileSwitches[id] !== false);
+          sendJson(response, 200, {
+            ok: true,
+            sessionId: sid,
+            categories: (doc?.categories ?? []).map((c) => ({
+              id: c.id,
+              label: c.label_zh,
+              count: c.skills.length,
+            })),
+            enabled: active ? [...active] : null,
+            effective,
+            source: active ? 'session' : only ? 'preset' : 'profile',
+            presetOnly: only ? [...only] : null,
+          });
+        },
+      },
+      'biomedical-picker: session-skills/get',
+    );
+
+    const disposeSet = scoped.webServer.register(
+      {
+        kind: 'exact',
+        path: '/bio-skills/set',
+        handler: async (request, response) => {
+          if (request.method !== 'POST') {
+            response.writeHead(405, { allow: 'POST' });
+            response.end();
+            return;
+          }
+          let body;
+          try {
+            body = await readJsonBody(request);
+          } catch (e) {
+            sendJson(response, 400, { ok: false, error: String(e?.message ?? e) });
+            return;
+          }
+          const sid = String(body?.sessionId ?? '').trim();
+          if (!sid) {
+            sendJson(response, 400, { ok: false, error: 'sessionId required' });
+            return;
+          }
+          const enabled = Array.isArray(body?.enabled) ? body.enabled.map(String) : null;
+          if (enabled === null) {
+            sessionOverrides.delete(sid);
+          } else {
+            sessionOverrides.set(sid, new Set(enabled));
+          }
+          try {
+            controlRef?.invalidate?.();
+          } catch {}
+          sendJson(response, 200, {
+            ok: true,
+            sessionId: sid,
+            enabled: enabled ? [...enabled] : null,
+          });
+        },
+      },
+      'biomedical-picker: session-skills/set',
+    );
+
+    ctx.logger?.info?.('biomedical-picker: session-skills routes registered');
+
+    return () => {
+      try {
+        disposeGet();
+      } catch {}
+      try {
+        disposeSet();
+      } catch {}
+    };
+  });
+
+  const dispose = ctx.skills.registerProvider((control) => {
+    controlRef = control;
+    return {
+      name: 'biomedical-picker',
 
     async list() {
       const doc = await load();
@@ -147,9 +290,29 @@ export function apply(ctx, config = {}) {
         return scanAll();
       }
       const effective = { ...config, ...(await switches()) };
+
+      // 会话级覆盖优先：该会话显式选过分类，就完全按它走
+      let sessionSet;
+      let currentSid;
+      try {
+        const agent = agentsSvc?.currentInitiator?.();
+        const sid = agent?.id;
+        currentSid = sid;
+        if (sid) sessionSet = sessionOverrides.get(sid);
+      } catch (e) {
+        ctx.logger?.warn?.(`biomedical-picker: currentInitiator failed: ${e?.message ?? e}`);
+      }
+      if (sessionOverrides.size > 0) {
+        ctx.logger?.info?.(
+          `biomedical-picker: list() sid=${currentSid ?? 'undefined'} overrides=${sessionOverrides.size} hit=${Boolean(sessionSet)}`,
+        );
+      }
+
       const out = [];
       for (const category of doc.categories) {
-        if (only) {
+        if (sessionSet) {
+          if (!sessionSet.has(category.id)) continue;
+        } else if (only) {
           if (!only.has(category.id)) continue;
         } else if (effective[category.id] === false) continue;
         for (const entry of category.skills) {
@@ -190,7 +353,8 @@ export function apply(ctx, config = {}) {
       const { body } = frontmatter(text);
       return { ...candidate, content: body };
     },
-  }));
+    };
+  });
 
   ctx.effect(() => dispose, 'biomedical-skill-picker: provider');
 }

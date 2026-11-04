@@ -3184,6 +3184,640 @@ window.__ModuleLoader__.load({
       );
     }
 
+    // ══════════════════════════════════════════════════════════════════
+    // 会话级技能范围：输入框右侧的按键 + 可拖动浮窗
+    //
+    // 与设置页的区别：设置页写 profile 级开关（影响新会话的默认值），
+    // 这里写的是「本会话」覆盖（Host 内存里按 sessionId 存），优先级更高，
+    // 改完下一个 step 就生效，不新开会话也能变。
+    // ══════════════════════════════════════════════════════════════════
+
+    /** 12 个大类，与预设的 12 个专项模式一一对应（覆盖全部 34 个分类）。 */
+    const SECTIONS = [
+      {
+        id: 'seq-variant',
+        label: '测序与变异检出',
+        emoji: '🧬',
+        color: '#3b82f6',
+        cats: ['sequencing-qc-alignment', 'variant-calling-filtering', 'copy-number-structural-variation'],
+      },
+      {
+        id: 'genome-pop',
+        label: '基因组组装与群体遗传',
+        emoji: '🧭',
+        color: '#0ea5e9',
+        cats: ['genome-assembly-comparative', 'population-genetics-gwas'],
+      },
+      {
+        id: 'clinical',
+        label: '临床解读与精准医学',
+        emoji: '🩺',
+        color: '#10b981',
+        cats: ['variant-interpretation-clinical', 'clinical-precision-medicine', 'pharmacogenomics-dosing'],
+      },
+      {
+        id: 'tumor-immune',
+        label: '肿瘤与免疫组学',
+        emoji: '🎗️',
+        color: '#ec4899',
+        cats: ['cancer-genomics-liquid-biopsy', 'immunology-immuno-oncology'],
+      },
+      {
+        id: 'transcriptome',
+        label: '转录组与差异表达',
+        emoji: '📈',
+        color: '#8b5cf6',
+        cats: ['transcriptomics-quantification', 'differential-expression-enrichment'],
+      },
+      {
+        id: 'singlecell-spatial',
+        label: '单细胞与空间组学',
+        emoji: '🔬',
+        color: '#6366f1',
+        cats: ['single-cell-core', 'single-cell-advanced-virtual-cell', 'spatial-omics'],
+      },
+      {
+        id: 'epigenome',
+        label: '表观遗传与调控',
+        emoji: '🧫',
+        color: '#14b8a6',
+        cats: ['epigenomics-methylation', 'regulatory-network-sequence-models'],
+      },
+      {
+        id: 'proteo-metabo',
+        label: '蛋白组与代谢组',
+        emoji: '⚗️',
+        color: '#f59e0b',
+        cats: ['proteomics', 'metabolomics-lipidomics'],
+      },
+      {
+        id: 'structure-drug',
+        label: '结构与药物设计',
+        emoji: '💊',
+        color: '#06b6d4',
+        cats: ['structural-biology-modeling', 'chemoinformatics-drug-design', 'protein-engineering-synbio', 'gene-editing-cloning'],
+      },
+      {
+        id: 'microbiome',
+        label: '微生物组与宏基因组',
+        emoji: '🦠',
+        color: '#84cc16',
+        cats: ['microbiome-metagenomics'],
+      },
+      {
+        id: 'imaging-forensic',
+        label: '影像·细胞表型·法医',
+        emoji: '🖼️',
+        color: '#a855f7',
+        cats: ['medical-imaging-radiomics', 'microscopy-cell-phenotyping', 'forensic-identity-genetics'],
+      },
+      {
+        id: 'support',
+        label: '文献·写作与工程',
+        emoji: '📝',
+        color: '#f43f5e',
+        cats: [
+          'literature-evidence-synthesis',
+          'writing-document-delivery',
+          'data-engineering-statistics',
+          'workflow-reproducibility',
+          'database-api-access',
+          'visualization-figures',
+          'research-design-hypothesis',
+        ],
+      },
+    ];
+
+    /** 603 技能 ≈ 38k token（README 实测），折算成单个技能的粗估。 */
+    const TOKEN_PER_SKILL = 63;
+    const PANEL_POS_KEY = 'dsh-biomedical-scope-panel';
+
+    const PS = {
+      layer: { position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 70 },
+      panel: {
+        position: 'fixed',
+        width: '392px',
+        maxHeight: 'min(72vh, 620px)',
+        display: 'flex',
+        flexDirection: 'column',
+        pointerEvents: 'auto',
+        borderRadius: '14px',
+        border: '1px solid var(--dsh-border, rgba(128,128,128,0.24))',
+        background: 'var(--dsh-surface-raised, var(--dsh-surface, #ffffff))',
+        boxShadow: '0 18px 48px rgba(0,0,0,0.22)',
+        overflow: 'hidden',
+        color: 'inherit',
+      },
+      head: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        padding: '10px 12px',
+        cursor: 'grab',
+        userSelect: 'none',
+        borderBottom: '1px solid var(--dsh-border, rgba(128,128,128,0.16))',
+        background: 'var(--dsh-surface-subtle, rgba(128,128,128,0.05))',
+      },
+      headTitle: { fontSize: '13px', fontWeight: 700, margin: 0 },
+      headMeta: { fontSize: '11px', opacity: 0.55, margin: 0 },
+      headBtns: { marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '4px' },
+      iconBtn: {
+        width: '22px',
+        height: '22px',
+        display: 'grid',
+        placeItems: 'center',
+        borderRadius: '6px',
+        border: 'none',
+        background: 'transparent',
+        color: 'inherit',
+        cursor: 'pointer',
+        fontSize: '13px',
+        opacity: 0.7,
+      },
+      body: { padding: '10px 12px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '8px' },
+      hint: { fontSize: '11px', lineHeight: 1.55, opacity: 0.55, margin: 0 },
+      err: { fontSize: '11.5px', lineHeight: 1.55, color: '#d9534f', margin: 0, whiteSpace: 'pre-wrap' },
+      sec: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        padding: '7px 8px',
+        borderRadius: '9px',
+        border: '1px solid transparent',
+        background: 'transparent',
+      },
+      secOff: { opacity: 0.55 },
+      secIcon: {
+        width: '24px',
+        height: '24px',
+        display: 'grid',
+        placeItems: 'center',
+        borderRadius: '7px',
+        fontSize: '13px',
+        flexShrink: 0,
+      },
+      secBody: { flex: 1, minWidth: 0 },
+      secTitle: { fontSize: '12.5px', fontWeight: 600, margin: 0, lineHeight: 1.35 },
+      secMeta: { fontSize: '10.5px', opacity: 0.55, margin: 0, lineHeight: 1.4 },
+      caret: {
+        width: '18px',
+        height: '18px',
+        display: 'grid',
+        placeItems: 'center',
+        border: 'none',
+        background: 'transparent',
+        color: 'inherit',
+        cursor: 'pointer',
+        fontSize: '10px',
+        opacity: 0.55,
+        flexShrink: 0,
+      },
+      subList: { display: 'flex', flexDirection: 'column', gap: '2px', padding: '2px 0 6px 34px' },
+      subRow: { display: 'flex', alignItems: 'center', gap: '8px', padding: '3px 0' },
+      subTitle: { fontSize: '11.5px', margin: 0, flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' },
+      subCount: { fontSize: '10.5px', opacity: 0.5 },
+      footer: {
+        padding: '9px 12px',
+        borderTop: '1px solid var(--dsh-border, rgba(128,128,128,0.16))',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '6px',
+        flexWrap: 'wrap',
+        background: 'var(--dsh-surface-subtle, rgba(128,128,128,0.04))',
+      },
+      btn: {
+        fontSize: '11px',
+        padding: '3px 9px',
+        borderRadius: '7px',
+        border: '1px solid var(--dsh-border, rgba(128,128,128,0.3))',
+        background: 'transparent',
+        color: 'inherit',
+        cursor: 'pointer',
+        whiteSpace: 'nowrap',
+      },
+      btnPrimary: {
+        fontSize: '11px',
+        padding: '3px 9px',
+        borderRadius: '7px',
+        border: '1px solid transparent',
+        background: 'var(--dsh-accent, #3b82f6)',
+        color: '#fff',
+        cursor: 'pointer',
+        whiteSpace: 'nowrap',
+      },
+      sw: (state, color) => ({
+        position: 'relative',
+        width: '32px',
+        height: '18px',
+        borderRadius: '999px',
+        border: 'none',
+        cursor: 'pointer',
+        flexShrink: 0,
+        background: state === 'all' ? color : state === 'some' ? tint(color, 0.45) : 'rgba(128,128,128,0.28)',
+        transition: 'background 140ms ease',
+      }),
+      kn: (state) => ({
+        position: 'absolute',
+        top: '2px',
+        left: state === 'none' ? '2px' : '16px',
+        width: '14px',
+        height: '14px',
+        borderRadius: '999px',
+        background: '#fff',
+        boxShadow: '0 1px 2px rgba(0,0,0,0.22)',
+        transition: 'left 140ms ease',
+      }),
+      entryBtn: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '4px',
+        height: '26px',
+        padding: '0 8px',
+        borderRadius: '7px',
+        border: '1px solid var(--dsh-border, rgba(128,128,128,0.3))',
+        background: 'transparent',
+        color: 'inherit',
+        cursor: 'pointer',
+        fontSize: '11px',
+        lineHeight: 1,
+        whiteSpace: 'nowrap',
+        opacity: 0.85,
+      },
+    };
+
+    /** 按钮（session 作用域）与浮窗（root 作用域）之间只共享这一个最小状态。 */
+    const scopeStore = {
+      open: false,
+      sessionId: undefined,
+      listeners: new Set(),
+      subscribe(fn) {
+        this.listeners.add(fn);
+        return () => {
+          this.listeners.delete(fn);
+        };
+      },
+      emit() {
+        for (const fn of [...this.listeners]) {
+          try {
+            fn();
+          } catch {
+            /* 单个订阅者出错不影响其它 */
+          }
+        }
+      },
+      bind(sessionId) {
+        if (sessionId && sessionId !== this.sessionId) this.sessionId = sessionId;
+      },
+      toggle(sessionId) {
+        if (sessionId) this.sessionId = sessionId;
+        this.open = !this.open;
+        this.emit();
+      },
+      close() {
+        this.open = false;
+        this.emit();
+      },
+    };
+
+    function useScopeStore() {
+      const [, bump] = React.useState(0);
+      React.useEffect(() => scopeStore.subscribe(() => bump((n) => n + 1)), []);
+    }
+
+    function readPanelPos() {
+      try {
+        const raw = window.localStorage.getItem(PANEL_POS_KEY);
+        if (!raw) return null;
+        const p = JSON.parse(raw);
+        if (typeof p?.x === 'number' && typeof p?.y === 'number') return { x: p.x, y: p.y };
+      } catch {
+        /* localStorage 不可用就当没存过 */
+      }
+      return null;
+    }
+
+    function writePanelPos(pos) {
+      try {
+        window.localStorage.setItem(PANEL_POS_KEY, JSON.stringify(pos));
+      } catch {
+        /* 忽略：位置记不住不影响功能 */
+      }
+    }
+
+    async function bioSkillsGet(sessionId) {
+      const qs = sessionId ? `?sessionId=${encodeURIComponent(sessionId)}` : '';
+      const res = await fetch(`/bio-skills/get${qs}`, { headers: { accept: 'application/json' } });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    }
+
+    async function bioSkillsSet(sessionId, enabled) {
+      const res = await fetch('/bio-skills/set', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ sessionId, enabled }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    }
+
+    function scopeErrorText(message) {
+      if (/HTTP 404/.test(message)) return '本会话没有加载生物医学技能（可能不是生物医学模式的会话，或插件被停用了）。';
+      return `${message}。路由未注册或 Host 未就绪时可刷新页面重试。`;
+    }
+
+    /** 输入框右侧的入口按键。 */
+    function ScopeEntry(props) {
+      useScopeStore();
+      const sessionId = props?.sessionId;
+      React.useEffect(() => {
+        scopeStore.bind(sessionId);
+      }, [sessionId]);
+      const active = scopeStore.open;
+      return h(
+        'button',
+        {
+          type: 'button',
+          title: active ? '收起技能范围面板' : '选择本会话启用的技能分类',
+          'aria-expanded': active,
+          style: active ? { ...PS.entryBtn, opacity: 1, borderColor: 'var(--dsh-accent, #3b82f6)' } : PS.entryBtn,
+          onClick: () => scopeStore.toggle(sessionId),
+        },
+        '🧬',
+        '技能',
+      );
+    }
+
+    function ScopePanel() {
+      useScopeStore();
+      const open = scopeStore.open;
+      const sessionId = scopeStore.sessionId;
+      const [state, setState] = React.useState({ phase: 'idle' });
+      const [on, setOn] = React.useState(null);
+      const [pos, setPos] = React.useState(readPanelPos);
+      const [expanded, setExpanded] = React.useState({});
+      const [busy, setBusy] = React.useState(false);
+      const [msg, setMsg] = React.useState('');
+      const drag = React.useRef(null);
+
+      const load = React.useCallback(async () => {
+        setState({ phase: 'loading' });
+        try {
+          const data = await bioSkillsGet(sessionId);
+          if (!data || data.ok !== true) throw new Error('返回异常');
+          const cats = Array.isArray(data.categories) ? data.categories : [];
+          if (cats.length === 0) {
+            setState({ phase: 'empty', message: 'Host 没有返回任何技能分类（catalog 可能缺失）。' });
+            return;
+          }
+          const effective = Array.isArray(data.effective)
+            ? data.effective
+            : Array.isArray(data.enabled)
+              ? data.enabled
+              : cats.map((c) => c.id);
+          setOn(new Set(effective));
+          setState({
+            phase: 'ready',
+            categories: cats,
+            source: data.source ?? (Array.isArray(data.enabled) ? 'session' : 'profile'),
+            overridden: Array.isArray(data.enabled),
+            presetOnly: Array.isArray(data.presetOnly) ? data.presetOnly : null,
+          });
+        } catch (e) {
+          setState({ phase: 'error', message: scopeErrorText(`${e?.message ?? e}`) });
+        }
+      }, [sessionId]);
+
+      React.useEffect(() => {
+        if (open) load();
+      }, [open, sessionId, load]);
+
+      React.useEffect(() => {
+        if (!open) return undefined;
+        const onKey = (e) => {
+          if (e?.key === 'Escape') scopeStore.close();
+        };
+        window.addEventListener?.('keydown', onKey);
+        return () => window.removeEventListener?.('keydown', onKey);
+      }, [open]);
+
+      const persist = React.useCallback(
+        async (nextOn) => {
+          if (!sessionId) {
+            setMsg('当前会话 id 未知，无法保存。');
+            return;
+          }
+          setBusy(true);
+          setMsg('');
+          try {
+            await bioSkillsSet(sessionId, nextOn === null ? null : [...nextOn]);
+            setMsg(nextOn === null ? '已恢复默认。' : '已保存，下一步生效。');
+            await load();
+          } catch (e) {
+            setMsg(`保存失败：${e?.message ?? e}`);
+          } finally {
+            setBusy(false);
+          }
+        },
+        [sessionId, load],
+      );
+
+      if (!open) return null;
+
+      const title = h(
+        'div',
+        { style: PS.head, onPointerDown: (e) => {
+            drag.current = { dx: (e?.clientX ?? 0) - (pos?.x ?? 0), dy: (e?.clientY ?? 0) - (pos?.y ?? 0) };
+            try {
+              e?.currentTarget?.setPointerCapture?.(e.pointerId);
+            } catch {
+              /* 不支持指针捕获时退化为普通拖动 */
+            }
+          },
+          onPointerMove: (e) => {
+            if (!drag.current) return;
+            setPos({ x: Math.max(8, (e?.clientX ?? 0) - drag.current.dx), y: Math.max(8, (e?.clientY ?? 0) - drag.current.dy) });
+          },
+          onPointerUp: () => {
+            if (!drag.current) return;
+            drag.current = null;
+            setPos((p) => {
+              if (p) writePanelPos(p);
+              return p;
+            });
+          },
+        },
+        h('div', null, h('p', { style: PS.headTitle }, '技能范围 · 本会话'), h('p', { style: PS.headMeta }, state.phase === 'ready' ? sourceText(state) : '读取中…')),
+        h(
+          'div',
+          { style: PS.headBtns },
+          h('button', { type: 'button', style: PS.iconBtn, title: '恢复默认（跟随设置页与模式）', onClick: () => persist(null) }, '↺'),
+          h('button', { type: 'button', style: PS.iconBtn, title: '关闭', onClick: () => scopeStore.close() }, '✕'),
+        ),
+      );
+
+      let body;
+      if (state.phase === 'loading' || state.phase === 'idle') {
+        body = h('p', { style: PS.hint }, '正在读取本会话的技能分类…');
+      } else if (state.phase === 'error') {
+        body = h(
+          'div',
+          null,
+          h('p', { style: PS.err }, state.message),
+          h('button', { type: 'button', style: { ...PS.btn, marginTop: '6px' }, onClick: () => load() }, '重试'),
+        );
+      } else if (state.phase === 'empty') {
+        body = h('p', { style: PS.hint }, state.message);
+      } else {
+        const byId = new Map((state.categories ?? []).map((c) => [c.id, c]));
+        const onSet = on ?? new Set();
+        const known = new Set();
+        const rows = [];
+        for (const sec of SECTIONS) {
+          const cats = sec.cats.filter((id) => byId.has(id));
+          cats.forEach((id) => known.add(id));
+          if (cats.length === 0) continue;
+          const onIn = cats.filter((id) => onSet.has(id));
+          const tri = onIn.length === 0 ? 'none' : onIn.length === cats.length ? 'all' : 'some';
+          const skills = cats.reduce((a, id) => a + (byId.get(id).count ?? 0), 0);
+          const isOpenSec = expanded[sec.id] === true;
+          rows.push(
+            h(
+              'div',
+              { key: sec.id, style: tri === 'none' ? { ...PS.sec, ...PS.secOff } : PS.sec },
+              h('div', { style: { ...PS.secIcon, background: tint(sec.color, 0.16) } }, sec.emoji),
+              h(
+                'div',
+                { style: PS.secBody },
+                h('p', { style: PS.secTitle }, sec.label),
+                h('p', { style: PS.secMeta }, `${cats.length} 类 · ${skills} 技能 · ≈${Math.round((skills * TOKEN_PER_SKILL) / 100) / 10}k token`),
+              ),
+              h(
+                'button',
+                {
+                  type: 'button',
+                  style: PS.caret,
+                  title: isOpenSec ? '收起细分类' : '展开细分类',
+                  onClick: () => setExpanded((m) => ({ ...m, [sec.id]: !isOpenSec })),
+                },
+                isOpenSec ? '▾' : '▸',
+              ),
+              h(
+                'button',
+                {
+                  type: 'button',
+                  role: 'switch',
+                  'aria-checked': tri === 'all' ? 'true' : tri === 'some' ? 'mixed' : 'false',
+                  'aria-label': `${sec.label} 开关`,
+                  title: tri === 'all' ? '本组已全开，点击关闭' : '本组未全开，点击全开',
+                  style: PS.sw(tri, sec.color),
+                  onClick: () => {
+                    if (!on) return;
+                    const next = new Set(on);
+                    if (tri === 'all') cats.forEach((id) => next.delete(id));
+                    else cats.forEach((id) => next.add(id));
+                    setOn(next);
+                    persist(next);
+                  },
+                },
+                h('span', { style: PS.kn(tri) }),
+              ),
+            ),
+          );
+          if (isOpenSec) {
+            rows.push(
+              h(
+                'div',
+                { key: `${sec.id}-sub`, style: PS.subList },
+                ...cats.map((id) => {
+                  const cat = byId.get(id);
+                  const isOn = onSet.has(id);
+                  return h(
+                    'div',
+                    { key: id, style: PS.subRow },
+                    h('span', { style: { ...PS.subTitle, opacity: isOn ? 0.9 : 0.45 }, title: cat.label }, cat.label),
+                    h('span', { style: PS.subCount }, `${cat.count ?? 0}`),
+                    h(
+                      'button',
+                      {
+                        type: 'button',
+                        role: 'switch',
+                        'aria-checked': isOn,
+                        'aria-label': `${cat.label} 开关`,
+                        style: { ...PS.sw(isOn ? 'all' : 'none', sec.color), width: '26px', height: '15px' },
+                        onClick: () => {
+                          if (!on) return;
+                          const next = new Set(on);
+                          if (isOn) next.delete(id);
+                          else next.add(id);
+                          setOn(next);
+                          persist(next);
+                        },
+                      },
+                      h('span', { style: { ...PS.kn(isOn ? 'all' : 'none'), width: '11px', height: '11px', left: isOn ? '13px' : '2px' } }),
+                    ),
+                  );
+                }),
+              ),
+            );
+          }
+        }
+        const rest = (state.categories ?? []).filter((c) => !known.has(c.id));
+        if (rest.length > 0) {
+          rows.push(
+            h(
+              'p',
+              { key: 'rest', style: PS.hint },
+              `另有 ${rest.length} 个分类未归入 12 大类，按默认状态保持（${rest.map((c) => c.label).join('、')}）。`,
+            ),
+          );
+        }
+        const onCats = (state.categories ?? []).filter((c) => onSet.has(c.id));
+        const totalSkills = onCats.reduce((a, c) => a + (c.count ?? 0), 0);
+        body = h(
+          'div',
+          { style: { display: 'flex', flexDirection: 'column', gap: '6px' } },
+          rows,
+          h(
+            'p',
+            { style: PS.hint },
+            `当前 ${onCats.length} / ${(state.categories ?? []).length} 类 · ${totalSkills} 技能 · ≈${Math.round((totalSkills * TOKEN_PER_SKILL) / 100) / 10}k token。` +
+              '只影响本会话，下一步生效；你自己的 ~/.agents 技能不受影响。',
+          ),
+        );
+      }
+
+      const footer = h(
+        'div',
+        { style: PS.footer },
+        h('button', { type: 'button', style: PS.btn, disabled: busy || !on, onClick: () => {
+            if (!on || !state.categories) return;
+            const all = new Set(state.categories.map((c) => c.id));
+            setOn(all);
+            persist(all);
+          } }, '全部开启'),
+        h('button', { type: 'button', style: PS.btn, disabled: busy || !on, onClick: () => {
+            const none = new Set();
+            setOn(none);
+            persist(none);
+          } }, '全部关闭'),
+        h('button', { type: 'button', style: PS.btnPrimary, disabled: busy, onClick: () => persist(null) }, '恢复默认'),
+        msg ? h('p', { style: { ...PS.hint, marginLeft: '4px' } }, msg) : null,
+      );
+
+      const shellStyle = pos
+        ? { ...PS.panel, left: `${pos.x}px`, top: `${pos.y}px` }
+        : { ...PS.panel, right: '24px', bottom: '104px' };
+
+      return h('div', { style: PS.layer }, h('div', { style: shellStyle }, title, h('div', { style: PS.body }, body), footer));
+    }
+
+    function sourceText(state) {
+      if (state.source === 'session') return '本会话自定义';
+      if (state.source === 'preset') return `跟随模式默认（固定 ${state.presetOnly?.length ?? 0} 类）`;
+      return '跟随设置页开关';
+    }
+
     let ctxRef;
     const remote = () => ctxRef.remote.settings;
 
@@ -3196,6 +3830,18 @@ window.__ModuleLoader__.load({
             { name: 'settings.section', id: 'biomedical-skills', order: 60, label: '生物医学技能' },
             Section,
           ),
+        );
+        // 输入框右侧入口（session 作用域：inject 拿得到当前 sessionId）
+        ctx.slots.inject('conversation.input.right', () =>
+          ctx.slots.register(
+            { name: 'conversation.input.right', id: 'biomedical-scope-entry', order: 40, label: '技能范围' },
+            ScopeEntry,
+            { inject: (sessionId) => ({ sessionId }) },
+          ),
+        );
+        // 浮窗（root 作用域：自己贴 fixed 定位，不影响其它层）
+        ctx.slots.inject('shell.overlay', () =>
+          ctx.slots.register({ name: 'shell.overlay', id: 'biomedical-scope-panel', order: 70 }, ScopePanel),
         );
       },
     };

@@ -64,7 +64,8 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | 执行 | `tool-fs`、`tool-fs-search` | 读写脚本、检索大表、grep 参数文件 |
 | 执行 | `tool-jobs` | 后台长任务（比对、训练、批量下载） |
 | 技能 | `skill-filesystem` | 用户自有技能根（`$DSH_HOME/skills`） |
-| 设置页 | `biomedical-skill-settings` | profile 级行 + `settings/client.js`（`dsh.client`），34 个分类开关写入 `biomedical-skills.json` |
+| 设置页 | `biomedical-skill-settings` | profile 级行 + `client.js`（`dsh.client`），34 个分类开关写入 `biomedical-skills.json` |
+| 会话面板 | `client.js`（同一浏览器半） | 输入框右侧「🧬 技能」按键（`conversation.input.right`）+ 可拖动浮窗（`shell.overlay`），只改本会话 |
 | 技能 | `biomedical-skill-picker` | 单一 provider：603 个技能按 34 个功能分类提供，开关见 `picker/catalog.json` |
 | 技能 | `tool-skill` | 技能目录与加载器 |
 | 数据 | `bio-mcp` | 拉起 `mcp/biomedical_mcp.py`（51 工具，stdio） |
@@ -148,8 +149,9 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 
 | | 全量模式 | 12 个专项模式 |
 |---|---|---|
-| 加载哪些类 | **由设置页决定**（34 个开关，默认全开） | **固定白名单**（`picker.config.only`），不受设置页影响 |
-| 能否细调 | ✅ 设置 → 生物医学技能 | ❌ 要换范围请换模式，或改 `cordis.patch.yml` |
+| 默认加载哪些类 | **由设置页决定**（34 个开关，默认全开） | **固定白名单**（`picker.config.only`），不受设置页影响 |
+| 持久细调 | ✅ 设置 → 生物医学技能 | ❌ 要换默认范围请换模式，或改 `cordis.patch.yml` |
+| 本会话临时细调 | ✅ 输入框右侧「🧬 技能」浮窗 | ✅ 同样可用（会话覆盖优先于白名单） |
 | 适用 | 探索期、跨领域任务 | 目标明确的常规分析 |
 
 > ### 全量模式下的细调
@@ -172,6 +174,45 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 设置页随本包一起安装（`settings/`，在 profile patch 里插一行 `biomedical-skill-settings`）：**设置 → 生物医学技能** 会列出 34 个分类开关和全开/全关按钮。
 
 开关写入 profile 的 `biomedical-skills.json`，`picker` 每次 `list()` 都读它，因此改动对**新会话**立即生效（已开启的会话不重算目录）。也可以直接编辑该文件，例如 `{"proteomics": false}`，缺省视为开启。
+
+### 会话内浮窗：只改本会话
+
+设置页改的是**默认值**（只对新会话生效）。要在**当前这个会话**里临时缩小或换范围，用输入框右侧的 **「🧬 技能」** 按键：
+
+```
+对话输入框左下 …  [🧬 技能]  … 发送
+                        ↓
+┌ 技能范围 · 本会话                     ↺  ✕ ┐   ← 拖标题栏可移动，位置记在 localStorage
+│ 当前 12 类 / 34 类 / 603 技能 / ≈38k token  │
+├─────────────────────────────────────────────┤
+│ 🧬 测序与变异检出     3 类 · 45 技能   ▸  ● │   ← ▸ 展开细分类，● 三态开关
+│ 🧭 基因组组装与群体遗传 2 类 · 48 技能   ▸  ● │
+│ …                                           │
+├─────────────────────────────────────────────┤
+│ 全部开启   全部关闭   恢复默认    已保存，下一步生效 │
+└─────────────────────────────────────────────┘
+```
+
+- **12 个大类**与 12 个专项模式一一对应，展开后是该大类下的 34 个功能分类，可单独勾选；大类开关是三态（全开／部分／全关）。
+- 每行显示「N 类 · M 技能 · ≈X token」，底部汇总当前生效范围，选之前就知道目录成本。
+- 三个按钮：`全部开启` / `全部关闭` / `恢复默认`（`恢复默认` 清掉会话覆盖，回到「模式白名单 → 设置页」的默认状态）。
+- **改完下一个 step 就生效**，不用新开会话：`skills.snapshot()` 每步重新查询，写完后 Host 会 `invalidate()` 目录缓存。
+- 只影响本包 `skills/` 里的 603 个技能；你自己的 `~/.agents/skills`、`~/.dsh/skills` 里的技能不受影响。
+- 会话覆盖存在 Host 进程内存里（按 `sessionId`），**重启 DSH 即清空**，回到模式默认。
+
+优先级：**会话覆盖 > 专项模式白名单（`only`）> 设置页分类开关**。因此专项模式也能临时加开别的类——但那是"这一轮多给点技能"的应急手段，长期还是换模式更干净。
+
+实现（要改这里先看）：
+
+| 半 | 位置 | 职责 |
+|---|---|---|
+| Host | `picker/index.js` | `GET /bio-skills/get?sessionId=`（返回 34 类 + 此刻 `effective` + `source`）、`POST /bio-skills/set`（`{sessionId, enabled: string[] \| null}`）；`sessionOverrides: Map<sessionId, Set<categoryId>>`；用 `agents.currentInitiator()` 取当前会话 |
+| Client | `client.js` | `conversation.input.right` 的入口按键（`inject: (sessionId) => ({sessionId})`）+ `shell.overlay` 的浮窗；两者只共享一个模块级 `scopeStore` |
+
+两个实现要点，改动时别踩：
+
+1. 可选服务必须 `ctx.inject(['webServer'], cb)` / `ctx.inject(['agents'], cb)`，**不能用 `ctx.get()`** —— 冷启动时 `apply()` 早于服务注册，`get` 拿到 `undefined`，路由就永远注册不上（实测：热加载 available、冷启动 UNAVAILABLE）。
+2. 跨作用域共享状态只能走模块级对象：入口按键是 session 作用域（拿得到 `sessionId`），浮窗是 root 作用域（拿不到），两者靠 `scopeStore` + 订阅重渲染对齐。
 
 ### 设置页：按组分节
 
