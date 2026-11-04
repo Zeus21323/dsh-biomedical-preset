@@ -402,7 +402,7 @@ const full2 = sw2b.filter((s) => s.props['aria-checked'] === 'true').length;
 if (full2 !== 1) bad('整组全开时全开大类数不为 1', String(full2));
 else ok('整组全开 → 大类显示已开');
 
-// ── 5) Esc 关闭 + 拖动
+// ── 5) Esc 关闭
 const keyHandlers = win.listeners.keydown ?? [];
 if (keyHandlers.length === 0) bad('没有注册 Esc 监听');
 else {
@@ -410,22 +410,84 @@ else {
   if ((await render(panelSlot, ScopePanel, {})) !== null) bad('Esc 没关掉面板');
   else ok('Esc 关闭面板');
 }
+
+// ── 6) ✕ 按钮必须能关（实测 bug：标题栏 setPointerCapture 抢走 pointerup，按钮收不到 click）
+{
+  openedBtn[0]?.props?.onClick?.({});
+  nextPayload = live;
+  const treeX = await render(makeSlot(), ScopePanel, {});
+  const closeBtn = [];
+  walk(treeX, (n) => {
+    if (n.type === 'button' && textOf(n).trim() === '✕') closeBtn.push(n);
+  });
+  if (closeBtn.length !== 1) bad('找不到 ✕ 按钮', String(closeBtn.length));
+  else {
+    // 按钮区必须在 pointerdown 阶段就切断冒泡，否则标题栏会 setPointerCapture
+    let stopped = false;
+    const bar = [];
+    walk(treeX, (n) => {
+      if (n.props?.onPointerDown && !n.props?.onPointerMove) bar.push(n);
+    });
+    if (bar.length === 0) bad('按钮区没有 onPointerDown 拦截');
+    else {
+      bar[0].props.onPointerDown({ stopPropagation: () => (stopped = true) });
+      if (!stopped) bad('按钮区没有 stopPropagation');
+      else ok('按钮区拦截 pointerdown（不再被拖动抢走）');
+    }
+    closeBtn[0].props.onClick({});
+    if ((await render(panelSlot, ScopePanel, {})) !== null) bad('点 ✕ 没关掉面板');
+    else ok('点 ✕ 关闭面板');
+  }
+}
+
+// ── 7) 拖动：空白处可拖；从按钮/非左键按下不拖
 openedBtn[0]?.props?.onClick?.({});
 nextPayload = live;
-const tree3 = await render(makeSlot(), ScopePanel, {});
-const head = [];
-walk(tree3, (n) => {
-  if (n.props?.onPointerDown) head.push(n);
-});
-if (head.length === 0) bad('没有拖动把手');
-else {
-  head[0].props.onPointerDown({ clientX: 300, clientY: 300, pointerId: 1, currentTarget: { setPointerCapture() {} } });
-  head[0].props.onPointerMove({ clientX: 340, clientY: 330 });
-  head[0].props.onPointerUp({});
-  await sleep(5);
-  const saved = store.get('dsh-biomedical-scope-panel');
-  if (!saved) bad('拖动后没写 localStorage');
-  else ok('拖动位置已记住', saved);
+{
+  const slotD = makeSlot();
+  const treeD = await render(slotD, ScopePanel, {});
+  let captureCalls = 0;
+  const heads = [];
+  walk(treeD, (n) => {
+    if (n.props?.onPointerDown && n.props?.onPointerMove) heads.push(n);
+  });
+  if (heads.length !== 1) bad('拖动把手数量异常', String(heads.length));
+  else {
+    const headNode = heads[0];
+    const ev = (extra = {}) => ({
+      clientX: 300,
+      clientY: 300,
+      pointerId: 1,
+      button: 0,
+      currentTarget: { setPointerCapture: () => (captureCalls += 1) },
+      target: { closest: () => null },
+      ...extra,
+    });
+
+    // 空白处：应该开始拖
+    headNode.props.onPointerDown(ev());
+    if (captureCalls !== 1) bad('空白处按下没有开始拖动');
+    else ok('空白处 pointerdown 开始拖动');
+    headNode.props.onPointerMove({ clientX: 340, clientY: 330 });
+    headNode.props.onPointerUp({});
+    await sleep(5);
+    const saved = store.get('dsh-biomedical-scope-panel');
+    if (!saved) bad('拖动后没写 localStorage');
+    else ok('拖动位置已记住', saved);
+
+    // 从按钮上按下：不应该拖（这是 ✕ 失效的根因）
+    captureCalls = 0;
+    store.delete('dsh-biomedical-scope-panel');
+    headNode.props.onPointerDown(ev({ target: { closest: () => ({ tagName: 'BUTTON' }) } }));
+    if (captureCalls !== 0) bad('从按钮上按下仍开始了拖动');
+    else ok('从按钮上按下不拖动');
+
+    // 非左键：不拖
+    captureCalls = 0;
+    headNode.props.onPointerDown(ev({ button: 2 }));
+    if (captureCalls !== 0) bad('右键也开始了拖动');
+    else ok('非左键不拖动');
+  }
 }
 
 // ─────────────────────────────────────────────────────────── picker：13 实例共存

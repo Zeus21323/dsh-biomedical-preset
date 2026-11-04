@@ -3628,6 +3628,11 @@ window.__ModuleLoader__.load({
       const title = h(
         'div',
         { style: PS.head, onPointerDown: (e) => {
+            // 只左键拖；从按钮/输入控件上按下的不拖 —— 否则 setPointerCapture 会把
+            // pointerup 抢到标题栏，里面的 ✕ / ↺ 永远收不到 click（实测踩过）。
+            if (typeof e?.button === 'number' && e.button !== 0) return;
+            const t = e?.target;
+            if (t && typeof t.closest === 'function' && t.closest('button, a, input, select, textarea, [role="switch"]')) return;
             drag.current = { dx: (e?.clientX ?? 0) - (pos?.x ?? 0), dy: (e?.clientY ?? 0) - (pos?.y ?? 0) };
             try {
               e?.currentTarget?.setPointerCapture?.(e.pointerId);
@@ -3651,7 +3656,14 @@ window.__ModuleLoader__.load({
         h('div', null, h('p', { style: PS.headTitle }, '技能范围 · 本会话'), h('p', { style: PS.headMeta }, state.phase === 'ready' ? sourceText(state) : '读取中…')),
         h(
           'div',
-          { style: PS.headBtns },
+          { style: PS.headBtns, onPointerDown: (e) => {
+              // 双保险：按钮区的 pointerdown 不上传到标题栏，也就不会开始拖动
+              try {
+                e?.stopPropagation?.();
+              } catch {
+                /* 忽略 */
+              }
+            } },
           h('button', { type: 'button', style: PS.iconBtn, title: '恢复默认（跟随设置页与模式）', onClick: () => persist(null) }, '↺'),
           h('button', { type: 'button', style: PS.iconBtn, title: '关闭', onClick: () => scopeStore.close() }, '✕'),
         ),

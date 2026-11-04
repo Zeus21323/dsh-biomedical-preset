@@ -275,12 +275,23 @@ if (table.has(route.path)) throw new Error(`webserver: duplicate ${route.kind} r
 
 `broken` 非 `null` 就说明该预设挂载被拒（模式卡片会显示「加载失败」）。**排查预设问题先看这条路由**，比猜快得多。
 
-> ### 两个已修的真实故障（都表现为「专项模式加载失败」）
+> ### 三个已修的真实故障（都表现为「专项模式加载失败」）
 >
 > 1. **抢路由**：13 份 picker 都注册 `/bio-skills/get`，第二个起 `webserver: duplicate exact route` → 该行 failed → 整个预设挂载被拒。现在路由进程级共用（引用计数）。
-> 2. **缺平台守卫**：12 个专项模式的 `tool-bash` / `tool-pwsh` 漏了 `disabled: !!js process.platform …`，Windows 上 `tool-bash` 被启用导致该行 failed，同样是整个预设挂载被拒（只有全量模式写对了，所以只有它能用）。
+> 2. **必填 config 缺失（真正的元凶）**：12 个专项模式的 `agent-instructions` 与 `tool-fs-search` 两行没写 config，而这两项在各自 schema 里是 `.required()`、**没有默认值**：
 >
-> 第 2 条是 `tools/lint-presets.mjs` 现在会检查的项：漏一行守卫直接报错。
+>    ```
+>    agent-instructions: invalid config:
+>      - $.maxBytes missing required value (at maxBytes)
+>    tool-fs-search: invalid config:
+>      - $.sampleOverCapGlobResults missing required value (at sampleOverCapGlobResults)
+>    ```
+>
+>    两行 failed → 整份预设判 failed → 挂载被拒。全量模式两项都写了，所以只有它能用。
+>    （最初误判成「省略即走默认值」，是 `/bio-skills/presets` 的 `broken` 原文纠正的。）
+> 3. **平台守卫缺失**：12 个专项模式的 `tool-bash` / `tool-pwsh` 漏了 `disabled: !!js process.platform …`。它没有出现在 `broken` 里（说明并未触发失败），但和全量模式不一致——Windows 上会多出一个跑不了的 bash 工具，属一致性修复。
+>
+> 上面三条现在都由 `tools/lint-presets.mjs` 检查：漏守卫、漏必填 config 都直接报错。
 
 > **注意**：13 份预设各自挂一个 `bio-mcp`，所以启动后会有 **13 个 `biomedical_mcp.py` 进程**（每个约 23 MB，实测）。这属于既定设计（各模式都能直接拿数据工具），不是泄漏；关掉不用的预设才会减少。
 

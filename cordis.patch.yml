@@ -460,6 +460,8 @@
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
+            config:
+              maxBytes: 65536
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
@@ -472,6 +474,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: tool-jobs
             name: '@deepseek-ai/dsh-tool-jobs'
           - id: skill-filesystem
@@ -617,6 +621,8 @@
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
+            config:
+              maxBytes: 65536
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
@@ -629,6 +635,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: tool-jobs
             name: '@deepseek-ai/dsh-tool-jobs'
           - id: skill-filesystem
@@ -773,6 +781,8 @@
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
+            config:
+              maxBytes: 65536
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
@@ -785,6 +795,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: tool-jobs
             name: '@deepseek-ai/dsh-tool-jobs'
           - id: skill-filesystem
@@ -930,6 +942,8 @@
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
+            config:
+              maxBytes: 65536
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
@@ -942,6 +956,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: tool-jobs
             name: '@deepseek-ai/dsh-tool-jobs'
           - id: skill-filesystem
@@ -1086,6 +1102,8 @@
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
+            config:
+              maxBytes: 65536
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
@@ -1098,6 +1116,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: tool-jobs
             name: '@deepseek-ai/dsh-tool-jobs'
           - id: skill-filesystem
@@ -1242,6 +1262,8 @@
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
+            config:
+              maxBytes: 65536
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
@@ -1254,6 +1276,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: tool-jobs
             name: '@deepseek-ai/dsh-tool-jobs'
           - id: skill-filesystem
@@ -1399,6 +1423,8 @@
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
+            config:
+              maxBytes: 65536
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
@@ -1411,6 +1437,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: tool-jobs
             name: '@deepseek-ai/dsh-tool-jobs'
           - id: skill-filesystem
@@ -1555,6 +1583,8 @@
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
+            config:
+              maxBytes: 65536
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
@@ -1567,6 +1597,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: tool-jobs
             name: '@deepseek-ai/dsh-tool-jobs'
           - id: skill-filesystem
@@ -1711,6 +1743,8 @@
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
+            config:
+              maxBytes: 65536
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
@@ -1723,6 +1757,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: tool-jobs
             name: '@deepseek-ai/dsh-tool-jobs'
           - id: skill-filesystem
@@ -1869,6 +1905,8 @@
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
+            config:
+              maxBytes: 65536
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
@@ -1881,6 +1919,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: tool-jobs
             name: '@deepseek-ai/dsh-tool-jobs'
           - id: skill-filesystem
@@ -2024,6 +2064,8 @@
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
+            config:
+              maxBytes: 65536
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
@@ -2036,6 +2078,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: tool-jobs
             name: '@deepseek-ai/dsh-tool-jobs'
           - id: skill-filesystem
@@ -2181,6 +2225,8 @@
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
+            config:
+              maxBytes: 65536
           - id: time-context
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
@@ -2193,6 +2239,8 @@
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
             name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
           - id: tool-jobs
             name: '@deepseek-ai/dsh-tool-jobs'
           - id: skill-filesystem

@@ -87,6 +87,16 @@ for (const b of blocks) {
     problems.push(`${b.patchId}: tool-pwsh 缺少 disabled: !!js process.platform !== 'win32'`);
   }
 
+  // 必填 config：这两项在各自 Config 里是 .required()，没有默认值。
+  // 漏了 → 该行 invalid config → auditRows 判预设 failed → 挂载被拒。
+  // （2026-11-04 实测事故：12 个专项模式就是漏了这两项；原先误当成「走默认值」）
+  if (!/maxBytes:[ \t]*\d+/.test(body)) {
+    problems.push(`${b.patchId}: agent-instructions 缺少必填 config maxBytes（该行会 invalid config）`);
+  }
+  if (!/sampleOverCapGlobResults:[ \t]*(true|false)/.test(body)) {
+    problems.push(`${b.patchId}: tool-fs-search 缺少必填 config sampleOverCapGlobResults（该行会 invalid config）`);
+  }
+
   const nameCount = [...body.matchAll(/^            name: /gm)].length;
   if (nameCount < b.rows.length) problems.push(`${b.patchId}: ${b.rows.length} 个行只找到 ${nameCount} 个 name:`);
 
