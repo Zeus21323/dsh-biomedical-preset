@@ -3582,6 +3582,7 @@ window.__ModuleLoader__.load({
             source: data.source ?? (Array.isArray(data.enabled) ? 'session' : 'profile'),
             overridden: Array.isArray(data.enabled),
             presetOnly: Array.isArray(data.presetOnly) ? data.presetOnly : null,
+            instances: Number(data.instances) || 0,
           });
         } catch (e) {
           setState({ phase: 'error', message: scopeErrorText(`${e?.message ?? e}`) });
@@ -3782,7 +3783,10 @@ window.__ModuleLoader__.load({
             'p',
             { style: PS.hint },
             `当前 ${onCats.length} / ${(state.categories ?? []).length} 类 · ${totalSkills} 技能 · ≈${Math.round((totalSkills * TOKEN_PER_SKILL) / 100) / 10}k token。` +
-              '只影响本会话，下一步生效；你自己的 ~/.agents 技能不受影响。',
+              '只影响本会话，下一步生效；你自己的 ~/.agents 技能不受影响。' +
+              (state.source === 'profile' && (state.instances ?? 0) > 1
+                ? '（同进程挂着多个预设，本会话若是专项模式则以该模式为准；在这里勾选后以本面板为准。）'
+                : ''),
           ),
         );
       }
@@ -3821,28 +3825,45 @@ window.__ModuleLoader__.load({
     let ctxRef;
     const remote = () => ctxRef.remote.settings;
 
+    /**
+     * 注册一个 slot 条目，且**绝不让异常逃出 apply()**。
+     *
+     * 两种失败路径都会毁掉整个浏览器半（web boot: entry did not activate → 启动报错弹窗）：
+     * 1. `slots.inject` 在 slot 已声明时同步执行回调，回调里 register 抛错会直接冒出来；
+     * 2. slot 稍后才声明时，回调在 microtask 里重跑，抛错会变成未捕获异常。
+     * 这里两层都兜住：注册失败最多是这个入口不出现，不会带走别的功能。
+     */
+    function safeRegister(ctx, slot, options, component, extra) {
+      const build = () => {
+        try {
+          return extra ? ctx.slots.register(options, component, extra) : ctx.slots.register(options, component);
+        } catch (e) {
+          console.warn?.(`[biomedical-preset] 注册 ${options?.id} → ${slot} 失败：`, e);
+          return () => {};
+        }
+      };
+      try {
+        ctx.slots.inject(slot, build);
+      } catch (e) {
+        console.warn?.(`[biomedical-preset] 无法注入 slot ${slot}：`, e);
+      }
+    }
+
     return {
       inject: ['slots', 'locale', 'remote', 'remote.settings'],
       apply(ctx) {
         ctxRef = ctx;
-        ctx.slots.inject('settings.section', () =>
-          ctx.slots.register(
-            { name: 'settings.section', id: 'biomedical-skills', order: 60, label: '生物医学技能' },
-            Section,
-          ),
-        );
+        safeRegister(ctx, 'settings.section', { name: 'settings.section', id: 'biomedical-skills', order: 60, label: '生物医学技能' }, Section);
         // 输入框右侧入口（session 作用域：inject 拿得到当前 sessionId）
-        ctx.slots.inject('conversation.input.right', () =>
-          ctx.slots.register(
-            { name: 'conversation.input.right', id: 'biomedical-scope-entry', order: 40, label: '技能范围' },
-            ScopeEntry,
-            { inject: (sessionId) => ({ sessionId }) },
-          ),
+        safeRegister(
+          ctx,
+          'conversation.input.right',
+          { name: 'conversation.input.right', id: 'biomedical-scope-entry', order: 40, label: '技能范围' },
+          ScopeEntry,
+          { inject: (sessionId) => ({ sessionId }) },
         );
         // 浮窗（root 作用域：自己贴 fixed 定位，不影响其它层）
-        ctx.slots.inject('shell.overlay', () =>
-          ctx.slots.register({ name: 'shell.overlay', id: 'biomedical-scope-panel', order: 70 }, ScopePanel),
-        );
+        safeRegister(ctx, 'shell.overlay', { name: 'shell.overlay', id: 'biomedical-scope-panel', order: 70 }, ScopePanel);
       },
     };
   },

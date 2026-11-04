@@ -229,6 +229,39 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 1. 可选服务必须 `ctx.inject(['webServer'], cb)` / `ctx.inject(['agents'], cb)`，**不能用 `ctx.get()`** —— 冷启动时 `apply()` 早于服务注册，`get` 拿到 `undefined`，路由就永远注册不上（实测：热加载 available、冷启动 UNAVAILABLE）。
 2. 跨作用域共享状态只能走模块级对象：入口按键是 session 作用域（拿得到 `sessionId`），浮窗是 root 作用域（拿不到），两者靠 `scopeStore` + 订阅重渲染对齐。
 
+### 13 个预设 = 13 份 picker：路由必须进程级共用
+
+`agent-preset-registry` 在**注册预设时**就把每个预设的插件挂进独立 scope，所以启动后同进程里同时活着 **13 份 picker**（1 全量 + 12 专项），每份都会 `ctx.inject(['webServer'])`。而 Host 的 `webserver.register` 对同一 `(kind, path)` **只允许注册一次**：
+
+```js
+// dsh-host-webserver
+if (table.has(route.path)) throw new Error(`webserver: duplicate ${route.kind} route "${route.path}"`);
+```
+
+这个异常若从 `apply()` 冒出，该行会被 `auditRows` 判 failed，**整个预设挂载被拒**（模式卡片显示「加载失败」），且它的 MCP、技能、工具全部不生效。2.3.0 之前**踩了这个坑**：只有第一个挂载的预设能活，其余 12 个专项模式实际起不来（当时进程里只剩 1 个 `biomedical_mcp.py`，正常应是 13 个）。
+
+现在的做法（`picker/index.js`）：
+
+| 机制 | 实现 |
+|---|---|
+| 进程级共享区 | `globalThis[Symbol.for('dsh.biomedical.picker.v1')]`，模块被加载两次也共用同一份 |
+| 路由注册 | 引用计数：`routeRefs` 从 0→1 的实例注册，其余只计数；归零时注销 |
+| 注册失败 | `try/catch` 兜住并记 `routeError`，**绝不让它冒进 `apply()`** |
+| 会话覆盖 | 存在共享区（不挂在实例上），`invalidate()` 广播给所有实例 |
+
+诊断字段（`GET /bio-skills/get` 直接可查，无需登录）：
+
+```jsonc
+{
+  "instances": 13,        // 当前活着的 picker 数量；13 = 13 个预设都挂上了
+  "routeCollisions": 12,  // 被复用的重复注册次数；12 说明另外 12 份确实在跑
+  "source": "profile",    // session | preset | profile
+  "effective": ["..."]    // 本会话此刻生效的分类
+}
+```
+
+> **注意**：13 份预设各自挂一个 `bio-mcp`，所以启动后会有 **13 个 `biomedical_mcp.py` 进程**（每个约 23 MB，实测）。这属于既定设计（各模式都能直接拿数据工具），不是泄漏；关掉不用的预设才会减少。
+
 ### 设置页：按组分节
 
 设置页把这 34 个分类上卷成 **6 个大组**，按组分节显示，组间有分隔线：
