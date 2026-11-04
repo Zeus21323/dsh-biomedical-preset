@@ -260,6 +260,28 @@ if (table.has(route.path)) throw new Error(`webserver: duplicate ${route.kind} r
 }
 ```
 
+还有一条诊断路由 `GET /bio-skills/presets`，把 13 个预设各自的挂载诊断透出来（`agent-preset-registry` 只在 Host 日志里写一行 warn，桌面端看不到）：
+
+```jsonc
+{
+  "ok": true,
+  "instances": 13,
+  "presets": [
+    { "id": "biomedical", "name": "生物医学模式", "order": 5, "broken": null },
+    { "id": "bio-clinical", "name": "临床解读与精准医学", "order": 12, "broken": "…失败的那一行…" }
+  ]
+}
+```
+
+`broken` 非 `null` 就说明该预设挂载被拒（模式卡片会显示「加载失败」）。**排查预设问题先看这条路由**，比猜快得多。
+
+> ### 两个已修的真实故障（都表现为「专项模式加载失败」）
+>
+> 1. **抢路由**：13 份 picker 都注册 `/bio-skills/get`，第二个起 `webserver: duplicate exact route` → 该行 failed → 整个预设挂载被拒。现在路由进程级共用（引用计数）。
+> 2. **缺平台守卫**：12 个专项模式的 `tool-bash` / `tool-pwsh` 漏了 `disabled: !!js process.platform …`，Windows 上 `tool-bash` 被启用导致该行 failed，同样是整个预设挂载被拒（只有全量模式写对了，所以只有它能用）。
+>
+> 第 2 条是 `tools/lint-presets.mjs` 现在会检查的项：漏一行守卫直接报错。
+
 > **注意**：13 份预设各自挂一个 `bio-mcp`，所以启动后会有 **13 个 `biomedical_mcp.py` 进程**（每个约 23 MB，实测）。这属于既定设计（各模式都能直接拿数据工具），不是泄漏；关掉不用的预设才会减少。
 
 ### 设置页：按组分节
@@ -458,7 +480,8 @@ node tools/scope-test.mjs      # 42 项：模块 id、三处 slot 注册、12 �
                                # 三态开关、POST 载荷、Esc、拖动、13 实例共用路由、
                                # 引用计数注销、register/inject 抛错时 apply 不炸
 node tools/lint-presets.mjs    # 13 个预设结构体检：行数、only 白名单、
-                               # 12 专项是否正好覆盖 34 类且不重叠
+                               # 12 专项是否正好覆盖 34 类且不重叠、
+                               # tool-bash/tool-pwsh 的平台守卫是否都在
 ```
 
 `scope-test.mjs` 用最小 React 替身跑组件、用假 `ctx` 跑 `apply()`、用假

@@ -44,6 +44,8 @@ const SHARED = (globalThis[SHARED_KEY] ??= {
   routeCollisions: 0,
   /** 路由注册失败（非重复导致的真实错误）的文本，诊断用 */
   routeError: undefined,
+  /** agentPresets 服务引用：用来读每个预设的挂载诊断（broken） */
+  presetsSvc: undefined,
   disposeRoutes: undefined,
 });
 
@@ -243,6 +245,46 @@ async function handleGet(request, response, logger) {
   });
 }
 
+/**
+ * 诊断路由：把 13 个预设各自的挂载诊断（broken）原样透出来。
+ *
+ * 为什么需要它：预设挂载失败时 `agent-preset-registry` 只往 Host 日志写一行 warn，
+ * 桌面端拿不到那行日志；而 `/api/*` 的 RPC 要求进程内 token。这个路由跟
+ * /bio-skills/get 一样是未鉴权的回环路由，`curl 127.0.0.1:<port>/bio-skills/presets`
+ * 就能看到「哪个预设坏了、坏在哪一行」。
+ */
+async function handlePresets(request, response) {
+  if (request.method !== 'GET') {
+    response.writeHead(405, { allow: 'GET' });
+    response.end();
+    return;
+  }
+  const svc = SHARED.presetsSvc;
+  if (!svc || typeof svc.list !== 'function') {
+    sendJson(response, 200, { ok: false, reason: 'agentPresets service unavailable' });
+    return;
+  }
+  let rows;
+  try {
+    rows = await svc.list();
+  } catch (e) {
+    sendJson(response, 200, { ok: false, reason: String(e?.message ?? e) });
+    return;
+  }
+  sendJson(response, 200, {
+    ok: true,
+    instances: SHARED.instances.size,
+    routeCollisions: SHARED.routeCollisions,
+    routeError: SHARED.routeError ?? null,
+    presets: (Array.isArray(rows) ? rows : []).map((r) => ({
+      id: r?.id,
+      name: r?.name,
+      order: r?.order,
+      broken: r?.broken ?? null,
+    })),
+  });
+}
+
 async function handleSet(request, response, logger) {
   if (request.method !== 'POST') {
     response.writeHead(405, { allow: 'POST' });
@@ -314,6 +356,14 @@ export function apply(ctx, config = {}) {
     };
   });
 
+  // 预设挂载诊断：读 agentPresets.list() 的 broken；进程内共享，谁活谁提供。
+  ctx.inject(['agentPresets'], (scoped) => {
+    SHARED.presetsSvc = scoped.agentPresets;
+    return () => {
+      if (SHARED.presetsSvc === scoped.agentPresets) SHARED.presetsSvc = undefined;
+    };
+  });
+
   // ── 路由：引用计数 + 绝不把注册错误抛进 apply（那会让整份预设挂载失败）
   ctx.inject(['webServer'], (scoped) => {
     SHARED.routeRefs += 1;
@@ -338,6 +388,16 @@ export function apply(ctx, config = {}) {
               handler: (request, response) => handleSet(request, response, ctx.logger),
             },
             'biomedical-picker: session-skills/set',
+          ),
+        );
+        disposers.push(
+          scoped.webServer.register(
+            {
+              kind: 'exact',
+              path: '/bio-skills/presets',
+              handler: (request, response) => handlePresets(request, response),
+            },
+            'biomedical-picker: presets-diagnostic',
           ),
         );
         SHARED.disposeRoutes = () => {

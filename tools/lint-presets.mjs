@@ -13,7 +13,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const PKG = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const PATCH = path.join(PKG, 'cordis.patch.yml');
+// 可选第一个参数指向别的 patch 文件，便于反向验证 lint 本身（例如故意删掉一行守卫）。
+const PATCH = process.argv[2] ? path.resolve(process.argv[2]) : path.join(PKG, 'cordis.patch.yml');
 const CATALOG = path.join(PKG, 'picker', 'catalog.json');
 
 const text = await readFile(PATCH, 'utf8');
@@ -76,6 +77,15 @@ for (const b of blocks) {
 
   if (!/prefix: \|/.test(body)) problems.push(`${b.patchId}: persona 没有 prefix`);
   if (b.rows.length < 18) problems.push(`${b.patchId}: 插件行只有 ${b.rows.length} 行（预期 ≥ 22）`);
+
+  // 平台守卫：漏了会让 tool-bash 在 Windows 上被启用，那一行失败 → 整个预设挂载被拒
+  // （2026-11-04 实测事故：12 个专项模式全都是这个原因）
+  if (!/disabled: !!js process\.platform === 'win32'/.test(body)) {
+    problems.push(`${b.patchId}: tool-bash 缺少 disabled: !!js process.platform === 'win32'`);
+  }
+  if (!/disabled: !!js process\.platform !== 'win32'/.test(body)) {
+    problems.push(`${b.patchId}: tool-pwsh 缺少 disabled: !!js process.platform !== 'win32'`);
+  }
 
   const nameCount = [...body.matchAll(/^            name: /gm)].length;
   if (nameCount < b.rows.length) problems.push(`${b.patchId}: ${b.rows.length} 个行只找到 ${nameCount} 个 name:`);

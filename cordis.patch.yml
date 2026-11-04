@@ -464,8 +464,10 @@
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
             name: '@deepseek-ai/dsh-tool-bash'
+            disabled: !!js process.platform === 'win32'
           - id: tool-pwsh
             name: '@deepseek-ai/dsh-tool-pwsh'
+            disabled: !!js process.platform !== 'win32'
           - id: tool-fs
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
@@ -619,8 +621,10 @@
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
             name: '@deepseek-ai/dsh-tool-bash'
+            disabled: !!js process.platform === 'win32'
           - id: tool-pwsh
             name: '@deepseek-ai/dsh-tool-pwsh'
+            disabled: !!js process.platform !== 'win32'
           - id: tool-fs
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
@@ -773,8 +777,10 @@
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
             name: '@deepseek-ai/dsh-tool-bash'
+            disabled: !!js process.platform === 'win32'
           - id: tool-pwsh
             name: '@deepseek-ai/dsh-tool-pwsh'
+            disabled: !!js process.platform !== 'win32'
           - id: tool-fs
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
@@ -928,8 +934,10 @@
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
             name: '@deepseek-ai/dsh-tool-bash'
+            disabled: !!js process.platform === 'win32'
           - id: tool-pwsh
             name: '@deepseek-ai/dsh-tool-pwsh'
+            disabled: !!js process.platform !== 'win32'
           - id: tool-fs
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
@@ -1082,8 +1090,10 @@
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
             name: '@deepseek-ai/dsh-tool-bash'
+            disabled: !!js process.platform === 'win32'
           - id: tool-pwsh
             name: '@deepseek-ai/dsh-tool-pwsh'
+            disabled: !!js process.platform !== 'win32'
           - id: tool-fs
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
@@ -1236,8 +1246,10 @@
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
             name: '@deepseek-ai/dsh-tool-bash'
+            disabled: !!js process.platform === 'win32'
           - id: tool-pwsh
             name: '@deepseek-ai/dsh-tool-pwsh'
+            disabled: !!js process.platform !== 'win32'
           - id: tool-fs
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
@@ -1391,8 +1403,10 @@
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
             name: '@deepseek-ai/dsh-tool-bash'
+            disabled: !!js process.platform === 'win32'
           - id: tool-pwsh
             name: '@deepseek-ai/dsh-tool-pwsh'
+            disabled: !!js process.platform !== 'win32'
           - id: tool-fs
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
@@ -1545,8 +1559,10 @@
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
             name: '@deepseek-ai/dsh-tool-bash'
+            disabled: !!js process.platform === 'win32'
           - id: tool-pwsh
             name: '@deepseek-ai/dsh-tool-pwsh'
+            disabled: !!js process.platform !== 'win32'
           - id: tool-fs
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
@@ -1699,8 +1715,10 @@
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
             name: '@deepseek-ai/dsh-tool-bash'
+            disabled: !!js process.platform === 'win32'
           - id: tool-pwsh
             name: '@deepseek-ai/dsh-tool-pwsh'
+            disabled: !!js process.platform !== 'win32'
           - id: tool-fs
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
@@ -1855,8 +1873,10 @@
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
             name: '@deepseek-ai/dsh-tool-bash'
+            disabled: !!js process.platform === 'win32'
           - id: tool-pwsh
             name: '@deepseek-ai/dsh-tool-pwsh'
+            disabled: !!js process.platform !== 'win32'
           - id: tool-fs
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
@@ -2008,8 +2028,10 @@
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
             name: '@deepseek-ai/dsh-tool-bash'
+            disabled: !!js process.platform === 'win32'
           - id: tool-pwsh
             name: '@deepseek-ai/dsh-tool-pwsh'
+            disabled: !!js process.platform !== 'win32'
           - id: tool-fs
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search
@@ -2163,8 +2185,10 @@
             name: '@deepseek-ai/dsh-time-context'
           - id: tool-bash
             name: '@deepseek-ai/dsh-tool-bash'
+            disabled: !!js process.platform === 'win32'
           - id: tool-pwsh
             name: '@deepseek-ai/dsh-tool-pwsh'
+            disabled: !!js process.platform !== 'win32'
           - id: tool-fs
             name: '@deepseek-ai/dsh-tool-fs'
           - id: tool-fs-search

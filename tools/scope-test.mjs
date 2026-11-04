@@ -497,7 +497,7 @@ const ws = makeWebServer();
 const a = mount({}, ws);
 if (a.thrown) bad('实例 1 apply 抛异常', String(a.thrown.message));
 else ok('实例 1（全量）apply 无异常');
-if (ws.routes.size !== 2) bad('路由没注册全', [...ws.routes.keys()].join(','));
+if (ws.routes.size !== 3) bad('路由没注册全', [...ws.routes.keys()].join(','));
 else ok('实例 1 注册了路由', [...ws.routes.keys()].join(' + '));
 
 async function callGet(url) {
@@ -534,7 +534,7 @@ for (let i = 0; i < 12; i++) {
 if (more.every((r) => !r.thrown)) ok('12 个专项实例并发挂载全部无异常', `共 ${shared.instances.size} 个实例`);
 if (shared.routeCollisions < 12) bad('重复注册没有被计数', String(shared.routeCollisions));
 else ok('重复注册被复用而非抛错', `collisions=${shared.routeCollisions}`);
-if (ws.routes.size !== 2) bad('多实例后路由数量异常', String(ws.routes.size));
+if (ws.routes.size !== 3) bad('多实例后路由数量异常', String(ws.routes.size));
 else ok('多实例后路由仍是 2 条（引用计数）');
 
 const g2 = await callGet('/bio-skills/get?sessionId=probe');
@@ -588,8 +588,8 @@ else ok('覆盖可清除', `source=${g4.source}`);
   const afterOne = ws4.routes.size;
   r1.ctx.teardown();
   const afterAll = ws4.routes.size;
-  if (count !== 2) bad('引用计数初值不对', String(count));
-  else if (afterOne !== 2) bad('卸载一个实例就把路由带走了', String(afterOne));
+  if (count !== 3) bad('引用计数初值不对', String(count));
+  else if (afterOne !== 3) bad('卸载一个实例就把路由带走了', String(afterOne));
   else if (afterAll !== 0) bad('全部卸载后路由没注销', String(afterAll));
   else ok('引用计数：卸载最后一个才注销路由');
   if (fresh.instances.size !== 0) bad('卸载后实例没清干净', String(fresh.instances.size));
