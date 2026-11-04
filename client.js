@@ -3554,6 +3554,12 @@ window.__ModuleLoader__.load({
           const res = await fetch(`/bio-skills/applies?sessionId=${encodeURIComponent(sessionId)}`, {
             headers: { accept: 'application/json' },
           });
+          // 404 = 这个包里根本没有这条路由（插件没启用）→ 确定不显示
+          if (res.status === 404) {
+            entry.value = false;
+            entry.at = Date.now();
+            return false;
+          }
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           const data = await res.json();
           const value = data?.applies === true ? true : data?.applies === false ? false : undefined;
@@ -3561,10 +3567,10 @@ window.__ModuleLoader__.load({
           entry.at = Date.now();
           return value;
         } catch {
-          // 拿不到就不显示（宁可不出现，也不要在别的模式里冒出来）
-          entry.value = false;
-          entry.at = Date.now();
-          return false;
+          // 暂时问不到（Host 忙、网络抖）→ 不定论，留给调用方重试
+          entry.value = undefined;
+          entry.at = 0;
+          return undefined;
         } finally {
           entry.inflight = undefined;
         }
@@ -3590,11 +3596,23 @@ window.__ModuleLoader__.load({
       React.useEffect(() => {
         if (!sessionId) return undefined;
         let alive = true;
-        ensureApplies(sessionId).then((value) => {
-          if (alive) setApplies(value);
-        });
+        let timer;
+        let tries = 0;
+        // 刚打开会话时 Host 那边 agent 可能还没起来（实测 reason="session has no live agent"），
+        // 这时不能定论「不是生物医学模式」，要短间隔重试几次，否则按键会一直不出现。
+        const attempt = async () => {
+          const value = await ensureApplies(sessionId);
+          if (!alive) return;
+          setApplies(value);
+          if (value === undefined && tries < 8) {
+            tries += 1;
+            timer = setTimeout(attempt, 1500);
+          }
+        };
+        attempt();
         return () => {
           alive = false;
+          clearTimeout(timer);
         };
       }, [sessionId]);
 

@@ -170,7 +170,9 @@ globalThis.fetch = async (url, init = {}) => {
   calls.push({ url: u, init });
   if (u.includes('/bio-skills/applies')) {
     if (appliesAnswer === '404') return { ok: false, status: 404, json: async () => ({}) };
-    return { ok: true, status: 200, json: async () => ({ ok: true, applies: appliesAnswer === true }) };
+    // null 必须原样回 null（判断不了），不能变成 false
+    const applies = appliesAnswer === true ? true : appliesAnswer === false ? false : null;
+    return { ok: true, status: 200, json: async () => ({ ok: true, applies }) };
   }
   if (u.includes('/bio-skills/set')) {
     return { ok: true, status: 200, json: async () => ({ ok: true, sessionId: 'sess-abc', enabled: ['x'] }) };
@@ -353,6 +355,21 @@ else ok('点击入口 → 面板打开');
   if (!t1 || !t2) bad('恢复 applies=true 后按键没出现');
   else if (appliesCalls !== 1) bad('applies 没有按会话缓存', `实际请求 ${appliesCalls} 次`);
   else ok('applies 按会话缓存（同会话只请求一次）');
+
+  // 真实场景：会话刚打开时 Host 还没起 agent（applies=null），稍后才判定成 true
+  appliesAnswer = null;
+  {
+    const slotRetry = makeSlot();
+    const props2 = entryReg?.extra?.inject('sess-retry');
+    const t0 = await render(slotRetry, ScopeEntry, props2);
+    if (t0 !== null) bad('applies=null 首屏不该显示按键');
+    else ok('applies=null 首屏不显示（等重试）');
+    appliesAnswer = true;
+    await sleep(1700); // 等一次 1.5s 的重试
+    const t1 = await render(slotRetry, ScopeEntry, props2);
+    if (!t1) bad('applies 变 true 后重试没有让按键出现');
+    else ok('applies 变 true → 自动重试后按键出现');
+  }
 
   // 恢复现场：用 sess-abc 的入口把面板重新打开，后面的面板断言依赖这个状态
   entryBtn[0]?.props?.onClick?.({});
