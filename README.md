@@ -447,6 +447,23 @@ if (table.has(route.path)) throw new Error(`webserver: duplicate ${route.kind} r
 
 ---
 
+## 开发自检
+
+改这两处（`client.js` 的客户端半、`picker/` 的宿主半）之前先知道：历史上两次
+「应用无法启动」和一次「12 个模式全是加载失败」都出在这一层。仓库里带了两个
+不依赖浏览器的自检脚本，提交前跑一遍：
+
+```sh
+node tools/scope-test.mjs      # 42 项：模块 id、三处 slot 注册、12 大类渲染、
+                               # 三态开关、POST 载荷、Esc、拖动、13 实例共用路由、
+                               # 引用计数注销、register/inject 抛错时 apply 不炸
+node tools/lint-presets.mjs    # 13 个预设结构体检：行数、only 白名单、
+                               # 12 专项是否正好覆盖 34 类且不重叠
+```
+
+`scope-test.mjs` 用最小 React 替身跑组件、用假 `ctx` 跑 `apply()`、用假
+`request/response` 跑 picker 的路由，所以不需要启动 DSH，也不需要浏览器。
+
 ## 并发与资源约束
 
 | 约束 | 值 | 机制 |
