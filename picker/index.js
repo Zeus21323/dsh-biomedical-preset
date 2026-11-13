@@ -10,6 +10,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { resolveProfileDir } from '../shared/profile.mjs';
+import { frontmatter } from '../shared/frontmatter.mjs';
 
 export const name = 'biomedical-skill-picker';
 export const inject = ['skills'];
@@ -62,39 +63,6 @@ const SHARED = (globalThis[SHARED_KEY] ??= {
 function profileDir() {
   if (!SHARED.profileDir) SHARED.profileDir = resolveProfileDir();
   return SHARED.profileDir;
-}
-
-function frontmatter(text) {
-  const m = /^---\r?\n([\s\S]*?)\r?\n---/.exec(text);
-  if (!m) return { fm: {}, body: text };
-  const fm = {};
-  let key = null;
-  for (const line of m[1].split(/\r?\n/)) {
-    const kv = /^([A-Za-z0-9_-]+):\s*(.*)$/.exec(line);
-    if (kv) {
-      key = kv[1];
-      fm[key] = kv[2];
-    } else if (key !== null && /^\s+\S/.test(line)) {
-      fm[key] = `${fm[key] ?? ''} ${line.trim()}`;
-    }
-  }
-  for (const k of Object.keys(fm)) {
-    let v = fm[k];
-    if (v === '|' || v === '>') v = '';
-    v = v.replace(/^["']|["']$/g, '').trim();
-    fm[k] = v;
-  }
-  if (!fm.description) {
-    const block = /^description:\s*[|>]\s*\r?\n((?:[ \t]+.*\r?\n?)+)/m.exec(m[1]);
-    if (block) {
-      fm.description = block[1]
-        .split(/\r?\n/)
-        .map((l) => l.trim())
-        .filter(Boolean)
-        .join(' ');
-    }
-  }
-  return { fm, body: text.slice(m[0].length).replace(/^\r?\n/, '') };
 }
 
 /** 兜底：catalog 损坏/缺失时直接扫 skills/<domain>/<skill>/SKILL.md，保证技能可用。 */

@@ -6,3 +6,6 @@ Thumbs.db
 __pycache__/
 *.pyc
 .omc/
+eval/routing/.cache/
+eval/routing/results/*
+!eval/routing/results/baseline-*.json

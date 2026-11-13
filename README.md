@@ -528,6 +528,7 @@ if (table.has(route.path)) throw new Error(`webserver: duplicate ${route.kind} r
 node tools/gen.mjs --check     # 生成产物与数据源一致（见下「改技能或模式」）
 node tools/lint-skills.mjs     # 技能库：目录 ↔ catalog、重名、许可证、开发残留
 python tools/mcp-test.py       # MCP：工具清单、并发、取消、总时限、NCBI 参数、摘要解析
+node tools/route-eval.mjs --validate  # 路由评测用例：技能 / 工具名有效、34 类都有用例
 node tools/scope-test.mjs      # 65 项（含「全部关闭 → 0 个」「专项会话按本模式白名单」「嵌套派活被拒」）：模块 id、三处 slot 注册、12 大类渲染、
                                # 三态开关、POST 载荷、Esc、拖动、13 实例共用路由、
                                # 引用计数注销、register/inject 抛错时 apply 不炸
@@ -537,6 +538,24 @@ node tools/lint-presets.mjs    # 13 个预设结构体检：行数、only 白名
                                # 每个模式是否挂了共享纪律 suffix、picker 是否写了 preset、
                                # 有没有写死本机绝对路径、persona 点名的技能是否存在
 ```
+
+### 路由评测：agent 能不能选对技能和工具
+
+改技能描述、删合并技能、调整模式划分之前和之后各跑一次，用数字判断是变好还是变差。
+
+- 用例：`eval/routing/cases.json`，173 条真实请求，覆盖全部 34 类。每条给出「任一命中即算对」的可接受技能（`skills`）与 MCP 工具（`tools`），并带标签：`clear` 表述明确、`lay` 外行表述、`dup` 涉及近义技能、`nfcore` 答案含 nf-core 流程、`mcp` 需要查库、`en` 英文、`vague` 目标宽泛。
+- 每条用例跑两种目录：**全量**（597 个技能全部可见）和**专项模式**（只看正确答案所在模式的技能），两者之差就是「先缩小候选」的收益。
+- 指标：`skill@1`（首选即正确）、`skill@3`、MRR、编造技能名比例、`tool@3`；另外按分类、按标签汇总，并列出最常见的「正确答案 → 实际首选」混淆对，直接指向该改哪两条描述。
+
+```sh
+node tools/route-eval.mjs --router bm25                     # 离线词法基线，不联网
+ROUTE_EVAL_API_KEY=sk-... node tools/route-eval.mjs --router llm               # 真实模型（默认 DeepSeek，OpenAI 兼容接口）
+ROUTE_EVAL_API_KEY=sk-... node tools/route-eval.mjs --router llm --baseline eval/routing/results/baseline-llm.json
+```
+
+`--router llm` 默认请求 `https://api.deepseek.com` 的 `deepseek-chat`，可用 `ROUTE_EVAL_BASE_URL` / `ROUTE_EVAL_MODEL` 换成其它 OpenAI 兼容服务；`--mode full|specialist|both`、`--tag lay`、`--limit 20`、`--concurrency 4` 控制范围。模型回复按「模型 + 提示词」缓存在 `eval/routing/.cache/`（不进仓库），重跑不会重复计费；技能目录作为固定的系统提示放在最前面，DeepSeek 的上下文缓存会让重复部分按缓存价计费。
+
+结果写到 `eval/routing/results/`（只有 `baseline-*.json` 进仓库）。当前离线基线 `baseline-bm25.json`：全量 skill@1 74.3%、专项模式 81.4%。注意 BM25 偏乐观——用例是对照目录写的，用词和描述重合度高；`lay` 外行表述只有 60%，真实用户的说法更接近这一档。真实模型的基线请用 `--router llm --out eval/routing/results/baseline-llm.json` 生成后提交。
 
 ### 改技能或模式：只改数据源，再跑生成器
 
@@ -591,7 +610,8 @@ paths.cjs               包内路径（供 patch 的 !!js 表达式按包名同�
 shared/profile.mjs      定位 profile 目录（picker / 设置页共用）
 picker/                 技能 provider：catalog.json（34 类 x 597 技能，含每个技能的短说明）+ index.js
 spec/                   生成器数据源：modes.json（12 个专项模式）、settings-groups.json、specialist-preset.yml.tpl
-tools/                  gen.mjs（生成器）与自检：scope-test / lint-presets / lint-skills / mcp-test.py
+tools/                  gen.mjs（生成器）、route-eval.mjs（路由评测）与自检：scope-test / lint-presets / lint-skills / mcp-test.py
+eval/routing/           路由评测用例（cases.json）与基线结果（results/baseline-*.json）
 settings/               设置页 Host 半：index.js（Config + 镜像）/ config.mjs（浏览器半在包根 client.js）
 mcp/biomedical_mcp.py   51 个数据源工具（stdio JSON-RPC，纯标准库）
 skills/                 6 个域目录 / 597 个技能 / 2047 个文件
