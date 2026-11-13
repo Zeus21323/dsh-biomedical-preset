@@ -1,6 +1,6 @@
 ---
 name: cnv-sv-detection
-description: WGS/WES/芯片的拷贝数变异与结构变异检测：CNVkit 检测 CNV，Manta、Delly 检测 SV，AnnotSV 与 VEP 注释并做致病性过滤，命令均引自官方文档。胚系 CNV 的临床分级用 acmg-clingen-germline-cnv-classification，肿瘤 CNV 与驱动事件用 tumor-cnv-driver-event-analysis。
+description: WGS/WES/芯片的拷贝数变异与结构变异检测：CNVkit 检测 CNV，Manta、Delly 检测 SV，AnnotSV 与 VEP 注释并做致病性过滤，命令均引自官方文档。胚系 CNV 的临床分级用 acmg-clingen-germline-cnv-classification，肿瘤 CNV 与驱动事件用 tumor-cnv-driver-event-analysis。已并入 01-genome-sv-detection（多信号 SV 检测要点）。
 category: omics
 tags: cnv, sv, wgs, wes, cnvkit, manta, delly
 whenToUse: 当用户需要从测序或芯片数据检测拷贝数变异（CNV）与结构变异（SV），并完成注释与致病性过滤时使用

@@ -1,5 +1,5 @@
 ---
-name: grn-inference-scaffold-replace
+name: grn-inference
 description: 用于从表达、染色质可及性或转录因子先验推断基因调控网络；当用户需要TF—靶基因关系或调控模块时使用。
 whenToUse: 当用户需要TF—靶基因关系或调控模块时使用
 ---

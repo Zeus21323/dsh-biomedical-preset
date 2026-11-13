@@ -33,19 +33,19 @@ window.__ModuleLoader__.load({
         "variant-calling-filtering": {
             "label": "变异检测与过滤",
             "desc": "从比对结果或读段得到胚系、体细胞或靶向 SNV/Indel，并完成规范化与质控过滤。",
-            "count": 10,
+            "count": 8,
             "folded": 6
         },
         "copy-number-structural-variation": {
             "label": "拷贝数变异与结构变异",
             "desc": "检测缺失、重复、倒位、易位、重复扩增与等位失衡，并解释拷贝数与结构层面的改变。",
-            "count": 8,
+            "count": 7,
             "folded": 2
         },
         "variant-interpretation-clinical": {
             "label": "变异解读与罕见病诊断",
             "desc": "把变异注释到基因与后果，按 ACMG/AMP 证据分级并支撑罕见病与家系诊断结论。",
-            "count": 9,
+            "count": 8,
             "folded": 2
         },
         "population-genetics-gwas": {
@@ -93,7 +93,7 @@ window.__ModuleLoader__.load({
         "differential-expression-enrichment": {
             "label": "差异表达与功能富集",
             "desc": "在组学矩阵上做组间差异与统计建模，并把结果落到通路、基因集与功能解释。",
-            "count": 9,
+            "count": 8,
             "folded": 1
         },
         "single-cell-core": {
@@ -105,7 +105,7 @@ window.__ModuleLoader__.load({
         "single-cell-advanced-virtual-cell": {
             "label": "单细胞高级与虚拟细胞",
             "desc": "在单细胞数据上做轨迹、通讯、扰动预测、多模态与队列复现等机制性推断。",
-            "count": 20,
+            "count": 18,
             "folded": 0
         },
         "spatial-omics": {
@@ -117,7 +117,7 @@ window.__ModuleLoader__.load({
         "proteomics": {
             "label": "蛋白质组学",
             "desc": "从质谱原始数据到肽段鉴定与蛋白定量，并处理修饰、亲和平台与定量质量。",
-            "count": 12,
+            "count": 11,
             "folded": 9
         },
         "metabolomics-lipidomics": {
@@ -129,13 +129,13 @@ window.__ModuleLoader__.load({
         "epigenomics-methylation": {
             "label": "表观遗传与 DNA 甲基化",
             "desc": "处理 ChIP/ATAC/CUT&RUN、Hi-C 与亚硫酸氢盐数据，识别 peak、染色质状态、三维结构与甲基化差异。",
-            "count": 19,
+            "count": 18,
             "folded": 12
         },
         "regulatory-network-sequence-models": {
             "label": "调控网络与序列模型",
             "desc": "推断转录因子调控网络与模块，或用基因组基础模型评估序列变异的调控效应。",
-            "count": 16,
+            "count": 14,
             "folded": 2
         },
         "microbiome-metagenomics": {
@@ -147,7 +147,7 @@ window.__ModuleLoader__.load({
         "structural-biology-modeling": {
             "label": "结构预测与建模",
             "desc": "预测或准备蛋白与复合物结构，评估质量、相似性与界面几何并做动力学分析。",
-            "count": 17,
+            "count": 16,
             "folded": 1
         },
         "chemoinformatics-drug-design": {
@@ -159,7 +159,7 @@ window.__ModuleLoader__.load({
         "protein-engineering-synbio": {
             "label": "蛋白工程与合成生物学",
             "desc": "设计蛋白序列与骨架、优化表达与可开发性，并把构建放进代谢与自动化实验方案。",
-            "count": 14,
+            "count": 13,
             "folded": 1
         },
         "gene-editing-cloning": {
@@ -510,11 +510,13 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "01-genome-wes",
-                "desc": "当用户需要从外显子组测序数据获得胚系小变异，并评估捕获效率和可解释缺口时使用。"
+                "desc": "当用户需要从外显子组测序数据获得胚系小变异，并评估捕获效率和可解释缺口时使用。",
+                "via": "variant-calling-wes-wgs"
             },
             {
                 "name": "01-genome-wgs",
-                "desc": "当用户需要设计或执行从短读长全基因组 FASTQ 到分析就绪比对和胚系小变异结果的流程时使用。"
+                "desc": "当用户需要设计或执行从短读长全基因组 FASTQ 到分析就绪比对和胚系小变异结果的流程时使用。",
+                "via": "variant-calling-wes-wgs"
             },
             {
                 "name": "long-read-variant-calling",
@@ -578,7 +580,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "01-genome-sv-detection",
-                "desc": "当用户需要检测缺失、重复、倒位、易位及其他结构变异，并整合多种信号时使用。"
+                "desc": "当用户需要检测缺失、重复、倒位、易位及其他结构变异，并整合多种信号时使用。",
+                "via": "cnv-sv-detection"
             },
             {
                 "name": "focal-amplification-ecdna-analysis",
@@ -614,7 +617,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "13-clinical-genomics-intervar",
-                "desc": "系统化的ACMG/AMP胚系变异分类，覆盖全部28条证据标准（PVS1, PS1-4, PM1-6, PP1-5, BA1, BS1-4, BP1-7），产出五级分类（致病/可能致病/意义不明/可能良性/良性）并附逐。"
+                "desc": "系统化的ACMG/AMP胚系变异分类，覆盖全部28条证据标准（PVS1, PS1-4, PM1-6, PP1-5, BA1, BS1-4, BP1-7），产出五级分类（致病/可能致病/意义不明/可能良性/良性）并附逐。",
+                "via": "variant-pathogenicity-acmg"
             },
             {
                 "name": "13-clinical-genomics-rare-disease-diagnosis",
@@ -713,11 +717,11 @@ window.__ModuleLoader__.load({
                 "desc": "当用户问某因素、基因表达或蛋白是否会导致某疾病、因果方向是否相反、相关关系能否支持病因，或交付暴露/结局遗传关联表、提出MR及多效性审稿意见时使用。"
             },
             {
-                "name": "colocalization-analysis-scaffold-replace",
+                "name": "colocalization-analysis",
                 "desc": "当用户问同一区域的疾病与表达/蛋白信号是不是一回事、两个性状是否共享变异、MR或TWAS是否受连锁牵连，或需要coloc及多信号共定位时使用。"
             },
             {
-                "name": "fine-mapping-scaffold-replace",
+                "name": "gwas-fine-mapping",
                 "desc": "当用户已有某疾病的遗传关联峰却不知道哪个变异最值得验证、显著SNP太多、想缩小候选范围，或要求可信集、PIP、SuSiE/FINEMAP时使用。"
             },
             {
@@ -767,7 +771,7 @@ window.__ModuleLoader__.load({
                 "desc": "当用户有疾病GWAS想找相关组织/表达基因、问遗传预测表达与疾病是否有关，或需要TWAS、FUSION、PrediXcan、MetaXcan及显著邻近基因解释时使用。"
             },
             {
-                "name": "mendelian-randomization",
+                "name": "omics-causal-driver-inference",
                 "desc": "当用户需要从观察性转录组或多组学数据寻找候选因果驱动因子，并区分预测、干预效应与相关性时使用。"
             },
             {
@@ -842,7 +846,7 @@ window.__ModuleLoader__.load({
                 "desc": "用于cfDNA靶向测序的读段质控、UMI家族构建、单双链共识和背景错误控制。"
             },
             {
-                "name": "ctdna-mutation-detection-scaffold-replace",
+                "name": "ctdna-mutation-detection",
                 "desc": "用于cfDNA/ctDNA中的超低频SNV和Indel检测、技术噪声建模与候选复核。"
             },
             {
@@ -1263,7 +1267,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "gsea-gsva-scoring",
-                "desc": "用于全量排序特征的GSEA以及GSVA、ssGSEA样本级基因集评分。"
+                "desc": "用于全量排序特征的GSEA以及GSVA、ssGSEA样本级基因集评分。",
+                "via": "pathway-enrichment"
             },
             {
                 "name": "pathway-enrichment",
@@ -1291,7 +1296,7 @@ window.__ModuleLoader__.load({
                 "via": "nfcore-catalog"
             },
             {
-                "name": "pathway-enrichment-scaffold-replace",
+                "name": "metabolite-pathway-mapping",
                 "desc": "当用户需要把带证据等级的代谢物及效应映射到物种匹配的通路，并控制 ID 歧义、检测背景和重复特征造成的偏倚时使用。"
             },
             {
@@ -1439,7 +1444,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "scvi-single-cell-probabilistic-modeling",
-                "desc": "当用户需要使用 scVI、scANVI 或 totalVI 对单细胞计数进行概率表征、半监督标签迁移或 RNA-蛋白联合建模时使用。"
+                "desc": "当用户需要使用 scVI、scANVI 或 totalVI 对单细胞计数进行概率表征、半监督标签迁移或 RNA-蛋白联合建模时使用。",
+                "via": "scvi-tools"
             },
             {
                 "name": "secreted-protein-activity-inference",
@@ -1467,7 +1473,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "scgpt-embedding",
-                "desc": "当用户需要用scGPT为单细胞表达数据生成嵌入、辅助细胞类型注释或构建基因表示时使用。"
+                "desc": "当用户需要用scGPT为单细胞表达数据生成嵌入、辅助细胞类型注释或构建基因表示时使用。",
+                "via": "scgpt"
             }
         ],
         "spatial-omics": [
@@ -1557,10 +1564,11 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "07-proteomics-protein-quantification",
-                "desc": "当用户需要把肽段强度、谱图计数或 label-free 信号汇总为可比较的蛋白丰度，并处理跨运行匹配、归一化和缺失时使用。"
+                "desc": "当用户需要把肽段强度、谱图计数或 label-free 信号汇总为可比较的蛋白丰度，并处理跨运行匹配、归一化和缺失时使用。",
+                "via": "proteomics-quantification"
             },
             {
-                "name": "07-proteomics-skill-002",
+                "name": "protein-function-annotation",
                 "desc": "当用户需要根据蛋白序列及可靠同源证据注释结构域、家族、GO 和功能，同时保留冲突、低覆盖与未知项时使用。"
             },
             {
@@ -1759,7 +1767,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "03-epigenomics-wgbs-analysis",
-                "desc": "用于处理WGBS或RRBS数据，得到CpG及非CpG甲基化计数、覆盖与转换质量。"
+                "desc": "用于处理WGBS或RRBS数据，得到CpG及非CpG甲基化计数、覆盖与转换质量。",
+                "via": "dna-methylation-wgbs"
             },
             {
                 "name": "chromatin-compartment-tad-analysis",
@@ -1860,7 +1869,7 @@ window.__ModuleLoader__.load({
                 "desc": "使用长上下文基因组基础模型 Evo 2 对 DNA 序列进行评分、嵌入和生成。"
             },
             {
-                "name": "grn-inference-scaffold-replace",
+                "name": "grn-inference",
                 "desc": "用于从表达、染色质可及性或转录因子先验推断基因调控网络。"
             },
             {
@@ -1894,7 +1903,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "03-epigenomics-basenji",
-                "desc": "用于用Borzoi、Basenji、Enformer、Akita、AlphaGenome等模型预测序列变异对表达、可及性或染色质结构的潜在影响。"
+                "desc": "用于用Borzoi、Basenji、Enformer、Akita、AlphaGenome等模型预测序列变异对表达、可及性或染色质结构的潜在影响。",
+                "via": "borzoi"
             },
             {
                 "name": "04-transcriptomics-tf-activity-inference",
@@ -1911,7 +1921,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "evo2-sequence-scoring",
-                "desc": "当用户需要用Evo 2对长DNA序列进行似然评分、嵌入、变异效应比较或条件生成时使用。"
+                "desc": "当用户需要用Evo 2对长DNA序列进行似然评分、嵌入、变异效应比较或条件生成时使用。",
+                "via": "evo2"
             },
             {
                 "name": "plant-long-context-genome-modeling",
@@ -2122,7 +2133,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "12-structural-biology-alphafold2",
-                "desc": "用于AlphaFold2或ColabFold的单体、同源多聚体结构预测和置信度解释。"
+                "desc": "用于AlphaFold2或ColabFold的单体、同源多聚体结构预测和置信度解释。",
+                "via": "alphafold2"
             },
             {
                 "name": "12-structural-biology-alphafold3",
@@ -2204,7 +2216,7 @@ window.__ModuleLoader__.load({
                 "desc": "当用户需要依据疾病机制、靶点、转录特征、现有药理和临床可行性，为已知药物寻找新适应证并排序时使用。"
             },
             {
-                "name": "admet-prediction-scaffold-replace",
+                "name": "admet-prediction",
                 "desc": "当用户需要用规则或计算模型预测吸收、分布、代谢、排泄、毒性、药物相似性和结构警报，并为早期化合物排序时使用。"
             },
             {
@@ -2273,7 +2285,7 @@ window.__ModuleLoader__.load({
                 "desc": "用于识别和比较蛋白小分子结合口袋、评估可成药性并准备对接区域。"
             },
             {
-                "name": "qsar-modeling-scaffold-replace",
+                "name": "qsar-modeling",
                 "desc": "当用户需要从分子结构和实验标签建立活性、理化性质或ADMET预测模型，并评估外部性能、不确定性与适用域时使用。"
             },
             {
@@ -2281,7 +2293,7 @@ window.__ModuleLoader__.load({
                 "desc": "当用户需要设计PROTAC、分子胶或其他靶向蛋白降解剂，并评估E3连接酶、连接子、三元复合物和细胞降解证据时使用。"
             },
             {
-                "name": "virtual-screening-scaffold-replace",
+                "name": "virtual-screening",
                 "desc": "当用户需要围绕蛋白质口袋，对化合物库执行受体准备、分阶段对接/重评分、富集验证和实验命中选择时使用。"
             }
         ],
@@ -2332,7 +2344,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "esm",
-                "desc": "当用户需要用ESM-2生成蛋白质序列或残基嵌入、掩码语言模型分数、突变效应分数或接触预测时使用。"
+                "desc": "当用户需要用ESM-2生成蛋白质序列或残基嵌入、掩码语言模型分数、突变效应分数或接触预测时使用。",
+                "via": "fair-esm2"
             },
             {
                 "name": "esm3-protein-generation-structure-modeling",
@@ -2354,7 +2367,7 @@ window.__ModuleLoader__.load({
                 "desc": "当用户需要在Gibson、Golden Gate等组装方式之间选择并设计片段连接和构建验证时使用。"
             },
             {
-                "name": "base-editing-design-scaffold-replace",
+                "name": "base-editing-design",
                 "desc": "当用户需要设计CBE或ABE碱基编辑并比较目标产物、旁观者编辑和脱靶风险时使用。"
             },
             {
@@ -2374,7 +2387,7 @@ window.__ModuleLoader__.load({
                 "desc": "当用户需要在命中分析前判断CRISPR筛选文库是否经历覆盖损失、重复失真或生物学信号不足时使用。"
             },
             {
-                "name": "grna-design-scaffold-replace",
+                "name": "grna-design",
                 "desc": "当用户需要为单基因CRISPR敲除、CRISPRi或CRISPRa选择少量高质量导向RNA并安排实验验证时使用。"
             },
             {
@@ -2392,7 +2405,7 @@ window.__ModuleLoader__.load({
                 "via": "nfcore-catalog"
             },
             {
-                "name": "off-target-prediction-off-target-scaffold",
+                "name": "crispr-off-target-prediction",
                 "desc": "当用户需要枚举CRISPR导向RNA的潜在全基因组脱靶位点、排序风险并规划验证实验时使用。"
             },
             {
@@ -2480,7 +2493,7 @@ window.__ModuleLoader__.load({
                 "desc": "用于从体细胞变异、融合、异常剪接或肿瘤抗原生成并筛选候选表位。"
             },
             {
-                "name": "mhc-binding-prediction-scaffold-replace",
+                "name": "mhc-binding-prediction",
                 "desc": "用于预测肽段与MHC-I/II结合、加工和呈递优先级。"
             },
             {

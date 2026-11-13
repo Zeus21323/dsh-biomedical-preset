@@ -57,6 +57,15 @@ blocked = m.handle({"jsonrpc": "2.0", "id": 6, "method": "tools/call", "params":
 check("调用未启用领域的工具返回可读错误", blocked["result"]["isError"] and "没有启用" in blocked["result"]["content"][0]["text"])
 m.ACTIVE_DOMAINS = saved
 
+# ── 个人信息拦截
+check("身份证号（校验位正确）被识别", m.find_pii({"query": "患者 11010519491231002X BRCA1"}) == ["身份证号"])
+check("校验位不对的 18 位数字不算身份证", m.find_pii({"query": "110105194912310021"}) == [])
+check("手机号、邮箱被识别", m.find_pii({"q": "联系 13812345678 或 a.b@example.com"}) == ["手机号", "电子邮箱"])
+check("病历号等带标签的编号被识别", m.find_pii({"q": "住院号：A123456 TP53"}) == ["病历/住院/门诊号等标识"])
+check("正常科学检索不误报", m.find_pii({"query": "BRCA1 c.68_69delAG rs80357914 chr17:43044295 PMID 31234567", "max_results": 10}) == [])
+blocked = m.handle({"jsonrpc": "2.0", "id": 9, "method": "tools/call", "params": {"name": "pubmed_search_articles", "arguments": {"query": "张三 13812345678 肺癌"}}})
+check("含个人信息的调用被拒且不发请求", blocked["result"]["isError"] and "去标识化" in blocked["result"]["content"][0]["text"])
+
 # ── NCBI 参数
 u = m._ncbi_params("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=x")
 check("NCBI 请求带 tool 与 email", "tool=dsh-biomedical-mcp" in u and "email=someone%40example.org" in u, u)

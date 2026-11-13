@@ -23,4 +23,4 @@
 |---|---|---|
 | `docx`、`pdf`、`xlsx` | 许可证为「© Anthropic, PBC. All rights reserved」，不能随本包再分发 | DSH 自带 `office-docx`、`office-xlsx`、`office-export-pdf` |
 
-`tools/lint-skills.mjs` 会拒绝任何「保留所有权利」且不含开源授权条款的 LICENSE 文件。
+`tools/lint-skills.mjs` 会拒绝任何「保留所有权利」且不含开源授权条款的 LICENSE 文件。每个技能识别到的许可证、许可证不明的完整名单见自动生成的 [COMPLIANCE.md](COMPLIANCE.md)；许可证不明的技能不会被评为「核心」级。

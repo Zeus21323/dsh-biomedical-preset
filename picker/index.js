@@ -211,6 +211,43 @@ function invalidateAll() {
   }
 }
 
+/**
+ * 等级标记（tools/grade.mjs 写进 catalog 的 grade 字段）：目录里模型只看得到描述，
+ * 所以受限、实验两级在描述最前面加标记，让模型选技能时就知道代价。
+ */
+function gradePrefix(grade) {
+  if (grade?.tier === 'restricted') return `〔受限：部分功能会把内容发送到 ${(grade.services ?? []).join('、')}，用前须征得用户同意〕`;
+  if (grade?.tier === 'experimental') return '〔实验〕';
+  return '';
+}
+
+/** 加载技能时附在正文最前面的合规提示。 */
+function complianceBanner(grade) {
+  if (!grade) return [];
+  const flags = new Set(grade.flags ?? []);
+  const out = [];
+  if (grade.tier === 'restricted') {
+    out.push(
+      `> 【合规·受限】本技能的部分功能会把内容发送到第三方生成式 AI 服务（${(grade.services ?? []).join('、')}）。使用这些功能前，先告诉用户会发送什么、发到哪里，并取得明确同意；涉及未发表数据、患者或受试者信息时不要使用这些功能，改用本地方法。`,
+    );
+  }
+  if (grade.tier === 'experimental') {
+    out.push(`> 【质量·实验】本技能未通过质量检查（${(grade.issues ?? []).join('；')}）。产出要额外核验，并在汇报中注明来自实验级技能。`);
+  }
+  if (flags.has('egress-sequence')) {
+    out.push(
+      `> 【合规·序列外发】默认流程会把序列发送到 ${(grade.sequenceServices ?? []).join('、')}。序列未公开、涉及专利或合作保密时，先征得用户同意，或改用本地数据库与本地 MSA。`,
+    );
+  }
+  if (flags.has('phi')) {
+    out.push('> 【合规·患者数据】分析前先去标识化（姓名、证件号、住院号、联系方式、精确日期等）；不要把可识别信息写进子任务、报告、文件名或任何外部工具的参数。');
+  }
+  if (flags.has('needs-key')) {
+    out.push(`> 【合规·密钥】需要 ${(grade.keys ?? []).join('、')}。只从环境变量读取，不要让用户把密钥贴进对话；缺失时说明如何配置。`);
+  }
+  return out.length ? [...out, ''] : [];
+}
+
 function findEntry(doc, name) {
   for (const category of doc.categories) {
     const entry = category.skills.find((e) => e.name === name);
@@ -237,33 +274,50 @@ function declaredMcpTools(fm, entry) {
 }
 
 /**
- * 入口技能（如 nfcore-catalog）加载时附上的流程索引：只列当前范围内的折叠技能，
- * 给出 SKILL.md 绝对路径。折叠技能不在目录里，skill 工具按名字加载不到，
- * 所以让模型用文件工具直接读。
+ * 入口技能加载时附上的子技能索引，分两类（都来自 catalog 里 via 指向本技能的条目）：
+ *   - 已并入的实现（merged: true）：重复技能合并进主技能，原文完整保留，不受分类范围限制
+ *   - 折叠的流程（如 nfcore-* ）：只列当前技能范围内的
+ * 子技能不在目录里，skill 工具按名字加载不到，所以给出 SKILL.md 绝对路径让模型用文件工具读。
  */
 function renderFoldedIndex(doc, router, enabled) {
-  const lines = [
-    '---',
-    '',
-    '## 本地可用的流程技能索引（按当前技能范围生成）',
-    '',
-    '下列流程技能没有单独列在技能目录里，**不能**用 skill 工具按名字加载。确定要用哪个之后，用文件读取工具打开它的 SKILL.md 并按其中说明执行；同目录下的 references/ 与 scripts/ 是它的资源。',
-    '',
-  ];
-  let count = 0;
+  const merged = [];
+  const folded = new Map();
   for (const category of doc.categories) {
-    if (!enabled.has(category.id)) continue;
-    const folded = category.skills.filter((e) => e.via === router);
-    if (folded.length === 0) continue;
-    lines.push(`### ${category.label_zh}`);
-    for (const e of folded) {
-      lines.push(`- \`${e.name}\`：${e.desc ?? ''} —— ${join(SKILLS_ROOT, e.path, 'SKILL.md')}`);
-      count += 1;
+    for (const e of category.skills) {
+      if (e.via !== router) continue;
+      if (e.merged) merged.push(e);
+      else if (enabled.has(category.id)) {
+        if (!folded.has(category.label_zh)) folded.set(category.label_zh, []);
+        folded.get(category.label_zh).push(e);
+      }
     }
-    lines.push('');
   }
-  if (count === 0) {
-    lines.push('当前技能范围里没有可用的流程技能。需要时先用 `skill_scope` 加开对应分类，再重新加载本技能。');
+  const line = (e) => `- \`${e.name}\`：${e.desc ?? ''} —— ${join(SKILLS_ROOT, e.path, 'SKILL.md')}`;
+  const lines = ['---', ''];
+  if (merged.length > 0) {
+    lines.push(
+      '## 已并入本技能的实现',
+      '',
+      '下列技能已合并进本技能，原文与资源完整保留。需要其中的检查要点或具体步骤时，用文件读取工具打开对应 SKILL.md；它们不能用 skill 工具按名字加载。',
+      '',
+      ...merged.map(line),
+      '',
+    );
+  }
+  const hasFolded = doc.categories.some((c) => c.skills.some((e) => e.via === router && !e.merged));
+  if (hasFolded) {
+    lines.push(
+      '## 本地可用的流程技能索引（按当前技能范围生成）',
+      '',
+      '下列流程技能没有单独列在技能目录里，**不能**用 skill 工具按名字加载。确定要用哪个之后，用文件读取工具打开它的 SKILL.md 并按其中说明执行；同目录下的 references/ 与 scripts/ 是它的资源。',
+      '',
+    );
+    if (folded.size === 0) {
+      lines.push('当前技能范围里没有可用的流程技能。需要时先用 `skill_scope` 加开对应分类，再重新加载本技能。');
+    }
+    for (const [label, entries] of folded) {
+      lines.push(`### ${label}`, ...entries.map(line), '');
+    }
   }
   return lines.join('\n');
 }
@@ -727,7 +781,7 @@ export function apply(ctx, config = {}) {
 
   /** 当前会话此刻生效的分类（会话覆盖 > 预设白名单 > profile 开关）。list() 与 get() 共用。 */
   async function enabledCategoryIds(doc) {
-    const { only: _only, preset: _preset, ...defaults } = config ?? {};
+    const { only: _only, preset: _preset, hideExperimental: _he, hideRestricted: _hr, ...defaults } = config ?? {};
     const effective = { ...defaults, ...(await switches()) };
     let sessionSet;
     let currentSid;
@@ -764,7 +818,7 @@ export function apply(ctx, config = {}) {
     if (!fm.name) return undefined;
     return {
       name: fm.name,
-      description: fm.description ?? '',
+      description: `${gradePrefix(entry.grade)}${fm.description ?? ''}`,
       ...(fm.whenToUse ? { whenToUse: fm.whenToUse } : {}),
       invocation: { modelInvocable: true, userInvocable: true },
       provider: 'biomedical-picker',
@@ -773,8 +827,14 @@ export function apply(ctx, config = {}) {
       locator: { path: file, directory },
       resourceBase: { kind: 'directory', path: directory },
       path: file,
-      metadata: { category: category.id, categoryLabel: category.label_zh },
+      metadata: { category: category.id, categoryLabel: category.label_zh, tier: entry.grade?.tier ?? 'standard' },
     };
+  }
+
+  /** 预设可配置隐藏某些等级（hideExperimental / hideRestricted，默认都不隐藏，功能不丢） */
+  function hiddenByTier(entry) {
+    const tier = entry.grade?.tier;
+    return (tier === 'experimental' && config?.hideExperimental === true) || (tier === 'restricted' && config?.hideRestricted === true);
   }
 
   const dispose = ctx.skills.registerProvider((control) => {
@@ -807,6 +867,7 @@ export function apply(ctx, config = {}) {
               routers.add(entry.via);
               continue;
             }
+            if (hiddenByTier(entry)) continue;
             const candidate = await readCandidate(entry, category);
             if (!candidate) continue;
             out.push(candidate);
@@ -841,8 +902,12 @@ export function apply(ctx, config = {}) {
         const { fm, body } = frontmatter(text);
         const doc = await loadCatalog();
         const entry = doc ? findEntry(doc, candidate.name) : undefined;
-        const parts = [];
-        const tools = declaredMcpTools(fm, entry);
+        const parts = [...complianceBanner(entry?.grade)];
+        // 主技能的工具 = 自己声明的 ∪ 并入它的技能声明的
+        const tools = [...new Set([
+          ...declaredMcpTools(fm, entry),
+          ...(doc ? doc.categories.flatMap((c) => c.skills.filter((e) => e.via === candidate.name && e.merged).flatMap((e) => e.mcp ?? [])) : []),
+        ])];
         if (tools.length > 0) {
           parts.push(
             `> 本技能常用的 MCP 数据工具：${tools.map((t) => `\`mcp__biomedical__${t}\``).join('、')}。需要查库时优先用它们；当前模式没有提供的工具不要硬调。`,

@@ -1,5 +1,5 @@
 ---
-name: grna-design-scaffold-replace
+name: grna-design
 description: 当用户需要为单基因CRISPR敲除、CRISPRi或CRISPRa选择少量高质量导向RNA并安排实验验证时使用。
 whenToUse: 当用户需要为单基因CRISPR敲除、CRISPRi或CRISPRa选择少量高质量导向RNA并安排实验验证时使用
 ---

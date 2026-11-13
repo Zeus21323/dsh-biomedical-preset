@@ -14,7 +14,10 @@
   - 领域过滤：--domains literature,genome（或 BIO_MCP_DOMAINS）时只暴露这些领域的工具；
     领域见 DOMAINS，专项模式在 spec/modes.json 的 mcpDomains 里声明
 
-环境变量（都可选）：BIO_MCP_CALL_BUDGET、BIO_MCP_WORKERS（默认 4）、NCBI_EMAIL、NCBI_API_KEY、BIO_MCP_DOMAINS
+  - 个人信息拦截：参数里出现身份证号（校验位通过）、手机号、邮箱、病历号/住院号等带标签的编号时拒绝外发
+
+环境变量（都可选）：BIO_MCP_CALL_BUDGET、BIO_MCP_WORKERS（默认 4）、NCBI_EMAIL、NCBI_API_KEY、BIO_MCP_DOMAINS、
+BIO_MCP_PII_GUARD（默认 on；off 仅限确认误报时由管理员关闭）
 
 运行： python biomedical_mcp.py
 """
@@ -1098,6 +1101,54 @@ def parse_domains(argv, env):
 ACTIVE_DOMAINS = parse_domains(sys.argv[1:], os.environ)
 
 
+# --------------------------------------------------------------------------
+# 个人信息拦截：所有工具都会把参数发到外部公共数据库，参数里不能带可识别个人身份的信息
+# （BIO_MCP_PII_GUARD=off 可关闭，仅限确认误报时由管理员设置）
+# --------------------------------------------------------------------------
+import re as _re
+
+_ID_WEIGHTS = (7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2)
+_ID_CHECK = "10X98765432"
+_PII_PATTERNS = (
+    ("手机号", _re.compile(r"(?<!\d)1[3-9]\d{9}(?!\d)")),
+    ("电子邮箱", _re.compile(r"[\w.+-]+@[\w-]+\.[\w.-]+")),
+    ("病历/住院/门诊号等标识", _re.compile(r"(病历号|住院号|门诊号|病案号|身份证号?|医保卡号|MRN|medical record (number|no\.?))\s*[:：#]?\s*[A-Za-z0-9-]{4,}", _re.I)),
+)
+
+
+def _is_cn_id(candidate):
+    if not _re.fullmatch(r"\d{17}[\dXx]", candidate):
+        return False
+    total = sum(int(d) * w for d, w in zip(candidate[:17], _ID_WEIGHTS))
+    return _ID_CHECK[total % 11] == candidate[17].upper()
+
+
+def find_pii(value):
+    """在工具参数里找可识别个人身份的信息，返回命中的类型列表。"""
+    hits = []
+
+    def scan(v):
+        if isinstance(v, str):
+            for m in _re.finditer(r"(?<![0-9A-Za-z])\d{17}[\dXx](?![0-9A-Za-z])", v):
+                if _is_cn_id(m.group(0)):
+                    hits.append("身份证号")
+            for label, pat in _PII_PATTERNS:
+                if pat.search(v):
+                    hits.append(label)
+        elif isinstance(v, dict):
+            for x in v.values():
+                scan(x)
+        elif isinstance(v, (list, tuple)):
+            for x in v:
+                scan(x)
+
+    scan(value)
+    return sorted(set(hits))
+
+
+PII_GUARD = os.environ.get("BIO_MCP_PII_GUARD", "on").strip().lower() not in ("off", "0", "false", "no")
+
+
 def tool_enabled(name):
     return ACTIVE_DOMAINS is None or domain_of(name) in ACTIVE_DOMAINS
 
@@ -1145,6 +1196,14 @@ def handle(req):
         if not fn:
             return {"jsonrpc": "2.0", "id": rid,
                     "error": {"code": -32602, "message": "unknown tool: %s" % name}}
+        if PII_GUARD:
+            pii = find_pii(args)
+            if pii:
+                return {"jsonrpc": "2.0", "id": rid, "result": {
+                    "content": [{"type": "text", "text": "参数疑似包含可识别个人身份的信息（%s），已拒绝发送到外部数据库。"
+                                 "请去标识化后再查询：只用基因、变异、疾病等科学检索词，不要带患者姓名、证件号、联系方式或病历号。"
+                                 % "、".join(pii)}],
+                    "isError": True}}
         if not tool_enabled(name):
             return {"jsonrpc": "2.0", "id": rid, "result": {
                 "content": [{"type": "text", "text": "工具 %s 属于「%s」领域，当前模式没有启用（启用的领域：%s）。"

@@ -69,7 +69,14 @@ const viaOf = new Map();
 for (const c of catalog.categories) {
   for (const s of c.skills) {
     const { fm } = frontmatter(readFileSync(path.join(PKG, 'skills', s.path, 'SKILL.md'), 'utf8'));
-    const desc = (fm.description ?? '').slice(0, DESC_LIMIT);
+    // 与 picker 一致：受限、实验两级在描述前加标记（tools/grade.mjs 写进 catalog 的 grade）
+    const prefix =
+      s.grade?.tier === 'restricted'
+        ? `〔受限：部分功能会把内容发送到 ${(s.grade.services ?? []).join('、')}，用前须征得用户同意〕`
+        : s.grade?.tier === 'experimental'
+          ? '〔实验〕'
+          : '';
+    const desc = `${prefix}${fm.description ?? ''}`.slice(0, DESC_LIMIT);
     skills.push({ name: s.name, desc, cat: c.id, via: s.via });
     skillCat.set(s.name, c.id);
     if (s.via) viaOf.set(s.name, s.via);
@@ -191,7 +198,8 @@ const allNames = skills.map((s) => s.name);
  */
 function routingText(s) {
   const clauses = s.desc.split(/(?<=[。；;])/);
-  const kept = clauses.filter((cl) => !allNames.some((n) => n !== s.name && cl.includes(n)));
+  // 「已并入 X」说的是本技能覆盖了什么，要保留；只去掉「…用 X」这类指向别处的分工子句
+  const kept = clauses.filter((cl) => /已并入/.test(cl) || !allNames.some((n) => n !== s.name && cl.includes(n)));
   return `${s.name.replace(/-/g, ' ')} ${kept.join('')}`;
 }
 function bm25Route(c, view) {

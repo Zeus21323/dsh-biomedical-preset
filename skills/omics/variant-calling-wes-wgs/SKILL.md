@@ -1,6 +1,6 @@
 ---
 name: variant-calling-wes-wgs
-description: 人类 WES/WGS 胚系短变异检测主线：bwa-mem2 比对、去重与 BQSR，GATK HaplotypeCaller 检出与过滤，bcftools 整理，VEP 注释，mosdepth 覆盖度质控，命令与默认值均引自官方文档。只做其中一步用 01-genome-snp-calling、01-genome-variant-filtering 或 sequencing-coverage-capture-efficiency。
+description: 人类 WES/WGS 胚系短变异检测主线：bwa-mem2 比对、去重与 BQSR，GATK HaplotypeCaller 检出与过滤，bcftools 整理，VEP 注释，mosdepth 覆盖度质控，命令与默认值均引自官方文档。只做其中一步用 01-genome-snp-calling、01-genome-variant-filtering 或 sequencing-coverage-capture-efficiency。已并入 01-genome-wes 与 01-genome-wgs（外显子与全基因组各自的质控要点）。
 category: omics
 tags: wes, wgs, gatk, variant-calling, germline
 whenToUse: 当用户需要从人类全外显子（WES）或全基因组（WGS）重测序数据完成胚系短变异检测主线时使用

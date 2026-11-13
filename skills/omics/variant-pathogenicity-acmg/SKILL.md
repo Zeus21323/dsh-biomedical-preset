@@ -1,6 +1,6 @@
 ---
 name: variant-pathogenicity-acmg
-description: 胚系 SNV/Indel 致病性分级：按 ACMG/AMP 2015 框架及 ClinGen SVI 细则判读 PVS1–BP7 证据码，给出分级、处理冲突证据并撰写 VUS 报告。拷贝数变异（缺失、重复）用 acmg-clingen-germline-cnv-classification。
+description: 胚系 SNV/Indel 致病性分级：按 ACMG/AMP 2015 框架及 ClinGen SVI 细则判读 PVS1–BP7 证据码，给出分级、处理冲突证据并撰写 VUS 报告。拷贝数变异（缺失、重复）用 acmg-clingen-germline-cnv-classification。已并入 13-clinical-genomics-intervar（28 条证据标准逐条判读的增强版流程）。
 category: omics
 tags: acmg, variant-interpretation, clinical-genetics, vus
 whenToUse: 当用户需要按 ACMG/AMP 2015 框架对胚系变异做致病性分级、证据码判读或 VUS 报告时使用

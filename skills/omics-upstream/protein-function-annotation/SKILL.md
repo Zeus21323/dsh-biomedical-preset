@@ -1,5 +1,5 @@
 ---
-name: 07-proteomics-skill-002
+name: protein-function-annotation
 description: 当用户需要根据蛋白序列及可靠同源证据注释结构域、家族、GO 和功能，同时保留冲突、低覆盖与未知项时使用。
 whenToUse: 当用户需要根据蛋白序列及可靠同源证据注释结构域、家族、GO 和功能，同时保留冲突、低覆盖与未知项时使用
 ---

@@ -1,5 +1,5 @@
 ---
-name: off-target-prediction-off-target-scaffold
+name: crispr-off-target-prediction
 description: 当用户需要枚举CRISPR导向RNA的潜在全基因组脱靶位点、排序风险并规划验证实验时使用。
 whenToUse: 当用户需要枚举CRISPR导向RNA的潜在全基因组脱靶位点、排序风险并规划验证实验时使用
 ---

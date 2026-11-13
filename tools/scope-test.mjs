@@ -801,6 +801,34 @@ await callSet({ sessionId: 'sess-abc', enabled: null });
   }
 }
 
+// 等级与合规：标记、提示、合并、按等级隐藏
+{
+  const all = await a.ctx._provider.list();
+  const byName = new Map(all.map((x) => [x.name, x]));
+  const restricted = byName.get('image-painter');
+  const experimental = byName.get('cancer-mutation-landscape-oncoplot');
+  if (!restricted?.description.startsWith('〔受限')) bad('受限技能的目录描述没有〔受限〕标记', restricted?.description?.slice(0, 30));
+  else ok('受限技能在目录里带〔受限〕标记');
+  if (!experimental?.description.startsWith('〔实验〕')) bad('实验级技能的目录描述没有〔实验〕标记', experimental?.description?.slice(0, 30));
+  else ok('实验级技能在目录里带〔实验〕标记');
+  const rLoaded = await a.ctx._provider.get(restricted);
+  if (!/^> 【合规·受限】/.test(rLoaded.content)) bad('加载受限技能时没有合规提示', rLoaded.content.slice(0, 40));
+  else ok('加载受限技能时附带征得同意的提示');
+  const clinical = await a.ctx._provider.get(byName.get('variant-pathogenicity-acmg'));
+  if (!/【合规·患者数据】/.test(clinical.content)) bad('临床技能加载时没有去标识化提示');
+  else ok('临床技能加载时附带去标识化提示');
+  if (byName.has('gsea-gsva-scoring') || byName.has('12-structural-biology-alphafold2')) bad('已并入的技能仍出现在目录里');
+  else ok('已并入的技能不在目录里');
+  const pe = await a.ctx._provider.get(byName.get('pathway-enrichment'));
+  if (!/## 已并入本技能的实现[\s\S]*`gsea-gsva-scoring`[^\n]*SKILL\.md/.test(pe.content)) bad('主技能加载时没有列出已并入的实现');
+  else ok('主技能加载时列出已并入实现的原文路径');
+  const hidden = mount({ hideRestricted: true, hideExperimental: true }, makeWebServer());
+  const hiddenList = await hidden.ctx._provider.list();
+  if (hiddenList.some((x) => x.name === 'image-painter' || x.name === 'cancer-mutation-landscape-oncoplot')) bad('hideRestricted / hideExperimental 没有生效');
+  else ok('预设可隐藏受限与实验级技能', `${all.length} → ${hiddenList.length}`);
+  hidden.ctx.teardown();
+}
+
 // skill_scope：agent 自己收窄技能范围（与浮窗共用会话覆盖）
 {
   const tool = (more[0].ctx.registeredTools ?? []).find((t) => t.name === 'skill_scope');

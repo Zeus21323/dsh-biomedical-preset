@@ -1,6 +1,6 @@
 ---
 name: pathway-enrichment
-description: 通路与基因集富集分析：对基因列表做 ORA（Enrichr、超几何检验），对排序基因做 GSEA，对样本做 ssGSEA/GSVA；覆盖 GO、KEGG、Reactome、MSigDB、WikiPathways，含 ID 映射、背景集选择、多重检验、冗余合并与气泡图。只算样本级通路评分也可用 gsea-gsva-scoring，代谢物通路用 pathway-enrichment-scaffold-replace。
+description: 通路与基因集富集分析：对基因列表做 ORA（Enrichr、超几何检验），对排序基因做 GSEA，对样本做 ssGSEA/GSVA；覆盖 GO、KEGG、Reactome、MSigDB、WikiPathways，含 ID 映射、背景集选择、多重检验、冗余合并与气泡图。只算样本级通路评分也可用 gsea-gsva-scoring，代谢物通路用 metabolite-pathway-mapping。已并入 gsea-gsva-scoring（GSEA 与样本级基因集评分要点）。
 license: MIT
 metadata: "{\"version\": \"1.0\", \"skill-author\": \"K-Dense Inc.\"}"
 ---

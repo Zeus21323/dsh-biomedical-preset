@@ -1,5 +1,5 @@
 ---
-name: admet-prediction-scaffold-replace
+name: admet-prediction
 description: 当用户需要用规则或计算模型预测吸收、分布、代谢、排泄、毒性、药物相似性和结构警报，并为早期化合物排序时使用。整合实验与动物毒理数据的系统风险评估用 candidate-toxicity-risk-assessment。
 whenToUse: 当用户需要用规则或计算模型预测吸收、分布、代谢、排泄、毒性、药物相似性和结构警报，并为早期化合物排序时使用
 ---

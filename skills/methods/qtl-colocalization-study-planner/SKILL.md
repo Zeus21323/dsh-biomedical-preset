@@ -1,6 +1,6 @@
 ---
 name: qtl-colocalization-study-planner
-description: QTL 共定位课题设计：规划把 eQTL、pQTL、sQTL 等分子 QTL 与 GWAS 位点联系起来的研究，确定数据、方法（coloc、SuSiE 等）与判读标准。已有数据、直接做共定位分析用 colocalization-analysis-scaffold-replace。
+description: QTL 共定位课题设计：规划把 eQTL、pQTL、sQTL 等分子 QTL 与 GWAS 位点联系起来的研究，确定数据、方法（coloc、SuSiE 等）与判读标准。已有数据、直接做共定位分析用 colocalization-analysis。
 license: MIT
 author: AIPOCH
 ---

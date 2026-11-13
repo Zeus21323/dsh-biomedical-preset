@@ -1,5 +1,5 @@
 ---
-name: colocalization-analysis-scaffold-replace
+name: colocalization-analysis
 description: 当用户问同一区域的疾病与表达/蛋白信号是不是一回事、两个性状是否共享变异、MR或TWAS是否受连锁牵连，或需要coloc及多信号共定位时使用；只给两个lead SNP需先获取完整区域数据。
 whenToUse: 当用户问同一区域的疾病与表达/蛋白信号是不是一回事、两个性状是否共享变异、MR或TWAS是否受连锁牵连，或需要coloc及多信号共定位时使用
 ---

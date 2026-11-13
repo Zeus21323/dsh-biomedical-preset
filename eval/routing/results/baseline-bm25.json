@@ -1,7 +1,7 @@
 {
   "router": "bm25",
   "model": null,
-  "at": "2026-11-13T15:48:04.213Z",
+  "at": "2026-11-13T16:02:47.907Z",
   "skills": 597,
   "tools": 51,
   "cases": 173,
@@ -20,7 +20,7 @@
       "n": 167,
       "skill1": 81.4,
       "skill3": 94.6,
-      "mrr": 0.873,
+      "mrr": 0.874,
       "invalid": 0,
       "nTools": 10,
       "tool3": 90,
@@ -32,8 +32,8 @@
       "full": {
         "n": 5,
         "skill1": 40,
-        "skill3": 80,
-        "mrr": 0.6,
+        "skill3": 100,
+        "mrr": 0.667,
         "invalid": 0,
         "nTools": 0,
         "tool3": null,
@@ -76,8 +76,8 @@
       "full": {
         "n": 5,
         "skill1": 80,
-        "skill3": 100,
-        "mrr": 0.867,
+        "skill3": 80,
+        "mrr": 0.8,
         "invalid": 0,
         "nTools": 0,
         "tool3": null,
@@ -153,7 +153,7 @@
         "n": 7,
         "skill1": 71.4,
         "skill3": 85.7,
-        "mrr": 0.762,
+        "mrr": 0.786,
         "invalid": 0,
         "nTools": 0,
         "tool3": null,
@@ -328,8 +328,8 @@
       "specialist": {
         "n": 8,
         "skill1": 87.5,
-        "skill3": 87.5,
-        "mrr": 0.875,
+        "skill3": 100,
+        "mrr": 0.917,
         "invalid": 0,
         "nTools": 0,
         "tool3": null,
@@ -372,8 +372,8 @@
       "specialist": {
         "n": 4,
         "skill1": 50,
-        "skill3": 100,
-        "mrr": 0.667,
+        "skill3": 75,
+        "mrr": 0.583,
         "invalid": 0,
         "nTools": 0,
         "tool3": null,
@@ -793,7 +793,7 @@
         "n": 157,
         "skill1": 82.8,
         "skill3": 94.9,
-        "mrr": 0.882,
+        "mrr": 0.883,
         "invalid": 0,
         "nTools": 10,
         "tool3": 90,
@@ -814,8 +814,8 @@
       "specialist": {
         "n": 35,
         "skill1": 80,
-        "skill3": 100,
-        "mrr": 0.895,
+        "skill3": 97.1,
+        "mrr": 0.886,
         "invalid": 0,
         "nTools": 1,
         "tool3": 100,
@@ -848,8 +848,8 @@
       "full": {
         "n": 31,
         "skill1": 77.4,
-        "skill3": 90.3,
-        "mrr": 0.823,
+        "skill3": 87.1,
+        "mrr": 0.812,
         "invalid": 0,
         "nTools": 1,
         "tool3": 100,
@@ -934,6 +934,13 @@
     }
   },
   "confusions": {
+    "01-genome-fastqc → genome-contamination-detection": {
+      "count": 2,
+      "cases": [
+        "seq-01/full",
+        "seq-01/specialist"
+      ]
+    },
     "variant-pathogenicity-acmg → acmg-clingen-germline-cnv-classification": {
       "count": 2,
       "cases": [
@@ -983,14 +990,14 @@
         "sp-02/specialist"
       ]
     },
-    "12-structural-biology-molecular-docking → virtual-screening-scaffold-replace": {
+    "12-structural-biology-molecular-docking → virtual-screening": {
       "count": 2,
       "cases": [
         "drug-01/full",
         "drug-01/specialist"
       ]
     },
-    "admet-prediction-scaffold-replace → candidate-toxicity-risk-assessment": {
+    "admet-prediction → candidate-toxicity-risk-assessment": {
       "count": 2,
       "cases": [
         "drug-03/full",
@@ -1025,23 +1032,11 @@
         "wr-06/specialist"
       ]
     },
-    "scientific-visualization → latex-posters": {
+    "scientific-visualization → excalidraw-diagram-generator": {
       "count": 2,
       "cases": [
         "viz-01/full",
         "viz-01/specialist"
-      ]
-    },
-    "01-genome-fastqc → gsea-gsva-scoring": {
-      "count": 1,
-      "cases": [
-        "seq-01/full"
-      ]
-    },
-    "01-genome-fastqc → genome-contamination-detection": {
-      "count": 1,
-      "cases": [
-        "seq-01/specialist"
       ]
     },
     "nanopore-basecalling → gwas-locus-gene-prioritization": {
@@ -1074,7 +1069,7 @@
         "var-01/full"
       ]
     },
-    "13-clinical-genomics-trio-analysis → 01-genome-wes": {
+    "13-clinical-genomics-trio-analysis → 02-population-genetics-rare-variant-analysis": {
       "count": 1,
       "cases": [
         "clin-02/full"
@@ -1092,7 +1087,7 @@
         "onc-06/full"
       ]
     },
-    "prognostic-biomarker-survival-analysis → 02-population-genetics-qtl-target-prioritization": {
+    "prognostic-biomarker-survival-analysis → colocalization-analysis": {
       "count": 1,
       "cases": [
         "pm-03/full"
@@ -1314,9 +1309,9 @@
       ],
       "category": "sequencing-qc-alignment",
       "predicted": [
-        "gsea-gsva-scoring",
         "genome-contamination-detection",
-        "exploratory-data-analysis-statistical-tests"
+        "exploratory-data-analysis-statistical-tests",
+        "01-genome-fastqc"
       ],
       "predictedTools": [
         "omics_archives_geo_search",
@@ -1332,8 +1327,8 @@
       "skillScored": true,
       "toolScored": false,
       "hit1": false,
-      "hit3": false,
-      "rr": 0,
+      "hit3": true,
+      "rr": 0.3333333333333333,
       "invalid": [],
       "toolHit3": false,
       "invalidTools": [],
@@ -1351,7 +1346,7 @@
       "predicted": [
         "genome-contamination-detection",
         "nfcore-catalog",
-        "vcf-qc-sample-consistency"
+        "01-genome-fastqc"
       ],
       "predictedTools": [
         "pubmed_get_article_metadata",
@@ -1412,8 +1407,8 @@
       "category": "sequencing-qc-alignment",
       "predicted": [
         "01-genome-alignment",
-        "long-read-alignment",
-        "01-genome-bam"
+        "01-genome-repeat-expansion-analysis",
+        "long-read-alignment"
       ],
       "predictedTools": [],
       "gold": [
@@ -1473,7 +1468,7 @@
       "predicted": [
         "nanopore-basecalling",
         "vcf-normalization-curation",
-        "01-genome-variant-filtering"
+        "01-genome-fastqc"
       ],
       "predictedTools": [],
       "gold": [
@@ -1501,7 +1496,7 @@
       "category": "sequencing-qc-alignment",
       "predicted": [
         "sequencing-coverage-capture-efficiency",
-        "01-genome-wes",
+        "variant-calling-wes-wgs",
         "01-genome-multiqc"
       ],
       "predictedTools": [
@@ -1531,7 +1526,7 @@
       "category": "sequencing-qc-alignment",
       "predicted": [
         "sequencing-coverage-capture-efficiency",
-        "01-genome-wes",
+        "variant-calling-wes-wgs",
         "01-genome-multiqc"
       ],
       "predictedTools": [],
@@ -1952,7 +1947,7 @@
       "predicted": [
         "tumor-only-somatic-variant-calling",
         "14-cancer-genomics-somatic-mutation",
-        "01-genome-wes"
+        "ctdna-mutation-detection"
       ],
       "predictedTools": [
         "omics_archives_geo_search",
@@ -1969,8 +1964,8 @@
       "skillScored": true,
       "toolScored": false,
       "hit1": false,
-      "hit3": true,
-      "rr": 0.3333333333333333,
+      "hit3": false,
+      "rr": 0,
       "invalid": [],
       "toolHit3": false,
       "invalidTools": [],
@@ -1987,9 +1982,9 @@
       ],
       "category": "variant-calling-filtering",
       "predicted": [
-        "01-genome-wes",
+        "variant-calling-wes-wgs",
         "01-genome-snp-calling",
-        "01-genome-variant-filtering"
+        "sequencing-coverage-capture-efficiency"
       ],
       "predictedTools": [
         "variants_clinvar_search"
@@ -2234,7 +2229,7 @@
       "predicted": [
         "long-read-variant-calling",
         "01-genome-multiqc",
-        "01-genome-sv-detection"
+        "long-read-alignment"
       ],
       "predictedTools": [],
       "gold": [
@@ -2262,9 +2257,9 @@
       ],
       "category": "copy-number-structural-variation",
       "predicted": [
-        "01-genome-sv-detection",
         "cnv-sv-detection",
-        "long-read-variant-calling"
+        "long-read-variant-calling",
+        "01-genome-germline-cnv"
       ],
       "predictedTools": [
         "chembl_compound_search",
@@ -2296,9 +2291,9 @@
       ],
       "category": "copy-number-structural-variation",
       "predicted": [
-        "01-genome-sv-detection",
         "cnv-sv-detection",
-        "long-read-variant-calling"
+        "long-read-variant-calling",
+        "01-genome-germline-cnv"
       ],
       "predictedTools": [
         "pubmed_get_article_metadata",
@@ -2514,7 +2509,7 @@
       "category": "variant-interpretation-clinical",
       "predicted": [
         "acmg-clingen-germline-cnv-classification",
-        "13-clinical-genomics-intervar",
+        "variant-pathogenicity-acmg",
         "13-clinical-genomics-spliceai"
       ],
       "predictedTools": [
@@ -2552,7 +2547,7 @@
       "category": "variant-interpretation-clinical",
       "predicted": [
         "acmg-clingen-germline-cnv-classification",
-        "13-clinical-genomics-intervar",
+        "variant-pathogenicity-acmg",
         "13-clinical-genomics-spliceai"
       ],
       "predictedTools": [
@@ -2588,8 +2583,8 @@
       ],
       "category": "variant-interpretation-clinical",
       "predicted": [
-        "01-genome-wes",
         "02-population-genetics-rare-variant-analysis",
+        "variant-calling-wes-wgs",
         "single-cell-alternative-splicing"
       ],
       "predictedTools": [
@@ -2918,8 +2913,8 @@
       "category": "population-genetics-gwas",
       "predicted": [
         "02-population-genetics-gwas-meta-analysis",
-        "cellxgene-census",
-        "02-population-genetics-gwas-sumstats-qc"
+        "gwas-fine-mapping",
+        "cellxgene-census"
       ],
       "predictedTools": [
         "cellguide_cellxgene_collections",
@@ -2950,8 +2945,8 @@
       "category": "population-genetics-gwas",
       "predicted": [
         "02-population-genetics-gwas-meta-analysis",
-        "colocalization-analysis-scaffold-replace",
-        "02-population-genetics-gwas-sumstats-qc"
+        "colocalization-analysis",
+        "gwas-fine-mapping"
       ],
       "predictedTools": [
         "cellguide_cellxgene_collections",
@@ -2982,7 +2977,7 @@
       "category": "population-genetics-gwas",
       "predicted": [
         "gwas-locus-gene-prioritization",
-        "fine-mapping-scaffold-replace",
+        "gwas-fine-mapping",
         "phewas-phenome-wide-association"
       ],
       "predictedTools": [
@@ -2992,8 +2987,8 @@
       ],
       "gold": [
         "gwas-locus-gene-prioritization",
-        "fine-mapping-scaffold-replace",
-        "colocalization-analysis-scaffold-replace"
+        "gwas-fine-mapping",
+        "colocalization-analysis"
       ],
       "goldTools": [],
       "skillScored": true,
@@ -3016,7 +3011,7 @@
       "category": "population-genetics-gwas",
       "predicted": [
         "gwas-locus-gene-prioritization",
-        "fine-mapping-scaffold-replace",
+        "gwas-fine-mapping",
         "phewas-phenome-wide-association"
       ],
       "predictedTools": [
@@ -3026,8 +3021,8 @@
       ],
       "gold": [
         "gwas-locus-gene-prioritization",
-        "fine-mapping-scaffold-replace",
-        "colocalization-analysis-scaffold-replace"
+        "gwas-fine-mapping",
+        "colocalization-analysis"
       ],
       "goldTools": [],
       "skillScored": true,
@@ -3051,7 +3046,7 @@
       "predicted": [
         "02-population-genetics-genotype-phenotype-qc",
         "09-metagenomics-amr-gene-analysis",
-        "evo2-sequence-scoring"
+        "evo2"
       ],
       "predictedTools": [
         "structures_alphafold_prediction",
@@ -3082,8 +3077,8 @@
       "category": "population-genetics-gwas",
       "predicted": [
         "02-population-genetics-genotype-phenotype-qc",
-        "mendelian-randomization",
-        "02-population-genetics-prs-polygenic-risk-score"
+        "02-population-genetics-prs-polygenic-risk-score",
+        "omics-causal-driver-inference"
       ],
       "predictedTools": [
         "genomes_ensembl_lookup",
@@ -3098,7 +3093,7 @@
       "toolScored": false,
       "hit1": false,
       "hit3": true,
-      "rr": 0.3333333333333333,
+      "rr": 0.5,
       "invalid": [],
       "toolHit3": false,
       "invalidTools": [],
@@ -3178,7 +3173,7 @@
       "category": "population-genetics-gwas",
       "predicted": [
         "02-population-genetics-ldsc-analysis",
-        "fine-mapping-scaffold-replace",
+        "gwas-fine-mapping",
         "differential-regulatory-network"
       ],
       "predictedTools": [
@@ -3209,8 +3204,8 @@
       "category": "population-genetics-gwas",
       "predicted": [
         "02-population-genetics-ldsc-analysis",
-        "fine-mapping-scaffold-replace",
-        "mendelian-randomization"
+        "gwas-fine-mapping",
+        "omics-causal-driver-inference"
       ],
       "predictedTools": [
         "pubmed_find_related",
@@ -3500,7 +3495,7 @@
       "category": "cancer-genomics-liquid-biopsy",
       "predicted": [
         "15-liquid-biopsy-mrd-detection",
-        "ctdna-mutation-detection-scaffold-replace",
+        "ctdna-mutation-detection",
         "arxiv-preflight"
       ],
       "predictedTools": [
@@ -3532,7 +3527,7 @@
       "category": "cancer-genomics-liquid-biopsy",
       "predicted": [
         "15-liquid-biopsy-mrd-detection",
-        "ctdna-mutation-detection-scaffold-replace",
+        "ctdna-mutation-detection",
         "public-cancer-cohort-analysis"
       ],
       "predictedTools": [
@@ -3563,7 +3558,7 @@
       "predicted": [
         "cancer-mutation-landscape-oncoplot",
         "20-ai-medical-imaging-ai-image-omics-fusion",
-        "17-pharmacogenomics-warfarin-dosing"
+        "protein-structure-visualization"
       ],
       "predictedTools": [
         "cancer_models_cbioportal_mutations",
@@ -3595,7 +3590,7 @@
       "predicted": [
         "cancer-mutation-landscape-oncoplot",
         "14-cancer-genomics-driver-gene-analysis",
-        "mhc-binding-prediction-scaffold-replace"
+        "mhc-binding-prediction"
       ],
       "predictedTools": [
         "cancer_models_cbioportal_mutations",
@@ -3755,7 +3750,7 @@
       "predicted": [
         "19-forensic-genomics-kinship-analysis",
         "19-forensic-genomics-str-genotyping",
-        "colocalization-analysis-scaffold-replace"
+        "colocalization-analysis"
       ],
       "predictedTools": [],
       "gold": [
@@ -3961,7 +3956,7 @@
       "predicted": [
         "clinical-prediction-model-validation",
         "clinical-statistics-survival",
-        "drug-interaction-pk-pd-modeling"
+        "prognostic-biomarker-survival-analysis"
       ],
       "predictedTools": [
         "pubmed_get_article_metadata",
@@ -3992,8 +3987,8 @@
       ],
       "category": "clinical-precision-medicine",
       "predicted": [
+        "colocalization-analysis",
         "02-population-genetics-qtl-target-prioritization",
-        "colocalization-analysis-scaffold-replace",
         "clinical-statistics-survival"
       ],
       "predictedTools": [
@@ -4373,7 +4368,7 @@
       "predicted": [
         "scratch-wound-analysis",
         "image-painter",
-        "hypothesis-generation"
+        "output-fidelity-lock"
       ],
       "predictedTools": [
         "chembl_get_bioactivity",
@@ -4403,6 +4398,7 @@
       "category": "microscopy-cell-phenotyping",
       "predicted": [
         "scratch-wound-analysis",
+        "cytometry-differential-abundance-analysis",
         "flow-cytometry-gating-analysis"
       ],
       "predictedTools": [
@@ -4559,8 +4555,8 @@
       "category": "transcriptomics-quantification",
       "predicted": [
         "04-transcriptomics-rna-quantification",
-        "gsea-gsva-scoring",
-        "bulk-rnaseq"
+        "bulk-rnaseq",
+        "arboreto"
       ],
       "predictedTools": [
         "genomes_ensembl_overlap",
@@ -4595,8 +4591,8 @@
       "category": "transcriptomics-quantification",
       "predicted": [
         "04-transcriptomics-rna-quantification",
-        "gsea-gsva-scoring",
-        "bulk-rnaseq"
+        "bulk-rnaseq",
+        "pydeseq2"
       ],
       "predictedTools": [
         "genomes_ensembl_overlap",
@@ -4970,8 +4966,8 @@
       "category": "differential-expression-enrichment",
       "predicted": [
         "pathway-enrichment",
-        "dna-methylation-wgbs",
-        "07-proteomics-skill-002"
+        "protein-function-annotation",
+        "drug-target-evidence-validation"
       ],
       "predictedTools": [
         "genes_ontologies_quickgo_annotations",
@@ -5034,8 +5030,8 @@
       "category": "differential-expression-enrichment",
       "predicted": [
         "pathway-enrichment",
-        "gsea-gsva-scoring",
-        "gwas-locus-gene-prioritization"
+        "gwas-locus-gene-prioritization",
+        "all-atom-design"
       ],
       "predictedTools": [
         "variants_dbsnp_get",
@@ -5068,8 +5064,8 @@
       "category": "differential-expression-enrichment",
       "predicted": [
         "pathway-enrichment",
-        "gsea-gsva-scoring",
-        "nfcore-catalog"
+        "nfcore-catalog",
+        "rna-modification-clip"
       ],
       "predictedTools": [
         "pubmed_find_related",
@@ -5101,9 +5097,9 @@
       ],
       "category": "differential-expression-enrichment",
       "predicted": [
-        "gsea-gsva-scoring",
         "pathway-enrichment",
-        "16-immunomics-ssgsea-immune-score"
+        "16-immunomics-ssgsea-immune-score",
+        "cite-seq-integration"
       ],
       "predictedTools": [
         "chemistry_pubchem_search",
@@ -5134,9 +5130,9 @@
       ],
       "category": "differential-expression-enrichment",
       "predicted": [
-        "gsea-gsva-scoring",
         "pathway-enrichment",
-        "rna-modification-clip"
+        "rna-modification-clip",
+        "pydeseq2"
       ],
       "predictedTools": [
         "genomes_ensembl_lookup"
@@ -5166,7 +5162,7 @@
       ],
       "category": "differential-expression-enrichment",
       "predicted": [
-        "pathway-enrichment-scaffold-replace",
+        "metabolite-pathway-mapping",
         "tooluniverse-metabolomics",
         "metabolomics-database-search"
       ],
@@ -5176,7 +5172,7 @@
         "structures_pdb_entry"
       ],
       "gold": [
-        "pathway-enrichment-scaffold-replace"
+        "metabolite-pathway-mapping"
       ],
       "goldTools": [],
       "skillScored": true,
@@ -5199,7 +5195,7 @@
       ],
       "category": "differential-expression-enrichment",
       "predicted": [
-        "pathway-enrichment-scaffold-replace",
+        "metabolite-pathway-mapping",
         "pathway-enrichment",
         "metabolomics-differential-multivariate-stats"
       ],
@@ -5209,7 +5205,7 @@
         "regulation_jaspar_matrix"
       ],
       "gold": [
-        "pathway-enrichment-scaffold-replace"
+        "metabolite-pathway-mapping"
       ],
       "goldTools": [],
       "skillScored": true,
@@ -5234,7 +5230,7 @@
       "predicted": [
         "scrna-qc-filtering",
         "arboreto",
-        "scgpt-embedding"
+        "single-cell-format-io"
       ],
       "predictedTools": [
         "omics_archives_geo_search",
@@ -5401,7 +5397,7 @@
       "predicted": [
         "scvi-tools",
         "sc-trajectory-inference",
-        "scgpt"
+        "sc-batch-integration"
       ],
       "predictedTools": [
         "omics_archives_geo_search",
@@ -5415,8 +5411,8 @@
       "skillScored": true,
       "toolScored": false,
       "hit1": false,
-      "hit3": false,
-      "rr": 0,
+      "hit3": true,
+      "rr": 0.3333333333333333,
       "invalid": [],
       "toolHit3": false,
       "invalidTools": [],
@@ -5659,7 +5655,7 @@
       "predicted": [
         "nfcore-catalog",
         "scgpt",
-        "scgpt-embedding"
+        "scvi-tools"
       ],
       "predictedTools": [
         "omics_archives_geo_search",
@@ -5889,8 +5885,8 @@
       "category": "single-cell-advanced-virtual-cell",
       "predicted": [
         "sc-perturb-seq",
-        "mendelian-randomization",
-        "qtl-colocalization-study-planner"
+        "omics-causal-driver-inference",
+        "cite-seq-integration"
       ],
       "predictedTools": [
         "genomes_ensembl_overlap",
@@ -6021,7 +6017,7 @@
       "predicted": [
         "scvi-tools",
         "latex-posters",
-        "scvi-single-cell-probabilistic-modeling"
+        "02-population-genetics-qtl-target-prioritization"
       ],
       "predictedTools": [
         "chemistry_pubchem_search",
@@ -6054,8 +6050,8 @@
       "category": "single-cell-advanced-virtual-cell",
       "predicted": [
         "scvi-tools",
-        "scvi-single-cell-probabilistic-modeling",
-        "scanpy"
+        "scanpy",
+        "sc-trajectory-inference"
       ],
       "predictedTools": [
         "genomes_ensembl_lookup"
@@ -6086,9 +6082,9 @@
       ],
       "category": "single-cell-advanced-virtual-cell",
       "predicted": [
-        "scgpt-embedding",
         "scgpt",
-        "scvi-tools"
+        "scvi-tools",
+        "sc-program-scoring"
       ],
       "predictedTools": [
         "cellguide_search_cell_types",
@@ -6120,9 +6116,9 @@
       ],
       "category": "single-cell-advanced-virtual-cell",
       "predicted": [
-        "scgpt-embedding",
         "scgpt",
-        "scvi-tools"
+        "scvi-tools",
+        "sc-program-scoring"
       ],
       "predictedTools": [
         "cellguide_search_cell_types",
@@ -6319,7 +6315,7 @@
       "predicted": [
         "spatial-transcriptomics",
         "scatac-fragment-matrix",
-        "nfcore-catalog"
+        "scrna-qc-filtering"
       ],
       "predictedTools": [
         "genomes_ensembl_overlap",
@@ -6333,8 +6329,8 @@
       "skillScored": true,
       "toolScored": false,
       "hit1": false,
-      "hit3": true,
-      "rr": 0.3333333333333333,
+      "hit3": false,
+      "rr": 0,
       "invalid": [],
       "toolHit3": false,
       "invalidTools": [],
@@ -6416,7 +6412,7 @@
       "predicted": [
         "proteomics-quantification",
         "protein-structure-preparation",
-        "07-proteomics-protein-quantification"
+        "metabolomics-profiling"
       ],
       "predictedTools": [
         "regulation_jaspar_matrix",
@@ -6450,8 +6446,8 @@
       "category": "proteomics",
       "predicted": [
         "proteomics-quantification",
-        "07-proteomics-protein-quantification",
-        "metabolomics-profiling"
+        "metabolomics-profiling",
+        "pyopenms"
       ],
       "predictedTools": [
         "regulation_jaspar_matrix",
@@ -6512,7 +6508,7 @@
       "category": "proteomics",
       "predicted": [
         "07-proteomics-tmt-proteomics",
-        "07-proteomics-protein-quantification",
+        "metabolomics-profiling",
         "proteomics-quantification"
       ],
       "predictedTools": [],
@@ -6637,7 +6633,7 @@
       "predicted": [
         "affinity-proteomics-analysis",
         "27-aging-longevity-protein-aging-clock",
-        "07-proteomics-protein-quantification"
+        "pyopenms"
       ],
       "predictedTools": [
         "omics_archives_geo_search",
@@ -6706,8 +6702,8 @@
       "category": "metabolomics-lipidomics",
       "predicted": [
         "08-metabolomics-untargeted-metabolomics",
-        "proteomics-quantification",
-        "pyopenms"
+        "pyopenms",
+        "proteomics-quantification"
       ],
       "predictedTools": [
         "genomes_ensembl_overlap",
@@ -7124,7 +7120,7 @@
       "predicted": [
         "dna-methylation-wgbs",
         "03-epigenomics-dmr-identification",
-        "03-epigenomics-wgbs-analysis"
+        "rna-modification-clip"
       ],
       "predictedTools": [
         "cellguide_cellxgene_collections",
@@ -7159,7 +7155,7 @@
       "predicted": [
         "dna-methylation-wgbs",
         "03-epigenomics-dmr-identification",
-        "03-epigenomics-wgbs-analysis"
+        "epigenetics-drug-response-integration"
       ],
       "predictedTools": [
         "cellguide_cellxgene_collections",
@@ -7193,8 +7189,8 @@
       "category": "epigenomics-methylation",
       "predicted": [
         "methylation-array-qc-deconvolution",
-        "cytof-bead-normalization",
-        "scanpy"
+        "dna-methylation-wgbs",
+        "cytof-bead-normalization"
       ],
       "predictedTools": [
         "cellguide_cellxgene_collections",
@@ -7228,7 +7224,7 @@
       "predicted": [
         "methylation-array-qc-deconvolution",
         "03-epigenomics-cut-run",
-        "03-epigenomics-wgbs-analysis"
+        "dna-methylation-wgbs"
       ],
       "predictedTools": [
         "cellguide_cellxgene_collections",
@@ -7426,7 +7422,7 @@
       "predicted": [
         "27-aging-longevity-dna-methylation-clock",
         "dna-methylation-wgbs",
-        "evo2"
+        "methylation-array-qc-deconvolution"
       ],
       "predictedTools": [
         "pubmed_find_related",
@@ -7488,7 +7484,7 @@
       "category": "regulatory-network-sequence-models",
       "predicted": [
         "wgcna-coexpression-network",
-        "grn-inference-scaffold-replace",
+        "grn-inference",
         "deeptools"
       ],
       "predictedTools": [
@@ -7521,7 +7517,7 @@
       "category": "regulatory-network-sequence-models",
       "predicted": [
         "arboreto",
-        "grn-inference-scaffold-replace",
+        "grn-inference",
         "single-cell-regulatory-network"
       ],
       "predictedTools": [
@@ -7532,7 +7528,7 @@
       "gold": [
         "single-cell-regulatory-network",
         "arboreto",
-        "grn-inference-scaffold-replace"
+        "grn-inference"
       ],
       "goldTools": [],
       "skillScored": true,
@@ -7557,7 +7553,7 @@
       "predicted": [
         "arboreto",
         "single-cell-regulatory-network",
-        "grn-inference-scaffold-replace"
+        "grn-inference"
       ],
       "predictedTools": [
         "omics_archives_geo_search",
@@ -7567,7 +7563,7 @@
       "gold": [
         "single-cell-regulatory-network",
         "arboreto",
-        "grn-inference-scaffold-replace"
+        "grn-inference"
       ],
       "goldTools": [],
       "skillScored": true,
@@ -7591,7 +7587,7 @@
       "category": "regulatory-network-sequence-models",
       "predicted": [
         "borzoi",
-        "03-epigenomics-basenji",
+        "plant-long-context-genome-modeling",
         "01-genome-gene-annotation"
       ],
       "predictedTools": [
@@ -7624,9 +7620,9 @@
       ],
       "category": "regulatory-network-sequence-models",
       "predicted": [
-        "03-epigenomics-basenji",
         "borzoi",
-        "plant-long-context-genome-modeling"
+        "plant-long-context-genome-modeling",
+        "evo2"
       ],
       "predictedTools": [
         "genomes_ensembl_sequence",
@@ -8124,7 +8120,7 @@
       "predicted": [
         "nfcore-catalog",
         "01-genome-multiqc",
-        "03-epigenomics-basenji"
+        "01-genome-alignment"
       ],
       "predictedTools": [
         "genomes_ensembl_sequence",
@@ -8227,8 +8223,8 @@
       "category": "structural-biology-modeling",
       "predicted": [
         "alphafold2",
-        "12-structural-biology-alphafold2",
-        "esm3-protein-generation-structure-modeling"
+        "esm3-protein-generation-structure-modeling",
+        "protein-structure-similarity-search"
       ],
       "predictedTools": [
         "protein_annotation_hpa_gene",
@@ -8432,7 +8428,7 @@
       "predicted": [
         "molecular-dynamics",
         "covalent-inhibitor-design",
-        "alphafold2"
+        "structure-geometry-interface-analysis"
       ],
       "predictedTools": [
         "chemistry_pubchem_properties",
@@ -8464,7 +8460,7 @@
       "predicted": [
         "protein-structure-similarity-search",
         "rna-modification-clip",
-        "12-structural-biology-alphafold2"
+        "protein-function-annotation"
       ],
       "predictedTools": [
         "protein_annotation_interpro_domains",
@@ -8495,7 +8491,7 @@
       "category": "structural-biology-modeling",
       "predicted": [
         "protein-structure-similarity-search",
-        "12-structural-biology-alphafold2",
+        "alphafold2",
         "hdr-donor-template-design"
       ],
       "predictedTools": [
@@ -8600,7 +8596,7 @@
       ],
       "category": "chemoinformatics-drug-design",
       "predicted": [
-        "virtual-screening-scaffold-replace",
+        "virtual-screening",
         "molecular-drug-discovery",
         "compound-commercial-availability"
       ],
@@ -8632,7 +8628,7 @@
       ],
       "category": "chemoinformatics-drug-design",
       "predicted": [
-        "virtual-screening-scaffold-replace",
+        "virtual-screening",
         "molecular-drug-discovery",
         "12-structural-biology-molecular-docking"
       ],
@@ -8733,7 +8729,7 @@
       "category": "chemoinformatics-drug-design",
       "predicted": [
         "candidate-toxicity-risk-assessment",
-        "admet-prediction-scaffold-replace",
+        "admet-prediction",
         "molecular-drug-discovery"
       ],
       "predictedTools": [
@@ -8742,7 +8738,7 @@
         "structures_alphafold_prediction"
       ],
       "gold": [
-        "admet-prediction-scaffold-replace"
+        "admet-prediction"
       ],
       "goldTools": [],
       "skillScored": true,
@@ -8765,7 +8761,7 @@
       "category": "chemoinformatics-drug-design",
       "predicted": [
         "candidate-toxicity-risk-assessment",
-        "admet-prediction-scaffold-replace",
+        "admet-prediction",
         "molecular-drug-discovery"
       ],
       "predictedTools": [
@@ -8774,7 +8770,7 @@
         "chemistry_pubchem_search"
       ],
       "gold": [
-        "admet-prediction-scaffold-replace"
+        "admet-prediction"
       ],
       "goldTools": [],
       "skillScored": true,
@@ -8991,7 +8987,7 @@
       "predicted": [
         "molecular-drug-discovery",
         "compound-commercial-availability",
-        "virtual-screening-scaffold-replace"
+        "virtual-screening"
       ],
       "predictedTools": [
         "chembl_get_bioactivity",
@@ -8999,7 +8995,7 @@
         "chembl_compound_search"
       ],
       "gold": [
-        "virtual-screening-scaffold-replace",
+        "virtual-screening",
         "molecular-drug-discovery"
       ],
       "goldTools": [],
@@ -9025,7 +9021,7 @@
       "predicted": [
         "molecular-drug-discovery",
         "compound-commercial-availability",
-        "virtual-screening-scaffold-replace"
+        "virtual-screening"
       ],
       "predictedTools": [
         "chembl_get_bioactivity",
@@ -9033,7 +9029,7 @@
         "chembl_compound_search"
       ],
       "gold": [
-        "virtual-screening-scaffold-replace",
+        "virtual-screening",
         "molecular-drug-discovery"
       ],
       "goldTools": [],
@@ -9154,7 +9150,7 @@
       "predicted": [
         "antibody-engineering-developability",
         "protein-binding-pocket-detection",
-        "targeted-protein-degradation-design"
+        "qsar-modeling"
       ],
       "predictedTools": [],
       "gold": [
@@ -9182,7 +9178,7 @@
       "predicted": [
         "rfdiffusion",
         "boltz",
-        "04-transcriptomics-rbp-regulation"
+        "chai1"
       ],
       "predictedTools": [
         "genes_ontologies_quickgo_annotations",
@@ -9245,7 +9241,7 @@
       ],
       "category": "protein-engineering-synbio",
       "predicted": [
-        "esm",
+        "fair-esm2",
         "12-structural-biology-protein-mutation-enhancement",
         "hdr-donor-template-design"
       ],
@@ -9279,7 +9275,7 @@
       ],
       "category": "protein-engineering-synbio",
       "predicted": [
-        "esm",
+        "fair-esm2",
         "12-structural-biology-protein-mutation-enhancement",
         "hdr-donor-template-design"
       ],
@@ -9312,13 +9308,13 @@
       ],
       "category": "gene-editing-cloning",
       "predicted": [
-        "grna-design-scaffold-replace",
+        "grna-design",
         "08-metabolomics-exposure-biomarker-discovery",
         "sc-virtual-perturbation"
       ],
       "predictedTools": [],
       "gold": [
-        "grna-design-scaffold-replace"
+        "grna-design"
       ],
       "goldTools": [],
       "skillScored": true,
@@ -9340,13 +9336,13 @@
       ],
       "category": "gene-editing-cloning",
       "predicted": [
-        "grna-design-scaffold-replace",
+        "grna-design",
         "all-atom-design",
         "ligandmpnn"
       ],
       "predictedTools": [],
       "gold": [
-        "grna-design-scaffold-replace"
+        "grna-design"
       ],
       "goldTools": [],
       "skillScored": true,
@@ -9520,7 +9516,7 @@
       "predicted": [
         "hdr-donor-template-design",
         "12-structural-biology-protein-mutation-enhancement",
-        "protein-structure-similarity-search"
+        "aggregation-risk-design"
       ],
       "predictedTools": [
         "cancer_models_cbioportal_mutations"
@@ -9550,7 +9546,7 @@
       "predicted": [
         "17-pharmacogenomics-cyp450-analysis",
         "17-pharmacogenomics-adverse-drug-reaction-prediction",
-        "borzoi"
+        "pharmacogenomics-evidence-retrieval"
       ],
       "predictedTools": [
         "genes_ontologies_mygene_query",
@@ -9712,7 +9708,7 @@
       "predicted": [
         "noncompartmental-pk-analysis",
         "18-precision-medicine-diagnostic-biomarker",
-        "prognostic-biomarker-survival-analysis"
+        "13-clinical-genomics-spliceai"
       ],
       "predictedTools": [
         "pubmed_find_related",
@@ -9893,7 +9889,7 @@
       "gold": [
         "16-immunomics-tumor-antigen-prediction",
         "nfcore-epitopeprediction",
-        "mhc-binding-prediction-scaffold-replace"
+        "mhc-binding-prediction"
       ],
       "goldTools": [],
       "skillScored": true,
@@ -9928,7 +9924,7 @@
       "gold": [
         "16-immunomics-tumor-antigen-prediction",
         "nfcore-epitopeprediction",
-        "mhc-binding-prediction-scaffold-replace"
+        "mhc-binding-prediction"
       ],
       "goldTools": [],
       "skillScored": true,
@@ -10207,8 +10203,8 @@
       "category": "literature-evidence-synthesis",
       "predicted": [
         "evidence-validation",
-        "medical-research-literature-reader-pro",
-        "literature-review"
+        "literature-review",
+        "medical-research-literature-reader-pro"
       ],
       "predictedTools": [
         "protein_annotation_interpro_domains",
@@ -10463,7 +10459,7 @@
       "category": "writing-document-delivery",
       "predicted": [
         "reporting-guideline-compliance-checker",
-        "mendelian-randomization",
+        "omics-causal-driver-inference",
         "paper-review"
       ],
       "predictedTools": [
@@ -10496,7 +10492,7 @@
       "predicted": [
         "reporting-guideline-compliance-checker",
         "paper-review",
-        "hypothesis-generation"
+        "arxiv-preflight"
       ],
       "predictedTools": [
         "cancer_models_cbioportal_studies",
@@ -11018,7 +11014,7 @@
       "predicted": [
         "exploratory-data-analysis-statistical-tests",
         "04-transcriptomics-deseq2",
-        "citation-management"
+        "bioinformatics-writer"
       ],
       "predictedTools": [
         "cellguide_cellxgene_collections",
@@ -11049,8 +11045,8 @@
       "category": "data-engineering-statistics",
       "predicted": [
         "exploratory-data-analysis-statistical-tests",
-        "citation-management",
-        "bioinformatics-writer"
+        "bioinformatics-writer",
+        "cellxgene-census"
       ],
       "predictedTools": [
         "cellguide_cellxgene_collections",
@@ -11271,7 +11267,7 @@
       "predicted": [
         "microscopy-data-management",
         "genome-contamination-detection",
-        "01-genome-wes"
+        "16-immunomics-tcr-repertoire"
       ],
       "predictedTools": [
         "omics_archives_geo_search",
@@ -11605,9 +11601,9 @@
       ],
       "category": "visualization-figures",
       "predicted": [
-        "latex-posters",
         "excalidraw-diagram-generator",
-        "pathway-enrichment-scaffold-replace"
+        "latex-posters",
+        "metabolite-pathway-mapping"
       ],
       "predictedTools": [],
       "gold": [
@@ -11634,8 +11630,8 @@
       ],
       "category": "visualization-figures",
       "predicted": [
-        "latex-posters",
         "excalidraw-diagram-generator",
+        "latex-posters",
         "literature-review"
       ],
       "predictedTools": [],
@@ -11906,7 +11902,7 @@
       "predicted": [
         "qtl-colocalization-study-planner",
         "02-population-genetics-haplotype-analysis",
-        "colocalization-analysis-scaffold-replace"
+        "colocalization-analysis"
       ],
       "predictedTools": [
         "cancer_models_cbioportal_studies",
@@ -11914,7 +11910,7 @@
       ],
       "gold": [
         "qtl-colocalization-study-planner",
-        "colocalization-analysis-scaffold-replace"
+        "colocalization-analysis"
       ],
       "goldTools": [],
       "skillScored": true,
@@ -11946,7 +11942,7 @@
       ],
       "gold": [
         "qtl-colocalization-study-planner",
-        "colocalization-analysis-scaffold-replace"
+        "colocalization-analysis"
       ],
       "goldTools": [],
       "skillScored": true,
@@ -12230,7 +12226,7 @@
       "category": null,
       "predicted": [
         "protein-structure-database-search",
-        "07-proteomics-skill-002",
+        "protein-function-annotation",
         "12-structural-biology-alphafold3"
       ],
       "predictedTools": [
@@ -12263,8 +12259,8 @@
       "category": null,
       "predicted": [
         "14-cancer-genomics-msi",
-        "14-cancer-genomics-driver-gene-analysis",
-        "03-epigenomics-enhancer-gene-association"
+        "03-epigenomics-enhancer-gene-association",
+        "14-cancer-genomics-driver-gene-analysis"
       ],
       "predictedTools": [
         "clinical_genomics_civic_search",

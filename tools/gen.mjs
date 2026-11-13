@@ -82,7 +82,9 @@ if (problems.length) {
 
 const total = catalog.categories.reduce((a, c) => a + c.skills.length, 0);
 const listedIn = (c) => c.skills.filter((s) => !s.via).length;
-const foldedIn = (c) => c.skills.filter((s) => s.via).length;
+/** 折叠的流程（经入口加载，如 nf-core）；被合并的重复技能（merged）单独计 */
+const foldedIn = (c) => c.skills.filter((s) => s.via && !s.merged).length;
+const mergedIn = (c) => c.skills.filter((s) => s.merged).length;
 const countOf = (ids) => ids.reduce((a, id) => a + cats.get(id).skills.length, 0);
 /** 目录里实际列出的技能数：折叠技能不算，但范围内有折叠技能时入口技能要算上（若不在范围内）。 */
 function listedCount(ids) {
@@ -98,6 +100,7 @@ function listedCount(ids) {
 const foldedCount = (ids) => ids.reduce((a, id) => a + foldedIn(cats.get(id)), 0);
 const totalListed = listedCount([...cats.keys()]);
 const totalFolded = foldedCount([...cats.keys()]);
+const totalMerged = catalog.categories.reduce((a, c) => a + mergedIn(c), 0);
 const skillsCell = (ids) => (foldedCount(ids) ? `${listedCount(ids)}（+${foldedCount(ids)} 个流程）` : `${listedCount(ids)}`);
 const tokens = (n) => Math.round((n * TOKENS_PER_SKILL) / 100) * 100;
 const fmtTokens = (n) => tokens(n).toLocaleString('en-US').replace(/,/g, ' ');
@@ -235,7 +238,7 @@ if (CHECK) {
     console.error(`以下文件与数据源不一致，请运行 node tools/gen.mjs：\n  ${stale.join('\n  ')}`);
     process.exit(1);
   }
-  console.log(`生成产物与数据源一致（${total} 个技能，目录列出 ${totalListed} 个 + ${totalFolded} 个折叠流程 / ${cats.size} 类 / ${modes.length} 个专项模式）`);
+  console.log(`生成产物与数据源一致（${total} 个技能：目录列出 ${totalListed} 个，${totalFolded} 个流程经入口加载，${totalMerged} 个已并入主技能 / ${cats.size} 类 / ${modes.length} 个专项模式）`);
 } else {
   console.log(stale.length ? `已更新：${stale.join('、')}` : '无变化');
   console.log(`${total} 个技能 / ${cats.size} 类 / ${modes.length} 个专项模式`);

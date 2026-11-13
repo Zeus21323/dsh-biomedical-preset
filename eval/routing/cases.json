@@ -33,7 +33,7 @@
 
     {"id": "gwas-01", "query": "有 3000 例病例对照的芯片数据，想做 GWAS 找易感位点", "skills": ["02-population-genetics-gwas-association-analysis", "nfcore-gwas"], "tags": ["clear", "nfcore"]},
     {"id": "gwas-02", "query": "想知道 LDL 胆固醇升高是不是冠心病的病因，手上只有公开的 GWAS 汇总数据", "skills": ["02-population-genetics-two-sample-mr"], "tags": ["lay"]},
-    {"id": "gwas-03", "query": "GWAS 找到一个显著位点，但不知道到底是哪个基因在起作用", "skills": ["gwas-locus-gene-prioritization", "fine-mapping-scaffold-replace", "colocalization-analysis-scaffold-replace"], "tags": ["lay"]},
+    {"id": "gwas-03", "query": "GWAS 找到一个显著位点，但不知道到底是哪个基因在起作用", "skills": ["gwas-locus-gene-prioritization", "gwas-fine-mapping", "colocalization-analysis"], "tags": ["lay"]},
     {"id": "gwas-04", "query": "用多基因风险评分预测 2 型糖尿病风险，并在独立队列里验证", "skills": ["02-population-genetics-prs-polygenic-risk-score"], "tags": ["clear"]},
     {"id": "gwas-05", "query": "PCA 图上有些样本离群，担心人群分层影响关联结果", "skills": ["02-population-genetics-population-stratification"], "tags": ["clear"]},
     {"id": "gwas-06", "query": "两种疾病之间的遗传相关性有多大？顺便估一下 SNP 遗传力", "skills": ["02-population-genetics-ldsc-analysis"], "tags": ["clear"]},
@@ -74,7 +74,7 @@
     {"id": "de-02", "query": "Which KEGG pathways and GO terms are my 300 differentially expressed genes enriched in?", "skills": ["pathway-enrichment"], "tags": ["clear", "en"]},
     {"id": "de-03", "query": "按 log2FC 排好序的全部基因做 GSEA", "skills": ["gsea-gsva-scoring", "pathway-enrichment"], "tags": ["clear", "dup"]},
     {"id": "de-04", "query": "给每个样本算一个炎症通路的得分，用 ssGSEA", "skills": ["gsea-gsva-scoring", "16-immunomics-ssgsea-immune-score"], "tags": ["clear", "dup"]},
-    {"id": "de-05", "query": "鉴定出来的差异代谢物要映射到通路上，HMDB ID 有歧义要处理", "skills": ["pathway-enrichment-scaffold-replace"], "tags": ["clear", "dup"]},
+    {"id": "de-05", "query": "鉴定出来的差异代谢物要映射到通路上，HMDB ID 有歧义要处理", "skills": ["metabolite-pathway-mapping"], "tags": ["clear", "dup"]},
 
     {"id": "sc-01", "query": "拿到 10x 的单细胞表达矩阵，先做质控，过滤掉低质量细胞", "skills": ["scrna-qc-filtering", "scanpy", "sc-rna-seq-analysis"], "tags": ["clear", "dup"]},
     {"id": "sc-02", "query": "单细胞数据里线粒体比例特别高，是不是细胞都坏了", "skills": ["scrna-mito-diagnosis", "scrna-qc-filtering"], "tags": ["lay"]},
@@ -117,7 +117,7 @@
     {"id": "epi-07", "query": "计算 DNA 甲基化年龄和年龄加速", "skills": ["27-aging-longevity-dna-methylation-clock"], "tags": ["clear"]},
 
     {"id": "net-01", "query": "WGCNA 找和临床性状相关的共表达模块", "skills": ["wgcna-coexpression-network"], "tags": ["clear"]},
-    {"id": "net-02", "query": "从单细胞 RNA 推断转录因子调控网络，类似 SCENIC 那种", "skills": ["single-cell-regulatory-network", "arboreto", "grn-inference-scaffold-replace"], "tags": ["clear", "dup"]},
+    {"id": "net-02", "query": "从单细胞 RNA 推断转录因子调控网络，类似 SCENIC 那种", "skills": ["single-cell-regulatory-network", "arboreto", "grn-inference"], "tags": ["clear", "dup"]},
     {"id": "net-03", "query": "用深度学习序列模型预测非编码变异对基因表达的影响", "skills": ["borzoi", "03-epigenomics-basenji"], "tags": ["clear", "dup"]},
     {"id": "net-04", "query": "给这些候选基因构建蛋白互作网络，找 hub 基因", "skills": ["string", "network-topology-community-analysis"], "tools": ["protein_annotation_string_network"], "tags": ["clear", "mcp"]},
     {"id": "net-05", "query": "做中药成分-靶点-疾病的网络药理学分析", "skills": ["network-pharmacology-analysis"], "tags": ["clear"]},
@@ -138,18 +138,18 @@
 
     {"id": "drug-01", "query": "用 AutoDock Vina 把这个化合物对接到激酶的 ATP 口袋", "skills": ["12-structural-biology-molecular-docking"], "tags": ["clear"]},
     {"id": "drug-02", "query": "用 DiffDock 预测小分子的结合姿势", "skills": ["diffdock", "22-ai-ai-drug-discovery-docking-ai"], "tags": ["clear", "dup"]},
-    {"id": "drug-03", "query": "预测这批候选化合物的 ADMET 和类药性", "skills": ["admet-prediction-scaffold-replace"], "tags": ["clear"]},
+    {"id": "drug-03", "query": "预测这批候选化合物的 ADMET 和类药性", "skills": ["admet-prediction"], "tags": ["clear"]},
     {"id": "drug-04", "query": "SMILES 去盐、标准化互变异构体，然后转成 SDF", "skills": ["molecule-standardization-format-conversion"], "tags": ["clear"]},
     {"id": "drug-05", "query": "从 ChEMBL 拿 EGFR 抑制剂的 IC50 数据", "skills": ["22-ai-ai-drug-discovery-dti-prediction"], "tools": ["chembl_target_search", "chembl_get_bioactivity"], "tags": ["clear", "mcp"]},
     {"id": "drug-06", "query": "针对 BRD4 设计一个 PROTAC", "skills": ["targeted-protein-degradation-design"], "tags": ["clear"]},
-    {"id": "drug-07", "query": "拿一个化合物库对蛋白口袋做虚拟筛选", "skills": ["virtual-screening-scaffold-replace", "molecular-drug-discovery"], "tags": ["clear", "dup"]},
+    {"id": "drug-07", "query": "拿一个化合物库对蛋白口袋做虚拟筛选", "skills": ["virtual-screening", "molecular-drug-discovery"], "tags": ["clear", "dup"]},
 
     {"id": "pe-01", "query": "给定蛋白骨架，用 ProteinMPNN 设计序列", "skills": ["proteinmpnn", "inverse-folding-design"], "tags": ["clear", "dup"]},
     {"id": "pe-02", "query": "抗体人源化，并评估可开发性风险", "skills": ["antibody-engineering-developability"], "tags": ["clear"]},
     {"id": "pe-03", "query": "用 RFdiffusion 设计一个结合蛋白", "skills": ["rfdiffusion"], "tags": ["clear"]},
     {"id": "pe-04", "query": "用 ESM-2 给一批点突变打效应分数", "skills": ["esm", "fair-esm2"], "tags": ["clear", "dup"]},
 
-    {"id": "ge-01", "query": "为敲除 TP53 设计几条高效的 sgRNA", "skills": ["grna-design-scaffold-replace"], "tags": ["clear"]},
+    {"id": "ge-01", "query": "为敲除 TP53 设计几条高效的 sgRNA", "skills": ["grna-design"], "tags": ["clear"]},
     {"id": "ge-02", "query": "CRISPR 筛选的计数表，用 MAGeCK 找命中基因", "skills": ["crispr-screen-hit-analysis"], "tags": ["clear"]},
     {"id": "ge-03", "query": "设计一对 qPCR 引物，要求特异性好", "skills": ["pcr-qpcr-primer-design"], "tags": ["clear"]},
     {"id": "ge-04", "query": "设计 HDR 供体模板，敲入一个点突变", "skills": ["hdr-donor-template-design"], "tags": ["clear"]},
@@ -160,7 +160,7 @@
 
     {"id": "imm-01", "query": "TCR 测序数据，构建克隆型并比较多样性", "skills": ["16-immunomics-tcr-repertoire", "16-immunomics-clonotype-analysis", "nfcore-airrflow"], "tags": ["clear", "nfcore"]},
     {"id": "imm-02", "query": "从 RNA-seq 数据做 HLA 分型", "skills": ["16-immunomics-hla-hd", "nfcore-hlatyping"], "tags": ["clear", "nfcore"]},
-    {"id": "imm-03", "query": "根据体细胞突变预测肿瘤新抗原", "skills": ["16-immunomics-tumor-antigen-prediction", "nfcore-epitopeprediction", "mhc-binding-prediction-scaffold-replace"], "tags": ["clear", "nfcore"]},
+    {"id": "imm-03", "query": "根据体细胞突变预测肿瘤新抗原", "skills": ["16-immunomics-tumor-antigen-prediction", "nfcore-epitopeprediction", "mhc-binding-prediction"], "tags": ["clear", "nfcore"]},
     {"id": "imm-04", "query": "用 bulk 表达谱估计免疫细胞浸润比例", "skills": ["16-immunomics-epic"], "tags": ["clear"]},
     {"id": "imm-05", "query": "用 TIDE 预测免疫治疗响应", "skills": ["16-immunomics-tide"], "tags": ["clear"]},
 
@@ -199,7 +199,7 @@
     {"id": "viz-04", "query": "把覆盖度和 peak 做成可以在 IGV 里看的轨道", "skills": ["genome-browser-track-creation"], "tags": ["clear"]},
 
     {"id": "rd-01", "query": "我想做肝癌免疫微环境的课题，不知道从哪开始", "skills": ["public-omics-study-design-report", "experiment-protocol-design", "scientific-problem-hypothesis"], "tags": ["lay", "vague"]},
-    {"id": "rd-02", "query": "设计一个 eQTL 共定位研究", "skills": ["qtl-colocalization-study-planner", "colocalization-analysis-scaffold-replace"], "tags": ["clear"]},
+    {"id": "rd-02", "query": "设计一个 eQTL 共定位研究", "skills": ["qtl-colocalization-study-planner", "colocalization-analysis"], "tags": ["clear"]},
     {"id": "rd-03", "query": "给 GLP-1 受体激动剂治疗 NASH 做一份适应症档案", "skills": ["indication-dossier"], "tags": ["clear"]},
     {"id": "rd-04", "query": "把我宽泛的研究兴趣收束成可检验的科学假设", "skills": ["scientific-problem-hypothesis", "hypothesis-generation"], "tags": ["clear", "dup"]},
 

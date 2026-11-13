@@ -1,6 +1,6 @@
 ---
 name: borzoi
-description: 使用 Borzoi 根据 DNA 序列预测全基因组功能轨迹（RNA-seq、CAGE、DNase、ChIP）。适用于评估变异对表达或染色质可及性的调控效应、生成某个基因组位点的预测覆盖轨迹，或根据预测轨迹差值确定非编码变异的优先级。
+description: 使用 Borzoi 根据 DNA 序列预测全基因组功能轨迹（RNA-seq、CAGE、DNase、ChIP）。适用于评估变异对表达或染色质可及性的调控效应、生成某个基因组位点的预测覆盖轨迹，或根据预测轨迹差值确定非编码变异的优先级。已并入 03-epigenomics-basenji：也覆盖 Basenji、Enformer、Akita 等序列到功能模型的选型与结果解释。
 license: Apache-2.0
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: virtual-screening-scaffold-replace
+name: virtual-screening
 description: 当用户需要围绕蛋白质口袋，对化合物库执行受体准备、分阶段对接/重评分、富集验证和实验命中选择时使用。单个或少数分子的对接与姿势复核用 12-structural-biology-molecular-docking。
 whenToUse: 当用户需要围绕蛋白质口袋，对化合物库执行受体准备、分阶段对接/重评分、富集验证和实验命中选择时使用
 ---
