@@ -76,6 +76,13 @@ for (const b of blocks) {
   if (b.id !== 'biomedical' && b.only.length === 0) problems.push(`${b.patchId}: 专项模式没有 only 白名单`);
 
   if (!/prefix: \|/.test(body)) problems.push(`${b.patchId}: persona 没有 prefix`);
+  // 共享纪律（方法适配裁决、结论纪律、PHI 等）必须每个模式都挂，专项模式曾经全部漏掉
+  if (!/suffix: (&bio-discipline \||\*bio-discipline)\s*$/m.test(body)) {
+    problems.push(`${b.patchId}: persona 没有挂共享纪律 suffix（&bio-discipline / *bio-discipline）`);
+  }
+  if (!new RegExp(`^              preset: ${b.id}$`, 'm').test(body)) {
+    problems.push(`${b.patchId}: picker 行缺 config.preset: ${b.id}（浮窗按会话找白名单要用）`);
+  }
   if (b.rows.length < 18) problems.push(`${b.patchId}: 插件行只有 ${b.rows.length} 行（预期 ≥ 22）`);
 
   // 平台守卫：漏了会让 tool-bash 在 Windows 上被启用，那一行失败 → 整个预设挂载被拒
@@ -103,6 +110,27 @@ for (const b of blocks) {
   notes.push(
     `${b.patchId.padEnd(28)} id=${String(b.id).padEnd(24)} rows=${String(b.rows.length).padStart(2)} only=${String(b.only.length).padStart(2)} ${name}`,
   );
+}
+
+// persona 里点名的技能必须真实存在（技能改名后 persona 曾留着 5 个失效名字）。
+// 检查「X 走 `a` / `b`」这类点名行里的反引号名字；带 * 的通配（如 nfcore-*）只要求至少匹配一个。
+{
+  const skillNames = new Set(catalog.categories.flatMap((c) => c.skills.map((s) => s.name)));
+  for (const [i, line] of text.split('\n').entries()) {
+    if (!/走 `/.test(line)) continue;
+    for (const [, tok] of line.matchAll(/`([a-z0-9][a-z0-9*-]*)`/g)) {
+      const ok = tok.includes('*')
+        ? [...skillNames].some((n) => new RegExp(`^${tok.replace(/[-]/g, '\\-').replace(/\*/g, '.*')}$`).test(n))
+        : skillNames.has(tok);
+      if (!ok) problems.push(`第 ${i + 1} 行 persona 点名的技能不存在：${tok}`);
+    }
+  }
+}
+
+// 不许出现某台机器的绝对路径（曾经写死 C:/Users/<用户名>/、F:/... ，别人装上后 MCP 静默起不来）
+for (const [i, line] of text.split('\n').entries()) {
+  if (/^\s*#/.test(line)) continue;
+  if (/(^|[\s'"])([A-Za-z]:[\\/]|\/Users\/|\/home\/)/.test(line)) problems.push(`第 ${i + 1} 行写死了本机绝对路径：${line.trim().slice(0, 80)}`);
 }
 
 const ids = blocks.map((b) => b.id).filter(Boolean);

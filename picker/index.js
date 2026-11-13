@@ -7,9 +7,9 @@
  * （schemastery 等）失败而拖垮整个预设的挂载。
  */
 import { readFile, readdir } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { resolveProfileDir } from '../shared/profile.mjs';
 
 export const name = 'biomedical-skill-picker';
 export const inject = ['skills'];
@@ -36,7 +36,7 @@ const SHARED_KEY = Symbol.for('dsh.biomedical.picker.v1');
 const SHARED = (globalThis[SHARED_KEY] ??= {
   /** sessionId → 该会话启用的分类 id 集合 */
   overrides: new Map(),
-  /** 活着的 picker 实例：token → { only?: Set<string> } */
+  /** 活着的 picker 实例：token → { preset?: string, only?: Set<string> } */
   instances: new Map(),
   /** 路由引用计数 */
   routeRefs: 0,
@@ -55,13 +55,13 @@ const SHARED = (globalThis[SHARED_KEY] ??= {
   disposeRoutes: undefined,
 });
 
-/** Host 进程不总是导出 DSH_PROFILE_DIR；用存在性探测兜底。 */
+/**
+ * profile 目录：apply() 里优先用插件上下文的 profileContext 定位一次并缓存到共享区，
+ * 读不到再退回环境变量与 $DSH_HOME/profiles/<name>。不写死任何一台机器的路径。
+ */
 function profileDir() {
-  const candidates = [process.env.DSH_PROFILE_DIR, 'C:/Users/20735/.dsh/profiles/desktop'];
-  for (const dir of candidates) {
-    if (dir && existsSync(join(dir, 'package.json'))) return dir;
-  }
-  return undefined;
+  if (!SHARED.profileDir) SHARED.profileDir = resolveProfileDir();
+  return SHARED.profileDir;
 }
 
 function frontmatter(text) {
@@ -186,6 +186,34 @@ function resolvePresetOnly() {
   return union;
 }
 
+/**
+ * 某个会话所属预设的白名单。
+ *
+ * 不能只看进程里活着哪些实例：全量预设永远在，进程级推断就永远落到「按 profile 开关」，
+ * 专项模式的浮窗会把全量模式的开关当成当前状态，用户一勾选就把专项撑回近乎全量。
+ * 所以先按会话找到它实际组合的预设 id，再取该预设那份 picker 的 only（全量模式为
+ * undefined，即按 profile 开关）。判定不了（会话还没起 agent 等）才退回进程级推断。
+ *
+ * @returns {Promise<{ only: Set<string> | undefined, presetId: string | undefined }>}
+ */
+async function presetOnlyFor(sid) {
+  if (sid) {
+    let verdict;
+    try {
+      verdict = await resolveApplies(sid);
+    } catch {
+      verdict = undefined;
+    }
+    const presetId = verdict?.presetId;
+    if (presetId) {
+      for (const inst of SHARED.instances.values()) {
+        if (inst.preset === presetId) return { only: inst.only, presetId };
+      }
+    }
+  }
+  return { only: resolvePresetOnly(), presetId: undefined };
+}
+
 function sendJson(response, status, body) {
   try {
     response.writeHead(status, { 'content-type': 'application/json; charset=utf-8' });
@@ -225,7 +253,7 @@ async function handleGet(request, response, logger) {
   const active = sid ? SHARED.overrides.get(sid) : undefined;
   const profileSwitches = await switches();
   const allIds = (doc?.categories ?? []).map((c) => c.id);
-  const presetOnly = resolvePresetOnly();
+  const { only: presetOnly, presetId } = await presetOnlyFor(sid);
   // 本会话此刻真正生效的分类：会话覆盖 > 预设白名单 > profile 开关文件。
   // 前端不该自己猜这个优先级，所以这里直接算好回给 UI。
   const effective = active
@@ -245,6 +273,8 @@ async function handleGet(request, response, logger) {
     effective,
     source: active ? 'session' : presetOnly ? 'preset' : 'profile',
     presetOnly: presetOnly ? [...presetOnly] : null,
+    /** 本会话实际组合的预设 id；null 表示判定不了，presetOnly 来自进程级推断 */
+    presetId: presetId ?? null,
     /** 诊断：本进程里挂了几份 picker（13 个预设 = 13）以及被跳过的重复注册次数 */
     instances: SHARED.instances.size,
     routeCollisions: SHARED.routeCollisions,
@@ -430,10 +460,14 @@ export function apply(ctx, config = {}) {
    * 的全量行为，这样全量 preset 仍然可以在设置页自由开关。
    */
   const only = Array.isArray(config?.only) && config.only.length > 0 ? new Set(config.only) : undefined;
+  /** 所属预设 id（patch 里写在 picker 行的 config.preset），浮窗按会话找白名单要用 */
+  const preset = typeof config?.preset === 'string' && config.preset ? config.preset : undefined;
+
+  if (!SHARED.profileDir) SHARED.profileDir = resolveProfileDir(ctx);
 
   // ── 实例登记（与路由无关：webServer 不可用时实例照样登记，诊断才准）
   const token = {};
-  const instance = { only, control: undefined };
+  const instance = { preset, only, control: undefined };
   SHARED.instances.set(token, instance);
   ctx.effect(
     () => () => {
@@ -563,7 +597,8 @@ export function apply(ctx, config = {}) {
           ctx.logger?.warn?.('biomedical-picker: catalog empty, falling back to full directory scan');
           return scanAll();
         }
-        const effective = { ...config, ...(await switches()) };
+        const { only: _only, preset: _preset, ...defaults } = config ?? {};
+        const effective = { ...defaults, ...(await switches()) };
 
         // 会话级覆盖优先：该会话显式选过分类，就完全按它走
         let sessionSet;
@@ -583,12 +618,14 @@ export function apply(ctx, config = {}) {
         }
 
         const out = [];
+        let enabledCategories = 0;
         for (const category of doc.categories) {
           if (sessionSet) {
             if (!sessionSet.has(category.id)) continue;
           } else if (only) {
             if (!only.has(category.id)) continue;
           } else if (effective[category.id] === false) continue;
+          enabledCategories += 1;
           for (const entry of category.skills) {
             const directory = join(SKILLS_ROOT, entry.path);
             const file = join(directory, 'SKILL.md');
@@ -615,8 +652,15 @@ export function apply(ctx, config = {}) {
             });
           }
         }
+        // 用户（浮窗「全部关闭」或设置页全关）主动选了 0 类：就是不加载本包技能。
+        // 以前这里也退回全量扫描，结果「全部关闭」反而加载了全部 603 个、目录成本最高。
+        if (enabledCategories === 0) {
+          ctx.logger?.info?.('biomedical-picker: 0 categories enabled, providing no bundled skills');
+          return [];
+        }
+        // 选了分类却一个文件都读不到：说明 skills/ 目录坏了，才退回全量扫描兜底。
         if (out.length === 0) {
-          ctx.logger?.warn?.('biomedical-picker: every category disabled or unreadable, falling back to full scan');
+          ctx.logger?.warn?.('biomedical-picker: enabled categories are unreadable, falling back to full scan');
           return scanAll();
         }
         return out;

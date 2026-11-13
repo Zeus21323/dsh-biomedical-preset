@@ -6,28 +6,22 @@
  * to a JSON file that the preset's provider reads on every `list()`.
  */
 import { writeFile } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { Config } from './config.mjs';
+import { resolveProfileDir } from '../shared/profile.mjs';
 
 export const name = 'biomedical-skill-settings';
 export { Config };
 
 const FILE = 'biomedical-skills.json';
 
-/** Host processes do not always export DSH_PROFILE_DIR; fall back to the known profile. */
-function profileDir() {
-  const candidates = [process.env.DSH_PROFILE_DIR, 'C:/Users/20735/.dsh/profiles/desktop'];
-  for (const dir of candidates) {
-    if (dir && existsSync(join(dir, 'package.json'))) return dir;
-  }
-  return undefined;
-}
-
 export function apply(ctx, config = {}) {
   const write = async () => {
-    const dir = profileDir();
-    if (!dir) return;
+    const dir = resolveProfileDir(ctx);
+    if (!dir) {
+      ctx.logger?.warn?.('biomedical-skill-settings: 找不到 profile 目录，开关不会写入 biomedical-skills.json');
+      return;
+    }
     try {
       await writeFile(join(dir, FILE), JSON.stringify(config ?? {}, null, 0), 'utf8');
     } catch {

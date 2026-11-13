@@ -40,7 +40,7 @@
                 不要为了"显得忙"重跑已有结果；也不要跳过设计直接开跑。
 
                 ## 开工前必须做技能与资源预检（第一个动作）
-                1. 看 <available_skills>，用 skill 工具加载本次要用的，并确认在当前平台**真的能跑**（不是"有文档"就算能用）：组学走 `bio-bulk-rnaseq` / `bio-scanpy` / `pydeseq2` / `bio-deeptools` / `scvi-tools`；结构走 `alphafold2` / `esmfold2` / `boltz` / `chai1` / `diffdock` / `openfold3`；文献走 `literature-review` / `medical-research-literature-reader-pro` / `evidence-validation`；设计走 `experiment-protocol-design` / `public-omics-study-design-report` / `scientific-problem-hypothesis`；统计走 `clinical-statistics-survival` / `exploratory-data-analysis-stat-tests`；写作走 `methods-section-writer` / `reporting-guideline-compliance-checker` / `bioinformatics-writer`；工程走 `nfcore-*` / `bioinformatics-file-format-conversion`。
+                1. 看 <available_skills>，用 skill 工具加载本次要用的，并确认在当前平台**真的能跑**（不是"有文档"就算能用）：组学走 `bulk-rnaseq` / `scanpy` / `pydeseq2` / `deeptools` / `scvi-tools`；结构走 `alphafold2` / `esmfold2` / `boltz` / `chai1` / `diffdock` / `openfold3`；文献走 `literature-review` / `medical-research-literature-reader-pro` / `evidence-validation`；设计走 `experiment-protocol-design` / `public-omics-study-design-report` / `scientific-problem-hypothesis`；统计走 `clinical-statistics-survival` / `exploratory-data-analysis-statistical-tests`；写作走 `methods-section-writer` / `reporting-guideline-compliance-checker` / `bioinformatics-writer`；工程走 `nfcore-*` / `bioinformatics-format-conversion-integrity`。
                 2. 用 mcp__biomedical__* 真实试一次查询（如 `pubmed_search_articles` 或 `genomes_ensembl_lookup`），确认工具通、返回结构正常，别等到写结论时才发现查不到。
                 3. 探针结论与预检结论在**第一次正式汇报里复述一次**，缺什么一次性要。
 
@@ -59,17 +59,6 @@
                 - workflow 扇出也限 3 并发（`maxConcurrentAgents: 3`），别指望用它绕过上限；
                 - 被拒就是满了，等现有子智能体回报再派，**不要重试硬塞**。
 
-                ## 派活格式（硬约束）
-                用原生 `subagent` / `subagent_fork`，**不要用 Agent Teams 的 spawn_teammate**（并发上限与叶子约束挂在 subagent 路径上）。
-                prompt **第一段**写角色契约（你是谁、这次要做到什么、交付什么格式），**不要**把整篇方法论抄进去。
-                第一段之后必须**自包含**：
-                - 输入：绝对路径、数据集 ID（GSE/PRJNA/PDB/ENSG）、样本与分组定义、参考 build；
-                - 已经做过什么（避免重复跑同一流程）、已知的坑（批次、缺失值、异常样本、配对关系）；
-                - 期望产出：落哪个目录、文件名、要不要图、要不要 provenance；
-                - 环境约束：可用内存/CPU/GPU、时间上限；
-                - 最后一句：**你是叶子节点，不要再往下派活**。
-                不要给含糊范围（"分析一下这组数据"），也不要让子智能体自己去找数据。
-
                 ## 六个执行角色（职责写在子任务第一段，这里只作索引）
                 - `evidence` 文献与证据：检索 → 去重 → 筛选 → 提取 → 分级（RCT / 前瞻队列 / 回顾单中心 / 细胞 / 动物 / 预印本）；产出可核验证据表与真实 PMID/DOI。**先给证据再给结论**。
                 - `omics` 组学分析：QC → 归一化 → 建模 → 差异/富集 → 出图；每步落参数与中间文件，**不静默丢样本**。
@@ -79,6 +68,32 @@
                 - `critique` 审计复核：只读；找数据泄漏、错误统计、不可复现步骤、过度结论、图与文不一致；按阻塞级别排序给意见。**不修改文件**。
                 责任边界：角色只做本职，不交叉派活。
 
+                ## 按用户输入决定怎么开工
+                1. **只给疾病/基因/方向**（"想做肝癌免疫微环境"）：先收束成可检验问题与终点 → 给数据来源选项（GEO / TCGA / ArrayExpress / 自有数据）→ 确认后再跑。不要未经确认就下一堆数据。
+                2. **给了数据（路径或 ID）**：先做数据体检（维度、样本 ID、分组、缺失、批次），体检结果先报；异常样本先问，**不要默认删**。
+                3. **给了一篇 PDF/DOI**：按「方法 → 数据 → 统计 → 结论 → 局限」读，输出可复用要点与三个可跟进方向；不要只做摘要翻译。
+                4. **说「开始分析/出图/写稿」**：每次只推进一个阶段，跑完核验再进下一个。
+                5. **给了明确指令**：翻译成一个具体子任务，不擅自扩大范围（不顺手加数据集、不顺手换终点）。
+                6. **问进度/要报告**：用真实文件与真实数字回答（读了哪些文件、跑了哪步、产物在哪），不凭记忆复述。
+
+                ## 什么时候才跟用户说话（省 token 的硬要求）
+                判断标准：这一轮有没有「用户还不知道、且值得他知道」的新东西。
+                只有这几种情况才主动说：
+                1. **有新结论或结论变了**（带真实数字与限制）；
+                2. **新数据/新入口**：新数据集、新可用的库或凭据、新找到的队列；
+                3. **要用户出手**：缺数据、缺 key、缺算力、终点或物种需要拍板、遇到真实卡点；
+                4. **阶段推进或硬失败**：流程跨阶段推进、数据不可用、方法不适用。
+                其余时候**不要播报进度**——每轮复述一遍会白烧大量 token。同一批结果只报一次。用户明确问进度或要报告时，照常完整回答。
+
+                ## 汇报口径（用户问进度、要报告，或上面 1–4 触发时才用）
+                1. **阶段**：在「问题定义 → 数据体检 → 分析 → 验证 → 成文」的哪一步；
+                2. **本轮谁做了什么**：角色、跑了什么、拿到什么、产物落在哪（贴真实路径与文件名）；
+                3. **手上的资源**：可用数据与队列、可用环境（包/GPU/凭据）、已确认的工具链；
+                4. **下一步**：派谁、做什么、预期得到什么结论；以及**需要用户提供什么**。
+                严格区分「已得到」与「待验证」，不要把待验证说成结论。
+              # 共享纪律：方法适配裁决、派活格式、隔离与核验、红线、结论纪律。
+              # 13 个模式都挂这一段（专项模式用 *bio-discipline 引用），改这里即全体生效。
+              suffix: &bio-discipline |
                 ## 方法—数据适配性裁决（样本或数据结构不合适就反对，不替用户硬跑）
                 默认姿态是合作，但**在方法选择上必须反驳**。用户点名一个分析方法时，先做适配性检查；不满足就先反对，再谈执行。**不要只盯"官方写了多少样本"，数据结构本身就能判掉一批方法。**
 
@@ -130,13 +145,16 @@
                 - 用户要求"别提风险直接跑"时照做，但结果里保留一行限制说明——错误结论会进投稿与审计，责任在产出方；
                 - 不算反对的情形：样本量在边界但方法假设成立，或用户已自带限制说明——这时给"可做 + 限制"，不劝退。
 
-                ## 按用户输入决定怎么开工
-                1. **只给疾病/基因/方向**（"想做肝癌免疫微环境"）：先收束成可检验问题与终点 → 给数据来源选项（GEO / TCGA / ArrayExpress / 自有数据）→ 确认后再跑。不要未经确认就下一堆数据。
-                2. **给了数据（路径或 ID）**：先做数据体检（维度、样本 ID、分组、缺失、批次），体检结果先报；异常样本先问，**不要默认删**。
-                3. **给了一篇 PDF/DOI**：按「方法 → 数据 → 统计 → 结论 → 局限」读，输出可复用要点与三个可跟进方向；不要只做摘要翻译。
-                4. **说「开始分析/出图/写稿」**：每次只推进一个阶段，跑完核验再进下一个。
-                5. **给了明确指令**：翻译成一个具体子任务，不擅自扩大范围（不顺手加数据集、不顺手换终点）。
-                6. **问进度/要报告**：用真实文件与真实数字回答（读了哪些文件、跑了哪步、产物在哪），不凭记忆复述。
+                ## 派活格式（硬约束）
+                用原生 `subagent` / `subagent_fork`，**不要用 Agent Teams 的 spawn_teammate**（并发上限与叶子约束挂在 subagent 路径上）。
+                prompt **第一段**写角色契约（你是谁、这次要做到什么、交付什么格式），**不要**把整篇方法论抄进去。
+                第一段之后必须**自包含**：
+                - 输入：绝对路径、数据集 ID（GSE/PRJNA/PDB/ENSG）、样本与分组定义、参考 build；
+                - 已经做过什么（避免重复跑同一流程）、已知的坑（批次、缺失值、异常样本、配对关系）；
+                - 期望产出：落哪个目录、文件名、要不要图、要不要 provenance；
+                - 环境约束：可用内存/CPU/GPU、时间上限；
+                - 最后一句：**你是叶子节点，不要再往下派活**。
+                不要给含糊范围（"分析一下这组数据"），也不要让子智能体自己去找数据。
 
                 ## 项目与会话隔离
                 一个会话绑定一个项目/队列/数据集；不跨会话借数据，不把 A 项目样本混进 B 项目。
@@ -152,22 +170,6 @@
                 - 统计量能复算（给公式或脚本，不只有结论）。
                 **编造的引用、编造的数据集 ID、编造的数值，一律作废**：让它重做，并说明错在哪一步。
 
-                ## 什么时候才跟用户说话（省 token 的硬要求）
-                判断标准：这一轮有没有「用户还不知道、且值得他知道」的新东西。
-                只有这几种情况才主动说：
-                1. **有新结论或结论变了**（带真实数字与限制）；
-                2. **新数据/新入口**：新数据集、新可用的库或凭据、新找到的队列；
-                3. **要用户出手**：缺数据、缺 key、缺算力、终点或物种需要拍板、遇到真实卡点；
-                4. **阶段推进或硬失败**：流程跨阶段推进、数据不可用、方法不适用。
-                其余时候**不要播报进度**——每轮复述一遍会白烧大量 token。同一批结果只报一次。用户明确问进度或要报告时，照常完整回答。
-
-                ## 汇报口径（用户问进度、要报告，或上面 1–4 触发时才用）
-                1. **阶段**：在「问题定义 → 数据体检 → 分析 → 验证 → 成文」的哪一步；
-                2. **本轮谁做了什么**：角色、跑了什么、拿到什么、产物落在哪（贴真实路径与文件名）；
-                3. **手上的资源**：可用数据与队列、可用环境（包/GPU/凭据）、已确认的工具链；
-                4. **下一步**：派谁、做什么、预期得到什么结论；以及**需要用户提供什么**。
-                严格区分「已得到」与「待验证」，不要把待验证说成结论。
-
                 ## 红线（派活时复述给子智能体）
                 - 数字、图、引用三者必须能互相追溯；编造任何一项即作废；
                 - 不选择性报告：阴性结果、失败样本、剔除的离群点都要留痕并写明理由；
@@ -175,7 +177,7 @@
                 - 临床与人类遗传数据先去标识化再分析，不上传第三方服务；
                 - 模型权重、数据库与软件的许可要写清（学术/商用、可否再分发）；
                 - 只报能复现的结论：目标 → 拿到什么 → 怎么拿到的（脚本/参数/种子）→ 输入文件。
-              suffix: |
+
                 ## 生物医学结论纪律（硬约束）
 
                 1. 引用：PMID / DOI / 作者年份只能来自本次实际检索到的结果。拿不到就写「待核」，不得补全、不得虚构。每处证据标注研究类型与规模（RCT / 前瞻队列 / 回顾单中心 / 细胞系 / 动物 / 预印本）。
@@ -229,6 +231,8 @@
 
           - id: biomedical-skill-picker
             name: dsh-biomedical-preset/picker
+            config:
+              preset: biomedical
 
           # ---- 兜底（默认关闭，稳定优先）----
           # picker 已在内部兜底：catalog 损坏或所有分类被关闭时，自动退化为全目录扫描。
@@ -242,7 +246,7 @@
               providerName: fallback-omics
               includeDefaultRoots: false
               watch: false
-              bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/omics
+              bundledSkillDir: !!js "process.getBuiltinModule('node:module').createRequire(ctx.get('profileContext')?.dir ? ctx.get('profileContext').dir + '/' : baseUrl)('dsh-biomedical-preset/paths').skillsDir('omics')"
           - id: fallback-genomics   # 基因组 140 个
             name: '@deepseek-ai/dsh-skill-filesystem'
             disabled: true
@@ -250,7 +254,7 @@
               providerName: fallback-genomics
               includeDefaultRoots: false
               watch: false
-              bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/genomics
+              bundledSkillDir: !!js "process.getBuiltinModule('node:module').createRequire(ctx.get('profileContext')?.dir ? ctx.get('profileContext').dir + '/' : baseUrl)('dsh-biomedical-preset/paths').skillsDir('genomics')"
           - id: fallback-omics-upstream   # 组学 193 个
             name: '@deepseek-ai/dsh-skill-filesystem'
             disabled: true
@@ -258,7 +262,7 @@
               providerName: fallback-omics-upstream
               includeDefaultRoots: false
               watch: false
-              bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/omics-upstream
+              bundledSkillDir: !!js "process.getBuiltinModule('node:module').createRequire(ctx.get('profileContext')?.dir ? ctx.get('profileContext').dir + '/' : baseUrl)('dsh-biomedical-preset/paths').skillsDir('omics-upstream')"
           - id: fallback-structure   # 结构与药物 79 个
             name: '@deepseek-ai/dsh-skill-filesystem'
             disabled: true
@@ -266,7 +270,7 @@
               providerName: fallback-structure
               includeDefaultRoots: false
               watch: false
-              bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/structure-drug
+              bundledSkillDir: !!js "process.getBuiltinModule('node:module').createRequire(ctx.get('profileContext')?.dir ? ctx.get('profileContext').dir + '/' : baseUrl)('dsh-biomedical-preset/paths').skillsDir('structure-drug')"
           - id: fallback-clinical-imaging   # 临床影像 36 个
             name: '@deepseek-ai/dsh-skill-filesystem'
             disabled: true
@@ -274,7 +278,7 @@
               providerName: fallback-clinical-imaging
               includeDefaultRoots: false
               watch: false
-              bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/clinical-imaging
+              bundledSkillDir: !!js "process.getBuiltinModule('node:module').createRequire(ctx.get('profileContext')?.dir ? ctx.get('profileContext').dir + '/' : baseUrl)('dsh-biomedical-preset/paths').skillsDir('clinical-imaging')"
           - id: fallback-methods   # 方法学 134 个
             name: '@deepseek-ai/dsh-skill-filesystem'
             disabled: true
@@ -282,7 +286,7 @@
               providerName: fallback-methods
               includeDefaultRoots: false
               watch: false
-              bundledSkillDir: F:/claude code/mjh/CTRL-NS/biomedical-preset/skills/methods
+              bundledSkillDir: !!js "process.getBuiltinModule('node:module').createRequire(ctx.get('profileContext')?.dir ? ctx.get('profileContext').dir + '/' : baseUrl)('dsh-biomedical-preset/paths').skillsDir('methods')"
 
 
 
@@ -297,13 +301,16 @@
           # 代码与技能都在本预设目录内，不依赖任何外部插件目录。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config:
+            # 不写本机绝对路径：python 用 DSH 自带的 primary runtime（Windows 是 python.exe，
+            # macOS/Linux 是 bin/python3）；脚本位置按包名解析（见 paths.cjs），与 Loader
+            # 加载 dsh-biomedical-preset/picker 走同一条解析路径。其余 12 个预设引用这个锚点。
+            config: &bio-mcp-config
               serverName: biomedical
               transport: stdio
-              command: 'C:/Users/20735/.dsh/dsh-runtimes/dsh-primary-runtime/dependencies/python/python.exe'
+              command: !!js "dshHomePath('dsh-runtimes', 'dsh-primary-runtime', 'dependencies', 'python', ...(process.platform === 'win32' ? ['python.exe'] : ['bin', 'python3']))"
               args:
-                - 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp/biomedical_mcp.py'
-              cwd: 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp'
+                - !!js "process.getBuiltinModule('node:module').createRequire(ctx.get('profileContext')?.dir ? ctx.get('profileContext').dir + '/' : baseUrl)('dsh-biomedical-preset/paths').mcpScript"
+              cwd: !!js "process.getBuiltinModule('node:module').createRequire(ctx.get('profileContext')?.dir ? ctx.get('profileContext').dir + '/' : baseUrl)('dsh-biomedical-preset/paths').mcpDir"
               toolCallTimeoutMs: 120000
               failOnStartupError: false
 
@@ -386,6 +393,8 @@
                 config:
                   provider: spawn
                   toolName: subagent
+                  # 只有主智能体能派活：子智能体再调 subagent 会被工具层直接拒绝（persona 里的「叶子节点」从提示词变成硬约束）
+                  maxDepth: 1
                   modelSelectionSettings: true
 
               - id: tool-subagent-fork
@@ -393,6 +402,7 @@
                 config:
                   provider: fork
                   toolName: subagent_fork
+                  maxDepth: 1
 
               - id: workflow-ptc
                 name: '@deepseek-ai/dsh-workflow-ptc'
@@ -428,6 +438,7 @@
     # 全量模式 preset-biomedical 保持不变，可在设置页自由开关 34 类。
     # ══════════════════════════════════════════════════════════════════════
 
+    # >>> gen:specialist-presets —— 由 tools/gen.mjs 生成（模板 spec/specialist-preset.yml.tpl，数据 spec/modes.json + picker/catalog.json），不要手改
     # ── 测序与变异检出：45 技能，3 类 ──
     - id: preset-bio-seq-variant
       name: '@deepseek-ai/dsh-agent-preset'
@@ -458,6 +469,8 @@
 
                 ## 并发硬约束
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
+                同一轮重计算（比对、训练、全量单细胞、大规模对接）最多 1 个，并行只会一起 OOM；被拒就是满了，不要重试硬塞。
+              suffix: *bio-discipline
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
             config:
@@ -483,6 +496,7 @@
           - id: biomedical-skill-picker
             name: dsh-biomedical-preset/picker
             config:
+              preset: bio-seq-variant
               only:
                 - sequencing-qc-alignment
                 - variant-calling-filtering
@@ -493,15 +507,7 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config:
-              serverName: biomedical
-              transport: stdio
-              command: 'C:/Users/20735/.dsh/dsh-runtimes/dsh-primary-runtime/dependencies/python/python.exe'
-              args:
-                - 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp/biomedical_mcp.py'
-              cwd: 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp'
-              toolCallTimeoutMs: 120000
-              failOnStartupError: false
+            config: *bio-mcp-config
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -562,12 +568,15 @@
                 config:
                   provider: spawn
                   toolName: subagent
+                  # 只有主智能体能派活：子智能体再调 subagent 会被工具层直接拒绝（persona 里的「叶子节点」从提示词变成硬约束）
+                  maxDepth: 1
                   modelSelectionSettings: true
               - id: tool-subagent-fork
                 name: '@deepseek-ai/dsh-tool-subagent'
                 config:
                   provider: fork
                   toolName: subagent_fork
+                  maxDepth: 1
               - id: workflow-ptc
                 name: '@deepseek-ai/dsh-workflow-ptc'
                 config:
@@ -619,6 +628,8 @@
 
                 ## 并发硬约束
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
+                同一轮重计算（比对、训练、全量单细胞、大规模对接）最多 1 个，并行只会一起 OOM；被拒就是满了，不要重试硬塞。
+              suffix: *bio-discipline
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
             config:
@@ -644,6 +655,7 @@
           - id: biomedical-skill-picker
             name: dsh-biomedical-preset/picker
             config:
+              preset: bio-genome-pop
               only:
                 - genome-assembly-comparative
                 - population-genetics-gwas
@@ -653,15 +665,7 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config:
-              serverName: biomedical
-              transport: stdio
-              command: 'C:/Users/20735/.dsh/dsh-runtimes/dsh-primary-runtime/dependencies/python/python.exe'
-              args:
-                - 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp/biomedical_mcp.py'
-              cwd: 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp'
-              toolCallTimeoutMs: 120000
-              failOnStartupError: false
+            config: *bio-mcp-config
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -722,12 +726,15 @@
                 config:
                   provider: spawn
                   toolName: subagent
+                  # 只有主智能体能派活：子智能体再调 subagent 会被工具层直接拒绝（persona 里的「叶子节点」从提示词变成硬约束）
+                  maxDepth: 1
                   modelSelectionSettings: true
               - id: tool-subagent-fork
                 name: '@deepseek-ai/dsh-tool-subagent'
                 config:
                   provider: fork
                   toolName: subagent_fork
+                  maxDepth: 1
               - id: workflow-ptc
                 name: '@deepseek-ai/dsh-workflow-ptc'
                 config:
@@ -779,6 +786,8 @@
 
                 ## 并发硬约束
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
+                同一轮重计算（比对、训练、全量单细胞、大规模对接）最多 1 个，并行只会一起 OOM；被拒就是满了，不要重试硬塞。
+              suffix: *bio-discipline
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
             config:
@@ -804,6 +813,7 @@
           - id: biomedical-skill-picker
             name: dsh-biomedical-preset/picker
             config:
+              preset: bio-clinical
               only:
                 - variant-interpretation-clinical
                 - clinical-precision-medicine
@@ -814,15 +824,7 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config:
-              serverName: biomedical
-              transport: stdio
-              command: 'C:/Users/20735/.dsh/dsh-runtimes/dsh-primary-runtime/dependencies/python/python.exe'
-              args:
-                - 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp/biomedical_mcp.py'
-              cwd: 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp'
-              toolCallTimeoutMs: 120000
-              failOnStartupError: false
+            config: *bio-mcp-config
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -883,12 +885,15 @@
                 config:
                   provider: spawn
                   toolName: subagent
+                  # 只有主智能体能派活：子智能体再调 subagent 会被工具层直接拒绝（persona 里的「叶子节点」从提示词变成硬约束）
+                  maxDepth: 1
                   modelSelectionSettings: true
               - id: tool-subagent-fork
                 name: '@deepseek-ai/dsh-tool-subagent'
                 config:
                   provider: fork
                   toolName: subagent_fork
+                  maxDepth: 1
               - id: workflow-ptc
                 name: '@deepseek-ai/dsh-workflow-ptc'
                 config:
@@ -940,6 +945,8 @@
 
                 ## 并发硬约束
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
+                同一轮重计算（比对、训练、全量单细胞、大规模对接）最多 1 个，并行只会一起 OOM；被拒就是满了，不要重试硬塞。
+              suffix: *bio-discipline
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
             config:
@@ -965,6 +972,7 @@
           - id: biomedical-skill-picker
             name: dsh-biomedical-preset/picker
             config:
+              preset: bio-tumor-immune
               only:
                 - cancer-genomics-liquid-biopsy
                 - immunology-immuno-oncology
@@ -974,15 +982,7 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config:
-              serverName: biomedical
-              transport: stdio
-              command: 'C:/Users/20735/.dsh/dsh-runtimes/dsh-primary-runtime/dependencies/python/python.exe'
-              args:
-                - 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp/biomedical_mcp.py'
-              cwd: 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp'
-              toolCallTimeoutMs: 120000
-              failOnStartupError: false
+            config: *bio-mcp-config
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -1043,12 +1043,15 @@
                 config:
                   provider: spawn
                   toolName: subagent
+                  # 只有主智能体能派活：子智能体再调 subagent 会被工具层直接拒绝（persona 里的「叶子节点」从提示词变成硬约束）
+                  maxDepth: 1
                   modelSelectionSettings: true
               - id: tool-subagent-fork
                 name: '@deepseek-ai/dsh-tool-subagent'
                 config:
                   provider: fork
                   toolName: subagent_fork
+                  maxDepth: 1
               - id: workflow-ptc
                 name: '@deepseek-ai/dsh-workflow-ptc'
                 config:
@@ -1070,7 +1073,7 @@
           - id: present
             name: '@deepseek-ai/dsh-tool-present'
 
-    # ── 转录组与差异表达：43 技能，2 类 ──
+    # ── 转录组与差异表达：42 技能，2 类 ──
     - id: preset-bio-transcriptome
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -1087,7 +1090,7 @@
 
                 风格：简体中文；专业术语保留标准写法（HGNC symbol、UniProt accession、HGVS、GRCh38、FDR、n）。先给一句判断，再给证据与限制。不写空话，不做与任务无关的礼貌铺垫。
 
-                本模式只加载 43 个技能（2 个分类：转录组上游与定量、差异表达与功能富集）。
+                本模式只加载 42 个技能（2 个分类：转录组上游与定量、差异表达与功能富集）。
                 任务超出这些领域时，说明它落在哪个模式，并建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
 
                 ## 开工前必须做的事
@@ -1100,6 +1103,8 @@
 
                 ## 并发硬约束
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
+                同一轮重计算（比对、训练、全量单细胞、大规模对接）最多 1 个，并行只会一起 OOM；被拒就是满了，不要重试硬塞。
+              suffix: *bio-discipline
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
             config:
@@ -1125,6 +1130,7 @@
           - id: biomedical-skill-picker
             name: dsh-biomedical-preset/picker
             config:
+              preset: bio-transcriptome
               only:
                 - transcriptomics-quantification
                 - differential-expression-enrichment
@@ -1134,15 +1140,7 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config:
-              serverName: biomedical
-              transport: stdio
-              command: 'C:/Users/20735/.dsh/dsh-runtimes/dsh-primary-runtime/dependencies/python/python.exe'
-              args:
-                - 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp/biomedical_mcp.py'
-              cwd: 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp'
-              toolCallTimeoutMs: 120000
-              failOnStartupError: false
+            config: *bio-mcp-config
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -1203,12 +1201,15 @@
                 config:
                   provider: spawn
                   toolName: subagent
+                  # 只有主智能体能派活：子智能体再调 subagent 会被工具层直接拒绝（persona 里的「叶子节点」从提示词变成硬约束）
+                  maxDepth: 1
                   modelSelectionSettings: true
               - id: tool-subagent-fork
                 name: '@deepseek-ai/dsh-tool-subagent'
                 config:
                   provider: fork
                   toolName: subagent_fork
+                  maxDepth: 1
               - id: workflow-ptc
                 name: '@deepseek-ai/dsh-workflow-ptc'
                 config:
@@ -1260,6 +1261,8 @@
 
                 ## 并发硬约束
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
+                同一轮重计算（比对、训练、全量单细胞、大规模对接）最多 1 个，并行只会一起 OOM；被拒就是满了，不要重试硬塞。
+              suffix: *bio-discipline
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
             config:
@@ -1285,6 +1288,7 @@
           - id: biomedical-skill-picker
             name: dsh-biomedical-preset/picker
             config:
+              preset: bio-singlecell-spatial
               only:
                 - single-cell-core
                 - single-cell-advanced-virtual-cell
@@ -1295,15 +1299,7 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config:
-              serverName: biomedical
-              transport: stdio
-              command: 'C:/Users/20735/.dsh/dsh-runtimes/dsh-primary-runtime/dependencies/python/python.exe'
-              args:
-                - 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp/biomedical_mcp.py'
-              cwd: 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp'
-              toolCallTimeoutMs: 120000
-              failOnStartupError: false
+            config: *bio-mcp-config
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -1364,12 +1360,15 @@
                 config:
                   provider: spawn
                   toolName: subagent
+                  # 只有主智能体能派活：子智能体再调 subagent 会被工具层直接拒绝（persona 里的「叶子节点」从提示词变成硬约束）
+                  maxDepth: 1
                   modelSelectionSettings: true
               - id: tool-subagent-fork
                 name: '@deepseek-ai/dsh-tool-subagent'
                 config:
                   provider: fork
                   toolName: subagent_fork
+                  maxDepth: 1
               - id: workflow-ptc
                 name: '@deepseek-ai/dsh-workflow-ptc'
                 config:
@@ -1421,6 +1420,8 @@
 
                 ## 并发硬约束
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
+                同一轮重计算（比对、训练、全量单细胞、大规模对接）最多 1 个，并行只会一起 OOM；被拒就是满了，不要重试硬塞。
+              suffix: *bio-discipline
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
             config:
@@ -1446,6 +1447,7 @@
           - id: biomedical-skill-picker
             name: dsh-biomedical-preset/picker
             config:
+              preset: bio-epigenome
               only:
                 - epigenomics-methylation
                 - regulatory-network-sequence-models
@@ -1455,15 +1457,7 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config:
-              serverName: biomedical
-              transport: stdio
-              command: 'C:/Users/20735/.dsh/dsh-runtimes/dsh-primary-runtime/dependencies/python/python.exe'
-              args:
-                - 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp/biomedical_mcp.py'
-              cwd: 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp'
-              toolCallTimeoutMs: 120000
-              failOnStartupError: false
+            config: *bio-mcp-config
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -1524,12 +1518,15 @@
                 config:
                   provider: spawn
                   toolName: subagent
+                  # 只有主智能体能派活：子智能体再调 subagent 会被工具层直接拒绝（persona 里的「叶子节点」从提示词变成硬约束）
+                  maxDepth: 1
                   modelSelectionSettings: true
               - id: tool-subagent-fork
                 name: '@deepseek-ai/dsh-tool-subagent'
                 config:
                   provider: fork
                   toolName: subagent_fork
+                  maxDepth: 1
               - id: workflow-ptc
                 name: '@deepseek-ai/dsh-workflow-ptc'
                 config:
@@ -1581,6 +1578,8 @@
 
                 ## 并发硬约束
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
+                同一轮重计算（比对、训练、全量单细胞、大规模对接）最多 1 个，并行只会一起 OOM；被拒就是满了，不要重试硬塞。
+              suffix: *bio-discipline
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
             config:
@@ -1606,6 +1605,7 @@
           - id: biomedical-skill-picker
             name: dsh-biomedical-preset/picker
             config:
+              preset: bio-proteo-metabo
               only:
                 - proteomics
                 - metabolomics-lipidomics
@@ -1615,15 +1615,7 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config:
-              serverName: biomedical
-              transport: stdio
-              command: 'C:/Users/20735/.dsh/dsh-runtimes/dsh-primary-runtime/dependencies/python/python.exe'
-              args:
-                - 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp/biomedical_mcp.py'
-              cwd: 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp'
-              toolCallTimeoutMs: 120000
-              failOnStartupError: false
+            config: *bio-mcp-config
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -1684,12 +1676,15 @@
                 config:
                   provider: spawn
                   toolName: subagent
+                  # 只有主智能体能派活：子智能体再调 subagent 会被工具层直接拒绝（persona 里的「叶子节点」从提示词变成硬约束）
+                  maxDepth: 1
                   modelSelectionSettings: true
               - id: tool-subagent-fork
                 name: '@deepseek-ai/dsh-tool-subagent'
                 config:
                   provider: fork
                   toolName: subagent_fork
+                  maxDepth: 1
               - id: workflow-ptc
                 name: '@deepseek-ai/dsh-workflow-ptc'
                 config:
@@ -1741,6 +1736,8 @@
 
                 ## 并发硬约束
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
+                同一轮重计算（比对、训练、全量单细胞、大规模对接）最多 1 个，并行只会一起 OOM；被拒就是满了，不要重试硬塞。
+              suffix: *bio-discipline
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
             config:
@@ -1766,6 +1763,7 @@
           - id: biomedical-skill-picker
             name: dsh-biomedical-preset/picker
             config:
+              preset: bio-structure-drug
               only:
                 - structural-biology-modeling
                 - chemoinformatics-drug-design
@@ -1777,15 +1775,7 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config:
-              serverName: biomedical
-              transport: stdio
-              command: 'C:/Users/20735/.dsh/dsh-runtimes/dsh-primary-runtime/dependencies/python/python.exe'
-              args:
-                - 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp/biomedical_mcp.py'
-              cwd: 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp'
-              toolCallTimeoutMs: 120000
-              failOnStartupError: false
+            config: *bio-mcp-config
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -1846,12 +1836,15 @@
                 config:
                   provider: spawn
                   toolName: subagent
+                  # 只有主智能体能派活：子智能体再调 subagent 会被工具层直接拒绝（persona 里的「叶子节点」从提示词变成硬约束）
+                  maxDepth: 1
                   modelSelectionSettings: true
               - id: tool-subagent-fork
                 name: '@deepseek-ai/dsh-tool-subagent'
                 config:
                   provider: fork
                   toolName: subagent_fork
+                  maxDepth: 1
               - id: workflow-ptc
                 name: '@deepseek-ai/dsh-workflow-ptc'
                 config:
@@ -1903,6 +1896,8 @@
 
                 ## 并发硬约束
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
+                同一轮重计算（比对、训练、全量单细胞、大规模对接）最多 1 个，并行只会一起 OOM；被拒就是满了，不要重试硬塞。
+              suffix: *bio-discipline
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
             config:
@@ -1928,6 +1923,7 @@
           - id: biomedical-skill-picker
             name: dsh-biomedical-preset/picker
             config:
+              preset: bio-microbiome
               only:
                 - microbiome-metagenomics
           - id: tool-skill
@@ -1936,15 +1932,7 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config:
-              serverName: biomedical
-              transport: stdio
-              command: 'C:/Users/20735/.dsh/dsh-runtimes/dsh-primary-runtime/dependencies/python/python.exe'
-              args:
-                - 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp/biomedical_mcp.py'
-              cwd: 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp'
-              toolCallTimeoutMs: 120000
-              failOnStartupError: false
+            config: *bio-mcp-config
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -2005,12 +1993,15 @@
                 config:
                   provider: spawn
                   toolName: subagent
+                  # 只有主智能体能派活：子智能体再调 subagent 会被工具层直接拒绝（persona 里的「叶子节点」从提示词变成硬约束）
+                  maxDepth: 1
                   modelSelectionSettings: true
               - id: tool-subagent-fork
                 name: '@deepseek-ai/dsh-tool-subagent'
                 config:
                   provider: fork
                   toolName: subagent_fork
+                  maxDepth: 1
               - id: workflow-ptc
                 name: '@deepseek-ai/dsh-workflow-ptc'
                 config:
@@ -2062,6 +2053,8 @@
 
                 ## 并发硬约束
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
+                同一轮重计算（比对、训练、全量单细胞、大规模对接）最多 1 个，并行只会一起 OOM；被拒就是满了，不要重试硬塞。
+              suffix: *bio-discipline
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
             config:
@@ -2087,6 +2080,7 @@
           - id: biomedical-skill-picker
             name: dsh-biomedical-preset/picker
             config:
+              preset: bio-imaging-forensic
               only:
                 - medical-imaging-radiomics
                 - microscopy-cell-phenotyping
@@ -2097,15 +2091,7 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config:
-              serverName: biomedical
-              transport: stdio
-              command: 'C:/Users/20735/.dsh/dsh-runtimes/dsh-primary-runtime/dependencies/python/python.exe'
-              args:
-                - 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp/biomedical_mcp.py'
-              cwd: 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp'
-              toolCallTimeoutMs: 120000
-              failOnStartupError: false
+            config: *bio-mcp-config
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -2166,12 +2152,15 @@
                 config:
                   provider: spawn
                   toolName: subagent
+                  # 只有主智能体能派活：子智能体再调 subagent 会被工具层直接拒绝（persona 里的「叶子节点」从提示词变成硬约束）
+                  maxDepth: 1
                   modelSelectionSettings: true
               - id: tool-subagent-fork
                 name: '@deepseek-ai/dsh-tool-subagent'
                 config:
                   provider: fork
                   toolName: subagent_fork
+                  maxDepth: 1
               - id: workflow-ptc
                 name: '@deepseek-ai/dsh-workflow-ptc'
                 config:
@@ -2193,7 +2182,7 @@
           - id: present
             name: '@deepseek-ai/dsh-tool-present'
 
-    # ── 文献、写作与工程：98 技能，7 类 ──
+    # ── 文献、写作与工程：93 技能，7 类 ──
     - id: preset-bio-support
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -2210,7 +2199,7 @@
 
                 风格：简体中文；专业术语保留标准写法（HGNC symbol、UniProt accession、HGVS、GRCh38、FDR、n）。先给一句判断，再给证据与限制。不写空话，不做与任务无关的礼貌铺垫。
 
-                本模式只加载 98 个技能（7 个分类：文献检索与证据合成、写作与文档交付、数据工程与统计方法、计算流程与可复现性、数据库与接口对接、可视化与图件、研究设计与假设生成）。
+                本模式只加载 93 个技能（7 个分类：文献检索与证据合成、写作与文档交付、数据工程与统计方法、计算流程与可复现性、数据库与接口对接、可视化与图件、研究设计与假设生成）。
                 任务超出这些领域时，说明它落在哪个模式，并建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
 
                 ## 开工前必须做的事
@@ -2223,6 +2212,8 @@
 
                 ## 并发硬约束
                 同一会话最多 3 个并发 subagent；派活用 subagent / subagent_fork，不用 spawn_teammate。
+                同一轮重计算（比对、训练、全量单细胞、大规模对接）最多 1 个，并行只会一起 OOM；被拒就是满了，不要重试硬塞。
+              suffix: *bio-discipline
           - id: agent-instructions
             name: '@deepseek-ai/dsh-agent-instructions'
             config:
@@ -2248,6 +2239,7 @@
           - id: biomedical-skill-picker
             name: dsh-biomedical-preset/picker
             config:
+              preset: bio-support
               only:
                 - literature-evidence-synthesis
                 - writing-document-delivery
@@ -2262,15 +2254,7 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config:
-              serverName: biomedical
-              transport: stdio
-              command: 'C:/Users/20735/.dsh/dsh-runtimes/dsh-primary-runtime/dependencies/python/python.exe'
-              args:
-                - 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp/biomedical_mcp.py'
-              cwd: 'F:/claude code/mjh/CTRL-NS/biomedical-preset/mcp'
-              toolCallTimeoutMs: 120000
-              failOnStartupError: false
+            config: *bio-mcp-config
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -2331,12 +2315,15 @@
                 config:
                   provider: spawn
                   toolName: subagent
+                  # 只有主智能体能派活：子智能体再调 subagent 会被工具层直接拒绝（persona 里的「叶子节点」从提示词变成硬约束）
+                  maxDepth: 1
                   modelSelectionSettings: true
               - id: tool-subagent-fork
                 name: '@deepseek-ai/dsh-tool-subagent'
                 config:
                   provider: fork
                   toolName: subagent_fork
+                  maxDepth: 1
               - id: workflow-ptc
                 name: '@deepseek-ai/dsh-workflow-ptc'
                 config:
@@ -2357,6 +2344,7 @@
               searchTimeoutMs: 60000
           - id: present
             name: '@deepseek-ai/dsh-tool-present'
+    # <<< gen:specialist-presets
 
 - insert:
 
@@ -2365,6 +2353,7 @@
     - id: biomedical-skill-settings
       name: dsh-biomedical-preset
       config:
+        # >>> gen:settings-switches —— 由 tools/gen.mjs 按 catalog.json 生成
         "sequencing-qc-alignment": true
         "genome-assembly-comparative": true
         "variant-calling-filtering": true
@@ -2399,3 +2388,4 @@
         "database-api-access": true
         "visualization-figures": true
         "research-design-hypothesis": true
+        # <<< gen:settings-switches

@@ -1,9 +1,9 @@
 # 生物医学模式 · dsh-biomedical-preset
 
-DeepSeek Harness 的 agent 预设（bundle）。它不是"给通用助手加个提示词"，而是一套**自持**的生物医学研究装配：身份与纪律、执行工具、603 个技能（34 个功能分类，可在设置里逐类开关）、51 个数据源 MCP 工具、并发闸、交付通道，全部装在这一个包里，不引用任何外部插件目录。
+DeepSeek Harness 的 agent 预设（bundle）。它不是"给通用助手加个提示词"，而是一套**自持**的生物医学研究装配：身份与纪律、执行工具、597 个技能（34 个功能分类，可在设置里逐类开关）、51 个数据源 MCP 工具、并发闸、交付通道，全部装在这一个包里，不引用任何外部插件目录。
 
 - 心智模型：**MCP 负责取数据，Skill 负责选方法与执行流程**，persona 负责纪律与判断。
-- 已验证：市场索引通过官方 `@deepseek-ai/dsh-plugin-market-index` 校验；`npm pack` 产物 2222 文件 / 4.9 MB（packed）/ 19.5 MB（unpacked）；本机预设 `fiberPhase: active`。
+- 已验证：市场索引通过官方 `@deepseek-ai/dsh-plugin-market-index` 校验；本机预设 `fiberPhase: active`。技能数、各模式技能数与目录成本以 `node tools/gen.mjs --check` 的输出为准（下文表格由它生成）。
 
 ---
 
@@ -11,7 +11,7 @@ DeepSeek Harness 的 agent 预设（bundle）。它不是"给通用助手加个�
 
 - [安装](#安装)
 - [装配结构](#装配结构)
-- [技能清单（603，34 个功能分类）](#技能清单60334-个功能分类)
+- [技能清单（597，34 个功能分类）](#技能清单59734-个功能分类)
 - [13 个模式：先选模式，别全开](#13-个模式先选模式别全开)
 - [MCP 工具清单（51）](#mcp-工具清单51)
 - [并发与资源约束](#并发与资源约束)
@@ -49,6 +49,15 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 
 用 `plugin_manager` `install_bundle` 指向该目录（`link:` 安装，改文件即时生效）。persona 与 preset composition 在**会话创建时**读取，所以改完要重新激活预设（`set_plugin` 先 false 再 true）并新开会话才生效。
 
+> **不要在任何文件里写本机绝对路径**（以前 patch 写死了 `C:/Users/<用户名>/…`、`F:/…`，别人装上后 MCP 静默起不来、设置页开关不生效）。现在的做法：
+>
+> - MCP 的 python 用 DSH 自带的 primary runtime：`!!js "dshHomePath('dsh-runtimes', 'dsh-primary-runtime', 'dependencies', 'python', …)"`（Windows 为 `python.exe`，macOS/Linux 为 `bin/python3`）；
+> - 包内文件（MCP 脚本、兜底技能目录）经 `paths.cjs` 按包名解析：`createRequire(<profile 目录>/)('dsh-biomedical-preset/paths')`，与 Loader 加载 `dsh-biomedical-preset/picker` 走同一条解析路径；`link:` 安装解析到开发目录；
+> - profile 目录由 `shared/profile.mjs` 定位：`ctx.get('profileContext').dir` → `DSH_PROFILE_DIR` → `$DSH_HOME/profiles/$DSH_PROFILE`；
+> - `!!js` 表达式里有 ` : `（三元运算）时必须整体加双引号，否则 YAML 会把它当键值分隔符。
+>
+> `tools/lint-presets.mjs` 会拒绝任何形如 `X:/`、`/Users/`、`/home/` 的绝对路径。
+
 ---
 
 ## 装配结构
@@ -57,7 +66,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 
 | 层 | 插件行 | 作用 |
 |---|---|---|
-| 身份 | `persona` | 生物医学研究者 prefix（13 小节工作规范）+ 8 条结论纪律 suffix |
+| 身份 | `persona` | prefix（身份、开工方式、汇报口径，各模式不同）+ 共享 suffix `&bio-discipline`（方法—数据适配性裁决、派活格式、隔离与核验、红线、9 条结论纪律；13 个模式共用同一段） |
 | 身份 | `agent-instructions` | 读取项目 `AGENTS.md`（课题组分析规范走这里） |
 | 身份 | `time-context` | 时间锚（"近三年"、随访窗口） |
 | 执行 | `tool-pwsh` / `tool-bash` | 按平台二选一，跑 python/R/conda/比对工具 |
@@ -66,14 +75,14 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | 技能 | `skill-filesystem` | 用户自有技能根（`$DSH_HOME/skills`） |
 | 设置页 | `biomedical-skill-settings` | profile 级行 + `client.js`（`dsh.client`），34 个分类开关写入 `biomedical-skills.json` |
 | 会话面板 | `client.js`（同一浏览器半） | 输入框右侧「🧬 技能」按键（`conversation.input.right`）+ 可拖动浮窗（`shell.overlay`），只改本会话 |
-| 技能 | `biomedical-skill-picker` | 单一 provider：603 个技能按 34 个功能分类提供，开关见 `picker/catalog.json` |
+| 技能 | `biomedical-skill-picker` | 单一 provider：597 个技能按 34 个功能分类提供，开关见 `picker/catalog.json` |
 | 技能 | `tool-skill` | 技能目录与加载器 |
 | 数据 | `bio-mcp` | 拉起 `mcp/biomedical_mcp.py`（51 工具，stdio） |
 | 编排 | `command-goal`、`tool-goal` | 长课题目标追踪 |
 | 编排 | `planning`（组） | plan-mode，先出研究设计再动手 |
 | 编排 | `compaction`（组） | 上下文压缩 + 工具结果裁剪（组学输出动辄上万行） |
 | 编排 | `delegation`（组） | `subagent` / `subagent_fork` / `workflow` |
-| 并发 | `subagent-cap` | 同一会话最多 3 个子智能体（`tools/execute` 拦截） |
+| 并发 | `subagent-cap` | 同一会话最多 3 个子智能体（`tools/execute` 拦截）；子智能体不能再派活（`maxDepth: 1` + 闸内深度检查） |
 | 编排 | `tool-ask-user` | 只问用户自有决策（物种、队列、终点、期刊） |
 | 编排 | `tool-todo` | 多步骤任务拆解 |
 | 交付 | `tool-web` | 文献与库 API 抓取（fetch + search） |
@@ -126,9 +135,9 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 
    `--dsh-*` 之类自造名字**不存在**，`var()` 会静默落回兜底值——兜底若写成 `#fff`，深色模式下就是一块白板（2.3.0 开发期间真踩过）。浮窗背景用 `--dsw-alias-bg-overlay`，边框用 `-border-l1/-l2`，强调色用 `-brand-primary`。
 
-## 技能清单（603，34 个功能分类）
+## 技能清单（597，34 个功能分类）
 
-603 个技能按**用户要达成的任务**分为 34 类（每类 10–38 个），由 `picker` 插件统一提供，映射见 `picker/catalog.json`。分类不按文件格式切分；nf-core 流程按分析任务分散到各领域类。
+597 个技能按**用户要达成的任务**分为 34 类（每类 9–38 个），由 `picker` 插件统一提供，映射见 `picker/catalog.json`。分类不按文件格式切分；nf-core 流程按分析任务分散到各领域类。
 
 ## 13 个模式：先选模式，别全开
 
@@ -136,27 +145,29 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 
 ### 为什么要分模式
 
-技能目录由模型自己读（`skill` 工具），**常驻每一轮对话**。全量 603 条 ≈ **33 000 token**，而且近义技能（`sc-clustering-umap` 与 `sc-cell-type-annotation`、`nfcore-rnaseq` 与 `nfcore-smrnaseq`）会互相干扰，候选集越大越容易选错。
+技能目录由模型自己读（`skill` 工具），**常驻每一轮对话**。全量 597 条 ≈ **33 000 token**，而且近义技能（`sc-clustering-umap` 与 `sc-cell-type-annotation`、`nfcore-rnaseq` 与 `nfcore-smrnaseq`）会互相干扰，候选集越大越容易选错。
 
 专项模式把候选集压到 31–98 个，成本降到 **1 700–5 400 token**，同时命中率明显更高。
 
 ### 12 个专项模式
 
-| 模式（新建会话时选） | 覆盖的 34 类分类 | 技能 | 约 token |
+<!-- gen:modes-table 由 tools/gen.mjs 生成，不要手改 -->
+| 模式（新建会话时选） | 覆盖的分类 | 技能 | 约 token |
 |---|---|---|---|
-| **生物医学模式**（全量） | 全部 34 类 | 603 | 33 400 |
-| 测序与变异检出 | 测序质控与比对、变异检测与过滤、拷贝数/结构变异 | 45 | 2 500 |
+| **生物医学模式**（全量） | 全部 34 类 | 597 | 33 100 |
+| 测序与变异检出 | 测序质控与比对、变异检测与过滤、拷贝数变异与结构变异 | 45 | 2 500 |
 | 基因组组装与群体遗传 | 基因组组装与比较基因组、群体遗传与 GWAS | 48 | 2 700 |
-| 临床解读与精准医学 | 变异解读与罕见病、临床精准医学、药物基因组学 | 31 | 1 700 |
+| 临床解读与精准医学 | 变异解读与罕见病诊断、临床精准医学与结局分析、药物基因组学与用药 | 31 | 1 700 |
 | 肿瘤与免疫组学 | 肿瘤基因组与液体活检、免疫组学与免疫治疗 | 45 | 2 500 |
-| 转录组与差异表达 | 转录组上游与定量、差异表达与功能富集 | 43 | 2 400 |
-| 单细胞与空间组学 | 单细胞基础、单细胞高级与虚拟细胞、空间组学 | 55 | 3 100 |
+| 转录组与差异表达 | 转录组上游与定量、差异表达与功能富集 | 42 | 2 300 |
+| 单细胞与空间组学 | 单细胞基础分析、单细胞高级与虚拟细胞、空间组学分析 | 55 | 3 000 |
 | 表观遗传与调控 | 表观遗传与 DNA 甲基化、调控网络与序列模型 | 49 | 2 700 |
 | 蛋白组与代谢组 | 蛋白质组学、代谢组与脂质糖组 | 39 | 2 200 |
-| 结构与药物设计 | 结构预测与建模、化学信息学与药物设计、蛋白工程与合成生物学、基因编辑与克隆 | 73 | 4 000 |
+| 结构与药物设计 | 结构预测与建模、化学信息学与药物设计、蛋白工程与合成生物学、基因编辑与分子克隆 | 73 | 4 000 |
 | 微生物组与宏基因组 | 微生物组与宏基因组 | 38 | 2 100 |
 | 影像、细胞表型与法医 | 医学影像与放射组学、显微成像与细胞表型、法医与身份鉴定 | 39 | 2 200 |
-| 文献、写作与工程 | 文献检索与证据合成、写作与文档交付、数据工程与统计、计算流程与可复现性、数据库与接口、可视化与图件、研究设计与假设生成 | 98 | 5 400 |
+| 文献、写作与工程 | 文献检索与证据合成、写作与文档交付、数据工程与统计方法、计算流程与可复现性、数据库与接口对接、可视化与图件、研究设计与假设生成 | 93 | 5 200 |
+<!-- /gen:modes-table -->
 
 **怎么选**：新建会话时点预设选择器，选最贴近本次分析目标的那一个。一次分析跨两个大类（例如单细胞 + 文献综述），用全量模式再按下面那节关掉无关类。
 
@@ -171,11 +182,11 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 
 > ### 全量模式下的细调
 >
-> 全量模式默认 34 类全开（603 个技能）。如果只用其中一部分，去**设置 → 生物医学技能**关掉无关的类：
+> 全量模式默认 34 类全开（597 个技能）。如果只用其中一部分，去**设置 → 生物医学技能**关掉无关的类：
 >
 > | 保留范围 | 目录常驻 |
 > |---|---|
-> | 34 类全开（默认） | ≈ 33 400 token |
+> | 34 类全开（默认） | ≈ 33 100 token |
 > | 4 类（如转录组 + 差异表达 + 数据工程 + 文献写作） | ≈ 8 000 token |
 > | 1–2 类 | ≈ 1 000–3 000 token |
 >
@@ -198,7 +209,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 对话输入框左下 …  [🧬 技能]  … 发送
                         ↓
 ┌ 技能范围 · 本会话                     ↺  ✕ ┐   ← 拖标题栏可移动，位置记在 localStorage
-│ 当前 12 类 / 34 类 / 603 技能 / ≈38k token  │
+│ 当前 12 类 / 34 类 / 597 技能 / ≈38k token  │
 ├─────────────────────────────────────────────┤
 │ 🧬 测序与变异检出     3 类 · 45 技能   ▸  ● │   ← ▸ 展开细分类，● 三态开关
 │ 🧭 基因组组装与群体遗传 2 类 · 48 技能   ▸  ● │
@@ -217,9 +228,10 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 - **刚打开会话时 Host 那边 agent 可能还没起来**（实测 `reason="session has no live agent"`）。这种情况下客户端不当定论：`applies=null` 会每 1.5 秒重试、最多 8 次，等 agent 起来后按键自动出现；只有 `404`（路由不存在，说明插件没启用）和明确的 `false` 才立刻定论。判定结果按会话缓存 5 秒。
 - **12 个大类**与 12 个专项模式一一对应，展开后是该大类下的 34 个功能分类，可单独勾选；大类开关是三态（全开／部分／全关）。
 - 每行显示「N 类 · M 技能 · ≈X token」，底部汇总当前生效范围，选之前就知道目录成本。
-- 三个按钮：`全部开启` / `全部关闭` / `恢复默认`（`恢复默认` 清掉会话覆盖，回到「模式白名单 → 设置页」的默认状态）。
+- 三个按钮：`全部开启` / `全部关闭` / `恢复默认`（`恢复默认` 清掉会话覆盖，回到「模式白名单 → 设置页」的默认状态）。`全部关闭`（0 类）表示**本会话不加载本包任何技能**，不会再退回全量。
+- 浮窗显示的默认范围按**本会话实际组合的预设**取：picker 行的 `config.preset` 写着所属预设 id，Host 用 `/bio-skills/applies` 同一套判定找到会话的预设，再取那份 picker 的 `only`。判定不了时才退回进程级推断（面板会提示可能不准）。
 - **改完下一个 step 就生效**，不用新开会话：`skills.snapshot()` 每步重新查询，写完后 Host 会 `invalidate()` 目录缓存。
-- 只影响本包 `skills/` 里的 603 个技能；你自己的 `~/.agents/skills`、`~/.dsh/skills` 里的技能不受影响。
+- 只影响本包 `skills/` 里的 597 个技能；你自己的 `~/.agents/skills`、`~/.dsh/skills` 里的技能不受影响。
 - 会话覆盖存在 Host 进程内存里（按 `sessionId`），**重启 DSH 即清空**，回到模式默认。
 
 优先级：**会话覆盖 > 专项模式白名单（`only`）> 设置页分类开关**。因此专项模式也能临时加开别的类——但那是"这一轮多给点技能"的应急手段，长期还是换模式更干净。
@@ -306,14 +318,16 @@ if (table.has(route.path)) throw new Error(`webserver: duplicate ${route.kind} r
 
 设置页把这 34 个分类上卷成 **6 个大组**，按组分节显示，组间有分隔线：
 
+<!-- gen:groups-table 由 tools/gen.mjs 生成，不要手改 -->
 | 大组 | 分类数 | 技能数 |
 |---|---|---|
 | 测序与变异 | 8 | 142 |
-| 组学与单细胞 | 10 | 224 |
+| 组学与单细胞 | 10 | 223 |
 | 结构与药物 | 5 | 83 |
 | 临床与影像 | 4 | 56 |
-| 方法与工程 | 5 | 65 |
-| 文献与写作 | 2 | 33 |
+| 方法与工程 | 5 | 64 |
+| 文献与写作 | 2 | 29 |
+<!-- /gen:groups-table -->
 
 每组标题行显示「N 个分类 · M 个技能 · 已启用 X」，并带该组的「全开 / 全关」；组内默认只列出前 4 个分类，其余折叠在「还有 N 个分类 · 展开」后面。顶部保留全局「全部开启 / 全部关闭」。
 
@@ -321,6 +335,7 @@ if (table.has(route.path)) throw new Error(`webserver: duplicate ${route.kind} r
 
 ### 分类一览
 
+<!-- gen:categories-table 由 tools/gen.mjs 生成，不要手改 -->
 | 分类 | id | 技能数 | 覆盖 |
 |---|---|---|---|
 | 测序质控与比对 | `sequencing-qc-alignment` | 19 | 把原始测序读段变成可信的比对结果，并回答数据质量、覆盖与污染能不能用。 |
@@ -335,7 +350,7 @@ if (table.has(route.path)) throw new Error(`webserver: duplicate ${route.kind} r
 | 医学影像与放射组学 | `medical-imaging-radiomics` | 12 | 处理 CT/MRI/病理等影像数据，做分割、配准、特征提取、模型训练与可信度评估。 |
 | 显微成像与细胞表型 | `microscopy-cell-phenotyping` | 17 | 从显微、流式与空间蛋白图像定量细胞形态、分割、计数、追踪并比较组间表型。 |
 | 转录组上游与定量 | `transcriptomics-quantification` | 32 | 从 RNA 读段得到表达矩阵，处理链特异性、异构体组装、融合、剪接与 RNA 修饰证据。 |
-| 差异表达与功能富集 | `differential-expression-enrichment` | 11 | 在组学矩阵上做组间差异与统计建模，并把结果落到通路、基因集与功能解释。 |
+| 差异表达与功能富集 | `differential-expression-enrichment` | 10 | 在组学矩阵上做组间差异与统计建模，并把结果落到通路、基因集与功能解释。 |
 | 单细胞基础分析 | `single-cell-core` | 20 | 完成单细胞数据的质控、双细胞与环境 RNA 清理、降维聚类、注释与对象格式管理。 |
 | 单细胞高级与虚拟细胞 | `single-cell-advanced-virtual-cell` | 20 | 在单细胞数据上做轨迹、通讯、扰动预测、多模态与队列复现等机制性推断。 |
 | 空间组学分析 | `spatial-omics` | 15 | 利用空间坐标回答组织里谁在哪里、谁挨着谁，并识别空间域、邻域与细胞组成。 |
@@ -350,22 +365,25 @@ if (table.has(route.path)) throw new Error(`webserver: duplicate ${route.kind} r
 | 基因编辑与分子克隆 | `gene-editing-cloning` | 13 | 设计 gRNA、供体与筛选文库，评估脱靶与编辑结果，并完成克隆相关的序列层面设计。 |
 | 药物基因组学与用药 | `pharmacogenomics-dosing` | 10 | 把基因型转成星等位基因与表型，落到具体药物的剂量、疗效与安全性建议。 |
 | 免疫组学与免疫治疗 | `immunology-immuno-oncology` | 17 | 分析受体库、HLA、新抗原与免疫浸润，评估免疫治疗获益与疫苗表位覆盖。 |
-| 文献检索与证据合成 | `literature-evidence-synthesis` | 13 | 检索、核验并综合文献与数据库证据，形成可核查的综述、评审与证据强度判断。 |
-| 写作与文档交付 | `writing-document-delivery` | 20 | 把分析与文献写成论文、基金、海报或报告，并导出合规的 Word/PDF/PPT 交付件。 |
+| 文献检索与证据合成 | `literature-evidence-synthesis` | 12 | 检索、核验并综合文献与数据库证据，形成可核查的综述、评审与证据强度判断。 |
+| 写作与文档交付 | `writing-document-delivery` | 17 | 把分析与文献写成论文、基金、海报或报告，并导出合规的 Word/PDF/PPT 交付件。 |
 | 数据工程与统计方法 | `data-engineering-statistics` | 24 | 整理表格与格式、建立统计与机器学习评估、管理隐私与数据交换的工程性任务。 |
 | 计算流程与可复现性 | `workflow-reproducibility` | 10 | 搭可复现的分析环境与流程，追溯输入与版本，并审计结果漂移与助手可靠性。 |
 | 数据库与接口对接 | `database-api-access` | 11 | 通过 API 或公共库取回基因、变异、结构、组学与文献数据，并核对版本与可用性。 |
-| 可视化与图件 | `visualization-figures` | 10 | 把数据与结构做成清晰可发表的图表、轨道、示意图或渲染好的图形交付件。 |
+| 可视化与图件 | `visualization-figures` | 9 | 把数据与结构做成清晰可发表的图表、轨道、示意图或渲染好的图形交付件。 |
 | 研究设计与假设生成 | `research-design-hypothesis` | 10 | 把宽泛兴趣收束成可检验问题，规划数据、对照、样本量与验证路线。 |
+<!-- /gen:categories-table -->
 
 ### 技能来源
 
-- **上游技能插件（582 个）**：取自本机已安装的 27 个技能插件的发布内容（2026-10-30 版本）。其中 134 个原始占位名（`*-skill-<hash>` 形式）已改写为语义化 kebab 名称；跨插件重名的 9 个只保留一份。
+- **上游技能插件（576 个）**：取自本机已安装的 27 个技能插件的发布内容（2026-10-30 版本）。其中 134 个原始占位名（`*-skill-<hash>` 形式）已改写为语义化 kebab 名称；跨插件重名的 9 个只保留一份。
+- **2.5.0 移除的 6 个**：`docx` / `pdf` / `xlsx`（许可证为 Anthropic「All rights reserved」，不能随 MIT 包再分发；DSH 自带 `office-docx` / `office-xlsx` / `office-export-pdf` 可替代）、`morning`（晨间简报，与本模式无关）、`pathway-enrichment-analysis`（14 行，完全被 `pathway-enrichment` 覆盖）、`review-paper`（偏人文社科审稿，科研稿件审稿由 `paper-review` 负责）。同时清掉了 23 个评测报告 / 调试脚本 / 中间产物。
+- 许可证与来源见 [THIRD_PARTY.md](THIRD_PARTY.md)；`tools/lint-skills.mjs` 会拒绝「保留所有权利」的许可证和开发残留文件。
 - **自建（21 个）**：`skills/omics`，其中 11 个按官方文档整编（`SKILL.md` + `references/{official-docs,parameters,troubleshooting}.md`，命令均标注官方来源，官方未提供可执行命令处显式标注）。
 
 ### 目录成本
 
-603 个技能的 name + description 合计 **77 218 字符 ≈ 35 099 token**（`name` 15 281 + `description` 61 937，单条描述按目录截断 500 字符计；21 条原描述超过 500 字符，触发条件已提到前 500 字符内），常驻系统提示。
+597 个技能的 name + description 合计 **75 703 字符 ≈ 34 400 token**（`name` 15 224 + `description` 60 479，单条描述按目录截断 500 字符计），常驻系统提示。
 
 **这是全开时的成本。** 用分类开关按需裁剪后显著下降：
 
@@ -379,11 +397,11 @@ if (table.has(route.path)) throw new Error(`webserver: duplicate ${route.kind} r
 
 `picker` 是 preset 里唯一的技能 provider，因此做了三层兜底：
 
-1. **catalog 损坏或缺失** → 自动退化为直接扫描 `skills/*/*/SKILL.md`，603 个技能照常可用（分类标记为 `fallback`），文件修好后下次 `list()` 自动恢复。
-2. **设置页把所有分类都关掉** → 同样退化为全量扫描，避免"全关之后技能凭空消失"。
+1. **catalog 损坏或缺失** → 自动退化为直接扫描 `skills/*/*/SKILL.md`，597 个技能照常可用（分类标记为 `fallback`），文件修好后下次 `list()` 自动恢复。
+2. **启用的分类一个 SKILL.md 都读不到**（skills/ 目录损坏）→ 退化为全量扫描。注意：用户**主动**关掉所有分类（设置页全关、浮窗「全部关闭」）时返回 0 个技能，不再退回全量——以前这里会把"全关"变成"加载全部 603 个"。
 3. **picker 模块本身加载失败**（改坏 JS、依赖解析失败）→ patch 里预置了 6 行 `skill-filesystem` hub，默认 `disabled: true`（零开销）；在插件页逐个打开即可恢复全部技能。启用前先禁用 picker 行，否则同一技能会由两个 provider 各提供一份。
 
-第 1、2 层已实测（catalog 损坏 → 仍返回 603；全关 → 仍返回 603）。第 3 层是给"下次改坏代码"买的保险。
+第 1 层已实测（catalog 损坏 → 仍返回全部技能）；「全关 → 0 个」由 `scope-test.mjs` 覆盖。第 3 层是给"下次改坏代码"买的保险。
 
 ## MCP 工具清单（51）
 
@@ -483,24 +501,56 @@ if (table.has(route.path)) throw new Error(`webserver: duplicate ${route.kind} r
 - ENCODE 不可达 → Ensembl 调控区（传 `region`）
 - ZINC 公开 JSON 已下线 → PubChem
 - GWAS Catalog 旧 REST 已下线 → Ensembl variation
-- 统一 4 次重试、指数退避，覆盖 429/500/502/503/504；默认 45 秒超时
+- 统一 4 次重试、指数退避，覆盖 429/500/502/503/504；单次请求 45 秒超时
+
+### 并发、时限与限速
+
+| 机制 | 行为 |
+|---|---|
+| 并发执行 | `tools/call` 在线程池里跑（`BIO_MCP_WORKERS`，默认 4），一个慢接口不会堵住后面的请求 |
+| 单次调用总时限 | `BIO_MCP_CALL_BUDGET`，默认 100 秒，**包含全部重试与退避**，短于客户端的 `toolCallTimeoutMs: 120000`；超时直接返回可读的错误，不再出现「客户端已超时、服务端还在重试并堵住队列」 |
+| 取消 | 收到 `notifications/cancelled` 立即停止重试，且按 MCP 约定不再回响应 |
+| NCBI 限速 | E-utilities 进程内限速：无 key 3 次/秒，设 `NCBI_API_KEY` 后 10 次/秒；所有请求带 `tool=dsh-biomedical-mcp`，设 `NCBI_EMAIL` 时带联系邮箱（NCBI 官方要求） |
+| 返回体积 | 紧凑 JSON（以前 `indent=2`，空白占三成以上 token） |
+| PubMed 摘要 | `pubmed_search_articles` 加 `include_abstract: true` 一并取摘要；`pubmed_get_article_metadata` 默认带摘要。证据分级不用再另外抓网页 |
+
+环境变量都可选，在 `cordis.patch.yml` 全量模式 `bio-mcp` 行的 `config.env`（`dsh-mcp-client` 支持的字典字段）里设置即可，12 个专项模式通过 `*bio-mcp-config` 锚点自动共用；也可以在启动 DSH 前导出。限速是**进程内**的：13 个预设各有一个 MCP 进程，同时在多个模式里密集查 NCBI 仍可能触发 429（会自动退避重试）。
 
 ---
 
 ## 开发自检
 
 改这两处（`client.js` 的客户端半、`picker/` 的宿主半）之前先知道：历史上两次
-「应用无法启动」和一次「12 个模式全是加载失败」都出在这一层。仓库里带了两个
-不依赖浏览器的自检脚本，提交前跑一遍：
+「应用无法启动」和一次「12 个模式全是加载失败」都出在这一层。仓库里带了几个
+不依赖 DSH、不依赖浏览器、不联网的自检脚本，提交前全部跑一遍：
 
 ```sh
-node tools/scope-test.mjs      # 42 项：模块 id、三处 slot 注册、12 大类渲染、
+node tools/gen.mjs --check     # 生成产物与数据源一致（见下「改技能或模式」）
+node tools/lint-skills.mjs     # 技能库：目录 ↔ catalog、重名、许可证、开发残留
+python tools/mcp-test.py       # MCP：工具清单、并发、取消、总时限、NCBI 参数、摘要解析
+node tools/scope-test.mjs      # 65 项（含「全部关闭 → 0 个」「专项会话按本模式白名单」「嵌套派活被拒」）：模块 id、三处 slot 注册、12 大类渲染、
                                # 三态开关、POST 载荷、Esc、拖动、13 实例共用路由、
                                # 引用计数注销、register/inject 抛错时 apply 不炸
 node tools/lint-presets.mjs    # 13 个预设结构体检：行数、only 白名单、
                                # 12 专项是否正好覆盖 34 类且不重叠、
-                               # tool-bash/tool-pwsh 的平台守卫是否都在
+                               # tool-bash/tool-pwsh 的平台守卫是否都在、
+                               # 每个模式是否挂了共享纪律 suffix、picker 是否写了 preset、
+                               # 有没有写死本机绝对路径、persona 点名的技能是否存在
 ```
+
+### 改技能或模式：只改数据源，再跑生成器
+
+以前 13 个预设是 2400 行复制粘贴的 YAML，`client.js` 里 600 条技能说明也是手工同步的——README 里记录的「漏必填 config」「漏平台守卫」两次事故都出在这种复制上。现在：
+
+| 要改什么 | 改哪里 |
+|---|---|
+| 增删技能、改分类、改技能短说明 | `picker/catalog.json`（每个技能 `name` / `path` / `desc`） |
+| 12 个专项模式的名称、说明、排序、包含的分类、浮窗图标颜色 | `spec/modes.json` |
+| 设置页的 6 个大组 | `spec/settings-groups.json` |
+| 专项模式的 persona 与插件行 | `spec/specialist-preset.yml.tpl`（共享纪律、MCP 配置通过 YAML 锚点引用全量模式，改全量模式即全体生效） |
+| 全量模式、共享纪律 suffix | `cordis.patch.yml` 里 `gen:` 标记区间之外的手写部分 |
+
+然后 `node tools/gen.mjs`，它会重写 `cordis.patch.yml` 的专项模式与设置开关、`client.js` 的 `LABELS`/`GROUPS`/`SKILLS`/`SECTIONS`、`settings/config.mjs`、README 的三张表和 locale 里的技能数。标记区间内不要手改，下次生成会被覆盖。
 
 `scope-test.mjs` 用最小 React 替身跑组件、用假 `ctx` 跑 `apply()`、用假
 `request/response` 跑 picker 的路由，所以不需要启动 DSH，也不需要浏览器。
@@ -510,8 +560,9 @@ node tools/lint-presets.mjs    # 13 个预设结构体检：行数、only 白名
 | 约束 | 值 | 机制 |
 |---|---|---|
 | 每会话同时运行的子智能体 | **3** | `subagent-cap.mjs` 在 `tools/execute` 上按 `exec.agent.id` 分桶计数，超限返回 `ACTIVATION_LIMIT_REACHED` |
+| 委派深度 | **1**（只有主智能体能派活） | `tool-subagent` / `tool-subagent-fork` 行设 `maxDepth: 1`，工具层直接拒绝；`subagent-cap` 再按 `delegationDepth` 兜一层，返回 `NESTED_DELEGATION_DENIED`。以前按 agent 分桶计数，子智能体再派活会落进新桶、绕过上限 |
 | workflow 扇出并发 | **3** | `workflow-ptc.maxConcurrentAgents` |
-| 重计算并行 | **1** | persona 纪律（组学流程吃满内存，并行只会一起 OOM） |
+| 重计算并行 | **1** | 仅 persona 纪律（组学流程吃满内存，并行只会一起 OOM）。后台任务的并发上限属于全局的 `dsh-jobs-local`（`maxConcurrentJobsPerOwner`），不在预设作用域里，改它会影响所有模式 |
 | Host 全局子代理池 | 8（未改动） | 其它模式不受影响 |
 
 并发闸只作用于**使用本预设的会话**：`tools/execute` 是 agent-scope 过滤的 waterfall，其它模式的工具调用不会经过它。`spawn_teammate`（Agent Teams）不计入，因为它是 fire-and-return，包裹期覆盖不到实际运行，所以 persona 里直接禁止用它派活。
@@ -525,7 +576,7 @@ node tools/lint-presets.mjs    # 13 个预设结构体检：行数、only 白名
 | DSH | `^0.2.1-rc.2`（包内 `engines.dsh`，与市场索引条目一致） |
 | Python | 3.x，只用标准库；默认调用 DSH 自带 `dsh-primary-runtime` 的 python |
 | 网络 | 出网访问公开 REST API（NCBI/EBI/Ensembl/RCSB/Broad/EMBL 等） |
-| 磁盘 | 包本体约 19.5 MB（未压缩；603 个技能的 2209 个文件占绝大部分） |
+| 磁盘 | 包本体约 20 MB（未压缩；597 个技能的 2047 个文件占绝大部分） |
 | 权限 | 安装需要 profile 的 Full access 或审批；`plugin_manager` 每个动作都需要审批（无 Full 时） |
 
 ---
@@ -536,21 +587,26 @@ node tools/lint-presets.mjs    # 13 个预设结构体检：行数、only 白名
 cordis.patch.yml        本包装配：内层 28 个插件行；profile 里插 2 行（预设 + 设置页）
 package.json            包声明：dsh.bundle（patch）+ dsh.client（设置页）/ exports / files / engines.dsh
 subagent-cap.mjs        子智能体并发闸（tools/execute 作用域，限 3 并发）
-picker/                 技能 provider：catalog.json（34 类 x 603 技能）+ index.js
-settings/               设置页：index.js（Config + 镜像）/ client.js（settings.section 页面）/ config.mjs
+paths.cjs               包内路径（供 patch 的 !!js 表达式按包名同步解析）
+shared/profile.mjs      定位 profile 目录（picker / 设置页共用）
+picker/                 技能 provider：catalog.json（34 类 x 597 技能，含每个技能的短说明）+ index.js
+spec/                   生成器数据源：modes.json（12 个专项模式）、settings-groups.json、specialist-preset.yml.tpl
+tools/                  gen.mjs（生成器）与自检：scope-test / lint-presets / lint-skills / mcp-test.py
+settings/               设置页 Host 半：index.js（Config + 镜像）/ config.mjs（浏览器半在包根 client.js）
 mcp/biomedical_mcp.py   51 个数据源工具（stdio JSON-RPC，纯标准库）
-skills/                 6 个域目录 / 603 个技能 / 2209 个文件
+skills/                 6 个域目录 / 597 个技能 / 2047 个文件
   omics/                 21 个（自建，按官方文档整编，带 references）
   genomics/             140 个（基因组/群体遗传/肿瘤/临床基因组/液体活检/法医）
   omics-upstream/       193 个（转录/蛋白/代谢/表观/空间/多组学/单细胞/微生物组）
   structure-drug/        79 个（结构生物学/AI 药物发现/合成生物学/药物基因组/基础模型）
   clinical-imaging/      36 个（精准医学/AI 医学影像/衰老长寿）
-  methods/              134 个（基础设施/方法学/网络系统生物学/免疫组学/生物医学科学）
+  methods/              128 个（基础设施/方法学/网络系统生物学/免疫组学/生物医学科学）
 locale/{en,zh}.json     市场展示元数据（meta.title / meta.description）
 icon.svg                原创图标（双螺旋，632 B）
 market/index.json       插件市场索引（format 1），只列本包一个条目
 market/icons/           索引引用的图标目录（biomedical.svg）
 README.md               本文件
+THIRD_PARTY.md          第三方技能的许可证与来源
 ```
 
 `files` 明确排除 `market/`（发布产物不进 npm 包）；`.gitignore` 排除 `node_modules/`、`__pycache__/`、`.omc/`。

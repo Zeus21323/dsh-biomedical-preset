@@ -5,26 +5,117 @@
   - stdio + JSON-RPC 2.0（MCP 基础协议），一行一条消息
   - 一个进程承载 22 个数据域，工具名形如 `<domain>_<tool>`
   - 全部直连公共 REST API，不经过任何网关、不需要私有 token
+  - tools/call 在线程池里并发执行：一个慢接口不会堵住后面的请求
+  - 每次调用有总时限（BIO_MCP_CALL_BUDGET，默认 100 秒，短于客户端 toolCallTimeoutMs=120 秒），
+    重试与退避都算在里面；收到 notifications/cancelled 后停止重试且不再回响应
+  - NCBI E-utilities 按官方要求带 tool 参数并限速（无 key 3 次/秒，有 NCBI_API_KEY 时 10 次/秒）；
+    可用环境变量 NCBI_EMAIL / NCBI_API_KEY 补充联系邮箱与 key
+
+环境变量（都可选）：BIO_MCP_CALL_BUDGET、BIO_MCP_WORKERS（默认 4）、NCBI_EMAIL、NCBI_API_KEY
 
 运行： python biomedical_mcp.py
 """
 import json
+import os
 import sys
 import time
 import gzip
 import io
+import threading
+import xml.etree.ElementTree as ET
+from concurrent.futures import ThreadPoolExecutor
 from urllib import request as urlrequest
 from urllib import parse as urlparse
 from urllib import error as urlerror
 
-UA = "dsh-biomedical-mcp/1.0"
+UA = "dsh-biomedical-mcp/1.1"
 TIMEOUT = 45
 RETRIES = 4
 RETRY_CODES = (429, 500, 502, 503, 504)
 
 
+def _env_float(name, default):
+    try:
+        return float(os.environ.get(name, default))
+    except ValueError:
+        return float(default)
+
+
+CALL_BUDGET = _env_float("BIO_MCP_CALL_BUDGET", 100)
+WORKERS = max(1, int(_env_float("BIO_MCP_WORKERS", 4)))
+
+NCBI_HOST = "eutils.ncbi.nlm.nih.gov"
+NCBI_API_KEY = os.environ.get("NCBI_API_KEY") or None
+NCBI_EMAIL = os.environ.get("NCBI_EMAIL") or None
+
+# 每个主机每秒最多几次请求（进程内）。未列出的主机不限速。
+HOST_RATE = {NCBI_HOST: 10.0 if NCBI_API_KEY else 3.0}
+_rate_lock = threading.Lock()
+_next_slot = {}
+
+# 当前线程正在执行的那次 tools/call 的上下文：总时限与取消标记
+_call = threading.local()
+
+
+class CallAborted(RuntimeError):
+    pass
+
+
+def _remaining():
+    deadline = getattr(_call, "deadline", None)
+    return None if deadline is None else deadline - time.monotonic()
+
+
+def _check_alive():
+    ev = getattr(_call, "cancel", None)
+    if ev is not None and ev.is_set():
+        raise CallAborted("调用已被客户端取消")
+    left = _remaining()
+    if left is not None and left <= 0:
+        raise CallAborted("超出单次调用时限 %.0f 秒（含重试），请缩小查询范围或稍后再试" % CALL_BUDGET)
+
+
+def _sleep(seconds):
+    """可被取消、不会越过总时限的 sleep。"""
+    left = _remaining()
+    if left is not None and seconds >= left:
+        raise CallAborted("剩余时限不足以再重试一次（%.0f 秒总时限）" % CALL_BUDGET)
+    ev = getattr(_call, "cancel", None)
+    if ev is not None:
+        if ev.wait(seconds):
+            raise CallAborted("调用已被客户端取消")
+    else:
+        time.sleep(seconds)
+
+
+def _throttle(url):
+    host = urlparse.urlsplit(url).hostname or ""
+    rate = HOST_RATE.get(host)
+    if not rate:
+        return
+    with _rate_lock:
+        now = time.monotonic()
+        slot = max(now, _next_slot.get(host, 0.0))
+        _next_slot[host] = slot + 1.0 / rate
+    if slot > now:
+        _sleep(slot - now)
+
+
+def _ncbi_params(url):
+    """NCBI 要求 E-utilities 请求带 tool（以及可选 email / api_key）。"""
+    if urlparse.urlsplit(url).hostname != NCBI_HOST:
+        return url
+    extra = {"tool": "dsh-biomedical-mcp"}
+    if NCBI_EMAIL:
+        extra["email"] = NCBI_EMAIL
+    if NCBI_API_KEY:
+        extra["api_key"] = NCBI_API_KEY
+    return url + ("&" if "?" in url else "?") + urlparse.urlencode(extra)
+
+
 def _http(url, data=None, headers=None, method=None, timeout=TIMEOUT, retries=None):
     limit = RETRIES if retries is None else int(retries)
+    url = _ncbi_params(url)
     hdrs = {"User-Agent": UA, "Accept": "application/json, text/plain, */*",
             "Accept-Encoding": "gzip"}
     if headers:
@@ -35,9 +126,13 @@ def _http(url, data=None, headers=None, method=None, timeout=TIMEOUT, retries=No
         hdrs.setdefault("Content-Type", "application/json")
     last = None
     for attempt in range(limit + 1):
+        _check_alive()
+        _throttle(url)
+        left = _remaining()
+        this_timeout = timeout if left is None else max(1.0, min(timeout, left))
         try:
             req = urlrequest.Request(url, data=body, headers=hdrs, method=method)
-            with urlrequest.urlopen(req, timeout=timeout) as resp:
+            with urlrequest.urlopen(req, timeout=this_timeout) as resp:
                 raw = resp.read()
                 if resp.headers.get("Content-Encoding") == "gzip":
                     raw = gzip.decompress(raw)
@@ -47,23 +142,43 @@ def _http(url, data=None, headers=None, method=None, timeout=TIMEOUT, retries=No
                 except Exception:
                     return text
         except urlerror.HTTPError as exc:
-            raw = exc.read()
-            if exc.headers.get("Content-Encoding") == "gzip":
-                raw = gzip.decompress(raw)
+            raw = exc.read() or b""
+            if exc.headers is not None and exc.headers.get("Content-Encoding") == "gzip":
+                try:
+                    raw = gzip.decompress(raw)
+                except Exception:
+                    pass
             snippet = raw.decode("utf-8", "replace")[:400]
             if exc.code in RETRY_CODES and attempt < limit:
-                # 429 退避更久，500/503 短退避即可
-                time.sleep((5.0 if exc.code == 429 else 2.0) * (attempt + 1))
                 last = "HTTP %d: %s" % (exc.code, snippet)
+                # 429 退避更久，500/503 短退避即可；退避超出剩余时限就直接放弃
+                try:
+                    _sleep((5.0 if exc.code == 429 else 2.0) * (attempt + 1))
+                except CallAborted as stop:
+                    raise RuntimeError("%s（最后一次错误：%s）" % (stop, last))
                 continue
-            raise RuntimeError("HTTP %d for %s :: %s" % (exc.code, url, snippet))
+            raise RuntimeError("HTTP %d for %s :: %s" % (exc.code, _redact(url), snippet))
+        except CallAborted:
+            raise
         except Exception as exc:
             last = "%s: %s" % (type(exc).__name__, exc)
             if attempt < limit:
-                time.sleep(1.2 * (attempt + 1))
+                try:
+                    _sleep(1.2 * (attempt + 1))
+                except CallAborted as stop:
+                    raise RuntimeError("%s（最后一次错误：%s）" % (stop, last))
                 continue
             raise RuntimeError(last)
     raise RuntimeError(last or "request failed")
+
+
+def _redact(url):
+    """错误信息里不回显 api_key。"""
+    if "api_key=" not in url:
+        return url
+    parts = urlparse.urlsplit(url)
+    q = [(k, "***" if k == "api_key" else v) for k, v in urlparse.parse_qsl(parts.query)]
+    return urlparse.urlunsplit(parts._replace(query=urlparse.urlencode(q)))
 
 
 def _trim(value, depth=0, max_items=25):
@@ -149,6 +264,45 @@ def zinc_search(p):
                 "hint": "需要供应商/可购买性时用 chemistry_pubchem_properties，或改用 ZINC 网页版"}
 
 
+def _abstract_text(article):
+    parts = []
+    for node in article.findall(".//Abstract/AbstractText"):
+        text = "".join(node.itertext()).strip()
+        if not text:
+            continue
+        label = node.get("Label")
+        parts.append("%s: %s" % (label, text) if label else text)
+    return " ".join(parts)
+
+
+def _pubmed_abstracts(pmids, max_chars=2500):
+    """efetch 批量取摘要，返回 {pmid: 摘要}。没有摘要的文献不出现在结果里。"""
+    if not pmids:
+        return {}
+    raw = _http("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?" +
+                urlparse.urlencode({"db": "pubmed", "id": ",".join(pmids), "retmode": "xml"}))
+    if not isinstance(raw, str):
+        return {}
+    try:
+        root = ET.fromstring(raw)
+    except ET.ParseError:
+        return {}
+    out = {}
+    for art in root.findall(".//PubmedArticle"):
+        pmid = art.findtext(".//MedlineCitation/PMID")
+        text = _abstract_text(art)
+        if pmid and text:
+            out[pmid] = text if len(text) <= max_chars else text[:max_chars] + "…"
+    return out
+
+
+def _flag(p, key, default):
+    v = p.get(key, default)
+    if isinstance(v, str):
+        return v.strip().lower() in ("1", "true", "yes", "y")
+    return bool(v)
+
+
 def pubmed_search(p):
     term = p["query"]
     retmax = int(p.get("max_results", 10))
@@ -172,6 +326,10 @@ def pubmed_search(p):
             "doi": next((x.get("value") for x in (it.get("articleids") or [])
                          if x.get("idtype") == "doi"), None),
         })
+    if _flag(p, "include_abstract", False):
+        abstracts = _pubmed_abstracts(ids)
+        for a in arts:
+            a["abstract"] = abstracts.get(a["pmid"])
     return {"query": term, "total": int((es.get("esearchresult", {}) or {}).get("count", 0)),
             "articles": arts}
 
@@ -184,8 +342,8 @@ def pubmed_metadata(p):
             "journal": it.get("fulljournalname"), "date": it.get("pubdate"),
             "authors": [a.get("name") for a in (it.get("authors") or [])[:10]],
             "ids": {x.get("idtype"): x.get("value") for x in (it.get("articleids") or [])},
-            "abstract_hint": "用 efetch 取摘要：%s" % (
-                "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=%s&retmode=xml" % p["pmid"])}
+            "abstract": (_pubmed_abstracts([str(p["pmid"])], max_chars=6000).get(str(p["pmid"]))
+                         if _flag(p, "include_abstract", True) else None)}
 
 
 def pubmed_related(p):
@@ -566,14 +724,6 @@ def variant_phenotypes(p):
             "phenotypes": out[: int(p.get("max_results", 20))]}
 
 
-def gwas_study(p):
-    # 旧 GWAS Catalog /studies 同样返回 410；改从 Ensembl variation 的
-    # study 信息里取，按 Study accession 反查该变异关联的全部性状。
-    d = _http("https://rest.ensembl.org/variation/human/%s?content-type=application/json"
-              % p["accession_id"])
-    return _trim(d)
-
-
 def cbioportal_studies(p):
     d = _http("https://www.cbioportal.org/api/studies")
     rows = d if isinstance(d, list) else []
@@ -731,11 +881,13 @@ TOOLS = [
     ("zinc_search_by_structure", "按 InChIKey 或 SMILES 查 ZINC；ZINC 公开 JSON 接口已下线时自动回退 PubChem。",
      {"inchikey": ("string", "InChIKey", False), "smiles": ("string", "SMILES", False),
       "name": ("string", "化合物名", False), "max_results": ("integer", "默认 5", False)}, zinc_search),
-    ("pubmed_search_articles", "PubMed 检索文献（NCBI E-utilities）。返回 PMID、标题、期刊、日期、作者、DOI。",
-     {"query": ("string", "检索式，支持 PubMed 语法", True), "max_results": ("integer", "返回条数，默认 10", False)},
+    ("pubmed_search_articles", "PubMed 检索文献（NCBI E-utilities）。返回 PMID、标题、期刊、日期、作者、DOI；include_abstract=true 时一并返回摘要（证据分级用）。",
+     {"query": ("string", "检索式，支持 PubMed 语法", True), "max_results": ("integer", "返回条数，默认 10", False),
+      "include_abstract": ("boolean", "是否附摘要，默认 false（每条约 2500 字以内）", False)},
      pubmed_search),
-    ("pubmed_get_article_metadata", "按 PMID 取文献元数据（含 DOI/PMCID）。",
-     {"pmid": ("string", "PubMed ID", True)}, pubmed_metadata),
+    ("pubmed_get_article_metadata", "按 PMID 取文献元数据（含 DOI/PMCID）与摘要。",
+     {"pmid": ("string", "PubMed ID", True),
+      "include_abstract": ("boolean", "是否附摘要，默认 true", False)}, pubmed_metadata),
     ("pubmed_find_related", "按 PMID 找 PubMed 计算的相关文献。",
      {"pmid": ("string", "PubMed ID", True), "max_results": ("integer", "默认 20", False)}, pubmed_related),
 
@@ -892,19 +1044,33 @@ HANDLERS = {name: fn for name, _d, _p, fn in TOOLS}
 # --------------------------------------------------------------------------
 # MCP stdio 循环
 # --------------------------------------------------------------------------
+_out_lock = threading.Lock()
+_inflight_lock = threading.Lock()
+_inflight = {}  # 请求 id -> 取消标记（threading.Event）
+
+SUPPORTED_PROTOCOLS = ("2025-06-18", "2025-03-26", "2024-11-05")
+
+
 def send(msg):
-    sys.stdout.write(json.dumps(msg, ensure_ascii=False) + "\n")
-    sys.stdout.flush()
+    line = json.dumps(msg, ensure_ascii=False) + "\n"
+    with _out_lock:
+        sys.stdout.write(line)
+        sys.stdout.flush()
+
+
+def _id_key(rid):
+    return json.dumps(rid, sort_keys=True)
 
 
 def handle(req):
     method = req.get("method")
     rid = req.get("id")
     if method == "initialize":
+        asked = (req.get("params") or {}).get("protocolVersion")
         return {"jsonrpc": "2.0", "id": rid, "result": {
-            "protocolVersion": "2025-06-18",
+            "protocolVersion": asked if asked in SUPPORTED_PROTOCOLS else SUPPORTED_PROTOCOLS[0],
             "capabilities": {"tools": {"listChanged": False}},
-            "serverInfo": {"name": "biomedical", "version": "1.0.0"},
+            "serverInfo": {"name": "biomedical", "version": "1.1.0"},
             "instructions": ("生物医学模式的公开数据源本地实现，直连公共 REST API，"
                              "不依赖任何私有网关或 token。")}}
     if method == "tools/list":
@@ -919,9 +1085,10 @@ def handle(req):
                     "error": {"code": -32602, "message": "unknown tool: %s" % name}}
         try:
             result = fn(args)
+            # 紧凑 JSON：indent=2 会让返回体积多出三成以上，全是空白 token
             return {"jsonrpc": "2.0", "id": rid, "result": {
                 "content": [{"type": "text",
-                             "text": json.dumps(result, ensure_ascii=False, indent=2)}],
+                             "text": json.dumps(result, ensure_ascii=False, separators=(",", ":"))}],
                 "isError": False}}
         except Exception as exc:
             return {"jsonrpc": "2.0", "id": rid, "result": {
@@ -937,7 +1104,26 @@ def handle(req):
             "error": {"code": -32601, "message": "method not found: %s" % method}}
 
 
+def _run_call(req, cancel):
+    """线程池里执行一次 tools/call；被取消的请求按 MCP 约定不再回响应。"""
+    _call.deadline = time.monotonic() + CALL_BUDGET
+    _call.cancel = cancel
+    try:
+        resp = handle(req)
+    except Exception as exc:  # handle 自己会兜住工具异常，这里只防意外
+        resp = {"jsonrpc": "2.0", "id": req.get("id"),
+                "result": {"content": [{"type": "text", "text": "调用失败：%s" % exc}], "isError": True}}
+    finally:
+        _call.deadline = None
+        _call.cancel = None
+        with _inflight_lock:
+            _inflight.pop(_id_key(req.get("id")), None)
+    if resp is not None and not cancel.is_set():
+        send(resp)
+
+
 def main():
+    pool = ThreadPoolExecutor(max_workers=WORKERS, thread_name_prefix="bio-mcp")
     for line in sys.stdin:
         line = line.strip()
         if not line:
@@ -946,9 +1132,30 @@ def main():
             req = json.loads(line)
         except Exception:
             continue
+        if not isinstance(req, dict):
+            continue
+        method = req.get("method")
+        if method == "tools/call" and req.get("id") is not None:
+            cancel = threading.Event()
+            with _inflight_lock:
+                _inflight[_id_key(req.get("id"))] = cancel
+            pool.submit(_run_call, req, cancel)
+            continue
+        if method == "notifications/cancelled":
+            target = (req.get("params") or {}).get("requestId")
+            with _inflight_lock:
+                ev = _inflight.get(_id_key(target))
+            if ev is not None:
+                ev.set()
+            continue
         resp = handle(req)
         if resp is not None:
             send(resp)
+    # 客户端关闭了 stdin：放弃排队中的调用，正在跑的会在下一次检查时退出
+    with _inflight_lock:
+        for ev in _inflight.values():
+            ev.set()
+    pool.shutdown(wait=False, cancel_futures=True)
 
 
 if __name__ == "__main__":

@@ -81,7 +81,7 @@ window.__ModuleLoader__.load({
         "differential-expression-enrichment": {
             "label": "差异表达与功能富集",
             "desc": "在组学矩阵上做组间差异与统计建模，并把结果落到通路、基因集与功能解释。",
-            "count": 11
+            "count": 10
         },
         "single-cell-core": {
             "label": "单细胞基础分析",
@@ -156,12 +156,12 @@ window.__ModuleLoader__.load({
         "literature-evidence-synthesis": {
             "label": "文献检索与证据合成",
             "desc": "检索、核验并综合文献与数据库证据，形成可核查的综述、评审与证据强度判断。",
-            "count": 13
+            "count": 12
         },
         "writing-document-delivery": {
             "label": "写作与文档交付",
             "desc": "把分析与文献写成论文、基金、海报或报告，并导出合规的 Word/PDF/PPT 交付件。",
-            "count": 20
+            "count": 17
         },
         "data-engineering-statistics": {
             "label": "数据工程与统计方法",
@@ -181,7 +181,7 @@ window.__ModuleLoader__.load({
         "visualization-figures": {
             "label": "可视化与图件",
             "desc": "把数据与结构做成清晰可发表的图表、轨道、示意图或渲染好的图形交付件。",
-            "count": 10
+            "count": 9
         },
         "research-design-hypothesis": {
             "label": "研究设计与假设生成",
@@ -1162,10 +1162,6 @@ window.__ModuleLoader__.load({
             {
                 "name": "pathway-enrichment",
                 "desc": "Run pathway and gene-set enrichment analysis on gene lists or ranked gene data, then interpret the results. 。"
-            },
-            {
-                "name": "pathway-enrichment-analysis",
-                "desc": "用于基因、蛋白或代谢物列表的GO、KEGG、Reactome等过度富集分析。"
             },
             {
                 "name": "pydeseq2",
@@ -2394,10 +2390,6 @@ window.__ModuleLoader__.load({
                 "desc": "Use this skill for \"review this paper\", \"review this manuscript\", \"peer review\", \"review my paper\", \"critiqu。"
             },
             {
-                "name": "review-paper",
-                "desc": "当需要审稿、论文评审、paper review、manuscript review、reference verification、fact checking、逐章评审、参考文献核验、评分或给出审稿意见时使用。"
-            },
-            {
                 "name": "surveymaster",
                 "desc": "Produce, revise, or export an academic literature survey through an end-to-end workflow: intake constraints,。"
             }
@@ -2428,10 +2420,6 @@ window.__ModuleLoader__.load({
                 "desc": "当用户需要把临床研究数据和统计结果整理成结构清楚、可复核的研究报告、摘要或结果章节时使用。"
             },
             {
-                "name": "docx",
-                "desc": "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Tr。"
-            },
-            {
                 "name": "docx-equation-processor",
                 "desc": "Use this skill when Word .docx work involves math formulas, equations, LaTeX, MathML, OMML, MathType, equati。"
             },
@@ -2460,10 +2448,6 @@ window.__ModuleLoader__.load({
                 "desc": "Turns your protocol and analysis workflow into publication-ready Methods text. Use when writing or revising 。"
             },
             {
-                "name": "pdf",
-                "desc": "Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting te。"
-            },
-            {
                 "name": "ppt-builder",
                 "desc": "对齐 researcher/graph_pptx_agent 的状态化 PPT/PPTX 生成流程，覆盖需求澄清、研究规划、outline 确认、简体中文生图语言门禁、批量生成、版本记录、编辑循环和导出。"
             },
@@ -2478,10 +2462,6 @@ window.__ModuleLoader__.load({
             {
                 "name": "tex-to-docx",
                 "desc": "Convert LaTeX or Markdown manuscripts into validated journal-ready DOCX files, with journal configuration, C。"
-            },
-            {
-                "name": "xlsx",
-                "desc": "Use whenever an Excel workbook (.xlsx, .xlsm, .xls, .xlsb) must be read, inspected, extracted, converted, cl。"
             }
         ],
         "data-engineering-statistics": [
@@ -2694,10 +2674,6 @@ window.__ModuleLoader__.load({
             {
                 "name": "matplotlib",
                 "desc": "Low-level plotting library for full customization. Use when you need fine-grained control over every plot el。"
-            },
-            {
-                "name": "morning",
-                "desc": "将用户的晨间简报渲染为有样式的 HTML 产物，或将其设置为工作日循环任务。"
             },
             {
                 "name": "scientific-visualization",
@@ -3194,98 +3170,136 @@ window.__ModuleLoader__.load({
 
     /** 12 个大类，与预设的 12 个专项模式一一对应（覆盖全部 34 个分类）。 */
     const SECTIONS = [
-      {
-        id: 'seq-variant',
-        label: '测序与变异检出',
-        emoji: '🧬',
-        color: '#3b82f6',
-        cats: ['sequencing-qc-alignment', 'variant-calling-filtering', 'copy-number-structural-variation'],
-      },
-      {
-        id: 'genome-pop',
-        label: '基因组组装与群体遗传',
-        emoji: '🧭',
-        color: '#0ea5e9',
-        cats: ['genome-assembly-comparative', 'population-genetics-gwas'],
-      },
-      {
-        id: 'clinical',
-        label: '临床解读与精准医学',
-        emoji: '🩺',
-        color: '#10b981',
-        cats: ['variant-interpretation-clinical', 'clinical-precision-medicine', 'pharmacogenomics-dosing'],
-      },
-      {
-        id: 'tumor-immune',
-        label: '肿瘤与免疫组学',
-        emoji: '🎗️',
-        color: '#ec4899',
-        cats: ['cancer-genomics-liquid-biopsy', 'immunology-immuno-oncology'],
-      },
-      {
-        id: 'transcriptome',
-        label: '转录组与差异表达',
-        emoji: '📈',
-        color: '#8b5cf6',
-        cats: ['transcriptomics-quantification', 'differential-expression-enrichment'],
-      },
-      {
-        id: 'singlecell-spatial',
-        label: '单细胞与空间组学',
-        emoji: '🔬',
-        color: '#6366f1',
-        cats: ['single-cell-core', 'single-cell-advanced-virtual-cell', 'spatial-omics'],
-      },
-      {
-        id: 'epigenome',
-        label: '表观遗传与调控',
-        emoji: '🧫',
-        color: '#14b8a6',
-        cats: ['epigenomics-methylation', 'regulatory-network-sequence-models'],
-      },
-      {
-        id: 'proteo-metabo',
-        label: '蛋白组与代谢组',
-        emoji: '⚗️',
-        color: '#f59e0b',
-        cats: ['proteomics', 'metabolomics-lipidomics'],
-      },
-      {
-        id: 'structure-drug',
-        label: '结构与药物设计',
-        emoji: '💊',
-        color: '#06b6d4',
-        cats: ['structural-biology-modeling', 'chemoinformatics-drug-design', 'protein-engineering-synbio', 'gene-editing-cloning'],
-      },
-      {
-        id: 'microbiome',
-        label: '微生物组与宏基因组',
-        emoji: '🦠',
-        color: '#84cc16',
-        cats: ['microbiome-metagenomics'],
-      },
-      {
-        id: 'imaging-forensic',
-        label: '影像·细胞表型·法医',
-        emoji: '🖼️',
-        color: '#a855f7',
-        cats: ['medical-imaging-radiomics', 'microscopy-cell-phenotyping', 'forensic-identity-genetics'],
-      },
-      {
-        id: 'support',
-        label: '文献·写作与工程',
-        emoji: '📝',
-        color: '#f43f5e',
-        cats: [
-          'literature-evidence-synthesis',
-          'writing-document-delivery',
-          'data-engineering-statistics',
-          'workflow-reproducibility',
-          'database-api-access',
-          'visualization-figures',
-          'research-design-hypothesis',
-        ],
-      },
+        {
+            "id": "seq-variant",
+            "label": "测序与变异检出",
+            "emoji": "🧬",
+            "color": "#3b82f6",
+            "cats": [
+                "sequencing-qc-alignment",
+                "variant-calling-filtering",
+                "copy-number-structural-variation"
+            ]
+        },
+        {
+            "id": "genome-pop",
+            "label": "基因组组装与群体遗传",
+            "emoji": "🧭",
+            "color": "#0ea5e9",
+            "cats": [
+                "genome-assembly-comparative",
+                "population-genetics-gwas"
+            ]
+        },
+        {
+            "id": "clinical",
+            "label": "临床解读与精准医学",
+            "emoji": "🩺",
+            "color": "#10b981",
+            "cats": [
+                "variant-interpretation-clinical",
+                "clinical-precision-medicine",
+                "pharmacogenomics-dosing"
+            ]
+        },
+        {
+            "id": "tumor-immune",
+            "label": "肿瘤与免疫组学",
+            "emoji": "🎗️",
+            "color": "#ec4899",
+            "cats": [
+                "cancer-genomics-liquid-biopsy",
+                "immunology-immuno-oncology"
+            ]
+        },
+        {
+            "id": "transcriptome",
+            "label": "转录组与差异表达",
+            "emoji": "📈",
+            "color": "#8b5cf6",
+            "cats": [
+                "transcriptomics-quantification",
+                "differential-expression-enrichment"
+            ]
+        },
+        {
+            "id": "singlecell-spatial",
+            "label": "单细胞与空间组学",
+            "emoji": "🔬",
+            "color": "#6366f1",
+            "cats": [
+                "single-cell-core",
+                "single-cell-advanced-virtual-cell",
+                "spatial-omics"
+            ]
+        },
+        {
+            "id": "epigenome",
+            "label": "表观遗传与调控",
+            "emoji": "🧫",
+            "color": "#14b8a6",
+            "cats": [
+                "epigenomics-methylation",
+                "regulatory-network-sequence-models"
+            ]
+        },
+        {
+            "id": "proteo-metabo",
+            "label": "蛋白组与代谢组",
+            "emoji": "⚗️",
+            "color": "#f59e0b",
+            "cats": [
+                "proteomics",
+                "metabolomics-lipidomics"
+            ]
+        },
+        {
+            "id": "structure-drug",
+            "label": "结构与药物设计",
+            "emoji": "💊",
+            "color": "#06b6d4",
+            "cats": [
+                "structural-biology-modeling",
+                "chemoinformatics-drug-design",
+                "protein-engineering-synbio",
+                "gene-editing-cloning"
+            ]
+        },
+        {
+            "id": "microbiome",
+            "label": "微生物组与宏基因组",
+            "emoji": "🦠",
+            "color": "#84cc16",
+            "cats": [
+                "microbiome-metagenomics"
+            ]
+        },
+        {
+            "id": "imaging-forensic",
+            "label": "影像·细胞表型·法医",
+            "emoji": "🖼️",
+            "color": "#a855f7",
+            "cats": [
+                "medical-imaging-radiomics",
+                "microscopy-cell-phenotyping",
+                "forensic-identity-genetics"
+            ]
+        },
+        {
+            "id": "support",
+            "label": "文献·写作与工程",
+            "emoji": "📝",
+            "color": "#f43f5e",
+            "cats": [
+                "literature-evidence-synthesis",
+                "writing-document-delivery",
+                "data-engineering-statistics",
+                "workflow-reproducibility",
+                "database-api-access",
+                "visualization-figures",
+                "research-design-hypothesis"
+            ]
+        }
     ];
 
     /** 603 技能 ≈ 38k token（README 实测），折算成单个技能的粗估。 */
@@ -3672,6 +3686,7 @@ window.__ModuleLoader__.load({
             source: data.source ?? (Array.isArray(data.enabled) ? 'session' : 'profile'),
             overridden: Array.isArray(data.enabled),
             presetOnly: Array.isArray(data.presetOnly) ? data.presetOnly : null,
+            presetId: typeof data.presetId === 'string' ? data.presetId : null,
             instances: Number(data.instances) || 0,
           });
         } catch (e) {
@@ -3886,8 +3901,9 @@ window.__ModuleLoader__.load({
             { style: PS.hint },
             `当前 ${onCats.length} / ${(state.categories ?? []).length} 类 · ${totalSkills} 技能 · ≈${Math.round((totalSkills * TOKEN_PER_SKILL) / 100) / 10}k token。` +
               '只影响本会话，下一步生效；你自己的 ~/.agents 技能不受影响。' +
-              (state.source === 'profile' && (state.instances ?? 0) > 1
-                ? '（同进程挂着多个预设，本会话若是专项模式则以该模式为准；在这里勾选后以本面板为准。）'
+              (onCats.length === 0 ? '（0 类 = 本会话不加载本包的任何技能。）' : '') +
+              (state.source !== 'session' && !state.presetId && (state.instances ?? 0) > 1
+                ? '（暂时判定不了本会话属于哪个模式，显示的默认范围可能不准；勾选后以本面板为准。）'
                 : ''),
           ),
         );

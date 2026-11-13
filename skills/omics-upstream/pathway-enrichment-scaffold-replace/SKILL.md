@@ -1,6 +1,6 @@
 ---
 name: pathway-enrichment-scaffold-replace
-description: 当用户需要把带证据等级的代谢物及效应映射到物种匹配的通路，并控制 ID 歧义、检测背景和重复特征造成的偏倚时使用。
+description: 代谢物专用：当用户需要把带证据等级的代谢物及效应映射到物种匹配的通路，并控制 ID 歧义、检测背景和重复特征造成的偏倚时使用。基因或蛋白列表的 ORA/GSEA 用 pathway-enrichment。
 whenToUse: 当用户需要把带证据等级的代谢物及效应映射到物种匹配的通路，并控制 ID 歧义、检测背景和重复特征造成的偏倚时使用
 ---
 

@@ -1,0 +1,170 @@
+[
+  {
+    "id": "bio-seq-variant",
+    "section": "seq-variant",
+    "name": "测序与变异检出",
+    "description": "从原始读段到可信变异集：质控、比对、SNV/Indel、CNV/SV 检出与过滤。",
+    "order": 10,
+    "emoji": "🧬",
+    "color": "#3b82f6",
+    "cats": [
+      "sequencing-qc-alignment",
+      "variant-calling-filtering",
+      "copy-number-structural-variation"
+    ]
+  },
+  {
+    "id": "bio-genome-pop",
+    "section": "genome-pop",
+    "name": "基因组组装与群体遗传",
+    "description": "长读长组装与注释、比较基因组、群体分层、GWAS 与选择信号。",
+    "order": 11,
+    "emoji": "🧭",
+    "color": "#0ea5e9",
+    "cats": [
+      "genome-assembly-comparative",
+      "population-genetics-gwas"
+    ]
+  },
+  {
+    "id": "bio-clinical",
+    "section": "clinical",
+    "name": "临床解读与精准医学",
+    "description": "ACMG 变异判读、临床队列与结局分析、药物基因组学与剂量决策。",
+    "order": 12,
+    "emoji": "🩺",
+    "color": "#10b981",
+    "cats": [
+      "variant-interpretation-clinical",
+      "clinical-precision-medicine",
+      "pharmacogenomics-dosing"
+    ]
+  },
+  {
+    "id": "bio-tumor-immune",
+    "section": "tumor-immune",
+    "name": "肿瘤与免疫组学",
+    "description": "肿瘤突变负荷与克隆演化、液体活检、免疫组库与免疫治疗响应。",
+    "order": 13,
+    "emoji": "🎗️",
+    "color": "#ec4899",
+    "cats": [
+      "cancer-genomics-liquid-biopsy",
+      "immunology-immuno-oncology"
+    ]
+  },
+  {
+    "id": "bio-transcriptome",
+    "section": "transcriptome",
+    "name": "转录组与差异表达",
+    "description": "bulk RNA-seq 定量、差异表达、功能富集与通路评分。",
+    "order": 14,
+    "emoji": "📈",
+    "color": "#8b5cf6",
+    "cats": [
+      "transcriptomics-quantification",
+      "differential-expression-enrichment"
+    ]
+  },
+  {
+    "id": "bio-singlecell-spatial",
+    "section": "singlecell-spatial",
+    "name": "单细胞与空间组学",
+    "description": "scRNA/scATAC 质控到注释、轨迹与通讯、虚拟细胞与空间定位。",
+    "order": 15,
+    "emoji": "🔬",
+    "color": "#6366f1",
+    "cats": [
+      "single-cell-core",
+      "single-cell-advanced-virtual-cell",
+      "spatial-omics"
+    ]
+  },
+  {
+    "id": "bio-epigenome",
+    "section": "epigenome",
+    "name": "表观遗传与调控",
+    "description": "ChIP/ATAC/CUT&RUN、DNA 甲基化、调控网络与序列模型。",
+    "order": 16,
+    "emoji": "🧫",
+    "color": "#14b8a6",
+    "cats": [
+      "epigenomics-methylation",
+      "regulatory-network-sequence-models"
+    ]
+  },
+  {
+    "id": "bio-proteo-metabo",
+    "section": "proteo-metabo",
+    "name": "蛋白组与代谢组",
+    "description": "质谱蛋白定量与修饰、代谢物鉴定、脂质糖组与通路推断。",
+    "order": 17,
+    "emoji": "⚗️",
+    "color": "#f59e0b",
+    "cats": [
+      "proteomics",
+      "metabolomics-lipidomics"
+    ]
+  },
+  {
+    "id": "bio-structure-drug",
+    "section": "structure-drug",
+    "name": "结构与药物设计",
+    "description": "结构预测与对接、化学信息学与虚拟筛选、蛋白工程与基因编辑。",
+    "order": 18,
+    "emoji": "💊",
+    "color": "#06b6d4",
+    "cats": [
+      "structural-biology-modeling",
+      "chemoinformatics-drug-design",
+      "protein-engineering-synbio",
+      "gene-editing-cloning"
+    ]
+  },
+  {
+    "id": "bio-microbiome",
+    "section": "microbiome",
+    "name": "微生物组与宏基因组",
+    "description": "16S/宏基因组、MAG 重建、耐药与功能通路、菌群差异分析。",
+    "order": 19,
+    "emoji": "🦠",
+    "color": "#84cc16",
+    "cats": [
+      "microbiome-metagenomics"
+    ]
+  },
+  {
+    "id": "bio-imaging-forensic",
+    "section": "imaging-forensic",
+    "name": "影像、细胞表型与法医",
+    "description": "放射组学与病理影像、显微成像与细胞表型、法医身份与亲缘鉴定。",
+    "order": 20,
+    "emoji": "🖼️",
+    "color": "#a855f7",
+    "cats": [
+      "medical-imaging-radiomics",
+      "microscopy-cell-phenotyping",
+      "forensic-identity-genetics"
+    ],
+    "sectionLabel": "影像·细胞表型·法医"
+  },
+  {
+    "id": "bio-support",
+    "section": "support",
+    "name": "文献、写作与工程",
+    "description": "文献检索与证据分级、论文写作与合规、数据工程与统计、可视化与复现。",
+    "order": 21,
+    "emoji": "📝",
+    "color": "#f43f5e",
+    "cats": [
+      "literature-evidence-synthesis",
+      "writing-document-delivery",
+      "data-engineering-statistics",
+      "workflow-reproducibility",
+      "database-api-access",
+      "visualization-figures",
+      "research-design-hypothesis"
+    ],
+    "sectionLabel": "文献·写作与工程"
+  }
+]

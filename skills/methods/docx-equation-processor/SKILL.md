@@ -1,13 +1,13 @@
 ---
 name: docx-equation-processor
-description: Use this skill when Word .docx work involves math formulas, equations, LaTeX, MathML, OMML, MathType, equation numbering, inline equations, display equations, or academic papers with existing Word equation objects. It protects and edits native Word oMath and oMathPara formulas, converts LaTeX to OMML, inserts numbered equations, and can optionally prepare MathType-compatible output. Use alongside the docx skill for general Word layout; use this skill for all formula-specific handling.
+description: Use this skill when Word .docx work involves math formulas, equations, LaTeX, MathML, OMML, MathType, equation numbering, inline equations, display equations, or academic papers with existing Word equation objects. It protects and edits native Word oMath and oMathPara formulas, converts LaTeX to OMML, inserts numbered equations, and can optionally prepare MathType-compatible output. Use alongside the `office-docx` skill (bundled with DSH) for general Word layout; use this skill for all formula-specific handling.
 ---
 
 # DOCX Equation Processor
 
 Handle equations in Word `.docx` files without corrupting native Word formula XML.
 
-Word formulas are stored as OMML, usually in `<m:oMath>` or `<m:oMathPara>` nodes inside `word/document.xml`. Treat these nodes as structured objects, not plain text. For ordinary document layout, use the `docx` skill. For formulas, use this skill.
+Word formulas are stored as OMML, usually in `<m:oMath>` or `<m:oMathPara>` nodes inside `word/document.xml`. Treat these nodes as structured objects, not plain text. For ordinary document layout, use the `office-docx` skill (bundled with DSH). For formulas, use this skill.
 
 ## When To Use
 
@@ -16,7 +16,7 @@ Word formulas are stored as OMML, usually in `<m:oMath>` or `<m:oMathPara>` node
 - A `.docx` must be generated from academic content containing math.
 - A `.docx` must be edited while preserving existing formulas.
 
-If this skill is referenced by the `docx` skill but is not installed locally, stop before editing formula-bearing content and tell the user to install or add `docx-equation-processor`.
+If this skill is referenced by the `office-docx` skill but is not installed locally, stop before editing formula-bearing content and tell the user to install or add `docx-equation-processor`.
 
 ## Core Rules
 
@@ -58,7 +58,7 @@ Generated equations must be normalized before saving. The bundled scripts now no
 - Formula input is normalized for supported convenience macros such as `\argmax`
   and `\argmin`; conversion stops if a literal LaTeX command remains in OMML.
 
-After insert or batch conversion, the bundled inserter runs a lightweight check for known OMML schema issues and raises an error if they remain. When the docx skill's `scripts/office/validate.py` is available, also run full validation. If validation fails, report the failure instead of claiming success.
+After insert or batch conversion, the bundled inserter runs a lightweight check for known OMML schema issues and raises an error if they remain. When the `office-docx` skill's validator is available, also run full validation. If validation fails, report the failure instead of claiming success.
 
 Run the same schema check after `number-formulas`; a Word run may contain at
 most one `<w:rPr>`, and this must be its first child.
