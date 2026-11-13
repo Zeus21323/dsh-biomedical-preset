@@ -1,8 +1,6 @@
 ---
 name: dna-methylation-wgbs
-description: >-
-  DNA methylation analysis skill covering two data tracks: bisulfite sequencing (WGBS / RRBS, single-base resolution; upstream Bismark or bwa-meth, downstream methylKit / DSS / bsseq) and enrichment-based MeDIP-seq (region-level, no absolute methylation rate). Includes genome preparation, alignment, methylation extraction, conversion-efficiency and coverage QC, DML/DMR calling, DMR annotation, and DMR-to-RNA-seq association. 中文触发词：WGBS、
-  RRBS、 DNA 甲基化、亚硫酸氢盐、MeDIP、差异甲基化、DMR、bismark、methylKit
+description: DNA 甲基化分析（WGBS、RRBS、MeDIP-seq）：亚硫酸氢盐测序走 Bismark 或 bwa-meth 比对、甲基化提取、转化效率与覆盖度质控，再用 methylKit、DSS、bsseq 做差异甲基化位点与区域（DML/DMR）分析和注释；MeDIP-seq 按富集区域口径（MEDIPS）分析，不给绝对甲基化率；可把 DMR 与 RNA-seq 关联。已并入 03-epigenomics-wgbs-analysis（WGBS/RRBS 流程检查要点）。甲基化芯片用 methylation-array-qc-deconvolution。
 category: omics
 tags: dna-methylation, wgbs, rrbs, medip, bismark, methylkit
 whenToUse: 触发词：WGBS、RRBS、 DNA 甲基化、亚硫酸氢盐、MeDIP、差异甲基化、DMR、bismark、methylKit

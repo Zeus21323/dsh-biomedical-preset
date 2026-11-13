@@ -1,6 +1,6 @@
 ---
 name: 19-forensic-genomics-ibd-analysis
-description: 在法医基因组学领域开展“IBD分析”任务时使用；根据输入、科学假设和运行环境，在亲缘关系下已保留的方法实现之间路由。
+description: 法医 IBD 片段分析：用全基因组或高密度 SNP 数据识别个体间同源（IBD）片段，推断远亲亲缘等级、做家族溯源。常规亲子、全同胞鉴定用 19-forensic-genomics-kinship-analysis。
 ---
 
 # IBD分析

@@ -21,172 +21,206 @@ window.__ModuleLoader__.load({
         "sequencing-qc-alignment": {
             "label": "测序质控与比对",
             "desc": "把原始测序读段变成可信的比对结果，并回答数据质量、覆盖与污染能不能用。",
-            "count": 19
+            "count": 10,
+            "folded": 9
         },
         "genome-assembly-comparative": {
             "label": "基因组组装与比较基因组",
             "desc": "从长读长或混合数据组装并注释基因组，再比较多个基因组的共线性、泛基因组与进化关系。",
-            "count": 20
+            "count": 6,
+            "folded": 14
         },
         "variant-calling-filtering": {
             "label": "变异检测与过滤",
             "desc": "从比对结果或读段得到胚系、体细胞或靶向 SNV/Indel，并完成规范化与质控过滤。",
-            "count": 16
+            "count": 8,
+            "folded": 6
         },
         "copy-number-structural-variation": {
             "label": "拷贝数变异与结构变异",
             "desc": "检测缺失、重复、倒位、易位、重复扩增与等位失衡，并解释拷贝数与结构层面的改变。",
-            "count": 10
+            "count": 7,
+            "folded": 2
         },
         "variant-interpretation-clinical": {
             "label": "变异解读与罕见病诊断",
             "desc": "把变异注释到基因与后果，按 ACMG/AMP 证据分级并支撑罕见病与家系诊断结论。",
-            "count": 11
+            "count": 8,
+            "folded": 2
         },
         "population-genetics-gwas": {
             "label": "群体遗传与 GWAS",
             "desc": "在人群层面找疾病关联位点、构建遗传评分并推断因果、共定位、精细定位与祖源结构。",
-            "count": 28
+            "count": 21,
+            "folded": 7
         },
         "cancer-genomics-liquid-biopsy": {
             "label": "肿瘤基因组与液体活检",
             "desc": "刻画肿瘤体细胞突变、克隆演化与可用标志物，并用 cfDNA/ctDNA 做早筛、监测与残留病判断。",
-            "count": 28
+            "count": 21,
+            "folded": 7
         },
         "forensic-identity-genetics": {
             "label": "法医与身份鉴定",
             "desc": "用 SNP、STR、Y 染色体与线粒体标记完成身份、亲缘、混合样本与祖先来源判定。",
-            "count": 10
+            "count": 10,
+            "folded": 0
         },
         "clinical-precision-medicine": {
             "label": "临床精准医学与结局分析",
             "desc": "评估生物标志物与预测模型，划分患者亚组，并把证据与结局分析整理成可交接的临床材料。",
-            "count": 10
+            "count": 10,
+            "folded": 0
         },
         "medical-imaging-radiomics": {
             "label": "医学影像与放射组学",
             "desc": "处理 CT/MRI/病理等影像数据，做分割、配准、特征提取、模型训练与可信度评估。",
-            "count": 12
+            "count": 11,
+            "folded": 1
         },
         "microscopy-cell-phenotyping": {
             "label": "显微成像与细胞表型",
             "desc": "从显微、流式与空间蛋白图像定量细胞形态、分割、计数、追踪并比较组间表型。",
-            "count": 17
+            "count": 13,
+            "folded": 4
         },
         "transcriptomics-quantification": {
             "label": "转录组上游与定量",
             "desc": "从 RNA 读段得到表达矩阵，处理链特异性、异构体组装、融合、剪接与 RNA 修饰证据。",
-            "count": 32
+            "count": 12,
+            "folded": 20
         },
         "differential-expression-enrichment": {
             "label": "差异表达与功能富集",
             "desc": "在组学矩阵上做组间差异与统计建模，并把结果落到通路、基因集与功能解释。",
-            "count": 11
+            "count": 8,
+            "folded": 1
         },
         "single-cell-core": {
             "label": "单细胞基础分析",
             "desc": "完成单细胞数据的质控、双细胞与环境 RNA 清理、降维聚类、注释与对象格式管理。",
-            "count": 20
+            "count": 13,
+            "folded": 7
         },
         "single-cell-advanced-virtual-cell": {
             "label": "单细胞高级与虚拟细胞",
             "desc": "在单细胞数据上做轨迹、通讯、扰动预测、多模态与队列复现等机制性推断。",
-            "count": 20
+            "count": 18,
+            "folded": 0
         },
         "spatial-omics": {
             "label": "空间组学分析",
             "desc": "利用空间坐标回答组织里谁在哪里、谁挨着谁，并识别空间域、邻域与细胞组成。",
-            "count": 15
+            "count": 9,
+            "folded": 6
         },
         "proteomics": {
             "label": "蛋白质组学",
             "desc": "从质谱原始数据到肽段鉴定与蛋白定量，并处理修饰、亲和平台与定量质量。",
-            "count": 21
+            "count": 11,
+            "folded": 9
         },
         "metabolomics-lipidomics": {
             "label": "代谢组与脂质糖组",
             "desc": "把质谱、NMR 或电泳信号转成可信的代谢物、脂质与聚糖注释和定量结果。",
-            "count": 18
+            "count": 17,
+            "folded": 1
         },
         "epigenomics-methylation": {
             "label": "表观遗传与 DNA 甲基化",
             "desc": "处理 ChIP/ATAC/CUT&RUN、Hi-C 与亚硫酸氢盐数据，识别 peak、染色质状态、三维结构与甲基化差异。",
-            "count": 31
+            "count": 18,
+            "folded": 12
         },
         "regulatory-network-sequence-models": {
             "label": "调控网络与序列模型",
             "desc": "推断转录因子调控网络与模块，或用基因组基础模型评估序列变异的调控效应。",
-            "count": 18
+            "count": 14,
+            "folded": 2
         },
         "microbiome-metagenomics": {
             "label": "微生物组与宏基因组",
             "desc": "从扩增子或 shotgun 数据得到物种、功能、耐药与菌株结果，并做群落比较与传播分析。",
-            "count": 38
+            "count": 15,
+            "folded": 23
         },
         "structural-biology-modeling": {
             "label": "结构预测与建模",
             "desc": "预测或准备蛋白与复合物结构，评估质量、相似性与界面几何并做动力学分析。",
-            "count": 18
+            "count": 16,
+            "folded": 1
         },
         "chemoinformatics-drug-design": {
             "label": "化学信息学与药物设计",
             "desc": "围绕小分子做结构标准化、描述符、相似性、对接与筛选、成药性与毒性排序。",
-            "count": 27
+            "count": 26,
+            "folded": 1
         },
         "protein-engineering-synbio": {
             "label": "蛋白工程与合成生物学",
             "desc": "设计蛋白序列与骨架、优化表达与可开发性，并把构建放进代谢与自动化实验方案。",
-            "count": 15
+            "count": 13,
+            "folded": 1
         },
         "gene-editing-cloning": {
             "label": "基因编辑与分子克隆",
             "desc": "设计 gRNA、供体与筛选文库，评估脱靶与编辑结果，并完成克隆相关的序列层面设计。",
-            "count": 13
+            "count": 11,
+            "folded": 2
         },
         "pharmacogenomics-dosing": {
             "label": "药物基因组学与用药",
             "desc": "把基因型转成星等位基因与表型，落到具体药物的剂量、疗效与安全性建议。",
-            "count": 10
+            "count": 10,
+            "folded": 0
         },
         "immunology-immuno-oncology": {
             "label": "免疫组学与免疫治疗",
             "desc": "分析受体库、HLA、新抗原与免疫浸润，评估免疫治疗获益与疫苗表位覆盖。",
-            "count": 17
+            "count": 12,
+            "folded": 5
         },
         "literature-evidence-synthesis": {
             "label": "文献检索与证据合成",
             "desc": "检索、核验并综合文献与数据库证据，形成可核查的综述、评审与证据强度判断。",
-            "count": 13
+            "count": 12,
+            "folded": 0
         },
         "writing-document-delivery": {
             "label": "写作与文档交付",
             "desc": "把分析与文献写成论文、基金、海报或报告，并导出合规的 Word/PDF/PPT 交付件。",
-            "count": 20
+            "count": 17,
+            "folded": 0
         },
         "data-engineering-statistics": {
             "label": "数据工程与统计方法",
             "desc": "整理表格与格式、建立统计与机器学习评估、管理隐私与数据交换的工程性任务。",
-            "count": 24
+            "count": 22,
+            "folded": 2
         },
         "workflow-reproducibility": {
             "label": "计算流程与可复现性",
             "desc": "搭可复现的分析环境与流程，追溯输入与版本，并审计结果漂移与助手可靠性。",
-            "count": 10
+            "count": 5,
+            "folded": 5
         },
         "database-api-access": {
             "label": "数据库与接口对接",
             "desc": "通过 API 或公共库取回基因、变异、结构、组学与文献数据，并核对版本与可用性。",
-            "count": 11
+            "count": 10,
+            "folded": 1
         },
         "visualization-figures": {
             "label": "可视化与图件",
             "desc": "把数据与结构做成清晰可发表的图表、轨道、示意图或渲染好的图形交付件。",
-            "count": 10
+            "count": 9,
+            "folded": 0
         },
         "research-design-hypothesis": {
             "label": "研究设计与假设生成",
             "desc": "把宽泛兴趣收束成可检验问题，规划数据、对照、样本量与验证路线。",
-            "count": 10
+            "count": 9,
+            "folded": 1
         }
     };
     const GROUPS = [
@@ -313,35 +347,43 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-bamtofastq",
-                "desc": "当收到 BAM 或 CRAM，比对前的测序读段缺失且后续任务确实需要恢复读段时使用。"
+                "desc": "当收到 BAM 或 CRAM，比对前的测序读段缺失且后续任务确实需要恢复读段时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-demultiplex",
-                "desc": "当收到未拆分的测序文件、索引读段或上机目录，需要按样本恢复数据时使用。"
+                "desc": "当收到未拆分的测序文件、索引读段或上机目录，需要按样本恢复数据时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-fastqrepair",
-                "desc": "当测序文件打不开、FASTQ 记录异常或成对读段错位，需要定位并修复文件问题时使用。"
+                "desc": "当测序文件打不开、FASTQ 记录异常或成对读段错位，需要定位并修复文件问题时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-fastquorum",
-                "desc": "当测序建库含 UMI，研究需要降低错误或形成分子共识读段时使用。"
+                "desc": "当测序建库含 UMI，研究需要降低错误或形成分子共识读段时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-genomeskim",
-                "desc": "当浅测序数据需要读段质量评估，或需辨明浅测序能否支持目标组装时使用。"
+                "desc": "当浅测序数据需要读段质量评估，或需辨明浅测序能否支持目标组装时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-mitodetect",
-                "desc": "当需要评估线粒体分析所需数据或进行原始读段质控时使用。"
+                "desc": "当需要评估线粒体分析所需数据或进行原始读段质控时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-nanoseq",
-                "desc": "当收到 Nanopore 数据，需要识别信号或读段阶段并进行拆样、质控与比对时使用。"
+                "desc": "当收到 Nanopore 数据，需要识别信号或读段阶段并进行拆样、质控与比对时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-seqinspector",
-                "desc": "当收到测序文件或比对结果，需要了解数据质量和异常样本时使用。"
+                "desc": "当收到测序文件或比对结果，需要了解数据质量和异常样本时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "sequencing-coverage-capture-efficiency",
@@ -349,7 +391,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-ssds",
-                "desc": "当历史单链 DNA 富集实验数据需要复核专用信号处理时使用。"
+                "desc": "当历史单链 DNA 富集实验数据需要复核专用信号处理时使用。",
+                "via": "nfcore-catalog"
             }
         ],
         "genome-assembly-comparative": [
@@ -375,59 +418,73 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-denovohybrid",
-                "desc": "当同一样本有长读和短读数据，希望重建基因组并评估历史混合组装路径时使用。"
+                "desc": "当同一样本有长读和短读数据，希望重建基因组并评估历史混合组装路径时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-eager",
-                "desc": "当古代或降解 DNA 测序数据需要处理，并评估损伤、污染或分型证据时使用。"
+                "desc": "当古代或降解 DNA 测序数据需要处理，并评估损伤、污染或分型证据时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-genephylomodeler",
-                "desc": "当同源序列和系统树用于检验进化模型或自然选择时使用。"
+                "desc": "当同源序列和系统树用于检验进化模型或自然选择时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-genomeannotator",
-                "desc": "当只有基因组组装或不完整注释，需要识别编码基因结构时使用。"
+                "desc": "当只有基因组组装或不完整注释，需要识别编码基因结构时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-genomeassembler",
-                "desc": "当已有 ONT 或 PacBio HiFi 长读数据，希望获得基因组组装时使用。"
+                "desc": "当已有 ONT 或 PacBio HiFi 长读数据，希望获得基因组组装时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-genomeqc",
-                "desc": "当有一个或多个组装及注释，需要判断完整性、质量或比较候选版本时使用。"
+                "desc": "当有一个或多个组装及注释，需要判断完整性、质量或比较候选版本时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-kmermaid",
-                "desc": "当需要比较序列集合或样本相似性，已有读段或组装时使用。"
+                "desc": "当需要比较序列集合或样本相似性，已有读段或组装时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-multiplesequencealign",
-                "desc": "当已有多条同源 DNA 或蛋白序列，需要比对或比较比对方案时使用。"
+                "desc": "当已有多条同源 DNA 或蛋白序列，需要比对或比较比对方案时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-ncrnannotator",
-                "desc": "当已有基因组序列，需要识别非编码 RNA 家族时使用。"
+                "desc": "当已有基因组序列，需要识别非编码 RNA 家族时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-neutronstar",
-                "desc": "当数据和项目记录表明使用历史 10x linked-read 技术，需要评估或复现组装时使用。"
+                "desc": "当数据和项目记录表明使用历史 10x linked-read 技术，需要评估或复现组装时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-pairgenomealign",
-                "desc": "当已有两个或多套基因组组装，需要研究同源区域与共线性时使用。"
+                "desc": "当已有两个或多套基因组组装，需要研究同源区域与共线性时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-pangenome",
-                "desc": "当已有同源组装或单倍型序列集合，希望建立泛基因组图时使用。"
+                "desc": "当已有同源组装或单倍型序列集合，希望建立泛基因组图时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-phyloplace",
-                "desc": "当已有未知来源或新增序列，需要定位到参考系统树时使用。"
+                "desc": "当已有未知来源或新增序列，需要定位到参考系统树时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-reportho",
-                "desc": "当多个直系同源预测结果需要统一标识并比较一致性时使用。"
+                "desc": "当多个直系同源预测结果需要统一标识并比较一致性时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "pangenome-synteny-analysis",
@@ -453,11 +510,13 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "01-genome-wes",
-                "desc": "当用户需要从外显子组测序数据获得胚系小变异，并评估捕获效率和可解释缺口时使用。"
+                "desc": "当用户需要从外显子组测序数据获得胚系小变异，并评估捕获效率和可解释缺口时使用。",
+                "via": "variant-calling-wes-wgs"
             },
             {
                 "name": "01-genome-wgs",
-                "desc": "当用户需要设计或执行从短读长全基因组 FASTQ 到分析就绪比对和胚系小变异结果的流程时使用。"
+                "desc": "当用户需要设计或执行从短读长全基因组 FASTQ 到分析就绪比对和胚系小变异结果的流程时使用。",
+                "via": "variant-calling-wes-wgs"
             },
             {
                 "name": "long-read-variant-calling",
@@ -465,23 +524,28 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-deepvariant",
-                "desc": "当已确认胚系小变异任务，需要评估历史 DeepVariant 流程与现有测序平台是否兼容时使用。"
+                "desc": "当已确认胚系小变异任务，需要评估历史 DeepVariant 流程与现有测序平台是否兼容时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-exoseq",
-                "desc": "当已有外显子捕获测序数据，需要复核历史变异分析或恢复原项目设置时使用。"
+                "desc": "当已有外显子捕获测序数据，需要复核历史变异分析或恢复原项目设置时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-pacvar",
-                "desc": "当已有 PacBio HiFi 全基因组或 PureTarget 数据，需要变异分析时使用。"
+                "desc": "当已有 PacBio HiFi 全基因组或 PureTarget 数据，需要变异分析时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-sarek",
-                "desc": "当DNA 测序文件或比对结果需要检测胚系或肿瘤体细胞变异时使用。"
+                "desc": "当DNA 测序文件或比对结果需要检测胚系或肿瘤体细胞变异时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-variantbenchmarking",
-                "desc": "当已有变异检测结果和真值，需要衡量准确性或比较分析设置时使用。"
+                "desc": "当已有变异检测结果和真值，需要衡量准确性或比较分析设置时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "vcf-normalization-curation",
@@ -493,7 +557,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-rnavar",
-                "desc": "当只有 RNA 测序或需补充 RNA 层证据，希望识别表达区域变异时使用。"
+                "desc": "当只有 RNA 测序或需补充 RNA 层证据，希望识别表达区域变异时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "variant-calling-wes-wgs",
@@ -515,7 +580,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "01-genome-sv-detection",
-                "desc": "当用户需要检测缺失、重复、倒位、易位及其他结构变异，并整合多种信号时使用。"
+                "desc": "当用户需要检测缺失、重复、倒位、易位及其他结构变异，并整合多种信号时使用。",
+                "via": "cnv-sv-detection"
             },
             {
                 "name": "focal-amplification-ecdna-analysis",
@@ -523,11 +589,13 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-circdna",
-                "desc": "当已有 Circle-seq、WGS 或 ATAC 相关数据，希望寻找环状 DNA时使用。"
+                "desc": "当已有 Circle-seq、WGS 或 ATAC 相关数据，希望寻找环状 DNA时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-createpanelrefs",
-                "desc": "当要为变异或拷贝数分析建立正常样本背景，已有多个正常样本数据时使用。"
+                "desc": "当要为变异或拷贝数分析建立正常样本背景，已有多个正常样本数据时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "tumor-cnv-driver-event-analysis",
@@ -549,7 +617,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "13-clinical-genomics-intervar",
-                "desc": "系统化的ACMG/AMP胚系变异分类，覆盖全部28条证据标准（PVS1, PS1-4, PM1-6, PP1-5, BA1, BS1-4, BP1-7），产出五级分类（致病/可能致病/意义不明/可能良性/良性）并附逐。"
+                "desc": "系统化的ACMG/AMP胚系变异分类，覆盖全部28条证据标准（PVS1, PS1-4, PM1-6, PP1-5, BA1, BS1-4, BP1-7），产出五级分类（致病/可能致病/意义不明/可能良性/良性）并附逐。",
+                "via": "variant-pathogenicity-acmg"
             },
             {
                 "name": "13-clinical-genomics-rare-disease-diagnosis",
@@ -573,11 +642,13 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-longraredisease",
-                "desc": "当患者长读长数据和表型需要罕见病变异分析时使用。"
+                "desc": "当患者长读长数据和表型需要罕见病变异分析时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-raredisease",
-                "desc": "当患者 WGS 或 WES 与家系和症状需要寻找罕见病候选变异时使用。"
+                "desc": "当患者 WGS 或 WES 与家系和症状需要寻找罕见病候选变异时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "variant-annotation-gene-consequence",
@@ -646,11 +717,11 @@ window.__ModuleLoader__.load({
                 "desc": "当用户问某因素、基因表达或蛋白是否会导致某疾病、因果方向是否相反、相关关系能否支持病因，或交付暴露/结局遗传关联表、提出MR及多效性审稿意见时使用。"
             },
             {
-                "name": "colocalization-analysis-scaffold-replace",
+                "name": "colocalization-analysis",
                 "desc": "当用户问同一区域的疾病与表达/蛋白信号是不是一回事、两个性状是否共享变异、MR或TWAS是否受连锁牵连，或需要coloc及多信号共定位时使用。"
             },
             {
-                "name": "fine-mapping-scaffold-replace",
+                "name": "gwas-fine-mapping",
                 "desc": "当用户已有某疾病的遗传关联峰却不知道哪个变异最值得验证、显著SNP太多、想缩小候选范围，或要求可信集、PIP、SuSiE/FINEMAP时使用。"
             },
             {
@@ -663,27 +734,33 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-genomicrelatedness",
-                "desc": "当低覆盖基因组数据需要判断样本亲缘关系或重复身份时使用。"
+                "desc": "当低覆盖基因组数据需要判断样本亲缘关系或重复身份时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-gwas",
-                "desc": "当已有基因型与样本性状，希望寻找遗传关联时使用。"
+                "desc": "当已有基因型与样本性状，希望寻找遗传关联时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-phaseimpute",
-                "desc": "当基因型缺失或密度不足，需要分相并补充可预测位点时使用。"
+                "desc": "当基因型缺失或密度不足，需要分相并补充可预测位点时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-radseq",
-                "desc": "当限制性酶切相关测序数据需要构建可比较位点并做群体变异分析时使用。"
+                "desc": "当限制性酶切相关测序数据需要构建可比较位点并做群体变异分析时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-rarevariantburden",
-                "desc": "当已有病例变异汇总计数和外部对照，需要检验基因稀有变异负荷时使用。"
+                "desc": "当已有病例变异汇总计数和外部对照，需要检验基因稀有变异负荷时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-variantcatalogue",
-                "desc": "当多样本基因组变异需要整理成群体频率目录时使用。"
+                "desc": "当多样本基因组变异需要整理成群体频率目录时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "phewas-phenome-wide-association",
@@ -694,12 +771,13 @@ window.__ModuleLoader__.load({
                 "desc": "当用户有疾病GWAS想找相关组织/表达基因、问遗传预测表达与疾病是否有关，或需要TWAS、FUSION、PrediXcan、MetaXcan及显著邻近基因解释时使用。"
             },
             {
-                "name": "mendelian-randomization",
+                "name": "omics-causal-driver-inference",
                 "desc": "当用户需要从观察性转录组或多组学数据寻找候选因果驱动因子，并区分预测、干预效应与相关性时使用。"
             },
             {
                 "name": "nfcore-abotyper",
-                "desc": "当长读长测序需要研究血型或红细胞抗原相关等位基因时使用。"
+                "desc": "当长读长测序需要研究血型或红细胞抗原相关等位基因时使用。",
+                "via": "nfcore-catalog"
             }
         ],
         "cancer-genomics-liquid-biopsy": [
@@ -768,7 +846,7 @@ window.__ModuleLoader__.load({
                 "desc": "用于cfDNA靶向测序的读段质控、UMI家族构建、单双链共识和背景错误控制。"
             },
             {
-                "name": "ctdna-mutation-detection-scaffold-replace",
+                "name": "ctdna-mutation-detection",
                 "desc": "用于cfDNA/ctDNA中的超低频SNV和Indel检测、技术噪声建模与候选复核。"
             },
             {
@@ -777,31 +855,38 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-evexplorer",
-                "desc": "当细胞外囊泡来源的低输入 RNA 数据需要质控或表达分析时使用。"
+                "desc": "当细胞外囊泡来源的低输入 RNA 数据需要质控或表达分析时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-oncoanalyser",
-                "desc": "当同一患者有肿瘤与正常 DNA 或可用 RNA，需要综合肿瘤基因组分析时使用。"
+                "desc": "当同一患者有肿瘤与正常 DNA 或可用 RNA，需要综合肿瘤基因组分析时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-pacsomatic",
-                "desc": "当配对肿瘤与正常 PacBio HiFi 数据需要检测体细胞变异时使用。"
+                "desc": "当配对肿瘤与正常 PacBio HiFi 数据需要检测体细胞变异时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-rnadnavar",
-                "desc": "当同一患者 DNA 和 RNA 数据需要联合评估体细胞变异时使用。"
+                "desc": "当同一患者 DNA 和 RNA 数据需要联合评估体细胞变异时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-tumourevo",
-                "desc": "当肿瘤变异、拷贝数与时间或多区域样本需要研究克隆演化时使用。"
+                "desc": "当肿瘤变异、拷贝数与时间或多区域样本需要研究克隆演化时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-variantprioritization",
-                "desc": "当已有癌症相关 VCF，需要注释与排序体细胞或遗传易感候选时使用。"
+                "desc": "当已有癌症相关 VCF，需要注释与排序体细胞或遗传易感候选时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-viralintegration",
-                "desc": "当宿主与病毒相关测序需要寻找整合断点时使用。"
+                "desc": "当宿主与病毒相关测序需要寻找整合断点时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "public-cancer-cohort-analysis",
@@ -943,7 +1028,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-liverctanalysis",
-                "desc": "当肝脏 CT 数据需要分割或定量，而候选流程包含尚未实现该能力的历史模板时使用。"
+                "desc": "当肝脏 CT 数据需要分割或定量，而候选流程包含尚未实现该能力的历史模板时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nnu-net-medical-image-segmentation",
@@ -977,11 +1063,13 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-cellpainting",
-                "desc": "当多通道细胞成像及处理条件需要生成形态特征用于比较时使用。"
+                "desc": "当多通道细胞成像及处理条件需要生成形态特征用于比较时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-lsmquant",
-                "desc": "当光片显微三维图像需要校正、对象识别或定量时使用。"
+                "desc": "当光片显微三维图像需要校正、对象识别或定量时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "single-particle-tracking-diffusion",
@@ -1009,11 +1097,13 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-imcyto",
-                "desc": "当成像质谱细胞术数据需要按标记通道分割细胞并提取特征时使用。"
+                "desc": "当成像质谱细胞术数据需要按标记通道分割细胞并提取特征时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-mcmicro",
-                "desc": "当多轮或多通道组织图像需要拼接、配准与细胞定量时使用。"
+                "desc": "当多轮或多通道组织图像需要拼接、配准与细胞定量时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "pathml",
@@ -1023,11 +1113,13 @@ window.__ModuleLoader__.load({
         "transcriptomics-quantification": [
             {
                 "name": "nfcore-drop",
-                "desc": "当患者 RNA 数据及适配参考队列需要寻找异常表达或剪接时使用。"
+                "desc": "当患者 RNA 数据及适配参考队列需要寻找异常表达或剪接时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-isoseq",
-                "desc": "当已有 PacBio 全长 RNA 数据，希望整理转录本或辅助基因组注释时使用。"
+                "desc": "当已有 PacBio 全长 RNA 数据，希望整理转录本或辅助基因组注释时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "bulk-rnaseq",
@@ -1075,75 +1167,93 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-alleleexpression",
-                "desc": "当RNA 数据及匹配基因型可用于研究等位基因表达不平衡时使用。"
+                "desc": "当RNA 数据及匹配基因型可用于研究等位基因表达不平衡时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-cageseq",
-                "desc": "当转录起始相关 CAGE 测序需要提取标签和起始位点时使用。"
+                "desc": "当转录起始相关 CAGE 测序需要提取标签和起始位点时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-circrna",
-                "desc": "当RNA 测序需要识别环状 RNA 或比较反向剪接信号时使用。"
+                "desc": "当RNA 测序需要识别环状 RNA 或比较反向剪接信号时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-clipseq",
-                "desc": "当RNA 蛋白结合实验的 CLIP、iCLIP 或 eCLIP 数据需要处理时使用。"
+                "desc": "当RNA 蛋白结合实验的 CLIP、iCLIP 或 eCLIP 数据需要处理时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-dartseq",
-                "desc": "当带编辑标记的 RNA 数据需要分析修饰相关位点时使用。"
+                "desc": "当带编辑标记的 RNA 数据需要分析修饰相关位点时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-denovotranscript",
-                "desc": "当没有合适参考基因组，已有双端 RNA 测序并希望重建转录本时使用。"
+                "desc": "当没有合适参考基因组，已有双端 RNA 测序并希望重建转录本时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-dualrnaseq",
-                "desc": "当共测定 RNA 数据来自宿主与病原，需要分别定量或研究感染反应时使用。"
+                "desc": "当共测定 RNA 数据来自宿主与病原，需要分别定量或研究感染反应时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-lncpipe",
-                "desc": "当RNA 数据需要发现或整理长非编码 RNA 候选时使用。"
+                "desc": "当RNA 数据需要发现或整理长非编码 RNA 候选时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-nanostring",
-                "desc": "当已有 nCounter 计数、探针 panel 或 RCC 交付数据，需要表达比较时使用。"
+                "desc": "当已有 nCounter 计数、探针 panel 或 RCC 交付数据，需要表达比较时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-nascent",
-                "desc": "当新生转录实验的 PRO、GRO 或 NET 类测序需要信号分析时使用。"
+                "desc": "当新生转录实验的 PRO、GRO 或 NET 类测序需要信号分析时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-riboseq",
-                "desc": "当核糖体足迹测序需要定位翻译区域或估计翻译效率时使用。"
+                "desc": "当核糖体足迹测序需要定位翻译区域或估计翻译效率时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-rnafusion",
-                "desc": "当RNA 测序需要寻找融合转录本或复核融合候选时使用。"
+                "desc": "当RNA 测序需要寻找融合转录本或复核融合候选时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-rnaseq",
-                "desc": "当测序报告或建库证据表明是普通整体 RNA 测序，需要整理表达或比较样本时使用。"
+                "desc": "当测序报告或建库证据表明是普通整体 RNA 测序，需要整理表达或比较样本时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-rnasplice",
-                "desc": "当RNA 测序及样本分组用于研究可变剪接或转录本使用变化时使用。"
+                "desc": "当RNA 测序及样本分组用于研究可变剪接或转录本使用变化时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-rnastructurome",
-                "desc": "当DMS 或 SHAPE 等 RNA 化学探测数据需要反应性或结构相关分析时使用。"
+                "desc": "当DMS 或 SHAPE 等 RNA 化学探测数据需要反应性或结构相关分析时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-slamseq",
-                "desc": "当代谢标记 SLAM-seq 数据需要估计新生 RNA 比例或动力学时使用。"
+                "desc": "当代谢标记 SLAM-seq 数据需要估计新生 RNA 比例或动力学时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-smrnaseq",
-                "desc": "当小 RNA 建库数据需要识别 miRNA 或其他短 RNA 并定量时使用。"
+                "desc": "当小 RNA 建库数据需要识别 miRNA 或其他短 RNA 并定量时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-stableexpression",
-                "desc": "当多个表达数据集需要筛选在指定条件下稳定的参考基因时使用。"
+                "desc": "当多个表达数据集需要筛选在指定条件下稳定的参考基因时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "rna-modification-clip",
@@ -1157,15 +1267,12 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "gsea-gsva-scoring",
-                "desc": "用于全量排序特征的GSEA以及GSVA、ssGSEA样本级基因集评分。"
+                "desc": "用于全量排序特征的GSEA以及GSVA、ssGSEA样本级基因集评分。",
+                "via": "pathway-enrichment"
             },
             {
                 "name": "pathway-enrichment",
                 "desc": "Run pathway and gene-set enrichment analysis on gene lists or ranked gene data, then interpret the results. 。"
-            },
-            {
-                "name": "pathway-enrichment-analysis",
-                "desc": "用于基因、蛋白或代谢物列表的GO、KEGG、Reactome等过度富集分析。"
             },
             {
                 "name": "pydeseq2",
@@ -1185,10 +1292,11 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-differentialabundance",
-                "desc": "当已有表达或特征矩阵和样本背景，希望比较处理条件时使用。"
+                "desc": "当已有表达或特征矩阵和样本背景，希望比较处理条件时使用。",
+                "via": "nfcore-catalog"
             },
             {
-                "name": "pathway-enrichment-scaffold-replace",
+                "name": "metabolite-pathway-mapping",
                 "desc": "当用户需要把带证据等级的代谢物及效应映射到物种匹配的通路，并控制 ID 歧义、检测背景和重复特征造成的偏倚时使用。"
             },
             {
@@ -1239,31 +1347,38 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-hadge",
-                "desc": "当单细胞混样数据需要借助基因型或样本标签恢复供者身份时使用。"
+                "desc": "当单细胞混样数据需要借助基因型或样本标签恢复供者身份时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-marsseq",
-                "desc": "当已确认板式 MARS-seq 数据，需要按孔位和分子标签整理表达时使用。"
+                "desc": "当已确认板式 MARS-seq 数据，需要按孔位和分子标签整理表达时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-scdownstream",
-                "desc": "当收到单细胞表达矩阵、H5AD 或分析对象，需要细胞质控、注释与组间研究时使用。"
+                "desc": "当收到单细胞表达矩阵、H5AD 或分析对象，需要细胞质控、注释与组间研究时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-scflow",
-                "desc": "当已有历史单细胞表达对象，需要评估归档分析路径或复现处理时使用。"
+                "desc": "当已有历史单细胞表达对象，需要评估归档分析路径或复现处理时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-scnanoseq",
-                "desc": "当单细胞长读 RNA 数据需要恢复细胞身份并分析转录本时使用。"
+                "desc": "当单细胞长读 RNA 数据需要恢复细胞身份并分析转录本时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-scrnaseq",
-                "desc": "当建库或交付证据表明是单细胞 RNA 原始读段，需要生成细胞表达矩阵时使用。"
+                "desc": "当建库或交付证据表明是单细胞 RNA 原始读段，需要生成细胞表达矩阵时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-smartseq2",
-                "desc": "当已确认板式 Smart-seq2 测序，需要按细胞或孔位整理表达时使用。"
+                "desc": "当已确认板式 Smart-seq2 测序，需要按细胞或孔位整理表达时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "single-cell-format-io",
@@ -1329,7 +1444,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "scvi-single-cell-probabilistic-modeling",
-                "desc": "当用户需要使用 scVI、scANVI 或 totalVI 对单细胞计数进行概率表征、半监督标签迁移或 RNA-蛋白联合建模时使用。"
+                "desc": "当用户需要使用 scVI、scANVI 或 totalVI 对单细胞计数进行概率表征、半监督标签迁移或 RNA-蛋白联合建模时使用。",
+                "via": "scvi-tools"
             },
             {
                 "name": "secreted-protein-activity-inference",
@@ -1357,7 +1473,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "scgpt-embedding",
-                "desc": "当用户需要用scGPT为单细胞表达数据生成嵌入、辅助细胞类型注释或构建基因表示时使用。"
+                "desc": "当用户需要用scGPT为单细胞表达数据生成嵌入、辅助细胞类型注释或构建基因表示时使用。",
+                "via": "scgpt"
             }
         ],
         "spatial-omics": [
@@ -1387,27 +1504,33 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-molkart",
-                "desc": "当Resolve Molecular Cartography 交付数据需要整理分子坐标与细胞表达时使用。"
+                "desc": "当Resolve Molecular Cartography 交付数据需要整理分子坐标与细胞表达时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-panoramaseq",
-                "desc": "当已确认原位阵列空间转录测序，需要将读段与空间位置关联时使用。"
+                "desc": "当已确认原位阵列空间转录测序，需要将读段与空间位置关联时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-pixelator",
-                "desc": "当分子邻近测定的 PNA 或 MPX 数据需要分子图和细胞相关分析时使用。"
+                "desc": "当分子邻近测定的 PNA 或 MPX 数据需要分子图和细胞相关分析时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-sopa",
-                "desc": "当空间图像与分子坐标需要联合分割、聚合和分析时使用。"
+                "desc": "当空间图像与分子坐标需要联合分割、聚合和分析时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-spatialaxe",
-                "desc": "当Xenium 或 Artera 交付数据需要检查空间细胞、分子与特征质量时使用。"
+                "desc": "当Xenium 或 Artera 交付数据需要检查空间细胞、分子与特征质量时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-spatialvi",
-                "desc": "当Visium 计数与组织图像需要联合分析空间表达时使用。"
+                "desc": "当Visium 计数与组织图像需要联合分析空间表达时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "spatial-proteomics",
@@ -1441,10 +1564,11 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "07-proteomics-protein-quantification",
-                "desc": "当用户需要把肽段强度、谱图计数或 label-free 信号汇总为可比较的蛋白丰度，并处理跨运行匹配、归一化和缺失时使用。"
+                "desc": "当用户需要把肽段强度、谱图计数或 label-free 信号汇总为可比较的蛋白丰度，并处理跨运行匹配、归一化和缺失时使用。",
+                "via": "proteomics-quantification"
             },
             {
-                "name": "07-proteomics-skill-002",
+                "name": "protein-function-annotation",
                 "desc": "当用户需要根据蛋白序列及可靠同源证据注释结构域、家族、GO 和功能，同时保留冲突、低覆盖与未知项时使用。"
             },
             {
@@ -1457,39 +1581,48 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-ddamsproteomics",
-                "desc": "当已有历史 DDA 质谱交付数据，需要评估或复现肽段鉴定与蛋白定量时使用。"
+                "desc": "当已有历史 DDA 质谱交付数据，需要评估或复现肽段鉴定与蛋白定量时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-diaproteomics",
-                "desc": "当已确认 DIA 质谱与谱图库，需要色谱对齐及蛋白定量时使用。"
+                "desc": "当已确认 DIA 质谱与谱图库，需要色谱对齐及蛋白定量时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-mspepid",
-                "desc": "当已有 MS2 谱图，需要搜索肽段并评估鉴定可靠性时使用。"
+                "desc": "当已有 MS2 谱图，需要搜索肽段并评估鉴定可靠性时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-proteinannotator",
-                "desc": "当蛋白 FASTA 需要识别结构域或功能特征时使用。"
+                "desc": "当蛋白 FASTA 需要识别结构域或功能特征时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-proteinfamilies",
-                "desc": "当多条蛋白序列需要聚类成家族，或向既有家族添加成员时使用。"
+                "desc": "当多条蛋白序列需要聚类成家族，或向既有家族添加成员时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-proteogenomicsdb",
-                "desc": "当有基因组、转录本或变异材料，需要构建适合质谱搜索的序列库时使用。"
+                "desc": "当有基因组、转录本或变异材料，需要构建适合质谱搜索的序列库时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-proteomicslfq",
-                "desc": "当已有非标记蛋白质组质谱或历史结果，需要评估归档定量流程时使用。"
+                "desc": "当已有非标记蛋白质组质谱或历史结果，需要评估归档定量流程时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-quantms",
-                "desc": "当定量质谱数据需要区分 DIA、非标记或同位素标签模式并核查历史处理时使用。"
+                "desc": "当定量质谱数据需要区分 DIA、非标记或同位素标签模式并核查历史处理时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-ribomsqc",
-                "desc": "当核糖核苷质谱 QC 数据需要检查仪器或批次性能时使用。"
+                "desc": "当核糖核苷质谱 QC 数据需要检查仪器或批次性能时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "peptide-identification-protein-inference",
@@ -1563,7 +1696,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-metaboigniter",
-                "desc": "当非靶向代谢组质谱数据需要提峰、对齐与特征注释时使用。"
+                "desc": "当非靶向代谢组质谱数据需要提峰、对齐与特征注释时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nmr-metabolomics",
@@ -1633,7 +1767,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "03-epigenomics-wgbs-analysis",
-                "desc": "用于处理WGBS或RRBS数据，得到CpG及非CpG甲基化计数、覆盖与转换质量。"
+                "desc": "用于处理WGBS或RRBS数据，得到CpG及非CpG甲基化计数、覆盖与转换质量。",
+                "via": "dna-methylation-wgbs"
             },
             {
                 "name": "chromatin-compartment-tad-analysis",
@@ -1649,51 +1784,63 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-atacseq",
-                "desc": "当已确认 bulk ATAC-seq 数据，需要分析开放染色质与条件差异时使用。"
+                "desc": "当已确认 bulk ATAC-seq 数据，需要分析开放染色质与条件差异时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-callingcards",
-                "desc": "当转录调控记录实验的插入位点或 Calling Cards 读段需要分析时使用。"
+                "desc": "当转录调控记录实验的插入位点或 Calling Cards 读段需要分析时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-chipseq",
-                "desc": "当已有免疫沉淀测序数据，需要定位蛋白或组蛋白修饰富集区域时使用。"
+                "desc": "当已有免疫沉淀测序数据，需要定位蛋白或组蛋白修饰富集区域时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-cutandrun",
-                "desc": "当已知 CUT&RUN 或 CUT&Tag 实验，希望定位染色质靶标时使用。"
+                "desc": "当已知 CUT&RUN 或 CUT&Tag 实验，希望定位染色质靶标时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-epigenomesegmentation",
-                "desc": "当多种表观信号需要整合为染色质状态时使用。"
+                "desc": "当多种表观信号需要整合为染色质状态时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-hic",
-                "desc": "当Hi-C 测序数据需要生成接触矩阵或检查染色质空间结构时使用。"
+                "desc": "当Hi-C 测序数据需要生成接触矩阵或检查染色质空间结构时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-hicar",
-                "desc": "当已确认 HiCAR 共测定数据，需要整理染色质接触及相关信号时使用。"
+                "desc": "当已确认 HiCAR 共测定数据，需要整理染色质接触及相关信号时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-methylarray",
-                "desc": "当收到甲基化芯片 IDAT 或相关信号，需要质控与差异甲基化分析时使用。"
+                "desc": "当收到甲基化芯片 IDAT 或相关信号，需要质控与差异甲基化分析时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-methylong",
-                "desc": "当长读长数据含修饰信号或标签，需要量化 DNA 甲基化时使用。"
+                "desc": "当长读长数据含修饰信号或标签，需要量化 DNA 甲基化时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-methylseq",
-                "desc": "当转化化学相关 DNA 测序需要估计甲基化水平时使用。"
+                "desc": "当转化化学相关 DNA 测序需要估计甲基化水平时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-mnaseseq",
-                "desc": "当MNase 消化测序数据需要分析核小体位置或占据变化时使用。"
+                "desc": "当MNase 消化测序数据需要分析核小体位置或占据变化时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-sammyseq",
-                "desc": "当已有连续提取的染色质组分测序数据，需要分析组分差异或染色质状态时使用。"
+                "desc": "当已有连续提取的染色质组分测序数据，需要分析组分差异或染色质状态时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "epigenetics-drug-response-integration",
@@ -1722,7 +1869,7 @@ window.__ModuleLoader__.load({
                 "desc": "使用长上下文基因组基础模型 Evo 2 对 DNA 序列进行评分、嵌入和生成。"
             },
             {
-                "name": "grn-inference-scaffold-replace",
+                "name": "grn-inference",
                 "desc": "用于从表达、染色质可及性或转录因子先验推断基因调控网络。"
             },
             {
@@ -1735,7 +1882,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-diseasemodulediscovery",
-                "desc": "当疾病相关基因及互作网络需要寻找候选疾病模块时使用。"
+                "desc": "当疾病相关基因及互作网络需要寻找候选疾病模块时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "sbml-network-modeling",
@@ -1755,7 +1903,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "03-epigenomics-basenji",
-                "desc": "用于用Borzoi、Basenji、Enformer、Akita、AlphaGenome等模型预测序列变异对表达、可及性或染色质结构的潜在影响。"
+                "desc": "用于用Borzoi、Basenji、Enformer、Akita、AlphaGenome等模型预测序列变异对表达、可及性或染色质结构的潜在影响。",
+                "via": "borzoi"
             },
             {
                 "name": "04-transcriptomics-tf-activity-inference",
@@ -1763,7 +1912,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-tfactivity",
-                "desc": "当表达和染色质可及性数据希望推断转录因子活动变化时使用。"
+                "desc": "当表达和染色质可及性数据希望推断转录因子活动变化时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "single-cell-regulatory-network",
@@ -1771,7 +1921,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "evo2-sequence-scoring",
-                "desc": "当用户需要用Evo 2对长DNA序列进行似然评分、嵌入、变异效应比较或条件生成时使用。"
+                "desc": "当用户需要用Evo 2对长DNA序列进行似然评分、嵌入、变异效应比较或条件生成时使用。",
+                "via": "evo2"
             },
             {
                 "name": "plant-long-context-genome-modeling",
@@ -1785,7 +1936,8 @@ window.__ModuleLoader__.load({
         "microbiome-metagenomics": [
             {
                 "name": "nfcore-detaxizer",
-                "desc": "当原始序列可能混有宿主、污染物或其他物种，需要筛查或移除目标序列时使用。"
+                "desc": "当原始序列可能混有宿主、污染物或其他物种，需要筛查或移除目标序列时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "microbial-community-metabolic-network",
@@ -1793,7 +1945,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-bacmodel",
-                "desc": "当细菌基因组及培养背景需要建立代谢网络或预测生长能力时使用。"
+                "desc": "当细菌基因组及培养背景需要建立代谢网络或预测生长能力时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "09-metagenomics-16s-analysis",
@@ -1837,87 +1990,108 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-ampliseq",
-                "desc": "当报告或引物证据表明是 16S、ITS 等扩增子测序，需要研究微生物群落时使用。"
+                "desc": "当报告或引物证据表明是 16S、ITS 等扩增子测序，需要研究微生物群落时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-bacass",
-                "desc": "当已确认细菌分离株测序，需要组装、修正与基因注释时使用。"
+                "desc": "当已确认细菌分离株测序，需要组装、修正与基因注释时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-bactmap",
-                "desc": "当细菌菌株测序需要参考比对、变异比较或系统发育时使用。"
+                "desc": "当细菌菌株测序需要参考比对、变异比较或系统发育时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-coproid",
-                "desc": "当古粪便测序需要推断宿主来源并评估污染时使用。"
+                "desc": "当古粪便测序需要推断宿主来源并评估污染时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-createtaxdb",
-                "desc": "当微生物分析需要适合目标样本与分类工具的数据库时使用。"
+                "desc": "当微生物分析需要适合目标样本与分类工具的数据库时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-daamicrobiome",
-                "desc": "当已有微生物计数或丰度表，需要比较条件间差异时使用。"
+                "desc": "当已有微生物计数或丰度表，需要比较条件间差异时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-funcprofiler",
-                "desc": "当宏基因组或宏转录组读段需要估计群落功能组成时使用。"
+                "desc": "当宏基因组或宏转录组读段需要估计群落功能组成时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-funcscan",
-                "desc": "当微生物组装或 MAG 需要筛查功能基因及天然产物相关候选时使用。"
+                "desc": "当微生物组装或 MAG 需要筛查功能基因及天然产物相关候选时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-hgtseq",
-                "desc": "当已有可能涉及宿主与供体的序列数据，需要研究水平转移候选时使用。"
+                "desc": "当已有可能涉及宿主与供体的序列数据，需要研究水平转移候选时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-mag",
-                "desc": "当已确认混合微生物 shotgun 数据，需要组装并恢复微生物基因组时使用。"
+                "desc": "当已确认混合微生物 shotgun 数据，需要组装并恢复微生物基因组时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-magmap",
-                "desc": "当宏基因组或宏转录组数据需要映射至基因组集合并定量基因时使用。"
+                "desc": "当宏基因组或宏转录组数据需要映射至基因组集合并定量基因时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-metatdenovo",
-                "desc": "当宏转录组或宏基因组读段缺少合适参考，需要从头组装与注释时使用。"
+                "desc": "当宏转录组或宏基因组读段缺少合适参考，需要从头组装与注释时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-pathogenepidemiology",
-                "desc": "当已确认特定病原体的测序与采样信息，需要基因组流行病学分析时使用。"
+                "desc": "当已确认特定病原体的测序与采样信息，需要基因组流行病学分析时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-pathogensurveillance",
-                "desc": "当连续采集的病原测序需要群体比较与监测时使用。"
+                "desc": "当连续采集的病原测序需要群体比较与监测时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-phageannotator",
-                "desc": "当基因组或宏基因组序列需要查找噬菌体及前噬菌体区域时使用。"
+                "desc": "当基因组或宏基因组序列需要查找噬菌体及前噬菌体区域时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-plasmodiumdrugres",
-                "desc": "当已有疟原虫等位基因表或微单倍型数据，需要汇总耐药相关标记时使用。"
+                "desc": "当已有疟原虫等位基因表或微单倍型数据，需要汇总耐药相关标记时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-taxprofiler",
-                "desc": "当已确认非扩增子的混合微生物测序，需要识别物种与丰度时使用。"
+                "desc": "当已确认非扩增子的混合微生物测序，需要识别物种与丰度时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-tbanalyzer",
-                "desc": "当结核分枝杆菌复合群测序需要分型及相关标记分析时使用。"
+                "desc": "当结核分枝杆菌复合群测序需要分型及相关标记分析时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-vipr",
-                "desc": "当已有病毒测序或历史结果，需要复核旧版共识和低频变异分析时使用。"
+                "desc": "当已有病毒测序或历史结果，需要复核旧版共识和低频变异分析时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-viralmetagenome",
-                "desc": "当非靶向混合样本测序需要发现并重建病毒基因组时使用。"
+                "desc": "当非靶向混合样本测序需要发现并重建病毒基因组时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-viralrecon",
-                "desc": "当已确认病毒测序，需要获得共识序列和变异结果时使用。"
+                "desc": "当已确认病毒测序，需要获得共识序列和变异结果时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "strain-tracking-transmission-analysis",
@@ -1959,7 +2133,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "12-structural-biology-alphafold2",
-                "desc": "用于AlphaFold2或ColabFold的单体、同源多聚体结构预测和置信度解释。"
+                "desc": "用于AlphaFold2或ColabFold的单体、同源多聚体结构预测和置信度解释。",
+                "via": "alphafold2"
             },
             {
                 "name": "12-structural-biology-alphafold3",
@@ -1983,7 +2158,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-proteinfold",
-                "desc": "当只有蛋白序列或链组成，希望预测三维结构时使用。"
+                "desc": "当只有蛋白序列或链组成，希望预测三维结构时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "protein-rna-interaction-prediction-design",
@@ -2040,7 +2216,7 @@ window.__ModuleLoader__.load({
                 "desc": "当用户需要依据疾病机制、靶点、转录特征、现有药理和临床可行性，为已知药物寻找新适应证并排序时使用。"
             },
             {
-                "name": "admet-prediction-scaffold-replace",
+                "name": "admet-prediction",
                 "desc": "当用户需要用规则或计算模型预测吸收、分布、代谢、排泄、毒性、药物相似性和结构警报，并为早期化合物排序时使用。"
             },
             {
@@ -2097,7 +2273,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-drugresponseeval",
-                "desc": "当药物反应和特征数据需要评估模型对新样本或新药的预测能力时使用。"
+                "desc": "当药物反应和特征数据需要评估模型对新样本或新药的预测能力时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "pharmacophore-modeling-screening",
@@ -2108,7 +2285,7 @@ window.__ModuleLoader__.load({
                 "desc": "用于识别和比较蛋白小分子结合口袋、评估可成药性并准备对接区域。"
             },
             {
-                "name": "qsar-modeling-scaffold-replace",
+                "name": "qsar-modeling",
                 "desc": "当用户需要从分子结构和实验标签建立活性、理化性质或ADMET预测模型，并评估外部性能、不确定性与适用域时使用。"
             },
             {
@@ -2116,7 +2293,7 @@ window.__ModuleLoader__.load({
                 "desc": "当用户需要设计PROTAC、分子胶或其他靶向蛋白降解剂，并评估E3连接酶、连接子、三元复合物和细胞降解证据时使用。"
             },
             {
-                "name": "virtual-screening-scaffold-replace",
+                "name": "virtual-screening",
                 "desc": "当用户需要围绕蛋白质口袋，对化合物库执行受体准备、分阶段对接/重评分、富集验证和实验命中选择时使用。"
             }
         ],
@@ -2167,7 +2344,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "esm",
-                "desc": "当用户需要用ESM-2生成蛋白质序列或残基嵌入、掩码语言模型分数、突变效应分数或接触预测时使用。"
+                "desc": "当用户需要用ESM-2生成蛋白质序列或残基嵌入、掩码语言模型分数、突变效应分数或接触预测时使用。",
+                "via": "fair-esm2"
             },
             {
                 "name": "esm3-protein-generation-structure-modeling",
@@ -2175,7 +2353,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-deepmutscan",
-                "desc": "当突变文库的选择前后或时间序列测序需要估计变异适应度时使用。"
+                "desc": "当突变文库的选择前后或时间序列测序需要估计变异适应度时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "rfdiffusion",
@@ -2188,7 +2367,7 @@ window.__ModuleLoader__.load({
                 "desc": "当用户需要在Gibson、Golden Gate等组装方式之间选择并设计片段连接和构建验证时使用。"
             },
             {
-                "name": "base-editing-design-scaffold-replace",
+                "name": "base-editing-design",
                 "desc": "当用户需要设计CBE或ABE碱基编辑并比较目标产物、旁观者编辑和脱靶风险时使用。"
             },
             {
@@ -2208,7 +2387,7 @@ window.__ModuleLoader__.load({
                 "desc": "当用户需要在命中分析前判断CRISPR筛选文库是否经历覆盖损失、重复失真或生物学信号不足时使用。"
             },
             {
-                "name": "grna-design-scaffold-replace",
+                "name": "grna-design",
                 "desc": "当用户需要为单基因CRISPR敲除、CRISPRi或CRISPRa选择少量高质量导向RNA并安排实验验证时使用。"
             },
             {
@@ -2217,14 +2396,16 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-crisprseq",
-                "desc": "当CRISPR 编辑扩增子或混池筛选数据需要评估编辑或筛选命中时使用。"
+                "desc": "当CRISPR 编辑扩增子或混池筛选数据需要评估编辑或筛选命中时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-crisprvar",
-                "desc": "当CRISPR 靶向编辑数据需要复核历史 NHEJ 或 HDR 评估时使用。"
+                "desc": "当CRISPR 靶向编辑数据需要复核历史 NHEJ 或 HDR 评估时使用。",
+                "via": "nfcore-catalog"
             },
             {
-                "name": "off-target-prediction-off-target-scaffold",
+                "name": "crispr-off-target-prediction",
                 "desc": "当用户需要枚举CRISPR导向RNA的潜在全基因组脱靶位点、排序风险并规划验证实验时使用。"
             },
             {
@@ -2312,28 +2493,33 @@ window.__ModuleLoader__.load({
                 "desc": "用于从体细胞变异、融合、异常剪接或肿瘤抗原生成并筛选候选表位。"
             },
             {
-                "name": "mhc-binding-prediction-scaffold-replace",
+                "name": "mhc-binding-prediction",
                 "desc": "用于预测肽段与MHC-I/II结合、加工和呈递优先级。"
             },
             {
                 "name": "nfcore-airrflow",
-                "desc": "当BCR 或 TCR 受体库测序需要重排注释、克隆识别及比较时使用。"
+                "desc": "当BCR 或 TCR 受体库测序需要重排注释、克隆识别及比较时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-epitopeprediction",
-                "desc": "当抗原序列或变异需要预测可能的 MHC 呈递表位时使用。"
+                "desc": "当抗原序列或变异需要预测可能的 MHC 呈递表位时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-hlatyping",
-                "desc": "当WGS、WES 或 RNA 数据需要推断 HLA 等位基因时使用。"
+                "desc": "当WGS、WES 或 RNA 数据需要推断 HLA 等位基因时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-metapep",
-                "desc": "当微生物蛋白或组装需要生成并筛选 MHC 肽候选时使用。"
+                "desc": "当微生物蛋白或组装需要生成并筛选 MHC 肽候选时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-mhcquant",
-                "desc": "当MHC 洗脱肽质谱需要免疫肽鉴定与定量时使用。"
+                "desc": "当MHC 洗脱肽质谱需要免疫肽鉴定与定量时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "tcr-bcr-antigen-specificity-prediction",
@@ -2394,10 +2580,6 @@ window.__ModuleLoader__.load({
                 "desc": "Use this skill for \"review this paper\", \"review this manuscript\", \"peer review\", \"review my paper\", \"critiqu。"
             },
             {
-                "name": "review-paper",
-                "desc": "当需要审稿、论文评审、paper review、manuscript review、reference verification、fact checking、逐章评审、参考文献核验、评分或给出审稿意见时使用。"
-            },
-            {
                 "name": "surveymaster",
                 "desc": "Produce, revise, or export an academic literature survey through an end-to-end workflow: intake constraints,。"
             }
@@ -2428,10 +2610,6 @@ window.__ModuleLoader__.load({
                 "desc": "当用户需要把临床研究数据和统计结果整理成结构清楚、可复核的研究报告、摘要或结果章节时使用。"
             },
             {
-                "name": "docx",
-                "desc": "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Tr。"
-            },
-            {
                 "name": "docx-equation-processor",
                 "desc": "Use this skill when Word .docx work involves math formulas, equations, LaTeX, MathML, OMML, MathType, equati。"
             },
@@ -2460,10 +2638,6 @@ window.__ModuleLoader__.load({
                 "desc": "Turns your protocol and analysis workflow into publication-ready Methods text. Use when writing or revising 。"
             },
             {
-                "name": "pdf",
-                "desc": "Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting te。"
-            },
-            {
                 "name": "ppt-builder",
                 "desc": "对齐 researcher/graph_pptx_agent 的状态化 PPT/PPTX 生成流程，覆盖需求澄清、研究规划、outline 确认、简体中文生图语言门禁、批量生成、版本记录、编辑循环和导出。"
             },
@@ -2478,10 +2652,6 @@ window.__ModuleLoader__.load({
             {
                 "name": "tex-to-docx",
                 "desc": "Convert LaTeX or Markdown manuscripts into validated journal-ready DOCX files, with journal configuration, C。"
-            },
-            {
-                "name": "xlsx",
-                "desc": "Use whenever an Excel workbook (.xlsx, .xlsm, .xls, .xlsb) must be read, inspected, extracted, converted, cl。"
             }
         ],
         "data-engineering-statistics": [
@@ -2515,7 +2685,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-deepmodeloptim",
-                "desc": "当已有生物医学训练数据和模型，希望改善预测效果或评估数据增强时使用。"
+                "desc": "当已有生物医学训练数据和模型，希望改善预测效果或评估数据增强时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "omics-negative-control-calibration",
@@ -2559,7 +2730,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-omicsgenetraitassociation",
-                "desc": "当多组学数据与性状希望建立基因或特征层关联时使用。"
+                "desc": "当多组学数据与性状希望建立基因或特征层关联时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "biomedical-time-series-forecasting",
@@ -2597,27 +2769,32 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-catalog",
-                "desc": "当用户只有测序公司或科研平台交付的文件、仅知道样本来源，不清楚数据类型、能研究什么或如何分析时使用。"
+                "desc": "全部 nf-core 流程的入口：识别交付数据与处理阶段，再按流程索引打开具体流程。"
             },
             {
                 "name": "nfcore-datasync",
-                "desc": "当科研数据需要在存储位置间复制、同步或整理，且能核对源文件与目标位置时使用。"
+                "desc": "当科研数据需要在存储位置间复制、同步或整理，且能核对源文件与目标位置时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-demo",
-                "desc": "当需要用小型公开示例认识分析步骤或检查科研计算环境时使用。"
+                "desc": "当需要用小型公开示例认识分析步骤或检查科研计算环境时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-provenancereport",
-                "desc": "当已有分析结果但不清楚用了哪些输入、软件版本和参数，需要核查可复现性时使用。"
+                "desc": "当已有分析结果但不清楚用了哪些输入、软件版本和参数，需要核查可复现性时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-references",
-                "desc": "当分析已经需要特定物种的参考基因组、注释或索引，但交付包没有兼容资源时使用。"
+                "desc": "当分析已经需要特定物种的参考基因组、注释或索引，但交付包没有兼容资源时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "nfcore-seqsubmit",
-                "desc": "当研究数据需要整理成公开测序数据库的提交材料时使用。"
+                "desc": "当研究数据需要整理成公开测序数据库的提交材料时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "standardization",
@@ -2643,7 +2820,8 @@ window.__ModuleLoader__.load({
             },
             {
                 "name": "nfcore-fetchngs",
-                "desc": "当只有公共数据库编号或论文中的数据编号，需要取得测序文件与样本信息时使用。"
+                "desc": "当只有公共数据库编号或论文中的数据编号，需要取得测序文件与样本信息时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "scientific-database-access",
@@ -2696,10 +2874,6 @@ window.__ModuleLoader__.load({
                 "desc": "Low-level plotting library for full customization. Use when you need fine-grained control over every plot el。"
             },
             {
-                "name": "morning",
-                "desc": "将用户的晨间简报渲染为有样式的 HTML 产物，或将其设置为工作日循环任务。"
-            },
-            {
                 "name": "scientific-visualization",
                 "desc": "Meta-skill for publication-ready figures. Use when creating journal submission figures requiring multi-panel。"
             },
@@ -2715,7 +2889,8 @@ window.__ModuleLoader__.load({
         "research-design-hypothesis": [
             {
                 "name": "nfcore-readsimulator",
-                "desc": "当需要为测序方法评估构建带真值的模拟数据时使用。"
+                "desc": "当需要为测序方法评估构建带真值的模拟数据时使用。",
+                "via": "nfcore-catalog"
             },
             {
                 "name": "clinical-trial-workflows",
@@ -3194,98 +3369,136 @@ window.__ModuleLoader__.load({
 
     /** 12 个大类，与预设的 12 个专项模式一一对应（覆盖全部 34 个分类）。 */
     const SECTIONS = [
-      {
-        id: 'seq-variant',
-        label: '测序与变异检出',
-        emoji: '🧬',
-        color: '#3b82f6',
-        cats: ['sequencing-qc-alignment', 'variant-calling-filtering', 'copy-number-structural-variation'],
-      },
-      {
-        id: 'genome-pop',
-        label: '基因组组装与群体遗传',
-        emoji: '🧭',
-        color: '#0ea5e9',
-        cats: ['genome-assembly-comparative', 'population-genetics-gwas'],
-      },
-      {
-        id: 'clinical',
-        label: '临床解读与精准医学',
-        emoji: '🩺',
-        color: '#10b981',
-        cats: ['variant-interpretation-clinical', 'clinical-precision-medicine', 'pharmacogenomics-dosing'],
-      },
-      {
-        id: 'tumor-immune',
-        label: '肿瘤与免疫组学',
-        emoji: '🎗️',
-        color: '#ec4899',
-        cats: ['cancer-genomics-liquid-biopsy', 'immunology-immuno-oncology'],
-      },
-      {
-        id: 'transcriptome',
-        label: '转录组与差异表达',
-        emoji: '📈',
-        color: '#8b5cf6',
-        cats: ['transcriptomics-quantification', 'differential-expression-enrichment'],
-      },
-      {
-        id: 'singlecell-spatial',
-        label: '单细胞与空间组学',
-        emoji: '🔬',
-        color: '#6366f1',
-        cats: ['single-cell-core', 'single-cell-advanced-virtual-cell', 'spatial-omics'],
-      },
-      {
-        id: 'epigenome',
-        label: '表观遗传与调控',
-        emoji: '🧫',
-        color: '#14b8a6',
-        cats: ['epigenomics-methylation', 'regulatory-network-sequence-models'],
-      },
-      {
-        id: 'proteo-metabo',
-        label: '蛋白组与代谢组',
-        emoji: '⚗️',
-        color: '#f59e0b',
-        cats: ['proteomics', 'metabolomics-lipidomics'],
-      },
-      {
-        id: 'structure-drug',
-        label: '结构与药物设计',
-        emoji: '💊',
-        color: '#06b6d4',
-        cats: ['structural-biology-modeling', 'chemoinformatics-drug-design', 'protein-engineering-synbio', 'gene-editing-cloning'],
-      },
-      {
-        id: 'microbiome',
-        label: '微生物组与宏基因组',
-        emoji: '🦠',
-        color: '#84cc16',
-        cats: ['microbiome-metagenomics'],
-      },
-      {
-        id: 'imaging-forensic',
-        label: '影像·细胞表型·法医',
-        emoji: '🖼️',
-        color: '#a855f7',
-        cats: ['medical-imaging-radiomics', 'microscopy-cell-phenotyping', 'forensic-identity-genetics'],
-      },
-      {
-        id: 'support',
-        label: '文献·写作与工程',
-        emoji: '📝',
-        color: '#f43f5e',
-        cats: [
-          'literature-evidence-synthesis',
-          'writing-document-delivery',
-          'data-engineering-statistics',
-          'workflow-reproducibility',
-          'database-api-access',
-          'visualization-figures',
-          'research-design-hypothesis',
-        ],
-      },
+        {
+            "id": "seq-variant",
+            "label": "测序与变异检出",
+            "emoji": "🧬",
+            "color": "#3b82f6",
+            "cats": [
+                "sequencing-qc-alignment",
+                "variant-calling-filtering",
+                "copy-number-structural-variation"
+            ]
+        },
+        {
+            "id": "genome-pop",
+            "label": "基因组组装与群体遗传",
+            "emoji": "🧭",
+            "color": "#0ea5e9",
+            "cats": [
+                "genome-assembly-comparative",
+                "population-genetics-gwas"
+            ]
+        },
+        {
+            "id": "clinical",
+            "label": "临床解读与精准医学",
+            "emoji": "🩺",
+            "color": "#10b981",
+            "cats": [
+                "variant-interpretation-clinical",
+                "clinical-precision-medicine",
+                "pharmacogenomics-dosing"
+            ]
+        },
+        {
+            "id": "tumor-immune",
+            "label": "肿瘤与免疫组学",
+            "emoji": "🎗️",
+            "color": "#ec4899",
+            "cats": [
+                "cancer-genomics-liquid-biopsy",
+                "immunology-immuno-oncology"
+            ]
+        },
+        {
+            "id": "transcriptome",
+            "label": "转录组与差异表达",
+            "emoji": "📈",
+            "color": "#8b5cf6",
+            "cats": [
+                "transcriptomics-quantification",
+                "differential-expression-enrichment"
+            ]
+        },
+        {
+            "id": "singlecell-spatial",
+            "label": "单细胞与空间组学",
+            "emoji": "🔬",
+            "color": "#6366f1",
+            "cats": [
+                "single-cell-core",
+                "single-cell-advanced-virtual-cell",
+                "spatial-omics"
+            ]
+        },
+        {
+            "id": "epigenome",
+            "label": "表观遗传与调控",
+            "emoji": "🧫",
+            "color": "#14b8a6",
+            "cats": [
+                "epigenomics-methylation",
+                "regulatory-network-sequence-models"
+            ]
+        },
+        {
+            "id": "proteo-metabo",
+            "label": "蛋白组与代谢组",
+            "emoji": "⚗️",
+            "color": "#f59e0b",
+            "cats": [
+                "proteomics",
+                "metabolomics-lipidomics"
+            ]
+        },
+        {
+            "id": "structure-drug",
+            "label": "结构与药物设计",
+            "emoji": "💊",
+            "color": "#06b6d4",
+            "cats": [
+                "structural-biology-modeling",
+                "chemoinformatics-drug-design",
+                "protein-engineering-synbio",
+                "gene-editing-cloning"
+            ]
+        },
+        {
+            "id": "microbiome",
+            "label": "微生物组与宏基因组",
+            "emoji": "🦠",
+            "color": "#84cc16",
+            "cats": [
+                "microbiome-metagenomics"
+            ]
+        },
+        {
+            "id": "imaging-forensic",
+            "label": "影像·细胞表型·法医",
+            "emoji": "🖼️",
+            "color": "#a855f7",
+            "cats": [
+                "medical-imaging-radiomics",
+                "microscopy-cell-phenotyping",
+                "forensic-identity-genetics"
+            ]
+        },
+        {
+            "id": "support",
+            "label": "文献·写作与工程",
+            "emoji": "📝",
+            "color": "#f43f5e",
+            "cats": [
+                "literature-evidence-synthesis",
+                "writing-document-delivery",
+                "data-engineering-statistics",
+                "workflow-reproducibility",
+                "database-api-access",
+                "visualization-figures",
+                "research-design-hypothesis"
+            ]
+        }
     ];
 
     /** 603 技能 ≈ 38k token（README 实测），折算成单个技能的粗估。 */
@@ -3672,6 +3885,7 @@ window.__ModuleLoader__.load({
             source: data.source ?? (Array.isArray(data.enabled) ? 'session' : 'profile'),
             overridden: Array.isArray(data.enabled),
             presetOnly: Array.isArray(data.presetOnly) ? data.presetOnly : null,
+            presetId: typeof data.presetId === 'string' ? data.presetId : null,
             instances: Number(data.instances) || 0,
           });
         } catch (e) {
@@ -3886,8 +4100,9 @@ window.__ModuleLoader__.load({
             { style: PS.hint },
             `当前 ${onCats.length} / ${(state.categories ?? []).length} 类 · ${totalSkills} 技能 · ≈${Math.round((totalSkills * TOKEN_PER_SKILL) / 100) / 10}k token。` +
               '只影响本会话，下一步生效；你自己的 ~/.agents 技能不受影响。' +
-              (state.source === 'profile' && (state.instances ?? 0) > 1
-                ? '（同进程挂着多个预设，本会话若是专项模式则以该模式为准；在这里勾选后以本面板为准。）'
+              (onCats.length === 0 ? '（0 类 = 本会话不加载本包的任何技能。）' : '') +
+              (state.source !== 'session' && !state.presetId && (state.instances ?? 0) > 1
+                ? '（暂时判定不了本会话属于哪个模式，显示的默认范围可能不准；勾选后以本面板为准。）'
                 : ''),
           ),
         );

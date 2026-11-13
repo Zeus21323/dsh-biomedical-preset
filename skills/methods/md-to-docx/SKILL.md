@@ -1,6 +1,6 @@
 ---
 name: md-to-docx
-description: Convert Markdown files to professionally formatted Word (.docx) documents with embedded PNG images — pure JavaScript, no external tools required
+description: Markdown 转 Word：把 Markdown 转成排版规范、内嵌 PNG 图片的 .docx，纯 JavaScript 实现、不依赖外部工具。LaTeX 稿件转 Word 用 tex-to-docx。
 ---
 
 # Markdown to Word (.docx) Skill

@@ -1,0 +1,84 @@
+[
+  {
+    "id": "variants",
+    "label": "测序与变异",
+    "emoji": "🧬",
+    "color": "#3b82f6",
+    "cats": [
+      "sequencing-qc-alignment",
+      "genome-assembly-comparative",
+      "variant-calling-filtering",
+      "copy-number-structural-variation",
+      "variant-interpretation-clinical",
+      "population-genetics-gwas",
+      "cancer-genomics-liquid-biopsy",
+      "forensic-identity-genetics"
+    ]
+  },
+  {
+    "id": "omics",
+    "label": "组学与单细胞",
+    "emoji": "🧪",
+    "color": "#8b5cf6",
+    "cats": [
+      "transcriptomics-quantification",
+      "differential-expression-enrichment",
+      "single-cell-core",
+      "single-cell-advanced-virtual-cell",
+      "spatial-omics",
+      "epigenomics-methylation",
+      "regulatory-network-sequence-models",
+      "proteomics",
+      "metabolomics-lipidomics",
+      "microbiome-metagenomics"
+    ]
+  },
+  {
+    "id": "structure",
+    "label": "结构与药物",
+    "emoji": "💊",
+    "color": "#06b6d4",
+    "cats": [
+      "structural-biology-modeling",
+      "chemoinformatics-drug-design",
+      "protein-engineering-synbio",
+      "gene-editing-cloning",
+      "pharmacogenomics-dosing"
+    ]
+  },
+  {
+    "id": "clinical",
+    "label": "临床与影像",
+    "emoji": "🩺",
+    "color": "#10b981",
+    "cats": [
+      "clinical-precision-medicine",
+      "medical-imaging-radiomics",
+      "microscopy-cell-phenotyping",
+      "immunology-immuno-oncology"
+    ]
+  },
+  {
+    "id": "methods",
+    "label": "方法与工程",
+    "emoji": "⚙️",
+    "color": "#f59e0b",
+    "cats": [
+      "data-engineering-statistics",
+      "workflow-reproducibility",
+      "database-api-access",
+      "visualization-figures",
+      "research-design-hypothesis"
+    ]
+  },
+  {
+    "id": "writing",
+    "label": "文献与写作",
+    "emoji": "📝",
+    "color": "#f43f5e",
+    "cats": [
+      "literature-evidence-synthesis",
+      "writing-document-delivery"
+    ]
+  }
+]

@@ -1,6 +1,6 @@
 ---
 name: general-writer
-description: Write, revise, structure, or audit evidence-grounded academic papers across disciplines from supplied literature, data, analyses, methods, figures, notes, or existing drafts. Use for 通用论文写作, 学术论文写作, journal or conference manuscripts, theses, review papers, theoretical or methods papers, interdisciplinary studies, Results/Discussion drafting, citation and figure organization, auditable LaTeX production, and verified DOCX export. Route computer-science, bioinformatics, and empirical-economics work through discipline-aware quality gates. Do not fabricate evidence, citations, analyses, novelty, or causal claims.
+description: 跨学科学术写作：基于用户提供的文献、数据、分析、方法与图表，撰写、修改、组织或审查有证据支撑的论文，经过学科化质量关卡，不编造证据。生信与生物医学稿件优先用 bioinformatics-writer，只写方法部分用 methods-section-writer。
 ---
 
 # General Academic Writer

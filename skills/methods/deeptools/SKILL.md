@@ -1,6 +1,6 @@
 ---
 name: deeptools
-description: NGS analysis toolkit. Used for BAM to bigWig conversion, quality control (correlation, PCA, fingerprint plots), heatmaps/feature plots (TSS, peaks), suitable for ChIP-seq, RNA-seq, ATAC-seq visualization.
+description: deepTools 测序信号工具包：BAM 转 bigWig、样本相关性/PCA/fingerprint 质控、TSS 或 peak 周围的热图与 profile 图，适用于 ChIP-seq、ATAC-seq、RNA-seq 可视化。call peak 用 epigenomics-peak-calling 或 03-epigenomics-chip-seq-histone-analysis。
 license: MIT
 author: AIPOCH
 ---

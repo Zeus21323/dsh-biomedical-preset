@@ -1,6 +1,6 @@
 ---
 name: 19-forensic-genomics-str-genotyping
-description: 在法医基因组学领域开展“STR分型”任务时使用；根据输入、科学假设和运行环境，在STR分析下已保留的方法实现之间路由。
+description: 法医常染色体 STR 分型：从毛细管电泳或测序数据完成 CODIS 等位点分型、等位基因判读与质量评估，并计算随机匹配概率。混合斑用 19-forensic-genomics-mixture-analysis，亲缘判断用 19-forensic-genomics-kinship-analysis。
 ---
 
 # STR分型

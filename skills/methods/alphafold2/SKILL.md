@@ -1,6 +1,6 @@
 ---
 name: alphafold2
-description: 使用 ColabFold 运行器和 AlphaFold2/AlphaFold2-Multimer 预测蛋白质单体、多聚体与复合物结构，并通过 pLDDT、ipTM 和 RMSD 评估预测与设计质量。
+description: 使用 ColabFold 运行器和 AlphaFold2/AlphaFold2-Multimer 预测蛋白质单体、多聚体与复合物结构，并通过 pLDDT、ipTM 和 RMSD 评估预测与设计质量。已并入 12-structural-biology-alphafold2（单体与同源多聚体预测的结果判读要点）。
 license: Apache-2.0
 ---
 

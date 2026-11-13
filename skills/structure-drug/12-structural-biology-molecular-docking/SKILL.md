@@ -1,6 +1,6 @@
 ---
 name: 12-structural-biology-molecular-docking
-description: 用于Vina等经典方法的蛋白质—小分子对接、姿势筛选和相互作用复核；当用户有受体结构、配体和候选结合位点时使用。
+description: 用于Vina等经典方法的蛋白质—小分子对接、姿势筛选和相互作用复核；当用户有受体结构、配体和候选结合位点时使用。对整个化合物库做虚拟筛选用 virtual-screening，AI 对接用 diffdock。
 whenToUse: 当用户有受体结构、配体和候选结合位点时使用
 ---
 # 经典蛋白质—配体分子对接

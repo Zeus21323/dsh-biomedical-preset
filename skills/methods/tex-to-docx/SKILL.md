@@ -1,6 +1,6 @@
 ---
 name: tex-to-docx
-description: Convert LaTeX or Markdown manuscripts into validated journal-ready DOCX files, with journal configuration, CSL bibliography formatting, media embedding, and optional numbered-reference bookmarks plus clickable Word REF fields. Use when a user asks to export .tex/.md to Word, apply a journal template or citation style, require numbered references and cross-links, or prepare verified DOCX submission deliverables.
+description: LaTeX/Markdown 转投稿用 Word：按期刊配置生成经校验的 DOCX，处理 CSL 参考文献格式、图片嵌入和可点击的文献交叉引用。只是 Markdown 转 Word 用 md-to-docx。
 ---
 
 # TeX to DOCX

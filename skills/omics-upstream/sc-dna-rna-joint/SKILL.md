@@ -1,6 +1,6 @@
 ---
 name: sc-dna-rna-joint
-description: 当用户需要联合分析同一单细胞的基因组DNA与转录组数据，并关联变异、拷贝数、等位基因和表达状态时使用。
+description: 当用户需要联合分析同一单细胞的基因组DNA与转录组数据，并关联变异、拷贝数、等位基因和表达状态时使用。只有 RNA 数据的轨迹与伪时间分析用 sc-trajectory-inference。
 whenToUse: 当用户需要联合分析同一单细胞的基因组DNA与转录组数据，并关联变异、拷贝数、等位基因和表达状态时使用
 ---
 

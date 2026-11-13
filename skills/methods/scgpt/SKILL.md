@@ -1,6 +1,6 @@
 ---
 name: scgpt
-description: 使用单细胞生物学基础模型 scGPT 对单细胞表达数据进行嵌入和注释。适用于：从 AnnData 生成细胞嵌入以进行聚类或整合；执行零样本或微调后的细胞类型注释；为扰动或基因调控网络任务生成基因级表示。对于 scVI 等概率单细胞模型，请使用 scvi-tools 库。
+description: 使用单细胞生物学基础模型 scGPT 对单细胞表达数据进行嵌入和注释。适用于：从 AnnData 生成细胞嵌入以进行聚类或整合；执行零样本或微调后的细胞类型注释；为扰动或基因调控网络任务生成基因级表示。对于 scVI 等概率单细胞模型，请使用 scvi-tools 库。已并入 scgpt-embedding（表征与注释的使用边界）。
 license: Apache-2.0
 ---
 

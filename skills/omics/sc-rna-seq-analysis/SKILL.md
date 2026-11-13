@@ -1,7 +1,6 @@
 ---
 name: sc-rna-seq-analysis
-description: >-
-  Single-cell RNA-seq comprehensive analysis pipeline. Covers 17+ analysis modules: QC, decontX, doublet detection, normalization, PCA, Harmony, clustering, UMAP (2D/3D), cell type annotation (SingleR), marker genes, differential expression, cell proportion, nebula plots, circular UMAP, AUCell, gene knockout/overexpression simulation, scMetabolism, decoupleR pathway inference. Also supports flow cytometry FCS file parsing (flowio integration: extract events as NumPy arrays, read metadata/channels, convert to CSV/DataFrame). Trigger when user mentions: scRNA-seq, single-cell analysis, 单细胞分析, 单细胞测序, Seurat pipeline, cell clustering, cell type annotation, 细胞聚类, 细胞注释, FCS files, flow cytometry.
+description: 单细胞 RNA-seq 综合分析流程（17 个以上模块）：质控、decontX 去环境 RNA、双细胞检测、归一化、PCA、Harmony 整合、聚类、SingleR 注释、差异表达、轨迹与细胞通讯，支持 Seurat 与 Scanpy。只需其中一步时用对应专门技能（scrna-qc-filtering、sc-batch-integration、sc-cell-type-annotation 等）。
 ---
 
 # Single-Cell RNA-seq Comprehensive Analysis

@@ -1,6 +1,6 @@
 ---
 name: 21-biological-foundation-models-nicheformer
-description: 当用户需要用Nicheformer分析空间转录组细胞表征、组织微环境或空间邻域时使用。
+description: 当用户需要用Nicheformer分析空间转录组细胞表征、组织微环境或空间邻域时使用。常规的空间域与边界识别用 06-spatial-omics-spatial-domain-identification。
 whenToUse: 当用户需要用Nicheformer分析空间转录组细胞表征、组织微环境或空间邻域时使用
 ---
 

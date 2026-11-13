@@ -1,6 +1,6 @@
 ---
 name: latex-posters
-description: Create professional research posters in LaTeX using beamerposter, tikzposter, or baposter. Support for conference presentations, academic posters, and scientific communication. Includes layout design, color schemes, multi-column formats, figure integration, and poster-specific best practices for visual communication.
+description: LaTeX 学术海报排版：用 beamerposter、tikzposter 或 baposter 设计会议海报，包括版式、配色、多栏布局与图件整合。要从论文 PDF 自动生成海报用 academic-poster-generator。
 allowed-tools: Read Write Edit Bash
 required_environment_variables: "[{\"name\": \"OPENROUTER_API_KEY\", \"prompt\": \"OpenRouter API key for the skill's LLM-powered steps.\", \"required_for\": \"optional features\"}]"
 metadata: "{\"version\": \"1.1\", \"openclaw\": {\"primaryEnv\": \"OPENROUTER_API_KEY\", \"envVars\": [{\"name\": \"OPENROUTER_API_KEY\", \"required\": false, \"description\": \"OpenRouter API key for the skill's LLM-powered steps.\"}]}}"

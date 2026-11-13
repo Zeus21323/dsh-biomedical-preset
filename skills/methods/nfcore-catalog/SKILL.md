@@ -1,6 +1,6 @@
 ---
 name: nfcore-catalog
-description: 当用户只有测序公司或科研平台交付的文件、仅知道样本来源，不清楚数据类型、能研究什么或如何分析时使用；先识别数据与处理阶段，再根据研究问题自主匹配分析流程、输入与参数，也支持已有明确方法的请求。
+description: 全部 nf-core 标准流程（152 个 nfcore-*）的唯一入口：已知要跑某个 nf-core 流程，或手上是测序公司、科研平台交付的原始数据，需要标准化流程处理时，先加载本技能，再按附带的流程索引打开具体流程。覆盖 RNA-seq 定量与融合、单细胞与空间原始数据生成表达矩阵（scrnaseq、spatialaxe）、胚系与肿瘤变异检出（sarek、raredisease）、ATAC/ChIP/CUT&RUN 与甲基化、扩增子与宏基因组（ampliseq、mag、taxprofiler）、病毒共识序列（viralrecon）、古 DNA（eager）、质谱蛋白组与代谢组、HLA 分型与免疫组库、按 GEO/SRA 编号下载公共数据（fetchngs）与提交 SRA（seqsubmit）。不清楚数据类型时也先用它识别。
 whenToUse: 当用户只有测序公司或科研平台交付的文件、仅知道样本来源，不清楚数据类型、能研究什么或如何分析时使用
 ---
 

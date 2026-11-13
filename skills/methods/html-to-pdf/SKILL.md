@@ -1,6 +1,6 @@
 ---
 name: html-to-pdf
-description: Convert HTML files or URLs to high-fidelity PDFs using Puppeteer; auto-detects or forces RTL for Hebrew/Arabic when RTL content is present.
+description: HTML 转 PDF：用 Puppeteer 把 HTML 文件或网址高保真转成 PDF，自动识别希伯来语、阿拉伯语等从右到左排版。Office 文档转 PDF 用 DSH 自带的 office-export-pdf。
 license: MIT
 author: AIPOCH
 ---

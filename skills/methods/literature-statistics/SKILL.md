@@ -1,6 +1,6 @@
 ---
 name: literature-statistics
-description: Generate statistics for publication-year and journal distributions from local references or PDFs; use when you need standardized Year/Journal tables and a summary without any network access.
+description: 文献计量统计（离线）：从本地参考文献或 PDF 统计出版年份与期刊分布，输出标准化的年份/期刊表和摘要，不联网。检索新文献用 paper-lookup 或 literature-review。
 license: MIT
 author: AIPOCH
 ---

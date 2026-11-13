@@ -609,6 +609,12 @@ function makeCtx({ webServer, sid = 'sess-abc', presets = DEFAULT_PRESETS }) {
         },
         agentPresets: presets,
         webServer,
+        tools: {
+          register(tool) {
+            ctx.registeredTools = [...(ctx.registeredTools ?? []), tool];
+            return () => {};
+          },
+        },
       });
       if (typeof dispose === 'function') disposers.push(dispose);
       return dispose;
@@ -746,14 +752,128 @@ if (!a.ctx.invalidated || !more[0].ctx.invalidated) bad('invalidate 没有广播
 else ok('invalidate 广播到每个实例', `${a.ctx.invalidated} / ${more[0].ctx.invalidated}`);
 
 const listed = await more[0].ctx._provider.list();
-const catsInList = new Set(listed.map((s) => s.metadata?.category));
+const catsInList = new Set(listed.filter((s) => s.name !== 'nfcore-catalog').map((s) => s.metadata?.category));
 if (catsInList.size !== 2) bad('list() 没按会话覆盖过滤', [...catsInList].join(','));
 else ok('list() 按会话覆盖过滤', `${listed.length} 个技能 / ${[...catsInList].join(',')}`);
+
+// nf-core 折叠：具体流程不进目录，入口 nfcore-catalog 进目录，加载入口时附带范围内的流程索引
+{
+  const pipelines = listed.filter((s) => s.name.startsWith('nfcore-') && s.name !== 'nfcore-catalog');
+  const router = listed.find((s) => s.name === 'nfcore-catalog');
+  if (pipelines.length > 0) bad('折叠的 nf-core 流程仍出现在目录里', pipelines.map((s) => s.name).join(','));
+  else if (!router) bad('范围内有折叠流程，却没有露出入口 nfcore-catalog');
+  else ok('nf-core 折叠：目录只露出入口', `目录 ${listed.length} 个技能`);
+  if (router) {
+    const loaded = await more[0].ctx._provider.get(router);
+    const indexed = [...loaded.content.matchAll(/^- `(nfcore-[\w-]+)`/gm)].map((m) => m[1]);
+    const outside = indexed.filter((n) => !['nfcore-ddamsproteomics', 'nfcore-diaproteomics', 'nfcore-mspepid', 'nfcore-proteinannotator', 'nfcore-proteinfamilies', 'nfcore-proteogenomicsdb', 'nfcore-proteomicslfq', 'nfcore-quantms', 'nfcore-ribomsqc', 'nfcore-metaboigniter'].includes(n));
+    if (indexed.length === 0) bad('入口技能没有附带流程索引');
+    else if (outside.length > 0) bad('流程索引包含了范围外的流程', outside.join(','));
+    else if (!/\/SKILL\.md$/m.test(loaded.content)) bad('流程索引没有给出 SKILL.md 路径');
+    else ok('入口技能附带范围内的流程索引', `${indexed.length} 个流程`);
+  }
+}
 
 await callSet({ sessionId: 'sess-abc', enabled: null });
 const g4 = await callGet('/bio-skills/get?sessionId=sess-abc');
 if (g4.enabled !== null) bad('覆盖清除失败', JSON.stringify(g4.enabled));
 else ok('覆盖可清除', `source=${g4.source}`);
+
+// 「全部关闭」= 本会话不加载本包任何技能（以前会退回全量扫描，反而加载全部 603 个）
+await callSet({ sessionId: 'sess-abc', enabled: [] });
+const listedNone = await more[0].ctx._provider.list();
+if (listedNone.length !== 0) bad('「全部关闭」后 list() 仍返回技能', String(listedNone.length));
+else ok('「全部关闭」→ list() 返回 0 个技能');
+await callSet({ sessionId: 'sess-abc', enabled: null });
+
+// 技能声明的 MCP 工具：加载技能时附在正文最前面
+{
+  const all = await a.ctx._provider.list();
+  const lit = all.find((x) => x.name === 'literature-review');
+  const plain = all.find((x) => x.name === 'sc-doublet-detection');
+  if (!lit || !plain) bad('全量目录里找不到用于测试的技能');
+  else {
+    const loaded = await a.ctx._provider.get(lit);
+    const loadedPlain = await a.ctx._provider.get(plain);
+    if (!/^> 本技能常用的 MCP 数据工具：.*mcp__biomedical__pubmed_search_articles/.test(loaded.content)) bad('声明了 MCP 工具的技能加载后没有附上工具提示', loaded.content.slice(0, 80));
+    else if (/本技能常用的 MCP 数据工具/.test(loadedPlain.content)) bad('没声明工具的技能也被附上了工具提示');
+    else ok('技能声明的 MCP 工具随技能一起加载');
+  }
+}
+
+// 等级与合规：标记、提示、合并、按等级隐藏
+{
+  const all = await a.ctx._provider.list();
+  const byName = new Map(all.map((x) => [x.name, x]));
+  const restricted = byName.get('image-painter');
+  const experimental = byName.get('cancer-mutation-landscape-oncoplot');
+  if (!restricted?.description.startsWith('〔受限')) bad('受限技能的目录描述没有〔受限〕标记', restricted?.description?.slice(0, 30));
+  else ok('受限技能在目录里带〔受限〕标记');
+  if (!experimental?.description.startsWith('〔实验〕')) bad('实验级技能的目录描述没有〔实验〕标记', experimental?.description?.slice(0, 30));
+  else ok('实验级技能在目录里带〔实验〕标记');
+  const rLoaded = await a.ctx._provider.get(restricted);
+  if (!/^> 【合规·受限】/.test(rLoaded.content)) bad('加载受限技能时没有合规提示', rLoaded.content.slice(0, 40));
+  else ok('加载受限技能时附带征得同意的提示');
+  const clinical = await a.ctx._provider.get(byName.get('variant-pathogenicity-acmg'));
+  if (!/【合规·患者数据】/.test(clinical.content)) bad('临床技能加载时没有去标识化提示');
+  else ok('临床技能加载时附带去标识化提示');
+  if (byName.has('gsea-gsva-scoring') || byName.has('12-structural-biology-alphafold2')) bad('已并入的技能仍出现在目录里');
+  else ok('已并入的技能不在目录里');
+  const pe = await a.ctx._provider.get(byName.get('pathway-enrichment'));
+  if (!/## 已并入本技能的实现[\s\S]*`gsea-gsva-scoring`[^\n]*SKILL\.md/.test(pe.content)) bad('主技能加载时没有列出已并入的实现');
+  else ok('主技能加载时列出已并入实现的原文路径');
+  const hidden = mount({ hideRestricted: true, hideExperimental: true }, makeWebServer());
+  const hiddenList = await hidden.ctx._provider.list();
+  if (hiddenList.some((x) => x.name === 'image-painter' || x.name === 'cancer-mutation-landscape-oncoplot')) bad('hideRestricted / hideExperimental 没有生效');
+  else ok('预设可隐藏受限与实验级技能', `${all.length} → ${hiddenList.length}`);
+  hidden.ctx.teardown();
+}
+
+// skill_scope：agent 自己收窄技能范围（与浮窗共用会话覆盖）
+{
+  const tool = (more[0].ctx.registeredTools ?? []).find((t) => t.name === 'skill_scope');
+  if (!tool) bad('skill_scope 工具没有注册');
+  else {
+    ok('skill_scope 工具已注册', `参数：${Object.keys(tool.parameters.properties).join(', ')}`);
+    const r = await tool.execute({ categories: ['single-cell-core', 'spatial-omics'] }, { agent: { id: 'sess-abc' } });
+    const rendered = tool.output.render({}, r)[0].text;
+    const narrowed = await more[0].ctx._provider.list();
+    const narrowedCats = new Set(narrowed.filter((x) => x.name !== 'nfcore-catalog').map((x) => x.metadata?.category));
+    if (narrowedCats.size !== 2 || !narrowedCats.has('spatial-omics')) bad('skill_scope 设置后目录没有收窄', [...narrowedCats].join(','));
+    else ok('skill_scope 收窄目录', `${narrowed.length} 个技能；${rendered.slice(0, 30)}…`);
+    let threw = false;
+    try {
+      await tool.execute({ categories: ['no-such-category'] }, { agent: { id: 'sess-abc' } });
+    } catch {
+      threw = true;
+    }
+    if (!threw) bad('skill_scope 接受了未知分类');
+    else ok('skill_scope 拒绝未知分类');
+    await tool.execute({ categories: ['proteomics'], add: true }, { agent: { id: 'sess-abc' } });
+    const added = shared.overrides.get('sess-abc');
+    if (!added || !added.has('proteomics') || !added.has('single-cell-core')) bad('skill_scope add 没有在原范围上追加', [...(added ?? [])].join(','));
+    else ok('skill_scope add 追加分类', [...added].join(','));
+    await tool.execute({ reset: true }, { agent: { id: 'sess-abc' } });
+    if (shared.overrides.has('sess-abc')) bad('skill_scope reset 没有清除会话覆盖');
+    else ok('skill_scope reset 恢复默认');
+  }
+}
+
+// 专项模式会话：浮窗读到的默认范围必须是该模式的白名单，而不是全量模式的 profile 开关
+// （全量实例永远在，进程级推断会一直落到 profile）
+{
+  const clinicalOnly = ['variant-interpretation-clinical', 'clinical-precision-medicine', 'pharmacogenomics-dosing'];
+  const rc = mount({ preset: 'bio-clinical', only: clinicalOnly }, ws);
+  if (rc.thrown) bad('带 preset 的专项实例 apply 抛异常', String(rc.thrown.message));
+  const gc = await callGet('/bio-skills/get?sessionId=s-bio');
+  if (gc.source !== 'preset' || gc.presetId !== 'bio-clinical' || gc.effective.length !== 3) {
+    bad('专项会话的默认范围不是该模式白名单', JSON.stringify({ source: gc.source, presetId: gc.presetId, n: gc.effective.length }));
+  } else ok('专项会话 GET 按本模式白名单', `presetId=${gc.presetId} effective=${gc.effective.length}`);
+  const gp = await callGet('/bio-skills/get?sessionId=probe');
+  if (gp.source !== 'profile') bad('判定不了会话时应退回进程级推断', gp.source);
+  else ok('判定不了会话 → 退回进程级推断', `source=${gp.source}`);
+  rc.ctx.teardown();
+}
 
 // 模块二次加载：SHARED 必须还是同一份
 {
@@ -800,6 +920,34 @@ else ok('覆盖可清除', `source=${g4.source}`);
   else ok('路由被占 → apply 存活并记录原因', String(fresh.routeError).slice(0, 48));
   if (!r3.ctx._provider) bad('路由失败时技能 provider 没注册');
   else ok('路由失败时技能 provider 仍注册');
+}
+
+// ─────────────────────────────────────────────────────────── subagent-cap：并发上限与嵌套
+{
+  const cap = await import(pathToFileURL(path.join(PKG, 'subagent-cap.mjs')).href);
+  let handler;
+  cap.apply({ on: (_e, h) => (handler = h) }, { maxActive: 2 });
+  const root = { id: 'root', session: { header: {} }, options: {} };
+  const child = { id: 'child', session: { header: { delegationDepth: 1 } }, options: {} };
+  let release;
+  const gate = new Promise((r) => (release = r));
+  const slow = () => gate.then(() => ({ ok: true }));
+  const p1 = handler({ name: 'subagent', agent: root }, slow);
+  const p2 = handler({ name: 'subagent_fork', agent: root }, slow);
+  const r3 = await handler({ name: 'subagent', agent: root }, slow);
+  if (r3.error?.info?.code !== 'ACTIVATION_LIMIT_REACHED') bad('第 3 个并发子智能体没有被拒', JSON.stringify(r3));
+  else ok('并发上限：第 maxActive+1 个被拒');
+  const r4 = await handler({ name: 'subagent', agent: child }, slow);
+  if (r4.error?.info?.code !== 'NESTED_DELEGATION_DENIED') bad('子智能体再派活没有被拒', JSON.stringify(r4));
+  else ok('嵌套派活：子智能体调用 subagent 被拒');
+  const r5 = await handler({ name: 'bash', agent: child }, async () => ({ ok: 'bash' }));
+  if (r5.ok !== 'bash') bad('非派活工具被误拦', JSON.stringify(r5));
+  else ok('非派活工具不受影响');
+  release();
+  await Promise.all([p1, p2]);
+  const r6 = await handler({ name: 'subagent', agent: root }, async () => ({ ok: 'after' }));
+  if (r6.ok !== 'after') bad('子智能体结束后名额没有释放', JSON.stringify(r6));
+  else ok('子智能体结束后名额释放');
 }
 
 console.log('\n' + notes.join('\n'));

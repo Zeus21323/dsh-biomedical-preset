@@ -1,6 +1,6 @@
 ---
 name: 19-forensic-genomics-mtdna-haplogroup
-description: 在法医基因组学领域开展“线粒体单倍群”任务时使用；根据输入、科学假设和运行环境，在Y染色体与mtDNA下已保留的方法实现之间路由。
+description: 法医线粒体 DNA 分析：从 mtDNA 控制区或全序列判定单倍群、比对母系来源，适合毛干、骨骼等核 DNA 不足的检材。父系来源用 Y-SNP 或 Y-STR 技能。
 ---
 
 # 线粒体单倍群

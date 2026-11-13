@@ -1,6 +1,6 @@
 ---
 name: proteomics-quantification
-description: 蛋白质组定量下游分析——把 MaxQuant / DIA-NN / Spectronaut / FragPipe 的输出转成可统计的蛋白矩阵，做过滤、归一化、缺失值处理、limma/DEqMS 差异分析、富集与交付。当用户给的是 proteinGroups.txt、report.tsv、peptides.txt 这类定量结果（而不是原始 RAW/mzML）时使用；原始谱图处理与肽段鉴定用 pyopenms。
+description: 蛋白质组定量下游分析——把 MaxQuant / DIA-NN / Spectronaut / FragPipe 的输出转成可统计的蛋白矩阵，做过滤、归一化、缺失值处理、limma/DEqMS 差异分析、富集与交付。当用户给的是 proteinGroups.txt、report.tsv、peptides.txt 这类定量结果（而不是原始 RAW/mzML）时使用；原始谱图处理与肽段鉴定用 pyopenms。已并入 07-proteomics-protein-quantification（定量定义、汇总与复核要点）。
 category: omics
 tags: proteomics, mass-spectrometry, limma, DEqMS, differential-abundance
 whenToUse: 当用户给的是 proteinGroups.txt、report.tsv、peptides.txt 这类定量结果（而不是原始 RAW/mzML）时使用

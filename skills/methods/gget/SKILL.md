@@ -1,6 +1,6 @@
 ---
 name: gget
-description: Unified CLI/Python interface for querying genomic, proteomic, structure, and expression data across 20+ bioinformatics databases; use when you need fast, scriptable retrieval by gene/protein IDs or keywords.
+description: gget 命令行与 Python 快速查询 20 多个生物数据库（基因、蛋白、结构、表达），按基因或蛋白 ID、关键词批量取数。单次查询优先用本插件的 MCP 数据工具。
 license: MIT
 author: AIPOCH
 ---

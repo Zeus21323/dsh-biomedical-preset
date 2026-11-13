@@ -1,0 +1,10 @@
+{
+  "literature": { "label": "文献与预印本", "prefixes": ["pubmed_", "biorxiv_", "literature_graph_"] },
+  "genome": { "label": "基因组注释与调控", "prefixes": ["genomes_", "biomart_", "rna_rfam_", "regulation_"] },
+  "variant": { "label": "变异与人群频率", "prefixes": ["variants_", "human_genetics_"] },
+  "expression": { "label": "表达与组学数据集", "prefixes": ["expression_", "omics_archives_", "cellguide_"] },
+  "protein": { "label": "基因功能与蛋白注释", "prefixes": ["genes_ontologies_", "protein_annotation_"] },
+  "structure": { "label": "蛋白结构", "prefixes": ["structures_"] },
+  "chemistry": { "label": "化合物与药品监管", "prefixes": ["chembl_", "chemistry_", "zinc_", "drug_regulatory_"] },
+  "clinical": { "label": "临床试验与肿瘤证据", "prefixes": ["clinicaltrials_", "clinical_genomics_", "cancer_models_"] }
+}

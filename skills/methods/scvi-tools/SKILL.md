@@ -1,6 +1,6 @@
 ---
 name: scvi-tools
-description: 使用 scvi-tools 对单细胞 RNA 测序数据进行概率建模——使用 scVI 获得批次校正的潜在空间，使用 scANVI 进行半监督标签转移，并执行贝叶斯差异表达分析。适用于整合多个 scRNA-seq 批次、生成细胞嵌入以进行聚类、将参考数据的注释转移到查询数据，或按细胞簇评估差异表达基因。空间解卷积或映射应改用 cell2location、DestVI 或 Tangram。
+description: 使用 scvi-tools 对单细胞 RNA 测序数据进行概率建模——使用 scVI 获得批次校正的潜在空间，使用 scANVI 进行半监督标签转移，并执行贝叶斯差异表达分析。适用于整合多个 scRNA-seq 批次、生成细胞嵌入以进行聚类、将参考数据的注释转移到查询数据，或按细胞簇评估差异表达基因。空间解卷积或映射应改用 cell2location、DestVI 或 Tangram。已并入 scvi-single-cell-probabilistic-modeling（scVI/scANVI/totalVI 选型、训练验证与交付要点）。
 license: Apache-2.0
 ---
 

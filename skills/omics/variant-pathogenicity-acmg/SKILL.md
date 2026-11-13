@@ -1,8 +1,6 @@
 ---
 name: variant-pathogenicity-acmg
-description: >-
-  当用户需要按 ACMG/AMP 2015 框架对胚系变异做致病性分级、证据码判读或 VUS 报告时使用；Germline variant pathogenicity interpretation under the ACMG/AMP 2015 framework, with ClinGen SVI refinements: full PVS1–BP7 evidence-code table, PVS1 decision tree with strength downgrades, official criteria-combination rules, BA1/BS1/PM2 frequency handling, calibrated PP3/BP4 thresholds, de novo and co-segregation point systems, and VUS reporting wording. 中文触发词：ACMG 分级、
-  致病性判读、变异解读、VUS、PVS1、 临床意义、variant classification、致病性变异、意义未明变异、证据码。
+description: 胚系 SNV/Indel 致病性分级：按 ACMG/AMP 2015 框架及 ClinGen SVI 细则判读 PVS1–BP7 证据码，给出分级、处理冲突证据并撰写 VUS 报告。拷贝数变异（缺失、重复）用 acmg-clingen-germline-cnv-classification。已并入 13-clinical-genomics-intervar（28 条证据标准逐条判读的增强版流程）。
 category: omics
 tags: acmg, variant-interpretation, clinical-genetics, vus
 whenToUse: 当用户需要按 ACMG/AMP 2015 框架对胚系变异做致病性分级、证据码判读或 VUS 报告时使用

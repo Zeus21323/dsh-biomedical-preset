@@ -1,6 +1,6 @@
 ---
 name: drawio
-description: Generate draw.io diagrams as .drawio files and export to PNG/SVG/PDF with embedded XML
+description: draw.io 绘图：生成 .drawio 流程图、示意图或架构图，并导出为内嵌 XML、可再编辑的 PNG/SVG/PDF。手绘风格草图用 excalidraw-diagram-generator。
 ---
 
 # Draw.io Diagram Skill

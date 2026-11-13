@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 Metabolomics Research - Python SDK Implementation
-Tested implementation following TDD principles
 """
 
 from tooluniverse import ToolUniverse
@@ -66,10 +65,10 @@ def metabolomics_analysis_pipeline(
         for metabolite in metabolite_list[:10]:  # Limit to 10 for report length
             report.append(f"\n### Metabolite: {metabolite}\n")
 
-            # HMDB Search
+            # HMDB Search - FIX: Handle nested results structure
             try:
                 result = tu.tools.HMDB_search(
-                    operation="search",  # SOAP tool - CRITICAL
+                    operation="search",
                     query=metabolite
                 )
 
@@ -80,40 +79,46 @@ def metabolomics_analysis_pipeline(
                     if results and len(results) > 0:
                         hmdb_entry = results[0]  # FIX: Access results array
 
-                        # Use correct field names from actual API
+                        # FIX: Use correct field names (cid, not accession)
                         report.append(f"**PubChem CID**: {hmdb_entry.get('cid', 'N/A')}\n")
                         report.append(f"**Name**: {hmdb_entry.get('name', 'N/A')}\n")
                         report.append(f"**Formula**: {hmdb_entry.get('formula', 'N/A')}\n")
                         report.append(f"**Molecular Weight**: {hmdb_entry.get('mw', 'N/A')}\n")
 
-                        # Add HMDB search URL if available
-                        hmdb_url = data.get('hmdb_search_url', '')
-                        if hmdb_url:
-                            report.append(f"**HMDB Search URL**: {hmdb_url}\n")
+                        # Add search URLs
+                        report.append(f"**HMDB Search**: {data.get('hmdb_search_url', 'N/A')}\n")
+
+                        # Note about data source
+                        metadata = result.get('metadata', {})
+                        if metadata.get('source') == 'PubChem':
+                            report.append(f"*Note: Data retrieved from {metadata.get('source')} proxy*\n")
                     else:
                         report.append(f"*No results found for {metabolite}*\n")
                 else:
-                    report.append("*HMDB search unavailable.*\n")
+                    error_msg = result.get('error', 'Unknown error')
+                    report.append(f"*HMDB search failed: {error_msg}*\n")
 
             except Exception as e:
-                report.append(f"*Error querying HMDB: {str(e)[:100]}*\n")
+                report.append(f"*Error querying HMDB: {type(e).__name__}: {str(e)[:200]}*\n")
 
-            # PubChem search (fallback)
+            # PubChem search - FIX: Use correct parameter name
             try:
-                result = tu.tools.PubChem_get_CID_by_compound_name(name=metabolite)  # FIX: parameter is 'name', not 'compound_name'
+                result = tu.tools.PubChem_get_CID_by_compound_name(name=metabolite)  # FIX: name not compound_name
                 if isinstance(result, dict) and result.get('status') == 'success':
                     data = result.get('data', {})
                     cid = data.get('cid', 'N/A')
                     if cid != 'N/A':
-                        report.append(f"**PubChem CID**: {cid}\n")
+                        report.append(f"**PubChem CID (direct)**: {cid}\n")
 
                         # Get properties
                         props = tu.tools.PubChem_get_compound_properties_by_CID(cid=cid)
                         if isinstance(props, dict) and props.get('status') == 'success':
                             prop_data = props.get('data', {})
                             report.append(f"**SMILES**: {prop_data.get('CanonicalSMILES', 'N/A')}\n")
+                            report.append(f"**InChI**: {prop_data.get('InChI', 'N/A')[:100]}...\n")
             except Exception as e:
-                pass  # PubChem fallback, don't report errors
+                # PubChem fallback - only report if HMDB also failed
+                pass
 
     # Phase 2: Study Retrieval
     if study_id:
@@ -128,16 +133,22 @@ def metabolomics_analysis_pipeline(
                     study = data.get('mtblsStudy', {})  # FIX: Extract nested study object
 
                     report.append(f"**Database**: MetaboLights\n")
-                    # Use actual field names from API
+
+                    # FIX: Use actual field names from API
                     report.append(f"**Study Status**: {study.get('studyStatus', 'N/A')}\n")
-                    report.append(f"**Study ID**: {study.get('accession', 'N/A')}\n")
-                    report.append(f"**Release Date**: {study.get('releaseDate', 'N/A')}\n")
+                    report.append(f"**Study Category**: {study.get('studyCategory', 'N/A')}\n")
+                    report.append(f"**Curation Request**: {study.get('curationRequest', 'N/A')}\n")
                     report.append(f"**Modified Time**: {study.get('modifiedTime', 'N/A')}\n")
+                    report.append(f"**First Public Date**: {study.get('firstPublicDate', 'N/A')}\n")
                     report.append(f"**HTTP URL**: {study.get('studyHttpUrl', 'N/A')}\n")
+                    report.append(f"**FTP URL**: {study.get('studyFtpUrl', 'N/A')}\n")
+                    report.append(f"**Dataset License**: {study.get('datasetLicense', 'N/A')}\n")
+
                 else:
-                    report.append("*Study details unavailable from MetaboLights.*\n")
+                    error_msg = result.get('error', 'Unknown error')
+                    report.append(f"*Study details unavailable: {error_msg}*\n")
             except Exception as e:
-                report.append(f"*Error retrieving MetaboLights study: {str(e)[:100]}*\n")
+                report.append(f"*Error retrieving MetaboLights study: {type(e).__name__}: {str(e)[:200]}*\n")
 
         # Try Metabolomics Workbench
         elif study_id.startswith('ST'):
@@ -148,21 +159,22 @@ def metabolomics_analysis_pipeline(
                 )
                 if isinstance(result, dict) and result.get('status') == 'success':
                     data = result.get('data', {})
+                    report.append(f"**Database**: Metabolomics Workbench\n")
+
                     # Parse the text response
                     if isinstance(data, str):
                         lines = data.strip().split('\n')
-                        report.append(f"**Database**: Metabolomics Workbench\n")
                         for line in lines:
                             if '\t' in line:
                                 key, value = line.split('\t', 1)
                                 report.append(f"**{key}**: {value}\n")
                     else:
-                        report.append(f"**Database**: Metabolomics Workbench\n")
-                        report.append(f"**Data**: {data}\n")
+                        report.append(f"**Data**: {json.dumps(data, indent=2)}\n")
                 else:
-                    report.append("*Study details unavailable from Metabolomics Workbench.*\n")
+                    error_msg = result.get('error', 'Unknown error')
+                    report.append(f"*Study details unavailable: {error_msg}*\n")
             except Exception as e:
-                report.append(f"*Error retrieving Workbench study: {str(e)[:100]}*\n")
+                report.append(f"*Error retrieving Workbench study: {type(e).__name__}: {str(e)[:200]}*\n")
 
     # Phase 3: Study Search
     if search_query:
@@ -173,10 +185,13 @@ def metabolomics_analysis_pipeline(
             result = tu.tools.metabolights_search_studies(query=search_query)
             if isinstance(result, dict) and result.get('status') == 'success':
                 data = result.get('data', [])
+                count = result.get('count', len(data))
+
                 if data:
-                    report.append(f"\n### MetaboLights Studies ({len(data)} results)\n")
+                    report.append(f"\n### MetaboLights Studies ({count} total results)\n")
                     report.append("\n| Study ID | Preview |\n")
                     report.append("|----------|----------|\n")
+
                     for study in data[:15]:  # Limit to 15
                         if isinstance(study, str):
                             report.append(f"| {study} | - |\n")
@@ -186,8 +201,11 @@ def metabolomics_analysis_pipeline(
                             report.append(f"| {sid} | {title} |\n")
                 else:
                     report.append("\n*No MetaboLights studies found.*\n")
+            else:
+                error_msg = result.get('error', 'Unknown error')
+                report.append(f"\n*Error searching MetaboLights: {error_msg}*\n")
         except Exception as e:
-            report.append(f"\n*Error searching MetaboLights: {str(e)[:100]}*\n")
+            report.append(f"\n*Error searching MetaboLights: {type(e).__name__}: {str(e)[:200]}*\n")
 
     # Phase 4: Database Statistics (always included)
     report.append("\n## 4. Metabolomics Database Overview\n")
@@ -196,9 +214,10 @@ def metabolomics_analysis_pipeline(
         result = tu.tools.metabolights_list_studies(size=10)
         if isinstance(result, dict) and result.get('status') == 'success':
             data = result.get('data', [])
-            report.append(f"\n**MetaboLights**: {len(data)} studies available (sample)\n")
-            report.append(f"**Recent studies**: {', '.join([s if isinstance(s, str) else s.get('accession', '') for s in data[:5]])}\n")
-    except Exception:
+            count = result.get('count', len(data))
+            report.append(f"\n**MetaboLights**: {count} total studies available\n")
+            report.append(f"**Sample studies**: {', '.join([s if isinstance(s, str) else s.get('accession', '') for s in data[:5]])}\n")
+    except:
         report.append("\n**MetaboLights**: Database available\n")
 
     report.append("\n**Databases integrated**:\n")
@@ -218,29 +237,17 @@ def metabolomics_analysis_pipeline(
 
 if __name__ == "__main__":
     # Example usage
-    print("Metabolomics Research Analysis - Python SDK Implementation")
+    print("Metabolomics Research Analysis")
     print("="*80)
 
-    # Example 1: Metabolite list analysis
-    print("\n[Example 1] Metabolite identification...")
+    # Example: Comprehensive diabetes analysis
+    print("\nGenerating diabetes metabolomics report...")
     metabolomics_analysis_pipeline(
-        metabolite_list=["glucose", "lactate", "pyruvate"],
-        output_file="example1_metabolites.md"
-    )
-
-    # Example 2: Study retrieval
-    print("\n[Example 2] Study analysis...")
-    metabolomics_analysis_pipeline(
+        metabolite_list=["glucose", "lactate", "pyruvate", "citrate", "succinate"],
         study_id="MTBLS1",
-        output_file="example2_study.md"
-    )
-
-    # Example 3: Study search
-    print("\n[Example 3] Study search...")
-    metabolomics_analysis_pipeline(
         search_query="diabetes",
         organism="Homo sapiens",
-        output_file="example3_search.md"
+        output_file="diabetes_metabolomics_report.md"
     )
 
-    print("\n✅ All examples completed!")
+    print("\n✅ Report written to diabetes_metabolomics_report.md")

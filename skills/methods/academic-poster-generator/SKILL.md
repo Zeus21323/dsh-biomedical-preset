@@ -1,6 +1,6 @@
 ---
 name: academic-poster-generator
-description: Complete workflow for generating academic research posters from PDF literature; use when you need to extract paper content from PDFs and produce a LaTeX-based poster (beamerposter/tikzposter/baposter) with mandatory figure generation and a final rendered HTML deliverable.
+description: 从论文 PDF 生成学术海报：抽取论文内容，用 beamerposter/tikzposter/baposter 生成 LaTeX 海报并强制配图，最后渲染预览。已有内容、只需排版设计用 latex-posters。
 license: MIT
 author: AIPOCH
 ---

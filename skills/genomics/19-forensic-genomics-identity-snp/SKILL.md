@@ -1,6 +1,6 @@
 ---
 name: 19-forensic-genomics-identity-snp
-description: 在法医基因组学领域开展“身份SNP”任务时使用；根据输入、科学假设和运行环境，在SNP分析下已保留的方法实现之间路由。
+description: 法医个体识别 SNP：用身份 SNP（IISNP）面板对降解或微量检材做个体识别与比对，计算随机匹配概率。STR 能分型时优先用 19-forensic-genomics-str-genotyping，推断祖先用 19-forensic-genomics-ancestry-snp。
 ---
 
 # 身份SNP

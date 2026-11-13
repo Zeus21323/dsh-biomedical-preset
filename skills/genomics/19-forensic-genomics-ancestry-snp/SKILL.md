@@ -1,6 +1,6 @@
 ---
 name: 19-forensic-genomics-ancestry-snp
-description: 在法医基因组学领域开展“祖先SNP”任务时使用；根据输入、科学假设和运行环境，在SNP分析下已保留的方法实现之间路由。
+description: 法医祖先推断：用祖先信息 SNP（AISNP）面板判断未知检材的生物地理祖先来源并给出置信度。只做个体识别用 19-forensic-genomics-identity-snp，父系或母系来源分别用 Y-SNP、线粒体单倍群技能。
 ---
 
 # 祖先SNP
