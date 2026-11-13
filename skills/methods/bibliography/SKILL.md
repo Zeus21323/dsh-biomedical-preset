@@ -1,6 +1,6 @@
 ---
 name: bibliography
-description: Classifies and organizes literature by theme, method, and conclusion; use when you need to batch-read a folder of PDF/MD/DOCX/TXT files and output a structured CSV for literature reviews and annotation management.
+description: 本地文献批量整理：批量读取文件夹里的 PDF/MD/DOCX/TXT 文献，按主题、方法和结论分类，输出结构化 CSV 供综述与标注管理。参考文献格式化用 citation-management，在线检索用 paper-lookup。
 license: MIT
 author: AIPOCH
 ---

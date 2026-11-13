@@ -1,6 +1,6 @@
 ---
 name: 01-genome-long-read-sequencing
-description: 当用户需要评估 Nanopore 或 PacBio 长读长的长度、质量、产量、污染和平台特征时使用。
+description: 当用户需要评估 Nanopore 或 PacBio 长读长的长度、质量、产量、污染和平台特征时使用。把长读长比对到参考基因组用 long-read-alignment。
 whenToUse: 当用户需要评估 Nanopore 或 PacBio 长读长的长度、质量、产量、污染和平台特征时使用
 ---
 

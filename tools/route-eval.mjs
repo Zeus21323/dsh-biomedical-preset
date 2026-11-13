@@ -33,11 +33,10 @@
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { execFileSync } from 'node:child_process';
-import { homedir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { frontmatter } from '../shared/frontmatter.mjs';
+import { loadMcpTools, loadDomains, domainOf } from '../shared/mcp-tools.mjs';
 
 const PKG = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const EVAL_DIR = path.join(PKG, 'eval', 'routing');
@@ -65,38 +64,21 @@ const { cases: allCases } = JSON.parse(readFileSync(path.join(EVAL_DIR, 'cases.j
 
 const skills = [];
 const skillCat = new Map();
+/** 折叠技能 → 入口技能（catalog 里的 via）。折叠技能不进目录，选中入口即视为走对了路 */
+const viaOf = new Map();
 for (const c of catalog.categories) {
   for (const s of c.skills) {
     const { fm } = frontmatter(readFileSync(path.join(PKG, 'skills', s.path, 'SKILL.md'), 'utf8'));
     const desc = (fm.description ?? '').slice(0, DESC_LIMIT);
-    skills.push({ name: s.name, desc, cat: c.id });
+    skills.push({ name: s.name, desc, cat: c.id, via: s.via });
     skillCat.set(s.name, c.id);
+    if (s.via) viaOf.set(s.name, s.via);
   }
 }
+const domains = loadDomains();
 const modeOfCat = new Map(modes.flatMap((m) => m.cats.map((c) => [c, m])));
 
-function loadTools() {
-  const candidates = [
-    opt('python'),
-    process.env.BIO_MCP_PYTHON,
-    path.join(homedir(), '.dsh', 'dsh-runtimes', 'dsh-primary-runtime', 'dependencies', 'python', process.platform === 'win32' ? 'python.exe' : 'bin/python3'),
-    process.platform === 'win32' ? 'python' : 'python3',
-  ].filter(Boolean);
-  const code =
-    'import importlib.util,json,sys;' +
-    's=importlib.util.spec_from_file_location("m",sys.argv[1]);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);' +
-    'print(json.dumps([{"name":t["name"],"desc":t["description"]} for t in m.tool_specs()],ensure_ascii=False))';
-  for (const py of candidates) {
-    try {
-      const out = execFileSync(py, ['-I', '-B', '-c', code, path.join(PKG, 'mcp', 'biomedical_mcp.py')], { encoding: 'utf8' });
-      return JSON.parse(out);
-    } catch {
-      /* 换下一个解释器 */
-    }
-  }
-  throw new Error('找不到能运行 mcp/biomedical_mcp.py 的 python，请用 --python 指定');
-}
-const tools = loadTools();
+const tools = loadMcpTools(opt('python'));
 const toolNames = new Set(tools.map((t) => t.name));
 
 // ───────────────────────────────────────────────────────────── 校验
@@ -139,14 +121,28 @@ if (flag('validate')) {
 }
 
 // ───────────────────────────────────────────────────────────── 目录视图
-/** 一条用例在某种模式下能看到的技能。specialist 取第一个正确答案所在的专项模式。 */
+/**
+ * 一条用例在某种模式下能看到的技能与 MCP 工具，与 picker / MCP 服务的实际行为一致：
+ *   - 折叠技能（via）不进目录；范围内有折叠技能时，入口技能进目录
+ *   - specialist 取第一个正确答案所在的专项模式，MCP 工具按该模式的 mcpDomains 过滤
+ */
+function viewOf(allowedCats, label, mcpDomains) {
+  const listed = skills.filter((s) => allowedCats.has(s.cat) && !s.via);
+  const names = new Set(listed.map((s) => s.name));
+  for (const r of new Set(skills.filter((s) => allowedCats.has(s.cat) && s.via).map((s) => s.via))) {
+    const router = skills.find((s) => s.name === r);
+    if (router && !names.has(r)) listed.push(router);
+  }
+  const visibleTools = mcpDomains ? tools.filter((t) => mcpDomains.has(domainOf(t.name, domains))) : tools;
+  return { skills: listed, tools: visibleTools, label };
+}
+const fullView = viewOf(new Set(catalog.categories.map((c) => c.id)), 'biomedical', null);
 function visibleSkills(c, mode) {
-  if (mode === 'full') return { skills, label: 'biomedical' };
+  if (mode === 'full') return fullView;
   const anchor = (c.skills ?? [])[0];
   if (!anchor) return null; // 只考察工具的用例没有对应专项模式
   const m = modeOfCat.get(skillCat.get(anchor));
-  const allowed = new Set(m.cats);
-  return { skills: skills.filter((s) => allowed.has(s.cat)), label: m.id };
+  return viewOf(new Set(m.cats), m.id, new Set(m.mcpDomains ?? Object.keys(domains)));
 }
 
 // ───────────────────────────────────────────────────────────── BM25
@@ -188,17 +184,27 @@ function bm25Index(docs) {
   };
 }
 const bm25Cache = new Map();
+const allNames = skills.map((s) => s.name);
+/**
+ * 「X 用 Y」这类分工子句是写给读者看的「不该选我的情况」，词法检索会把它当成命中，
+ * 所以建索引时去掉点名了其他技能的子句，近似一个能读懂否定的读者。
+ */
+function routingText(s) {
+  const clauses = s.desc.split(/(?<=[。；;])/);
+  const kept = clauses.filter((cl) => !allNames.some((n) => n !== s.name && cl.includes(n)));
+  return `${s.name.replace(/-/g, ' ')} ${kept.join('')}`;
+}
 function bm25Route(c, view) {
   if (!bm25Cache.has(view.label)) {
     bm25Cache.set(view.label, {
-      skill: bm25Index(view.skills.map((s) => `${s.name.replace(/-/g, ' ')} ${s.desc}`)),
-      tool: bm25Index(tools.map((t) => `${t.name.replace(/_/g, ' ')} ${t.desc}`)),
+      skill: bm25Index(view.skills.map(routingText)),
+      tool: bm25Index(view.tools.map((t) => `${t.name.replace(/_/g, ' ')} ${t.desc}`)),
     });
   }
   const idx = bm25Cache.get(view.label);
   return {
     skills: idx.skill(c.query).map((i) => view.skills[i].name),
-    tools: idx.tool(c.query).map((i) => tools[i].name),
+    tools: idx.tool(c.query).map((i) => view.tools[i].name),
   };
 }
 
@@ -210,7 +216,7 @@ const LLM = {
 };
 function systemPrompt(view) {
   const skillLines = view.skills.map((s) => `- ${s.name}: ${s.desc}`).join('\n');
-  const toolLines = tools.map((t) => `- mcp__biomedical__${t.name}: ${t.desc}`).join('\n');
+  const toolLines = view.tools.map((t) => `- mcp__biomedical__${t.name}: ${t.desc}`).join('\n');
   return [
     '你是 DeepSeek Harness「生物医学模式」里的研究助手。下面是你可以加载的技能目录和可以调用的 MCP 数据工具。',
     '',
@@ -312,8 +318,11 @@ async function worker() {
         process.exit(1);
       }
     }
-    const gold = new Set(c.skills ?? []);
-    const goldTools = new Set(c.tools ?? []);
+    // 答案是折叠技能时，选中它的入口技能也算对（目录里本来就看不到折叠技能）
+    const gold = new Set((c.skills ?? []).flatMap((s) => (viaOf.has(s) ? [s, viaOf.get(s)] : [s])));
+    // 只考察本视图里看得到的工具（专项模式按 MCP 领域过滤后可能一个都不剩）
+    const visibleToolNames = new Set(view.tools.map((t) => t.name));
+    const goldTools = new Set((c.tools ?? []).filter((t) => visibleToolNames.has(t)));
     const rank = out.skills.findIndex((s) => gold.has(s));
     const tRank = out.tools.findIndex((t) => goldTools.has(t));
     results[i] = {
@@ -333,7 +342,7 @@ async function worker() {
       rr: gold.size > 0 && rank >= 0 ? 1 / (rank + 1) : 0,
       invalid: out.skills.filter((s) => !visible.has(s)),
       toolHit3: goldTools.size > 0 && tRank >= 0,
-      invalidTools: out.tools.filter((t) => !toolNames.has(t)),
+      invalidTools: out.tools.filter((t) => !visibleToolNames.has(t)),
       error: out.error ?? null,
     };
     done++;
@@ -401,12 +410,12 @@ const report = {
 
 // ───────────────────────────────────────────────────────────── 输出
 const fmt = (v, suffix = '%') => (v === null || v === undefined ? '—' : `${v}${suffix}`);
-console.log(`\n路由评测 · router=${ROUTER}${report.model ? ` · model=${report.model}` : ''} · ${cases.length} 条用例 · ${skills.length} 技能 / ${tools.length} MCP 工具\n`);
+console.log(`\n路由评测 · router=${ROUTER}${report.model ? ` · model=${report.model}` : ''} · ${cases.length} 条用例 · 全量目录 ${fullView.skills.length} 个技能（另 ${viaOf.size} 个经入口加载）/ ${tools.length} MCP 工具\n`);
 console.log('| 目录 | 用例 | skill@1 | skill@3 | MRR | 编造技能名 | 工具用例 | tool@3 |');
 console.log('|---|---|---|---|---|---|---|---|');
 for (const m of modesToRun) {
   const s = byMode[m];
-  console.log(`| ${m === 'full' ? '全量（597）' : '专项模式'} | ${s.n} | ${fmt(s.skill1)} | ${fmt(s.skill3)} | ${fmt(s.mrr, '')} | ${fmt(s.invalid)} | ${s.nTools} | ${fmt(s.tool3)} |`);
+  console.log(`| ${m === 'full' ? `全量（${fullView.skills.length}）` : '专项模式'} | ${s.n} | ${fmt(s.skill1)} | ${fmt(s.skill3)} | ${fmt(s.mrr, '')} | ${fmt(s.invalid)} | ${s.nTools} | ${fmt(s.tool3)} |`);
 }
 console.log('\n按标签（skill@1）：');
 for (const [tag, v] of Object.entries(byTag).sort()) {

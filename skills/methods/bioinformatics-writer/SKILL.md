@@ -1,6 +1,6 @@
 ---
 name: bioinformatics-writer
-description: Triage and execute bioinformatics requests by first asking whether the user wants manuscript writing, data/experiment analysis, another bioinformatics service, or manuscript writing from medical-imaging, clinical/EHR, or biomedical-literature/knowledge-graph sources; for a knowledge-base route, ask again with model-recommended feasible topics before continuing through the same approval-gated analysis and manuscript workflow. Use automatically for GEO/TCGA/ArrayExpress/local omics data, CT and medical-imaging repositories, EHR and clinical datasets, biomedical literature and knowledge graphs, differential expression, enrichment, immune infiltration, prognosis models, single-cell TME studies, existing-result manuscript writing, bioinformatics result interpretation, figure organization, and verified DOCX delivery through tex_to_docx.
+description: 生信写作与服务分流：先确认用户要写稿、做数据或实验分析，还是其他生信服务，再执行；支持基于医学影像、临床/EHR、文献或知识图谱的稿件写作。只写方法部分用 methods-section-writer。
 ---
 
 # Bioinformatics Writer

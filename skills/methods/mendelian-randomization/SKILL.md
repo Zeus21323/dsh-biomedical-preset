@@ -1,6 +1,6 @@
 ---
 name: mendelian-randomization
-description: 当用户需要从观察性转录组或多组学数据寻找候选因果驱动因子，并区分预测、干预效应与相关性时使用。
+description: 当用户需要从观察性转录组或多组学数据寻找候选因果驱动因子，并区分预测、干预效应与相关性时使用。这不是基于 GWAS 汇总数据的两样本孟德尔随机化，那种分析用 02-population-genetics-two-sample-mr。
 whenToUse: 当用户需要从观察性转录组或多组学数据寻找候选因果驱动因子，并区分预测、干预效应与相关性时使用
 ---
 

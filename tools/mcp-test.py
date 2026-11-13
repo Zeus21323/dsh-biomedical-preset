@@ -42,6 +42,21 @@ check("协议版本按客户端请求协商", init["result"]["protocolVersion"] 
 init2 = m.handle({"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {"protocolVersion": "1999-01-01"}})
 check("未知协议版本回落到最新", init2["result"]["protocolVersion"] == m.SUPPORTED_PROTOCOLS[0])
 
+# ── 领域过滤
+check("每个工具都属于某个领域", all(m.domain_of(t["name"]) for t in specs),
+      ",".join(t["name"] for t in specs if not m.domain_of(t["name"])))
+check("--domains 解析", m.parse_domains(["x.py", "--domains", "structure,chemistry"], {}) == {"structure", "chemistry"})
+check("BIO_MCP_DOMAINS 环境变量", m.parse_domains([], {"BIO_MCP_DOMAINS": "literature"}) == {"literature"})
+check("all / 未给出 = 全部启用", m.parse_domains(["--domains", "all"], {}) is None and m.parse_domains([], {}) is None)
+check("未知领域被忽略", m.parse_domains(["--domains", "nope,genome"], {}) == {"genome"})
+saved = m.ACTIVE_DOMAINS
+m.ACTIVE_DOMAINS = {"structure", "chemistry"}
+listed = m.handle({"jsonrpc": "2.0", "id": 5, "method": "tools/list"})["result"]["tools"]
+check("tools/list 只返回启用领域的工具", listed and all(m.domain_of(t["name"]) in m.ACTIVE_DOMAINS for t in listed), str(len(listed)))
+blocked = m.handle({"jsonrpc": "2.0", "id": 6, "method": "tools/call", "params": {"name": "pubmed_search_articles", "arguments": {"query": "x"}}})
+check("调用未启用领域的工具返回可读错误", blocked["result"]["isError"] and "没有启用" in blocked["result"]["content"][0]["text"])
+m.ACTIVE_DOMAINS = saved
+
 # ── NCBI 参数
 u = m._ncbi_params("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=x")
 check("NCBI 请求带 tool 与 email", "tool=dsh-biomedical-mcp" in u and "email=someone%40example.org" in u, u)

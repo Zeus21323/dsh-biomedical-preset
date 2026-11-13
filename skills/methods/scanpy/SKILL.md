@@ -1,6 +1,6 @@
 ---
 name: scanpy
-description: Standard single-cell RNA-seq analysis pipeline. For quality control (QC), normalization, dimensionality reduction (PCA/UMAP/t-SNE), clustering, differential expression analysis, and visualization. Best suited for exploratory single-cell transcriptomics analysis using established workflows. For deep learning models, use scvi-tools; for data format issues, use anndata.
+description: Scanpy 单细胞 RNA-seq 标准流程（Python）：质控、归一化、PCA/UMAP/t-SNE 降维、聚类、差异基因与可视化，适合探索性分析。某一步需要深入判断时用对应专门技能（scrna-qc-filtering、sc-clustering-umap、sc-cell-type-annotation），要 Seurat 与 Scanpy 双栈的多模块完整流程用 sc-rna-seq-analysis。
 license: MIT
 author: AIPOCH
 ---

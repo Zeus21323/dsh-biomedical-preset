@@ -1,6 +1,6 @@
 ---
 name: tooluniverse-metabolomics
-description: Comprehensive metabolomics research skill for identifying metabolites, analyzing studies, and searching metabolomics databases. Integrates HMDB (220k+ metabolites), MetaboLights, Metabolomics Workbench, and PubChem. Use when asked to identify or annotate metabolites (HMDB IDs, chemical properties, pathways), retrieve metabolomics study information from MetaboLights (MTBLS*) or Metabolomics Workbench (ST*), search for studies by keywords or disease, or generate comprehensive metabolomics research reports.
+description: 代谢组数据库综合查询：通过 ToolUniverse 整合 HMDB、MetaboLights、Metabolomics Workbench 与 PubChem，鉴定或注释代谢物、查找研究与数据集并生成报告。从 MS/MS 谱图鉴定代谢物用 08-metabolomics-metabolite-identification。
 ---
 
 # Metabolomics Research

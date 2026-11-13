@@ -1,6 +1,6 @@
 ---
 name: pydeseq2
-description: Differential gene expression analysis for bulk RNA-seq with PyDESeq2, including formulaic designs, Wald tests, FDR correction, LFC shrinkage, and result visualization.
+description: 用 PyDESeq2（Python）做 bulk RNA-seq 差异表达：公式化设计、Wald 检验、FDR 校正、LFC 收缩与结果可视化。用 R 的 DESeq2 或需要设计与结果解读指导时用 04-transcriptomics-deseq2。
 allowed-tools: Read Write Edit Bash
 compatibility: Requires Python >=3.11 and PyDESeq2 0.5.4-compatible dependencies. Examples target PyDESeq2 0.5.x, formulaic design strings, explicit contrasts, and uv-based installs.
 license: MIT license

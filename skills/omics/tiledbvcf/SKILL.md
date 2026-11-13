@@ -1,6 +1,6 @@
 ---
 name: tiledbvcf
-description: Efficient storage and retrieval of genomic variant data using TileDB. Scalable VCF/BCF ingestion, incremental sample addition, compressed storage, parallel queries, and export capabilities for population genomics.
+description: TileDB-VCF 变异存储：把大规模 VCF/BCF 导入 TileDB，支持增量加样本、压缩存储、并行区域查询与导出，适合群体基因组。
 license: MIT license
 metadata: "{\"version\": \"1.0\", \"skill-author\": \"Jeremy Leipzig\"}"
 ---

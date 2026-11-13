@@ -1,8 +1,6 @@
 ---
 name: immunogenomics
-description: >-
-  Immunogenomics workflow reference: TCR/BCR immune repertoire reconstruction (MiXCR, TRUST4), MHC class I/II binding prediction (NetMHCpan-4.1, NetMHCIIpan-4.3), HLA typing (OptiType, arcasHLA, HLA*LA), neoantigen candidate screening, bulk immune deconvolution (CIBERSORTx, quanTIseq, EPIC, ABIS), and CyTOF/flow cytometry preprocessing (CATALYST, FlowSOM). Every command is quoted from official documentation with its source URL; where official docs give no runnable command, only the workflow and decision criteria are stated. 中文触发词：免疫组学、
-  TCR、BCR、免疫组库、MiXCR、TRUST4、MHC 结合、新抗原、免疫浸润、CIBERSORTx、CyTOF。
+description: 免疫组学流程参考：用 MiXCR、TRUST4 从测序数据重建 TCR/BCR 免疫组库，用 NetMHCpan 预测 MHC I/II 结合与新抗原，说明流程与判读标准。克隆型多样性比较用 16-immunomics-clonotype-analysis，新抗原完整流程用 16-immunomics-tumor-antigen-prediction。
 category: omics
 tags: immunogenomics, tcr, bcr, mhc, neoantigen, deconvolution
 whenToUse: 触发词：免疫组学、TCR、BCR、免疫组库、MiXCR、TRUST4、MHC 结合、新抗原、免疫浸润、CIBERSORTx、CyTOF

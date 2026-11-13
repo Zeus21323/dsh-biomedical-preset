@@ -1,7 +1,6 @@
 ---
 name: surveymaster
-description: >-
-  Produce, revise, or export an academic literature survey through an end-to-end workflow: intake constraints, build a literature library, generate and confirm an outline, write mainbody.tex, run citation and quality checks, export DOCX/LaTeX/BibTeX deliverables, and attempt optional PDF. Use when the user wants a complete literature survey or review paper rather than an isolated search, outline, or section.
+description: 学术综述写作全流程：明确约束、建文献库、生成并确认大纲、撰写 LaTeX 正文、做引用与质量检查，导出 DOCX/LaTeX/BibTeX。只做文献检索与证据综合、不写成稿用 literature-review。
 ---
 
 ## Role

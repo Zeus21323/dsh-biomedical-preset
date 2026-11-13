@@ -1,6 +1,6 @@
 ---
 name: hypothesis-generation
-description: Structured hypothesis formulation from observations. Use when you have experimental observations or data and need to formulate testable hypotheses with predictions, propose mechanisms, and design experiments to test them. Follows scientific method framework. For open-ended ideation use scientific-brainstorming; for automated LLM-driven hypothesis testing on datasets use hypogenic.
+description: 从观察提出假设：基于实验观察或数据，提出可检验的假设、预测与机制，并设计验证实验，遵循科学方法框架。把宽泛兴趣收束成研究问题用 scientific-problem-hypothesis。
 allowed-tools: Read Write Edit Bash
 license: MIT license
 required_environment_variables: "[{\"name\": \"OPENROUTER_API_KEY\", \"prompt\": \"OpenRouter API key for the skill's LLM-powered steps.\", \"required_for\": \"optional features\"}]"

@@ -1,6 +1,6 @@
 ---
 name: 02-population-genetics-gwas-meta-analysis
-description: 当用户有多个队列或公开遗传关联结果想合并、增加证据、比较中国与其他人群、解释方向不一致或补外部复现时使用，包括GWAS meta-analysis与跨祖源分析；只有基因清单时先说明缺少效应数据。
+description: 当用户有多个队列或公开遗传关联结果想合并、增加证据、比较中国与其他人群、解释方向不一致或补外部复现时使用，包括GWAS meta-analysis与跨祖源分析；只有基因清单时先说明缺少效应数据。因果推断（孟德尔随机化）用 02-population-genetics-two-sample-mr。
 whenToUse: 当用户有多个队列或公开遗传关联结果想合并、增加证据、比较中国与其他人群、解释方向不一致或补外部复现时使用
 ---
 

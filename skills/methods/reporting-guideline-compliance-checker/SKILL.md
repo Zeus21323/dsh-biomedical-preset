@@ -1,6 +1,6 @@
 ---
 name: reporting-guideline-compliance-checker
-description: Checks biomedical manuscripts against reporting guidelines such as CONSORT, STROBE, PRISMA, and TRIPOD to identify missing or weak reporting elements before submission or revision.
+description: 报告规范核查：按 CONSORT、STROBE、PRISMA、TRIPOD 等清单检查生物医学稿件，找出缺失或薄弱的报告条目，适合投稿或修回前。arXiv 投稿预检用 arxiv-preflight。
 license: MIT
 author: AIPOCH
 ---

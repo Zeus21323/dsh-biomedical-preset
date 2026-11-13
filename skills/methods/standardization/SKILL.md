@@ -1,6 +1,6 @@
 ---
 name: standardization
-description: Mandatory entry-point router for standardized browser-based research workflows. Use when the user asks for browser research, source verification, literature search, multi-source synthesis, biomedical or medical research, life-science research, economics research, finance research, engineering research, computer science research, software engineering research, Chinese academic literature, CNKI search, PubMed search, Google Scholar search, arXiv search, IEEE/ACM search, or website investigation. First decide whether the request is biomedical/life-science, economics/finance, or engineering/computer-science, then strictly read and obey the matching SKILL.md under references1, references2, or references3 before searching or answering.
+description: 标准化网页研究流程入口：需要基于浏览器的检索、来源核验、多来源综合（生物医学、生命科学、经济等领域）时先走这里分流。只做生物医学文献综述用 literature-review。
 ---
 
 # Standardization Router

@@ -1,8 +1,6 @@
 ---
 name: rna-modification-clip
-description: >-
-  Peak analysis for RNA modification and RNA-protein interaction sequencing: MeRIP-seq/m6A (exomePeak2 peak calling and differential methylation), RIP-seq (general peak calling with input control) and CLIP-seq/eCLIP (CLIPper peak clusters, crosslink site and motif analysis), plus upstream alignment/dedup/rRNA-filtering/strandedness choices and ChIPseeker peak annotation. Every command, parameter and default below is quoted from vendor documentation with the source URL. 中文触发词：MeRIP、
-  m6A、RNA 修饰、RIP-seq、CLIP-seq、eCLIP、exomePeak2、交联位点
+description: RNA 修饰与 RNA-蛋白互作测序的 peak 分析：MeRIP-seq/m6A 用 exomePeak2 做 peak calling 与差异甲基化，RIP-seq 带 input 对照做通用 peak calling，CLIP-seq/eCLIP 用 CLIPper 找结合簇与交联位点。需要比较多种修饰证据类型时用 04-transcriptomics-m6a。
 category: omics
 tags: merip, m6a, rip-seq, clip-seq, epitranscriptomics
 whenToUse: 触发词：MeRIP、m6A、RNA 修饰、RIP-seq、CLIP-seq、eCLIP、exomePeak2、交联位点

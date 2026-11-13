@@ -7,6 +7,7 @@
  * （schemastery 等）失败而拖垮整个预设的挂载。
  */
 import { readFile, readdir } from 'node:fs/promises';
+import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { resolveProfileDir } from '../shared/profile.mjs';
@@ -125,6 +126,148 @@ async function loadCatalog() {
   return catalogCache;
 }
 
+/**
+ * skill_scope：给模型用的工具，让 agent 理解任务后自己把技能目录收窄到相关分类。
+ * 写的是和浮窗同一份会话覆盖（SHARED.overrides），下一步 skills.snapshot() 就按新范围出目录。
+ * 注意 DSH 每次目录变化都会追加一份完整的新目录，所以只在开工时调一次。
+ */
+function buildScopeTool(categories, currentEnabled) {
+  const ids = new Set(categories.map((c) => c.id));
+  const labelOf = new Map(categories.map((c) => [c.id, c.label_zh]));
+  const listedOf = new Map(categories.map((c) => [c.id, c.skills.filter((e) => !e.via).length]));
+  const catalogText = categories.map((c) => `${c.id}（${c.label_zh}）`).join('；');
+  const render = (_args, value) => [{ type: 'text', text: value.text }];
+  return {
+    name: 'skill_scope',
+    description:
+      '收窄（或恢复）本会话的生物医学技能目录。理解任务后、加载技能之前调用一次：只保留与任务相关的 2–4 个分类，' +
+      '目录会从下一步起只列这些分类的技能，近义技能更少、更容易选对。拿不准任务范围时不要调用；不要反复调用（每次变化都会追加一份新目录）。' +
+      'add 为 true 时在当前范围上追加分类（专项模式里加开别的领域用这个），否则用给出的分类替换当前范围。' +
+      'reset 为 true 时恢复为当前模式的默认范围。可用分类：' +
+      catalogText,
+    parameters: {
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        categories: {
+          type: 'array',
+          items: { type: 'string', enum: [...ids] },
+          description: '要保留的分类 id（1–8 个）。',
+        },
+        add: { type: 'boolean', description: '为 true 时追加到当前范围，而不是替换。' },
+        reset: { type: 'boolean', description: '为 true 时清除本会话的范围设置，恢复模式默认。' },
+      },
+    },
+    output: {
+      schema: {
+        type: 'object',
+        additionalProperties: false,
+        required: ['text'],
+        properties: {
+          text: { type: 'string' },
+          enabled: { type: 'array', items: { type: 'string' } },
+          skills: { type: 'number' },
+        },
+      },
+      render,
+    },
+    async execute(args, exec) {
+      const sid = exec?.agent?.id;
+      if (!sid) throw new Error('skill_scope: 拿不到当前会话，无法设置技能范围');
+      if (args?.reset === true) {
+        SHARED.overrides.delete(String(sid));
+        invalidateAll();
+        return { text: '已恢复本模式的默认技能范围，下一步生效。' };
+      }
+      const wanted = Array.isArray(args?.categories) ? [...new Set(args.categories.map(String))] : [];
+      if (wanted.length === 0) throw new Error('skill_scope: 至少给一个分类 id，或传 reset: true');
+      if (wanted.length > 8) throw new Error('skill_scope: 一次最多保留 8 个分类；范围这么宽就不必收窄');
+      const unknown = wanted.filter((id) => !ids.has(id));
+      if (unknown.length) throw new Error(`skill_scope: 未知分类 ${unknown.join(', ')}`);
+      const finalSet = new Set(wanted);
+      if (args?.add === true) for (const id of await currentEnabled(String(sid))) finalSet.add(id);
+      SHARED.overrides.set(String(sid), finalSet);
+      invalidateAll();
+      const enabled = [...finalSet];
+      const skills = enabled.reduce((a, id) => a + (listedOf.get(id) ?? 0), 0);
+      return {
+        text:
+          `已把本会话的技能范围设为 ${enabled.length} 类（${enabled.map((id) => labelOf.get(id)).join('、')}），约 ${skills} 个技能，下一步生效。` +
+          '缺技能时用 add: true 再加开；reset: true 恢复默认。',
+        enabled,
+        skills,
+      };
+    },
+  };
+}
+
+function invalidateAll() {
+  for (const inst of SHARED.instances.values()) {
+    try {
+      inst.control?.invalidate?.();
+    } catch {
+      /* 单个实例失效不影响其它实例 */
+    }
+  }
+}
+
+function findEntry(doc, name) {
+  for (const category of doc.categories) {
+    const entry = category.skills.find((e) => e.name === name);
+    if (entry) return entry;
+  }
+  return undefined;
+}
+
+function hasFolded(doc, router) {
+  return doc.categories.some((c) => c.skills.some((e) => e.via === router));
+}
+
+/** 技能声明的 MCP 工具：SKILL.md frontmatter 的 `mcp:` 优先，其次 catalog 条目的 `mcp` 数组。 */
+function declaredMcpTools(fm, entry) {
+  const raw = fm?.mcp;
+  if (raw) {
+    return String(raw)
+      .replace(/^\[|\]$/g, '')
+      .split(',')
+      .map((t) => t.trim().replace(/^["']|["']$/g, '').replace(/^mcp__biomedical__/, ''))
+      .filter(Boolean);
+  }
+  return Array.isArray(entry?.mcp) ? entry.mcp.map(String) : [];
+}
+
+/**
+ * 入口技能（如 nfcore-catalog）加载时附上的流程索引：只列当前范围内的折叠技能，
+ * 给出 SKILL.md 绝对路径。折叠技能不在目录里，skill 工具按名字加载不到，
+ * 所以让模型用文件工具直接读。
+ */
+function renderFoldedIndex(doc, router, enabled) {
+  const lines = [
+    '---',
+    '',
+    '## 本地可用的流程技能索引（按当前技能范围生成）',
+    '',
+    '下列流程技能没有单独列在技能目录里，**不能**用 skill 工具按名字加载。确定要用哪个之后，用文件读取工具打开它的 SKILL.md 并按其中说明执行；同目录下的 references/ 与 scripts/ 是它的资源。',
+    '',
+  ];
+  let count = 0;
+  for (const category of doc.categories) {
+    if (!enabled.has(category.id)) continue;
+    const folded = category.skills.filter((e) => e.via === router);
+    if (folded.length === 0) continue;
+    lines.push(`### ${category.label_zh}`);
+    for (const e of folded) {
+      lines.push(`- \`${e.name}\`：${e.desc ?? ''} —— ${join(SKILLS_ROOT, e.path, 'SKILL.md')}`);
+      count += 1;
+    }
+    lines.push('');
+  }
+  if (count === 0) {
+    lines.push('当前技能范围里没有可用的流程技能。需要时先用 `skill_scope` 加开对应分类，再重新加载本技能。');
+  }
+  return lines.join('\n');
+}
+
 async function switches() {
   const dir = profileDir();
   if (!dir) return {};
@@ -235,7 +378,9 @@ async function handleGet(request, response, logger) {
     categories: (doc?.categories ?? []).map((c) => ({
       id: c.id,
       label: c.label_zh,
-      count: c.skills.length,
+      /** 目录里列出的技能数；折叠技能（经入口技能加载）单独计 folded，不占目录 token */
+      count: c.skills.filter((e) => !e.via).length,
+      folded: c.skills.filter((e) => e.via).length,
     })),
     enabled: active ? [...active] : null,
     effective,
@@ -467,6 +612,32 @@ export function apply(ctx, config = {}) {
     };
   });
 
+  // ── skill_scope 工具：可选服务，注册失败只记日志，不影响预设挂载
+  ctx.inject(['tools'], (scoped) => {
+    let doc;
+    try {
+      doc = JSON.parse(readFileSync(CATALOG_PATH, 'utf8'));
+    } catch (e) {
+      ctx.logger?.warn?.(`biomedical-picker: catalog unreadable, skill_scope not registered: ${e?.message ?? e}`);
+      return undefined;
+    }
+    try {
+      // 追加模式要知道「当前范围」：会话覆盖 > 本预设白名单 > profile 开关
+      const currentEnabled = async (sid) => {
+        const override = SHARED.overrides.get(sid);
+        if (override) return [...override];
+        if (only) return [...only];
+        const sw = await switches();
+        return doc.categories.map((c) => c.id).filter((id) => sw[id] !== false);
+      };
+      const undo = scoped.tools.register(buildScopeTool(doc.categories, currentEnabled));
+      return typeof undo === 'function' ? undo : undefined;
+    } catch (e) {
+      ctx.logger?.warn?.(`biomedical-picker: skill_scope register failed: ${e?.message ?? e}`);
+      return undefined;
+    }
+  });
+
   // ── 路由：引用计数 + 绝不把注册错误抛进 apply（那会让整份预设挂载失败）
   ctx.inject(['webServer'], (scoped) => {
     SHARED.routeRefs += 1;
@@ -554,6 +725,58 @@ export function apply(ctx, config = {}) {
     };
   });
 
+  /** 当前会话此刻生效的分类（会话覆盖 > 预设白名单 > profile 开关）。list() 与 get() 共用。 */
+  async function enabledCategoryIds(doc) {
+    const { only: _only, preset: _preset, ...defaults } = config ?? {};
+    const effective = { ...defaults, ...(await switches()) };
+    let sessionSet;
+    let currentSid;
+    try {
+      const sid = agentsSvc?.currentInitiator?.()?.id;
+      currentSid = sid;
+      if (sid) sessionSet = SHARED.overrides.get(sid);
+    } catch (e) {
+      ctx.logger?.warn?.(`biomedical-picker: currentInitiator failed: ${e?.message ?? e}`);
+    }
+    if (SHARED.overrides.size > 0) {
+      ctx.logger?.info?.(
+        `biomedical-picker: list() sid=${currentSid ?? 'undefined'} overrides=${SHARED.overrides.size} hit=${Boolean(sessionSet)}`,
+      );
+    }
+    const ids = new Set();
+    for (const category of doc.categories) {
+      const on = sessionSet ? sessionSet.has(category.id) : only ? only.has(category.id) : effective[category.id] !== false;
+      if (on) ids.add(category.id);
+    }
+    return ids;
+  }
+
+  async function readCandidate(entry, category) {
+    const directory = join(SKILLS_ROOT, entry.path);
+    const file = join(directory, 'SKILL.md');
+    let text;
+    try {
+      text = await readFile(file, 'utf8');
+    } catch {
+      return undefined;
+    }
+    const { fm } = frontmatter(text);
+    if (!fm.name) return undefined;
+    return {
+      name: fm.name,
+      description: fm.description ?? '',
+      ...(fm.whenToUse ? { whenToUse: fm.whenToUse } : {}),
+      invocation: { modelInvocable: true, userInvocable: true },
+      provider: 'biomedical-picker',
+      source: 'custom',
+      rank: 0,
+      locator: { path: file, directory },
+      resourceBase: { kind: 'directory', path: directory },
+      path: file,
+      metadata: { category: category.id, categoryLabel: category.label_zh },
+    };
+  }
+
   const dispose = ctx.skills.registerProvider((control) => {
     instance.control = control;
     return {
@@ -565,66 +788,45 @@ export function apply(ctx, config = {}) {
           ctx.logger?.warn?.('biomedical-picker: catalog empty, falling back to full directory scan');
           return scanAll();
         }
-        const { only: _only, preset: _preset, ...defaults } = config ?? {};
-        const effective = { ...defaults, ...(await switches()) };
-
-        // 会话级覆盖优先：该会话显式选过分类，就完全按它走
-        let sessionSet;
-        let currentSid;
-        try {
-          const agent = agentsSvc?.currentInitiator?.();
-          const sid = agent?.id;
-          currentSid = sid;
-          if (sid) sessionSet = SHARED.overrides.get(sid);
-        } catch (e) {
-          ctx.logger?.warn?.(`biomedical-picker: currentInitiator failed: ${e?.message ?? e}`);
-        }
-        if (SHARED.overrides.size > 0) {
-          ctx.logger?.info?.(
-            `biomedical-picker: list() sid=${currentSid ?? 'undefined'} overrides=${SHARED.overrides.size} hit=${Boolean(sessionSet)}`,
-          );
+        const enabled = await enabledCategoryIds(doc);
+        // 用户（浮窗「全部关闭」或设置页全关）主动选了 0 类：就是不加载本包技能。
+        // 以前这里也退回全量扫描，结果「全部关闭」反而加载了全部技能、目录成本最高。
+        if (enabled.size === 0) {
+          ctx.logger?.info?.('biomedical-picker: 0 categories enabled, providing no bundled skills');
+          return [];
         }
 
         const out = [];
-        let enabledCategories = 0;
+        const listed = new Set();
+        /** 折叠技能（catalog 里带 via 的，如 152 个 nfcore-* 流程）不进目录，只记下需要露出的入口技能 */
+        const routers = new Set();
         for (const category of doc.categories) {
-          if (sessionSet) {
-            if (!sessionSet.has(category.id)) continue;
-          } else if (only) {
-            if (!only.has(category.id)) continue;
-          } else if (effective[category.id] === false) continue;
-          enabledCategories += 1;
+          if (!enabled.has(category.id)) continue;
           for (const entry of category.skills) {
-            const directory = join(SKILLS_ROOT, entry.path);
-            const file = join(directory, 'SKILL.md');
-            let text;
-            try {
-              text = await readFile(file, 'utf8');
-            } catch {
+            if (entry.via) {
+              routers.add(entry.via);
               continue;
             }
-            const { fm } = frontmatter(text);
-            if (!fm.name) continue;
-            out.push({
-              name: fm.name,
-              description: fm.description ?? '',
-              ...(fm.whenToUse ? { whenToUse: fm.whenToUse } : {}),
-              invocation: { modelInvocable: true, userInvocable: true },
-              provider: 'biomedical-picker',
-              source: 'custom',
-              rank: 0,
-              locator: { path: file, directory },
-              resourceBase: { kind: 'directory', path: directory },
-              path: file,
-              metadata: { category: category.id, categoryLabel: category.label_zh },
-            });
+            const candidate = await readCandidate(entry, category);
+            if (!candidate) continue;
+            out.push(candidate);
+            listed.add(candidate.name);
           }
         }
-        // 用户（浮窗「全部关闭」或设置页全关）主动选了 0 类：就是不加载本包技能。
-        // 以前这里也退回全量扫描，结果「全部关闭」反而加载了全部 603 个、目录成本最高。
-        if (enabledCategories === 0) {
-          ctx.logger?.info?.('biomedical-picker: 0 categories enabled, providing no bundled skills');
-          return [];
+        // 入口技能可能属于没开启的分类（nfcore-catalog 在「计算流程与可复现性」）：
+        // 只要范围内有被它折叠的流程，就把它放进目录。
+        for (const router of routers) {
+          if (listed.has(router)) continue;
+          for (const category of doc.categories) {
+            const entry = category.skills.find((e) => e.name === router);
+            if (!entry) continue;
+            const candidate = await readCandidate(entry, category);
+            if (candidate) {
+              out.push(candidate);
+              listed.add(router);
+            }
+            break;
+          }
         }
         // 选了分类却一个文件都读不到：说明 skills/ 目录坏了，才退回全量扫描兜底。
         if (out.length === 0) {
@@ -636,8 +838,28 @@ export function apply(ctx, config = {}) {
 
       async get(candidate) {
         const text = await readFile(candidate.locator.path, 'utf8');
-        const { body } = frontmatter(text);
-        return { ...candidate, content: body };
+        const { fm, body } = frontmatter(text);
+        const doc = await loadCatalog();
+        const entry = doc ? findEntry(doc, candidate.name) : undefined;
+        const parts = [];
+        const tools = declaredMcpTools(fm, entry);
+        if (tools.length > 0) {
+          parts.push(
+            `> 本技能常用的 MCP 数据工具：${tools.map((t) => `\`mcp__biomedical__${t}\``).join('、')}。需要查库时优先用它们；当前模式没有提供的工具不要硬调。`,
+            '',
+          );
+        }
+        parts.push(body);
+        if (doc && hasFolded(doc, candidate.name)) {
+          let enabled;
+          try {
+            enabled = await enabledCategoryIds(doc);
+          } catch {
+            enabled = new Set(doc.categories.map((c) => c.id));
+          }
+          parts.push('', renderFoldedIndex(doc, candidate.name, enabled));
+        }
+        return { ...candidate, content: parts.join('\n') };
       },
     };
   });

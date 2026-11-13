@@ -1,6 +1,6 @@
 ---
 name: cellxgene-census
-description: Query the CZ CELLxGENE Census programmatically for versioned public single-cell and spatial transcriptomics data. Use when you need population-scale cell metadata, gene expression slices, Census summary counts, source H5AD URIs/downloads, embeddings, spatial Census data, or reference atlas comparisons across organisms, tissues, diseases, assays, and cell types. For analyzing your own local single-cell data use scanpy, anndata, or scvi-tools.
+description: CELLxGENE Census 编程访问：按版本查询公开单细胞与空间转录组数据的细胞元数据、表达切片、汇总计数、H5AD 下载链接与嵌入。只是浏览和挑选数据集用 single-cell-data-retrieval。
 allowed-tools: Read Write Edit Bash
 license: MIT
 compatibility: Requires Python >=3.10,<3.13. Examples target cellxgene-census 1.17.x and the 2025-11-08 stable LTS Census; spatial workflows need the spatial extra and TileDB-SOMA >=1.15.5. No authentication is required for public Census data.

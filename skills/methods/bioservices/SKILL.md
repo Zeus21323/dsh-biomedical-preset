@@ -1,6 +1,6 @@
 ---
 name: bioservices
-description: Unified Python access to 40+ bioinformatics web services; use when you need to query multiple databases (e.g., UniProt/KEGG/ChEMBL/Reactome) with one consistent API in a single workflow, especially for cross-database analysis and identifier mapping.
+description: bioservices 统一访问 40 多个生物信息 Web 服务（UniProt、KEGG、ChEMBL、Reactome 等），适合在一个脚本里跨库查询和做 ID 映射。单次查基因、变异、结构优先直接用本插件的 MCP 数据工具。
 license: MIT
 author: AIPOCH
 ---

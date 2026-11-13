@@ -1,6 +1,6 @@
 ---
 name: 04-transcriptomics-m6a
-description: 用于分析m6A、m5C等RNA修饰的富集区或候选位点；支持抗体富集、化学转换、交联和Nanopore直接RNA等不同证据。
+description: 用于分析m6A、m5C等RNA修饰的富集区或候选位点；支持抗体富集、化学转换、交联和Nanopore直接RNA等不同证据。只需要 MeRIP、RIP、CLIP-seq 的 peak calling 实操（exomePeak2、CLIPper）用 rna-modification-clip。
 ---
 
 # RNA修饰位点分析

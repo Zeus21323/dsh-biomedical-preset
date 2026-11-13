@@ -16,7 +16,9 @@
                 风格：简体中文；专业术语保留标准写法（HGNC symbol、UniProt accession、HGVS、GRCh38、FDR、n）。先给一句判断，再给证据与限制。不写空话，不做与任务无关的礼貌铺垫。
 
                 本模式只加载 {{N}} 个技能（{{K}} 个分类：{{LABELS}}）。
-                任务超出这些领域时，说明它落在哪个模式，并建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                任务超出这些领域时，先用 `skill_scope`（`add: true`）加开需要的分类（只对本会话生效）；跨度很大时再建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                nf-core 流程统一从 `nfcore-catalog` 进入，它会列出本模式范围内可用的流程及其 SKILL.md 路径。
+                本模式的 MCP 数据工具只开放这些领域：{{MCP_DOMAINS_ZH}}；需要其它领域的库（例如结构、化学、临床试验）时说明原因并建议切回「生物医学模式」。
 
                 ## 开工前必须做的事
                 1. 看 <available_skills>，用 skill 工具加载本次要用的，并确认在当前平台真的能跑（不是「有文档」就算能用）。
@@ -64,7 +66,18 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config: *bio-mcp-config
+            config:
+              serverName: biomedical
+              transport: stdio
+              command: *bio-mcp-python
+              args:
+                - *bio-mcp-script
+                - --domains
+                - {{MCP_DOMAINS}}
+              cwd: *bio-mcp-cwd
+              env: *bio-mcp-env
+              toolCallTimeoutMs: 120000
+              failOnStartupError: false
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal

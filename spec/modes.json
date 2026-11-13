@@ -11,6 +11,11 @@
       "sequencing-qc-alignment",
       "variant-calling-filtering",
       "copy-number-structural-variation"
+    ],
+    "mcpDomains": [
+      "literature",
+      "genome",
+      "variant"
     ]
   },
   {
@@ -24,6 +29,13 @@
     "cats": [
       "genome-assembly-comparative",
       "population-genetics-gwas"
+    ],
+    "mcpDomains": [
+      "literature",
+      "genome",
+      "variant",
+      "expression",
+      "clinical"
     ]
   },
   {
@@ -38,6 +50,14 @@
       "variant-interpretation-clinical",
       "clinical-precision-medicine",
       "pharmacogenomics-dosing"
+    ],
+    "mcpDomains": [
+      "literature",
+      "genome",
+      "variant",
+      "clinical",
+      "chemistry",
+      "protein"
     ]
   },
   {
@@ -51,6 +71,14 @@
     "cats": [
       "cancer-genomics-liquid-biopsy",
       "immunology-immuno-oncology"
+    ],
+    "mcpDomains": [
+      "literature",
+      "genome",
+      "variant",
+      "expression",
+      "protein",
+      "clinical"
     ]
   },
   {
@@ -64,6 +92,12 @@
     "cats": [
       "transcriptomics-quantification",
       "differential-expression-enrichment"
+    ],
+    "mcpDomains": [
+      "literature",
+      "genome",
+      "expression",
+      "protein"
     ]
   },
   {
@@ -78,6 +112,12 @@
       "single-cell-core",
       "single-cell-advanced-virtual-cell",
       "spatial-omics"
+    ],
+    "mcpDomains": [
+      "literature",
+      "genome",
+      "expression",
+      "protein"
     ]
   },
   {
@@ -91,6 +131,13 @@
     "cats": [
       "epigenomics-methylation",
       "regulatory-network-sequence-models"
+    ],
+    "mcpDomains": [
+      "literature",
+      "genome",
+      "expression",
+      "protein",
+      "chemistry"
     ]
   },
   {
@@ -104,6 +151,13 @@
     "cats": [
       "proteomics",
       "metabolomics-lipidomics"
+    ],
+    "mcpDomains": [
+      "literature",
+      "protein",
+      "chemistry",
+      "expression",
+      "genome"
     ]
   },
   {
@@ -119,6 +173,13 @@
       "chemoinformatics-drug-design",
       "protein-engineering-synbio",
       "gene-editing-cloning"
+    ],
+    "mcpDomains": [
+      "literature",
+      "structure",
+      "chemistry",
+      "protein",
+      "clinical"
     ]
   },
   {
@@ -131,6 +192,12 @@
     "color": "#84cc16",
     "cats": [
       "microbiome-metagenomics"
+    ],
+    "mcpDomains": [
+      "literature",
+      "genome",
+      "protein",
+      "expression"
     ]
   },
   {
@@ -146,7 +213,13 @@
       "microscopy-cell-phenotyping",
       "forensic-identity-genetics"
     ],
-    "sectionLabel": "影像·细胞表型·法医"
+    "sectionLabel": "影像·细胞表型·法医",
+    "mcpDomains": [
+      "literature",
+      "clinical",
+      "genome",
+      "variant"
+    ]
   },
   {
     "id": "bio-support",
@@ -165,6 +238,16 @@
       "visualization-figures",
       "research-design-hypothesis"
     ],
-    "sectionLabel": "文献·写作与工程"
+    "sectionLabel": "文献·写作与工程",
+    "mcpDomains": [
+      "literature",
+      "genome",
+      "variant",
+      "expression",
+      "protein",
+      "structure",
+      "chemistry",
+      "clinical"
+    ]
   }
 ]

@@ -1,6 +1,6 @@
 ---
 name: conventional-oncology-hub-gene-research-planner
-description: Generates complete conventional oncology bulk-transcriptome biomarker and hub-gene research designs from a user-provided cancer type and study direction. Always use this skill whenever a user wants to design, plan, or build a tumor bioinformatics study centered on differential expression, prognostic filtering or risk modeling, PPI-based hub-gene prioritization, diagnostic/prognostic evaluation, clinical association, immune infiltration context, methylation context, and optional tissue or cell validation. Covers five study patterns (signature-first prognostic workflow, hub-gene-first biomarker workflow, hybrid signature-to-hub workflow, immune-context biomarker workflow, translational validation workflow) and always outputs four workload configs (Lite / Standard / Advanced / Publication+) with recommended primary plan, step-by-step workflow, figure plan, validation strategy, minimal executable version, publication upgrade path...
+description: 肿瘤 bulk 转录组标志物与枢纽基因课题设计：根据癌种和研究方向，生成从公共数据获取、差异与 WGCNA、枢纽基因筛选到生存分析与验证的完整研究方案。只有疾病方向、尚未限定为肿瘤转录组时用 public-omics-study-design-report。
 license: MIT
 author: AIPOCH
 ---

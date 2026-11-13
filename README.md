@@ -75,7 +75,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 | 技能 | `skill-filesystem` | 用户自有技能根（`$DSH_HOME/skills`） |
 | 设置页 | `biomedical-skill-settings` | profile 级行 + `client.js`（`dsh.client`），34 个分类开关写入 `biomedical-skills.json` |
 | 会话面板 | `client.js`（同一浏览器半） | 输入框右侧「🧬 技能」按键（`conversation.input.right`）+ 可拖动浮窗（`shell.overlay`），只改本会话 |
-| 技能 | `biomedical-skill-picker` | 单一 provider：597 个技能按 34 个功能分类提供，开关见 `picker/catalog.json` |
+| 技能 | `biomedical-skill-picker` | 单一 provider：597 个技能按 34 个功能分类提供（目录列出 445 个，152 个 nf-core 流程经 `nfcore-catalog` 入口加载），开关见 `picker/catalog.json`；同时提供 `skill_scope` 工具 |
 | 技能 | `tool-skill` | 技能目录与加载器 |
 | 数据 | `bio-mcp` | 拉起 `mcp/biomedical_mcp.py`（51 工具，stdio） |
 | 编排 | `command-goal`、`tool-goal` | 长课题目标追踪 |
@@ -145,7 +145,7 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 
 ### 为什么要分模式
 
-技能目录由模型自己读（`skill` 工具），**常驻每一轮对话**。全量 597 条 ≈ **33 000 token**，而且近义技能（`sc-clustering-umap` 与 `sc-cell-type-annotation`、`nfcore-rnaseq` 与 `nfcore-smrnaseq`）会互相干扰，候选集越大越容易选错。
+技能目录由模型自己读（`skill` 工具），**常驻每一轮对话**。全量目录 445 条（152 个 nf-core 流程折叠在 `nfcore-catalog` 入口后）≈ **2.2–2.5 万 token**（2.5.0 时 597 条 ≈ 3.3 万），而且近义技能（`sc-clustering-umap` 与 `sc-cell-type-annotation`、`nfcore-rnaseq` 与 `nfcore-smrnaseq`）会互相干扰，候选集越大越容易选错。
 
 专项模式把候选集压到 31–98 个，成本降到 **1 700–5 400 token**，同时命中率明显更高。
 
@@ -154,19 +154,19 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 <!-- gen:modes-table 由 tools/gen.mjs 生成，不要手改 -->
 | 模式（新建会话时选） | 覆盖的分类 | 技能 | 约 token |
 |---|---|---|---|
-| **生物医学模式**（全量） | 全部 34 类 | 597 | 33 100 |
-| 测序与变异检出 | 测序质控与比对、变异检测与过滤、拷贝数变异与结构变异 | 45 | 2 500 |
-| 基因组组装与群体遗传 | 基因组组装与比较基因组、群体遗传与 GWAS | 48 | 2 700 |
-| 临床解读与精准医学 | 变异解读与罕见病诊断、临床精准医学与结局分析、药物基因组学与用药 | 31 | 1 700 |
-| 肿瘤与免疫组学 | 肿瘤基因组与液体活检、免疫组学与免疫治疗 | 45 | 2 500 |
-| 转录组与差异表达 | 转录组上游与定量、差异表达与功能富集 | 42 | 2 300 |
-| 单细胞与空间组学 | 单细胞基础分析、单细胞高级与虚拟细胞、空间组学分析 | 55 | 3 000 |
-| 表观遗传与调控 | 表观遗传与 DNA 甲基化、调控网络与序列模型 | 49 | 2 700 |
-| 蛋白组与代谢组 | 蛋白质组学、代谢组与脂质糖组 | 39 | 2 200 |
-| 结构与药物设计 | 结构预测与建模、化学信息学与药物设计、蛋白工程与合成生物学、基因编辑与分子克隆 | 73 | 4 000 |
-| 微生物组与宏基因组 | 微生物组与宏基因组 | 38 | 2 100 |
-| 影像、细胞表型与法医 | 医学影像与放射组学、显微成像与细胞表型、法医与身份鉴定 | 39 | 2 200 |
-| 文献、写作与工程 | 文献检索与证据合成、写作与文档交付、数据工程与统计方法、计算流程与可复现性、数据库与接口对接、可视化与图件、研究设计与假设生成 | 93 | 5 200 |
+| **生物医学模式**（全量） | 全部 34 类 | 445（+152 个流程） | 24 700 |
+| 测序与变异检出 | 测序质控与比对、变异检测与过滤、拷贝数变异与结构变异 | 29（+17 个流程） | 1 600 |
+| 基因组组装与群体遗传 | 基因组组装与比较基因组、群体遗传与 GWAS | 28（+21 个流程） | 1 600 |
+| 临床解读与精准医学 | 变异解读与罕见病诊断、临床精准医学与结局分析、药物基因组学与用药 | 30（+2 个流程） | 1 700 |
+| 肿瘤与免疫组学 | 肿瘤基因组与液体活检、免疫组学与免疫治疗 | 34（+12 个流程） | 1 900 |
+| 转录组与差异表达 | 转录组上游与定量、差异表达与功能富集 | 22（+21 个流程） | 1 200 |
+| 单细胞与空间组学 | 单细胞基础分析、单细胞高级与虚拟细胞、空间组学分析 | 43（+13 个流程） | 2 400 |
+| 表观遗传与调控 | 表观遗传与 DNA 甲基化、调控网络与序列模型 | 36（+14 个流程） | 2 000 |
+| 蛋白组与代谢组 | 蛋白质组学、代谢组与脂质糖组 | 30（+10 个流程） | 1 700 |
+| 结构与药物设计 | 结构预测与建模、化学信息学与药物设计、蛋白工程与合成生物学、基因编辑与分子克隆 | 69（+5 个流程） | 3 800 |
+| 微生物组与宏基因组 | 微生物组与宏基因组 | 16（+23 个流程） | 900 |
+| 影像、细胞表型与法医 | 医学影像与放射组学、显微成像与细胞表型、法医与身份鉴定 | 35（+5 个流程） | 1 900 |
+| 文献、写作与工程 | 文献检索与证据合成、写作与文档交付、数据工程与统计方法、计算流程与可复现性、数据库与接口对接、可视化与图件、研究设计与假设生成 | 84（+9 个流程） | 4 700 |
 <!-- /gen:modes-table -->
 
 **怎么选**：新建会话时点预设选择器，选最贴近本次分析目标的那一个。一次分析跨两个大类（例如单细胞 + 文献综述），用全量模式再按下面那节关掉无关类。
@@ -182,11 +182,11 @@ git clone https://github.com/Zeus21323/dsh-biomedical-preset
 
 > ### 全量模式下的细调
 >
-> 全量模式默认 34 类全开（597 个技能）。如果只用其中一部分，去**设置 → 生物医学技能**关掉无关的类：
+> 全量模式默认 34 类全开（目录列出 445 个技能，另 152 个 nf-core 流程经入口加载）。如果只用其中一部分，去**设置 → 生物医学技能**关掉无关的类：
 >
 > | 保留范围 | 目录常驻 |
 > |---|---|
-> | 34 类全开（默认） | ≈ 33 100 token |
+> | 34 类全开（默认） | ≈ 24 700 token |
 > | 4 类（如转录组 + 差异表达 + 数据工程 + 文献写作） | ≈ 8 000 token |
 > | 1–2 类 | ≈ 1 000–3 000 token |
 >
@@ -321,11 +321,11 @@ if (table.has(route.path)) throw new Error(`webserver: duplicate ${route.kind} r
 <!-- gen:groups-table 由 tools/gen.mjs 生成，不要手改 -->
 | 大组 | 分类数 | 技能数 |
 |---|---|---|
-| 测序与变异 | 8 | 142 |
-| 组学与单细胞 | 10 | 223 |
-| 结构与药物 | 5 | 83 |
-| 临床与影像 | 4 | 56 |
-| 方法与工程 | 5 | 64 |
+| 测序与变异 | 8 | 96（+47 个流程） |
+| 组学与单细胞 | 10 | 143（+81 个流程） |
+| 结构与药物 | 5 | 79（+5 个流程） |
+| 临床与影像 | 4 | 47（+10 个流程） |
+| 方法与工程 | 5 | 55（+9 个流程） |
 | 文献与写作 | 2 | 29 |
 <!-- /gen:groups-table -->
 
@@ -338,40 +338,40 @@ if (table.has(route.path)) throw new Error(`webserver: duplicate ${route.kind} r
 <!-- gen:categories-table 由 tools/gen.mjs 生成，不要手改 -->
 | 分类 | id | 技能数 | 覆盖 |
 |---|---|---|---|
-| 测序质控与比对 | `sequencing-qc-alignment` | 19 | 把原始测序读段变成可信的比对结果，并回答数据质量、覆盖与污染能不能用。 |
-| 基因组组装与比较基因组 | `genome-assembly-comparative` | 20 | 从长读长或混合数据组装并注释基因组，再比较多个基因组的共线性、泛基因组与进化关系。 |
-| 变异检测与过滤 | `variant-calling-filtering` | 16 | 从比对结果或读段得到胚系、体细胞或靶向 SNV/Indel，并完成规范化与质控过滤。 |
-| 拷贝数变异与结构变异 | `copy-number-structural-variation` | 10 | 检测缺失、重复、倒位、易位、重复扩增与等位失衡，并解释拷贝数与结构层面的改变。 |
-| 变异解读与罕见病诊断 | `variant-interpretation-clinical` | 11 | 把变异注释到基因与后果，按 ACMG/AMP 证据分级并支撑罕见病与家系诊断结论。 |
-| 群体遗传与 GWAS | `population-genetics-gwas` | 28 | 在人群层面找疾病关联位点、构建遗传评分并推断因果、共定位、精细定位与祖源结构。 |
-| 肿瘤基因组与液体活检 | `cancer-genomics-liquid-biopsy` | 28 | 刻画肿瘤体细胞突变、克隆演化与可用标志物，并用 cfDNA/ctDNA 做早筛、监测与残留病判断。 |
+| 测序质控与比对 | `sequencing-qc-alignment` | 11（+9 个流程） | 把原始测序读段变成可信的比对结果，并回答数据质量、覆盖与污染能不能用。 |
+| 基因组组装与比较基因组 | `genome-assembly-comparative` | 7（+14 个流程） | 从长读长或混合数据组装并注释基因组，再比较多个基因组的共线性、泛基因组与进化关系。 |
+| 变异检测与过滤 | `variant-calling-filtering` | 11（+6 个流程） | 从比对结果或读段得到胚系、体细胞或靶向 SNV/Indel，并完成规范化与质控过滤。 |
+| 拷贝数变异与结构变异 | `copy-number-structural-variation` | 9（+2 个流程） | 检测缺失、重复、倒位、易位、重复扩增与等位失衡，并解释拷贝数与结构层面的改变。 |
+| 变异解读与罕见病诊断 | `variant-interpretation-clinical` | 10（+2 个流程） | 把变异注释到基因与后果，按 ACMG/AMP 证据分级并支撑罕见病与家系诊断结论。 |
+| 群体遗传与 GWAS | `population-genetics-gwas` | 22（+7 个流程） | 在人群层面找疾病关联位点、构建遗传评分并推断因果、共定位、精细定位与祖源结构。 |
+| 肿瘤基因组与液体活检 | `cancer-genomics-liquid-biopsy` | 22（+7 个流程） | 刻画肿瘤体细胞突变、克隆演化与可用标志物，并用 cfDNA/ctDNA 做早筛、监测与残留病判断。 |
 | 法医与身份鉴定 | `forensic-identity-genetics` | 10 | 用 SNP、STR、Y 染色体与线粒体标记完成身份、亲缘、混合样本与祖先来源判定。 |
 | 临床精准医学与结局分析 | `clinical-precision-medicine` | 10 | 评估生物标志物与预测模型，划分患者亚组，并把证据与结局分析整理成可交接的临床材料。 |
-| 医学影像与放射组学 | `medical-imaging-radiomics` | 12 | 处理 CT/MRI/病理等影像数据，做分割、配准、特征提取、模型训练与可信度评估。 |
-| 显微成像与细胞表型 | `microscopy-cell-phenotyping` | 17 | 从显微、流式与空间蛋白图像定量细胞形态、分割、计数、追踪并比较组间表型。 |
-| 转录组上游与定量 | `transcriptomics-quantification` | 32 | 从 RNA 读段得到表达矩阵，处理链特异性、异构体组装、融合、剪接与 RNA 修饰证据。 |
-| 差异表达与功能富集 | `differential-expression-enrichment` | 10 | 在组学矩阵上做组间差异与统计建模，并把结果落到通路、基因集与功能解释。 |
-| 单细胞基础分析 | `single-cell-core` | 20 | 完成单细胞数据的质控、双细胞与环境 RNA 清理、降维聚类、注释与对象格式管理。 |
+| 医学影像与放射组学 | `medical-imaging-radiomics` | 12（+1 个流程） | 处理 CT/MRI/病理等影像数据，做分割、配准、特征提取、模型训练与可信度评估。 |
+| 显微成像与细胞表型 | `microscopy-cell-phenotyping` | 14（+4 个流程） | 从显微、流式与空间蛋白图像定量细胞形态、分割、计数、追踪并比较组间表型。 |
+| 转录组上游与定量 | `transcriptomics-quantification` | 13（+20 个流程） | 从 RNA 读段得到表达矩阵，处理链特异性、异构体组装、融合、剪接与 RNA 修饰证据。 |
+| 差异表达与功能富集 | `differential-expression-enrichment` | 10（+1 个流程） | 在组学矩阵上做组间差异与统计建模，并把结果落到通路、基因集与功能解释。 |
+| 单细胞基础分析 | `single-cell-core` | 14（+7 个流程） | 完成单细胞数据的质控、双细胞与环境 RNA 清理、降维聚类、注释与对象格式管理。 |
 | 单细胞高级与虚拟细胞 | `single-cell-advanced-virtual-cell` | 20 | 在单细胞数据上做轨迹、通讯、扰动预测、多模态与队列复现等机制性推断。 |
-| 空间组学分析 | `spatial-omics` | 15 | 利用空间坐标回答组织里谁在哪里、谁挨着谁，并识别空间域、邻域与细胞组成。 |
-| 蛋白质组学 | `proteomics` | 21 | 从质谱原始数据到肽段鉴定与蛋白定量，并处理修饰、亲和平台与定量质量。 |
-| 代谢组与脂质糖组 | `metabolomics-lipidomics` | 18 | 把质谱、NMR 或电泳信号转成可信的代谢物、脂质与聚糖注释和定量结果。 |
-| 表观遗传与 DNA 甲基化 | `epigenomics-methylation` | 31 | 处理 ChIP/ATAC/CUT&RUN、Hi-C 与亚硫酸氢盐数据，识别 peak、染色质状态、三维结构与甲基化差异。 |
-| 调控网络与序列模型 | `regulatory-network-sequence-models` | 18 | 推断转录因子调控网络与模块，或用基因组基础模型评估序列变异的调控效应。 |
-| 微生物组与宏基因组 | `microbiome-metagenomics` | 38 | 从扩增子或 shotgun 数据得到物种、功能、耐药与菌株结果，并做群落比较与传播分析。 |
-| 结构预测与建模 | `structural-biology-modeling` | 18 | 预测或准备蛋白与复合物结构，评估质量、相似性与界面几何并做动力学分析。 |
-| 化学信息学与药物设计 | `chemoinformatics-drug-design` | 27 | 围绕小分子做结构标准化、描述符、相似性、对接与筛选、成药性与毒性排序。 |
-| 蛋白工程与合成生物学 | `protein-engineering-synbio` | 15 | 设计蛋白序列与骨架、优化表达与可开发性，并把构建放进代谢与自动化实验方案。 |
-| 基因编辑与分子克隆 | `gene-editing-cloning` | 13 | 设计 gRNA、供体与筛选文库，评估脱靶与编辑结果，并完成克隆相关的序列层面设计。 |
+| 空间组学分析 | `spatial-omics` | 10（+6 个流程） | 利用空间坐标回答组织里谁在哪里、谁挨着谁，并识别空间域、邻域与细胞组成。 |
+| 蛋白质组学 | `proteomics` | 13（+9 个流程） | 从质谱原始数据到肽段鉴定与蛋白定量，并处理修饰、亲和平台与定量质量。 |
+| 代谢组与脂质糖组 | `metabolomics-lipidomics` | 18（+1 个流程） | 把质谱、NMR 或电泳信号转成可信的代谢物、脂质与聚糖注释和定量结果。 |
+| 表观遗传与 DNA 甲基化 | `epigenomics-methylation` | 20（+12 个流程） | 处理 ChIP/ATAC/CUT&RUN、Hi-C 与亚硫酸氢盐数据，识别 peak、染色质状态、三维结构与甲基化差异。 |
+| 调控网络与序列模型 | `regulatory-network-sequence-models` | 17（+2 个流程） | 推断转录因子调控网络与模块，或用基因组基础模型评估序列变异的调控效应。 |
+| 微生物组与宏基因组 | `microbiome-metagenomics` | 16（+23 个流程） | 从扩增子或 shotgun 数据得到物种、功能、耐药与菌株结果，并做群落比较与传播分析。 |
+| 结构预测与建模 | `structural-biology-modeling` | 18（+1 个流程） | 预测或准备蛋白与复合物结构，评估质量、相似性与界面几何并做动力学分析。 |
+| 化学信息学与药物设计 | `chemoinformatics-drug-design` | 27（+1 个流程） | 围绕小分子做结构标准化、描述符、相似性、对接与筛选、成药性与毒性排序。 |
+| 蛋白工程与合成生物学 | `protein-engineering-synbio` | 15（+1 个流程） | 设计蛋白序列与骨架、优化表达与可开发性，并把构建放进代谢与自动化实验方案。 |
+| 基因编辑与分子克隆 | `gene-editing-cloning` | 12（+2 个流程） | 设计 gRNA、供体与筛选文库，评估脱靶与编辑结果，并完成克隆相关的序列层面设计。 |
 | 药物基因组学与用药 | `pharmacogenomics-dosing` | 10 | 把基因型转成星等位基因与表型，落到具体药物的剂量、疗效与安全性建议。 |
-| 免疫组学与免疫治疗 | `immunology-immuno-oncology` | 17 | 分析受体库、HLA、新抗原与免疫浸润，评估免疫治疗获益与疫苗表位覆盖。 |
+| 免疫组学与免疫治疗 | `immunology-immuno-oncology` | 13（+5 个流程） | 分析受体库、HLA、新抗原与免疫浸润，评估免疫治疗获益与疫苗表位覆盖。 |
 | 文献检索与证据合成 | `literature-evidence-synthesis` | 12 | 检索、核验并综合文献与数据库证据，形成可核查的综述、评审与证据强度判断。 |
 | 写作与文档交付 | `writing-document-delivery` | 17 | 把分析与文献写成论文、基金、海报或报告，并导出合规的 Word/PDF/PPT 交付件。 |
-| 数据工程与统计方法 | `data-engineering-statistics` | 24 | 整理表格与格式、建立统计与机器学习评估、管理隐私与数据交换的工程性任务。 |
-| 计算流程与可复现性 | `workflow-reproducibility` | 10 | 搭可复现的分析环境与流程，追溯输入与版本，并审计结果漂移与助手可靠性。 |
-| 数据库与接口对接 | `database-api-access` | 11 | 通过 API 或公共库取回基因、变异、结构、组学与文献数据，并核对版本与可用性。 |
+| 数据工程与统计方法 | `data-engineering-statistics` | 23（+2 个流程） | 整理表格与格式、建立统计与机器学习评估、管理隐私与数据交换的工程性任务。 |
+| 计算流程与可复现性 | `workflow-reproducibility` | 5（+5 个流程） | 搭可复现的分析环境与流程，追溯输入与版本，并审计结果漂移与助手可靠性。 |
+| 数据库与接口对接 | `database-api-access` | 11（+1 个流程） | 通过 API 或公共库取回基因、变异、结构、组学与文献数据，并核对版本与可用性。 |
 | 可视化与图件 | `visualization-figures` | 9 | 把数据与结构做成清晰可发表的图表、轨道、示意图或渲染好的图形交付件。 |
-| 研究设计与假设生成 | `research-design-hypothesis` | 10 | 把宽泛兴趣收束成可检验问题，规划数据、对照、样本量与验证路线。 |
+| 研究设计与假设生成 | `research-design-hypothesis` | 10（+1 个流程） | 把宽泛兴趣收束成可检验问题，规划数据、对照、样本量与验证路线。 |
 <!-- /gen:categories-table -->
 
 ### 技能来源
@@ -383,7 +383,7 @@ if (table.has(route.path)) throw new Error(`webserver: duplicate ${route.kind} r
 
 ### 目录成本
 
-597 个技能的 name + description 合计 **75 703 字符 ≈ 34 400 token**（`name` 15 224 + `description` 60 479，单条描述按目录截断 500 字符计），常驻系统提示。
+目录实际列出的 445 个技能（nf-core 流程折叠后）的 name + description 合计 **47 399 字符 ≈ 2.2 万 token**（`name` 12 574 + `description` 34 825，单条描述按目录截断 500 字计；2.6.0 起所有描述都不超过 500 字）。2.5.0 时 597 个技能合计 75 703 字符 ≈ 3.4 万 token：折叠 nf-core 和精简 63 条描述共减少 37%。
 
 **这是全开时的成本。** 用分类开关按需裁剪后显著下降：
 
@@ -402,6 +402,59 @@ if (table.has(route.path)) throw new Error(`webserver: duplicate ${route.kind} r
 3. **picker 模块本身加载失败**（改坏 JS、依赖解析失败）→ patch 里预置了 6 行 `skill-filesystem` hub，默认 `disabled: true`（零开销）；在插件页逐个打开即可恢复全部技能。启用前先禁用 picker 行，否则同一技能会由两个 provider 各提供一份。
 
 第 1 层已实测（catalog 损坏 → 仍返回全部技能）；「全关 → 0 个」由 `scope-test.mjs` 覆盖。第 3 层是给"下次改坏代码"买的保险。
+
+## 让 agent 选准技能与工具
+
+目录越大、近义技能越多，agent 越容易选错。这一节的机制都以「先缩小候选、再让每个候选说清自己」为目标，效果用下文「路由评测」衡量。
+
+### 1. nf-core 流程折叠到一个入口
+
+152 个 `nfcore-*` 流程技能不再逐个列进目录（catalog 条目带 `"via": "nfcore-catalog"`），目录只露出入口 `nfcore-catalog`，全量目录从 597 个降到 445 个（约 2.5 万 token，原来约 3.3 万）。
+
+- 范围内只要有被折叠的流程，入口就会出现在目录里，即使入口自己所在的分类没开（它在「计算流程与可复现性」）。
+- 加载入口时，picker 在正文末尾追加一份**按当前技能范围生成**的流程索引：每个流程一行，含说明和 SKILL.md 绝对路径。DSH 的 `skill` 工具只能加载目录里列出的技能，所以索引要求 agent 用文件工具直接打开对应 SKILL.md。
+- 代价：这 152 个流程不能再用 `/nfcore-xxx` 直接调用。
+
+### 2. `skill_scope`：agent 自己收窄范围
+
+picker 在每个预设里注册一个模型可调用的工具 `skill_scope`，写入的是和浮窗同一份会话覆盖，下一步起目录按新范围生成。
+
+| 参数 | 作用 |
+|---|---|
+| `categories` | 保留的分类 id（1–8 个），默认替换当前范围 |
+| `add: true` | 在当前范围上追加（专项模式里加开别的领域） |
+| `reset: true` | 清除会话覆盖，恢复模式默认 |
+
+全量模式的 persona 要求 agent 理解任务后先调用一次，收窄到 2–4 类；专项模式在任务超出范围时用 `add: true` 加开。DSH 每次目录变化都会追加一份完整新目录，所以 persona 也要求「只在开工时调一次、不要来回切换」。
+
+### 3. MCP 工具按模式裁剪
+
+MCP 服务支持 `--domains`（或环境变量 `BIO_MCP_DOMAINS`）：`tools/list` 只返回这些领域的工具，调用未启用领域的工具会返回可读的错误。领域定义在 `mcp/domains.json`（服务与生成器共用）：
+
+| 领域 | 说明 | 工具前缀 |
+|---|---|---|
+| `literature` | 文献与预印本 | `pubmed_` `biorxiv_` `literature_graph_` |
+| `genome` | 基因组注释与调控 | `genomes_` `biomart_` `rna_rfam_` `regulation_` |
+| `variant` | 变异与人群频率 | `variants_` `human_genetics_` |
+| `expression` | 表达与组学数据集 | `expression_` `omics_archives_` `cellguide_` |
+| `protein` | 基因功能与蛋白注释 | `genes_ontologies_` `protein_annotation_` |
+| `structure` | 蛋白结构 | `structures_` |
+| `chemistry` | 化合物与药品监管 | `chembl_` `chemistry_` `zinc_` `drug_regulatory_` |
+| `clinical` | 临床试验与肿瘤证据 | `clinicaltrials_` `clinical_genomics_` `cancer_models_` |
+
+全量模式启用全部领域；12 个专项模式在 `spec/modes.json` 的 `mcpDomains` 里声明，生成器写进各自的 `--domains`，并检查「模式内技能声明的工具都落在该模式的领域里」，不满足就拒绝生成。容易混淆的工具（PubMed / OpenAlex / arXiv、Ensembl / MyGene / BioMart、gnomAD / dbSNP、PubChem / ChEMBL、ClinVar / CIViC 等）在描述里写明了何时换用哪个。
+
+### 4. 技能声明自己用哪些 MCP 工具
+
+70 个查库型技能在 catalog 条目里声明了 `mcp`（也支持在 SKILL.md frontmatter 写 `mcp: [tool_a, tool_b]`，优先于 catalog）。加载这类技能时，picker 在正文最前面加一行「本技能常用的 MCP 数据工具：…」，agent 不必再从 51 个工具里找。`lint-skills.mjs` 检查声明的工具真实存在。
+
+### 5. 描述规范
+
+目录里模型只看得到名字和描述（截断 500 字），描述就是路由依据。统一格式：**关键名词在前（数据类型、主要工具），写清做什么、什么时候用，以及什么时候换用哪个技能**。这次改写了 63 条：8 条法医类模板句、46 条纯英文描述、9 条超过 500 字（后半段的触发词被截掉）的描述；另外给 13 个容易混淆的技能补了分工说明。`lint-skills.mjs` 强制：
+
+- 描述不能为空、不超过 500 字、必须有中文；
+- 不能是「在 X 领域开展“Y”任务时使用」这类模板句；
+- 同分类内词面相似度 ≥ 0.4 的两条描述必须互相点名（≥ 0.3 时给出提示）。
 
 ## MCP 工具清单（51）
 
@@ -526,10 +579,10 @@ if (table.has(route.path)) throw new Error(`webserver: duplicate ${route.kind} r
 
 ```sh
 node tools/gen.mjs --check     # 生成产物与数据源一致（见下「改技能或模式」）
-node tools/lint-skills.mjs     # 技能库：目录 ↔ catalog、重名、许可证、开发残留
-python tools/mcp-test.py       # MCP：工具清单、并发、取消、总时限、NCBI 参数、摘要解析
+node tools/lint-skills.mjs     # 技能库：目录 ↔ catalog、重名、许可证、开发残留、描述规范、声明的 MCP 工具存在
+python tools/mcp-test.py       # MCP：工具清单、领域过滤、并发、取消、总时限、NCBI 参数、摘要解析（22 项）
 node tools/route-eval.mjs --validate  # 路由评测用例：技能 / 工具名有效、34 类都有用例
-node tools/scope-test.mjs      # 65 项（含「全部关闭 → 0 个」「专项会话按本模式白名单」「嵌套派活被拒」）：模块 id、三处 slot 注册、12 大类渲染、
+node tools/scope-test.mjs      # 73 项（含 nf-core 折叠与流程索引、skill_scope、技能附带 MCP 工具、「全部关闭 → 0 个」、嵌套派活被拒）：模块 id、三处 slot 注册、12 大类渲染、
                                # 三态开关、POST 载荷、Esc、拖动、13 实例共用路由、
                                # 引用计数注销、register/inject 抛错时 apply 不炸
 node tools/lint-presets.mjs    # 13 个预设结构体检：行数、only 白名单、
@@ -555,7 +608,14 @@ ROUTE_EVAL_API_KEY=sk-... node tools/route-eval.mjs --router llm --baseline eval
 
 `--router llm` 默认请求 `https://api.deepseek.com` 的 `deepseek-chat`，可用 `ROUTE_EVAL_BASE_URL` / `ROUTE_EVAL_MODEL` 换成其它 OpenAI 兼容服务；`--mode full|specialist|both`、`--tag lay`、`--limit 20`、`--concurrency 4` 控制范围。模型回复按「模型 + 提示词」缓存在 `eval/routing/.cache/`（不进仓库），重跑不会重复计费；技能目录作为固定的系统提示放在最前面，DeepSeek 的上下文缓存会让重复部分按缓存价计费。
 
-结果写到 `eval/routing/results/`（只有 `baseline-*.json` 进仓库）。当前离线基线 `baseline-bm25.json`：全量 skill@1 74.3%、专项模式 81.4%。注意 BM25 偏乐观——用例是对照目录写的，用词和描述重合度高；`lay` 外行表述只有 60%，真实用户的说法更接近这一档。真实模型的基线请用 `--router llm --out eval/routing/results/baseline-llm.json` 生成后提交。
+结果写到 `eval/routing/results/`（只有 `baseline-*.json` 进仓库）。评测与实际行为保持一致：折叠的流程不在目录里、答案是折叠流程时选中入口也算对；专项模式只看得到该模式 MCP 领域内的工具。BM25 建索引时会去掉「X 用 Y」这类点名其他技能的分工子句（它们是写给读者的「不该选我」，词法检索会误当成命中）。
+
+当前离线基线 `baseline-bm25.json`（2.6.0，目录 445 个技能）：全量 skill@1 74.9%、skill@3 85.6%；专项模式 81.4%、94.6%。2.5.0 时（目录 597 个）分别是 74.3% / 86.8% 和 81.4% / 94.0%——目录小了 25%，词法基线基本持平。BM25 的局限要心里有数：
+
+- 它偏乐观：用例是对照目录写的，用词和描述重合度高；`lay` 外行表述只有 50–60%，真实用户的说法更接近这一档；
+- 它衡量不了这轮改动最想改善的几件事：跨语言（描述统一成中文后英文提问在词面上匹配不上，模型却能理解）、读懂「何时换用哪个」、先选入口再选流程、`skill_scope` 收窄。
+
+所以真实效果请用 `--router llm --out eval/routing/results/baseline-llm.json` 生成模型基线后提交，之后每次改描述、改目录都和它比。
 
 ### 改技能或模式：只改数据源，再跑生成器
 
@@ -608,12 +668,15 @@ package.json            包声明：dsh.bundle（patch）+ dsh.client（设置�
 subagent-cap.mjs        子智能体并发闸（tools/execute 作用域，限 3 并发）
 paths.cjs               包内路径（供 patch 的 !!js 表达式按包名同步解析）
 shared/profile.mjs      定位 profile 目录（picker / 设置页共用）
+shared/frontmatter.mjs  SKILL.md frontmatter 解析（picker 与评测共用）
+shared/mcp-tools.mjs    读取 MCP 工具清单与领域（评测、lint 共用）
 picker/                 技能 provider：catalog.json（34 类 x 597 技能，含每个技能的短说明）+ index.js
 spec/                   生成器数据源：modes.json（12 个专项模式）、settings-groups.json、specialist-preset.yml.tpl
 tools/                  gen.mjs（生成器）、route-eval.mjs（路由评测）与自检：scope-test / lint-presets / lint-skills / mcp-test.py
 eval/routing/           路由评测用例（cases.json）与基线结果（results/baseline-*.json）
 settings/               设置页 Host 半：index.js（Config + 镜像）/ config.mjs（浏览器半在包根 client.js）
 mcp/biomedical_mcp.py   51 个数据源工具（stdio JSON-RPC，纯标准库）
+mcp/domains.json        MCP 领域定义（服务的 --domains 与生成器共用）
 skills/                 6 个域目录 / 597 个技能 / 2047 个文件
   omics/                 21 个（自建，按官方文档整编，带 references）
   genomics/             140 个（基因组/群体遗传/肿瘤/临床基因组/液体活检/法医）

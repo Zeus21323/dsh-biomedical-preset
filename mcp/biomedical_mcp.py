@@ -11,7 +11,10 @@
   - NCBI E-utilities 按官方要求带 tool 参数并限速（无 key 3 次/秒，有 NCBI_API_KEY 时 10 次/秒）；
     可用环境变量 NCBI_EMAIL / NCBI_API_KEY 补充联系邮箱与 key
 
-环境变量（都可选）：BIO_MCP_CALL_BUDGET、BIO_MCP_WORKERS（默认 4）、NCBI_EMAIL、NCBI_API_KEY
+  - 领域过滤：--domains literature,genome（或 BIO_MCP_DOMAINS）时只暴露这些领域的工具；
+    领域见 DOMAINS，专项模式在 spec/modes.json 的 mcpDomains 里声明
+
+环境变量（都可选）：BIO_MCP_CALL_BUDGET、BIO_MCP_WORKERS（默认 4）、NCBI_EMAIL、NCBI_API_KEY、BIO_MCP_DOMAINS
 
 运行： python biomedical_mcp.py
 """
@@ -876,12 +879,12 @@ TOOLS = [
       "filter": ("string", "如 hgnc_symbol:TP53，多个用分号分隔", False),
       "attributes": ("string", "逗号分隔的 BioMart 属性名", False),
       "max_results": ("integer", "默认 20", False)}, biomart_query),
-    ("biomart_gene_info", "BioMart 按基因符号取基础注释（Ensembl/Entrez/位置/biotype/描述）。",
+    ("biomart_gene_info", "BioMart 按基因符号取基础注释（Ensembl/Entrez/位置/biotype/描述）。只查单个基因的位置与转录本时 genomes_ensembl_lookup 更快。",
      {"gene": ("string", "如 TP53", True), "max_results": ("integer", "默认 5", False)}, biomart_gene_info),
     ("zinc_search_by_structure", "按 InChIKey 或 SMILES 查 ZINC；ZINC 公开 JSON 接口已下线时自动回退 PubChem。",
      {"inchikey": ("string", "InChIKey", False), "smiles": ("string", "SMILES", False),
       "name": ("string", "化合物名", False), "max_results": ("integer", "默认 5", False)}, zinc_search),
-    ("pubmed_search_articles", "PubMed 检索文献（NCBI E-utilities）。返回 PMID、标题、期刊、日期、作者、DOI；include_abstract=true 时一并返回摘要（证据分级用）。",
+    ("pubmed_search_articles", "PubMed 检索生物医学文献（NCBI E-utilities），返回 PMID、标题、期刊、日期、作者、DOI；include_abstract=true 时附摘要（证据分级用）。跨学科或要引用数用 literature_graph_openalex_search，预印本用 biorxiv_recent_preprints。",
      {"query": ("string", "检索式，支持 PubMed 语法", True), "max_results": ("integer", "返回条数，默认 10", False),
       "include_abstract": ("boolean", "是否附摘要，默认 false（每条约 2500 字以内）", False)},
      pubmed_search),
@@ -891,7 +894,7 @@ TOOLS = [
     ("pubmed_find_related", "按 PMID 找 PubMed 计算的相关文献。",
      {"pmid": ("string", "PubMed ID", True), "max_results": ("integer", "默认 20", False)}, pubmed_related),
 
-    ("chembl_compound_search", "ChEMBL 按名称搜索化合物，返回 ChEMBL ID、SMILES、研发阶段。",
+    ("chembl_compound_search", "ChEMBL 按名称搜索化合物，返回 ChEMBL ID、SMILES、研发阶段，用于后续取活性数据；只要结构或分子量用 chemistry_pubchem_search。",
      {"name": ("string", "化合物/药物名", True), "max_results": ("integer", "默认 5", False)}, chembl_compound),
     ("chembl_get_bioactivity", "取某化合物与靶点的实验活性（IC50/Ki 等）。",
      {"chembl_id": ("string", "如 CHEMBL25", True), "max_results": ("integer", "默认 20", False)}, chembl_bioactivity),
@@ -910,7 +913,7 @@ TOOLS = [
     ("clinicaltrials_get_trial", "按 NCT 号取完整试验记录。",
      {"nct_id": ("string", "如 NCT01234567", True)}, clinicaltrials_get),
 
-    ("genomes_ensembl_lookup", "Ensembl 按基因符号或稳定 ID 查注释（位置、biotype、转录本）。",
+    ("genomes_ensembl_lookup", "Ensembl 按基因符号或稳定 ID 查单个基因的注释（位置、biotype、转录本）。批量换算基因 ID 用 genes_ontologies_mygene_query，自定义属性表用 biomart_query。",
      {"query": ("string", "基因符号或 ENSG ID", True), "species": ("string", "默认 homo_sapiens", False)}, ensembl_lookup),
     ("genomes_ensembl_sequence", "取序列：给 region 取区间，或给 stable_id 取该 ID 序列。",
      {"region": ("string", "如 X:1000000..1001000", False), "stable_id": ("string", "如 ENST00000380152", False),
@@ -919,13 +922,13 @@ TOOLS = [
      {"region": ("string", "如 7:140424943..140624564", True), "feature": ("string", "gene/transcript/variation", False),
       "species": ("string", "默认 homo_sapiens", False)}, ensembl_overlap),
 
-    ("variants_gnomad_get_variant", "gnomAD v4 查变异群体频率；若被限流(429)则自动回退到 Ensembl 人群频率。",
+    ("variants_gnomad_get_variant", "gnomAD v4 查变异的人群频率（需 chrom-pos-ref-alt）；被限流(429)时自动回退 Ensembl 人群频率。只有 rsID 时先用 variants_dbsnp_get，要性状关联用 human_genetics_variant_phenotypes。",
      {"variant_id": ("string", "如 1-55051215-G-GA", True),
       "rs_id": ("string", "可选，gnomAD 不可用时用于回退", False),
       "dataset": ("string", "默认 gnomad_r4", False)}, gnomad_variant),
-    ("variants_clinvar_search", "ClinVar 检索（NCBI E-utilities）。",
+    ("variants_clinvar_search", "ClinVar 检索胚系变异的临床意义（NCBI E-utilities）。肿瘤体细胞变异的治疗证据用 clinical_genomics_civic_search。",
      {"query": ("string", "如 BRCA1 pathogenic", True), "max_results": ("integer", "默认 10", False)}, clinvar_search),
-    ("variants_dbsnp_get", "dbSNP 按 rsID 取记录摘要。",
+    ("variants_dbsnp_get", "dbSNP 按 rsID 取记录摘要（位置、等位基因）。要人群频率用 variants_gnomad_get_variant。",
      {"rsid": ("string", "如 rs7412", True)}, dbsnp_get),
 
     ("expression_gtex_median", "GTEx 某基因各组织中位表达（TPM，降序）。需 GENCODE ID。",
@@ -961,7 +964,7 @@ TOOLS = [
     ("rna_rfam_search", "Rfam 关键词检索。",
      {"query": ("string", "如 riboswitch", True)}, rfam_search),
 
-    ("genes_ontologies_mygene_query", "MyGene 批量解析基因符号/ID。",
+    ("genes_ontologies_mygene_query", "MyGene 批量解析基因符号/ID，适合几十到上百个基因的 ID 换算。",
      {"terms": ("string", "逗号分隔的基因名", True), "species": ("string", "默认 human", False),
       "fields": ("string", "返回字段", False), "max_results": ("integer", "默认 10", False)}, mygene_query),
     ("genes_ontologies_quickgo_annotations", "QuickGO 取 UniProt 蛋白的 GO 注释。",
@@ -971,7 +974,7 @@ TOOLS = [
     ("genes_ontologies_ols_term", "OLS4 取本体术语详情。",
      {"ontology": ("string", "如 go、cl、efo", True), "term_id": ("string", "如 GO:0006915", True)}, ols_term),
 
-    ("omics_archives_geo_search", "GEO 检索数据集（NCBI gds）。",
+    ("omics_archives_geo_search", "GEO 检索 bulk 表达与测序数据集（NCBI gds）。公开单细胞图谱优先用 cellguide_cellxgene_collections，蛋白组用 omics_archives_pride_project。",
      {"term": ("string", "检索式", True), "max_results": ("integer", "默认 10", False)}, geo_search),
     ("omics_archives_pride_project", "PRIDE 按 accession 取蛋白质组项目。",
      {"accession": ("string", "如 PXD000001", True)}, pride_project),
@@ -994,7 +997,7 @@ TOOLS = [
     ("cellguide_search_cell_types", "按名称检索 Cell Ontology 细胞类型（OLS4/CL），返回 CL ID 与描述。",
      {"query": ("string", "如 T cell", True), "max_results": ("integer", "默认 15", False)}, cellguide_cell_type),
 
-    ("chemistry_pubchem_search", "PubChem 按名称/SMILES/InChIKey 解析 CID。",
+    ("chemistry_pubchem_search", "PubChem 按名称/SMILES/InChIKey 解析 CID，是查化合物结构与理化性质的首选入口。要生物活性（IC50/Ki）用 chembl_*。",
      {"query": ("string", "查询值", True), "namespace": ("string", "name/smiles/inchikey", False),
       "max_results": ("integer", "默认 10", False)}, pubchem_search),
     ("chemistry_pubchem_properties", "PubChem 按 CID 取分子属性。",
@@ -1002,9 +1005,9 @@ TOOLS = [
     ("chemistry_rhea_reaction", "Rhea 按反应 ID 取方程式与参与者。",
      {"rhea_id": ("string", "如 10000", True)}, rhea_reaction),
 
-    ("clinical_genomics_civic_search", "CIViC GraphQL 检索癌症证据条目。",
+    ("clinical_genomics_civic_search", "CIViC 检索癌症变异的诊断、预后、治疗证据条目。胚系致病性分级用 variants_clinvar_search。",
      {"query": ("string", "如 BRAF V600E melanoma", True)}, civic_search),
-    ("clinical_genomics_opentargets_disease_targets", "Open Targets 取疾病关联靶点。",
+    ("clinical_genomics_opentargets_disease_targets", "Open Targets 取疾病关联靶点及关联分数（需 EFO ID）。",
      {"efo_id": ("string", "如 EFO_0000305", True)}, opentargets_targets),
 
     ("drug_regulatory_openfda_labels", "openFDA 检索药品说明书。",
@@ -1014,10 +1017,10 @@ TOOLS = [
      {"search": ("string", "如 openfda.brand_name:\"Keytruda\"", True),
       "max_results": ("integer", "默认 3", False)}, openfda_drugsfda),
 
-    ("literature_graph_openalex_search", "OpenAlex 跨学科文献检索。",
+    ("literature_graph_openalex_search", "OpenAlex 跨学科文献检索（含被引次数）。纯生物医学主题优先用 pubmed_search_articles。",
      {"query": ("string", "检索词", True), "max_results": ("integer", "默认 10", False),
       "year_from": ("integer", "起始年份，可选", False)}, openalex_search),
-    ("literature_graph_arxiv_search", "arXiv 检索（返回 Atom XML 片段）。",
+    ("literature_graph_arxiv_search", "arXiv 检索（返回 Atom XML 片段），适合计算方法与 AI 预印本；生物医学预印本用 biorxiv_recent_preprints。",
      {"query": ("string", "如 all:\"protein folding\"", True), "start": ("integer", "默认 0", False),
       "max_results": ("integer", "默认 10", False)}, arxiv_search),
 ]
@@ -1039,6 +1042,64 @@ def tool_specs():
 
 
 HANDLERS = {name: fn for name, _d, _p, fn in TOOLS}
+
+# --------------------------------------------------------------------------
+# 领域过滤：专项模式只暴露自己需要的工具（--domains a,b 或 BIO_MCP_DOMAINS）
+# --------------------------------------------------------------------------
+def _load_domains():
+    """领域定义与生成器共用 mcp/domains.json；读不到时退回内置副本，服务照常启动。"""
+    here = os.path.dirname(os.path.abspath(__file__))
+    try:
+        with open(os.path.join(here, "domains.json"), encoding="utf-8") as fh:
+            data = json.load(fh)
+        return {k: tuple(v["prefixes"]) for k, v in data.items()}
+    except Exception:
+        return {
+            "literature": ("pubmed_", "biorxiv_", "literature_graph_"),
+            "genome": ("genomes_", "biomart_", "rna_rfam_", "regulation_"),
+            "variant": ("variants_", "human_genetics_"),
+            "expression": ("expression_", "omics_archives_", "cellguide_"),
+            "protein": ("genes_ontologies_", "protein_annotation_"),
+            "structure": ("structures_",),
+            "chemistry": ("chembl_", "chemistry_", "zinc_", "drug_regulatory_"),
+            "clinical": ("clinicaltrials_", "clinical_genomics_", "cancer_models_"),
+        }
+
+
+DOMAINS = _load_domains()
+
+
+def domain_of(name):
+    for domain, prefixes in DOMAINS.items():
+        if name.startswith(prefixes):
+            return domain
+    return None
+
+
+def parse_domains(argv, env):
+    """返回启用的领域集合；None 表示全部启用。未知领域名写到 stderr 并忽略。"""
+    raw = None
+    for i, a in enumerate(argv):
+        if a == "--domains" and i + 1 < len(argv):
+            raw = argv[i + 1]
+        elif a.startswith("--domains="):
+            raw = a.split("=", 1)[1]
+    if raw is None:
+        raw = env.get("BIO_MCP_DOMAINS")
+    if raw is None or raw.strip() in ("", "all", "*"):
+        return None
+    wanted = {d.strip() for d in raw.split(",") if d.strip()}
+    unknown = wanted - set(DOMAINS)
+    if unknown:
+        sys.stderr.write("biomedical_mcp: 忽略未知领域 %s\n" % ", ".join(sorted(unknown)))
+    return wanted & set(DOMAINS) or None
+
+
+ACTIVE_DOMAINS = parse_domains(sys.argv[1:], os.environ)
+
+
+def tool_enabled(name):
+    return ACTIVE_DOMAINS is None or domain_of(name) in ACTIVE_DOMAINS
 
 
 # --------------------------------------------------------------------------
@@ -1074,7 +1135,8 @@ def handle(req):
             "instructions": ("生物医学模式的公开数据源本地实现，直连公共 REST API，"
                              "不依赖任何私有网关或 token。")}}
     if method == "tools/list":
-        return {"jsonrpc": "2.0", "id": rid, "result": {"tools": tool_specs()}}
+        return {"jsonrpc": "2.0", "id": rid,
+                "result": {"tools": [t for t in tool_specs() if tool_enabled(t["name"])]}}
     if method == "tools/call":
         params = req.get("params") or {}
         name = params.get("name")
@@ -1083,6 +1145,11 @@ def handle(req):
         if not fn:
             return {"jsonrpc": "2.0", "id": rid,
                     "error": {"code": -32602, "message": "unknown tool: %s" % name}}
+        if not tool_enabled(name):
+            return {"jsonrpc": "2.0", "id": rid, "result": {
+                "content": [{"type": "text", "text": "工具 %s 属于「%s」领域，当前模式没有启用（启用的领域：%s）。"
+                             "需要它时请切换到生物医学模式。" % (name, domain_of(name), ", ".join(sorted(ACTIVE_DOMAINS)))}],
+                "isError": True}}
         try:
             result = fn(args)
             # 紧凑 JSON：indent=2 会让返回体积多出三成以上，全是空白 token

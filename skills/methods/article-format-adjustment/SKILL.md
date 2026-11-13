@@ -1,6 +1,6 @@
 ---
 name: article-format-adjustment
-description: Adjust academic paper formatting and convert between DOCX/LaTeX/Markdown when you need to meet a journal or school template requirement.
+description: 论文格式调整：按期刊或学校模板调整排版，并在 DOCX、LaTeX、Markdown 之间互转。只把 LaTeX 转成投稿用 Word 用 tex-to-docx，Markdown 转 Word 用 md-to-docx。
 license: MIT
 author: AIPOCH
 ---

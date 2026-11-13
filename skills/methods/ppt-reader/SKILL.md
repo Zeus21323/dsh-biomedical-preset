@@ -1,6 +1,6 @@
 ---
 name: ppt-reader
-description: Read and analyze local PowerPoint PPTX/POTX presentations, extracting slide text, tables, and speaker notes. Optionally render slides when office tools are available.
+description: 读取 PPT：解析本地 PPTX/POTX，提取每页文字、表格和演讲者备注，有 Office 工具时可渲染页面。制作新的 PPT 用 ppt-builder。
 when_to_use: User uploads, names, or asks questions about a PPTX/POTX file; asks to summarize, search, extract, review, or understand a presentation.
 ---
 

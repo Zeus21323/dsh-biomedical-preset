@@ -31,6 +31,8 @@ const catalog = json('picker/catalog.json');
 const modes = json('spec/modes.json');
 const groups = json('spec/settings-groups.json');
 const tpl = rd('spec/specialist-preset.yml.tpl');
+const domains = json('mcp/domains.json');
+const domainOf = (tool) => Object.entries(domains).find(([, d]) => d.prefixes.some((p) => tool.startsWith(p)))?.[0];
 
 /** 一个技能在目录里大约占多少 token（README 实测：603 个 ≈ 33 400）。 */
 const TOKENS_PER_SKILL = 55.4;
@@ -56,6 +58,21 @@ for (const m of modes) {
   }
 }
 for (const c of cats.keys()) if (!seen.has(c)) problems.push(`分类 ${c} 不属于任何专项模式`);
+// MCP 领域：模式声明的领域要存在；模式内技能声明的 MCP 工具必须落在该模式开放的领域里
+for (const m of modes) {
+  const allowed = new Set(m.mcpDomains ?? []);
+  if (allowed.size === 0) problems.push(`模式 ${m.id} 没有声明 mcpDomains`);
+  for (const d of allowed) if (!domains[d]) problems.push(`模式 ${m.id} 声明了未知 MCP 领域 ${d}`);
+  for (const c of m.cats) {
+    for (const s of cats.get(c)?.skills ?? []) {
+      for (const tool of s.mcp ?? []) {
+        const d = domainOf(tool);
+        if (!d) problems.push(`技能 ${s.name} 声明的 MCP 工具 ${tool} 不属于任何领域`);
+        else if (!allowed.has(d)) problems.push(`模式 ${m.id} 没开放「${d}」领域，但其中的技能 ${s.name} 声明了 ${tool}`);
+      }
+    }
+  }
+}
 const grouped = new Set(groups.flatMap((g) => g.cats));
 for (const c of cats.keys()) if (!grouped.has(c)) problems.push(`分类 ${c} 不属于设置页任何大组`);
 if (problems.length) {
@@ -64,7 +81,24 @@ if (problems.length) {
 }
 
 const total = catalog.categories.reduce((a, c) => a + c.skills.length, 0);
+const listedIn = (c) => c.skills.filter((s) => !s.via).length;
+const foldedIn = (c) => c.skills.filter((s) => s.via).length;
 const countOf = (ids) => ids.reduce((a, id) => a + cats.get(id).skills.length, 0);
+/** 目录里实际列出的技能数：折叠技能不算，但范围内有折叠技能时入口技能要算上（若不在范围内）。 */
+function listedCount(ids) {
+  const set = new Set(ids);
+  let n = ids.reduce((a, id) => a + listedIn(cats.get(id)), 0);
+  const routers = new Set(ids.flatMap((id) => cats.get(id).skills.filter((s) => s.via).map((s) => s.via)));
+  for (const r of routers) {
+    const home = catalog.categories.find((c) => c.skills.some((s) => s.name === r));
+    if (home && !set.has(home.id)) n += 1;
+  }
+  return n;
+}
+const foldedCount = (ids) => ids.reduce((a, id) => a + foldedIn(cats.get(id)), 0);
+const totalListed = listedCount([...cats.keys()]);
+const totalFolded = foldedCount([...cats.keys()]);
+const skillsCell = (ids) => (foldedCount(ids) ? `${listedCount(ids)}（+${foldedCount(ids)} 个流程）` : `${listedCount(ids)}`);
 const tokens = (n) => Math.round((n * TOKENS_PER_SKILL) / 100) * 100;
 const fmtTokens = (n) => tokens(n).toLocaleString('en-US').replace(/,/g, ' ');
 
@@ -102,10 +136,12 @@ const fill = (t, vars) => t.replace(/\{\{(\w+)\}\}/g, (_, k) => {
         NAME: m.name,
         DESC: m.description,
         ORDER: String(m.order),
-        N: String(countOf(m.cats)),
+        N: String(listedCount(m.cats)),
         K: String(m.cats.length),
         LABELS: m.cats.map((c) => cats.get(c).label_zh).join('、'),
         ONLY: m.cats.map((c) => `                - ${c}`).join('\n'),
+        MCP_DOMAINS: m.mcpDomains.join(','),
+        MCP_DOMAINS_ZH: m.mcpDomains.map((d) => domains[d].label).join('、'),
       }),
     );
   text = replaceRegion(text, '    # >>> gen:specialist-presets', '    # <<< gen:specialist-presets', blocks.join('\n'), 'cordis.patch.yml');
@@ -123,10 +159,10 @@ const fill = (t, vars) => t.replace(/\{\{(\w+)\}\}/g, (_, k) => {
 {
   let text = rd('client.js');
   const LABELS = Object.fromEntries(
-    catalog.categories.map((c) => [c.id, { label: c.label_zh, desc: c.desc_zh, count: c.skills.length }]),
+    catalog.categories.map((c) => [c.id, { label: c.label_zh, desc: c.desc_zh, count: listedIn(c), folded: foldedIn(c) }]),
   );
   const SKILLS = Object.fromEntries(
-    catalog.categories.map((c) => [c.id, c.skills.map((s) => ({ name: s.name, desc: s.desc }))]),
+    catalog.categories.map((c) => [c.id, c.skills.map((s) => ({ name: s.name, desc: s.desc, ...(s.via ? { via: s.via } : {}) }))]),
   );
   const SECTIONS = [...modes]
     .sort((a, b) => a.order - b.order)
@@ -145,7 +181,7 @@ const fill = (t, vars) => t.replace(/\{\{(\w+)\}\}/g, (_, k) => {
   const b = text.indexOf('\n});', a);
   if (a < 0 || b < 0) throw new Error('settings/config.mjs: 找不到 Config');
   const lines = catalog.categories
-    .map((c) => `  "${c.id}": z.boolean().default(true).volatile().description("${c.label_zh}（${c.skills.length} 个技能）"),`)
+    .map((c) => `  "${c.id}": z.boolean().default(true).volatile().description("${c.label_zh}（${listedIn(c)} 个技能${foldedIn(c) ? `，另有 ${foldedIn(c)} 个 nf-core 流程经入口加载` : ''}）"),`)
     .join('\n');
   outputs.set('settings/config.mjs', text.slice(0, a) + 'export const Config = z.object({\n' + lines + text.slice(b));
 }
@@ -156,20 +192,20 @@ const fill = (t, vars) => t.replace(/\{\{(\w+)\}\}/g, (_, k) => {
   const modesRows = [
     '| 模式（新建会话时选） | 覆盖的分类 | 技能 | 约 token |',
     '|---|---|---|---|',
-    `| **生物医学模式**（全量） | 全部 ${cats.size} 类 | ${total} | ${fmtTokens(total)} |`,
+    `| **生物医学模式**（全量） | 全部 ${cats.size} 类 | ${skillsCell([...cats.keys()])} | ${fmtTokens(totalListed)} |`,
     ...[...modes]
       .sort((a, b) => a.order - b.order)
-      .map((m) => `| ${m.name} | ${m.cats.map((c) => cats.get(c).label_zh).join('、')} | ${countOf(m.cats)} | ${fmtTokens(countOf(m.cats))} |`),
+      .map((m) => `| ${m.name} | ${m.cats.map((c) => cats.get(c).label_zh).join('、')} | ${skillsCell(m.cats)} | ${fmtTokens(listedCount(m.cats))} |`),
   ];
   const groupRows = [
     '| 大组 | 分类数 | 技能数 |',
     '|---|---|---|',
-    ...groups.map((g) => `| ${g.label} | ${g.cats.length} | ${countOf(g.cats)} |`),
+    ...groups.map((g) => `| ${g.label} | ${g.cats.length} | ${skillsCell(g.cats)} |`),
   ];
   const catRows = [
     '| 分类 | id | 技能数 | 覆盖 |',
     '|---|---|---|---|',
-    ...catalog.categories.map((c) => `| ${c.label_zh} | \`${c.id}\` | ${c.skills.length} | ${c.desc_zh} |`),
+    ...catalog.categories.map((c) => `| ${c.label_zh} | \`${c.id}\` | ${skillsCell([c.id])} | ${c.desc_zh} |`),
   ];
   for (const [name, rows] of [['modes-table', modesRows], ['groups-table', groupRows], ['categories-table', catRows]]) {
     text = replaceRegion(text, `<!-- gen:${name}`, `<!-- /gen:${name} -->`, rows.join('\n') + '\n', 'README.md');
@@ -199,7 +235,7 @@ if (CHECK) {
     console.error(`以下文件与数据源不一致，请运行 node tools/gen.mjs：\n  ${stale.join('\n  ')}`);
     process.exit(1);
   }
-  console.log(`生成产物与数据源一致（${total} 个技能 / ${cats.size} 类 / ${modes.length} 个专项模式）`);
+  console.log(`生成产物与数据源一致（${total} 个技能，目录列出 ${totalListed} 个 + ${totalFolded} 个折叠流程 / ${cats.size} 类 / ${modes.length} 个专项模式）`);
 } else {
   console.log(stale.length ? `已更新：${stale.join('、')}` : '无变化');
   console.log(`${total} 个技能 / ${cats.size} 类 / ${modes.length} 个专项模式`);

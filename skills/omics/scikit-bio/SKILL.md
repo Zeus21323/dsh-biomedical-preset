@@ -1,6 +1,6 @@
 ---
 name: scikit-bio
-description: Biological data toolkit. Sequence analysis, alignments, phylogenetic trees, diversity metrics (alpha/beta, UniFrac), ordination (PCoA), PERMANOVA, FASTA/Newick I/O, for microbiome analysis.
+description: scikit-bio 生物数据工具包（Python）：序列与比对、系统发育树、α/β 多样性（含 UniFrac）、PCoA 排序、PERMANOVA 与 FASTA/Newick 读写，常用于微生物组。只做多样性统计与组间比较也可用 microbiome-diversity-analysis。
 license: BSD-3-Clause license
 allowed-tools: Read Write Edit Bash
 compatibility: Requires Python 3.10+ and scikit-bio 0.7+ (uv pip install scikit-bio). NumPy 2.0+ is required. Optional matplotlib/seaborn/plotly for plotting; biom-format for BIOM tables; polars/anndata for table interoperability.

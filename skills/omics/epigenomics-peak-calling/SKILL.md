@@ -1,8 +1,6 @@
 ---
 name: epigenomics-peak-calling
-description: >-
-  Epigenomics peak-calling and QC mainline for ChIP-seq, ATAC-seq and CUT&Tag/CUT&RUN: assay triage, alignment (bowtie2/BWA), duplicate handling (Picard MarkDuplicates / samtools markdup), MAPQ and ENCODE blacklist filtering, peak calling (MACS3/MACS2, SEACR), replicate concordance (IDR, rescue and self-consistency ratios), QC metrics (FRiP, TSS enrichment, fragment size, bigWig signal extraction), motif analysis (HOMER findMotifsGenome.pl, MEME-ChIP) and peak annotation (ChIPseeker). Trigger when user mentions: ChIP-seq, ATAC-seq, CUT&Tag, CUT&RUN, peak calling, MACS2, MACS3, SEACR, IDR, FRiP, blacklist, TSS enrichment, 表观遗传, 峰 calling, 表观组。
-   中文触发词：ChIP-seq、ATAC-seq、CUT&Tag、peak calling、MACS2、MACS3、SEACR、IDR、FRiP、表观遗传。
+description: 表观组 peak calling 与质控主线：ChIP-seq、ATAC-seq、CUT&Tag/CUT&RUN 的实验分流、bowtie2/BWA 比对、去重，MACS3 或 SEACR 找峰，IDR 评估重复一致性。组蛋白宽峰的专门处理用 03-epigenomics-chip-seq-histone-analysis，CUT&RUN 细节用 03-epigenomics-cut-run。
 category: omics
 tags: chip-seq, atac-seq, cut-and-tag, peak-calling, epigenomics
 whenToUse: 触发词：ChIP-seq、ATAC-seq、CUT&Tag、peak calling、MACS2、MACS3、SEACR、IDR、FRiP、表观遗传

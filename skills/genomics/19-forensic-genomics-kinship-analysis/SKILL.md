@@ -1,6 +1,6 @@
 ---
 name: 19-forensic-genomics-kinship-analysis
-description: 在法医基因组学领域开展“亲缘关系分析”任务时使用；根据输入、科学假设和运行环境，在亲缘关系下已保留的方法实现之间路由。
+description: 法医亲缘关系鉴定：基于常染色体 STR 或 SNP 计算亲子、全同胞、半同胞等假设的似然比与亲权指数。远亲或家族溯源用 19-forensic-genomics-ibd-analysis，父系关系可补充 Y-STR。
 ---
 
 # 亲缘关系分析

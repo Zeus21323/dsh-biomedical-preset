@@ -1,6 +1,6 @@
 ---
 name: paper-review
-description: Use this skill for "review this paper", "review this manuscript", "peer review", "review my paper", "critique this manuscript", "review this submission", "give me feedback on my paper", "check my methods", "review my statistics", "review as a peer reviewer", "evaluate this manuscript", "review this PDF", or mentions manuscript review, peer review, paper critique, or methodological review.
+description: 同行评审：对一篇投稿稿件做审稿，检查研究设计、方法、统计、图表与结论是否站得住，并按严重程度给出审稿意见。评价已发表论文的证据强度用 evidence-validation，单纯读懂论文用 medical-research-literature-reader-pro。
 ---
 
 # Academic Manuscript Review

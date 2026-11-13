@@ -1,6 +1,6 @@
 ---
 name: excalidraw-diagram-generator
-description: Generate Excalidraw diagrams from natural language descriptions. Use when asked to "create a diagram", "make a flowchart", "visualize a process", "draw a system architecture", "create a mind map", or "generate an Excalidraw file". Supports flowcharts, relationship diagrams, mind maps, and system architecture diagrams. Outputs .excalidraw JSON files that can be opened directly in Excalidraw.
+description: Excalidraw 绘图：根据自然语言描述生成手绘风格的流程图、关系图、思维导图或系统架构图（.excalidraw 文件）。需要规整、可在 draw.io 继续编辑的图用 drawio。
 ---
 
 # Excalidraw Diagram Generator

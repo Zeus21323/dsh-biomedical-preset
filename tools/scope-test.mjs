@@ -609,6 +609,12 @@ function makeCtx({ webServer, sid = 'sess-abc', presets = DEFAULT_PRESETS }) {
         },
         agentPresets: presets,
         webServer,
+        tools: {
+          register(tool) {
+            ctx.registeredTools = [...(ctx.registeredTools ?? []), tool];
+            return () => {};
+          },
+        },
       });
       if (typeof dispose === 'function') disposers.push(dispose);
       return dispose;
@@ -746,9 +752,27 @@ if (!a.ctx.invalidated || !more[0].ctx.invalidated) bad('invalidate 没有广播
 else ok('invalidate 广播到每个实例', `${a.ctx.invalidated} / ${more[0].ctx.invalidated}`);
 
 const listed = await more[0].ctx._provider.list();
-const catsInList = new Set(listed.map((s) => s.metadata?.category));
+const catsInList = new Set(listed.filter((s) => s.name !== 'nfcore-catalog').map((s) => s.metadata?.category));
 if (catsInList.size !== 2) bad('list() 没按会话覆盖过滤', [...catsInList].join(','));
 else ok('list() 按会话覆盖过滤', `${listed.length} 个技能 / ${[...catsInList].join(',')}`);
+
+// nf-core 折叠：具体流程不进目录，入口 nfcore-catalog 进目录，加载入口时附带范围内的流程索引
+{
+  const pipelines = listed.filter((s) => s.name.startsWith('nfcore-') && s.name !== 'nfcore-catalog');
+  const router = listed.find((s) => s.name === 'nfcore-catalog');
+  if (pipelines.length > 0) bad('折叠的 nf-core 流程仍出现在目录里', pipelines.map((s) => s.name).join(','));
+  else if (!router) bad('范围内有折叠流程，却没有露出入口 nfcore-catalog');
+  else ok('nf-core 折叠：目录只露出入口', `目录 ${listed.length} 个技能`);
+  if (router) {
+    const loaded = await more[0].ctx._provider.get(router);
+    const indexed = [...loaded.content.matchAll(/^- `(nfcore-[\w-]+)`/gm)].map((m) => m[1]);
+    const outside = indexed.filter((n) => !['nfcore-ddamsproteomics', 'nfcore-diaproteomics', 'nfcore-mspepid', 'nfcore-proteinannotator', 'nfcore-proteinfamilies', 'nfcore-proteogenomicsdb', 'nfcore-proteomicslfq', 'nfcore-quantms', 'nfcore-ribomsqc', 'nfcore-metaboigniter'].includes(n));
+    if (indexed.length === 0) bad('入口技能没有附带流程索引');
+    else if (outside.length > 0) bad('流程索引包含了范围外的流程', outside.join(','));
+    else if (!/\/SKILL\.md$/m.test(loaded.content)) bad('流程索引没有给出 SKILL.md 路径');
+    else ok('入口技能附带范围内的流程索引', `${indexed.length} 个流程`);
+  }
+}
 
 await callSet({ sessionId: 'sess-abc', enabled: null });
 const g4 = await callGet('/bio-skills/get?sessionId=sess-abc');
@@ -761,6 +785,51 @@ const listedNone = await more[0].ctx._provider.list();
 if (listedNone.length !== 0) bad('「全部关闭」后 list() 仍返回技能', String(listedNone.length));
 else ok('「全部关闭」→ list() 返回 0 个技能');
 await callSet({ sessionId: 'sess-abc', enabled: null });
+
+// 技能声明的 MCP 工具：加载技能时附在正文最前面
+{
+  const all = await a.ctx._provider.list();
+  const lit = all.find((x) => x.name === 'literature-review');
+  const plain = all.find((x) => x.name === 'sc-doublet-detection');
+  if (!lit || !plain) bad('全量目录里找不到用于测试的技能');
+  else {
+    const loaded = await a.ctx._provider.get(lit);
+    const loadedPlain = await a.ctx._provider.get(plain);
+    if (!/^> 本技能常用的 MCP 数据工具：.*mcp__biomedical__pubmed_search_articles/.test(loaded.content)) bad('声明了 MCP 工具的技能加载后没有附上工具提示', loaded.content.slice(0, 80));
+    else if (/本技能常用的 MCP 数据工具/.test(loadedPlain.content)) bad('没声明工具的技能也被附上了工具提示');
+    else ok('技能声明的 MCP 工具随技能一起加载');
+  }
+}
+
+// skill_scope：agent 自己收窄技能范围（与浮窗共用会话覆盖）
+{
+  const tool = (more[0].ctx.registeredTools ?? []).find((t) => t.name === 'skill_scope');
+  if (!tool) bad('skill_scope 工具没有注册');
+  else {
+    ok('skill_scope 工具已注册', `参数：${Object.keys(tool.parameters.properties).join(', ')}`);
+    const r = await tool.execute({ categories: ['single-cell-core', 'spatial-omics'] }, { agent: { id: 'sess-abc' } });
+    const rendered = tool.output.render({}, r)[0].text;
+    const narrowed = await more[0].ctx._provider.list();
+    const narrowedCats = new Set(narrowed.filter((x) => x.name !== 'nfcore-catalog').map((x) => x.metadata?.category));
+    if (narrowedCats.size !== 2 || !narrowedCats.has('spatial-omics')) bad('skill_scope 设置后目录没有收窄', [...narrowedCats].join(','));
+    else ok('skill_scope 收窄目录', `${narrowed.length} 个技能；${rendered.slice(0, 30)}…`);
+    let threw = false;
+    try {
+      await tool.execute({ categories: ['no-such-category'] }, { agent: { id: 'sess-abc' } });
+    } catch {
+      threw = true;
+    }
+    if (!threw) bad('skill_scope 接受了未知分类');
+    else ok('skill_scope 拒绝未知分类');
+    await tool.execute({ categories: ['proteomics'], add: true }, { agent: { id: 'sess-abc' } });
+    const added = shared.overrides.get('sess-abc');
+    if (!added || !added.has('proteomics') || !added.has('single-cell-core')) bad('skill_scope add 没有在原范围上追加', [...(added ?? [])].join(','));
+    else ok('skill_scope add 追加分类', [...added].join(','));
+    await tool.execute({ reset: true }, { agent: { id: 'sess-abc' } });
+    if (shared.overrides.has('sess-abc')) bad('skill_scope reset 没有清除会话覆盖');
+    else ok('skill_scope reset 恢复默认');
+  }
+}
 
 // 专项模式会话：浮窗读到的默认范围必须是该模式的白名单，而不是全量模式的 profile 开关
 // （全量实例永远在，进程级推断会一直落到 profile）

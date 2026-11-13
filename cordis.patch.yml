@@ -40,6 +40,7 @@
                 不要为了"显得忙"重跑已有结果；也不要跳过设计直接开跑。
 
                 ## 开工前必须做技能与资源预检（第一个动作）
+                0. 先收窄技能范围：理解任务后，调用一次 `skill_scope`，只保留相关的 2–4 个分类（例如单细胞课题保留 single-cell-core、single-cell-advanced-virtual-cell、differential-expression-enrichment）。拿不准就不收窄；缺技能时再调用加开，不要来回切换。nf-core 流程统一从 `nfcore-catalog` 进入，它会列出范围内可用的流程及其 SKILL.md 路径。
                 1. 看 <available_skills>，用 skill 工具加载本次要用的，并确认在当前平台**真的能跑**（不是"有文档"就算能用）：组学走 `bulk-rnaseq` / `scanpy` / `pydeseq2` / `deeptools` / `scvi-tools`；结构走 `alphafold2` / `esmfold2` / `boltz` / `chai1` / `diffdock` / `openfold3`；文献走 `literature-review` / `medical-research-literature-reader-pro` / `evidence-validation`；设计走 `experiment-protocol-design` / `public-omics-study-design-report` / `scientific-problem-hypothesis`；统计走 `clinical-statistics-survival` / `exploratory-data-analysis-statistical-tests`；写作走 `methods-section-writer` / `reporting-guideline-compliance-checker` / `bioinformatics-writer`；工程走 `nfcore-*` / `bioinformatics-format-conversion-integrity`。
                 2. 用 mcp__biomedical__* 真实试一次查询（如 `pubmed_search_articles` 或 `genomes_ensembl_lookup`），确认工具通、返回结构正常，别等到写结论时才发现查不到。
                 3. 探针结论与预检结论在**第一次正式汇报里复述一次**，缺什么一次性要。
@@ -303,14 +304,17 @@
             name: '@deepseek-ai/dsh-mcp-client'
             # 不写本机绝对路径：python 用 DSH 自带的 primary runtime（Windows 是 python.exe，
             # macOS/Linux 是 bin/python3）；脚本位置按包名解析（见 paths.cjs），与 Loader
-            # 加载 dsh-biomedical-preset/picker 走同一条解析路径。其余 12 个预设引用这个锚点。
-            config: &bio-mcp-config
+            # 加载 dsh-biomedical-preset/picker 走同一条解析路径。
+            # 全量模式启用全部 MCP 领域；12 个专项模式通过下面的锚点复用解释器、脚本、cwd 与 env，
+            # 只另加 --domains（见 spec/modes.json 的 mcpDomains）。NCBI_EMAIL / NCBI_API_KEY 等写在 env 里即全体生效。
+            config:
               serverName: biomedical
               transport: stdio
-              command: !!js "dshHomePath('dsh-runtimes', 'dsh-primary-runtime', 'dependencies', 'python', ...(process.platform === 'win32' ? ['python.exe'] : ['bin', 'python3']))"
+              command: &bio-mcp-python !!js "dshHomePath('dsh-runtimes', 'dsh-primary-runtime', 'dependencies', 'python', ...(process.platform === 'win32' ? ['python.exe'] : ['bin', 'python3']))"
               args:
-                - !!js "process.getBuiltinModule('node:module').createRequire(ctx.get('profileContext')?.dir ? ctx.get('profileContext').dir + '/' : baseUrl)('dsh-biomedical-preset/paths').mcpScript"
-              cwd: !!js "process.getBuiltinModule('node:module').createRequire(ctx.get('profileContext')?.dir ? ctx.get('profileContext').dir + '/' : baseUrl)('dsh-biomedical-preset/paths').mcpDir"
+                - &bio-mcp-script !!js "process.getBuiltinModule('node:module').createRequire(ctx.get('profileContext')?.dir ? ctx.get('profileContext').dir + '/' : baseUrl)('dsh-biomedical-preset/paths').mcpScript"
+              cwd: &bio-mcp-cwd !!js "process.getBuiltinModule('node:module').createRequire(ctx.get('profileContext')?.dir ? ctx.get('profileContext').dir + '/' : baseUrl)('dsh-biomedical-preset/paths').mcpDir"
+              env: &bio-mcp-env {}
               toolCallTimeoutMs: 120000
               failOnStartupError: false
 
@@ -439,7 +443,7 @@
     # ══════════════════════════════════════════════════════════════════════
 
     # >>> gen:specialist-presets —— 由 tools/gen.mjs 生成（模板 spec/specialist-preset.yml.tpl，数据 spec/modes.json + picker/catalog.json），不要手改
-    # ── 测序与变异检出：45 技能，3 类 ──
+    # ── 测序与变异检出：29 技能，3 类 ──
     - id: preset-bio-seq-variant
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -456,8 +460,10 @@
 
                 风格：简体中文；专业术语保留标准写法（HGNC symbol、UniProt accession、HGVS、GRCh38、FDR、n）。先给一句判断，再给证据与限制。不写空话，不做与任务无关的礼貌铺垫。
 
-                本模式只加载 45 个技能（3 个分类：测序质控与比对、变异检测与过滤、拷贝数变异与结构变异）。
-                任务超出这些领域时，说明它落在哪个模式，并建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                本模式只加载 29 个技能（3 个分类：测序质控与比对、变异检测与过滤、拷贝数变异与结构变异）。
+                任务超出这些领域时，先用 `skill_scope`（`add: true`）加开需要的分类（只对本会话生效）；跨度很大时再建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                nf-core 流程统一从 `nfcore-catalog` 进入，它会列出本模式范围内可用的流程及其 SKILL.md 路径。
+                本模式的 MCP 数据工具只开放这些领域：文献与预印本、基因组注释与调控、变异与人群频率；需要其它领域的库（例如结构、化学、临床试验）时说明原因并建议切回「生物医学模式」。
 
                 ## 开工前必须做的事
                 1. 看 <available_skills>，用 skill 工具加载本次要用的，并确认在当前平台真的能跑（不是「有文档」就算能用）。
@@ -507,7 +513,18 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config: *bio-mcp-config
+            config:
+              serverName: biomedical
+              transport: stdio
+              command: *bio-mcp-python
+              args:
+                - *bio-mcp-script
+                - --domains
+                - literature,genome,variant
+              cwd: *bio-mcp-cwd
+              env: *bio-mcp-env
+              toolCallTimeoutMs: 120000
+              failOnStartupError: false
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -598,7 +615,7 @@
           - id: present
             name: '@deepseek-ai/dsh-tool-present'
 
-    # ── 基因组组装与群体遗传：48 技能，2 类 ──
+    # ── 基因组组装与群体遗传：28 技能，2 类 ──
     - id: preset-bio-genome-pop
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -615,8 +632,10 @@
 
                 风格：简体中文；专业术语保留标准写法（HGNC symbol、UniProt accession、HGVS、GRCh38、FDR、n）。先给一句判断，再给证据与限制。不写空话，不做与任务无关的礼貌铺垫。
 
-                本模式只加载 48 个技能（2 个分类：基因组组装与比较基因组、群体遗传与 GWAS）。
-                任务超出这些领域时，说明它落在哪个模式，并建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                本模式只加载 28 个技能（2 个分类：基因组组装与比较基因组、群体遗传与 GWAS）。
+                任务超出这些领域时，先用 `skill_scope`（`add: true`）加开需要的分类（只对本会话生效）；跨度很大时再建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                nf-core 流程统一从 `nfcore-catalog` 进入，它会列出本模式范围内可用的流程及其 SKILL.md 路径。
+                本模式的 MCP 数据工具只开放这些领域：文献与预印本、基因组注释与调控、变异与人群频率、表达与组学数据集、临床试验与肿瘤证据；需要其它领域的库（例如结构、化学、临床试验）时说明原因并建议切回「生物医学模式」。
 
                 ## 开工前必须做的事
                 1. 看 <available_skills>，用 skill 工具加载本次要用的，并确认在当前平台真的能跑（不是「有文档」就算能用）。
@@ -665,7 +684,18 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config: *bio-mcp-config
+            config:
+              serverName: biomedical
+              transport: stdio
+              command: *bio-mcp-python
+              args:
+                - *bio-mcp-script
+                - --domains
+                - literature,genome,variant,expression,clinical
+              cwd: *bio-mcp-cwd
+              env: *bio-mcp-env
+              toolCallTimeoutMs: 120000
+              failOnStartupError: false
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -756,7 +786,7 @@
           - id: present
             name: '@deepseek-ai/dsh-tool-present'
 
-    # ── 临床解读与精准医学：31 技能，3 类 ──
+    # ── 临床解读与精准医学：30 技能，3 类 ──
     - id: preset-bio-clinical
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -773,8 +803,10 @@
 
                 风格：简体中文；专业术语保留标准写法（HGNC symbol、UniProt accession、HGVS、GRCh38、FDR、n）。先给一句判断，再给证据与限制。不写空话，不做与任务无关的礼貌铺垫。
 
-                本模式只加载 31 个技能（3 个分类：变异解读与罕见病诊断、临床精准医学与结局分析、药物基因组学与用药）。
-                任务超出这些领域时，说明它落在哪个模式，并建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                本模式只加载 30 个技能（3 个分类：变异解读与罕见病诊断、临床精准医学与结局分析、药物基因组学与用药）。
+                任务超出这些领域时，先用 `skill_scope`（`add: true`）加开需要的分类（只对本会话生效）；跨度很大时再建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                nf-core 流程统一从 `nfcore-catalog` 进入，它会列出本模式范围内可用的流程及其 SKILL.md 路径。
+                本模式的 MCP 数据工具只开放这些领域：文献与预印本、基因组注释与调控、变异与人群频率、临床试验与肿瘤证据、化合物与药品监管、基因功能与蛋白注释；需要其它领域的库（例如结构、化学、临床试验）时说明原因并建议切回「生物医学模式」。
 
                 ## 开工前必须做的事
                 1. 看 <available_skills>，用 skill 工具加载本次要用的，并确认在当前平台真的能跑（不是「有文档」就算能用）。
@@ -824,7 +856,18 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config: *bio-mcp-config
+            config:
+              serverName: biomedical
+              transport: stdio
+              command: *bio-mcp-python
+              args:
+                - *bio-mcp-script
+                - --domains
+                - literature,genome,variant,clinical,chemistry,protein
+              cwd: *bio-mcp-cwd
+              env: *bio-mcp-env
+              toolCallTimeoutMs: 120000
+              failOnStartupError: false
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -915,7 +958,7 @@
           - id: present
             name: '@deepseek-ai/dsh-tool-present'
 
-    # ── 肿瘤与免疫组学：45 技能，2 类 ──
+    # ── 肿瘤与免疫组学：34 技能，2 类 ──
     - id: preset-bio-tumor-immune
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -932,8 +975,10 @@
 
                 风格：简体中文；专业术语保留标准写法（HGNC symbol、UniProt accession、HGVS、GRCh38、FDR、n）。先给一句判断，再给证据与限制。不写空话，不做与任务无关的礼貌铺垫。
 
-                本模式只加载 45 个技能（2 个分类：肿瘤基因组与液体活检、免疫组学与免疫治疗）。
-                任务超出这些领域时，说明它落在哪个模式，并建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                本模式只加载 34 个技能（2 个分类：肿瘤基因组与液体活检、免疫组学与免疫治疗）。
+                任务超出这些领域时，先用 `skill_scope`（`add: true`）加开需要的分类（只对本会话生效）；跨度很大时再建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                nf-core 流程统一从 `nfcore-catalog` 进入，它会列出本模式范围内可用的流程及其 SKILL.md 路径。
+                本模式的 MCP 数据工具只开放这些领域：文献与预印本、基因组注释与调控、变异与人群频率、表达与组学数据集、基因功能与蛋白注释、临床试验与肿瘤证据；需要其它领域的库（例如结构、化学、临床试验）时说明原因并建议切回「生物医学模式」。
 
                 ## 开工前必须做的事
                 1. 看 <available_skills>，用 skill 工具加载本次要用的，并确认在当前平台真的能跑（不是「有文档」就算能用）。
@@ -982,7 +1027,18 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config: *bio-mcp-config
+            config:
+              serverName: biomedical
+              transport: stdio
+              command: *bio-mcp-python
+              args:
+                - *bio-mcp-script
+                - --domains
+                - literature,genome,variant,expression,protein,clinical
+              cwd: *bio-mcp-cwd
+              env: *bio-mcp-env
+              toolCallTimeoutMs: 120000
+              failOnStartupError: false
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -1073,7 +1129,7 @@
           - id: present
             name: '@deepseek-ai/dsh-tool-present'
 
-    # ── 转录组与差异表达：42 技能，2 类 ──
+    # ── 转录组与差异表达：22 技能，2 类 ──
     - id: preset-bio-transcriptome
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -1090,8 +1146,10 @@
 
                 风格：简体中文；专业术语保留标准写法（HGNC symbol、UniProt accession、HGVS、GRCh38、FDR、n）。先给一句判断，再给证据与限制。不写空话，不做与任务无关的礼貌铺垫。
 
-                本模式只加载 42 个技能（2 个分类：转录组上游与定量、差异表达与功能富集）。
-                任务超出这些领域时，说明它落在哪个模式，并建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                本模式只加载 22 个技能（2 个分类：转录组上游与定量、差异表达与功能富集）。
+                任务超出这些领域时，先用 `skill_scope`（`add: true`）加开需要的分类（只对本会话生效）；跨度很大时再建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                nf-core 流程统一从 `nfcore-catalog` 进入，它会列出本模式范围内可用的流程及其 SKILL.md 路径。
+                本模式的 MCP 数据工具只开放这些领域：文献与预印本、基因组注释与调控、表达与组学数据集、基因功能与蛋白注释；需要其它领域的库（例如结构、化学、临床试验）时说明原因并建议切回「生物医学模式」。
 
                 ## 开工前必须做的事
                 1. 看 <available_skills>，用 skill 工具加载本次要用的，并确认在当前平台真的能跑（不是「有文档」就算能用）。
@@ -1140,7 +1198,18 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config: *bio-mcp-config
+            config:
+              serverName: biomedical
+              transport: stdio
+              command: *bio-mcp-python
+              args:
+                - *bio-mcp-script
+                - --domains
+                - literature,genome,expression,protein
+              cwd: *bio-mcp-cwd
+              env: *bio-mcp-env
+              toolCallTimeoutMs: 120000
+              failOnStartupError: false
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -1231,7 +1300,7 @@
           - id: present
             name: '@deepseek-ai/dsh-tool-present'
 
-    # ── 单细胞与空间组学：55 技能，3 类 ──
+    # ── 单细胞与空间组学：43 技能，3 类 ──
     - id: preset-bio-singlecell-spatial
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -1248,8 +1317,10 @@
 
                 风格：简体中文；专业术语保留标准写法（HGNC symbol、UniProt accession、HGVS、GRCh38、FDR、n）。先给一句判断，再给证据与限制。不写空话，不做与任务无关的礼貌铺垫。
 
-                本模式只加载 55 个技能（3 个分类：单细胞基础分析、单细胞高级与虚拟细胞、空间组学分析）。
-                任务超出这些领域时，说明它落在哪个模式，并建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                本模式只加载 43 个技能（3 个分类：单细胞基础分析、单细胞高级与虚拟细胞、空间组学分析）。
+                任务超出这些领域时，先用 `skill_scope`（`add: true`）加开需要的分类（只对本会话生效）；跨度很大时再建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                nf-core 流程统一从 `nfcore-catalog` 进入，它会列出本模式范围内可用的流程及其 SKILL.md 路径。
+                本模式的 MCP 数据工具只开放这些领域：文献与预印本、基因组注释与调控、表达与组学数据集、基因功能与蛋白注释；需要其它领域的库（例如结构、化学、临床试验）时说明原因并建议切回「生物医学模式」。
 
                 ## 开工前必须做的事
                 1. 看 <available_skills>，用 skill 工具加载本次要用的，并确认在当前平台真的能跑（不是「有文档」就算能用）。
@@ -1299,7 +1370,18 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config: *bio-mcp-config
+            config:
+              serverName: biomedical
+              transport: stdio
+              command: *bio-mcp-python
+              args:
+                - *bio-mcp-script
+                - --domains
+                - literature,genome,expression,protein
+              cwd: *bio-mcp-cwd
+              env: *bio-mcp-env
+              toolCallTimeoutMs: 120000
+              failOnStartupError: false
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -1390,7 +1472,7 @@
           - id: present
             name: '@deepseek-ai/dsh-tool-present'
 
-    # ── 表观遗传与调控：49 技能，2 类 ──
+    # ── 表观遗传与调控：36 技能，2 类 ──
     - id: preset-bio-epigenome
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -1407,8 +1489,10 @@
 
                 风格：简体中文；专业术语保留标准写法（HGNC symbol、UniProt accession、HGVS、GRCh38、FDR、n）。先给一句判断，再给证据与限制。不写空话，不做与任务无关的礼貌铺垫。
 
-                本模式只加载 49 个技能（2 个分类：表观遗传与 DNA 甲基化、调控网络与序列模型）。
-                任务超出这些领域时，说明它落在哪个模式，并建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                本模式只加载 36 个技能（2 个分类：表观遗传与 DNA 甲基化、调控网络与序列模型）。
+                任务超出这些领域时，先用 `skill_scope`（`add: true`）加开需要的分类（只对本会话生效）；跨度很大时再建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                nf-core 流程统一从 `nfcore-catalog` 进入，它会列出本模式范围内可用的流程及其 SKILL.md 路径。
+                本模式的 MCP 数据工具只开放这些领域：文献与预印本、基因组注释与调控、表达与组学数据集、基因功能与蛋白注释、化合物与药品监管；需要其它领域的库（例如结构、化学、临床试验）时说明原因并建议切回「生物医学模式」。
 
                 ## 开工前必须做的事
                 1. 看 <available_skills>，用 skill 工具加载本次要用的，并确认在当前平台真的能跑（不是「有文档」就算能用）。
@@ -1457,7 +1541,18 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config: *bio-mcp-config
+            config:
+              serverName: biomedical
+              transport: stdio
+              command: *bio-mcp-python
+              args:
+                - *bio-mcp-script
+                - --domains
+                - literature,genome,expression,protein,chemistry
+              cwd: *bio-mcp-cwd
+              env: *bio-mcp-env
+              toolCallTimeoutMs: 120000
+              failOnStartupError: false
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -1548,7 +1643,7 @@
           - id: present
             name: '@deepseek-ai/dsh-tool-present'
 
-    # ── 蛋白组与代谢组：39 技能，2 类 ──
+    # ── 蛋白组与代谢组：30 技能，2 类 ──
     - id: preset-bio-proteo-metabo
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -1565,8 +1660,10 @@
 
                 风格：简体中文；专业术语保留标准写法（HGNC symbol、UniProt accession、HGVS、GRCh38、FDR、n）。先给一句判断，再给证据与限制。不写空话，不做与任务无关的礼貌铺垫。
 
-                本模式只加载 39 个技能（2 个分类：蛋白质组学、代谢组与脂质糖组）。
-                任务超出这些领域时，说明它落在哪个模式，并建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                本模式只加载 30 个技能（2 个分类：蛋白质组学、代谢组与脂质糖组）。
+                任务超出这些领域时，先用 `skill_scope`（`add: true`）加开需要的分类（只对本会话生效）；跨度很大时再建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                nf-core 流程统一从 `nfcore-catalog` 进入，它会列出本模式范围内可用的流程及其 SKILL.md 路径。
+                本模式的 MCP 数据工具只开放这些领域：文献与预印本、基因功能与蛋白注释、化合物与药品监管、表达与组学数据集、基因组注释与调控；需要其它领域的库（例如结构、化学、临床试验）时说明原因并建议切回「生物医学模式」。
 
                 ## 开工前必须做的事
                 1. 看 <available_skills>，用 skill 工具加载本次要用的，并确认在当前平台真的能跑（不是「有文档」就算能用）。
@@ -1615,7 +1712,18 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config: *bio-mcp-config
+            config:
+              serverName: biomedical
+              transport: stdio
+              command: *bio-mcp-python
+              args:
+                - *bio-mcp-script
+                - --domains
+                - literature,protein,chemistry,expression,genome
+              cwd: *bio-mcp-cwd
+              env: *bio-mcp-env
+              toolCallTimeoutMs: 120000
+              failOnStartupError: false
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -1706,7 +1814,7 @@
           - id: present
             name: '@deepseek-ai/dsh-tool-present'
 
-    # ── 结构与药物设计：73 技能，4 类 ──
+    # ── 结构与药物设计：69 技能，4 类 ──
     - id: preset-bio-structure-drug
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -1723,8 +1831,10 @@
 
                 风格：简体中文；专业术语保留标准写法（HGNC symbol、UniProt accession、HGVS、GRCh38、FDR、n）。先给一句判断，再给证据与限制。不写空话，不做与任务无关的礼貌铺垫。
 
-                本模式只加载 73 个技能（4 个分类：结构预测与建模、化学信息学与药物设计、蛋白工程与合成生物学、基因编辑与分子克隆）。
-                任务超出这些领域时，说明它落在哪个模式，并建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                本模式只加载 69 个技能（4 个分类：结构预测与建模、化学信息学与药物设计、蛋白工程与合成生物学、基因编辑与分子克隆）。
+                任务超出这些领域时，先用 `skill_scope`（`add: true`）加开需要的分类（只对本会话生效）；跨度很大时再建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                nf-core 流程统一从 `nfcore-catalog` 进入，它会列出本模式范围内可用的流程及其 SKILL.md 路径。
+                本模式的 MCP 数据工具只开放这些领域：文献与预印本、蛋白结构、化合物与药品监管、基因功能与蛋白注释、临床试验与肿瘤证据；需要其它领域的库（例如结构、化学、临床试验）时说明原因并建议切回「生物医学模式」。
 
                 ## 开工前必须做的事
                 1. 看 <available_skills>，用 skill 工具加载本次要用的，并确认在当前平台真的能跑（不是「有文档」就算能用）。
@@ -1775,7 +1885,18 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config: *bio-mcp-config
+            config:
+              serverName: biomedical
+              transport: stdio
+              command: *bio-mcp-python
+              args:
+                - *bio-mcp-script
+                - --domains
+                - literature,structure,chemistry,protein,clinical
+              cwd: *bio-mcp-cwd
+              env: *bio-mcp-env
+              toolCallTimeoutMs: 120000
+              failOnStartupError: false
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -1866,7 +1987,7 @@
           - id: present
             name: '@deepseek-ai/dsh-tool-present'
 
-    # ── 微生物组与宏基因组：38 技能，1 类 ──
+    # ── 微生物组与宏基因组：16 技能，1 类 ──
     - id: preset-bio-microbiome
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -1883,8 +2004,10 @@
 
                 风格：简体中文；专业术语保留标准写法（HGNC symbol、UniProt accession、HGVS、GRCh38、FDR、n）。先给一句判断，再给证据与限制。不写空话，不做与任务无关的礼貌铺垫。
 
-                本模式只加载 38 个技能（1 个分类：微生物组与宏基因组）。
-                任务超出这些领域时，说明它落在哪个模式，并建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                本模式只加载 16 个技能（1 个分类：微生物组与宏基因组）。
+                任务超出这些领域时，先用 `skill_scope`（`add: true`）加开需要的分类（只对本会话生效）；跨度很大时再建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                nf-core 流程统一从 `nfcore-catalog` 进入，它会列出本模式范围内可用的流程及其 SKILL.md 路径。
+                本模式的 MCP 数据工具只开放这些领域：文献与预印本、基因组注释与调控、基因功能与蛋白注释、表达与组学数据集；需要其它领域的库（例如结构、化学、临床试验）时说明原因并建议切回「生物医学模式」。
 
                 ## 开工前必须做的事
                 1. 看 <available_skills>，用 skill 工具加载本次要用的，并确认在当前平台真的能跑（不是「有文档」就算能用）。
@@ -1932,7 +2055,18 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config: *bio-mcp-config
+            config:
+              serverName: biomedical
+              transport: stdio
+              command: *bio-mcp-python
+              args:
+                - *bio-mcp-script
+                - --domains
+                - literature,genome,protein,expression
+              cwd: *bio-mcp-cwd
+              env: *bio-mcp-env
+              toolCallTimeoutMs: 120000
+              failOnStartupError: false
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -2023,7 +2157,7 @@
           - id: present
             name: '@deepseek-ai/dsh-tool-present'
 
-    # ── 影像、细胞表型与法医：39 技能，3 类 ──
+    # ── 影像、细胞表型与法医：35 技能，3 类 ──
     - id: preset-bio-imaging-forensic
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -2040,8 +2174,10 @@
 
                 风格：简体中文；专业术语保留标准写法（HGNC symbol、UniProt accession、HGVS、GRCh38、FDR、n）。先给一句判断，再给证据与限制。不写空话，不做与任务无关的礼貌铺垫。
 
-                本模式只加载 39 个技能（3 个分类：医学影像与放射组学、显微成像与细胞表型、法医与身份鉴定）。
-                任务超出这些领域时，说明它落在哪个模式，并建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                本模式只加载 35 个技能（3 个分类：医学影像与放射组学、显微成像与细胞表型、法医与身份鉴定）。
+                任务超出这些领域时，先用 `skill_scope`（`add: true`）加开需要的分类（只对本会话生效）；跨度很大时再建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                nf-core 流程统一从 `nfcore-catalog` 进入，它会列出本模式范围内可用的流程及其 SKILL.md 路径。
+                本模式的 MCP 数据工具只开放这些领域：文献与预印本、临床试验与肿瘤证据、基因组注释与调控、变异与人群频率；需要其它领域的库（例如结构、化学、临床试验）时说明原因并建议切回「生物医学模式」。
 
                 ## 开工前必须做的事
                 1. 看 <available_skills>，用 skill 工具加载本次要用的，并确认在当前平台真的能跑（不是「有文档」就算能用）。
@@ -2091,7 +2227,18 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config: *bio-mcp-config
+            config:
+              serverName: biomedical
+              transport: stdio
+              command: *bio-mcp-python
+              args:
+                - *bio-mcp-script
+                - --domains
+                - literature,clinical,genome,variant
+              cwd: *bio-mcp-cwd
+              env: *bio-mcp-env
+              toolCallTimeoutMs: 120000
+              failOnStartupError: false
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal
@@ -2182,7 +2329,7 @@
           - id: present
             name: '@deepseek-ai/dsh-tool-present'
 
-    # ── 文献、写作与工程：93 技能，7 类 ──
+    # ── 文献、写作与工程：84 技能，7 类 ──
     - id: preset-bio-support
       name: '@deepseek-ai/dsh-agent-preset'
       config:
@@ -2199,8 +2346,10 @@
 
                 风格：简体中文；专业术语保留标准写法（HGNC symbol、UniProt accession、HGVS、GRCh38、FDR、n）。先给一句判断，再给证据与限制。不写空话，不做与任务无关的礼貌铺垫。
 
-                本模式只加载 93 个技能（7 个分类：文献检索与证据合成、写作与文档交付、数据工程与统计方法、计算流程与可复现性、数据库与接口对接、可视化与图件、研究设计与假设生成）。
-                任务超出这些领域时，说明它落在哪个模式，并建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                本模式只加载 84 个技能（7 个分类：文献检索与证据合成、写作与文档交付、数据工程与统计方法、计算流程与可复现性、数据库与接口对接、可视化与图件、研究设计与假设生成）。
+                任务超出这些领域时，先用 `skill_scope`（`add: true`）加开需要的分类（只对本会话生效）；跨度很大时再建议用户切回「生物医学模式」——不要硬用不对口的技能凑答案。
+                nf-core 流程统一从 `nfcore-catalog` 进入，它会列出本模式范围内可用的流程及其 SKILL.md 路径。
+                本模式的 MCP 数据工具只开放这些领域：文献与预印本、基因组注释与调控、变异与人群频率、表达与组学数据集、基因功能与蛋白注释、蛋白结构、化合物与药品监管、临床试验与肿瘤证据；需要其它领域的库（例如结构、化学、临床试验）时说明原因并建议切回「生物医学模式」。
 
                 ## 开工前必须做的事
                 1. 看 <available_skills>，用 skill 工具加载本次要用的，并确认在当前平台真的能跑（不是「有文档」就算能用）。
@@ -2254,7 +2403,18 @@
           # 专项模式也保留，因为查库几乎每个流程都要用。
           - id: bio-mcp
             name: '@deepseek-ai/dsh-mcp-client'
-            config: *bio-mcp-config
+            config:
+              serverName: biomedical
+              transport: stdio
+              command: *bio-mcp-python
+              args:
+                - *bio-mcp-script
+                - --domains
+                - literature,genome,variant,expression,protein,structure,chemistry,clinical
+              cwd: *bio-mcp-cwd
+              env: *bio-mcp-env
+              toolCallTimeoutMs: 120000
+              failOnStartupError: false
           - id: command-goal
             name: '@deepseek-ai/dsh-command-goal'
           - id: tool-goal

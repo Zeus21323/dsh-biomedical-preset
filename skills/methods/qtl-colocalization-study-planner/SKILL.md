@@ -1,6 +1,6 @@
 ---
 name: qtl-colocalization-study-planner
-description: Designs QTL colocalization studies that connect eQTL, pQTL, sQTL, or related molecular QTL signals with GWAS loci. Always use this skill whenever a user wants to plan, scope, or structure a locus-level study asking whether a GWAS association and a molecular QTL association may reflect the same underlying causal signal. Covers locus definition, QTL/GWAS source architecture, ancestry and LD alignment, single-locus vs multi-locus strategy, candidate-gene prioritization, optional fine-mapping, linked MR/SMR follow-up, and functional annotation. Always output four workload configurations (Lite / Standard / Advanced / Publication+) with a recommended primary plan, stepwise workflow, method rationale, evidence hierarchy, figure plan, minimal executable version, and strictly verified literature guidance with no fabricated references. Never equate colocalization with causality proof, mediation proof, or automatic target validation. Always include the mandatory Dataset Disclaimer immediately before any workflow section that mentions datasets, repositories, consortia, or public resources.
+description: QTL 共定位课题设计：规划把 eQTL、pQTL、sQTL 等分子 QTL 与 GWAS 位点联系起来的研究，确定数据、方法（coloc、SuSiE 等）与判读标准。已有数据、直接做共定位分析用 colocalization-analysis-scaffold-replace。
 license: MIT
 author: AIPOCH
 ---

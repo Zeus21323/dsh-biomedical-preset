@@ -1,6 +1,6 @@
 ---
 name: 19-forensic-genomics-vntr-profiling
-description: 在法医基因组学领域开展“VNTR谱型”任务时使用；根据输入、科学假设和运行环境，在VNTR分析下已保留的方法实现之间路由。
+description: 法医 VNTR 谱型：分析可变数目串联重复（小卫星）长度谱，用于个体识别或历史案件复核。常规案件优先用 19-forensic-genomics-str-genotyping。
 ---
 
 # VNTR谱型

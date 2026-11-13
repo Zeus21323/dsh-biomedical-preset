@@ -1,6 +1,6 @@
 ---
 name: blind-review-sanitizer
-description: Use blind-review-sanitizer for academic writing workflows that need structured anonymization, explicit assumptions, and clear output boundaries for double-blind submission.
+description: 双盲投稿匿名化：系统清除稿件里的作者、单位、基金、致谢、自引等身份线索，并列出无法自动处理的残余风险。
 license: MIT
 author: AIPOCH
 ---

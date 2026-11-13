@@ -1,11 +1,6 @@
 ---
 name: variant-calling-wes-wgs
-description: >-
-  当用户需要从人类全外显子（WES）或全基因组（WGS）重测序数据完成胚系短变异检测主线时使用；Germline short-variant discovery mainline for human whole-exome (WES) and whole-genome (WGS) resequencing: read-group assignment, BWA-MEM2 alignment, sort/mark-duplicates, optional BQSR, HaplotypeCaller GVCF, GenomicsDBImport + GenotypeGVCFs joint genotyping, VQSR or hard filtering, left-alignment/normalization and VEP annotation, plus WES capture-interval handling and coverage QC. Every command is quoted from the GATK / Picard / htslib / bwa-mem2 / Ensembl VEP / mosdepth official documentation with its source URL; steps that have no official runnable command are described as workflow and criteria only. 触发场景：全外显子测序、
-  WES 分析、全基因组测序、WGS 重测序、种系变异检测、germline variant calling、 call variant、SNP/INDEL 检测、
-  GVCF、HaplotypeCaller、GenomicsDBImport、GenotypeGVCFs、联合分型、 joint calling、VQSR、
-  VariantRecalibrator、ApplyVQSR、硬过滤、VariantFiltration、BQSR、BaseRecalibrator、 MarkDuplicates、
-  BWA-MEM2、VEP 注释、外显子捕获区间、capture BED、覆盖度 QC、mosdepth、CollectHsMetrics。
+description: 人类 WES/WGS 胚系短变异检测主线：bwa-mem2 比对、去重与 BQSR，GATK HaplotypeCaller 检出与过滤，bcftools 整理，VEP 注释，mosdepth 覆盖度质控，命令与默认值均引自官方文档。只做其中一步用 01-genome-snp-calling、01-genome-variant-filtering 或 sequencing-coverage-capture-efficiency。
 category: omics
 tags: wes, wgs, gatk, variant-calling, germline
 whenToUse: 当用户需要从人类全外显子（WES）或全基因组（WGS）重测序数据完成胚系短变异检测主线时使用
